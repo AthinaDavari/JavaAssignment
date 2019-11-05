@@ -1,3 +1,4 @@
+
 CREATE DATABASE ErpProg1;
 USE ErpProg1;
 
@@ -18,7 +19,7 @@ CREATE TABLE `Customers` (
 );
 
 CREATE TABLE `Raw_Materials` (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `supplier_id` int NOT NULL,
   `quantity` int,

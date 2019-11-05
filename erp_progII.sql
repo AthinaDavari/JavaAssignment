@@ -27,7 +27,7 @@ CREATE TABLE `Raw_Materials` (
 );
 
 CREATE TABLE `Products` (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `created_at` datetime DEFAULT now(),
   `quantity` int,

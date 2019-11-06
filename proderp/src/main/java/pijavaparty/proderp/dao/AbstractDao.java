@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import pijavaparty.proderp.entity.Customer;
 
 
 /**
@@ -22,7 +23,7 @@ public abstract class AbstractDao<T> {
 
     protected static final String URL = "jdbc:mysql://localhost:3306/proderp?serverTimezone=UTC";
     protected static final String USERNAME = "root";
-    protected static final String PASS = "a2s3d4";
+    protected static final String PASS = "12345";
     private Connection conn;
 
     public Connection getConnection() {
@@ -54,7 +55,7 @@ public abstract class AbstractDao<T> {
     }
 
     public abstract List<T> getAll();
-
+    
 }
 
 

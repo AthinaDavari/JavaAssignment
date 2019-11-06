@@ -3,7 +3,7 @@
 /build/
 /target/
 /.metadata/
-target/
+*/target/
 
 \build\
 \target\*
@@ -11,3 +11,4 @@ target/
 .classpath
 \.settings\
 .project
+*\target\

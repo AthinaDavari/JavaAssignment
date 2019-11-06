@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import pijavaparty.proderp.entity.Customer;
 
 
 /**
@@ -54,7 +55,7 @@ public abstract class AbstractDao<T> {
     }
 
     public abstract List<T> getAll();
-
+    
 }
 
 

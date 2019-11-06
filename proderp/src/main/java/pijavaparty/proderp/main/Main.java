@@ -21,8 +21,7 @@ public class Main {
         //c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
         System.out.println(c.getById(1));
         CustomerDao.printList(c.getAll());
-        c.delete(0);
-        CustomerDao.printList(c.getAll());
+        
     }
     
 }

@@ -1,5 +1,6 @@
-CREATE DATABASE ErpProg1;
-USE ErpProg1;
+-- drop schema proderp;
+CREATE DATABASE proderp;
+USE proderp;
 
 CREATE TABLE `Suppliers` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
@@ -55,6 +56,7 @@ CREATE TABLE `C_order_items` (
   `c_order_id` int,
   `product_id` int,
   `quantity` int DEFAULT 1,
+  primary key(c_order_id, product_id),
   FOREIGN KEY (`c_order_id`) REFERENCES `C_Orders` (`id`),
   FOREIGN KEY (`product_id`) REFERENCES `Products` (`id`)
 );
@@ -63,6 +65,7 @@ CREATE TABLE `S_order_items` (
   `s_order_id` int,
   `raw_material_id` int,
   `quantity` int DEFAULT 1,
+  primary key(s_order_id, raw_material_id),
   FOREIGN KEY (`s_order_id`) REFERENCES `S_Orders` (`id`),
   FOREIGN KEY (`raw_material_id`) REFERENCES `Raw_Materials` (`id`)
 );
@@ -71,6 +74,7 @@ CREATE TABLE `P_Materials` (
   `product_id` int,
   `raw_material_id` int,
   `quantity_of_raw_material` int,
+  primary key(product_id, raw_material_id),
   FOREIGN KEY (`product_id`) REFERENCES `Products` (`id`),
   FOREIGN KEY (`raw_material_id`) REFERENCES `Raw_Materials` (`id`)
 );

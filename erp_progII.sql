@@ -1,3 +1,5 @@
+create schema production_erp;
+use production_erp;
 CREATE TABLE `Suppliers` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `full_name` varchar(255),
@@ -25,7 +27,7 @@ CREATE TABLE `Raw_Materials` (
 CREATE TABLE `Products` (
   `id` int PRIMARY KEY,
   `name` varchar(255),
-  `created_at` datetime DEFAULT (now()),
+  `created_at` datetime DEFAULT now(),
   `quantity` int,
   `price` double
 );
@@ -34,14 +36,14 @@ CREATE TABLE `S_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `supplier_id` int UNIQUE NOT NULL,
   `status` ENUM ('delivered', 'pending'),
-  `created_at` datetime DEFAULT (now())
+  `created_at` datetime DEFAULT now()
 );
 
 CREATE TABLE `C_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `customer_id` int UNIQUE NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
-  `created_at` datetime DEFAULT (now())
+  `created_at` datetime DEFAULT now()
 );
 
 CREATE TABLE `C_order_items` (

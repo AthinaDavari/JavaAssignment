@@ -22,11 +22,13 @@ import pijavaparty.proderp.entity.Supplier;
 public class SupplierDao extends AbstractDao {
 
     private final String GETALL = "SELECT * FROM Suppliers";
-    private final String GETBYID = "SELECT * FROM Suppliers WHERE id = ";
+    private final String GETBYID = "SELECT * FROM Suppliers WHERE id = ?";
     private final String INSERT = "INSERT INTO Suppliers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private final String UPDATE = "UPDATE Suppliers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
-
+    private final String DELETE = "DELETE FROM Suppliers WHERE id = ?";
+    
     @Override
+
     public List<Supplier> getAll() {
         List<Supplier> suppliers = new LinkedList();
         try {
@@ -42,10 +44,11 @@ public class SupplierDao extends AbstractDao {
     }
 
     public Supplier getById(int id) {
-        Statement st;
+        PreparedStatement pst;
         try {
-            st = getConnection().createStatement();
-            ResultSet rs = st.executeQuery(GETBYID + id);
+            pst = getConnection().prepareStatement(GETBYID);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 return new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
@@ -69,12 +72,22 @@ public class SupplierDao extends AbstractDao {
 
     }
 
-    public boolean update(Supplier s) {
+    public void update(Supplier s) {
         Supplier fromTable = getById(s.getId());
-        if (fromTable != null) {
-            
-        } 
-        return false;
+        if (fromTable != null && !fromTable.equals(s)) {
+
+        }
+    }
+
+    public void delete(int id) {
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(DELETE);
+            pst.setInt(1, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
     }
 
 }

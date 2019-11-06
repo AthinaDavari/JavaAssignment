@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.Customer;
-import pijavaparty.proderp.entity.Supplier;
 /**
  *
  * @author athinaDavari
@@ -42,14 +41,14 @@ public class CustomerDao extends AbstractDao {
         return customers;
     }
     
-    public Supplier getById(int id) {
+    public Customer getById(int id) {
         PreparedStatement pst;
         try {
             pst = getConnection().prepareStatement(GETBYID);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+                return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,7 +71,7 @@ public class CustomerDao extends AbstractDao {
     }
     
     public void update(Customer c) {
-        Supplier fromTable = getById(c.getId());
+        Customer fromTable = getById(c.getId());
         if (fromTable != null && !fromTable.equals(c)) {
 
         }
@@ -86,6 +85,13 @@ public class CustomerDao extends AbstractDao {
         } catch (SQLException ex) {
              Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
+        }
+    }
+    
+    public static void printList(List<Customer> a){
+        System.out.println(a.get(0).getClass().getSimpleName());
+        for(int i=0; i < a.size(); i++){
+            System.out.println(a.get(i));
         }
     }
 }

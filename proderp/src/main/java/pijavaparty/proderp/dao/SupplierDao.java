@@ -90,4 +90,10 @@ public class SupplierDao extends AbstractDao {
         }
     }
 
+    public static void printList(List<Supplier> a){
+        System.out.println(a.get(0).getClass().getSimpleName());
+        for(int i=0; i < a.size(); i++){
+            System.out.println(a.get(i));
+        }
+    }
 }

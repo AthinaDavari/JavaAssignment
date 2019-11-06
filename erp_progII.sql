@@ -1,4 +1,4 @@
--- drop schema proderp;
+drop schema proderp;
 CREATE DATABASE proderp;
 USE proderp;
 
@@ -85,3 +85,8 @@ CREATE TABLE `P_Materials` (
 insert into suppliers(full_name, address, phonenumber, email) 
 values("SideroA.E.", "A.Papadreou 30", 2105678934, "info@sidero.gr"),
 	  ("PetaloudaA.E.", "Palaiologou 156", 2103789023, "info@petalouda.gr");
+      
+insert into products(name, quantity, price)
+values("Merenda Pavlidis", 10, 47.65),
+	  ("Nucrema ION", 32, 125.34),
+      ("Nutella Kinder", 25, "87.69");

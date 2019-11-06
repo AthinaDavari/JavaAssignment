@@ -1,6 +1,7 @@
 package pijavaparty.proderp.main;
 
 import java.util.List;
+import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.Supplier;
 
@@ -12,9 +13,12 @@ public class Main {
     
     public static void main(String[] args) {
         SupplierDao supplierDao = new SupplierDao();
+        CustomerDao customerDao = new CustomerDao();
         System.out.println(supplierDao.getById(2));
 //        supplierDao.insert(new Supplier("Wood", "Patisionn 8", 222222l, "info@wood.com"));
         printList(supplierDao.getAll());
+        System.out.println(customerDao.getAll());
+        supplierDao.delete(3);
 
     }
     

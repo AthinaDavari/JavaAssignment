@@ -6,7 +6,7 @@
 
 
 \build\
-\target\
+\target\*
 \.metadata\
 .classpath
 \.settings\

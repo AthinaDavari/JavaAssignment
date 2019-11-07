@@ -21,8 +21,7 @@ public class Main {
         
         System.out.println(supplierDao.getById(2));
 //        supplierDao.insert(new Supplier("Wood", "Patisionn 8", 222222l, "info@wood.com"));
-        supplierDao.update(new Supplier(3, "Wood", "Patisionn 198", 222222l, "info@wood.com"));
-        
+        System.out.println(supplierDao.update(new Supplier(3, "Wood", "Patisionn 200", 4222222l, "info@wood.com")));
         SupplierDao.printList(supplierDao.getAll());
         
         

@@ -73,11 +73,22 @@ public class SupplierDao extends AbstractDao {
 
     }
 
-    public void update(Supplier s) {
+    public boolean update(Supplier s) {
         Supplier fromTable = getById(s.getId());
         if (fromTable != null && !fromTable.equals(s)) {
-
+            try {
+                PreparedStatement pst = getConnection().prepareStatement(UPDATE);
+                pst.setString(1, s.getFullName());
+                pst.setString(2, s.getAddress());
+                pst.setLong(3, s.getPhonenumber());
+                pst.setString(4, s.getEmail());
+                pst.setInt(5, s.getId());
+                return pst.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        return false;
     }
 
     public void delete(int id) {

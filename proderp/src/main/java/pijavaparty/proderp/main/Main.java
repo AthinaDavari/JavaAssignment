@@ -8,7 +8,7 @@ import pijavaparty.proderp.entity.Supplier;
 
 /**
  *
- * @author athina
+ * @author AthinaDavari
  */
 public class Main {
     
@@ -18,8 +18,10 @@ public class Main {
 //        supplierDao.insert(new Supplier("Wood", "Patisionn 8", 222222l, "info@wood.com"));
         SupplierDao.printList(supplierDao.getAll());
         CustomerDao c = new CustomerDao();
-        //c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
-        System.out.println(c.getById(1));
+        c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
+        System.out.println(c.getByName("Papadopoulos"));
+        CustomerDao.printList(c.getAll());
+        c.delete(2);
         CustomerDao.printList(c.getAll());
         
     }

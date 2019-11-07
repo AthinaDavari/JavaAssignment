@@ -24,8 +24,12 @@ public class CustomerDao extends AbstractDao {
     private final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
     private final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
     private final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
-    private final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
+    //private final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
     private final String DELETE = "DELETE FROM Customers WHERE id = ?";
+    private final String UPDATEFN = "UPDATE Customers SET full_name = ? WHERE id = ?";
+    private final String UPDATEA = "UPDATE Customers SET address = ? WHERE id = ?";
+    private final String UPDATEE = "UPDATE Customers SET email = ? WHERE id = ?";
+    private final String UPDATEPHN = "UPDATE Customers SET phonenumber = ? WHERE id = ?";
     
      @Override
     public List<Customer> getAll() {
@@ -85,6 +89,78 @@ public class CustomerDao extends AbstractDao {
 
         }
 
+    }
+    
+    public void updateFullName(int id,String fullName) {
+        //Customer fromTable = getById(c.getId());
+        CustomerDao customerDao = new CustomerDao();
+        Customer c =customerDao.getById(id);
+        if (c == null) {
+         return;
+        }
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEFN);
+            pst.setString(1, fullName);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void updateAddress(int id,String address) {
+        //Customer fromTable = getById(c.getId());
+        CustomerDao customerDao = new CustomerDao();
+        Customer c =customerDao.getById(id);
+        if (c == null) {
+         return;
+        }
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEA);
+            pst.setString(1, address);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void updatePhoneNumber(int id,long phn) {
+        //Customer fromTable = getById(c.getId());
+        CustomerDao customerDao = new CustomerDao();
+        Customer c =customerDao.getById(id);
+        if (c == null) {
+         return;
+        }
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEPHN);
+            pst.setLong(1, phn);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void updateEmail(int id,String email) {
+        //Customer fromTable = getById(c.getId());
+        CustomerDao customerDao = new CustomerDao();
+        Customer c =customerDao.getById(id);
+        if (c == null) {
+         return;
+        }
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEE);
+            pst.setString(1, email);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     public void update(Customer c) {

@@ -3,6 +3,7 @@ package pijavaparty.proderp.main;
 import java.util.List;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.dao.SupplierDao;
+import pijavaparty.proderp.entity.Customer;
 
 
 /**
@@ -19,7 +20,8 @@ public class Main {
 
         SupplierDao.printList(supplierDao.getAll());
         CustomerDao c = new CustomerDao();
-        c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
+        c.updatePhoneNumber(7, 3455);
+        //c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
         System.out.println(c.getByName("Papadopoulos"));
         CustomerDao.printList(c.getAll());
         c.delete(2);

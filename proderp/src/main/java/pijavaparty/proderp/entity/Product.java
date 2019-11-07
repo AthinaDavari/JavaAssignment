@@ -9,25 +9,25 @@ package pijavaparty.proderp.entity;
  *
  * @author Athina P.
  */
-public class Products {
-     
+public class Product {
+
     private int id;
     private String name;
     //private String created_at;
     private int quantity;
     private double price;
-    
-    public Products() {
-        
+
+    public Product() {
+
     }
 
-    public Products(String name, int quantity, double price) {
+    public Product(String name, int quantity, double price) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public Products(int id, String name, int quantity, double price) {
+    public Product(int id, String name, int quantity, double price) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -80,8 +80,5 @@ public class Products {
     public int hashCode() {
         return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-   
-    
+
 }

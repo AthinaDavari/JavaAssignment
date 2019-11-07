@@ -65,6 +65,7 @@ public class SupplierDao extends AbstractDao {
             pst.setString(2, s.getAddress());
             pst.setLong(3, s.getPhonenumber());
             pst.setString(4, s.getEmail());
+            pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
 

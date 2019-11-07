@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pijavaparty.proderp.dao;
 
 import java.sql.PreparedStatement;
@@ -14,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pijavaparty.proderp.entity.Supplier;
+import pijavaparty.proderp.entity.Product;
 
 /**
  *
@@ -28,7 +27,7 @@ public class ProductDao extends AbstractDao {
     private final String UPDATE = "UPDATE Products SET name = ?, quantity = ?, price = ? WHERE id = ?";
     private final String DELETE = "DELETE FROM Products WHERE id = ?";
 
- @Override
+    @Override
 
     public List<Product> getAll() {
         List<Product> products = new LinkedList();
@@ -89,4 +88,3 @@ public class ProductDao extends AbstractDao {
 
         }
     }
-

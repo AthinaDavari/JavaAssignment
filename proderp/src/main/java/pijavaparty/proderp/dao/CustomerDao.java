@@ -24,7 +24,7 @@ public class CustomerDao extends AbstractDao {
     private final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
     private final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
     private final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
-    //private final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
+    private final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
     private final String DELETE = "DELETE FROM Customers WHERE id = ?";
     private final String UPDATEFN = "UPDATE Customers SET full_name = ? WHERE id = ?";
     private final String UPDATEA = "UPDATE Customers SET address = ? WHERE id = ?";
@@ -77,6 +77,23 @@ public class CustomerDao extends AbstractDao {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
+    }
+     
+         public void update(Customer c) {
+        Customer fromTable = getById(c.getId());
+        if (fromTable != null && !fromTable.equals(c)) {
+            try {
+                PreparedStatement pst = getConnection().prepareStatement(UPDATE);
+                pst.setString(1, c.getFullName());
+                pst.setString(2, c.getAddress());
+                pst.setLong(3, c.getPhonenumber());
+                pst.setString(4, c.getEmail());
+                pst.setInt(5, c.getId());
+                pst.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void insert(Customer c) {
@@ -164,13 +181,6 @@ public class CustomerDao extends AbstractDao {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }
-    
-    public void update(Customer c) {
-        Customer fromTable = getById(c.getId());
-        if (fromTable != null && !fromTable.equals(c)) {
-
-        }
     }
     
     public void delete(int id) {

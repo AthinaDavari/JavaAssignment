@@ -74,13 +74,6 @@ public class ProductDao extends AbstractDao {
 
     }
 
-    public void update(Product p) {
-        Product fromTable = getById(p.getId());
-        if (fromTable != null && !fromTable.equals(p)) {
-
-        }
-    }
-    
     public void updateName(int id,String name) {
         //Customer fromTable = getById(c.getId());
         ProductDao pDao = new ProductDao();
@@ -107,7 +100,7 @@ public class ProductDao extends AbstractDao {
          return;
         }
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEN);
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEQ);
             pst.setInt(1, quantity);
             pst.setInt(2, id);
             pst.execute();
@@ -125,7 +118,7 @@ public class ProductDao extends AbstractDao {
          return;
         }
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEN);
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEP);
             pst.setDouble(1, price);
             pst.setInt(2, id);
             pst.execute();
@@ -133,6 +126,22 @@ public class ProductDao extends AbstractDao {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public void update(Product p) {
+        Product fromTable = getById(p.getId());
+        if (fromTable != null && !fromTable.equals(p)) {
+            try {
+                PreparedStatement pst = getConnection().prepareStatement(UPDATE);
+                pst.setString(1, p.getName());
+                pst.setInt(2, p.getQuantity());
+                pst.setDouble(3, p.getPrice());
+                pst.setInt(4, p.getId());
+                pst.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void delete(int id) {

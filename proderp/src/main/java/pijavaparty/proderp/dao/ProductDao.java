@@ -58,25 +58,25 @@ public class ProductDao extends AbstractDao {
         return null;
     }
 
-//    public void insert(Product p) {
-//        try {
-//            PreparedStatement pst = getConnection().prepareStatement(INSERT);
-//            pst.setString(1, p.getName());
-//            pst.setString(2, p.getQuantity());
-//            pst.setLong(3, p.getPrice());
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
-//
-//        }
-//
-//    }
-//
-//    public void update(Product p) {
-//        Supplier fromTable = getById(p.getId());
-//        if (fromTable != null && !fromTable.equals(p)) {
-//
-//        }
-//    }
+    public void insert(Product p) {
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(INSERT);
+            pst.setString(1, p.getName());
+            pst.setInt(2, p.getQuantity());
+            pst.setDouble(3, p.getPrice());
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+    }
+
+    public void update(Product p) {
+        Product fromTable = getById(p.getId());
+        if (fromTable != null && !fromTable.equals(p)) {
+
+        }
+    }
 
     public void delete(int id) {
         try {

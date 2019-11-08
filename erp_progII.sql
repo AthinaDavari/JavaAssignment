@@ -90,3 +90,8 @@ insert into products(name, quantity, price)
 values("Merenda Pavlidis", 10, 47.65),
 	  ("Nucrema ION", 32, 125.34),
       ("Nutella Kinder", 25, "87.69");
+
+insert into raw_materials(name, supplier_id, quantity, price) 
+values ("plastic", 2, 47, 0.25),
+	   ("metal", 3, 32, 1.2),
+       ("wood", 3, 17, 3.7);

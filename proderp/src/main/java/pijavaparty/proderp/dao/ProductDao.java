@@ -26,6 +26,9 @@ public class ProductDao extends AbstractDao {
     private final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";
     private final String UPDATE = "UPDATE Products SET name = ?, quantity = ?, price = ? WHERE id = ?";
     private final String DELETE = "DELETE FROM Products WHERE id = ?";
+    private final String UPDATEN = "UPDATE Products SET name = ? WHERE id = ?";
+    private final String UPDATEQ = "UPDATE Products SET quantity = ? WHERE id = ?";
+    private final String UPDATEP = "UPDATE Products SET price = ? WHERE id = ?";
 
     @Override
 
@@ -76,6 +79,60 @@ public class ProductDao extends AbstractDao {
         if (fromTable != null && !fromTable.equals(p)) {
 
         }
+    }
+    
+    public void updateName(int id,String name) {
+        //Customer fromTable = getById(c.getId());
+        ProductDao pDao = new ProductDao();
+        Product c =pDao.getById(id);
+        if (c == null) {
+         return;
+        }
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEN);
+            pst.setString(1, name);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void updateQuantity(int id,int quantity) {
+        //Customer fromTable = getById(c.getId());
+        ProductDao pDao = new ProductDao();
+        Product c =pDao.getById(id);
+        if (c == null) {
+         return;
+        }
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEN);
+            pst.setInt(1, quantity);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void updatePrice(int id,double price) {
+        //Customer fromTable = getById(c.getId());
+        ProductDao pDao = new ProductDao();
+        Product c =pDao.getById(id);
+        if (c == null) {
+         return;
+        }
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEN);
+            pst.setDouble(1, price);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     public void delete(int id) {

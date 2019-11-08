@@ -61,19 +61,22 @@ public class CustomerDao extends AbstractDao {
         return null;
     }
     
-     public Customer getByName(String name) {
+     public List<Customer> getByName(String name) {
         PreparedStatement pst;
+        List<Customer> c = new LinkedList();
         try {
             pst = getConnection().prepareStatement(GETBYNAME);
             pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+            for (int i=0;i<= getAll().size();i++){
+            while (rs.next()) {
+                c.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
+            }
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return c;
     }
     
     public void insert(Customer c) {
@@ -181,10 +184,4 @@ public class CustomerDao extends AbstractDao {
         }
     }
     
-    public static void printList(List<Customer> a){
-        System.out.println(a.get(0).getClass().getSimpleName());
-        for(int i=0; i < a.size(); i++){
-            System.out.println(a.get(i));
-        }
-    }
 }

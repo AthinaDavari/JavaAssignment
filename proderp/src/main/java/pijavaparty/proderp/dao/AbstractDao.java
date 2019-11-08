@@ -54,7 +54,17 @@ public abstract class AbstractDao<T> {
     }
 
     public abstract List<T> getAll();
-    
+   
+    public void printList(List<T> a){
+        System.out.println(a.get(0).getClass().getSimpleName());
+        if(a == null){
+            return;
+        }
+        for(int i=0; i < a.size(); i++){
+            System.out.println(a.get(i));
+        }
+        
+    }
 }
 
 

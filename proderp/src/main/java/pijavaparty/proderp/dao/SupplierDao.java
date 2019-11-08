@@ -73,7 +73,7 @@ public class SupplierDao extends AbstractDao {
 
     }
 
-    public boolean update(Supplier s) {
+    public void update(Supplier s) {
         Supplier fromTable = getById(s.getId());
         if (fromTable != null && !fromTable.equals(s)) {
             try {
@@ -83,12 +83,11 @@ public class SupplierDao extends AbstractDao {
                 pst.setLong(3, s.getPhonenumber());
                 pst.setString(4, s.getEmail());
                 pst.setInt(5, s.getId());
-                if(pst.executeUpdate() == 1) return true;
+                pst.execute();
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return false;
     }
 
     public void delete(int id) {
@@ -99,13 +98,6 @@ public class SupplierDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
 
-        }
-    }
-
-    public static void printList(List<Supplier> a){
-        System.out.println(a.get(0).getClass().getSimpleName());
-        for(int i=0; i < a.size(); i++){
-            System.out.println(a.get(i));
         }
     }
 }

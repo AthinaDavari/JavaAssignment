@@ -3,8 +3,10 @@
 /build/
 /target/
 /.metadata/
+*/.metadata/**
 */target/**
 
+*\.metadata\**
 \build\
 \target\*
 \.metadata\

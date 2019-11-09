@@ -2,9 +2,9 @@ package pijavaparty.proderp.main;
 
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.dao.ProductDao;
+import pijavaparty.proderp.dao.ProductRawMaterialDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SupplierDao;
-import pijavaparty.proderp.entity.Customer;
 
 
 /**
@@ -18,15 +18,18 @@ public class Main {
         CustomerDao c = new CustomerDao();
         ProductDao p = new ProductDao();
         RawMaterialDao rawMaterialDao = new RawMaterialDao();
+        ProductRawMaterialDao productRawMaterialDao = new ProductRawMaterialDao();
         
 //        System.out.println(rawMaterialDao.getAll());
-        System.out.println(rawMaterialDao.getById(2));
+//        System.out.println(rawMaterialDao.getById(2));
         
-        System.out.println(supplierDao.getById(2));
+//        System.out.println(supplierDao.getById(2));
 //        supplierDao.insert(new Supplier("Wood", "Patisionn 8", 222222l, "info@wood.com"));
         //supplierDao.update(new Supplier(2, "Wood", "Patisionn 200", 4222222l, "info@wood.com"));
         //SupplierDao.printList(supplierDao.getAll());
-        System.out.println(supplierDao.getById(2));
+//        System.out.println(supplierDao.getById(2));
+        
+        System.out.println(productRawMaterialDao.getAll());
         
         
 //          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
@@ -40,6 +43,8 @@ public class Main {
 
          // p.printList(p.getAll());
         
+         
+         
         
     }
     

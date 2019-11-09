@@ -14,12 +14,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.Customer;
+
 /**
  *
  * @author athinaDavari
  */
 public class CustomerDao extends AbstractDao {
-    
+
     private final String GETALL = "SELECT * FROM Customers";
     private final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
     private final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
@@ -30,8 +31,8 @@ public class CustomerDao extends AbstractDao {
     private final String UPDATEA = "UPDATE Customers SET address = ? WHERE id = ?";
     private final String UPDATEE = "UPDATE Customers SET email = ? WHERE id = ?";
     private final String UPDATEPHN = "UPDATE Customers SET phonenumber = ? WHERE id = ?";
-    
-     @Override
+
+    @Override
     public List<Customer> getAll() {
         List<Customer> customers = new LinkedList();
         try {
@@ -40,12 +41,13 @@ public class CustomerDao extends AbstractDao {
             while (rs.next()) {
                 customers.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
             }
+            closeConnections(rs, st);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return customers;
     }
-    
+
     public Customer getById(int id) {
         PreparedStatement pst;
         try {
@@ -55,31 +57,33 @@ public class CustomerDao extends AbstractDao {
             if (rs.next()) {
                 return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
+            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-     public List<Customer> getByName(String name) {
+
+    public List<Customer> getByName(String name) {
         PreparedStatement pst;
         List<Customer> c = new LinkedList();
         try {
             pst = getConnection().prepareStatement(GETBYNAME);
             pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
-            for (int i=0;i<= getAll().size();i++){
-            while (rs.next()) {
-                c.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
+            for (int i = 0; i <= getAll().size(); i++) {
+                while (rs.next()) {
+                    c.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
+                }
             }
-            }
+            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
     }
-     
-         public void update(Customer c) {
+
+    public void update(Customer c) {
         Customer fromTable = getById(c.getId());
         if (fromTable != null && !fromTable.equals(c)) {
             try {
@@ -90,12 +94,13 @@ public class CustomerDao extends AbstractDao {
                 pst.setString(4, c.getEmail());
                 pst.setInt(5, c.getId());
                 pst.execute();
+                closeConnections(pst);
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
+
     public void insert(Customer c) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(INSERT);
@@ -104,19 +109,20 @@ public class CustomerDao extends AbstractDao {
             pst.setLong(3, c.getPhonenumber());
             pst.setString(4, c.getEmail());
             pst.execute();
+            closeConnections(pst);
         } catch (SQLException ex) {
-             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
 
     }
-    
-    public void updateFullName(int id,String fullName) {
+
+    public void updateFullName(int id, String fullName) {
         //Customer fromTable = getById(c.getId());
         CustomerDao customerDao = new CustomerDao();
-        Customer c =customerDao.getById(id);
+        Customer c = customerDao.getById(id);
         if (c == null) {
-         return;
+            return;
         }
         try {
             PreparedStatement pst = getConnection().prepareStatement(UPDATEFN);
@@ -126,15 +132,15 @@ public class CustomerDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    public void updateAddress(int id,String address) {
+
+    public void updateAddress(int id, String address) {
         //Customer fromTable = getById(c.getId());
         CustomerDao customerDao = new CustomerDao();
-        Customer c =customerDao.getById(id);
+        Customer c = customerDao.getById(id);
         if (c == null) {
-         return;
+            return;
         }
         try {
             PreparedStatement pst = getConnection().prepareStatement(UPDATEA);
@@ -144,15 +150,15 @@ public class CustomerDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    public void updatePhoneNumber(int id,long phn) {
+
+    public void updatePhoneNumber(int id, long phn) {
         //Customer fromTable = getById(c.getId());
         CustomerDao customerDao = new CustomerDao();
-        Customer c =customerDao.getById(id);
+        Customer c = customerDao.getById(id);
         if (c == null) {
-         return;
+            return;
         }
         try {
             PreparedStatement pst = getConnection().prepareStatement(UPDATEPHN);
@@ -162,15 +168,15 @@ public class CustomerDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    public void updateEmail(int id,String email) {
+
+    public void updateEmail(int id, String email) {
         //Customer fromTable = getById(c.getId());
         CustomerDao customerDao = new CustomerDao();
-        Customer c =customerDao.getById(id);
+        Customer c = customerDao.getById(id);
         if (c == null) {
-         return;
+            return;
         }
         try {
             PreparedStatement pst = getConnection().prepareStatement(UPDATEE);
@@ -180,18 +186,18 @@ public class CustomerDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     public void delete(int id) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(DELETE);
             pst.setInt(1, id);
             pst.execute();
         } catch (SQLException ex) {
-             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
     }
-    
+
 }

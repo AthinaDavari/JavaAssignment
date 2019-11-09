@@ -5,6 +5,8 @@
  */
 package pijavaparty.proderp.entity;
 
+import java.util.Objects;
+
 /**
  *
  * @author Athina P.
@@ -67,18 +69,47 @@ public class Product {
     }
 
     @Override
-    public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + this.id;
+        hash = 71 * hash + Objects.hashCode(this.name);
+        hash = 71 * hash + this.quantity;
+        hash = 71 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
+        return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.quantity != other.quantity) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.price) != Double.doubleToLongBits(other.price)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    public String toString() {
+        return "Product{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + '}';
     }
+
+
 
 }

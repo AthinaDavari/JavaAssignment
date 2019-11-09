@@ -120,7 +120,7 @@ public class RawMaterial {
 
     @Override
     public String toString() {
-        return "RawMaterial{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", supplier=" + supplier + '}';
+        return "RawMaterial{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", supplierid=" + supplier.getId() + '}';
     }
     
 }

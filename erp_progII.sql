@@ -2,6 +2,14 @@ drop schema proderp;
 CREATE DATABASE proderp;
 USE proderp;
 
+CREATE TABLE `Users`(
+`id` int PRIMARY KEY AUTO_INCREMENT,
+`full_name` varchar(255),
+`user_name` varchar(255),
+`password` varchar(255),
+`role` int
+);
+
 CREATE TABLE `Suppliers` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `full_name` varchar(255),
@@ -49,7 +57,9 @@ CREATE TABLE `C_Orders` (
   `customer_id` int UNIQUE NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`)
+  `users_id` int UNIQUE NOT NULL,
+  FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
+  FOREIGN KEY (`users_id`) REFERENCES `Users` (`id`)
 );
 
 CREATE TABLE `C_order_items` (
@@ -93,5 +103,5 @@ values("Merenda Pavlidis", 10, 47.65),
 
 insert into raw_materials(name, supplier_id, quantity, price) 
 values ("plastic", 2, 47, 0.25),
-	   ("metal", 3, 32, 1.2),
-       ("wood", 3, 17, 3.7);
+	   ("metal", 1, 32, 1.2),
+       ("wood", 1, 17, 3.7);

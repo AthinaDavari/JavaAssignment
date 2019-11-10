@@ -5,7 +5,9 @@ import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
+import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.dao.SupplierDao;
+import pijavaparty.proderp.entity.SOrder;
 
 
 /**
@@ -20,6 +22,10 @@ public class Main {
         ProductDao p = new ProductDao();
         RawMaterialDao rawMaterialDao = new RawMaterialDao();
         ProductRawMaterialDao productRawMaterialDao = new ProductRawMaterialDao();
+        SOrderDao so =new SOrderDao();
+        SOrder s =new SOrder(2);
+        so.insert(s);
+        so.printList(so.getAll());
         p.printList(p.getAll());
 //        System.out.println(rawMaterialDao.getAll());
 //        System.out.println(rawMaterialDao.getById(2));

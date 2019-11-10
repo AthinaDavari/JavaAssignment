@@ -23,6 +23,7 @@ public class ProductDao extends AbstractDao {
 
     private final String GETALL = "SELECT * FROM Products";
     private final String GETBYID = "SELECT * FROM Products WHERE id = ?";
+    private final String GETBYNAME = "SELECT * FROM Customers WHERE name = ?";
     private final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";
     private final String UPDATE = "UPDATE Products SET name = ?, quantity = ?, price = ? WHERE id = ?";
     private final String DELETE = "DELETE FROM Products WHERE id = ?";
@@ -38,7 +39,7 @@ public class ProductDao extends AbstractDao {
             Statement st = getConnection().createStatement();
             ResultSet rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                products.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4)));
+                products.add(new Product(rs.getInt(1), rs.getString(2),rs.getTimestamp(3), rs.getInt(4), rs.getDouble(5)));
             }
             closeConnections(rs, st);
         } catch (SQLException ex) {
@@ -54,7 +55,7 @@ public class ProductDao extends AbstractDao {
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+                return new Product(rs.getInt(1), rs.getString(2), rs.getTimestamp(3), rs.getInt(4), rs.getDouble(5));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,6 +63,25 @@ public class ProductDao extends AbstractDao {
         return null;
     }
 
+    public List<Product> getByName(String name) {
+        PreparedStatement pst;
+        List<Product> p = new LinkedList();
+        try {
+            pst = getConnection().prepareStatement(GETBYNAME);
+            pst.setString(1, name);
+            ResultSet rs = pst.executeQuery();
+            for (int i = 0; i <= getAll().size(); i++) {
+                while (rs.next()) {
+                    p.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5)));
+                }
+            }
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
+    
     public void insert(Product p) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(INSERT);

@@ -19,7 +19,7 @@ public class Main {
         ProductDao p = new ProductDao();
         RawMaterialDao rawMaterialDao = new RawMaterialDao();
         ProductRawMaterialDao productRawMaterialDao = new ProductRawMaterialDao();
-        
+        p.printList(p.getAll());
 //        System.out.println(rawMaterialDao.getAll());
 //        System.out.println(rawMaterialDao.getById(2));
         
@@ -29,7 +29,7 @@ public class Main {
         //SupplierDao.printList(supplierDao.getAll());
 //        System.out.println(supplierDao.getById(2));
         
-        System.out.println(productRawMaterialDao.getAll());
+       // System.out.println(productRawMaterialDao.getAll());
         
         
 //          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));

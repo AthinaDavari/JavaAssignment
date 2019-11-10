@@ -39,7 +39,7 @@ public class ProductDao extends AbstractDao {
             Statement st = getConnection().createStatement();
             ResultSet rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                products.add(new Product(rs.getInt(1), rs.getString(2),rs.getTimestamp(3), rs.getInt(4), rs.getDouble(5)));
+                products.add(new Product(rs.getInt(1), rs.getString(2),rs.getInt(3), rs.getDouble(4)));
             }
             closeConnections(rs, st);
         } catch (SQLException ex) {
@@ -55,7 +55,7 @@ public class ProductDao extends AbstractDao {
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new Product(rs.getInt(1), rs.getString(2), rs.getTimestamp(3), rs.getInt(4), rs.getDouble(5));
+                return new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,7 +72,7 @@ public class ProductDao extends AbstractDao {
             ResultSet rs = pst.executeQuery();
             for (int i = 0; i <= getAll().size(); i++) {
                 while (rs.next()) {
-                    p.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5)));
+                    p.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4)));
                 }
             }
             closeConnections(pst);

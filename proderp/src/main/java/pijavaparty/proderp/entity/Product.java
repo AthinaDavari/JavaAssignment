@@ -18,26 +18,10 @@ public class Product {
 
     private int id;
     private String name;
-    private Timestamp created_at;
     private int quantity;
     private double price;
 
-    public Product(int id, String name, Timestamp created_at, int quantity, double price) {
-        this.id = id;
-        this.name = name;
-        this.created_at = created_at;
-        this.quantity = quantity;
-        this.price = price;
-    }
-
-    public Timestamp getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
-    }
-   
+    
     public Product() {
 
     }
@@ -126,7 +110,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", created_at=" + created_at + ", quantity=" + quantity + ", price=" + price + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + '}';
     }
 
     

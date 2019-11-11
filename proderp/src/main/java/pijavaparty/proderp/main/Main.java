@@ -10,7 +10,7 @@ import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.User;
-import pijavaparty.proderp.gui.MainPage;
+
 
 
 /**
@@ -35,6 +35,7 @@ public class Main {
         p.printList(p.getAll());*/
         UserDao u = new UserDao();
         System.out.println(u.getUser("ath", "asdfg"));
+        u.printList(u.getAll());
         
                 //       new MainPage().setVisible(true);
     

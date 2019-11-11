@@ -108,4 +108,8 @@ values ("plastic", 2, 47, 0.25),
 insert into s_orders(supplier_id,status) 
 values (1,'delivered');
        
+insert into users(full_name,user_name,password,role)
+values  ("athina", "ath", "asdfg",1),
+        ("natalia", "nat", "12345", 2);
+     
 select * from products;

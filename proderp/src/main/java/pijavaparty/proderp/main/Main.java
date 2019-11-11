@@ -8,6 +8,7 @@ import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.SOrder;
+import pijavaparty.proderp.gui.MainPage;
 
 
 /**
@@ -16,8 +17,7 @@ import pijavaparty.proderp.entity.SOrder;
  */
 public class Main {
     
-    public static void main(String[] args) {
-        SupplierDao supplierDao = new SupplierDao();
+        /*SupplierDao supplierDao = new SupplierDao();
         CustomerDao c = new CustomerDao();
         ProductDao p = new ProductDao();
         RawMaterialDao rawMaterialDao = new RawMaterialDao();
@@ -26,7 +26,11 @@ public class Main {
         SOrder s =new SOrder(2);
         so.insert(s);
         so.printList(so.getAll());
-        p.printList(p.getAll());
+        p.printList(p.getAll());*/
+        
+       public static void main(String[] args) {
+        new MainPage().setVisible(true);
+    }
 //        System.out.println(rawMaterialDao.getAll());
 //        System.out.println(rawMaterialDao.getById(2));
         
@@ -53,6 +57,6 @@ public class Main {
          
          
         
-    }
+    
     
 }

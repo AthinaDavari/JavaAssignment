@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.SOrder;
+import pijavaparty.proderp.entity.Supplier;
 
 /**
  *
@@ -26,11 +27,12 @@ public class SOrderDao extends AbstractDao{
     
     public List<SOrder> getAll() {
         List<SOrder> sorders = new LinkedList();
+        SupplierDao s= new SupplierDao();
         try {
             Statement st = getConnection().createStatement();
             ResultSet rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                sorders.add(new SOrder(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getTimestamp(4)));
+                sorders.add(new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4)));
             }
             closeConnections(rs, st);
         } catch (SQLException ex) {
@@ -41,8 +43,9 @@ public class SOrderDao extends AbstractDao{
     
     public void insert(SOrder so) {
         try {
+            SupplierDao s= new SupplierDao();
             PreparedStatement pst = getConnection().prepareStatement(INSERT);
-            pst.setInt(1, so.getSupplier_id()); 
+            pst.setInt(1, so.getSupplier().getId()); 
             pst.setString(2, so.getStatus());
             pst.execute();
             closeConnections(pst);

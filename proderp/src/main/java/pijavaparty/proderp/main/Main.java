@@ -11,7 +11,6 @@ import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.User;
 
-
 /**
  *
  * @author AthinaDavari
@@ -32,8 +31,11 @@ public class Main {
         so.insert(s);
         so.printList(so.getAll());
         p.printList(p.getAll());*/
-        UserDao u = new UserDao();
+        SOrderDao s = new SOrderDao();
+        s.printList(s.getAll());
+           UserDao u = new UserDao();
         System.out.println(u.getUser("ath", "asdfg"));
+        u.printList(u.getAll());
         
                 //       new MainPage().setVisible(true);
     

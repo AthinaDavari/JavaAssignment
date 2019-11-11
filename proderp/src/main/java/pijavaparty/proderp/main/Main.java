@@ -33,7 +33,9 @@ public class Main {
         so.insert(s);
         so.printList(so.getAll());
         p.printList(p.getAll());*/
-        UserDao u = new UserDao();
+        SOrderDao s = new SOrderDao();
+        s.printList(s.getAll());
+           UserDao u = new UserDao();
         System.out.println(u.getUser("ath", "asdfg"));
         u.printList(u.getAll());
         

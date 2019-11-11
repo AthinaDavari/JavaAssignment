@@ -10,26 +10,26 @@ import java.util.Objects;
 
 /**
  *
- * @author athina
+ * @author athinaDavari
  */
 public class SOrder {
     private int id;
-    private int supplier_id;
+    private Supplier supplier;
     private Status status;
     private Timestamp created_at;
     
     public SOrder() {
     }
 
-    public SOrder(int supplier_id) {
-        this.supplier_id = supplier_id;
+    public SOrder(Supplier supplier) {
+        this.supplier = supplier;
         this.status = Status.pending;
     }
 
     
-    public SOrder(int id, int supplier_id, String status, Timestamp created_at) {
+    public SOrder(int id, Supplier supplier_id, String status, Timestamp created_at) {
         this.id = id;
-        this.supplier_id = supplier_id;
+        this.supplier = supplier;
         this.status = Status.valueOf(status);
         this.created_at = created_at;
     }
@@ -44,8 +44,8 @@ public class SOrder {
         return id;
     }
 
-    public int getSupplier_id() {
-        return supplier_id;
+    public Supplier getSupplier() {
+        return supplier;
     }
 
     public String getStatus() {
@@ -60,8 +60,8 @@ public class SOrder {
         this.id = id;
     }
 
-    public void setSupplier_id(int supplier_id) {
-        this.supplier_id = supplier_id;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public void setStatus(Status status) {
@@ -74,11 +74,11 @@ public class SOrder {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.id;
-        hash = 53 * hash + this.supplier_id;
-        hash = 53 * hash + Objects.hashCode(this.status);
-        hash = 53 * hash + Objects.hashCode(this.created_at);
+        int hash = 3;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.supplier);
+        hash = 37 * hash + Objects.hashCode(this.status);
+        hash = 37 * hash + Objects.hashCode(this.created_at);
         return hash;
     }
 
@@ -97,7 +97,7 @@ public class SOrder {
         if (this.id != other.id) {
             return false;
         }
-        if (this.supplier_id != other.supplier_id) {
+        if (!Objects.equals(this.supplier, other.supplier)) {
             return false;
         }
         if (this.status != other.status) {
@@ -111,8 +111,7 @@ public class SOrder {
 
     @Override
     public String toString() {
-        return "SOrder{" + "id=" + id + ", supplier_id=" + supplier_id + ", status=" + status + ", created_at=" + created_at + '}';
+        return "SOrder{" + "id=" + id + ", supplier=" + supplier + ", status=" + status + ", created_at=" + created_at + '}';
     }
-    
-    
+
 }

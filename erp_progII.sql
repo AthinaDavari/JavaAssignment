@@ -1,4 +1,4 @@
-drop schema proderp;
+-- drop schema proderp;
 CREATE DATABASE proderp;
 USE proderp;
 
@@ -44,7 +44,7 @@ CREATE TABLE `Products` (
 
 CREATE TABLE `S_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `supplier_id` int UNIQUE NOT NULL,
+  `supplier_id` int NOT NULL,
   `status` ENUM ('delivered', 'pending'),
 
   `created_at` datetime DEFAULT now(),
@@ -53,7 +53,7 @@ CREATE TABLE `S_Orders` (
 
 CREATE TABLE `C_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `customer_id` int UNIQUE NOT NULL,
+  `customer_id` int NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
   `users_id` int UNIQUE NOT NULL,
@@ -112,4 +112,3 @@ insert into users(full_name,user_name,password,role)
 values  ("athina", "ath", "asdfg",1),
         ("natalia", "nat", "12345", 2);
      
-select * from products;

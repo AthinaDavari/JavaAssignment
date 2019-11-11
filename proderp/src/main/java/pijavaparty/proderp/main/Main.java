@@ -10,7 +10,6 @@ import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.User;
-import pijavaparty.proderp.gui.MainPage;
 
 
 /**

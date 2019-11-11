@@ -37,6 +37,7 @@ public class SupplierDao extends AbstractDao {
             while (rs.next()) {
                 suppliers.add(new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
             }
+            closeConnections(rs, st);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,6 +53,7 @@ public class SupplierDao extends AbstractDao {
             if (rs.next()) {
                 return new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,6 +68,7 @@ public class SupplierDao extends AbstractDao {
             pst.setLong(3, s.getPhonenumber());
             pst.setString(4, s.getEmail());
             pst.execute();
+            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -84,6 +87,7 @@ public class SupplierDao extends AbstractDao {
                 pst.setString(4, s.getEmail());
                 pst.setInt(5, s.getId());
                 pst.execute();
+                closeConnections(pst);
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -95,6 +99,7 @@ public class SupplierDao extends AbstractDao {
             PreparedStatement pst = getConnection().prepareStatement(DELETE);
             pst.setInt(1, id);
             pst.execute();
+            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
 

@@ -111,7 +111,8 @@ public class RawMaterialDao extends AbstractDao {
 
         }
     }
-        public void update(RawMaterial r, int supId) {
+
+    public void update(RawMaterial r, int supId) {
         PreparedStatement pst;
         RawMaterial fromTable = getById(r.getId());
         if (fromTable != null && !fromTable.equals(r)) {
@@ -160,6 +161,7 @@ public class RawMaterialDao extends AbstractDao {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void updateSupplier(int id, int supId) {
         RawMaterial r = getById(id);
         if (r == null) {
@@ -175,6 +177,7 @@ public class RawMaterialDao extends AbstractDao {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void updateQuantity(int id, int quantity) {
         RawMaterial r = getById(id);
         if (r == null) {

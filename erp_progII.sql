@@ -112,3 +112,8 @@ insert into users(full_name,user_name,password,role)
 values  ("athina", "ath", "asdfg",1),
         ("natalia", "nat", "12345", 2);
      
+insert into p_materials
+values (1, 2, 17),
+	   (2, 1, 6),
+       (3, 2, 8),
+       (1, 3, 19);

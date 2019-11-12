@@ -8,6 +8,7 @@ import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.dao.UserDao;
+import pijavaparty.proderp.entity.Customer;
 import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.User;
 
@@ -20,9 +21,9 @@ public class Main {
         
         
        public static void main(String[] args) {
-           /*SupplierDao supplierDao = new SupplierDao();
+           //SupplierDao supplierDao = new SupplierDao();
         CustomerDao c = new CustomerDao();
-        c.getAll();
+        /*c.getAll();
         ProductDao p = new ProductDao();
         RawMaterialDao rawMaterialDao = new RawMaterialDao();
         ProductRawMaterialDao productRawMaterialDao = new ProductRawMaterialDao();
@@ -52,12 +53,13 @@ public class Main {
        // System.out.println(productRawMaterialDao.getAll());
     
         
-//          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
-//          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
-//                    c.updateFullName(1, "Skoda");
+          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
+          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
+          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
+                    c.updateFullName(2, "Skoda");
        
       
-//          c.printList(c.getByName("Papadopoulos"));
+          c.printList(c.getByName("Papadopoulos"));
 //        c.delete(2);
 //        c.printList(c.getAll());
 

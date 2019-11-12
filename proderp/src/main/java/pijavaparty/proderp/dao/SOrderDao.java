@@ -62,8 +62,8 @@ public class SOrderDao extends AbstractDao{
     }
     
     public void update(SOrder s) {
-        SOrder fromTable = getById(c.getId());
-        if (fromTable != null && !fromTable.equals(c)) {
+        SOrder fromTable = getById(s.getId());
+        if (fromTable != null && !fromTable.equals(s)) {
             try {
                 PreparedStatement pst = getConnection().prepareStatement(UPDATE);
                 pst.setInt(1, s.getSupplier().getId());

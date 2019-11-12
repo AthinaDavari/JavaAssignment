@@ -182,12 +182,12 @@ public class CustomerEdit extends javax.swing.JFrame {
             obj2.updateEmail(newvalue1_id, value5_email); 
             
             JOptionPane.showMessageDialog(null,"Uptaded");
-                  
+            new CustomerEdit().setVisible(true);
+            dispose();
         }
         catch(Exception e) {
             JOptionPane.showMessageDialog(null,e);      
         }
-        showCustomersTable();
         
     }//GEN-LAST:event_txt_updateActionPerformed
 

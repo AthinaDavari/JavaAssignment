@@ -6,6 +6,7 @@
 package pijavaparty.proderp.test;
 
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -151,8 +152,8 @@ public class LogIn extends javax.swing.JFrame {
         String un = jTextField1.getText();
         String password = jPasswordField1.getText();
 
-        /*if (un.equals("3") && password.equals("123")) {
-            MainMenu_ProdErp_GUI obj = new MainMenu_ProdErp_GUI();
+        if (un.equals("3") && password.equals("123")) {
+            Menu obj = new Menu();
             obj.setVisible(true);
             dispose();
         } else {

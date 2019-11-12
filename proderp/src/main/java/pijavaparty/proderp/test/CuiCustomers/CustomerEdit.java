@@ -45,6 +45,8 @@ public class CustomerEdit extends javax.swing.JFrame {
         value_email = new javax.swing.JTextField();
         txt_update = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        value_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit Customer Data");
@@ -57,6 +59,7 @@ public class CustomerEdit extends javax.swing.JFrame {
                 "id", "full_name", "address", "phonenumber", "email"
             }
         ));
+        Customers_table.setUpdateSelectionOnSort(false);
         Customers_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Customers_tableMouseClicked(evt);
@@ -64,15 +67,15 @@ public class CustomerEdit extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Customers_table);
 
-        jLabel2.setText("full_name");
+        jLabel2.setText("full_name:");
 
         jTextField2.setText("jTextField2");
 
-        jLabel3.setText("address");
+        jLabel3.setText("address:");
 
-        jLabel4.setText(" phonenumber");
+        jLabel4.setText(" phonenumber:");
 
-        jLabel5.setText(" email");
+        jLabel5.setText(" email:");
 
         txt_update.setText("update");
         txt_update.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +85,12 @@ public class CustomerEdit extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("Edit Customer Data");
+        jLabel6.setText("          Edit Customer Data");
+
+        jLabel1.setText("Customer id:");
+
+        value_id.setEditable(false);
+        value_id.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,27 +98,31 @@ public class CustomerEdit extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(value_email, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(value_phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(value_address, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(value_full_name, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_update, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(74, 74, 74)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(value_email, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(value_phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(value_address, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(value_full_name, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(txt_update, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(value_id)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(62, 62, 62)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -119,14 +131,23 @@ public class CustomerEdit extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(value_full_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jLabel2))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(value_full_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(value_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,7 +170,8 @@ public class CustomerEdit extends javax.swing.JFrame {
 
     private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
         try{
-            
+            String value1_id=value_id.getText();
+            int newvalue1_id=Integer.parseInt(value1_id);
             String value2_full_name=value_full_name.getText();
             String value3_address=value_address.getText();
             String value4_phonenumber=value_phonenumber.getText();
@@ -157,10 +179,10 @@ public class CustomerEdit extends javax.swing.JFrame {
             String value5_email=value_email.getText();
             
             CustomerDao obj2=new CustomerDao();
-            obj2.updateFullName(obj2.getByEmail(value5_email).getId(), value2_full_name);
-            obj2.updateAddress(obj2.getByEmail(value5_email).getId(), value3_address);
-            obj2.updatePhoneNumber(obj2.getByEmail(value5_email).getId(), newvalue4_phonenumber);
-            obj2.updateEmail(obj2.getByEmail(value5_email).getId(), value5_email); 
+            obj2.updateFullName(newvalue1_id, value2_full_name);
+            obj2.updateAddress(newvalue1_id, value3_address);
+            obj2.updatePhoneNumber(newvalue1_id, newvalue4_phonenumber);
+            obj2.updateEmail(newvalue1_id, value5_email); 
             
             JOptionPane.showMessageDialog(null,"Updated");
             new CustomerEdit().setVisible(true);
@@ -176,7 +198,7 @@ public class CustomerEdit extends javax.swing.JFrame {
         
         int selectedRow=Customers_table.getSelectedRow();
         DefaultTableModel model2 =(DefaultTableModel) Customers_table.getModel();
-        
+        value_id.setText((model2.getValueAt(selectedRow, 0).toString()));
         value_full_name.setText((model2.getValueAt(selectedRow, 1).toString()));
         value_address.setText((model2.getValueAt(selectedRow, 2).toString()));
         value_phonenumber.setText((model2.getValueAt(selectedRow, 3).toString()));
@@ -198,6 +220,7 @@ public class CustomerEdit extends javax.swing.JFrame {
             row[4]=obj.getAll().get(i).getEmail();
             model.addRow(row);
         }
+        
     }
     /**
      * @param args the command line arguments
@@ -236,6 +259,7 @@ public class CustomerEdit extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Customers_table;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -247,6 +271,7 @@ public class CustomerEdit extends javax.swing.JFrame {
     private javax.swing.JTextField value_address;
     private javax.swing.JTextField value_email;
     private javax.swing.JTextField value_full_name;
+    private javax.swing.JTextField value_id;
     private javax.swing.JTextField value_phonenumber;
     // End of variables declaration//GEN-END:variables
 }

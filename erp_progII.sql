@@ -117,3 +117,10 @@ values (1, 2, 17),
 	   (2, 1, 6),
        (3, 2, 8),
        (1, 3, 19);
+       
+insert into customers(full_name, address, phonenumber, email)
+values ("Eleni Papadopoulou", "Patision 18", 2222222, "el@mail.com"),
+	   ("BikeCompany", "Chamosternas 12", 33333333, "info@bike.com"),
+       ("Marios Papachristou", "Aiolou 1", 55555555, "mpap@mail.com"),
+       ("SuperBikes", "Peiraios 17", 3333333, "info@superbikes.com"),
+       ("Katerina Georgiou", "Trion Ierarchon 24", 44444444, "katge@mail.com");

@@ -36,6 +36,8 @@ public class Main {
            UserDao u = new UserDao();
         System.out.println(u.getUser("ath", "asdfg"));
         u.printList(u.getAll());
+        SupplierDao sd = new SupplierDao();
+           System.out.println(sd.getByName("SideroA.E."));
         
                 //       new MainPage().setVisible(true);
     

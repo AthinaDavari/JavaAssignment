@@ -11,6 +11,7 @@ import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.Customer;
 import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.User;
+import pijavaparty.proderp.test.LogIn;
 
 /**
  *
@@ -21,57 +22,7 @@ public class Main {
         
         
        public static void main(String[] args) {
-           //SupplierDao supplierDao = new SupplierDao();
-        CustomerDao c = new CustomerDao();
-        /*c.getAll();
-        ProductDao p = new ProductDao();
-        RawMaterialDao rawMaterialDao = new RawMaterialDao();
-        ProductRawMaterialDao productRawMaterialDao = new ProductRawMaterialDao();
-        SOrderDao so =new SOrderDao();
-        SOrder s =new SOrder(2);
-        so.insert(s);
-        so.printList(so.getAll());
-        p.printList(p.getAll());*/
-        SOrderDao s = new SOrderDao();
-        s.printList(s.getAll());
-           UserDao u = new UserDao();
-        System.out.println(u.getUser("ath", "asdfg"));
-        u.printList(u.getAll());
-        
-                //       new MainPage().setVisible(true);
-    
-//        System.out.println(rawMaterialDao.getAll());
-//        System.out.println(rawMaterialDao.getById(2));
-        
-//        System.out.println(supplierDao.getById(2));
-//        supplierDao.insert(new Supplier("Wood", "Patisionn 8", 222222l, "info@wood.com"));
-        //supplierDao.update(new Supplier(2, "Wood", "Patisionn 200", 4222222l, "info@wood.com"));
-        //SupplierDao.printList(supplierDao.getAll());
- //       System.out.println(supplierDao.getById(2));
-       
-     
-       // System.out.println(productRawMaterialDao.getAll());
-    
-        
-          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
-          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
-          c.insert(new Customer("Papadopoulos", "Mousitsa 56", 345678l, "papadopoulos@gmail.com"));
-                    c.updateFullName(2, "Skoda");
-       
-      
-          c.printList(c.getByName("Papadopoulos"));
-//        c.delete(2);
-//        c.printList(c.getAll());
-
-
-         // p.printList(p.getAll());
-
-     
-         
-         
-        
-    
-                
+           
 }
        
 }

@@ -1,4 +1,4 @@
--- drop schema proderp;
+drop schema proderp;
 CREATE DATABASE proderp;
 USE proderp;
 
@@ -44,7 +44,7 @@ CREATE TABLE `Products` (
 
 CREATE TABLE `S_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `supplier_id` int NOT NULL,
+  `supplier_id` int UNIQUE NOT NULL,
   `status` ENUM ('delivered', 'pending'),
 
   `created_at` datetime DEFAULT now(),
@@ -53,7 +53,7 @@ CREATE TABLE `S_Orders` (
 
 CREATE TABLE `C_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `customer_id` int NOT NULL,
+  `customer_id` int UNIQUE NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
   `users_id` int UNIQUE NOT NULL,
@@ -112,15 +112,10 @@ insert into users(full_name,user_name,password,role)
 values  ("athina", "ath", "asdfg",1),
         ("natalia", "nat", "12345", 2);
      
-insert into p_materials
-values (1, 2, 17),
-	   (2, 1, 6),
-       (3, 2, 8),
-       (1, 3, 19);
-       
-insert into customers(full_name, address, phonenumber, email)
-values ("Eleni Papadopoulou", "Patision 18", 2222222, "el@mail.com"),
-	   ("BikeCompany", "Chamosternas 12", 33333333, "info@bike.com"),
-       ("Marios Papachristou", "Aiolou 1", 55555555, "mpap@mail.com"),
-       ("SuperBikes", "Peiraios 17", 3333333, "info@superbikes.com"),
-       ("Katerina Georgiou", "Trion Ierarchon 24", 44444444, "katge@mail.com");
+insert into Customers (full_name,address,phonenumber,email)
+values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
+       ("Mouzouris", "Markou 14", 987560, "mouz@gmail.com");
+
+select * from products;
+select * from S_Orders;
+select * from Customers;

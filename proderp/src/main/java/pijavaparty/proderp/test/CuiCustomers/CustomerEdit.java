@@ -59,6 +59,11 @@ public class CustomerEdit extends javax.swing.JFrame {
                 "id", "full_name", "address", "phonenumber", "email"
             }
         ));
+        Customers_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Customers_tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Customers_table);
 
         jLabel1.setText("id:");
@@ -120,7 +125,7 @@ public class CustomerEdit extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,17 +172,39 @@ public class CustomerEdit extends javax.swing.JFrame {
             String value2_full_name=value_full_name.getText();
             String value3_address=value_address.getText();
             String value4_phonenumber=value_phonenumber.getText();
-            String value5=value_email.getText();
+            long newvalue4_phonenumber=Long.parseLong(value4_phonenumber);
+            String value5_email=value_email.getText();
             
+            CustomerDao obj2=new CustomerDao();
+            obj2.updateFullName(newvalue1_id, value2_full_name);
+            obj2.updateAddress(newvalue1_id, value3_address);
+            obj2.updatePhoneNumber(newvalue1_id, newvalue4_phonenumber);
+            obj2.updateEmail(newvalue1_id, value5_email); 
+            
+            JOptionPane.showMessageDialog(null,"Uptaded");
+                  
         }
         catch(Exception e) {
-            JOptionPane.showMessageDialog(null,e);
-            
+            JOptionPane.showMessageDialog(null,e);      
         }
+        showCustomersTable();
+        
     }//GEN-LAST:event_txt_updateActionPerformed
 
+    private void Customers_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Customers_tableMouseClicked
+        
+        int selectedRow=Customers_table.getSelectedRow();
+        DefaultTableModel model2 =(DefaultTableModel) Customers_table.getModel();
+        value_id.setText((model2.getValueAt(selectedRow, 0).toString()));
+        value_full_name.setText((model2.getValueAt(selectedRow, 1).toString()));
+        value_address.setText((model2.getValueAt(selectedRow, 2).toString()));
+        value_phonenumber.setText((model2.getValueAt(selectedRow, 3).toString()));
+        value_email.setText((model2.getValueAt(selectedRow, 4).toString()));
+        
+    }//GEN-LAST:event_Customers_tableMouseClicked
+
     
-    private void showCustomersTable(){
+    public void showCustomersTable(){
         CustomerDao obj=new CustomerDao();
         DefaultTableModel model=(DefaultTableModel) Customers_table.getModel();
         int number=obj.getAll().size();

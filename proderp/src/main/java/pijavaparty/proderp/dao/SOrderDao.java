@@ -25,6 +25,7 @@ public class SOrderDao extends AbstractDao{
     private final String GETBYID = "SELECT * FROM S_Orders WHERE id = ?";
     private final String INSERT = "INSERT INTO S_Orders(supplier_id,status) VALUES(?,?)";
     private final String DELETE = "DELETE FROM S_Orders WHERE id = ?";
+    private final String UPDATE = "UPDATE S_Orders SET supplier_id = ?, status = ?, created_at = ? WHERE id = ?";
     
     @Override
     public List<SOrder> getAll() {
@@ -58,6 +59,23 @@ public class SOrderDao extends AbstractDao{
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public void update(SOrder s) {
+        SOrder fromTable = getById(c.getId());
+        if (fromTable != null && !fromTable.equals(c)) {
+            try {
+                PreparedStatement pst = getConnection().prepareStatement(UPDATE);
+                pst.setInt(1, s.getSupplier().getId());
+                pst.setString(2, s.getStatus());
+                pst.setTimestamp(3, s.getCreated_at());
+                pst.setInt(4, s.getId());
+                pst.execute();
+                closeConnections(pst);
+            } catch (SQLException ex) {
+                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void insert(SOrder so) {

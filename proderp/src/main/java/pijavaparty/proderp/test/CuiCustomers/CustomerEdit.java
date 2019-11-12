@@ -162,7 +162,7 @@ public class CustomerEdit extends javax.swing.JFrame {
             obj2.updatePhoneNumber(obj2.getByEmail(value5_email).getId(), newvalue4_phonenumber);
             obj2.updateEmail(obj2.getByEmail(value5_email).getId(), value5_email); 
             
-            JOptionPane.showMessageDialog(null,"Uptaded");
+            JOptionPane.showMessageDialog(null,"Updated");
             new CustomerEdit().setVisible(true);
             dispose();
         }

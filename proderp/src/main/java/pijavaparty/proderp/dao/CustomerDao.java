@@ -24,6 +24,7 @@ public class CustomerDao extends AbstractDao {
     private final String GETALL = "SELECT * FROM Customers";
     private final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
     private final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
+    private final String GETBYEMAIL = "SELECT * FROM Customers WHERE email = ?";
     private final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
     private final String DELETE = "DELETE FROM Customers WHERE id = ?";
@@ -79,6 +80,21 @@ public class CustomerDao extends AbstractDao {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
+    }
+        public Customer getByEmail(String email) {
+        PreparedStatement pst;
+        try {
+            pst = getConnection().prepareStatement(GETBYEMAIL);
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+            }
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public void update(Customer c) {

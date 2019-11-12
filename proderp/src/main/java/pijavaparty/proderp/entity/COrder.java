@@ -25,7 +25,7 @@ public class COrder {
 public COrder(Customer customer) {
     this.customer = customer;
     this.status = Status.ready;
-}
+    }
 
 public COrder(int id, Customer customer_id, String status, Timestamp created_at, int users_id) {
     this.id = id;

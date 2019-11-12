@@ -23,7 +23,7 @@ public class ProductDao extends AbstractDao {
 
     private final String GETALL = "SELECT * FROM Products";
     private final String GETBYID = "SELECT * FROM Products WHERE id = ?";
-    private final String GETBYNAME = "SELECT * FROM Customers WHERE name = ?";
+    private final String GETBYNAME = "SELECT * FROM Products WHERE name = ?";
     private final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";
     private final String UPDATE = "UPDATE Products SET name = ?, quantity = ?, price = ? WHERE id = ?";
     private final String DELETE = "DELETE FROM Products WHERE id = ?";

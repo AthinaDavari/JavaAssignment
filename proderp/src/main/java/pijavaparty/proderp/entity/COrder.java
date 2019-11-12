@@ -7,7 +7,7 @@ package pijavaparty.proderp.entity;
 
 import java.sql.Timestamp;
 import java.util.Objects;
-import javafx.scene.media.MediaPlayer;
+
 /**
  *
  * @author Athina P.
@@ -17,26 +17,28 @@ public class COrder {
     private Customer customer;
     private Status status;
     private Timestamp created_at;
+    private int users_id;
     
     public COrder() {
 }
     
 public COrder(Customer customer) {
     this.customer = customer;
-    this.status = Status.pending;
+    this.status = Status.ready;
 }
 
-public COrder(int id, Customer customer_id, String status, Timestamp created_at) {
+public COrder(int id, Customer customer_id, String status, Timestamp created_at, int users_id) {
     this.id = id;
     this.customer = customer;
     this.status = Status.valueOf(status);
     this.created_at = created_at;
+    this.users_id = users_id;
 }
 
 
  enum Status
     { 
-        delivered, pending; 
+        preparing, ready, delivered; 
     }
 
     public int getId() {
@@ -55,6 +57,9 @@ public COrder(int id, Customer customer_id, String status, Timestamp created_at)
         return created_at;
     }
 
+    public int getUsers_id() {
+            return users_id;
+}
     public void setId(int id) {
         this.id = id;
     }
@@ -70,14 +75,19 @@ public COrder(int id, Customer customer_id, String status, Timestamp created_at)
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
+    
+    public void setUsers_id(int users_id) {
+        this.users_id = users_id;
+    }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 53 * hash + this.id;
-        hash = 53 * hash + Objects.hashCode(this.customer);
-        hash = 53 * hash + Objects.hashCode(this.status);
-        hash = 53 * hash + Objects.hashCode(this.created_at);
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + Objects.hashCode(this.customer);
+        hash = 17 * hash + Objects.hashCode(this.status);
+        hash = 17 * hash + Objects.hashCode(this.created_at);
+        hash = 17 * hash + this.users_id;
         return hash;
     }
 
@@ -96,6 +106,9 @@ public COrder(int id, Customer customer_id, String status, Timestamp created_at)
         if (this.id != other.id) {
             return false;
         }
+        if (this.users_id != other.users_id) {
+            return false;
+        }
         if (!Objects.equals(this.customer, other.customer)) {
             return false;
         }
@@ -110,7 +123,7 @@ public COrder(int id, Customer customer_id, String status, Timestamp created_at)
 
     @Override
     public String toString() {
-        return "COrder{" + "id=" + id + ", customer=" + customer + ", status=" + status + ", created_at=" + created_at + '}';
+        return "COrder{" + "id=" + id + ", customer=" + customer + ", status=" + status + ", created_at=" + created_at + ", users_id=" + users_id + '}';
     }
 
-    
+}

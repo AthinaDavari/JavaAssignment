@@ -22,7 +22,8 @@ public class Main {
         
         
        public static void main(String[] args) {
-           
+           CustomerDao obj = new CustomerDao();
+           System.out.println(obj.getAll());
 }
        
 }

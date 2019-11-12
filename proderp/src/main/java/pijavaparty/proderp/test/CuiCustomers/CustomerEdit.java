@@ -181,7 +181,7 @@ public class CustomerEdit extends javax.swing.JFrame {
         value_address.setText((model2.getValueAt(selectedRow, 2).toString()));
         value_phonenumber.setText((model2.getValueAt(selectedRow, 3).toString()));
         value_email.setText((model2.getValueAt(selectedRow, 4).toString()));
-        
+         
     }//GEN-LAST:event_Customers_tableMouseClicked
 
     
@@ -189,7 +189,7 @@ public class CustomerEdit extends javax.swing.JFrame {
         CustomerDao obj=new CustomerDao();
         DefaultTableModel model=(DefaultTableModel) Customers_table.getModel();
         int number=obj.getAll().size();
-        Object[] row=new Object[number];
+        Object[] row=new Object[5];
         for(int i=0; i<number; i++){
             row[0]=obj.getAll().get(i).getId();
             row[1]=obj.getAll().get(i).getFullName();

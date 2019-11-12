@@ -7,6 +7,7 @@ package pijavaparty.proderp.test;
 
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.dao.UserDao;
 
 /**
  *
@@ -152,7 +153,9 @@ public class LogIn extends javax.swing.JFrame {
         String un = jTextField1.getText();
         String password = jPasswordField1.getText();
 
-        if (un.equals("3") && password.equals("123")) {
+        UserDao u = new UserDao();
+        
+        if (u.getUser(un, password) != null) {
             Menu obj = new Menu();
             obj.setVisible(true);
             dispose();

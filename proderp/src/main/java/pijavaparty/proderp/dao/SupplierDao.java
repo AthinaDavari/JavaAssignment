@@ -23,6 +23,7 @@ public class SupplierDao extends AbstractDao {
 
     private final String GETALL = "SELECT * FROM Suppliers";
     private final String GETBYID = "SELECT * FROM Suppliers WHERE id = ?";
+    private final String GETBYNAME = "SELECT * FROM Suppliers WHERE full_name = ?";
     private final String INSERT = "INSERT INTO Suppliers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private final String UPDATE = "UPDATE Suppliers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
     private final String DELETE = "DELETE FROM Suppliers WHERE id = ?";
@@ -59,7 +60,24 @@ public class SupplierDao extends AbstractDao {
         }
         return null;
     }
-
+    
+    public List<Supplier> getByName(String name){
+        List<Supplier> suppliers = new LinkedList();
+PreparedStatement pst;
+        try {
+            pst = getConnection().prepareStatement(GETBYNAME);
+            pst.setString(1, name);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                suppliers.add(new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
+            }
+            closeConnections(rs, pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return suppliers;
+    }
+    
     public void insert(Supplier s) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(INSERT);

@@ -10,6 +10,7 @@ import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.User;
+import pijavaparty.proderp.test.LogIn;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Main {
         
         
        public static void main(String[] args) {
+           new LogIn().setVisible(true);
            /*SupplierDao supplierDao = new SupplierDao();
         CustomerDao c = new CustomerDao();
         c.getAll();
@@ -31,11 +33,14 @@ public class Main {
         so.insert(s);
         so.printList(so.getAll());
         p.printList(p.getAll());*/
-        SOrderDao s = new SOrderDao();
+        /*SOrderDao s = new SOrderDao();
         s.printList(s.getAll());
            UserDao u = new UserDao();
         System.out.println(u.getUser("ath", "asdfg"));
         u.printList(u.getAll());
+        SupplierDao sd = new SupplierDao();
+           System.out.println(sd.getByName("SideroA.E."));
+        u.printList(u.getAll());*/
         
                 //       new MainPage().setVisible(true);
     

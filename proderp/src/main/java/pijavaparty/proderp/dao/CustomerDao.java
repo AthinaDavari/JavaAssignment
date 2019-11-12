@@ -71,10 +71,8 @@ public class CustomerDao extends AbstractDao {
             pst = getConnection().prepareStatement(GETBYNAME);
             pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
-            for (int i = 0; i <= getAll().size(); i++) {
-                while (rs.next()) {
-                    c.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
-                }
+            while (rs.next()) {
+                c.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
             }
             closeConnections(pst);
         } catch (SQLException ex) {

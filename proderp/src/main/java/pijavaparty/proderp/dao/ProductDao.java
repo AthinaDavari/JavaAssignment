@@ -70,11 +70,9 @@ public class ProductDao extends AbstractDao {
             pst = getConnection().prepareStatement(GETBYNAME);
             pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
-            for (int i = 0; i <= getAll().size(); i++) {
                 while (rs.next()) {
                     p.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4)));
                 }
-            }
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);

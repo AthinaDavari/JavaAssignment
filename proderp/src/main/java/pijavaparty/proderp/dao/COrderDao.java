@@ -23,7 +23,7 @@ public class COrderDao extends AbstractDao{
     
     private final String GETALL = "SELECT * FROM C_Orders";
     private final String INSERT = "INSERT INTO C_Orders(customer_id,status) VALUES(?,?)";
-    
+    private final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
     public List<COrder> getAll() {
         List<COrder> corders = new LinkedList();
         CustomerDao c = new CustomerDao();
@@ -31,7 +31,7 @@ public class COrderDao extends AbstractDao{
             Statement st = getConnection().createStatement();
             ResultSet rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4)));
+                corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.get));
             }
             closeConnections(rs, st);
         } catch (SQLException ex) {
@@ -50,6 +50,18 @@ public class COrderDao extends AbstractDao{
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+}
+    
+    public void delete(int id) {
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(DELETE);
+            pst.setInt(1, id);
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
 }

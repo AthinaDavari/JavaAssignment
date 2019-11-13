@@ -27,9 +27,9 @@ public COrder(Customer customer) {
     this.status = Status.ready;
 }
 
-public COrder(int id, Customer customer_id, String status, Timestamp created_at, int users_id) {
+public COrder(int id, Customer customer, String status, Timestamp created_at, int users_id) {
     this.id = id;
-    this.customer = customer_id;
+    this.customer = customer;
     this.status = Status.valueOf(status);
     this.created_at = created_at;
     this.users_id = users_id;

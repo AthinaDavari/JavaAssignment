@@ -8,6 +8,7 @@ package pijavaparty.proderp.test.CuiCustomers;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.CustomerDao;
+import pijavaparty.proderp.entity.Customer;
 
 /**
  *
@@ -178,11 +179,9 @@ public class CustomerEdit extends javax.swing.JFrame {
             long newvalue4_phonenumber=Long.parseLong(value4_phonenumber);
             String value5_email=value_email.getText();
             
-            CustomerDao obj2=new CustomerDao();
-            obj2.updateFullName(newvalue1_id, value2_full_name);
-            obj2.updateAddress(newvalue1_id, value3_address);
-            obj2.updatePhoneNumber(newvalue1_id, newvalue4_phonenumber);
-            obj2.updateEmail(newvalue1_id, value5_email); 
+            Customer objc=new Customer(newvalue1_id,value2_full_name,value3_address,newvalue4_phonenumber,value5_email);
+            CustomerDao obj=new CustomerDao();
+            obj.update(objc);
             
             JOptionPane.showMessageDialog(null,"Updated");
             new CustomerEdit().setVisible(true);

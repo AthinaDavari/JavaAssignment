@@ -29,7 +29,7 @@ public COrder(Customer customer) {
 
 public COrder(int id, Customer customer_id, String status, Timestamp created_at, int users_id) {
     this.id = id;
-    this.customer = customer;
+    this.customer_id = customer_id;
     this.status = Status.valueOf(status);
     this.created_at = created_at;
     this.users_id = users_id;
@@ -125,6 +125,5 @@ public COrder(int id, Customer customer_id, String status, Timestamp created_at,
     public String toString() {
         return "COrder{" + "id=" + id + ", customer=" + customer + ", status=" + status + ", created_at=" + created_at + ", users_id=" + users_id + '}';
     }
-}
 
 }

@@ -22,8 +22,8 @@ import pijavaparty.proderp.entity.User;
 public class UserDao extends AbstractDao{
     
     private final String GETUSER = "SELECT id, full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
-    private final String GETALL = "SELECT * FROM Users";
-//    private final String INSERT
+    private final String GETALL = "SELECT id, full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
+    private final String INSERT = "INSERT INTO Users(full_name, username, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
     
     public User getUser(String username, String password) {
         PreparedStatement pst;
@@ -56,5 +56,20 @@ public class UserDao extends AbstractDao{
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return users; 
+    }
+    
+    public void insert(User u) {
+                try {
+            PreparedStatement pst = getConnection().prepareStatement(INSERT);
+            pst.setString(1, u.getFullName());
+            pst.setString(2, u.getUsername());
+            pst.setString(3, u.getPassword());
+            pst.setInt(4, u.getRole());
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
     }
 }

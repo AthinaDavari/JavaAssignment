@@ -3,9 +3,8 @@ CREATE DATABASE proderp;
 USE proderp;
 
 CREATE TABLE `Users`(
-`id` int primary key auto_increment,
 `full_name` varchar(255),
-`username` varchar(255),
+`username` varchar(255) PRIMARY KEY,
 `password` varchar(255),
 `role` int
 );
@@ -56,9 +55,9 @@ CREATE TABLE `C_Orders` (
   `customer_id` int UNIQUE NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  `user_id` int NOT NULL,
+  `user_username` varchar(255) NOT NULL,
   FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`)
+  FOREIGN KEY (`user_username`) REFERENCES `Users` (`username`)
 );
 
 CREATE TABLE `C_order_items` (

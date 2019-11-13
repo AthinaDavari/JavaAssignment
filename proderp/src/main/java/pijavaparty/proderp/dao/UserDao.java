@@ -21,11 +21,11 @@ import pijavaparty.proderp.entity.User;
  */
 public class UserDao extends AbstractDao {
 
-    private final String GETUSER = "SELECT id, full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
-    private final String GETALL = "SELECT id, full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
+    private final String GETUSER = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
+    private final String GETALL = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
     private final String INSERT = "INSERT INTO Users(full_name, username, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
-    private final String UPDATE = "UPDATE Users SET full_name = ?, username = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE id = ?";
-    private final String DELETE = "DELETE FROM Users WHERE id = ?"; 
+    private final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE username = ?";
+    private final String DELETE = "DELETE FROM Users WHERE username = ?"; 
        
     public User getUser(String username, String password) {
         PreparedStatement pst;
@@ -78,10 +78,9 @@ public class UserDao extends AbstractDao {
         try {
             PreparedStatement pst = getConnection().prepareStatement(UPDATE);
             pst.setString(1, u.getFullName());
-            pst.setString(2, u.getUsername());
-            pst.setString(3, u.getPassword());
-            pst.setInt(4, u.getRole());
-            pst.setInt(5, u.getId());
+            pst.setString(2, u.getPassword());
+            pst.setInt(3, u.getRole());
+            pst.setString(4, u.getUsername());
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {
@@ -89,10 +88,10 @@ public class UserDao extends AbstractDao {
         }
     }
     
-    public void delete(int id) {
+    public void delete(String username) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(DELETE);
-            pst.setInt(1, id);
+            pst.setString(1, username);
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {

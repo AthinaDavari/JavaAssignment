@@ -270,6 +270,7 @@ public class AddNewOrder extends javax.swing.JFrame {
         catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+        }
     }//GEN-LAST:event_saveaddActionPerformed
 
     private void clearaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearaddActionPerformed

@@ -54,8 +54,18 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton2.setText("Insert Raw Material");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Delete Raw Material");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         editCustomer.setText("Edit Raw Material Data");
         editCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +182,14 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         value_phonenumber.setText((model2.getValueAt(selectedRow, 3).toString()));
         value_email.setText((model2.getValueAt(selectedRow, 4).toString()));*/
     }//GEN-LAST:event_RawMaterial_table2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new RawMaterialInsert().setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new RawMaterialDelete().setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
     public void showRawMaterialTable(){
         RawMaterialDao obj=new RawMaterialDao();
         DefaultTableModel model=(DefaultTableModel) RawMaterial_table2.getModel();
@@ -223,8 +241,6 @@ public class RawMaterialMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Customers_table;
-    private javax.swing.JTable Customers_table1;
     private javax.swing.JTable RawMaterial_table2;
     private javax.swing.JButton editCustomer;
     private javax.swing.JButton jButton2;
@@ -233,8 +249,6 @@ public class RawMaterialMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

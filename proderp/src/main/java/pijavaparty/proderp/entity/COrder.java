@@ -13,31 +13,32 @@ import java.util.Objects;
  * @author Athina P.
  */
 public class COrder {
-
     private int id;
     private Customer customer;
     private Status status;
     private Timestamp created_at;
     private int users_id;
-
+    
     public COrder() {
-    }
+}
+    
+public COrder(Customer customer) {
+    this.customer = customer;
+    this.status = Status.ready;
+}
 
-    public COrder(Customer customer) {
-        this.customer = customer;
-        this.status = Status.ready;
-    }
+public COrder(int id, Customer customer_id, String status, Timestamp created_at, int users_id) {
+    this.id = id;
+    this.customer_id = customer_id;
+    this.status = Status.valueOf(status);
+    this.created_at = created_at;
+    this.users_id = users_id;
+}
 
-    public COrder(int id, Customer customer_id, String status, Timestamp created_at, int users_id) {
-        this.id = id;
-        this.customer = customer;
-        this.status = Status.valueOf(status);
-        this.created_at = created_at;
-        this.users_id = users_id;
-    }
 
-    enum Status {
-        preparing, ready, delivered;
+ enum Status
+    { 
+        preparing, ready, delivered; 
     }
 
     public int getId() {
@@ -57,9 +58,8 @@ public class COrder {
     }
 
     public int getUsers_id() {
-        return users_id;
-    }
-
+            return users_id;
+}
     public void setId(int id) {
         this.id = id;
     }
@@ -75,7 +75,7 @@ public class COrder {
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
-
+    
     public void setUsers_id(int users_id) {
         this.users_id = users_id;
     }
@@ -125,4 +125,5 @@ public class COrder {
     public String toString() {
         return "COrder{" + "id=" + id + ", customer=" + customer + ", status=" + status + ", created_at=" + created_at + ", users_id=" + users_id + '}';
     }
+
 }

@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.test.RawMaterialGui;
 
+import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
@@ -23,8 +24,12 @@ public class RawMaterialMenu extends javax.swing.JFrame {
      */
     public RawMaterialMenu() {
         initComponents();
+        showRawMaterialTable();
+        seticon();
     }
-
+    private void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,6 +159,7 @@ public class RawMaterialMenu extends javax.swing.JFrame {
 
     private void editCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerActionPerformed
         new RawMaterialEdit().setVisible(true);
+        dispose();
     }//GEN-LAST:event_editCustomerActionPerformed
 
     private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked
@@ -174,7 +180,7 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         for(int i=0; i<number; i++){
             row[0]=obj.getAll().get(i).getId();
             row[1]=obj.getAll().get(i).getName();
-            row[2]=obj.getAll().get(i).getSupplier();
+            row[2]=obj.getAll().get(i).getSupplier().getId();
             row[3]=obj.getAll().get(i).getQuantity();
             row[4]=obj.getAll().get(i).getPrice();
             model.addRow(row);

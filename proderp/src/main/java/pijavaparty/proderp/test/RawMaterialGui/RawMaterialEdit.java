@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.test.RawMaterialGui;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.RawMaterialDao;
@@ -21,8 +22,12 @@ public class RawMaterialEdit extends javax.swing.JFrame {
      */
     public RawMaterialEdit() {
         initComponents();
+        showRawMaterialTable();
+        seticon();
     }
-
+    private void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -257,7 +262,21 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_txt_updateActionPerformed
+    public void showRawMaterialTable(){
+            RawMaterialDao obj=new RawMaterialDao();
+            DefaultTableModel model=(DefaultTableModel) RawMaterial_table2.getModel();
+            int number=obj.getAll().size();
+            Object[] row=new Object[5];
+            for(int i=0; i<number; i++){
+                row[0]=obj.getAll().get(i).getId();
+                row[1]=obj.getAll().get(i).getName();
+                row[2]=obj.getAll().get(i).getSupplier().getId();
+                row[3]=obj.getAll().get(i).getQuantity();
+                row[4]=obj.getAll().get(i).getPrice();
+                model.addRow(row);
+            }
 
+        }
     /**
      * @param args the command line arguments
      */

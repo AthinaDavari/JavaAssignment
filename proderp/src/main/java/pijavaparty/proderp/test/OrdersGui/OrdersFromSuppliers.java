@@ -50,7 +50,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER\\Desktop\\Pics\\edit.png")); // NOI18N
-        jButton2.setText("Edit Order");
+        jButton2.setText("    Edit Order");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -68,7 +68,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER\\Desktop\\Pics\\exit.png")); // NOI18N
-        jButton4.setText("Delete Order");
+        jButton4.setText("   Delete Order");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -128,11 +128,11 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new EditOrder().setVisible(true);
+        new EditOrders().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new EditOrder().setVisible(true);
+        new EditOrders().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

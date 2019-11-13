@@ -1,6 +1,5 @@
 package pijavaparty.proderp.main;
 
-
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
@@ -18,12 +17,15 @@ import pijavaparty.proderp.test.LogIn;
  * @author AthinaDavari
  */
 public class Main {
-    
+
+    public static void main(String[] args) {
+        CustomerDao obj = new CustomerDao();
+//           System.out.println(obj.getAll());
+        UserDao ud = new UserDao();
+        System.out.println(ud.getUser("nat", "12345"));
+        System.out.println(ud.getAll());
+//        ud.insert(new User("maria k", "maria", "abc12", 2));
         
-        
-       public static void main(String[] args) {
-           CustomerDao obj = new CustomerDao();
-           System.out.println(obj.getAll());
-}
-       
+    }
+
 }

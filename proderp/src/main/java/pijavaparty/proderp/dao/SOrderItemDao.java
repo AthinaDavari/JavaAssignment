@@ -25,6 +25,7 @@ public class SOrderItemDao extends AbstractDao {
     private final String GETALL = "SELECT * FROM S_order_items";
     private final String GETBYIDS = "SELECT * FROM S_order_items WHERE s_order_id = ? AND raw_material_id = ?";
     private final String GETITEMSPERSORDER = "SELECT * FROM S_order_items WHERE s_order_id = ?";
+    private final String INSERT = "INSERT INTO S_order_items VALUES (?, ?, ?)";
     private SOrderDao so = new SOrderDao();
     private RawMaterialDao rm = new RawMaterialDao();
 
@@ -83,4 +84,19 @@ public class SOrderItemDao extends AbstractDao {
         return soi;
     }
 
+    public void insert(SOrderItem soi) {
+        PreparedStatement pst;
+        try {
+            pst = getConnection().prepareStatement(INSERT);
+            pst.setInt(1, soi.getSorder().getId());
+            pst.setInt(2, soi.getRawmaterial().getId());
+            pst.setInt(3, soi.getQuantity());
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
 }

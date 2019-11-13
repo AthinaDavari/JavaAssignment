@@ -13,11 +13,12 @@ import java.util.Objects;
  * @author athinaDavari
  */
 public class SOrder {
+
     private int id;
     private Supplier supplier;
     private Status status;
     private Timestamp created_at;
-    
+
     public SOrder() {
     }
 
@@ -26,20 +27,17 @@ public class SOrder {
         this.status = Status.pending;
     }
 
-    
     public SOrder(int id, Supplier supplier_id, String status, Timestamp created_at) {
         this.id = id;
         this.supplier = supplier;
         this.status = Status.valueOf(status);
         this.created_at = created_at;
     }
-    
-    enum Status
-    { 
-        delivered, pending; 
+
+    enum Status {
+        delivered, pending;
     }
 
-    
     public int getId() {
         return id;
     }

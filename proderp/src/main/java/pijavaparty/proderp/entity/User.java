@@ -12,14 +12,12 @@ import java.util.Objects;
  * @author athinaDavari
  */
 public class User {
-    private int id;
     private String fullName;
     private String username;
     private String password;
     private int role;
 
-    public User(int id, String fullName, String username, String password, int role) {
-        this.id = id;
+    public User(String fullName, String username, String password, int role) {
         this.fullName = fullName;
         this.username = username;
         this.password = password;
@@ -29,15 +27,10 @@ public class User {
     public User() {
     }
 
-    public User(String fullName, String username, String password, int role) {
+    public User(String fullName, String password, int role) {
         this.fullName = fullName;
-        this.username = username;
         this.password = password;
         this.role = role;
-    }
-    
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setFullName(String fullName) {
@@ -54,10 +47,6 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getFullName() {
@@ -78,12 +67,11 @@ public class User {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + this.id;
-        hash = 71 * hash + Objects.hashCode(this.fullName);
-        hash = 71 * hash + Objects.hashCode(this.username);
-        hash = 71 * hash + Objects.hashCode(this.password);
-        hash = 71 * hash + this.role;
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.fullName);
+        hash = 97 * hash + Objects.hashCode(this.username);
+        hash = 97 * hash + Objects.hashCode(this.password);
+        hash = 97 * hash + this.role;
         return hash;
     }
 
@@ -99,9 +87,6 @@ public class User {
             return false;
         }
         final User other = (User) obj;
-        if (this.id != other.id) {
-            return false;
-        }
         if (this.role != other.role) {
             return false;
         }
@@ -119,8 +104,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", fullName=" + fullName + ", username=" + username + ", password=" + password + ", role=" + role + '}';
+        return "User{" + "fullName=" + fullName + ", username=" + username + ", password=" + password + ", role=" + role + '}';
     }
+
     
     
 }

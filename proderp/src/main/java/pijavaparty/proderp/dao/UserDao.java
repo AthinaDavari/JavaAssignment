@@ -33,7 +33,7 @@ public class UserDao extends AbstractDao{
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+                return new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
             }
             closeConnections(pst);
         } catch (SQLException ex) {
@@ -49,7 +49,7 @@ public class UserDao extends AbstractDao{
             Statement st = getConnection().createStatement();
             ResultSet rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                users.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+                users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
             }
             closeConnections(rs, st);
         } catch (SQLException ex) {

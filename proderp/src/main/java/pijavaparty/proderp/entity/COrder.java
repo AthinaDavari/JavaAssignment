@@ -10,40 +10,42 @@ import java.util.Objects;
 
 /**
  *
- * @author athinaDavari
+ * @author Athina P.
  */
-public class SOrder {
+public class COrder {
 
     private int id;
-    private Supplier supplier;
+    private Customer customer;
     private Status status;
     private Timestamp created_at;
+    private int users_id;
 
-    public SOrder() {
+    public COrder() {
     }
 
-    public SOrder(Supplier supplier) {
-        this.supplier = supplier;
-        this.status = Status.pending;
+    public COrder(Customer customer) {
+        this.customer = customer;
+        this.status = Status.ready;
     }
 
-    public SOrder(int id, Supplier supplier_id, String status, Timestamp created_at) {
+    public COrder(int id, Customer customer_id, String status, Timestamp created_at, int users_id) {
         this.id = id;
-        this.supplier = supplier;
+        this.customer = customer;
         this.status = Status.valueOf(status);
         this.created_at = created_at;
+        this.users_id = users_id;
     }
 
     enum Status {
-        delivered, pending;
+        preparing, ready, delivered;
     }
 
     public int getId() {
         return id;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public Customer getCustomer() {
+        return customer;
     }
 
     public String getStatus() {
@@ -54,12 +56,16 @@ public class SOrder {
         return created_at;
     }
 
+    public int getUsers_id() {
+        return users_id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public void setStatus(Status status) {
@@ -70,13 +76,18 @@ public class SOrder {
         this.created_at = created_at;
     }
 
+    public void setUsers_id(int users_id) {
+        this.users_id = users_id;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 37 * hash + this.id;
-        hash = 37 * hash + Objects.hashCode(this.supplier);
-        hash = 37 * hash + Objects.hashCode(this.status);
-        hash = 37 * hash + Objects.hashCode(this.created_at);
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + Objects.hashCode(this.customer);
+        hash = 17 * hash + Objects.hashCode(this.status);
+        hash = 17 * hash + Objects.hashCode(this.created_at);
+        hash = 17 * hash + this.users_id;
         return hash;
     }
 
@@ -91,11 +102,14 @@ public class SOrder {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final SOrder other = (SOrder) obj;
+        final COrder other = (COrder) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.supplier, other.supplier)) {
+        if (this.users_id != other.users_id) {
+            return false;
+        }
+        if (!Objects.equals(this.customer, other.customer)) {
             return false;
         }
         if (this.status != other.status) {
@@ -109,7 +123,6 @@ public class SOrder {
 
     @Override
     public String toString() {
-        return "SOrder{" + "id=" + id + ", supplier=" + supplier + ", status=" + status + ", created_at=" + created_at + '}';
+        return "COrder{" + "id=" + id + ", customer=" + customer + ", status=" + status + ", created_at=" + created_at + ", users_id=" + users_id + '}';
     }
-
 }

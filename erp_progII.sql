@@ -3,10 +3,9 @@ CREATE DATABASE proderp;
 USE proderp;
 
 CREATE TABLE `Users`(
-`id` int primary key auto_increment,
 `full_name` varchar(255),
-`username` varchar(255),
-`password` varchar(255),
+`username` varchar(255) PRIMARY KEY,
+`password` varbinary(255),
 `role` int
 );
 
@@ -56,9 +55,10 @@ CREATE TABLE `C_Orders` (
   `customer_id` int UNIQUE NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  `user_id` int NOT NULL,
+  `username` varchar(255) NOT NULL,
   FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`)
+  FOREIGN KEY (`username`) REFERENCES `Users` (`username`)
+
 );
 
 CREATE TABLE `C_order_items` (
@@ -109,6 +109,13 @@ insert into s_orders(supplier_id,status)
 values (1,'delivered');
        
 insert into users(full_name, username, password, role)
+values ("maria","maria", aes_encrypt("1234","prod"),1);
+
+insert into users(full_name, username, password, role)
+values  ("athina", "ath", aes_encrypt("asdfg","prod"), 1),
+        ("natalia", "nat", aes_encrypt("12345", "prod"), 2);
+
+insert into users(full_name, username, password, role)
 values  ("athina", "ath", aes_encrypt("asdfg","prod"), 1),
         ("natalia", "nat", aes_encrypt("12345", "prod"), 2);
      
@@ -120,3 +127,5 @@ values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
        ("Marios Papachristou", "Aiolou 1", 55555555, "mpap@mail.com"),
        ("SuperBikes", "Peiraios 17", 3333333, "info@superbikes.com"),
        ("Katerina Georgiou", "Trion Ierarchon 24", 44444444, "katge@mail.com");
+       
+select full_name, username, aes_decrypt( password,"prod"), role from users;

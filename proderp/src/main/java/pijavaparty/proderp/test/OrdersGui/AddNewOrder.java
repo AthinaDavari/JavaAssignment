@@ -9,8 +9,6 @@ package pijavaparty.proderp.test.OrdersGui;
  *
  * @author Maria
  */
-
-
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +18,6 @@ import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.SOrder;
 import java.sql.*;
 import javax.swing.JOptionPane;
-        
 
 public class AddNewOrder extends javax.swing.JFrame {
 
@@ -228,56 +225,54 @@ public class AddNewOrder extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
-    private void showSOrdersTable(){
-        SOrderDao obj=new SOrderDao();
-        DefaultTableModel model=(DefaultTableModel) SOrdersTable.getModel();
-        int number=obj.getAll().size();
-        Object[] row=new Object[number];
-        for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getSupplier();
-            row[2]=obj.getAll().get(i).getStatus();
-            row[3]=obj.getAll().get(i).getCreated_at();
+    private void showSOrdersTable() {
+        SOrderDao obj = new SOrderDao();
+        DefaultTableModel model = (DefaultTableModel) SOrdersTable.getModel();
+        int number = obj.getAll().size();
+        Object[] row = new Object[number];
+        for (int i = 0; i < number; i++) {
+            row[0] = obj.getAll().get(i).getId();
+            row[1] = obj.getAll().get(i).getSupplier();
+            row[2] = obj.getAll().get(i).getStatus();
+            row[3] = obj.getAll().get(i).getCreated_at();
             model.addRow(row);
         }
     }
-    
+
     public class TimeStampExample {
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-    
+        private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+
     }
-    
+
     private void saveaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveaddActionPerformed
-       
-        
-        if (orderid.getText().isEmpty() || supid.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Please enter all fields.");
-       } else {
-            
-        try {
 
-            int orid = Integer.parseInt(orderid.getText().trim());
-            int supplierid = Integer.parseInt(supid.getText().trim());
-            String st = status.getSelectedItem().toString();
-            SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            
-            JOptionPane.showMessageDialog(null, "Data inserted successfully.");
+        if (orderid.getText().isEmpty() || supid.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter all fields.");
+        } else {
 
-            dispose();
-        }
-        catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+            try {
+
+                int orid = Integer.parseInt(orderid.getText().trim());
+                int supplierid = Integer.parseInt(supid.getText().trim());
+                String st = status.getSelectedItem().toString();
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+                JOptionPane.showMessageDialog(null, "Data inserted successfully.");
+
+                dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
     }//GEN-LAST:event_saveaddActionPerformed
-
+    }
     private void clearaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearaddActionPerformed
-        
+
         orderid.setText("");
         supid.setText("");
         status.setSelectedIndex(0);
-        
+
     }//GEN-LAST:event_clearaddActionPerformed
 
     /**
@@ -313,7 +308,7 @@ public class AddNewOrder extends javax.swing.JFrame {
                 new AddNewOrder().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

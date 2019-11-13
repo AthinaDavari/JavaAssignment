@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pijavaparty.proderp.entity.Customer;
 import pijavaparty.proderp.entity.User;
 
 /**
@@ -22,8 +21,9 @@ import pijavaparty.proderp.entity.User;
  */
 public class UserDao extends AbstractDao{
     
-    private final String GETUSER = "SELECT * FROM users WHERE user_name = ? AND password = ?";
+    private final String GETUSER = "SELECT id, full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
     private final String GETALL = "SELECT * FROM Users";
+//    private final String INSERT
     
     public User getUser(String username, String password) {
         PreparedStatement pst;

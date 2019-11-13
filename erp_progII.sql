@@ -1,11 +1,10 @@
-drop schema proderp;
+-- drop schema proderp;
 CREATE DATABASE proderp;
 USE proderp;
 
 CREATE TABLE `Users`(
-`id` int PRIMARY KEY AUTO_INCREMENT,
 `full_name` varchar(255),
-`user_name` varchar(255),
+`username` varchar(255) primary key,
 `password` varchar(255),
 `role` int
 );
@@ -56,7 +55,7 @@ CREATE TABLE `C_Orders` (
   `customer_id` int UNIQUE NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  `users_id` int UNIQUE NOT NULL,
+  `username` varchar(255) NOT NULL,
   FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
   FOREIGN KEY (`users_id`) REFERENCES `Users` (`id`)
 );
@@ -108,9 +107,9 @@ values ("plastic", 2, 47, 0.25),
 insert into s_orders(supplier_id,status) 
 values (1,'delivered');
        
-insert into users(full_name,user_name,password,role)
-values  ("athina", "ath", "asdfg",1),
-        ("natalia", "nat", "12345", 2);
+insert into users(full_name,user_name, password,role)
+values  ("athina", "ath", aes_decrypt("asdfg","prod"), 1),
+        ("natalia", "nat", aes_decrypt("12345", "prod"), 2);
      
 insert into Customers (full_name,address,phonenumber,email)
 values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),

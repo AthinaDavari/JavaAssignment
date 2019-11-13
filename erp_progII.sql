@@ -55,9 +55,10 @@ CREATE TABLE `C_Orders` (
   `customer_id` int UNIQUE NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  `user_username` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
-  FOREIGN KEY (`user_username`) REFERENCES `Users` (`username`)
+  FOREIGN KEY (`username`) REFERENCES `Users` (`username`)
+
 );
 
 CREATE TABLE `C_order_items` (

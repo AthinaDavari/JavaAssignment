@@ -23,7 +23,6 @@ import pijavaparty.proderp.entity.SOrder;
  */
 public class EditOrders extends javax.swing.JFrame {
 private javax.swing.JScrollPane jScrollPane1;
-private javax.swing.JTable S_Orders_table;
     /**
      * Creates new form EditOrders
      */

@@ -60,13 +60,19 @@ public class UserDao extends AbstractDao {
         return users;
     }
 
-    public void insert(User u) {
+    public void insert(User user) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(INSERT);
-            pst.setString(1, u.getFullName());
-            pst.setString(2, u.getUsername());
-            pst.setString(3, u.getPassword());
-            pst.setInt(4, u.getRole());
+            for (User u : getAll()) {
+                if (u.getUsername().equals(user.getUsername())) {
+                    System.out.println("Username already exists");
+                    return;
+                }
+            }
+            pst.setString(1, user.getFullName());
+            pst.setString(2, user.getUsername());
+            pst.setString(3, user.getPassword());
+            pst.setInt(4, user.getRole());
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {

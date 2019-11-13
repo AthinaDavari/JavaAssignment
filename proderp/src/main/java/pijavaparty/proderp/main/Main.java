@@ -25,6 +25,7 @@ public class Main {
         System.out.println(ud.getUser("nat", "12345"));
         System.out.println(ud.getAll());
 //        ud.insert(new User("maria k", "maria", "abc12", 2));
+        ud.insert(new User("natalia2", "nat", "213", 1));
         
     }
 

@@ -1,10 +1,11 @@
--- drop schema proderp;
+drop schema proderp;
 CREATE DATABASE proderp;
 USE proderp;
 
 CREATE TABLE `Users`(
+`id` int primary key auto_increment,
 `full_name` varchar(255),
-`username` varchar(255) primary key,
+`username` varchar(255),
 `password` varchar(255),
 `role` int
 );
@@ -55,9 +56,9 @@ CREATE TABLE `C_Orders` (
   `customer_id` int UNIQUE NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  `username` varchar(255) NOT NULL,
+  `user_id` int NOT NULL,
   FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
-  FOREIGN KEY (`users_id`) REFERENCES `Users` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`)
 );
 
 CREATE TABLE `C_order_items` (
@@ -107,14 +108,15 @@ values ("plastic", 2, 47, 0.25),
 insert into s_orders(supplier_id,status) 
 values (1,'delivered');
        
-insert into users(full_name,user_name, password,role)
-values  ("athina", "ath", aes_decrypt("asdfg","prod"), 1),
-        ("natalia", "nat", aes_decrypt("12345", "prod"), 2);
+insert into users(full_name, username, password, role)
+values  ("athina", "ath", aes_encrypt("asdfg","prod"), 1),
+        ("natalia", "nat", aes_encrypt("12345", "prod"), 2);
      
 insert into Customers (full_name,address,phonenumber,email)
 values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
-       ("Mouzouris", "Markou 14", 987560, "mouz@gmail.com");
-
-select * from products;
-select * from S_Orders;
-select * from Customers;
+       ("Mouzouris", "Markou 14", 987560, "mouz@gmail.com"),
+       ("Eleni Papadopoulou", "Patision 18", 2222222, "el@mail.com"),
+	   ("BikeCompany", "Chamosternas 12", 33333333, "info@bike.com"),
+       ("Marios Papachristou", "Aiolou 1", 55555555, "mpap@mail.com"),
+       ("SuperBikes", "Peiraios 17", 3333333, "info@superbikes.com"),
+       ("Katerina Georgiou", "Trion Ierarchon 24", 44444444, "katge@mail.com");

@@ -19,12 +19,14 @@ import pijavaparty.proderp.entity.User;
  *
  * @author athina
  */
-public class UserDao extends AbstractDao{
-    
+public class UserDao extends AbstractDao {
+
     private final String GETUSER = "SELECT id, full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
     private final String GETALL = "SELECT id, full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
     private final String INSERT = "INSERT INTO Users(full_name, username, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
-    
+    private final String UPDATE = "UPDATE Users SET full_name = ?, username = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE id = ?";
+    private final String DELETE = "DELETE FROM Users WHERE id = ?"; 
+       
     public User getUser(String username, String password) {
         PreparedStatement pst;
         try {
@@ -37,7 +39,7 @@ public class UserDao extends AbstractDao{
             }
             closeConnections(pst);
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -53,13 +55,13 @@ public class UserDao extends AbstractDao{
             }
             closeConnections(rs, st);
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return users; 
+        return users;
     }
-    
+
     public void insert(User u) {
-                try {
+        try {
             PreparedStatement pst = getConnection().prepareStatement(INSERT);
             pst.setString(1, u.getFullName());
             pst.setString(2, u.getUsername());
@@ -68,8 +70,33 @@ public class UserDao extends AbstractDao{
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {
-            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+    public void update(User u) {
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATE);
+            pst.setString(1, u.getFullName());
+            pst.setString(2, u.getUsername());
+            pst.setString(3, u.getPassword());
+            pst.setInt(4, u.getRole());
+            pst.setInt(5, u.getId());
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void delete(int id) {
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(DELETE);
+            pst.setInt(1, id);
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

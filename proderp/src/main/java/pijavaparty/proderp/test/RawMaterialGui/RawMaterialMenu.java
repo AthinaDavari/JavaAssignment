@@ -180,7 +180,7 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         for(int i=0; i<number; i++){
             row[0]=obj.getAll().get(i).getId();
             row[1]=obj.getAll().get(i).getName();
-            row[2]=obj.getAll().get(i).getSupplier().getId();
+            row[2]=obj.getAll().get(i).getSupplier().getFullName();
             row[3]=obj.getAll().get(i).getQuantity();
             row[4]=obj.getAll().get(i).getPrice();
             model.addRow(row);

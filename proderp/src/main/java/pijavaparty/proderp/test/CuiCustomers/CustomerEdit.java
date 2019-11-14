@@ -93,6 +93,11 @@ public class CustomerEdit extends javax.swing.JFrame {
 
         value_id.setEditable(false);
         value_id.setBackground(new java.awt.Color(204, 204, 204));
+        value_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                value_idActionPerformed(evt);
+            }
+        });
 
         delete.setText("delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +240,10 @@ public class CustomerEdit extends javax.swing.JFrame {
          
          
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void value_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_value_idActionPerformed
 
     
     public void showCustomersTable(){

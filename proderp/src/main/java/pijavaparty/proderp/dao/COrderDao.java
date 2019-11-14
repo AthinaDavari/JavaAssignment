@@ -15,15 +15,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.COrder;
 import pijavaparty.proderp.entity.Customer;
+
 /**
  *
  * @author Athina P.
  */
-public class COrderDao extends AbstractDao{
-    
+public class COrderDao extends AbstractDao {
+
     private final String GETALL = "SELECT * FROM C_Orders";
     private final String INSERT = "INSERT INTO C_Orders(customer_id,status) VALUES(?,?)";
     private final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
+
     public List<COrder> getAll() {
         List<COrder> corders = new LinkedList();
         CustomerDao c = new CustomerDao();
@@ -39,12 +41,12 @@ public class COrderDao extends AbstractDao{
         }
         return corders;
     }
-    
+
     public void insert(COrder co) {
         try {
             CustomerDao c = new CustomerDao();
             PreparedStatement pst = getConnection().prepareStatement(INSERT);
-            pst.setInt(1, co.getCustomer().getId()); 
+            pst.setInt(1, co.getCustomer().getId());
             pst.setString(2, co.getStatus());
             pst.execute();
             closeConnections(pst);
@@ -52,8 +54,8 @@ public class COrderDao extends AbstractDao{
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-}
-    
+    }
+
     public void delete(int id) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(DELETE);
@@ -64,5 +66,6 @@ public class COrderDao extends AbstractDao{
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-}
+    }
+    
 }

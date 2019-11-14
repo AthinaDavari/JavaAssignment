@@ -19,6 +19,7 @@ import pijavaparty.proderp.test.LogIn;
 public class Main {
 
     public static void main(String[] args) {
+        CustomerDao cd = new CustomerDao();
         CustomerDao obj = new CustomerDao();
 //           System.out.println(obj.getAll());
         UserDao ud = new UserDao();
@@ -27,6 +28,7 @@ public class Main {
 //        ud.insert(new User("maria k", "maria", "abc12", 2));
         ud.insert(new User("anna", "anna", "213", 1));
         System.out.println(ud.getAll());
+        System.out.println(cd.getAll());
         
         
     }

@@ -21,13 +21,13 @@ import pijavaparty.proderp.entity.Customer;
  */
 public class CustomerDao extends AbstractDao {
 
-    private final String GETALL = "SELECT * FROM Customers";
+    private final String GETALL = "SELECT * FROM Customers WHERE phonenumber > 0";
     private final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
-    private final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
-    private final String GETBYEMAIL = "SELECT * FROM Customers WHERE email = ?";
+    private final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ? AND phonenumber > 0";
+    private final String GETBYEMAIL = "SELECT * FROM Customers WHERE email = ? AND phonenumber > 0";
     private final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
-    private final String DELETE = "DELETE FROM Customers WHERE id = ?";
+    private final String DELETEPERM = "DELETE FROM Customers WHERE id = ?"; 
     private final String UPDATEFN = "UPDATE Customers SET full_name = ? WHERE id = ?";
     private final String UPDATEA = "UPDATE Customers SET address = ? WHERE id = ?";
     private final String UPDATEE = "UPDATE Customers SET email = ? WHERE id = ?";
@@ -203,15 +203,28 @@ public class CustomerDao extends AbstractDao {
 
     }
 
-    public void delete(int id) {
+    public void deletePermanently(int id) {
         try {
-            PreparedStatement pst = getConnection().prepareStatement(DELETE);
+            PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
             pst.setInt(1, id);
             pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
+    }
+    
+    public void delete(int id) {
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEPHN);
+            pst.setInt(1, -1);
+            pst.setInt(2, id);
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }

@@ -5,9 +5,6 @@
  */
 package pijavaparty.proderp.entity;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 /**

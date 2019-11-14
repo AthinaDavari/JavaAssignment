@@ -61,7 +61,6 @@ public class CustomerEdit extends javax.swing.JFrame {
                 "id", "full_name", "address", "phonenumber", "email"
             }
         ));
-        Customers_table.setEnabled(false);
         Customers_table.setUpdateSelectionOnSort(false);
         Customers_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

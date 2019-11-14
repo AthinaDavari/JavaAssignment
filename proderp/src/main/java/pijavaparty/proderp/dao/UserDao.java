@@ -21,11 +21,11 @@ import pijavaparty.proderp.entity.User;
  */
 public class UserDao extends AbstractDao {
 
-    private final String GETUSER = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
-    private final String GETALL = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
-    private final String INSERT = "INSERT INTO Users(full_name, username, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
-    private final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE username = ?";
-    private final String DELETE = "DELETE FROM Users WHERE username = ?"; 
+    private static final String GETUSER = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
+    private static final String GETALL = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
+    private static final String INSERT = "INSERT INTO Users(full_name, username, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
+    private static final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE username = ?";
+    private static final String DELETE = "DELETE FROM Users WHERE username = ?"; 
        
     public User getUser(String username, String password) {
         PreparedStatement pst;

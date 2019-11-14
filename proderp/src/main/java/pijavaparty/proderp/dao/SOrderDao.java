@@ -21,11 +21,11 @@ import pijavaparty.proderp.entity.SOrder;
  */
 public class SOrderDao extends AbstractDao{
     
-    private final String GETALL = "SELECT * FROM S_Orders";
-    private final String GETBYID = "SELECT * FROM S_Orders WHERE id = ?";
-    private final String INSERT = "INSERT INTO S_Orders(supplier_id,status) VALUES(?,?)";
-    private final String DELETE = "DELETE FROM S_Orders WHERE id = ?";
-    private final String UPDATE = "UPDATE S_Orders SET supplier_id = ?, status = ?, created_at = ? WHERE id = ?";
+    private static final String GETALL = "SELECT * FROM S_Orders";
+    private static final String GETBYID = "SELECT * FROM S_Orders WHERE id = ?";
+    private static final String INSERT = "INSERT INTO S_Orders(supplier_id,status) VALUES(?,?)";
+    private static final String DELETE = "DELETE FROM S_Orders WHERE id = ?";
+    private static final String UPDATE = "UPDATE S_Orders SET supplier_id = ?, status = ?, created_at = ? WHERE id = ?";
     
     @Override
     public List<SOrder> getAll() {

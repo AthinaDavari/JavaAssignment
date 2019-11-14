@@ -21,17 +21,17 @@ import pijavaparty.proderp.entity.Customer;
  */
 public class CustomerDao extends AbstractDao {
 
-    private final String GETALL = "SELECT * FROM Customers";
-    private final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
-    private final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
-    private final String GETBYEMAIL = "SELECT * FROM Customers WHERE email = ?";
-    private final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
-    private final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
-    private final String DELETE = "DELETE FROM Customers WHERE id = ?";
-    private final String UPDATEFN = "UPDATE Customers SET full_name = ? WHERE id = ?";
-    private final String UPDATEA = "UPDATE Customers SET address = ? WHERE id = ?";
-    private final String UPDATEE = "UPDATE Customers SET email = ? WHERE id = ?";
-    private final String UPDATEPHN = "UPDATE Customers SET phonenumber = ? WHERE id = ?";
+    private static final String GETALL = "SELECT * FROM Customers";
+    private static final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
+    private static final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
+    private static final String GETBYEMAIL = "SELECT * FROM Customers WHERE email = ?";
+    private static final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM Customers WHERE id = ?";
+    private static final String UPDATEFN = "UPDATE Customers SET full_name = ? WHERE id = ?";
+    private static final String UPDATEA = "UPDATE Customers SET address = ? WHERE id = ?";
+    private static final String UPDATEE = "UPDATE Customers SET email = ? WHERE id = ?";
+    private static final String UPDATEPHN = "UPDATE Customers SET phonenumber = ? WHERE id = ?";
 
     @Override
     public List<Customer> getAll() {

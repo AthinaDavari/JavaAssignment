@@ -38,9 +38,15 @@ public abstract class AbstractDao<T> {
 
     public void closeConnections(ResultSet rs, Statement st) {
         try {
+            if (rs != null){
             rs.close();
+            }
+            if (st != null){
             st.close();
+            }
+            if (conn != null){
             conn.close();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -48,8 +54,12 @@ public abstract class AbstractDao<T> {
 
     public void closeConnections(PreparedStatement pst) {
         try {
+            if (pst != null){
             pst.close();
+            }
+            if(conn != null){
             conn.close();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

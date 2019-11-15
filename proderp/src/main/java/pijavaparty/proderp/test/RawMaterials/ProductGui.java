@@ -10,7 +10,7 @@ import pijavaparty.proderp.dao.ProductDao;
 
 /**
  *
- * @author user
+ * @author anna
  */
 public class ProductGui extends javax.swing.JFrame {
 

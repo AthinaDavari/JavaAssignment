@@ -62,6 +62,10 @@ public class SOrder {
         this.supplier = supplier;
     }
 
+    public void setStatus(String status) {
+        this.status = Status.valueOf(status);
+    }
+    
     public void setStatus(Status status) {
         this.status = status;
     }

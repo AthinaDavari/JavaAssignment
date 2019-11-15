@@ -7,7 +7,7 @@ package pijavaparty.proderp.test.RawMaterials;
 
 /**
  *
- * @author user
+ * @author anna
  */
 public class DeleteRawMaterial extends javax.swing.JFrame {
 

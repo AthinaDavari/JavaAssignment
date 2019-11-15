@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.SOrderItem;
 
 /**
@@ -22,11 +21,11 @@ import pijavaparty.proderp.entity.SOrderItem;
  */
 public class SOrderItemDao extends AbstractDao {
 
-    private final String GETALL = "SELECT * FROM S_order_items";
-    private final String GETBYIDS = "SELECT * FROM S_order_items WHERE s_order_id = ? AND raw_material_id = ?";
-    private final String GETITEMSPERSORDER = "SELECT * FROM S_order_items WHERE s_order_id = ?";
-    private final String INSERT = "INSERT INTO S_order_items VALUES (?, ?, ?)";
-    private final String DELETE = "DELETE FROM S_order_items WHERE s_order_id = ? AND raw_material_id = ?";
+    private static final String GETALL = "SELECT * FROM S_order_items";
+    private static final String GETBYIDS = "SELECT * FROM S_order_items WHERE s_order_id = ? AND raw_material_id = ?";
+    private static final String GETITEMSPERSORDER = "SELECT * FROM S_order_items WHERE s_order_id = ?";
+    private static final String INSERT = "INSERT INTO S_order_items VALUES (?, ?, ?)";
+    private static final String DELETE = "DELETE FROM S_order_items WHERE s_order_id = ? AND raw_material_id = ?";
     private SOrderDao so = new SOrderDao();
     private RawMaterialDao rm = new RawMaterialDao();
 

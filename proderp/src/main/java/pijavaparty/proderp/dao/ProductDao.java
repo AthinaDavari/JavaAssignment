@@ -21,15 +21,17 @@ import pijavaparty.proderp.entity.Product;
  */
 public class ProductDao extends AbstractDao {
 
-    private final String GETALL = "SELECT * FROM Products";
-    private final String GETBYID = "SELECT * FROM Products WHERE id = ?";
-    private final String GETBYNAME = "SELECT * FROM Products WHERE name = ?";
-    private final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";
-    private final String UPDATE = "UPDATE Products SET name = ?, quantity = ?, price = ? WHERE id = ?";
-    private final String DELETE = "DELETE FROM Products WHERE id = ?";
-    private final String UPDATEN = "UPDATE Products SET name = ? WHERE id = ?";
-    private final String UPDATEQ = "UPDATE Products SET quantity = ? WHERE id = ?";
-    private final String UPDATEP = "UPDATE Products SET price = ? WHERE id = ?";
+
+    private static final String GETALL = "SELECT * FROM Products WHERE quantity > 0";
+    private static final String GETBYID = "SELECT * FROM Products WHERE id = ?";
+    private static final String GETBYNAME = "SELECT * FROM Products WHERE name = ?";
+    private static final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";
+    private static final String UPDATE = "UPDATE Products SET name = ?, price = ? WHERE id = ?";
+    private static final String DELETEPERM = "DELETE FROM Products WHERE id = ?";
+    private static final String UPDATEN = "UPDATE Products SET name = ? WHERE id = ?";
+    private static final String UPDATEQ = "UPDATE Products SET quantity = ? WHERE id = ?";
+    private static final String UPDATEP = "UPDATE Products SET price = ? WHERE id = ?";
+
 
     @Override
 
@@ -86,6 +88,7 @@ public class ProductDao extends AbstractDao {
             pst.setString(1, p.getName());
             pst.setInt(2, p.getQuantity());
             pst.setDouble(3, p.getPrice());
+            pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,9 +160,8 @@ public class ProductDao extends AbstractDao {
             try {
                 PreparedStatement pst = getConnection().prepareStatement(UPDATE);
                 pst.setString(1, p.getName());
-                pst.setInt(2, p.getQuantity());
-                pst.setDouble(3, p.getPrice());
-                pst.setInt(4, p.getId());
+                pst.setDouble(2, p.getPrice());
+                pst.setInt(3, p.getId());
                 pst.execute();
                 closeConnections(pst);
             } catch (SQLException ex) {
@@ -168,9 +170,9 @@ public class ProductDao extends AbstractDao {
         }
     }
 
-    public void delete(int id) {
+    public void deletePermanently(int id) {
         try {
-            PreparedStatement pst = getConnection().prepareStatement(DELETE);
+            PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
             pst.setInt(1, id);
             pst.execute();
             closeConnections(pst);
@@ -179,4 +181,19 @@ public class ProductDao extends AbstractDao {
 
         }
     }
+    
+    public void delete(int id) {
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEQ);
+            pst.setInt(1, -1);
+            pst.setInt(1, id);
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+    }
+
 }

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.ProductRawMaterial;
-import pijavaparty.proderp.entity.RawMaterial;
 
 /**
  *
@@ -22,11 +21,11 @@ import pijavaparty.proderp.entity.RawMaterial;
  */
 public class ProductRawMaterialDao extends AbstractDao {
     
-    private final String GETALL = "SELECT * FROM P_Materials";
-    private final String GETMATERIALSPERPRODUCT = "SELECT * FROM P_Materials WHERE product_id = ?";
-    private final String INSERT = "INSERT INTO P_Materials VALUES (?, ?, ?)";
-    private final String UPDATE = "UPDATE P_Materials SET raw_material_id = ?, quantity_of_raw_material = ? WHERE product_id = ?";
-    private final String DELETE = "DELETE FROM P_Materials WHERE product_id = ? AND raw_material_id = ?";
+    private static final String GETALL = "SELECT * FROM P_Materials";
+    private static final String GETMATERIALSPERPRODUCT = "SELECT * FROM P_Materials WHERE product_id = ?";
+    private static final String INSERT = "INSERT INTO P_Materials VALUES (?, ?, ?)";
+    private static final String UPDATE = "UPDATE P_Materials SET raw_material_id = ?, quantity_of_raw_material = ? WHERE product_id = ?";
+    private static final String DELETE = "DELETE FROM P_Materials WHERE product_id = ? AND raw_material_id = ?";
     private ProductDao productDao = new ProductDao();
     private RawMaterialDao rawMaterialDao = new RawMaterialDao();
     

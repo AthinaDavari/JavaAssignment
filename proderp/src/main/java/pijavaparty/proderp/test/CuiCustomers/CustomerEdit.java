@@ -50,7 +50,7 @@ public class CustomerEdit extends javax.swing.JFrame {
         value_id = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Customer Data");
 
         Customers_table.setModel(new javax.swing.table.DefaultTableModel(

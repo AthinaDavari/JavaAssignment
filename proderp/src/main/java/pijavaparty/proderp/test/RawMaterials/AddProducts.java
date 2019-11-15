@@ -10,7 +10,7 @@ import pijavaparty.proderp.entity.Product;
 
 /**
  *
- * @author user
+ * @author anna
  */
 public class AddProducts extends javax.swing.JFrame {
 

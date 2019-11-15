@@ -8,7 +8,7 @@ package pijavaparty.proderp.test.RawMaterials;
 
 /**
  *
- * @author user
+ * @author anna
  */
 public class AddRawMaterial extends javax.swing.JFrame {
 

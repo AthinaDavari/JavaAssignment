@@ -11,7 +11,7 @@ import pijavaparty.proderp.dao.RawMaterialDao;
 
 /**
  *
- * @author user
+ * @author anna
  */
 public class Ingredients extends javax.swing.JFrame {
 

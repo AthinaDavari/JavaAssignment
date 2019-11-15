@@ -211,13 +211,11 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         int number=obj.getAll().size();
         Object[] row=new Object[4];
         for(int i=0; i<number; i++){
-            if (obj.getAll().get(i).getQuantity()!=-1){
                 row[0]=obj.getAll().get(i).getId();
                 row[1]=obj.getAll().get(i).getName();
                 row[2]=obj.getAll().get(i).getSupplier().getFullName();
                 row[3]=obj.getAll().get(i).getPrice();
                 model.addRow(row);
-            }
         }
         
     }

@@ -31,7 +31,7 @@ public class RawMaterialDao extends AbstractDao {
     private static final String UPDATESUP = "UPDATE Raw_Materials SET supplier_id = ? WHERE id = ?";
     private static final String UPDATEQUANT = "UPDATE Raw_Materials SET quantity = ? WHERE id = ?";
     private static final String UPDATEPRICE = "UPDATE Raw_Materials SET price = ? WHERE id = ?";
-    private final String DELETEPERM = "DELETE FROM Raw_Materials WHERE id = ?";
+    private static final String DELETEPERM = "DELETE FROM Raw_Materials WHERE id = ?";
 
     private SupplierDao supplierDao = new SupplierDao();
 

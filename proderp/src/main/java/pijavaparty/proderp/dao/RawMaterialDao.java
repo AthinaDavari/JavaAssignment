@@ -22,7 +22,7 @@ import pijavaparty.proderp.entity.Supplier;
  */
 public class RawMaterialDao extends AbstractDao {
 
-    private static final String GETALL = "SELECT * FROM Raw_Materials";
+    private static final String GETALL = "SELECT * FROM Raw_Materials WHERE quantity > 0";
     private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ?";
     private static final String GETBYNAME = "SELECT * FROM Raw_materials WHERE name = ?";
     private static final String INSERT = "INSERT INTO Raw_Materials(name, supplier_id, quantity, price) VALUES (?, ?, ?, ?)";
@@ -44,6 +44,7 @@ public class RawMaterialDao extends AbstractDao {
             while (rs.next()) {
                 rawMaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3))));
             }
+            closeConnections(rs, st);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,6 +60,7 @@ public class RawMaterialDao extends AbstractDao {
             if (rs.next()) {
                 return new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3)));
             }
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,6 +76,7 @@ public class RawMaterialDao extends AbstractDao {
             while (rs.next()) {
                 rawMaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3))));
             }
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         }

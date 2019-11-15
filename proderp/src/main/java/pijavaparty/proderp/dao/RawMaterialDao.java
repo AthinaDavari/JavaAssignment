@@ -31,7 +31,8 @@ public class RawMaterialDao extends AbstractDao {
     private static final String UPDATESUP = "UPDATE Raw_Materials SET supplier_id = ? WHERE id = ?";
     private static final String UPDATEQUANT = "UPDATE Raw_Materials SET quantity = ? WHERE id = ?";
     private static final String UPDATEPRICE = "UPDATE Raw_Materials SET price = ? WHERE id = ?";
-    private static final String DELETE = "DELETE FROM Raw_Materials WHERE id = ?";
+    private final String DELETEPERM = "DELETE FROM Raw_Materials WHERE id = ?";
+
     private SupplierDao supplierDao = new SupplierDao();
 
     @Override
@@ -210,26 +211,39 @@ public class RawMaterialDao extends AbstractDao {
         }
     }
 
-    public void delete(RawMaterial r) {
+    public void deletePerm(RawMaterial r) {
         try {
-            PreparedStatement pst = getConnection().prepareStatement(DELETE);
+            PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
             pst.setInt(1, r.getId());
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }
+
+    public void deletePerm(int id) {
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
+            pst.setInt(1, id);
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
     }
 
     public void delete(int id) {
         try {
-            PreparedStatement pst = getConnection().prepareStatement(DELETE);
-            pst.setInt(1, id);
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEQUANT);
+            pst.setInt(1, -1);
+            pst.setInt(2, id);
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
     }

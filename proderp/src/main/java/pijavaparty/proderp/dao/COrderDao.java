@@ -15,10 +15,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.COrder;
 import pijavaparty.proderp.entity.Customer;
+
 /**
  *
  * @author Athina P.
  */
+
 public class COrderDao extends AbstractDao{
     
     private static final String GETALL = "SELECT * FROM C_Orders";
@@ -40,12 +42,12 @@ public class COrderDao extends AbstractDao{
         }
         return corders;
     }
-    
+
     public void insert(COrder co) {
         try {
             CustomerDao c = new CustomerDao();
             PreparedStatement pst = getConnection().prepareStatement(INSERT);
-            pst.setInt(1, co.getCustomer().getId()); 
+            pst.setInt(1, co.getCustomer().getId());
             pst.setString(2, co.getStatus());
             pst.execute();
             closeConnections(pst);
@@ -53,8 +55,8 @@ public class COrderDao extends AbstractDao{
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-}
-    
+    }
+
     public void delete(int id) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(DELETE);
@@ -65,5 +67,6 @@ public class COrderDao extends AbstractDao{
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-}
+    }
+    
 }

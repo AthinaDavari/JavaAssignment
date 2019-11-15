@@ -22,7 +22,7 @@ import pijavaparty.proderp.entity.Supplier;
  */
 public class RawMaterialDao extends AbstractDao {
 
-    private static final String GETALL = "SELECT * FROM Raw_Materials";
+    private static final String GETALL = "SELECT * FROM Raw_Materials WHERE quantity > 0";
     private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ?";
     private static final String GETBYNAME = "SELECT * FROM Raw_materials WHERE name = ?";
     private static final String INSERT = "INSERT INTO Raw_Materials(name, supplier_id, quantity, price) VALUES (?, ?, ?, ?)";

@@ -169,8 +169,8 @@ public class ProductGui extends javax.swing.JFrame {
     }//GEN-LAST:event_update_deleteActionPerformed
 
     private void Show_IngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show_IngredientsActionPerformed
-        
-        new Ingredients().setVisible(true);
+        int id=Integer.parseInt(product_id.getText());
+        new Ingredients(id).setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_Show_IngredientsActionPerformed
 

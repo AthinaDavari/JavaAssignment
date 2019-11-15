@@ -227,11 +227,11 @@ public class RawMaterialEdit extends javax.swing.JFrame {
 
         int selectedRow=RawMaterial_table2.getSelectedRow();
         DefaultTableModel model2 =(DefaultTableModel) RawMaterial_table2.getModel();
-        /*value_id.setText((model2.getValueAt(selectedRow, 0).toString()));
-        value_full_name.setText((model2.getValueAt(selectedRow, 1).toString()));
-        value_address.setText((model2.getValueAt(selectedRow, 2).toString()));
-        value_phonenumber.setText((model2.getValueAt(selectedRow, 3).toString()));
-        value_email.setText((model2.getValueAt(selectedRow, 4).toString()));*/
+        value_id.setText((model2.getValueAt(selectedRow, 0).toString()));
+        value_name.setText((model2.getValueAt(selectedRow, 1).toString()));
+        value_supplier_id.setText((model2.getValueAt(selectedRow, 2).toString()));
+        value_quantity.setText((model2.getValueAt(selectedRow, 3).toString()));
+        value_price.setText((model2.getValueAt(selectedRow, 4).toString()));
     }//GEN-LAST:event_RawMaterial_table2MouseClicked
 
     private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed

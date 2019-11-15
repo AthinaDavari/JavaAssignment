@@ -98,11 +98,11 @@ public class RawMaterialMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "Name", "Supplier_id", "Quantity", "Price"
+                "id", "Name", "Supplier_id", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, true, false, true
+                true, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -194,13 +194,13 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         RawMaterialDao obj=new RawMaterialDao();
         DefaultTableModel model=(DefaultTableModel) RawMaterial_table2.getModel();
         int number=obj.getAll().size();
-        Object[] row=new Object[5];
+        Object[] row=new Object[4];
         for(int i=0; i<number; i++){
             row[0]=obj.getAll().get(i).getId();
             row[1]=obj.getAll().get(i).getName();
             row[2]=obj.getAll().get(i).getSupplier().getFullName();
-            row[3]=obj.getAll().get(i).getQuantity();
-            row[4]=obj.getAll().get(i).getPrice();
+            //row[3]=obj.getAll().get(i).getQuantity();
+            row[3]=obj.getAll().get(i).getPrice();
             model.addRow(row);
         }
         

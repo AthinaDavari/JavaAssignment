@@ -44,6 +44,7 @@ public class RawMaterialDao extends AbstractDao {
             while (rs.next()) {
                 rawMaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3))));
             }
+            closeConnections(rs, st);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,6 +60,7 @@ public class RawMaterialDao extends AbstractDao {
             if (rs.next()) {
                 return new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3)));
             }
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,6 +76,7 @@ public class RawMaterialDao extends AbstractDao {
             while (rs.next()) {
                 rawMaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3))));
             }
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         }

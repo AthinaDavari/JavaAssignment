@@ -52,21 +52,23 @@ public class ProductDao extends AbstractDao {
     }
 
     public Product getById(int id) {
-        PreparedStatement pst = null;
         ResultSet rs = null;
+        PreparedStatement pst;
+        Product p = null;
         try {
             pst = getConnection().prepareStatement(GETBYID);
             pst.setInt(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
-                return new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+                p = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
             }
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(rs, pst);
         }
-        return null;
+        return p;
     }
 
     public List<Product> getByName(String name) {
@@ -83,7 +85,7 @@ public class ProductDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeConnections(rs, pst);
         }
         return p;
     }

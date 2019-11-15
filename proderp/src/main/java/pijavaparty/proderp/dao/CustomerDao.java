@@ -53,6 +53,7 @@ public class CustomerDao extends AbstractDao {
     }
 
     public Customer getById(int id) {
+        Customer c = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -60,14 +61,14 @@ public class CustomerDao extends AbstractDao {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
-                return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+                c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(rs, pst);
         }
-        return null;
+        return c;
     }
 
     public List<Customer> getByName(String name) {
@@ -91,18 +92,19 @@ public class CustomerDao extends AbstractDao {
 
     public Customer getByEmail(String email) {
         PreparedStatement pst;
+        Customer c = null;
         try {
             pst = getConnection().prepareStatement(GETBYEMAIL);
             pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+                c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
-            closeConnections(pst);
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return c;
     }
 
     public void update(Customer c) {
@@ -138,6 +140,7 @@ public class CustomerDao extends AbstractDao {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(pst);
+
         }
 
     }
@@ -154,6 +157,7 @@ public class CustomerDao extends AbstractDao {
             pst.setString(1, fullName);
             pst.setInt(2, id);
             pst.execute();
+            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -232,6 +236,7 @@ public class CustomerDao extends AbstractDao {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(pst);
+
         }
     }
 

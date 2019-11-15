@@ -19,13 +19,12 @@ import pijavaparty.proderp.entity.COrder;
  *
  * @author Athina P.
  */
+public class COrderDao extends AbstractDao {
 
-public class COrderDao extends AbstractDao{
-    
     private static final String GETALL = "SELECT * FROM C_Orders";
     private static final String INSERT = "INSERT INTO C_Orders(customer_id,status) VALUES(?,?)";
     private static final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
-    
+
     public List<COrder> getAll() {
         List<COrder> corders = new LinkedList();
         CustomerDao c = new CustomerDao();
@@ -67,5 +66,5 @@ public class COrderDao extends AbstractDao{
 
         }
     }
-    
+
 }

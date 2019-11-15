@@ -20,21 +20,19 @@ import pijavaparty.proderp.entity.Customer;
  * @author athinaDavari
  */
 public class CustomerDao extends AbstractDao {
-
-
+    
     private static final String GETALL = "SELECT * FROM Customers";
     private static final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
     private static final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
     private static final String GETBYEMAIL = "SELECT * FROM Customers WHERE email = ?";
     private static final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
-    private static final String DELETEPERM = "DELETE FROM Customers WHERE id = ?"; 
+    private static final String DELETEPERM = "DELETE FROM Customers WHERE id = ?";    
     private static final String UPDATEFN = "UPDATE Customers SET full_name = ? WHERE id = ?";
     private static final String UPDATEA = "UPDATE Customers SET address = ? WHERE id = ?";
     private static final String UPDATEE = "UPDATE Customers SET email = ? WHERE id = ?";
     private static final String UPDATEPHN = "UPDATE Customers SET phonenumber = ? WHERE id = ?";
-
-
+    
     @Override
     public List<Customer> getAll() {
         List<Customer> customers = new LinkedList();
@@ -50,23 +48,24 @@ public class CustomerDao extends AbstractDao {
         }
         return customers;
     }
-
+    
     public Customer getById(int id) {
         PreparedStatement pst;
+        Customer c = null;
         try {
             pst = getConnection().prepareStatement(GETBYID);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+                c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
-            closeConnections(pst);
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return c;
     }
-
+    
     public List<Customer> getByName(String name) {
         PreparedStatement pst;
         List<Customer> c = new LinkedList();
@@ -77,28 +76,30 @@ public class CustomerDao extends AbstractDao {
             while (rs.next()) {
                 c.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
             }
-            closeConnections(pst);
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
     }
-        public Customer getByEmail(String email) {
+
+    public Customer getByEmail(String email) {
         PreparedStatement pst;
+        Customer c = null;
         try {
             pst = getConnection().prepareStatement(GETBYEMAIL);
             pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+                c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
-            closeConnections(pst);
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return c;
     }
-
+    
     public void update(Customer c) {
         Customer fromTable = getById(c.getId());
         if (fromTable != null && !fromTable.equals(c)) {
@@ -116,7 +117,7 @@ public class CustomerDao extends AbstractDao {
             }
         }
     }
-
+    
     public void insert(Customer c) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(INSERT);
@@ -128,11 +129,11 @@ public class CustomerDao extends AbstractDao {
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-
+            
         }
-
+        
     }
-
+    
     public void updateFullName(int id, String fullName) {
         //Customer fromTable = getById(c.getId());
         CustomerDao customerDao = new CustomerDao();
@@ -145,12 +146,13 @@ public class CustomerDao extends AbstractDao {
             pst.setString(1, fullName);
             pst.setInt(2, id);
             pst.execute();
+            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     public void updateAddress(int id, String address) {
         //Customer fromTable = getById(c.getId());
         CustomerDao customerDao = new CustomerDao();
@@ -166,9 +168,9 @@ public class CustomerDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     public void updatePhoneNumber(int id, long phn) {
         //Customer fromTable = getById(c.getId());
         CustomerDao customerDao = new CustomerDao();
@@ -184,9 +186,9 @@ public class CustomerDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     public void updateEmail(int id, String email) {
         //Customer fromTable = getById(c.getId());
         CustomerDao customerDao = new CustomerDao();
@@ -202,9 +204,9 @@ public class CustomerDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     public void deletePermanently(int id) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
@@ -212,7 +214,7 @@ public class CustomerDao extends AbstractDao {
             pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-
+            
         }
     }
     
@@ -228,5 +230,5 @@ public class CustomerDao extends AbstractDao {
         }
         
     }
-
+    
 }

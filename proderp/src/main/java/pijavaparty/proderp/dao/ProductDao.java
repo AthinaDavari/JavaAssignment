@@ -21,7 +21,6 @@ import pijavaparty.proderp.entity.Product;
  */
 public class ProductDao extends AbstractDao {
 
-
     private static final String GETALL = "SELECT * FROM Products WHERE quantity > 0";
     private static final String GETBYID = "SELECT * FROM Products WHERE id = ?";
     private static final String GETBYNAME = "SELECT * FROM Products WHERE name = ?";
@@ -32,7 +31,6 @@ public class ProductDao extends AbstractDao {
     private static final String UPDATEQ = "UPDATE Products SET quantity = ? WHERE id = ?";
     private static final String UPDATEP = "UPDATE Products SET price = ? WHERE id = ?";
 
-
     @Override
 
     public List<Product> getAll() {
@@ -41,7 +39,7 @@ public class ProductDao extends AbstractDao {
             Statement st = getConnection().createStatement();
             ResultSet rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                products.add(new Product(rs.getInt(1), rs.getString(2),rs.getInt(3), rs.getDouble(4)));
+                products.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4)));
             }
             closeConnections(rs, st);
         } catch (SQLException ex) {
@@ -52,17 +50,19 @@ public class ProductDao extends AbstractDao {
 
     public Product getById(int id) {
         PreparedStatement pst;
+        Product p = null;
         try {
             pst = getConnection().prepareStatement(GETBYID);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+                p = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
             }
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return p;
     }
 
     public List<Product> getByName(String name) {
@@ -72,16 +72,16 @@ public class ProductDao extends AbstractDao {
             pst = getConnection().prepareStatement(GETBYNAME);
             pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-                    p.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4)));
-                }
-            closeConnections(pst);
+            while (rs.next()) {
+                p.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4)));
+            }
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return p;
     }
-    
+
     public void insert(Product p) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(INSERT);
@@ -181,7 +181,7 @@ public class ProductDao extends AbstractDao {
 
         }
     }
-    
+
     public void delete(int id) {
         try {
             PreparedStatement pst = getConnection().prepareStatement(UPDATEQ);
@@ -192,7 +192,6 @@ public class ProductDao extends AbstractDao {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
     }
 

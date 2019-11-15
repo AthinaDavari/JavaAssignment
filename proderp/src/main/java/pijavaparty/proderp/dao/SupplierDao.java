@@ -21,12 +21,13 @@ import pijavaparty.proderp.entity.Supplier;
  */
 public class SupplierDao extends AbstractDao {
 
-    private final String GETALL = "SELECT * FROM Suppliers";
-    private final String GETBYID = "SELECT * FROM Suppliers WHERE id = ?";
-    private final String GETBYNAME = "SELECT * FROM Suppliers WHERE full_name = ?";
-    private final String INSERT = "INSERT INTO Suppliers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
-    private final String UPDATE = "UPDATE Suppliers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
-    private final String DELETE = "DELETE FROM Suppliers WHERE id = ?";
+    private static final String GETALL = "SELECT * FROM Suppliers";
+    private static final String GETBYID = "SELECT * FROM Suppliers WHERE id = ?";
+    private static final String GETBYNAME = "SELECT * FROM Suppliers WHERE full_name = ?";
+    private static final String INSERT = "INSERT INTO Suppliers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE Suppliers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
+    private final String DELETEPERM = "DELETE FROM Suppliers WHERE id = ?";
+    private final String UPDATEPN = "UPDATE Suppliers SET phonenumber = ? WHERE id = ?";
 
     @Override
 
@@ -112,10 +113,23 @@ public class SupplierDao extends AbstractDao {
         }
     }
 
+    public void deletePerm(int id) {
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
+            pst.setInt(1, id);
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }
+
     public void delete(int id) {
         try {
-            PreparedStatement pst = getConnection().prepareStatement(DELETE);
-            pst.setInt(1, id);
+            PreparedStatement pst = getConnection().prepareStatement(UPDATEPN);
+            pst.setInt(1, -1);
+            pst.setInt(2, id);
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {

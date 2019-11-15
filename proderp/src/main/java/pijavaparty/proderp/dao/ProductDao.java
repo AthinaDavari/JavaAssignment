@@ -53,7 +53,7 @@ public class ProductDao extends AbstractDao {
 
     public Product getById(int id) {
         ResultSet rs = null;
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         Product p = null;
         try {
             pst = getConnection().prepareStatement(GETBYID);

@@ -28,7 +28,7 @@ public class CustomerDao extends AbstractDao {
     private static final String GETBYEMAIL = "SELECT * FROM Customers WHERE email = ?";
     private static final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
-    private final String DELETEPERM = "DELETE FROM Customers WHERE id = ?"; 
+    private static final String DELETEPERM = "DELETE FROM Customers WHERE id = ?"; 
     private static final String UPDATEFN = "UPDATE Customers SET full_name = ? WHERE id = ?";
     private static final String UPDATEA = "UPDATE Customers SET address = ? WHERE id = ?";
     private static final String UPDATEE = "UPDATE Customers SET email = ? WHERE id = ?";

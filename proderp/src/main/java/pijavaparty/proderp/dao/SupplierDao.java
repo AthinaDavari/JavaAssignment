@@ -21,13 +21,13 @@ import pijavaparty.proderp.entity.Supplier;
  */
 public class SupplierDao extends AbstractDao {
 
-    private static final String GETALL = "SELECT * FROM Suppliers";
+    private static final String GETALL = "SELECT * FROM Suppliers WHERE phonenumber > 0";
     private static final String GETBYID = "SELECT * FROM Suppliers WHERE id = ?";
     private static final String GETBYNAME = "SELECT * FROM Suppliers WHERE full_name = ?";
     private static final String INSERT = "INSERT INTO Suppliers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Suppliers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
-    private final String DELETEPERM = "DELETE FROM Suppliers WHERE id = ?";
-    private final String UPDATEPN = "UPDATE Suppliers SET phonenumber = ? WHERE id = ?";
+    private static final String DELETEPERM = "DELETE FROM Suppliers WHERE id = ?";
+    private static final String UPDATEPN = "UPDATE Suppliers SET phonenumber = ? WHERE id = ?";
 
     @Override
 

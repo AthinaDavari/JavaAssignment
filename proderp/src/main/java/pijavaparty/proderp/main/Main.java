@@ -20,8 +20,8 @@ public class Main {
 
     public static void main(String[] args) {
         CustomerDao cd = new CustomerDao();
-        CustomerDao obj = new CustomerDao();
 //           System.out.println(obj.getAll());
+        System.out.println(cd.getById(1));
         UserDao ud = new UserDao();
         System.out.println(ud.getUser("nat", "12345"));
         //System.out.println(ud.getAll());

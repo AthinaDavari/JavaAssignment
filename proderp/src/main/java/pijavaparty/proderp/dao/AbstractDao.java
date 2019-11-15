@@ -37,6 +37,7 @@ public abstract class AbstractDao<T> {
 
     public void closeConnections(ResultSet rs, Statement st) {
         try {
+
             if (rs != null) {
                 rs.close();
             }
@@ -53,6 +54,7 @@ public abstract class AbstractDao<T> {
 
     public void closeConnections(PreparedStatement pst) {
         try {
+
             if (pst != null) {
                 pst.close();
             }

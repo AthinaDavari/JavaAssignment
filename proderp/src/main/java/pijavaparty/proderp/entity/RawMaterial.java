@@ -7,6 +7,7 @@ package pijavaparty.proderp.entity;
 
 import java.util.Objects;
 
+
 /**
  *
  * @author Natalia

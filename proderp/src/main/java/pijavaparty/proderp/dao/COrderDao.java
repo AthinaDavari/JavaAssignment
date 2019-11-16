@@ -14,43 +14,61 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.COrder;
-import pijavaparty.proderp.entity.Customer;
+
 /**
  *
  * @author Athina P.
  */
-public class COrderDao extends AbstractDao{
-    
-    private final String GETALL = "SELECT * FROM C_Orders";
-    private final String INSERT = "INSERT INTO C_Orders(customer_id,status) VALUES(?,?)";
-    
+public class COrderDao extends AbstractDao {
+
+    private static final String GETALL = "SELECT * FROM C_Orders";
+    private static final String INSERT = "INSERT INTO C_Orders(customer_id,status) VALUES(?,?)";
+    private static final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
+
     public List<COrder> getAll() {
         List<COrder> corders = new LinkedList();
         CustomerDao c = new CustomerDao();
+        Statement st = null;
+        ResultSet rs = null;
         try {
-            Statement st = getConnection().createStatement();
-            ResultSet rs = st.executeQuery(GETALL);
+            st = getConnection().createStatement();
+            rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4)));
+                corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.getInt(5)));
             }
-            closeConnections(rs, st);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, st);
         }
         return corders;
     }
-    
+
     public void insert(COrder co) {
+        PreparedStatement pst = null;
         try {
-            CustomerDao c = new CustomerDao();
-            PreparedStatement pst = getConnection().prepareStatement(INSERT);
-            pst.setInt(1, co.getCustomer().getId()); 
+            pst = getConnection().prepareStatement(INSERT);
+            pst.setInt(1, co.getCustomer().getId());
             pst.setString(2, co.getStatus());
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-
+        } finally {
+            closeConnections(pst);
         }
-}
+    }
+
+    public void delete(int id) {
+        PreparedStatement pst = null; 
+        try {
+            pst = getConnection().prepareStatement(DELETE);
+            pst.setInt(1, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
+        }
+    }
+
 }

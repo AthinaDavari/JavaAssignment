@@ -5,9 +5,6 @@
  */
 package pijavaparty.proderp.entity;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
@@ -29,6 +26,12 @@ public class Product {
     public Product(String name, int quantity, double price) {
         this.name = name;
         this.quantity = quantity;
+        this.price = price;
+    }
+
+    public Product(int id, String name, double price) {
+        this.id = id;
+        this.name = name;
         this.price = price;
     }
 

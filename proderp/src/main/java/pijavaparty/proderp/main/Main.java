@@ -19,13 +19,17 @@ import pijavaparty.proderp.test.LogIn;
 public class Main {
 
     public static void main(String[] args) {
-        CustomerDao obj = new CustomerDao();
+        CustomerDao cd = new CustomerDao();
 //           System.out.println(obj.getAll());
+        System.out.println(cd.getById(1));
         UserDao ud = new UserDao();
         System.out.println(ud.getUser("nat", "12345"));
-        System.out.println(ud.getAll());
+        //System.out.println(ud.getAll());
 //        ud.insert(new User("maria k", "maria", "abc12", 2));
-        ud.insert(new User("natalia2", "nat", "213", 1));
+        ud.insert(new User("anna", "anna", "213", 1));
+        System.out.println(ud.getAll());
+        System.out.println(cd.getAll());
+        
         
     }
 

@@ -4,8 +4,8 @@ USE proderp;
 
 CREATE TABLE `Users`(
 `full_name` varchar(255),
-`username` varchar(255) primary key,
-`password` varchar(255),
+`username` varchar(255) PRIMARY KEY,
+`password` varbinary(255),
 `role` int
 );
 
@@ -58,6 +58,7 @@ CREATE TABLE `C_Orders` (
   `username` varchar(255) NOT NULL,
   FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
   FOREIGN KEY (`username`) REFERENCES `Users` (`username`)
+
 );
 
 CREATE TABLE `C_order_items` (
@@ -97,7 +98,8 @@ values("SideroA.E.", "A.Papadreou 30", 2105678934, "info@sidero.gr"),
 insert into products(name, quantity, price)
 values("Merenda Pavlidis", 10, 47.65),
 	  ("Nucrema ION", 32, 125.34),
-      ("Nutella Kinder", 25, "87.69");
+      ("Nutella Kinder", 25, "87.69"),
+      ("Merenda DoubleFilling", 33, 58.99);
 
 insert into raw_materials(name, supplier_id, quantity, price) 
 values ("plastic", 2, 47, 0.25),
@@ -107,6 +109,13 @@ values ("plastic", 2, 47, 0.25),
 insert into s_orders(supplier_id,status) 
 values (1,'delivered');
        
+insert into users(full_name, username, password, role)
+values ("maria","maria", aes_encrypt("1234","prod"),1);
+
+insert into users(full_name, username, password, role)
+values  ("athina", "ath", aes_encrypt("asdfg","prod"), 1),
+        ("natalia", "nat", aes_encrypt("12345", "prod"), 2);
+
 insert into users(full_name, username, password, role)
 values  ("athina", "ath", aes_encrypt("asdfg","prod"), 1),
         ("natalia", "nat", aes_encrypt("12345", "prod"), 2);
@@ -119,3 +128,5 @@ values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
        ("Marios Papachristou", "Aiolou 1", 55555555, "mpap@mail.com"),
        ("SuperBikes", "Peiraios 17", 3333333, "info@superbikes.com"),
        ("Katerina Georgiou", "Trion Ierarchon 24", 44444444, "katge@mail.com");
+       
+select full_name, username, aes_decrypt( password,"prod"), role from users;

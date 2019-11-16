@@ -43,7 +43,7 @@ CREATE TABLE `Products` (
 
 CREATE TABLE `S_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `supplier_id` int UNIQUE NOT NULL,
+  `supplier_id` int NOT NULL,
   `status` ENUM ('delivered', 'pending'),
 
   `created_at` datetime DEFAULT now(),
@@ -52,7 +52,7 @@ CREATE TABLE `S_Orders` (
 
 CREATE TABLE `C_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `customer_id` int UNIQUE NOT NULL,
+  `customer_id` int NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
   `username` varchar(255) NOT NULL,
@@ -128,5 +128,12 @@ values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
        ("Marios Papachristou", "Aiolou 1", 55555555, "mpap@mail.com"),
        ("SuperBikes", "Peiraios 17", 3333333, "info@superbikes.com"),
        ("Katerina Georgiou", "Trion Ierarchon 24", 44444444, "katge@mail.com");
-       
+
+insert into Customers (full_name,address,phonenumber,email)
+values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com");
+
+select last_insert_id();
+select * from S_orders;
+select * from S_order_items;  
+select * from Suppliers;   
 select full_name, username, aes_decrypt( password,"prod"), role from users;

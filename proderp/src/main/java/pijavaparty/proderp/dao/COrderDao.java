@@ -25,6 +25,7 @@ public class COrderDao extends AbstractDao {
     private static final String INSERT = "INSERT INTO C_Orders(customer_id,status) VALUES(?,?)";
     private static final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
 
+    @Override
     public List<COrder> getAll() {
         List<COrder> corders = new LinkedList();
         CustomerDao c = new CustomerDao();

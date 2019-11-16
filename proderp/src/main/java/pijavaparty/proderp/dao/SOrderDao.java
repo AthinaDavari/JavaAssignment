@@ -9,11 +9,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.SOrder;
+import pijavaparty.proderp.entity.SOrderItem;
 
 /**
  *
@@ -26,7 +28,7 @@ public class SOrderDao extends AbstractDao {
     private static final String INSERT = "INSERT INTO S_Orders(supplier_id,status) VALUES(?,?)";
     private static final String DELETE = "DELETE FROM S_Orders WHERE id = ?";
     private static final String UPDATE = "UPDATE S_Orders SET supplier_id = ?, status = ?, created_at = ? WHERE id = ?";
-
+    private static final String SELECTLASTID = "SELECT max(id) FROM S_Orders";
     @Override
     public List<SOrder> getAll() {
         List<SOrder> sorders = new LinkedList();
@@ -89,7 +91,7 @@ public class SOrderDao extends AbstractDao {
     public void insert(SOrder so) {
         PreparedStatement pst = null;
         try {
-            SupplierDao s = new SupplierDao();
+            //SupplierDao s = new SupplierDao();
             pst = getConnection().prepareStatement(INSERT);
             pst.setInt(1, so.getSupplier().getId());
             pst.setString(2, so.getStatus());
@@ -98,10 +100,49 @@ public class SOrderDao extends AbstractDao {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
+            //closeConnections(pst);
+        }
+    }
+
+    public int bringTheIdOfTheLatestSOrder(){
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = getConnection().createStatement();
+            rs = st.executeQuery(SELECTLASTID);
+            if (rs.next())
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    public void insertSOrderAndSOrderItems(SOrder so,List<SOrderItem > soi) {
+        PreparedStatement pst = null;
+        try {
+            //SupplierDao s = new SupplierDao();
+            pst = getConnection().prepareStatement(INSERT);
+            pst.setInt(1, so.getSupplier().getId());
+            pst.setString(2, so.getStatus());
+            pst.execute();
+            so.setId(bringTheIdOfTheLatestSOrder());
+            for (int i=0; i< soi.size();i++) {
+                SOrderItem soil;
+                soil =soi.get(i);
+                
+                //soil.setSorder(this.getById(id));
+                SOrderItemDao sod = new SOrderItemDao();
+                sod.insert(soil);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
             closeConnections(pst);
         }
     }
 
+    
     public void delete(int id) {
         PreparedStatement pst = null;
         try {

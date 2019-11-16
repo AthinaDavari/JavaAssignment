@@ -22,7 +22,7 @@ public abstract class AbstractDao<T> {
 
     protected static final String URL = "jdbc:mysql://localhost:3306/proderp?serverTimezone=Etc/GMT-2";
     protected static final String USERNAME = "root";
-    protected static final String PASS = "melodiabolzano33";
+    protected static final String PASS = "12345";
 
     private Connection conn;
 
@@ -67,7 +67,7 @@ public abstract class AbstractDao<T> {
     }
 
     public abstract List<T> getAll();
-
+/*
     public void printList(List<T> a) {
         System.out.println(a.get(0).getClass().getSimpleName());
         if (a == null) {
@@ -77,5 +77,9 @@ public abstract class AbstractDao<T> {
             System.out.println(a.get(i));
         }
 
+    }*/
+
+    public Connection getConn() {
+        return conn;
     }
 }

@@ -22,6 +22,7 @@ import pijavaparty.proderp.entity.COrder;
 public class COrderDao extends AbstractDao {
 
     private static final String GETALL = "SELECT * FROM C_Orders";
+    private static final String GETBYID = "SELECT * FROM C_Orders WHERE id = ?";
     private static final String INSERT = "INSERT INTO C_Orders(customer_id,status) VALUES(?,?)";
     private static final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
 
@@ -45,6 +46,26 @@ public class COrderDao extends AbstractDao {
         return corders;
     }
 
+    public COrder getById(int id) {
+        PreparedStatement pst = null;
+        COrder c = null;
+        CustomerDao cu = new CustomerDao();
+        ResultSet rs = null;
+        try {
+            pst = getConnection().prepareStatement(GETBYID);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                c = new COrder(rs.getInt(1), cu.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.getInt(5));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, pst);
+        }
+        return c;
+    }
+
     public void insert(COrder co) {
         PreparedStatement pst = null;
         try {
@@ -60,7 +81,7 @@ public class COrderDao extends AbstractDao {
     }
 
     public void delete(int id) {
-        PreparedStatement pst = null; 
+        PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(DELETE);
             pst.setInt(1, id);

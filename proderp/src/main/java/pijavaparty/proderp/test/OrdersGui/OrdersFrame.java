@@ -3,7 +3,7 @@ package pijavaparty.proderp.test.OrdersGui;
 
 /**
  *
- * @author Maria
+ * @author MariaKokkorou
  */
 public class OrdersFrame extends javax.swing.JFrame {
 
@@ -115,8 +115,6 @@ public class OrdersFrame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        System.exit(0); 
-        
-        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -127,7 +125,7 @@ public class OrdersFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        new OrdersFrame().setVisible(true);
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -149,7 +147,7 @@ public class OrdersFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrdersFrame().setVisible(true);
+               new OrdersFrame().setVisible(true);
             }
         });
     }

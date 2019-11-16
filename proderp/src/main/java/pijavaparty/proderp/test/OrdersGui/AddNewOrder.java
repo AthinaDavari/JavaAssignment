@@ -7,7 +7,7 @@ package pijavaparty.proderp.test.OrdersGui;
 
 /**
  *
- * @author Maria
+ * @author MariaKokkorou
  */
 
 
@@ -19,18 +19,22 @@ import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.SOrder;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.dao.RawMaterialDao;
+import pijavaparty.proderp.dao.SOrderItemDao;
+import pijavaparty.proderp.dao.SupplierDao;
+import pijavaparty.proderp.entity.RawMaterial;
+import pijavaparty.proderp.entity.SOrderItem;
+import pijavaparty.proderp.entity.Supplier;
         
 
 public class AddNewOrder extends javax.swing.JFrame {
-
+    public static ArrayList<SOrderItem> list = new ArrayList<SOrderItem>();
+    
     /**
      * Creates new form AddNewOrder
      */
-    public AddNewOrder() {
-        initComponents();
-        showSOrdersTable();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,17 +51,16 @@ public class AddNewOrder extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        orderid = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         supid = new javax.swing.JTextField();
-        saveadd = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        SOrdersTable = new javax.swing.JTable();
-        status = new javax.swing.JComboBox<>();
-        clearadd = new javax.swing.JButton();
+        addnew = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -95,60 +98,46 @@ public class AddNewOrder extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Add New Order To Supplier");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Enter Order ID:");
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Enter Supplier ID:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Enter Status Of Order:");
+        supid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER\\Desktop\\Pics\\exit.png")); // NOI18N
-        jButton2.setText("Exit");
+        addnew.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addnew.setText("New Item Order To Supplier");
+        addnew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addnewActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Enter Order ID:");
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Enter Raw Material:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Enter Quantity of Raw Material:");
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setText("Save Order To Supplier");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        saveadd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        saveadd.setText("Save");
-        saveadd.addActionListener(new java.awt.event.ActionListener() {
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveaddActionPerformed(evt);
+                jTextField2ActionPerformed(evt);
             }
         });
 
-        SOrdersTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "id", "supplier_id", "status", "created_at"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(SOrdersTable);
-
-        status.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Delevered", "Pending" }));
-
-        clearadd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        clearadd.setText("Clear");
-        clearadd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearaddActionPerformed(evt);
-            }
-        });
+        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,54 +149,51 @@ public class AddNewOrder extends javax.swing.JFrame {
                         .addGap(84, 84, 84)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(orderid, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                            .addComponent(supid)
-                            .addComponent(status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton2)
-                        .addGap(53, 53, 53)
-                        .addComponent(saveadd, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(clearadd, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField1)
+                            .addComponent(supid, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField3))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addnew, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(orderid, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(supid, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(clearadd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(saveadd, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))))
-                .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(supid, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addnew, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -224,61 +210,66 @@ public class AddNewOrder extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
-    private void showSOrdersTable(){
-        SOrderDao obj=new SOrderDao();
-        DefaultTableModel model=(DefaultTableModel) SOrdersTable.getModel();
-        int number=obj.getAll().size();
-        Object[] row=new Object[number];
-        for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getSupplier();
-            row[2]=obj.getAll().get(i).getStatus();
-            row[3]=obj.getAll().get(i).getCreated_at();
-            model.addRow(row);
-        }
-    }
     
     public class TimeStampExample {
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
     
     }
     
-    private void saveaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveaddActionPerformed
-       
+    private void addnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewActionPerformed
         
-        if (orderid.getText().isEmpty() || supid.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Please enter all fields.");
-       } else {
-            
+        
         try {
-
-            int orid = Integer.parseInt(orderid.getText().trim());
+           
+            int orderid = Integer.parseInt(jTextField1.getText().trim());
             int supplierid = Integer.parseInt(supid.getText().trim());
-            String st = status.getSelectedItem().toString();
+            int raw = Integer.parseInt(jTextField2.getText().trim());
+            int quan = Integer.parseInt(jTextField3.getText().trim());
+            
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             
-            JOptionPane.showMessageDialog(null, "Data inserted successfully.");
-
+            SupplierDao sd = new SupplierDao();
+            Supplier sup = sd.getById(supplierid);
+            SOrder so = new SOrder(sup);
+            RawMaterialDao rmd = new RawMaterialDao();
+            RawMaterial rm = rmd.getById(raw);
+            
+            SOrderItem sorderitem = new SOrderItem(so, rm, quan);
+            list.add(sorderitem);
+            
+            JOptionPane.showMessageDialog(null,"Added to Order List.");
+            new AddItemSOrder().setVisible(true);
+            
+            
             dispose();
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-    }//GEN-LAST:event_saveaddActionPerformed
+    }//GEN-LAST:event_addnewActionPerformed
 
-    private void clearaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearaddActionPerformed
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    public void dispar(ArrayList<SOrderItem> list){
+        for (int i=0; i<= list.size(); i++){
+            System.out.println(list.get(i));
+        }
+    }
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispar(list);
+        JOptionPane.showMessageDialog(null,"Do You Want To Save Order?");
         
-        orderid.setText("");
-        supid.setText("");
-        status.setSelectedIndex(0);
+        SOrderItemDao soid = new SOrderItemDao();
+        soid.insert(list);
         
-    }//GEN-LAST:event_clearaddActionPerformed
+        JOptionPane.showMessageDialog(null,"Order Saved.");
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,12 +304,11 @@ public class AddNewOrder extends javax.swing.JFrame {
                 new AddNewOrder().setVisible(true);
             }
         });
-        
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable SOrdersTable;
-    private javax.swing.JButton clearadd;
+    private javax.swing.JButton addnew;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -329,10 +319,10 @@ public class AddNewOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField orderid;
-    private javax.swing.JButton saveadd;
-    private javax.swing.JComboBox<String> status;
-    private javax.swing.JTextField supid;
+    private javax.swing.JLabel jLabel5;
+    public static javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    public static javax.swing.JTextField supid;
     // End of variables declaration//GEN-END:variables
 }

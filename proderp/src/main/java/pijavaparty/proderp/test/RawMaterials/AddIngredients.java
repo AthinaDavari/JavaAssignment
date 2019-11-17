@@ -18,11 +18,9 @@ public class AddIngredients extends javax.swing.JFrame {
      * Creates new form AddIngredients
      */
     //private List<ProductRawMaterial> prpdrm;
-    private String name;
-    private double price;
-    public AddIngredients(String name, double price) {
-        this.name= name;
-        this.price=price;
+    private int id; 
+    public AddIngredients(int id) {
+        this.id=id;
         initComponents();
     }
     public AddIngredients() {

@@ -107,6 +107,8 @@ public class AddProducts extends javax.swing.JFrame {
        ProductDao obj=new ProductDao();
        Product obj2=new Product(value_name.getText(),0,Double.parseDouble(value_price.getText()));
        obj.insert(obj2);
+       int number=obj.getAll().size();
+        AddIngredients(obj.getAll().get(number-1).getId());
       // new AddIngredients(value2_name,value5_price).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

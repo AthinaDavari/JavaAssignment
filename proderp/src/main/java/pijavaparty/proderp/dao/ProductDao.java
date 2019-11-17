@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.Product;
+import pijavaparty.proderp.entity.RawMaterial;
 
 /**
  *
@@ -30,6 +31,7 @@ public class ProductDao extends AbstractDao {
     private static final String UPDATEN = "UPDATE Products SET name = ? WHERE id = ?";
     private static final String UPDATEQ = "UPDATE Products SET quantity = ? WHERE id = ?";
     private static final String UPDATEP = "UPDATE Products SET price = ? WHERE id = ?";
+    private static final String SELECTLASTID = "SELECT max(id) FROM Products";
 
     @Override
 
@@ -88,6 +90,43 @@ public class ProductDao extends AbstractDao {
             closeConnections(rs, pst);
         }
         return p;
+    }
+    
+    public int bringTheIdOfTheLatestProduct(){
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = getConnection().createStatement();
+            rs = st.executeQuery(SELECTLASTID);
+            if (rs.next())
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public void insertProductAndProductsRecipe(Product p,List<RawMaterial> rml) {
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(INSERT);
+            pst.setString(1, p.getName());
+            pst.setInt(2, p.getQuantity());
+            pst.setDouble(3, p.getPrice());
+            pst.execute();
+            p.setId(bringTheIdOfTheLatestSOrder());
+            for (int i=0; i< rml.size();i++) {
+                RawMaterial rm;
+                rm =rml.get(i);
+                RawMaterialDao rmd = new RawMaterialDao();
+                rmd.insert(rm);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            closeConnections(pst);
+        }
     }
 
     public void insert(Product p) {

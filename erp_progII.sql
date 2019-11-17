@@ -115,10 +115,6 @@ values ("maria","maria", aes_encrypt("1234","prod"),1);
 insert into users(full_name, username, password, role)
 values  ("athina", "ath", aes_encrypt("asdfg","prod"), 1),
         ("natalia", "nat", aes_encrypt("12345", "prod"), 2);
-
-insert into users(full_name, username, password, role)
-values  ("athina", "ath", aes_encrypt("asdfg","prod"), 1),
-        ("natalia", "nat", aes_encrypt("12345", "prod"), 2);
      
 insert into Customers (full_name,address,phonenumber,email)
 values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
@@ -136,4 +132,6 @@ select last_insert_id();
 select * from S_orders;
 select * from S_order_items;  
 select * from Suppliers;   
+Select * from raw_materials;
+SELECT max(id) FROM S_Orders;
 select full_name, username, aes_decrypt( password,"prod"), role from users;

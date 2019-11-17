@@ -114,7 +114,7 @@ public class ProductDao extends AbstractDao {
             pst.setInt(2, p.getQuantity());
             pst.setDouble(3, p.getPrice());
             pst.execute();
-            p.setId(bringTheIdOfTheLatestSOrder());
+            p.setId(bringTheIdOfTheLatestProduct());
             for (int i=0; i< rml.size();i++) {
                 RawMaterial rm;
                 rm =rml.get(i);

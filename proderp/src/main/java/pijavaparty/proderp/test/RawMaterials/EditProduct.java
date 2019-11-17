@@ -12,7 +12,7 @@ import pijavaparty.proderp.entity.Product;
 
 /**
  *
- * @author user
+ * @author anna
  */
 public class EditProduct extends javax.swing.JFrame {
 

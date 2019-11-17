@@ -20,7 +20,7 @@ import pijavaparty.proderp.entity.ProductRawMaterial;
  * @author Natalia
  */
 public class ProductRawMaterialDao extends AbstractDao {
-    
+
     private static final String GETALL = "SELECT * FROM P_Materials";
     private static final String GETMATERIALSPERPRODUCT = "SELECT * FROM P_Materials WHERE product_id = ?";
     private static final String INSERT = "INSERT INTO P_Materials VALUES (?, ?, ?)";
@@ -28,55 +28,62 @@ public class ProductRawMaterialDao extends AbstractDao {
     private static final String DELETE = "DELETE FROM P_Materials WHERE product_id = ? AND raw_material_id = ?";
     private ProductDao productDao = new ProductDao();
     private RawMaterialDao rawMaterialDao = new RawMaterialDao();
-    
+
     @Override
     public List<ProductRawMaterial> getAll() {
+        Statement st = null;
+        ResultSet rs = null;
         List<ProductRawMaterial> productRawMaterials = new LinkedList();
         try {
-            Statement st = getConnection().createStatement();
-            ResultSet rs = st.executeQuery(GETALL);
+            st = getConnection().createStatement();
+            rs = st.executeQuery(GETALL);
             while (rs.next()) {
                 productRawMaterials.add(new ProductRawMaterial(productDao.getById(rs.getInt(1)), rawMaterialDao.getById(rs.getInt(2)), rs.getInt(3)));
             }
-            closeConnections(rs, st);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, st);
         }
         return productRawMaterials;
     }
-    
+
     public List<ProductRawMaterial> getMaterialsPerProduct(int pid) {
         List<ProductRawMaterial> productsMaterials = new LinkedList();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(GETMATERIALSPERPRODUCT);
+            pst = getConnection().prepareStatement(GETMATERIALSPERPRODUCT);
             pst.setInt(1, pid);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 productsMaterials.add(new ProductRawMaterial(productDao.getById(rs.getInt(1)), rawMaterialDao.getById(rs.getInt(2)), rs.getInt(3)));
             }
-            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, pst);
         }
         return productsMaterials;
     }
-    
+
     public void insert(ProductRawMaterial prm) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(INSERT);
             pst.setInt(1, prm.getProduct().getId());
             pst.setInt(2, prm.getRawMaterial().getId());
             pst.setInt(3, prm.getQuantityOfRawMaterial());
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
     }
-    
+
     public void insert(int pid, int rmid, int quantity) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(INSERT);
             pst.setInt(1, pid);
@@ -86,11 +93,13 @@ public class ProductRawMaterialDao extends AbstractDao {
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
     }
-    
+
     public void update(ProductRawMaterial productRawMaterial) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(UPDATE);
             pst.setInt(1, productRawMaterial.getRawMaterial().getId());
@@ -100,11 +109,14 @@ public class ProductRawMaterialDao extends AbstractDao {
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
+
     }
-    
+
     public void update(int pid, int rmid, int quantity) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(UPDATE);
             pst.setInt(1, rmid);
@@ -114,11 +126,14 @@ public class ProductRawMaterialDao extends AbstractDao {
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
+
     }
-    
+
     public void delete(ProductRawMaterial prm) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(DELETE);
             pst.setInt(1, prm.getProduct().getId());
@@ -127,11 +142,14 @@ public class ProductRawMaterialDao extends AbstractDao {
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
+
     }
-    
+
     public void delete(int pid, int rmid) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(DELETE);
             pst.setInt(1, pid);
@@ -140,7 +158,10 @@ public class ProductRawMaterialDao extends AbstractDao {
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
+ 
     }
-    
+
 }

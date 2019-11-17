@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.entity.Customer;
+import pijavaparty.proderp.main.ValidVariables;
 
 /**
  *
@@ -46,7 +47,7 @@ public class InsertCustomer extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         valid_Fullname = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setText("Full Name:");
 
@@ -179,10 +180,10 @@ public class InsertCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void value_FullNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_FullNameKeyReleased
-        String PATTERN="^[a-zA-Z0-9]{5,30}$";
+        /*String PATTERN="^[a-zA-Z]{5,}$";
         Pattern patt=Pattern.compile(PATTERN);
-        Matcher match=patt.matcher(value_FullName.getText());
-        if (!match.matches()){
+        Matcher match=patt.matcher(value_FullName.getText());*/
+        if (/*!match.matches()*/!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_FullName.getText())){
             valid_Fullname.setText("Name is invalid");
         }
         else {

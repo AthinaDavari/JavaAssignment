@@ -72,6 +72,10 @@ public COrder(int id, Customer customer, String status, Timestamp created_at, in
         this.status = status;
     }
 
+        public void setStatus(String status) {
+        this.status = Status.valueOf(status);
+    }
+    
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }

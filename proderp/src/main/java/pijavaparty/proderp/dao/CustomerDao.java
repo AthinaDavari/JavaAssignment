@@ -21,212 +21,238 @@ import pijavaparty.proderp.entity.Customer;
  */
 public class CustomerDao extends AbstractDao {
 
-
     private static final String GETALL = "SELECT * FROM Customers";
     private static final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
     private static final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
     private static final String GETBYEMAIL = "SELECT * FROM Customers WHERE email = ?";
     private static final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
-    private static final String DELETEPERM = "DELETE FROM Customers WHERE id = ?"; 
+    private static final String DELETEPERM = "DELETE FROM Customers WHERE id = ?";
     private static final String UPDATEFN = "UPDATE Customers SET full_name = ? WHERE id = ?";
     private static final String UPDATEA = "UPDATE Customers SET address = ? WHERE id = ?";
     private static final String UPDATEE = "UPDATE Customers SET email = ? WHERE id = ?";
     private static final String UPDATEPHN = "UPDATE Customers SET phonenumber = ? WHERE id = ?";
 
-
     @Override
     public List<Customer> getAll() {
+        Statement st = null;
+        ResultSet rs = null;
         List<Customer> customers = new LinkedList();
         try {
-            Statement st = getConnection().createStatement();
-            ResultSet rs = st.executeQuery(GETALL);
+            st = getConnection().createStatement();
+            rs = st.executeQuery(GETALL);
             while (rs.next()) {
                 customers.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
             }
-            closeConnections(rs, st);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, st);
         }
         return customers;
     }
 
     public Customer getById(int id) {
-        PreparedStatement pst;
+        Customer c = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = getConnection().prepareStatement(GETBYID);
             pst.setInt(1, id);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             if (rs.next()) {
-                return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+                c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, pst);
         }
-        return null;
+        return c;
     }
 
     public List<Customer> getByName(String name) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         List<Customer> c = new LinkedList();
         try {
             pst = getConnection().prepareStatement(GETBYNAME);
             pst.setString(1, name);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 c.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
             }
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, pst);
         }
         return c;
     }
-        public Customer getByEmail(String email) {
+
+    public Customer getByEmail(String email) {
         PreparedStatement pst;
+        Customer c = null;
         try {
             pst = getConnection().prepareStatement(GETBYEMAIL);
             pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+                c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
-            closeConnections(pst);
+            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return c;
     }
 
     public void update(Customer c) {
         Customer fromTable = getById(c.getId());
+        PreparedStatement pst = null;
         if (fromTable != null && !fromTable.equals(c)) {
             try {
-                PreparedStatement pst = getConnection().prepareStatement(UPDATE);
+                pst = getConnection().prepareStatement(UPDATE);
                 pst.setString(1, c.getFullName());
                 pst.setString(2, c.getAddress());
                 pst.setLong(3, c.getPhonenumber());
                 pst.setString(4, c.getEmail());
                 pst.setInt(5, c.getId());
                 pst.execute();
-                closeConnections(pst);
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                closeConnections(pst);
             }
         }
     }
 
     public void insert(Customer c) {
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(INSERT);
+            pst = getConnection().prepareStatement(INSERT);
             pst.setString(1, c.getFullName());
             pst.setString(2, c.getAddress());
             pst.setLong(3, c.getPhonenumber());
             pst.setString(4, c.getEmail());
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
 
         }
 
     }
 
     public void updateFullName(int id, String fullName) {
-        //Customer fromTable = getById(c.getId());
         CustomerDao customerDao = new CustomerDao();
         Customer c = customerDao.getById(id);
         if (c == null) {
             return;
         }
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEFN);
+            pst = getConnection().prepareStatement(UPDATEFN);
             pst.setString(1, fullName);
-            pst.setInt(2, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void updateAddress(int id, String address) {
-        //Customer fromTable = getById(c.getId());
-        CustomerDao customerDao = new CustomerDao();
-        Customer c = customerDao.getById(id);
-        if (c == null) {
-            return;
-        }
-        try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEA);
-            pst.setString(1, address);
-            pst.setInt(2, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void updatePhoneNumber(int id, long phn) {
-        //Customer fromTable = getById(c.getId());
-        CustomerDao customerDao = new CustomerDao();
-        Customer c = customerDao.getById(id);
-        if (c == null) {
-            return;
-        }
-        try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEPHN);
-            pst.setLong(1, phn);
-            pst.setInt(2, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void updateEmail(int id, String email) {
-        //Customer fromTable = getById(c.getId());
-        CustomerDao customerDao = new CustomerDao();
-        Customer c = customerDao.getById(id);
-        if (c == null) {
-            return;
-        }
-        try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEE);
-            pst.setString(1, email);
-            pst.setInt(2, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void deletePermanently(int id) {
-        try {
-            PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
-            pst.setInt(1, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-    }
-    
-    public void delete(int id) {
-        try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEPHN);
-            pst.setInt(1, -1);
             pst.setInt(2, id);
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
-        
+
+    }
+
+    public void updateAddress(int id, String address) {
+        CustomerDao customerDao = new CustomerDao();
+        Customer c = customerDao.getById(id);
+        if (c == null) {
+            return;
+        }
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(UPDATEA);
+            pst.setString(1, address);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
+        }
+
+    }
+
+    public void updatePhoneNumber(int id, long phn) {
+        CustomerDao customerDao = new CustomerDao();
+        Customer c = customerDao.getById(id);
+        if (c == null) {
+            return;
+        }
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(UPDATEPHN);
+            pst.setLong(1, phn);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
+        }
+
+    }
+
+    public void updateEmail(int id, String email) {
+        CustomerDao customerDao = new CustomerDao();
+        Customer c = customerDao.getById(id);
+        if (c == null) {
+            return;
+        }
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(UPDATEE);
+            pst.setString(1, email);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
+        }
+
+    }
+
+    public void deletePermanently(int id) {
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(DELETEPERM);
+            pst.setInt(1, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
+
+        }
+    }
+
+    public void delete(int id) {
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(UPDATEPHN);
+            pst.setInt(1, -1);
+            pst.setInt(2, id);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
+        }
+
     }
 
 }

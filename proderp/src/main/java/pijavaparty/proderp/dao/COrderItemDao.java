@@ -13,51 +13,52 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pijavaparty.proderp.entity.SOrderItem;
+import pijavaparty.proderp.entity.COrderItem;
 
 /**
  *
- * @author athinaDavari
+ * @author Athina P.
  */
-public class SOrderItemDao extends AbstractDao {
 
-    private static final String GETALL = "SELECT * FROM S_order_items";
-    private static final String GETBYIDS = "SELECT * FROM S_order_items WHERE s_order_id = ? AND raw_material_id = ?";
-    private static final String GETITEMSPERSORDER = "SELECT * FROM S_order_items WHERE s_order_id = ?";
-    private static final String INSERT = "INSERT INTO S_order_items VALUES (?, ?, ?)";
-    private static final String DELETE = "DELETE FROM S_order_items WHERE s_order_id = ? AND raw_material_id = ?";
-    private SOrderDao so = new SOrderDao();
-    private RawMaterialDao rm = new RawMaterialDao();
+public class COrderItemDao extends AbstractDao {
+
+    private static final String GETALL = "SELECT * FROM C_order_items";
+    private static final String GETBYIDS = "SELECT * FROM C_order_items WHERE c_order_id = ? AND product_id = ?";
+    private static final String GETITEMSPERCORDER = "SELECT * FROM C_order_items WHERE c_order_id = ?";
+    private static final String INSERT = "INSERT INTO C_order_items VALUES (?, ?, ?)";
+    private static final String DELETE = "DELETE FROM C_order_items WHERE c_order_id = ? AND product_id = ?";
+    private COrderDao co = new COrderDao();
+    private ProductDao pr = new ProductDao();
 
     @Override
-    public List<SOrderItem> getAll() {
-        List<SOrderItem> sorders = new LinkedList();
+    public List<COrderItem> getAll() {
+        List<COrderItem> corders = new LinkedList();
         Statement st = null;
         ResultSet rs = null;
         try {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                sorders.add(new SOrderItem(so.getById(rs.getInt(1)), rm.getById(rs.getInt(2)), rs.getInt(3)));
+                corders.add(new COrderItem(co.getById(rs.getInt(1)), pr.getById(rs.getInt(2)), rs.getInt(3)));//δεν υπαρχει η getById στην COrdrDao
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(rs, st);
         }
-        return sorders;
+        return corders;
     }
 
-    public SOrderItem getByIds(int soid, int rmid) {
+    public COrderItem getByIds(int coid, int prid) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
             pst = getConnection().prepareStatement(GETBYIDS);
-            pst.setInt(1, soid);
-            pst.setInt(1, rmid);
+            pst.setInt(1, coid);
+            pst.setInt(1, prid);
             rs = pst.executeQuery();
             if (rs.next()) {
-                return new SOrderItem(so.getById(rs.getInt(1)), rm.getById(rs.getInt(2)), rs.getInt(3));
+                return new COrderItem(co.getById(rs.getInt(1)), pr.getById(rs.getInt(2)), rs.getInt(3));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,50 +68,50 @@ public class SOrderItemDao extends AbstractDao {
         return null;
     }
 
-    public List<SOrderItem> getItemsperSOrder(int soid) {
-        List<SOrderItem> soi = new LinkedList();
+    public List<COrderItem> getItemsperCOrder(int coid) {
+        List<COrderItem> coi = new LinkedList();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            pst = getConnection().prepareStatement(GETITEMSPERSORDER);
-            pst.setInt(1, soid);
+            pst = getConnection().prepareStatement(GETITEMSPERCORDER);
+            pst.setInt(1, coid);
             rs = pst.executeQuery();
             while (rs.next()) {
-                soi.add(new SOrderItem(so.getById(rs.getInt(1)), rm.getById(rs.getInt(2)), rs.getInt(3)));
+                coi.add(new COrderItem(co.getById(rs.getInt(1)), pr.getById(rs.getInt(2)), rs.getInt(3)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(rs, pst);
         }
-        return soi;
+        return coi;
     }
 
-    public void insert(SOrderItem soi) {
+    public void insert(COrderItem coi) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(INSERT);
-            pst.setInt(1, soi.getSorder().getId());
-            pst.setInt(2, soi.getRawmaterial().getId());
-            pst.setInt(3, soi.getQuantity());
+            pst.setInt(1, coi.getCorder().getId());
+            pst.setInt(2, coi.getProduct().getId());
+            pst.setInt(3, coi.getQuantity());
             pst.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);//εδω τι θα μπει;
         } finally {
             closeConnections(pst);
         }
     }
 
-    public void delete(SOrderItem soi) {
+    public void delete(COrderItem coi) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(DELETE);
-            pst.setInt(1, soi.getSorder().getId());
-            pst.setInt(2, soi.getRawmaterial().getId());
+            pst.setInt(1, coi.getCorder().getId());
+            pst.setInt(2, coi.getProduct().getId());
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {
-            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);//εδω τι θα μπει;
         } finally {
             closeConnections(pst);
         }

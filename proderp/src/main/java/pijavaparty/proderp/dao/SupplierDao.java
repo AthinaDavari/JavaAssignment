@@ -33,64 +33,73 @@ public class SupplierDao extends AbstractDao {
 
     public List<Supplier> getAll() {
         List<Supplier> suppliers = new LinkedList();
+        Statement st = null;
+        ResultSet rs = null;
         try {
-            Statement st = getConnection().createStatement();
-            ResultSet rs = st.executeQuery(GETALL);
+            st = getConnection().createStatement();
+            rs = st.executeQuery(GETALL);
             while (rs.next()) {
                 suppliers.add(new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
             }
-            closeConnections(rs, st);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, st);
         }
         return suppliers;
     }
 
     public Supplier getById(int id) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = getConnection().prepareStatement(GETBYID);
             pst.setInt(1, id);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             if (rs.next()) {
                 return new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
             }
-            closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, pst);
         }
         return null;
     }
 
     public List<Supplier> getByName(String name) {
         List<Supplier> suppliers = new LinkedList();
-        PreparedStatement pst;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         try {
             pst = getConnection().prepareStatement(GETBYNAME);
             pst.setString(1, name);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 suppliers.add(new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
             }
             closeConnections(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, pst);
         }
         return suppliers;
     }
 
     public void insert(Supplier s) {
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(INSERT);
+            pst = getConnection().prepareStatement(INSERT);
             pst.setString(1, s.getFullName());
             pst.setString(2, s.getAddress());
             pst.setLong(3, s.getPhonenumber());
             pst.setString(4, s.getEmail());
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-
+        } finally {
+            closeConnections(pst);
         }
 
     }
@@ -98,43 +107,47 @@ public class SupplierDao extends AbstractDao {
     public void update(Supplier s) {
         Supplier fromTable = getById(s.getId());
         if (fromTable != null && !fromTable.equals(s)) {
+            PreparedStatement pst = null;
             try {
-                PreparedStatement pst = getConnection().prepareStatement(UPDATE);
+                pst = getConnection().prepareStatement(UPDATE);
                 pst.setString(1, s.getFullName());
                 pst.setString(2, s.getAddress());
                 pst.setLong(3, s.getPhonenumber());
                 pst.setString(4, s.getEmail());
                 pst.setInt(5, s.getId());
                 pst.execute();
-                closeConnections(pst);
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                closeConnections(pst);
             }
         }
     }
 
     public void deletePerm(int id) {
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
+            pst = getConnection().prepareStatement(DELETEPERM);
             pst.setInt(1, id);
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-
+        } finally {
+            closeConnections(pst);
         }
     }
 
     public void delete(int id) {
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEPN);
+            pst = getConnection().prepareStatement(UPDATEPN);
             pst.setInt(1, -1);
             pst.setInt(2, id);
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-
+        } finally {
+            closeConnections(pst);
         }
     }
 }

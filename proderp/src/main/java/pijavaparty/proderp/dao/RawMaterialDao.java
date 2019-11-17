@@ -38,50 +38,62 @@ public class RawMaterialDao extends AbstractDao {
     @Override
     public List<RawMaterial> getAll() {
         List<RawMaterial> rawMaterials = new LinkedList();
+        Statement st =null;
+        ResultSet rs = null;
         try {
-            Statement st = getConnection().createStatement();
-            ResultSet rs = st.executeQuery(GETALL);
+            st = getConnection().createStatement();
+            rs = st.executeQuery(GETALL);
             while (rs.next()) {
                 rawMaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            closeConnections(rs, st);
         }
         return rawMaterials;
     }
 
     public RawMaterial getById(int id) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
+        RawMaterial r = null;
+        ResultSet rs = null;
         try {
             pst = getConnection().prepareStatement(GETBYID);
             pst.setInt(1, id);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             if (rs.next()) {
-                return new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3)));
+                r = new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterial.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            closeConnections(rs, pst);
         }
-        return null;
+        return r;
     }
 
     public List<RawMaterial> getByName(String name) {
         List<RawMaterial> rawMaterials = new LinkedList();
+        PreparedStatement pst = null;
+            ResultSet rs = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(GETBYNAME);
+            pst = getConnection().prepareStatement(GETBYNAME);
             pst.setString(1, name);
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 rawMaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            closeConnections(rs, pst);
         }
         return rawMaterials;
     }
 
     public void insert(RawMaterial r) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(INSERT);
             pst.setString(1, r.getName());
@@ -89,14 +101,15 @@ public class RawMaterialDao extends AbstractDao {
             pst.setInt(3, r.getQuantity());
             pst.setDouble(4, r.getPrice());
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            closeConnections(pst);
         }
     }
 
     public void update(RawMaterial r) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         RawMaterial fromTable = getById(r.getId());
         if (fromTable != null && !fromTable.equals(r)) {
             try {
@@ -108,13 +121,15 @@ public class RawMaterialDao extends AbstractDao {
                 pst.setInt(5, r.getId());
             } catch (SQLException ex) {
                 Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                closeConnections(pst);
             }
 
         }
     }
 
     public void update(RawMaterial r, int supId) {
-        PreparedStatement pst;
+        PreparedStatement pst = null;
         RawMaterial fromTable = getById(r.getId());
         if (fromTable != null && !fromTable.equals(r)) {
             try {
@@ -126,6 +141,8 @@ public class RawMaterialDao extends AbstractDao {
                 pst.setInt(5, r.getId());
             } catch (SQLException ex) {
                 Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                closeConnections(pst);
             }
 
         }
@@ -136,14 +153,16 @@ public class RawMaterialDao extends AbstractDao {
         if (r == null) {
             return;
         }
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATENAME);
+            pst = getConnection().prepareStatement(UPDATENAME);
             pst.setString(1, name);
             pst.setInt(2, id);
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
     }
 
@@ -152,14 +171,16 @@ public class RawMaterialDao extends AbstractDao {
         if (r == null) {
             return;
         }
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATESUP);
+            pst = getConnection().prepareStatement(UPDATESUP);
             pst.setInt(1, supplier.getId());
             pst.setInt(2, id);
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
     }
 
@@ -168,14 +189,16 @@ public class RawMaterialDao extends AbstractDao {
         if (r == null) {
             return;
         }
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATESUP);
+            pst = getConnection().prepareStatement(UPDATESUP);
             pst.setInt(1, supId);
             pst.setInt(2, id);
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
     }
 
@@ -184,14 +207,16 @@ public class RawMaterialDao extends AbstractDao {
         if (r == null) {
             return;
         }
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEQUANT);
+            pst = getConnection().prepareStatement(UPDATEQUANT);
             pst.setInt(1, quantity);
             pst.setInt(2, id);
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
     }
 
@@ -200,51 +225,61 @@ public class RawMaterialDao extends AbstractDao {
         if (r == null) {
             return;
         }
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEPRICE);
+            pst = getConnection().prepareStatement(UPDATEPRICE);
             pst.setDouble(1, price);
             pst.setInt(2, id);
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
         }
     }
 
     public void deletePerm(RawMaterial r) {
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
+            pst = getConnection().prepareStatement(DELETEPERM);
             pst.setInt(1, r.getId());
             pst.execute();
             closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
 
+        } finally {
+            closeConnections(pst);
         }
     }
 
     public void deletePerm(int id) {
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(DELETEPERM);
+            pst = getConnection().prepareStatement(DELETEPERM);
             pst.setInt(1, id);
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            closeConnections(pst);
 
         }
     }
 
     public void delete(int id) {
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = getConnection().prepareStatement(UPDATEQUANT);
+            pst = getConnection().prepareStatement(UPDATEQUANT);
             pst.setInt(1, -1);
             pst.setInt(2, id);
             pst.execute();
-            closeConnections(pst);
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
 
+        } finally {
+            closeConnections(pst);
         }
     }
 }

@@ -21,7 +21,7 @@ import pijavaparty.proderp.entity.Product;
  */
 public class ProductDao extends AbstractDao {
 
-    private static final String GETALL = "SELECT * FROM Products WHERE quantity > 0";
+    private static final String GETALL = "SELECT * FROM Products WHERE quantity >= 0";
     private static final String GETBYID = "SELECT * FROM Products WHERE id = ?";
     private static final String GETBYNAME = "SELECT * FROM Products WHERE name = ?";
     private static final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";

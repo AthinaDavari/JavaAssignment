@@ -226,7 +226,6 @@ public class RawMaterialInsert extends javax.swing.JFrame {
         List<Supplier> suppliers = new LinkedList();
         suppliers = obj.getAll();
         int num=obj.getAll().size();
-        String str;
         try{
             for(int i=0; i<num; i++){
                 

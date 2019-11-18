@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.Product;
-import pijavaparty.proderp.entity.RawMaterial;
+import pijavaparty.proderp.entity.ProductRawMaterial;
 
 /**
  *
@@ -106,7 +106,7 @@ public class ProductDao extends AbstractDao {
         return 0;
     }
     
-    public void insertProductAndProductsRecipe(Product p,List<RawMaterial> rml) {
+    public void insertProductAndProductsRecipe(Product p,List<ProductRawMaterial> rml) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(INSERT);
@@ -116,9 +116,9 @@ public class ProductDao extends AbstractDao {
             pst.execute();
             p.setId(bringTheIdOfTheLatestProduct());
             for (int i=0; i< rml.size();i++) {
-                RawMaterial rm;
+                ProductRawMaterial rm;
                 rm =rml.get(i);
-                RawMaterialDao rmd = new RawMaterialDao();
+                ProductRawMaterialDao rmd = new ProductRawMaterialDao();
                 rmd.insert(rm);
             }
         } catch (SQLException ex) {

@@ -21,7 +21,7 @@ import pijavaparty.proderp.entity.Customer;
  */
 public class CustomerDao extends AbstractDao {
 
-    private static final String GETALL = "SELECT * FROM Customers";
+    private static final String GETALL = "SELECT * FROM Customers WHERE phonenumber > 0";
     private static final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
     private static final String GETBYNAME = "SELECT * FROM Customers WHERE full_name = ?";
     private static final String GETBYEMAIL = "SELECT * FROM Customers WHERE email = ?";

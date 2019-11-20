@@ -8,6 +8,7 @@ package pijavaparty.proderp.test.RawMaterials;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.entity.Product;
@@ -24,15 +25,40 @@ public class AddIngredients extends javax.swing.JFrame {
      * Creates new form AddIngredients
      */
     //private List<ProductRawMaterial> prpdrm;
-    private int id; 
+    private List<ProductRawMaterial> prodraw;
+    private int id;
+    private Product obj5;
     //private List<Ingredients> ingredients=new LinkedList();
     //private List<int> quantity=new LinkedList();
-    public AddIngredients(int id) {
-        this.id=id;
+    public AddIngredients(String name, double price) {
+        obj5.setName(name);
+        obj5.setPrice(price);
+        obj5.setId(-1);
         initComponents();
         fillcombo();
        
         
+    }
+    public AddIngredients(int id) {
+        int i;
+        ProductRawMaterialDao obj = new ProductRawMaterialDao();
+        ProductDao obj2=new ProductDao();
+        this.id=id;
+        prodraw=obj.getMaterialsPerProduct(id);
+        for (i=1;i<obj.getAll().size();i++){
+            if (id==obj2.getAll().get(i).getId()){
+                obj5=obj2.getAll().get(i);
+                break;
+            }
+        }
+        initComponents();
+        fillcombo();
+    }
+    public AddIngredients(List<ProductRawMaterial> prodraw, Product obj5) {
+        this.prodraw=prodraw;
+        this.obj5=obj5;
+        initComponents();
+        fillcombo();
     }
     public AddIngredients() {
         initComponents();
@@ -142,10 +168,9 @@ public class AddIngredients extends javax.swing.JFrame {
             }
         }
         String value4_quantity=value_quantity.getText();
-        int newvalue4_quantity=Integer.parseInt(value4_quantity);
-        ProductRawMaterialDao obj3=new ProductRawMaterialDao();
-        obj3.insert(id, obj2.getId(), quant);
-        new AddIngredients(id).setVisible(true);
+        ProductRawMaterial obj3=new ProductRawMaterial(obj5,obj2,quant);
+        prodraw.add(obj3);
+        new AddIngredients(prodraw,obj5).setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -163,10 +188,17 @@ public class AddIngredients extends javax.swing.JFrame {
                 break;
             }
         }
-        String value4_quantity=value_quantity.getText();
-        int newvalue4_quantity=Integer.parseInt(value4_quantity);
-        ProductRawMaterialDao obj3=new ProductRawMaterialDao();
-        obj3.insert(id, obj2.getId(), quant);
+        ProductRawMaterial obj3=new ProductRawMaterial(obj5,obj2,quant);
+        prodraw.add(obj3);
+        ProductDao obj4=new ProductDao();
+        if (obj5.getId()==-1){
+            ProductDao proddao=new ProductDao();
+            proddao.insert(obj5);
+            for (int i=0;i<prodraw.size();i++) {
+                prodraw.get(i).getProduct().setId(proddao.bringTheIdOfTheLatestProduct());
+            }
+        }
+        obj4.insertProductAndProductsRecipe(obj5,prodraw);
         JOptionPane.showMessageDialog(null,"Added");
         dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

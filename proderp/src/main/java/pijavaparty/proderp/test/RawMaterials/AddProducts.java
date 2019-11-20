@@ -104,10 +104,10 @@ public class AddProducts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       ProductDao obj=new ProductDao();
-       Product obj2=new Product(value_name.getText(),0,Double.parseDouble(value_price.getText()));
-       obj.insert(obj2);
-       new AddIngredients(obj.getAll().size()).setVisible(true);
+       //ProductDao obj=new ProductDao();
+       //Product obj2=new Product(value_name.getText(),0,Double.parseDouble(value_price.getText()));
+       //obj.insert(obj2);
+       new AddIngredients(value_name.getText(),Double.parseDouble(value_price.getText())).setVisible(true);
        dispose();
         // new AddIngredients(value2_name,value5_price).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

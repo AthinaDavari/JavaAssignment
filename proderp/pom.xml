@@ -20,6 +20,18 @@
                     </descriptorRefs>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>pijavaparty.proderp.test.LogIn</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>   
         </plugins>
     </build>
     <dependencies>
@@ -34,7 +46,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>

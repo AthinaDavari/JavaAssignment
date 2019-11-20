@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,8 +28,18 @@ public abstract class AbstractDao<T> {
     private Connection conn;
 
     public Connection getConnection() {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        List<StackTraceElement> list = Arrays.asList(stackTrace);
+        String urlToConnect = URL;
+        for (StackTraceElement element : list) {
+            if (element.getClassName().startsWith("org.junit.")) {
+                urlToConnect = testURL;
+                break;
+            }
+        }
+        System.out.println("HEYYY THIS IS CONNECTION STRING " + urlToConnect);
         try {
-            conn = DriverManager.getConnection(URL, USERNAME, PASS);
+            conn = DriverManager.getConnection(urlToConnect, USERNAME, PASS);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -67,7 +78,8 @@ public abstract class AbstractDao<T> {
     }
 
     public abstract List<T> getAll();
-/*
+
+    /*
     public void printList(List<T> a) {
         System.out.println(a.get(0).getClass().getSimpleName());
         if (a == null) {
@@ -78,7 +90,6 @@ public abstract class AbstractDao<T> {
         }
 
     }*/
-
     public Connection getConn() {
         return conn;
     }

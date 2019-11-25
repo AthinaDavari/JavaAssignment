@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.SOrderItem;
  *
  * @author athinaDavari
  */
-public class SOrderItemDao extends AbstractDao {
+public class SOrderItemDao extends AbstractDao<SOrderItem> {
 
     private static final String GETALL = "SELECT * FROM S_order_items";
     private static final String GETBYIDS = "SELECT * FROM S_order_items WHERE s_order_id = ? AND raw_material_id = ?";

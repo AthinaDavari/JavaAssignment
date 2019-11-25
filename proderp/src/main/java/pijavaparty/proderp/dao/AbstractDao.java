@@ -37,7 +37,6 @@ public abstract class AbstractDao<T> {
                 break;
             }
         }
-        System.out.println("HEYYY THIS IS CONNECTION STRING " + urlToConnect);
         try {
             conn = DriverManager.getConnection(urlToConnect, USERNAME, PASS);
         } catch (SQLException ex) {
@@ -79,6 +78,12 @@ public abstract class AbstractDao<T> {
 
     public abstract List<T> getAll();
 
+    public abstract void insert(T t);
+    
+//    public abstract void delete(int id);
+    
+//    public abstract void update(T t);
+    
     /*
     public void printList(List<T> a) {
         System.out.println(a.get(0).getClass().getSimpleName());

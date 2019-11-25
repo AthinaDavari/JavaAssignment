@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.ProductRawMaterial;
  *
  * @author Natalia
  */
-public class ProductRawMaterialDao extends AbstractDao {
+public class ProductRawMaterialDao extends AbstractDao<ProductRawMaterial> {
 
     private static final String GETALL = "SELECT * FROM P_Materials";
     private static final String GETMATERIALSPERPRODUCT = "SELECT * FROM P_Materials WHERE product_id = ?";

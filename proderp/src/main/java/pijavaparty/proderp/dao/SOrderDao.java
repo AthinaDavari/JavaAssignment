@@ -21,7 +21,7 @@ import pijavaparty.proderp.entity.SOrderItem;
  *
  * @author athina
  */
-public class SOrderDao extends AbstractDao {
+public class SOrderDao extends AbstractDao<SOrder> {
 
     private static final String GETALL = "SELECT * FROM S_Orders";
     private static final String GETBYID = "SELECT * FROM S_Orders WHERE id = ?";

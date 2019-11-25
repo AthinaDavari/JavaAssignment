@@ -20,7 +20,7 @@ import pijavaparty.proderp.entity.Supplier;
  *
  * @author Natalia
  */
-public class RawMaterialDao extends AbstractDao {
+public class RawMaterialDao extends AbstractDao<RawMaterial> {
 
     private static final String GETALL = "SELECT * FROM Raw_Materials WHERE quantity >= 0";
     private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ?";

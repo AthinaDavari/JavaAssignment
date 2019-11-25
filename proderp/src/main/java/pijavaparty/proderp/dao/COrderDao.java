@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.COrder;
  *
  * @author Athina P.
  */
-public class COrderDao extends AbstractDao {
+public class COrderDao extends AbstractDao<COrder> {
 
     private static final String GETALL = "SELECT * FROM C_Orders";
     private static final String GETBYID = "SELECT * FROM C_Orders WHERE id = ?";
@@ -66,6 +66,7 @@ public class COrderDao extends AbstractDao {
         return c;
     }
 
+    
     public void insert(COrder co) {
         PreparedStatement pst = null;
         try {

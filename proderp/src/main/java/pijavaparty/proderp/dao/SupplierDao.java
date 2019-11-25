@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.Supplier;
  *
  * @author Natalia
  */
-public class SupplierDao extends AbstractDao {
+public class SupplierDao extends AbstractDao<Supplier> {
 
     private static final String GETALL = "SELECT * FROM Suppliers WHERE phonenumber > 0";
     private static final String GETBYID = "SELECT * FROM Suppliers WHERE id = ?";

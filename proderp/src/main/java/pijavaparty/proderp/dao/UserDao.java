@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.User;
  *
  * @author athinaDavari
  */
-public class UserDao extends AbstractDao {
+public class UserDao extends AbstractDao<User> {
 
     private static final String GETUSER = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
     private static final String GETALL = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";

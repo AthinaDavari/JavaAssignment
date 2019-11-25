@@ -20,7 +20,7 @@ import pijavaparty.proderp.entity.COrderItem;
  * @author Athina P.
  */
 
-public class COrderItemDao extends AbstractDao {
+public class COrderItemDao extends AbstractDao<COrderItem> {
 
     private static final String GETALL = "SELECT * FROM C_order_items";
     private static final String GETBYIDS = "SELECT * FROM C_order_items WHERE c_order_id = ? AND product_id = ?";

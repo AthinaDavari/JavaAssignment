@@ -20,7 +20,7 @@ import pijavaparty.proderp.entity.ProductRawMaterial;
  *
  * @author Athina P.
  */
-public class ProductDao extends AbstractDao {
+public class ProductDao extends AbstractDao<Product> {
 
     private static final String GETALL = "SELECT * FROM Products WHERE quantity >= 0";
     private static final String GETBYID = "SELECT * FROM Products WHERE id = ?";
@@ -34,7 +34,6 @@ public class ProductDao extends AbstractDao {
     private static final String SELECTLASTID = "SELECT max(id) FROM Products";
 
     @Override
-
     public List<Product> getAll() {
         List<Product> products = new LinkedList();
         Statement st = null;
@@ -129,6 +128,7 @@ public class ProductDao extends AbstractDao {
         }
     }
 
+    @Override
     public void insert(Product p) {
         PreparedStatement pst = null;
         try {

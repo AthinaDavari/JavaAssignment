@@ -6,6 +6,7 @@
 package pijavaparty.proderp.test;
 
 import java.awt.Toolkit;
+import pijavaparty.proderp.GUI.Storage.StorageMain;
 import pijavaparty.proderp.test.CuiCustomers.CustomerMenu;
 import pijavaparty.proderp.test.OrdersGui.OrdersFrame;
 import pijavaparty.proderp.test.RawMaterialGui.RawMaterialMenu;
@@ -81,6 +82,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Storage");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Orders");
@@ -203,6 +209,12 @@ public class Menu extends javax.swing.JFrame {
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        StorageMain obj = new StorageMain();
+        obj.setVisible(true);
+        dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

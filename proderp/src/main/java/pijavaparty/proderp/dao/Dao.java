@@ -19,10 +19,10 @@ import java.util.List;
  *
  * @author Natalia
  */
-public abstract class AbstractDao<T> {
+public class Dao<T> {
 
     protected static final String URL = "jdbc:mysql://localhost:3306/proderp?serverTimezone=Etc/GMT-2";
-    protected static final String testURL = "jdbc:h2:mem:./Database/proderp;INIT=RUNSCRIPT FROM './src/test/resources/test.sql'";
+    protected static final String testURL = "jdbc:h2:./Database/proderp;INIT=RUNSCRIPT FROM './src/test/resources/test.sql'";
     protected static final String USERNAME = "root";
     protected static final String PASS = "12345";
     private Connection conn;
@@ -76,9 +76,9 @@ public abstract class AbstractDao<T> {
         }
     }
 
-    public abstract List<T> getAll();
-
-    public abstract void insert(T t);
+//    public abstract List<T> getAll();
+//
+//    public abstract void insert(T t);
     
 //    public abstract void delete(int id);
     

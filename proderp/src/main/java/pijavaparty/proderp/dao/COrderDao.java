@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.COrder;
  *
  * @author Athina P.
  */
-public class COrderDao extends AbstractDao<COrder> {
+public class COrderDao extends Dao implements PlainEntityI<COrder> {
 
     private static final String GETALL = "SELECT * FROM C_Orders";
     private static final String GETBYID = "SELECT * FROM C_Orders WHERE id = ?";
@@ -46,6 +46,7 @@ public class COrderDao extends AbstractDao<COrder> {
         return corders;
     }
 
+    @Override
     public COrder getById(int id) {
         PreparedStatement pst = null;
         COrder c = null;
@@ -67,6 +68,7 @@ public class COrderDao extends AbstractDao<COrder> {
     }
 
     
+    @Override
     public void insert(COrder co) {
         PreparedStatement pst = null;
         try {
@@ -81,6 +83,7 @@ public class COrderDao extends AbstractDao<COrder> {
         }
     }
 
+    @Override
     public void delete(int id) {
         PreparedStatement pst = null;
         try {
@@ -92,6 +95,26 @@ public class COrderDao extends AbstractDao<COrder> {
         } finally {
             closeConnections(pst);
         }
+    }
+
+    @Override
+    public List<COrder> getByName(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int bringLastId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(COrder t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deletePermanently(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

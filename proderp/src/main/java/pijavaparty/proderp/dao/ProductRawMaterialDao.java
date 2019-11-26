@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.ProductRawMaterial;
  *
  * @author Natalia
  */
-public class ProductRawMaterialDao extends AbstractDao<ProductRawMaterial> {
+public class ProductRawMaterialDao extends Dao implements CompositeEntityI<ProductRawMaterial> {
 
     private static final String GETALL = "SELECT * FROM P_Materials";
     private static final String GETMATERIALSPERPRODUCT = "SELECT * FROM P_Materials WHERE product_id = ?";
@@ -162,6 +162,16 @@ public class ProductRawMaterialDao extends AbstractDao<ProductRawMaterial> {
             closeConnections(pst);
         }
  
+    }
+
+    @Override
+    public void delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deletePermanently(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -80,32 +80,36 @@ public class SupplierDaoTest {
         List<Supplier> result = instance.getByName(name);
         assertEquals(expResult, result);
     }
-//
-//    /**
-//     * Test of insert method, of class SupplierDao.
-//     */
-//    @Test
-//    public void testInsert() {
-//        System.out.println("insert");
-//        Supplier s = null;
-//        SupplierDao instance = new SupplierDao();
-//        instance.insert(s);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of update method, of class SupplierDao.
-//     */
-//    @Test
-//    public void testUpdate() {
+
+    /**
+     * Test of insert method, of class SupplierDao.
+     */
+    @Test
+    public void testInsert() {
+        System.out.println("insert");
+        Supplier s = new Supplier(4, "GoldSuppl", "Panepistimiou 27", 2105454554l, "info@gold.gr");
+        SupplierDao instance = new SupplierDao();
+        instance.insert(s);
+        System.out.println("Fetching new supplier from database...");
+//        assertEquals(s, instance.getByName("GoldSuppl"));
+    }
+
+    /**
+     * Test of update method, of class SupplierDao.
+     */
+    @Test
+    public void testUpdate() {
+                SupplierDao instance = new SupplierDao();
+
+                System.out.println(instance.getAll());
+
 //        System.out.println("update");
 //        Supplier s = null;
 //        SupplierDao instance = new SupplierDao();
 //        instance.update(s);
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
-//    }
+    }
 //
 //    /**
 //     * Test of deletePerm method, of class SupplierDao.

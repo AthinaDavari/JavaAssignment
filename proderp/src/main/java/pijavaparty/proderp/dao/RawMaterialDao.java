@@ -20,7 +20,7 @@ import pijavaparty.proderp.entity.Supplier;
  *
  * @author Natalia
  */
-public class RawMaterialDao extends AbstractDao<RawMaterial> {
+public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
 
     private static final String GETALL = "SELECT * FROM Raw_Materials WHERE quantity >= 0";
     private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ?";
@@ -54,6 +54,7 @@ public class RawMaterialDao extends AbstractDao<RawMaterial> {
         return rawMaterials;
     }
 
+    @Override
     public RawMaterial getById(int id) {
         PreparedStatement pst = null;
         RawMaterial r = null;
@@ -73,6 +74,7 @@ public class RawMaterialDao extends AbstractDao<RawMaterial> {
         return r;
     }
 
+    @Override
     public List<RawMaterial> getByName(String name) {
         List<RawMaterial> rawMaterials = new LinkedList();
         PreparedStatement pst = null;
@@ -92,6 +94,7 @@ public class RawMaterialDao extends AbstractDao<RawMaterial> {
         return rawMaterials;
     }
 
+    @Override
     public void insert(RawMaterial r) {
         PreparedStatement pst = null;
         try {
@@ -108,6 +111,7 @@ public class RawMaterialDao extends AbstractDao<RawMaterial> {
         }
     }
 
+    @Override
     public void update(RawMaterial r) {
         PreparedStatement pst = null;
         RawMaterial fromTable = getById(r.getId());
@@ -238,22 +242,8 @@ public class RawMaterialDao extends AbstractDao<RawMaterial> {
         }
     }
 
-    public void deletePerm(RawMaterial r) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(DELETEPERM);
-            pst.setInt(1, r.getId());
-            pst.execute();
-            closeConnections(pst);
-        } catch (SQLException ex) {
-            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-            closeConnections(pst);
-        }
-    }
-
-    public void deletePerm(int id) {
+    @Override
+    public void deletePermanently(int id) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(DELETEPERM);
@@ -268,6 +258,7 @@ public class RawMaterialDao extends AbstractDao<RawMaterial> {
         }
     }
 
+    @Override
     public void delete(int id) {
         PreparedStatement pst = null;
         try {
@@ -282,4 +273,14 @@ public class RawMaterialDao extends AbstractDao<RawMaterial> {
             closeConnections(pst);
         }
     }
+    
+    /**
+     * IMPLEMENT THIS!!!!!!!!!!!!!
+     * @return 
+     */
+    @Override
+    public int bringLastId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

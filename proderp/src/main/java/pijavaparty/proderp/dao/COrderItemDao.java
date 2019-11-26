@@ -20,7 +20,7 @@ import pijavaparty.proderp.entity.COrderItem;
  * @author Athina P.
  */
 
-public class COrderItemDao extends AbstractDao<COrderItem> {
+public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
 
     private static final String GETALL = "SELECT * FROM C_order_items";
     private static final String GETBYIDS = "SELECT * FROM C_order_items WHERE c_order_id = ? AND product_id = ?";
@@ -87,6 +87,7 @@ public class COrderItemDao extends AbstractDao<COrderItem> {
         return coi;
     }
 
+    @Override
     public void insert(COrderItem coi) {
         PreparedStatement pst = null;
         try {
@@ -115,5 +116,20 @@ public class COrderItemDao extends AbstractDao<COrderItem> {
         } finally {
             closeConnections(pst);
         }
+    }
+
+    @Override
+    public void update(COrderItem t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deletePermanently(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

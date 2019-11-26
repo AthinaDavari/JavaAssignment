@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.SOrderItem;
  *
  * @author athinaDavari
  */
-public class SOrderItemDao extends AbstractDao<SOrderItem> {
+public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
 
     private static final String GETALL = "SELECT * FROM S_order_items";
     private static final String GETBYIDS = "SELECT * FROM S_order_items WHERE s_order_id = ? AND raw_material_id = ?";
@@ -114,5 +114,20 @@ public class SOrderItemDao extends AbstractDao<SOrderItem> {
         } finally {
             closeConnections(pst);
         }
+    }
+
+    @Override
+    public void update(SOrderItem t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deletePermanently(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

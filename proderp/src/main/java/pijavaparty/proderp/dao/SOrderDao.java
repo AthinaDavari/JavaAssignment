@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,7 +20,7 @@ import pijavaparty.proderp.entity.SOrderItem;
  *
  * @author athina
  */
-public class SOrderDao extends AbstractDao<SOrder> {
+public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
 
     private static final String GETALL = "SELECT * FROM S_Orders";
     private static final String GETBYID = "SELECT * FROM S_Orders WHERE id = ?";
@@ -155,5 +154,20 @@ public class SOrderDao extends AbstractDao<SOrder> {
         } finally {
             closeConnections(pst);
         }
+    }
+
+    @Override
+    public List<SOrder> getByName(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int bringLastId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deletePermanently(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

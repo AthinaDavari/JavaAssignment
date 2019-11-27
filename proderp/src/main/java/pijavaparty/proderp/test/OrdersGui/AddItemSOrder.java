@@ -7,11 +7,9 @@ package pijavaparty.proderp.test.OrdersGui;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SOrderDao;
-import pijavaparty.proderp.dao.SOrderItemDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrder;
@@ -140,13 +138,14 @@ public class AddItemSOrder extends javax.swing.JFrame {
             int quan = Integer.parseInt(qu.getText().trim());
 
             SupplierDao sd = new SupplierDao();
-            int supplierid = Integer.parseInt(supid.getText().trim());
-            Supplier sup = sd.getById(supplierid);
+            String supplierid = supid.getSelectedItem().toString().trim();
+            int suplierid = Integer.parseInt(supplierid);
+            Supplier sup = sd.getById(suplierid);
             SOrder so = new SOrder(sup);
 
             RawMaterialDao rmd = new RawMaterialDao();
             RawMaterial rm = rmd.getById(rawm);
-            //πρέπει να δέχεται στρινγκ η μεθοδος - ολο το ονομα
+  
             SOrderItem sorderitem = new SOrderItem(so, rm, quan);
             list.add(sorderitem);
             
@@ -166,13 +165,11 @@ public class AddItemSOrder extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
 
         SupplierDao sd = new SupplierDao();
-        int supplierid = Integer.parseInt(supid.getText().trim());
-        Supplier sup = sd.getById(supplierid);
+        String supplierid = supid.getSelectedItem().toString().trim();
+        int suplierid = Integer.parseInt(supplierid);
+        Supplier sup = sd.getById(suplierid);
         SOrder so = new SOrder(sup);
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
+        
         SOrderDao sod = new SOrderDao();
         sod.insertSOrderAndSOrderItems(so, list);
 

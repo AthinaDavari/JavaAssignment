@@ -44,7 +44,6 @@ private javax.swing.JScrollPane jScrollPane1;
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         update = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -52,6 +51,7 @@ private javax.swing.JScrollPane jScrollPane1;
         jTextField4 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         SOrdersTable = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("jButton1");
@@ -83,8 +83,6 @@ private javax.swing.JScrollPane jScrollPane1;
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Edit Status:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Delevered", "Pending" }));
-
         update.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         update.setText("Update");
         update.addActionListener(new java.awt.event.ActionListener() {
@@ -108,11 +106,11 @@ private javax.swing.JScrollPane jScrollPane1;
 
             },
             new String [] {
-                "Order's ID", "Supplier's ID", "Status", "Created At", "Raw Material", "Quantity"
+                "Order's ID", "Supplier's ID", "Status", "Raw Material", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -125,6 +123,8 @@ private javax.swing.JScrollPane jScrollPane1;
             }
         });
         jScrollPane2.setViewportView(SOrdersTable);
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,13 +155,13 @@ private javax.swing.JScrollPane jScrollPane1;
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2)
-                                .addComponent(jComboBox1, 0, 255, Short.MAX_VALUE)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                                 .addComponent(jTextField3)
-                                .addComponent(jTextField4)))))
+                                .addComponent(jTextField4)
+                                .addComponent(jTextField1)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,9 +181,9 @@ private javax.swing.JScrollPane jScrollPane1;
                         .addGap(91, 91, 91)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,11 +202,6 @@ private javax.swing.JScrollPane jScrollPane1;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public class TimeStampExample {
-
-    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-    
-    }
     
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try{
@@ -214,17 +209,14 @@ private javax.swing.JScrollPane jScrollPane1;
             SOrderDao sod = new SOrderDao();
             int id = sod.bringTheIdOfTheLatestSOrder();
             String ids = Integer.toString(id);
-            orderid.setText(ids);
+            orderid.setText(ids + 1);
             
             int supplierid = Integer.parseInt(jTextField2.getText().trim());
-            int status = jComboBox1.getSelectedIndex();
+            int status = Integer.parseInt(jTextField1.getText().trim());
             String stat = Integer.toString(status);
             
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            
             SupplierDao sd = new SupplierDao();
-            Supplier sup = sd.getById(supplierid);
-            SOrder so = new SOrder(sup);
+            SOrder so = new SOrder(sd.getById(supplierid));
             
             SOrderDao obj = new SOrderDao();
             obj.update(so);
@@ -252,39 +244,37 @@ private javax.swing.JScrollPane jScrollPane1;
         DefaultTableModel model =(DefaultTableModel) SOrdersTable.getModel();
         orderid.setText((model.getValueAt(selectedRow, 0).toString()));
         jTextField2.setText((model.getValueAt(selectedRow, 1).toString()));
-        //jComboBox1.setModel((model.getValueAt(selectedRow, 2)));
+        jTextField1.setText((model.getValueAt(selectedRow, 2).toString()));
         jTextField3.setText((model.getValueAt(selectedRow, 3).toString()));
         jTextField4.setText((model.getValueAt(selectedRow, 4).toString()));
-         
     }//GEN-LAST:event_SOrdersTableMouseClicked
 
-    public void showSOrdersTable(){
-       
-        SOrderDao obj = new SOrderDao();
-        int number = obj.getAll().size();
-        DefaultTableModel model = (DefaultTableModel)SOrdersTable.getModel();
+    public void showSOrdersTable() {
+        try {
+            /*SOrderDao obj = new SOrderDao();
+            int number = obj.getAll().size();
+            DefaultTableModel model = (DefaultTableModel) SOrdersTable.getModel();*/
         
-        Object[] row = new Object[6];
-        
-        for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getSupplier();
-            row[2]=obj.getAll().get(i).getStatus();
-            row[3]=obj.getAll().get(i).getCreated_at();
-            model.addRow(row);
-        }
-        
-        SOrderItemDao obj2 = new SOrderItemDao();
-        int number1 = obj2.getAll().size();
-        DefaultTableModel model2 = (DefaultTableModel)SOrdersTable.getModel();
-        
-        
-        for (int i=0; i<number1; i++){
-            row[4]=obj2.getAll().get(i).getRawmaterial();
-            row[5]=obj2.getAll().get(i).getQuantity();
-            model.addRow(row);
+            SOrderItemDao obj2 = new SOrderItemDao();
+            int number1 = obj2.getAll().size();
+            DefaultTableModel model2 = (DefaultTableModel) SOrdersTable.getModel();
+            
+            Object[] row = new Object[5];
+
+            for (int i = 0; i < number1; i++) {
+                row[0] = obj2.getAll().get(i).getSorder().getId();
+                row[1] = obj2.getAll().get(i).getSorder().getSupplier();
+                row[2] = obj2.getAll().get(i).getSorder().getStatus();
+                row[3] = obj2.getAll().get(i).getRawmaterial();
+                row[4] = obj2.getAll().get(i).getQuantity();
+                model2.addRow(row);
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -323,7 +313,6 @@ private javax.swing.JScrollPane jScrollPane1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable SOrdersTable;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -331,6 +320,7 @@ private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

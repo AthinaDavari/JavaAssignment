@@ -10,11 +10,11 @@ package pijavaparty.proderp.test.OrdersGui;
  * @author MariaKokkorou
  */
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.SOrder;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SupplierDao;
@@ -28,6 +28,7 @@ public class AddOrder extends javax.swing.JFrame {
     
     public AddOrder() {
         initComponents();
+        comboBox();
     }
 
     /**
@@ -47,9 +48,9 @@ public class AddOrder extends javax.swing.JFrame {
         newitem = new javax.swing.JButton();
         save = new javax.swing.JButton();
         orderid = new javax.swing.JTextField();
-        supid = new javax.swing.JTextField();
         rawm = new javax.swing.JTextField();
         qu = new javax.swing.JTextField();
+        supid = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -88,14 +89,19 @@ public class AddOrder extends javax.swing.JFrame {
         orderid.setBackground(new java.awt.Color(153, 153, 153));
         orderid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        supid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         rawm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         qu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         qu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quActionPerformed(evt);
+            }
+        });
+
+        supid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        supid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supidActionPerformed(evt);
             }
         });
 
@@ -131,9 +137,9 @@ public class AddOrder extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(orderid)
-                            .addComponent(supid)
                             .addComponent(rawm)
-                            .addComponent(qu, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                            .addComponent(qu, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                            .addComponent(supid, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -147,8 +153,8 @@ public class AddOrder extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(supid, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(supid))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,11 +173,6 @@ public class AddOrder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public class TimeStampExample {
-
-        private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-    
-    }
     
     private void quActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quActionPerformed
         // TODO add your handling code here:
@@ -185,17 +186,20 @@ public class AddOrder extends javax.swing.JFrame {
             SOrderDao sod = new SOrderDao();
             int id = sod.bringTheIdOfTheLatestSOrder();
             String ids = Integer.toString(id);
-            orderid.setText(ids);
-            int supplierid = Integer.parseInt(supid.getText().trim());
+            orderid.setText(ids + 1);
+            
+            String suppliername = supid.getSelectedItem().toString();
+            int supplierid = (int)supid.getSelectedItem();
+
+            
             int raw = Integer.parseInt(rawm.getText().trim());
             int quan = Integer.parseInt(qu.getText().trim());
-            
-            SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            
+           
             SupplierDao sd = new SupplierDao();
-            Supplier sup = sd.getById(supplierid);
-            SOrder so = new SOrder(sup);
+            
+            Supplier supp = sd.getById(supplierid);
+            SOrder so = new SOrder(supp);
+            
             RawMaterialDao rmd = new RawMaterialDao();
             RawMaterial rm = rmd.getById(raw);
             
@@ -214,6 +218,21 @@ public class AddOrder extends javax.swing.JFrame {
         
     }//GEN-LAST:event_newitemActionPerformed
 
+    private void comboBox(){
+        SupplierDao sd = new SupplierDao();
+        List<Supplier> suppliers = new LinkedList();
+        suppliers = sd.getAll();
+        int num = sd.getAll().size();
+        try{
+            for(int i=0; i<num; i++){
+                supid.addItem(suppliers.get(i).getFullName());
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+
+    }
     /*public void dispar(ArrayList<SOrderItem> list){
         for (int i=0; i<= list.size(); i++){
             System.out.println(list.get(i));
@@ -226,13 +245,11 @@ public class AddOrder extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Do You Want To Save Order?");
         
         SupplierDao sd = new SupplierDao();
-        int supplierid = Integer.parseInt(supid.getText().trim());
-        Supplier sup = sd.getById(supplierid);
-        SOrder so = new SOrder(sup);
+        String suppliername = supid.getSelectedItem().toString().trim();
+        Supplier supplierid = (Supplier)supid.getSelectedItem();
         
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
+        SOrder so = new SOrder(supplierid);
+        
         SOrderDao sod = new SOrderDao();
         sod.insertSOrderAndSOrderItems(so, list);
         
@@ -240,6 +257,10 @@ public class AddOrder extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_saveActionPerformed
+
+    private void supidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supidActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,6 +308,6 @@ public class AddOrder extends javax.swing.JFrame {
     private javax.swing.JTextField qu;
     private javax.swing.JTextField rawm;
     private javax.swing.JButton save;
-    public static javax.swing.JTextField supid;
+    public static javax.swing.JComboBox<String> supid;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,4 +35,15 @@ public class ValidVariables {
          return false;
      return pat.matcher(email).matches();
  }
+ public static boolean isValidPhonenumber(String phonenumber){
+     if (phonenumber.charAt(0)==6){
+         if ( phonenumber.charAt(1)==9 && phonenumber.length()==10 && phonenumber.matches("[0-9+]")){
+             return true;
+         }else {
+             return false;
+         }
+     }else{
+         return false;
+     }
+ }
 }

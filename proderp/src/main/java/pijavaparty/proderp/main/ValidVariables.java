@@ -37,8 +37,8 @@ public class ValidVariables {
     }
 
     public static boolean isValidPhonenumber(String phonenumber) {
-        String PATTERN="d\\{10}";
-        if (phonenumber.matches(PATTERN)== true &&phonenumber.length() <= 10  ) {
+        String PATTERN="\\d{10}";
+        if (phonenumber.matches(PATTERN)== true ) {
             return true;
         } else {
             return false;

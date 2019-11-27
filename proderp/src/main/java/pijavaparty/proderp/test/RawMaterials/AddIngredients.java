@@ -28,6 +28,7 @@ public class AddIngredients extends javax.swing.JFrame {
     private List<ProductRawMaterial> prodraw;
     private int id;
     private Product obj5;
+
     //private List<Ingredients> ingredients=new LinkedList();
     //private List<int> quantity=new LinkedList();
     public AddIngredients(String name, double price) {
@@ -36,34 +37,37 @@ public class AddIngredients extends javax.swing.JFrame {
         obj5.setId(-1);
         initComponents();
         fillcombo();
-       
-        
+
     }
+
     public AddIngredients(int id) {
         int i;
         ProductRawMaterialDao obj = new ProductRawMaterialDao();
-        ProductDao obj2=new ProductDao();
-        this.id=id;
-        prodraw=obj.getMaterialsPerProduct(id);
-        for (i=1;i<obj.getAll().size();i++){
-            if (id==obj2.getAll().get(i).getId()){
-                obj5=obj2.getAll().get(i);
+        ProductDao obj2 = new ProductDao();
+        this.id = id;
+        prodraw = obj.getMaterialsPerProduct(id);
+        for (i = 1; i < obj.getAll().size(); i++) {
+            if (id == obj2.getAll().get(i).getId()) {
+                obj5 = obj2.getAll().get(i);
                 break;
             }
         }
         initComponents();
         fillcombo();
     }
+
     public AddIngredients(List<ProductRawMaterial> prodraw, Product obj5) {
-        this.prodraw=prodraw;
-        this.obj5=obj5;
+        this.prodraw = prodraw;
+        this.obj5 = obj5;
         initComponents();
         fillcombo();
     }
+
     public AddIngredients() {
         initComponents();
         fillcombo();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,71 +158,71 @@ public class AddIngredients extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String value_name=drop_down.getSelectedItem().toString();
-        int quant=Integer.parseInt(value_quantity.getText());
+        String value_name = drop_down.getSelectedItem().toString();
+        int quant = Integer.parseInt(value_quantity.getText());
         RawMaterialDao obj = new RawMaterialDao();
         List<RawMaterial> rawmaterial = new LinkedList();
-        rawmaterial=obj.getAll();
+        rawmaterial = obj.getAll();
         RawMaterial obj2 = null;
-        int num=rawmaterial.size();
-        for(int i=0; i<num; i++){
-            if (rawmaterial.get(i).getName().equals(value_name)) {  
-                obj2=rawmaterial.get(i);
+        int num = rawmaterial.size();
+        for (int i = 0; i < num; i++) {
+            if (rawmaterial.get(i).getName().equals(value_name)) {
+                obj2 = rawmaterial.get(i);
                 break;
             }
         }
-        String value4_quantity=value_quantity.getText();
-        ProductRawMaterial obj3=new ProductRawMaterial(obj5,obj2,quant);
+        String value4_quantity = value_quantity.getText();
+        ProductRawMaterial obj3 = new ProductRawMaterial(obj5, obj2, quant);
         prodraw.add(obj3);
-        new AddIngredients(prodraw,obj5).setVisible(true);
+        new AddIngredients(prodraw, obj5).setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String value_name=drop_down.getSelectedItem().toString();
-        int quant=Integer.parseInt(value_quantity.getText());
+        String value_name = drop_down.getSelectedItem().toString();
+        int quant = Integer.parseInt(value_quantity.getText());
         RawMaterialDao obj = new RawMaterialDao();
         List<RawMaterial> rawmaterial = new LinkedList();
-        rawmaterial=obj.getAll();
+        rawmaterial = obj.getAll();
         RawMaterial obj2 = null;
-        int num=rawmaterial.size();
-        for(int i=0; i<num; i++){
-            if (rawmaterial.get(i).getName().equals(value_name)) {  
-                obj2=rawmaterial.get(i);
+        int num = rawmaterial.size();
+        for (int i = 0; i < num; i++) {
+            if (rawmaterial.get(i).getName().equals(value_name)) {
+                obj2 = rawmaterial.get(i);
                 break;
             }
         }
-        ProductRawMaterial obj3=new ProductRawMaterial(obj5,obj2,quant);
+        ProductRawMaterial obj3 = new ProductRawMaterial(obj5, obj2, quant);
         prodraw.add(obj3);
-        ProductDao obj4=new ProductDao();
-        if (obj5.getId()==-1){
-            ProductDao proddao=new ProductDao();
+        ProductDao obj4 = new ProductDao();
+        if (obj5.getId() == -1) {
+            ProductDao proddao = new ProductDao();
             proddao.insert(obj5);
-            for (int i=0;i<prodraw.size();i++) {
-                prodraw.get(i).getProduct().setId(proddao.bringTheIdOfTheLatestProduct());
+            for (int i = 0; i < prodraw.size(); i++) {
+                prodraw.get(i).getProduct().setId(proddao.bringLastId());
             }
         }
-        obj4.insertProductAndProductsRecipe(obj5,prodraw);
-        JOptionPane.showMessageDialog(null,"Added");
+        obj4.insertProductAndProductsRecipe(obj5, prodraw);
+        JOptionPane.showMessageDialog(null, "Added");
         dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    private void fillcombo(){
+    private void fillcombo() {
         RawMaterialDao obj = new RawMaterialDao();
         List<RawMaterial> raw_material = new LinkedList();
         raw_material = obj.getAll();
-        int num=obj.getAll().size();
-        try{
-            for(int i=0; i<num; i++){
-                
+        int num = obj.getAll().size();
+        try {
+            for (int i = 0; i < num; i++) {
+
                 drop_down.addItem(raw_material.get(i).getName());
-                
+
             }
-           
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
+
     /**
      * @param args the command line arguments
      */

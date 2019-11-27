@@ -20,7 +20,7 @@ import pijavaparty.proderp.entity.ProductRawMaterial;
  *
  * @author Athina P.
  */
-public class ProductDao extends AbstractDao {
+public class ProductDao extends Dao implements PlainEntityI<Product> {
 
     private static final String GETALL = "SELECT * FROM Products WHERE quantity >= 0";
     private static final String GETBYID = "SELECT * FROM Products WHERE id = ?";
@@ -34,7 +34,6 @@ public class ProductDao extends AbstractDao {
     private static final String SELECTLASTID = "SELECT max(id) FROM Products";
 
     @Override
-
     public List<Product> getAll() {
         List<Product> products = new LinkedList();
         Statement st = null;
@@ -53,6 +52,7 @@ public class ProductDao extends AbstractDao {
         return products;
     }
 
+    @Override
     public Product getById(int id) {
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -73,6 +73,7 @@ public class ProductDao extends AbstractDao {
         return p;
     }
 
+    @Override
     public List<Product> getByName(String name) {
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -92,7 +93,8 @@ public class ProductDao extends AbstractDao {
         return p;
     }
     
-    public int bringTheIdOfTheLatestProduct(){
+    @Override
+    public int bringLastId(){
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -114,7 +116,7 @@ public class ProductDao extends AbstractDao {
             pst.setInt(2, p.getQuantity());
             pst.setDouble(3, p.getPrice());
             pst.execute();
-            p.setId(bringTheIdOfTheLatestProduct());
+            p.setId(bringLastId());
             for (int i=0; i< rml.size();i++) {
                 ProductRawMaterial rm;
                 rm =rml.get(i);
@@ -129,6 +131,7 @@ public class ProductDao extends AbstractDao {
         }
     }
 
+    @Override
     public void insert(Product p) {
         PreparedStatement pst = null;
         try {
@@ -205,6 +208,7 @@ public class ProductDao extends AbstractDao {
 
     }
 
+    @Override
     public void update(Product p) {
         Product fromTable = getById(p.getId());
         if (fromTable != null && !fromTable.equals(p)) {
@@ -223,6 +227,7 @@ public class ProductDao extends AbstractDao {
         }
     }
 
+    @Override
     public void deletePermanently(int id) {
         PreparedStatement pst = null;
         try {
@@ -236,6 +241,7 @@ public class ProductDao extends AbstractDao {
         }
     }
 
+    @Override
     public void delete(int id) {
         PreparedStatement pst = null;
         try {
@@ -250,5 +256,7 @@ public class ProductDao extends AbstractDao {
         }
 
     }
+
+
 
 }

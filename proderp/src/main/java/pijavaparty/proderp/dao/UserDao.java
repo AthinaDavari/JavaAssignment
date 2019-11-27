@@ -19,8 +19,8 @@ import pijavaparty.proderp.entity.User;
  *
  * @author athinaDavari
  */
-public class UserDao extends AbstractDao {
-
+public class UserDao extends Dao {
+    
     private static final String GETUSER = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
     private static final String GETALL = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
     private static final String INSERT = "INSERT INTO Users(full_name, username, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
@@ -47,7 +47,7 @@ public class UserDao extends AbstractDao {
         return u;
     }
 
-    @Override
+    
     public List<User> getAll() {
         List<User> users = new LinkedList();
         Statement st = null;
@@ -66,6 +66,7 @@ public class UserDao extends AbstractDao {
         return users;
     }
 
+    
     public void insert(User user) {
         PreparedStatement pst = null;
         try {
@@ -88,6 +89,7 @@ public class UserDao extends AbstractDao {
         }
     }
 
+    
     public void update(User u) {
         PreparedStatement pst = null;
         try {

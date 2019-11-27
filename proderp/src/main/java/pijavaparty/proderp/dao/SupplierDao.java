@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.Supplier;
  *
  * @author Natalia
  */
-public class SupplierDao extends AbstractDao {
+public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
 
     private static final String GETALL = "SELECT * FROM Suppliers WHERE phonenumber > 0";
     private static final String GETBYID = "SELECT * FROM Suppliers WHERE id = ?";
@@ -30,7 +30,6 @@ public class SupplierDao extends AbstractDao {
     private static final String UPDATEPN = "UPDATE Suppliers SET phonenumber = ? WHERE id = ?";
 
     @Override
-
     public List<Supplier> getAll() {
         List<Supplier> suppliers = new LinkedList();
         Statement st = null;
@@ -49,6 +48,7 @@ public class SupplierDao extends AbstractDao {
         return suppliers;
     }
 
+    @Override
     public Supplier getById(int id) {
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -67,6 +67,7 @@ public class SupplierDao extends AbstractDao {
         return null;
     }
 
+    @Override
     public List<Supplier> getByName(String name) {
         List<Supplier> suppliers = new LinkedList();
         PreparedStatement pst = null;
@@ -87,6 +88,7 @@ public class SupplierDao extends AbstractDao {
         return suppliers;
     }
 
+    @Override
     public void insert(Supplier s) {
         PreparedStatement pst = null;
         try {
@@ -104,6 +106,7 @@ public class SupplierDao extends AbstractDao {
 
     }
 
+    @Override
     public void update(Supplier s) {
         Supplier fromTable = getById(s.getId());
         if (fromTable != null && !fromTable.equals(s)) {
@@ -124,7 +127,8 @@ public class SupplierDao extends AbstractDao {
         }
     }
 
-    public void deletePerm(int id) {
+    @Override
+    public void deletePermanently(int id) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(DELETEPERM);
@@ -137,6 +141,7 @@ public class SupplierDao extends AbstractDao {
         }
     }
 
+    @Override
     public void delete(int id) {
         PreparedStatement pst = null;
         try {
@@ -149,5 +154,14 @@ public class SupplierDao extends AbstractDao {
         } finally {
             closeConnections(pst);
         }
+    }
+
+    /**
+     * IMPLEMENT THIS!!!!!!!!!!!
+     * @return 
+     */
+    @Override
+    public int bringLastId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

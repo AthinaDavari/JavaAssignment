@@ -32,19 +32,23 @@ public class Main {
 //        ud.insert(new User("maria k", "maria", "abc12", 2));
         //ud.insert(new User("anna", "anna", "213", 1));
         //System.out.println(ud.getAll());
-        //System.out.println(cd.getAll());
-        SOrderDao s= new SOrderDao();
-        SupplierDao sd = new SupplierDao();
-        Supplier su =sd.getById(1);
-        System.out.println(s.bringTheIdOfTheLatestSOrder());
-        SOrder so =new SOrder(su);
-        
-        
-        RawMaterialDao r = new RawMaterialDao();
-        List<SOrderItem> lsoi = new LinkedList();
-        lsoi.add(new SOrderItem(so, r.getById(1), 7));
-        lsoi.add(new SOrderItem(so, r.getById(2), 7));
-        s.insertSOrderAndSOrderItems(so, lsoi);
+  SupplierDao sd = new SupplierDao();
+        System.out.println(sd.getAll());        
+
+
+//System.out.println(cd.getAll());
+//        SOrderDao s= new SOrderDao();
+//        SupplierDao sd = new SupplierDao();
+//        Supplier su =sd.getById(1);
+//        System.out.println(s.bringTheIdOfTheLatestSOrder());
+//        SOrder so =new SOrder(su);
+//        
+//        
+//        RawMaterialDao r = new RawMaterialDao();
+//        List<SOrderItem> lsoi = new LinkedList();
+//        lsoi.add(new SOrderItem(so, r.getById(1), 7));
+//        lsoi.add(new SOrderItem(so, r.getById(2), 7));
+//        s.insertSOrderAndSOrderItems(so, lsoi);
         
     }
 

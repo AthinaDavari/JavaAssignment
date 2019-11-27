@@ -88,6 +88,8 @@ public class InsertCustomer extends javax.swing.JFrame {
         valid_Fullname.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Fullname.setForeground(new java.awt.Color(255, 0, 0));
 
+        valid_Phonenumber.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,7 +202,7 @@ public class InsertCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_value_FullNameKeyReleased
 
     private void value_PhonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_PhonenumberKeyReleased
-        if (ValidVariables.isValidPhonenumber(value_Phonenumber.getText())){
+        if (ValidVariables.isValidPhonenumber(value_Phonenumber.getText())==false){
             valid_Phonenumber.setText("Phonenumber is invalid");
         }else {
             valid_Phonenumber.setText(null);

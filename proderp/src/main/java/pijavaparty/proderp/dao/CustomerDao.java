@@ -19,7 +19,7 @@ import pijavaparty.proderp.entity.Customer;
  *
  * @author athinaDavari
  */
-public class CustomerDao extends AbstractDao {
+public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
 
     private static final String GETALL = "SELECT * FROM Customers WHERE phonenumber > 0";
     private static final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
@@ -52,6 +52,8 @@ public class CustomerDao extends AbstractDao {
         return customers;
     }
 
+   
+    @Override
     public Customer getById(int id) {
         Customer c = null;
         PreparedStatement pst = null;
@@ -71,6 +73,7 @@ public class CustomerDao extends AbstractDao {
         return c;
     }
 
+    @Override
     public List<Customer> getByName(String name) {
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -107,6 +110,7 @@ public class CustomerDao extends AbstractDao {
         return c;
     }
 
+    @Override
     public void update(Customer c) {
         Customer fromTable = getById(c.getId());
         PreparedStatement pst = null;
@@ -127,6 +131,7 @@ public class CustomerDao extends AbstractDao {
         }
     }
 
+    @Override
     public void insert(Customer c) {
         PreparedStatement pst = null;
         try {
@@ -226,6 +231,7 @@ public class CustomerDao extends AbstractDao {
 
     }
 
+    @Override
     public void deletePermanently(int id) {
         PreparedStatement pst = null;
         try {
@@ -240,6 +246,7 @@ public class CustomerDao extends AbstractDao {
         }
     }
 
+    @Override
     public void delete(int id) {
         PreparedStatement pst = null;
         try {
@@ -253,6 +260,16 @@ public class CustomerDao extends AbstractDao {
             closeConnections(pst);
         }
 
+    }
+
+    
+    /**
+     * IMPLEMENT THIS!!!!!!!!!!!!!!!!!
+     * @return 
+     */
+    @Override
+    public int bringLastId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

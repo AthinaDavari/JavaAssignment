@@ -28,6 +28,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     private static final String DELETE = "DELETE FROM S_Orders WHERE id = ?";
     private static final String UPDATE = "UPDATE S_Orders SET supplier_id = ?, status = ?, created_at = ? WHERE id = ?";
     private static final String SELECTLASTID = "SELECT max(id) FROM S_Orders";
+    
     @Override
     public List<SOrder> getAll() {
         List<SOrder> sorders = new LinkedList();
@@ -156,8 +157,4 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
     }
 
-    @Override
-    public int bringLastId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

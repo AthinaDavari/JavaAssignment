@@ -11,6 +11,8 @@ package pijavaparty.proderp.dao;
  */
 public interface CompositeEntityI<T> extends DaoI<T>{
     
-
+    void delete(int id1, int id2);
+    
+    T getByIds(int id1, int id2);
 
 }

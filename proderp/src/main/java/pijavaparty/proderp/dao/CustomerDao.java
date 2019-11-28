@@ -73,7 +73,6 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         return c;
     }
 
-    @Override
     public List<Customer> getByName(String name) {
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -231,7 +230,6 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
 
     }
 
-    @Override
     public void deletePermanently(int id) {
         PreparedStatement pst = null;
         try {

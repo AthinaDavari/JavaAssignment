@@ -114,6 +114,22 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } finally {
             closeConnections(pst);
         }
+    }    
+    
+    @Override
+    public void delete(int sordId, int rawMId) {
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(DELETE);
+            pst.setInt(1, sordId);
+            pst.setInt(2, rawMId);
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(pst);
+        }
     }
 
     @Override
@@ -121,13 +137,4 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deletePermanently(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

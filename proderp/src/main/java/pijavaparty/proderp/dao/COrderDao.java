@@ -98,11 +98,6 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
     }
 
     @Override
-    public List<COrder> getByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public int bringLastId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -112,9 +107,5 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void deletePermanently(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

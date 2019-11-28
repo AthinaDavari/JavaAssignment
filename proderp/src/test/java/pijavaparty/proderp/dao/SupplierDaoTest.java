@@ -20,22 +20,22 @@ import pijavaparty.proderp.entity.Supplier;
  * @author Natalia
  */
 public class SupplierDaoTest {
-    
+
     public SupplierDaoTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -46,7 +46,7 @@ public class SupplierDaoTest {
     @Test
     public void testGetAll() {
         System.out.println("getAll");
-        SupplierDao instance = new SupplierDao();        
+        SupplierDao instance = new SupplierDao();
         List<Supplier> expResult = new LinkedList();
         expResult.add(new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr"));
         expResult.add(new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr"));
@@ -87,11 +87,10 @@ public class SupplierDaoTest {
     @Test
     public void testInsert() {
         System.out.println("insert");
-        Supplier s = new Supplier(4, "GoldSuppl", "Panepistimiou 27", 2105454554l, "info@gold.gr");
+        Supplier s = new Supplier(3, "GoldSuppl", "Panepistimiou 27", 2105454554l, "info@gold.gr");
         SupplierDao instance = new SupplierDao();
         instance.insert(s);
-        System.out.println("Fetching new supplier from database...");
-//        assertEquals(s, instance.getByName("GoldSuppl"));
+        assertEquals(s, instance.getById(3));
     }
 
     /**
@@ -99,31 +98,26 @@ public class SupplierDaoTest {
      */
     @Test
     public void testUpdate() {
-                SupplierDao instance = new SupplierDao();
-
-                System.out.println(instance.getAll());
-
-//        System.out.println("update");
-//        Supplier s = null;
-//        SupplierDao instance = new SupplierDao();
-//        instance.update(s);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("update");
+        Supplier s = new Supplier(3, "GoldSupplUpdated", "Panepistimiou 30", 2105454554l, "info@gold.gr");
+        SupplierDao instance = new SupplierDao();
+        instance.update(s);
+        assertEquals(s, instance.getById(3));
     }
-//
-//    /**
-//     * Test of deletePerm method, of class SupplierDao.
-//     */
+
+    /**
+     * Test of deletePerm method, of class SupplierDao.
+     */
 //    @Test
-//    public void testDeletePerm() {
-//        System.out.println("deletePerm");
+//    public void testDeletePermanently()  { 
+//        System.out.println("deletePermanently");
 //        int id = 0;
 //        SupplierDao instance = new SupplierDao();
-//        instance.deletePerm(id);
+//        instance.deletePermanently(id);
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-//
+
 //    /**
 //     * Test of delete method, of class SupplierDao.
 //     */
@@ -136,5 +130,5 @@ public class SupplierDaoTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-    
+
 }

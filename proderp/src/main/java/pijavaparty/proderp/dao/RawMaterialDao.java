@@ -74,7 +74,6 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         return r;
     }
 
-    @Override
     public List<RawMaterial> getByName(String name) {
         List<RawMaterial> rawMaterials = new LinkedList();
         PreparedStatement pst = null;
@@ -242,7 +241,6 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         }
     }
 
-    @Override
     public void deletePermanently(int id) {
         PreparedStatement pst = null;
         try {

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface PlainEntityI<T> extends DaoI<T>{
     
-    List<T> getByName(String name);
+    void delete(int id);
     
     T getById(int id);
     

@@ -1,6 +1,3 @@
-CREATE schema proderp;
-USE proderp;
-
 CREATE TABLE `Users`(
 `full_name` varchar(255),
 `username` varchar(255) PRIMARY KEY,

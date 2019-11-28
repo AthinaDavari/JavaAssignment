@@ -67,7 +67,6 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         return null;
     }
 
-    @Override
     public List<Supplier> getByName(String name) {
         List<Supplier> suppliers = new LinkedList();
         PreparedStatement pst = null;
@@ -127,7 +126,6 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         }
     }
 
-    @Override
     public void deletePermanently(int id) {
         PreparedStatement pst = null;
         try {

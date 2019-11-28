@@ -73,7 +73,6 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         return p;
     }
 
-    @Override
     public List<Product> getByName(String name) {
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -92,6 +91,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         }
         return p;
     }
+    
     
     @Override
     public int bringLastId(){
@@ -227,7 +227,6 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         }
     }
 
-    @Override
     public void deletePermanently(int id) {
         PreparedStatement pst = null;
         try {

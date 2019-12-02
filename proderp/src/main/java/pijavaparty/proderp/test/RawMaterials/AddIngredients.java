@@ -25,9 +25,9 @@ public class AddIngredients extends javax.swing.JFrame {
      * Creates new form AddIngredients
      */
     //private List<ProductRawMaterial> prpdrm;
-    private List<ProductRawMaterial> prodraw;
+    private List<ProductRawMaterial> prodraw=new LinkedList();
     private int id;
-    private Product obj5;
+    private Product obj5=new Product();
 
     //private List<Ingredients> ingredients=new LinkedList();
     //private List<int> quantity=new LinkedList();
@@ -46,7 +46,7 @@ public class AddIngredients extends javax.swing.JFrame {
         ProductDao obj2 = new ProductDao();
         this.id = id;
         prodraw = obj.getMaterialsPerProduct(id);
-        for (i = 1; i < obj.getAll().size(); i++) {
+        for (i = 0; i < obj2.getAll().size(); i++) {
             if (id == obj2.getAll().get(i).getId()) {
                 obj5 = obj2.getAll().get(i);
                 break;
@@ -193,16 +193,20 @@ public class AddIngredients extends javax.swing.JFrame {
             }
         }
         ProductRawMaterial obj3 = new ProductRawMaterial(obj5, obj2, quant);
+        ProductRawMaterialDao obj6 = new ProductRawMaterialDao();
         prodraw.add(obj3);
         ProductDao obj4 = new ProductDao();
         if (obj5.getId() == -1) {
             ProductDao proddao = new ProductDao();
-            proddao.insert(obj5);
             for (int i = 0; i < prodraw.size(); i++) {
                 prodraw.get(i).getProduct().setId(proddao.bringLastId());
             }
+            obj4.insertProductAndProductsRecipe(obj5, prodraw);
+        }else {
+            for(int i=0;i<prodraw.size();i++) {
+                obj6.insert(prodraw.get(i));
+            }
         }
-        obj4.insertProductAndProductsRecipe(obj5, prodraw);
         JOptionPane.showMessageDialog(null, "Added");
         dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

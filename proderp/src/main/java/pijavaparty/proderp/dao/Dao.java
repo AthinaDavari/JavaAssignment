@@ -26,7 +26,7 @@ public class Dao<T> {
     protected static final String testURL = "jdbc:h2:mem:testdb";
     private static boolean isFirstTest = true;
     protected static final String USERNAME = "root";
-    protected static final String PASS = "st7136";
+    protected static final String PASS = "12345";
     private Connection conn;
 
     public Connection getConnection() {

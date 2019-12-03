@@ -129,15 +129,15 @@ public class Ingredients extends javax.swing.JFrame {
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
      public void showIngredientsTable(){
-        ProductRawMaterialDao obj=new ProductRawMaterialDao();
+        ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
         DefaultTableModel model=(DefaultTableModel) Ingredients_Table.getModel();
-        int number=obj.getAll().size();
+        int number=prodrawdao.getAll().size();
         Object[] row=new Object[3];
         for(int i=0; i<number; i++){
-            if (obj.getAll().get(i).getProduct().getId()==id){
-                row[0]=obj.getAll().get(i).getRawMaterial().getId();
-                row[1]=obj.getAll().get(i).getRawMaterial().getName();
-                row[2]=obj.getAll().get(i).getQuantityOfRawMaterial();
+            if (prodrawdao.getAll().get(i).getProduct().getId()==id){
+                row[0]=prodrawdao.getAll().get(i).getRawMaterial().getId();
+                row[1]=prodrawdao.getAll().get(i).getRawMaterial().getName();
+                row[2]=prodrawdao.getAll().get(i).getQuantityOfRawMaterial();
                 model.addRow(row);
             }
         }

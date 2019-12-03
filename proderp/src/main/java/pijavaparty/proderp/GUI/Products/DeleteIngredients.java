@@ -99,8 +99,8 @@ public class DeleteIngredients extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String value1_id=value_id.getText();
         int newvalue1_id=Integer.parseInt(value1_id);
-        ProductRawMaterialDao obj2=new ProductRawMaterialDao();
-        obj2.delete(id, newvalue1_id);
+        ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
+        prodrawdao.delete(id, newvalue1_id);
         JOptionPane.showMessageDialog(null,"Deleted");
         dispose();
         // TODO add your handling code here:

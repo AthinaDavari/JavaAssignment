@@ -197,14 +197,14 @@ public class RawMaterialEdit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        LogIn obj = new LogIn();
-        obj.setVisible(true);
+        LogIn login = new LogIn();
+        login.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        RawMaterialMenu obj = new RawMaterialMenu();
-        obj.setVisible(true);
+        RawMaterialMenu rawmenu = new RawMaterialMenu();
+        rawmenu.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu5MouseClicked
 
@@ -227,10 +227,10 @@ public class RawMaterialEdit extends javax.swing.JFrame {
             int value3_supplier_id=Integer.parseInt(value_supplier_id.getText());
             double value5_price=Double.parseDouble(value_price.getText());
 
-            RawMaterialDao obj2=new RawMaterialDao();
-            obj2.updateName(newvalue1_id, value2_name);
-            obj2.updateSupplier(newvalue1_id, value3_supplier_id);
-            obj2.updatePrice(newvalue1_id, value5_price);
+            RawMaterialDao rawdao=new RawMaterialDao();
+            rawdao.updateName(newvalue1_id, value2_name);
+            rawdao.updateSupplier(newvalue1_id, value3_supplier_id);
+            rawdao.updatePrice(newvalue1_id, value5_price);
 
             JOptionPane.showMessageDialog(null,"Updated");
             new RawMaterialEdit().setVisible(true);
@@ -283,10 +283,8 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RawMaterialEdit().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new RawMaterialEdit().setVisible(true);
         });
     }
 

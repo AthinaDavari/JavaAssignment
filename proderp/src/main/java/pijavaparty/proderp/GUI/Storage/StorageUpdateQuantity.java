@@ -146,14 +146,14 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        LogIn obj = new LogIn();
-        obj.setVisible(true);
+        LogIn login = new LogIn();
+        login.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        StorageMain obj = new StorageMain();
-        obj.setVisible(true);
+        StorageMain stor = new StorageMain();
+        stor.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu5MouseClicked
 
@@ -201,10 +201,8 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StorageUpdateQuantity().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new StorageUpdateQuantity().setVisible(true);
         });
     }
 

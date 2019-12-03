@@ -163,14 +163,14 @@ public class ProductGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void showProductTable(){
-        ProductDao obj=new ProductDao();
+        ProductDao proddao=new ProductDao();
         DefaultTableModel model=(DefaultTableModel) product_table.getModel();
-        int number=obj.getAll().size();
+        int number=proddao.getAll().size();
         Object[] row=new Object[3];
         for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getName();
-            row[2]=obj.getAll().get(i).getPrice();
+            row[0]=proddao.getAll().get(i).getId();
+            row[1]=proddao.getAll().get(i).getName();
+            row[2]=proddao.getAll().get(i).getPrice();
             model.addRow(row);
         }
     }
@@ -206,8 +206,8 @@ public class ProductGui extends javax.swing.JFrame {
     }//GEN-LAST:event_product_tableMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ProductGui obj = new ProductGui();
-        obj.setVisible(true);
+        ProductGui prodgui = new ProductGui();
+        prodgui.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

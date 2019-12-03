@@ -126,8 +126,8 @@ public class RawMaterialDelete extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        LogIn obj = new LogIn();
-        obj.setVisible(true);
+        LogIn login = new LogIn();
+        login.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2MouseClicked
 
@@ -142,8 +142,8 @@ public class RawMaterialDelete extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String value1_id=value_id.getText();
         int newvalue1_id=Integer.parseInt(value1_id);
-        RawMaterialDao obj2=new RawMaterialDao();
-        obj2.delete(newvalue1_id);
+        RawMaterialDao rawdao=new RawMaterialDao();
+        rawdao.delete(newvalue1_id);
         JOptionPane.showMessageDialog(null,"Deleted");
         dispose();
         // TODO add your handling code here:

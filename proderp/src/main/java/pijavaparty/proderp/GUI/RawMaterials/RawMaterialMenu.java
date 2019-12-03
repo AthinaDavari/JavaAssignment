@@ -7,9 +7,7 @@ package pijavaparty.proderp.GUI.RawMaterials;
 
 import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
-import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
-import pijavaparty.proderp.GUI.Customers.CustomerEdit;
 import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.GUI.Menu;
 
@@ -172,14 +170,14 @@ public class RawMaterialMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        LogIn obj = new LogIn();
-        obj.setVisible(true);
+        LogIn login = new LogIn();
+        login.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        Menu obj = new Menu();
-        obj.setVisible(true);
+        Menu menu = new Menu();
+        menu.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu5MouseClicked
 
@@ -201,20 +199,20 @@ public class RawMaterialMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RawMaterialMenu obj = new RawMaterialMenu();
-        obj.setVisible(true);
+        RawMaterialMenu rawmenu = new RawMaterialMenu();
+        rawmenu.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
     public void showRawMaterialTable(){
-        RawMaterialDao obj=new RawMaterialDao();
+        RawMaterialDao rawdao=new RawMaterialDao();
         DefaultTableModel model=(DefaultTableModel) RawMaterial_table2.getModel();
-        int number=obj.getAll().size();
+        int number=rawdao.getAll().size();
         Object[] row=new Object[4];
         for(int i=0; i<number; i++){
-                row[0]=obj.getAll().get(i).getId();
-                row[1]=obj.getAll().get(i).getName();
-                row[2]=obj.getAll().get(i).getSupplier().getFullName();
-                row[3]=obj.getAll().get(i).getPrice();
+                row[0]=rawdao.getAll().get(i).getId();
+                row[1]=rawdao.getAll().get(i).getName();
+                row[2]=rawdao.getAll().get(i).getSupplier().getFullName();
+                row[3]=rawdao.getAll().get(i).getPrice();
                 model.addRow(row);
         }
         
@@ -247,10 +245,8 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RawMaterialMenu().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new RawMaterialMenu().setVisible(true);
         });
     }
 

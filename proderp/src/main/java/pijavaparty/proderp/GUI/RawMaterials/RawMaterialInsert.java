@@ -187,8 +187,8 @@ public class RawMaterialInsert extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        LogIn obj = new LogIn();
-        obj.setVisible(true);
+        LogIn login = new LogIn();
+        login.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2MouseClicked
 
@@ -199,14 +199,14 @@ public class RawMaterialInsert extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String value2_name=value_name.getText();
         String value_supplier_name=drop_down.getSelectedItem().toString();
-        SupplierDao sup = new SupplierDao();
-        List<Supplier> suppliers = new LinkedList();
-        suppliers=sup.getAll();
-        Supplier sup2 = null;
+        SupplierDao supdao = new SupplierDao();
+        List<Supplier> suppliers;
+        suppliers=supdao.getAll();
+        Supplier sup = null;
         int num=suppliers.size();
         for(int i=0; i<num; i++){
             if (suppliers.get(i).getFullName().equals(value_supplier_name)) {  
-                sup2=suppliers.get(i);
+                sup=suppliers.get(i);
                 
                 break;
             }
@@ -214,9 +214,9 @@ public class RawMaterialInsert extends javax.swing.JFrame {
         String value4_quantity=value_quantity.getText();
         int newvalue4_quantity=Integer.parseInt(value4_quantity);
         double value5_price=Double.parseDouble(value_price.getText());
-        RawMaterialDao obj2=new RawMaterialDao();
-        RawMaterial obj3 = new RawMaterial(value2_name, newvalue4_quantity, value5_price, sup2);
-        obj2.insert(obj3);
+        RawMaterialDao rawdao=new RawMaterialDao();
+        RawMaterial rawmat = new RawMaterial(value2_name, newvalue4_quantity, value5_price, sup);
+        rawdao.insert(rawmat);
         JOptionPane.showMessageDialog(null,"Added");
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -226,10 +226,10 @@ public class RawMaterialInsert extends javax.swing.JFrame {
     }//GEN-LAST:event_drop_downActionPerformed
     
     private void fillcombo(){
-        SupplierDao obj = new SupplierDao();
-        List<Supplier> suppliers = new LinkedList();
-        suppliers = obj.getAll();
-        int num=obj.getAll().size();
+        SupplierDao supdao = new SupplierDao();
+        List<Supplier> suppliers;
+        suppliers = supdao.getAll();
+        int num=supdao.getAll().size();
         try{
             for(int i=0; i<num; i++){
                 
@@ -270,10 +270,8 @@ public class RawMaterialInsert extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RawMaterialInsert().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new RawMaterialInsert().setVisible(true);
         });
     }
 

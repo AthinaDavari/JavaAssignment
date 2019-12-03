@@ -198,11 +198,11 @@ public class EditProduct extends javax.swing.JFrame {
             String value4_price=value_price.getText();
             double newvalue4_price=Double.parseDouble(value4_price);
             
-            ProductDao obj2=new ProductDao();
-            obj2.updateName(newvalue1_id, value2_name);
-            obj2.updateName(newvalue1_id, value2_name);
+            ProductDao proddao=new ProductDao();
+            proddao.updateName(newvalue1_id, value2_name);
+            proddao.updateName(newvalue1_id, value2_name);
             //obj2.updateQuantity(newvalue1_id, newvalue3_quantity);
-            obj2.updatePrice(newvalue1_id, newvalue4_price);
+            proddao.updatePrice(newvalue1_id, newvalue4_price);
             
             
             JOptionPane.showMessageDialog(null,"Updated");
@@ -254,15 +254,15 @@ public class EditProduct extends javax.swing.JFrame {
     }  
     
     public void showProductsTable(){
-        ProductDao obj=new ProductDao();
+        ProductDao proddao=new ProductDao();
         DefaultTableModel model=(DefaultTableModel) products_table.getModel();
-        int number=obj.getAll().size();
+        int number=proddao.getAll().size();
         Object[] row=new Object[3];
         for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getName();
+            row[0]=proddao.getAll().get(i).getId();
+            row[1]=proddao.getAll().get(i).getName();
             //row[2]=obj.getAll().get(i).getQuantity();
-            row[2]=obj.getAll().get(i).getPrice();
+            row[2]=proddao.getAll().get(i).getPrice();
             model.addRow(row);
         }
     }

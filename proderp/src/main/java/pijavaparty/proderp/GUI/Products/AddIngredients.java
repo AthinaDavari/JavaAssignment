@@ -28,16 +28,16 @@ public class AddIngredients extends javax.swing.JFrame {
     //private List<ProductRawMaterial> prpdrm;
     private List<ProductRawMaterial> prodraw=new LinkedList();
     private int id;
-    private Product obj5=new Product();
+    private Product prod=new Product();
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
     //private List<Ingredients> ingredients=new LinkedList();
     //private List<int> quantity=new LinkedList();
     public AddIngredients(String name, double price) {
-        obj5.setName(name);
-        obj5.setPrice(price);
-        obj5.setId(-1);
+        prod.setName(name);
+        prod.setPrice(price);
+        prod.setId(-1);
         initComponents();
         fillcombo();
         seticon();
@@ -45,13 +45,13 @@ public class AddIngredients extends javax.swing.JFrame {
 
     public AddIngredients(int id) {
         int i;
-        ProductRawMaterialDao obj = new ProductRawMaterialDao();
+        ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
         ProductDao obj2 = new ProductDao();
         this.id = id;
-        prodraw = obj.getMaterialsPerProduct(id);
+        prodraw = prodrawdao.getMaterialsPerProduct(id);
         for (i = 0; i < obj2.getAll().size(); i++) {
             if (id == obj2.getAll().get(i).getId()) {
-                obj5 = obj2.getAll().get(i);
+                prod = obj2.getAll().get(i);
                 break;
             }
         }
@@ -62,7 +62,7 @@ public class AddIngredients extends javax.swing.JFrame {
 
     public AddIngredients(List<ProductRawMaterial> prodraw, Product obj5) {
         this.prodraw = prodraw;
-        this.obj5 = obj5;
+        this.prod = obj5;
         initComponents();
         fillcombo();
         seticon();
@@ -166,61 +166,62 @@ public class AddIngredients extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String value_name = drop_down.getSelectedItem().toString();
         int quant = Integer.parseInt(value_quantity.getText());
-        RawMaterialDao obj = new RawMaterialDao();
-        List<RawMaterial> rawmaterial = new LinkedList();
-        rawmaterial = obj.getAll();
-        RawMaterial obj2 = null;
+        RawMaterialDao rawdao = new RawMaterialDao();
+        List<RawMaterial> rawmaterial;
+        rawmaterial = rawdao.getAll();
+        RawMaterial rawmat = null;
         int num = rawmaterial.size();
         for (int i = 0; i < num; i++) {
             if (rawmaterial.get(i).getName().equals(value_name)) {
-                obj2 = rawmaterial.get(i);
+                rawmat = rawmaterial.get(i);
                 break;
             }
         }
         String value4_quantity = value_quantity.getText();
-        ProductRawMaterial obj3 = new ProductRawMaterial(obj5, obj2, quant);
-        prodraw.add(obj3);
-        new AddIngredients(prodraw, obj5).setVisible(true);
+        ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
+        prodraw.add(prodrawmat);
+        new AddIngredients(prodraw, prod).setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String value_name = drop_down.getSelectedItem().toString();
         int quant = Integer.parseInt(value_quantity.getText());
-        RawMaterialDao obj = new RawMaterialDao();
-        List<RawMaterial> rawmaterial = new LinkedList();
-        rawmaterial = obj.getAll();
-        RawMaterial obj2 = null;
+        RawMaterialDao rawdao = new RawMaterialDao();
+        List<RawMaterial> rawmaterial;
+        rawmaterial = rawdao.getAll();
+        RawMaterial rawmat = null;
         int num = rawmaterial.size();
         for (int i = 0; i < num; i++) {
             if (rawmaterial.get(i).getName().equals(value_name)) {
-                obj2 = rawmaterial.get(i);
+                rawmat = rawmaterial.get(i);
                 break;
             }
         }
-        ProductRawMaterial obj3 = new ProductRawMaterial(obj5, obj2, quant);
-        ProductRawMaterialDao obj6 = new ProductRawMaterialDao();
-        prodraw.add(obj3);
+        ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
+        ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
+        prodraw.add(prodrawmat);
         ProductDao obj4 = new ProductDao();
-        if (obj5.getId() == -1) {
+        if (prod.getId() == -1) {
             ProductDao proddao = new ProductDao();
             for (int i = 0; i < prodraw.size(); i++) {
                 prodraw.get(i).getProduct().setId(proddao.bringLastId());
             }
-            obj4.insertProductAndProductsRecipe(obj5, prodraw);
+            obj4.insertProductAndProductsRecipe(prod, prodraw);
         }else {
             for(int i=0;i<prodraw.size();i++) {
-                obj6.insert(prodraw.get(i));
+                prodrawdao.insert(prodraw.get(i));
             }
         }
         JOptionPane.showMessageDialog(null, "Added");
         dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
     private void fillcombo() {
-        RawMaterialDao obj = new RawMaterialDao();
-        List<RawMaterial> raw_material = new LinkedList();
-        raw_material = obj.getAll();
-        int num = obj.getAll().size();
+        RawMaterialDao rawdao = new RawMaterialDao();
+        List<RawMaterial> raw_material;
+        raw_material = rawdao.getAll();
+        int num;
+        num = rawdao.getAll().size();
         try {
             for (int i = 0; i < num; i++) {
 
@@ -261,10 +262,8 @@ public class AddIngredients extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddIngredients().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AddIngredients().setVisible(true);
         });
     }
 

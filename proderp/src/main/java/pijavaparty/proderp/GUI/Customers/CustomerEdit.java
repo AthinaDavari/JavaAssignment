@@ -5,9 +5,9 @@
  */
 package pijavaparty.proderp.GUI.Customers;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.entity.Customer;
 
@@ -21,12 +21,13 @@ public class CustomerEdit extends javax.swing.JFrame {
      * Creates new form CustomerEdit
      */
     public CustomerEdit() {
+        seticon();
         initComponents();
-        LogIn login = new LogIn();
-        login.seticon();
         showCustomersTable();
     }
-
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

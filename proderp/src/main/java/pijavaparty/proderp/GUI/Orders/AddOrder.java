@@ -10,13 +10,13 @@ package pijavaparty.proderp.GUI.Orders;
  * @author MariaKokkorou
  */
 
+import java.awt.Toolkit;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.SOrder;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.RawMaterial;
@@ -30,10 +30,11 @@ public class AddOrder extends javax.swing.JFrame {
     public AddOrder() {
         initComponents();
         comboBox();
-        LogIn login = new LogIn();
-        login.seticon();
+        seticon();
     }
-
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

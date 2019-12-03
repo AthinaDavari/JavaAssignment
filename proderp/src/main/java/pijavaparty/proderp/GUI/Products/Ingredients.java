@@ -5,8 +5,8 @@
  */
 package pijavaparty.proderp.GUI.Products;
 
+import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
-import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
 
@@ -24,9 +24,11 @@ public class Ingredients extends javax.swing.JFrame {
         this.id=id;
         initComponents();
         showIngredientsTable();
-        LogIn login = new LogIn();
-        login.seticon();
+        seticon();
     }
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    } 
     public Ingredients() {
         initComponents();
         showIngredientsTable();

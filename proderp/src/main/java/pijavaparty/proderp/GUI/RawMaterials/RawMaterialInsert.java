@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.GUI.RawMaterials;
 
+import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -25,8 +26,11 @@ public class RawMaterialInsert extends javax.swing.JFrame {
     public RawMaterialInsert() {
         initComponents();
         fillcombo();
+        seticon();
     }
-
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.GUI.Customers;
 
+import java.awt.Toolkit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -24,11 +25,12 @@ public class InsertCustomer extends javax.swing.JFrame {
      */
     public InsertCustomer() {
         initComponents();
-        LogIn login = new LogIn();
-        login.seticon();
+        seticon();
       
     }
-
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

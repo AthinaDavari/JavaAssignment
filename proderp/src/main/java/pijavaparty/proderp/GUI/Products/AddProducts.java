@@ -5,9 +5,7 @@
  */
 package pijavaparty.proderp.GUI.Products;
 
-import pijavaparty.proderp.GUI.LogIn;
-import pijavaparty.proderp.dao.ProductDao;
-import pijavaparty.proderp.entity.Product;
+import java.awt.Toolkit;
 
 /**
  *
@@ -20,10 +18,11 @@ public class AddProducts extends javax.swing.JFrame {
      */
     public AddProducts() {
         initComponents();
-        LogIn login = new LogIn();
-        login.seticon();
+        seticon();
     }
-
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -5,7 +5,7 @@
  */
 package pijavaparty.proderp.GUI.Orders;
 
-import pijavaparty.proderp.GUI.LogIn;
+import java.awt.Toolkit;
 
 /**
  *
@@ -18,10 +18,11 @@ public class AddNewCustOrder extends javax.swing.JFrame {
      */
     public AddNewCustOrder() {
         initComponents();
-        LogIn login = new LogIn();
-        login.seticon();
+        seticon();
     }
-
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

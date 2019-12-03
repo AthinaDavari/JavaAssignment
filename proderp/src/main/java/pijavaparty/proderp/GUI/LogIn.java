@@ -23,7 +23,7 @@ public class LogIn extends javax.swing.JFrame {
         seticon();
     }
     public void seticon() {
-			     setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
     /**
      * This method is called from within the constructor to initialize the form.

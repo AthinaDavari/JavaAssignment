@@ -11,6 +11,7 @@ import pijavaparty.proderp.GUI.Customers.CustomerMenu;
 import pijavaparty.proderp.GUI.Orders.OrdersFrame;
 import pijavaparty.proderp.GUI.Products.ProductGui;
 import pijavaparty.proderp.GUI.RawMaterials.RawMaterialMenu;
+import pijavaparty.proderp.GUI.Suppliers.SuppliersMenu;
 /**
  *
  * @author aggel
@@ -62,6 +63,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Suppliers");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Products");
@@ -214,6 +220,12 @@ public class Menu extends javax.swing.JFrame {
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        SuppliersMenu obj = new SuppliersMenu();
+        obj.setVisible(true);
+        dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

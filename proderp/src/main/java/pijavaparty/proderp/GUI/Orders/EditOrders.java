@@ -5,14 +5,11 @@
  */
 package pijavaparty.proderp.GUI.Orders;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.SOrderDao;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
-import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.SOrderItemDao;
-import pijavaparty.proderp.entity.Supplier;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.SOrder;
 
@@ -28,8 +25,10 @@ private javax.swing.JScrollPane jScrollPane1;
     public EditOrders() {
         initComponents();
         showSOrdersTable();
-        LogIn login = new LogIn();
-        login.seticon();
+        seticon();
+    }
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
     /**
      * This method is called from within the constructor to initialize the form.

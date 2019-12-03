@@ -8,6 +8,7 @@ package pijavaparty.proderp.GUI.Customers;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.entity.Customer;
 import pijavaparty.proderp.main.ValidVariables;
@@ -23,6 +24,8 @@ public class InsertCustomer extends javax.swing.JFrame {
      */
     public InsertCustomer() {
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
       
     }
 

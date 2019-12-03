@@ -23,6 +23,8 @@ public class StorageMain extends javax.swing.JFrame {
     public StorageMain() {
         initComponents();
         showStorageTable();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

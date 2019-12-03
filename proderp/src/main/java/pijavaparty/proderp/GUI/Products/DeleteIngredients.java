@@ -6,6 +6,7 @@
 package pijavaparty.proderp.GUI.Products;
 
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
 
@@ -20,10 +21,14 @@ public class DeleteIngredients extends javax.swing.JFrame {
      */
     public DeleteIngredients() {
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
     }
     public DeleteIngredients(int id) {
         this.id=id;
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
     }
     /**
      * This method is called from within the constructor to initialize the form.

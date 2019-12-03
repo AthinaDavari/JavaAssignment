@@ -7,6 +7,7 @@ package pijavaparty.proderp.GUI.Products;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.entity.Product;
 
@@ -22,7 +23,8 @@ public class EditProduct extends javax.swing.JFrame {
     public EditProduct() {
         initComponents();
         showProductsTable();
-        
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

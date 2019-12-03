@@ -246,7 +246,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         try {
             pst = getConnection().prepareStatement(UPDATEQ);
             pst.setInt(1, -1);
-            pst.setInt(1, id);
+            pst.setInt(2, id);
             pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);

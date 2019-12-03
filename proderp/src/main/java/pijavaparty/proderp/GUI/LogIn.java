@@ -22,7 +22,7 @@ public class LogIn extends javax.swing.JFrame {
         initComponents();
         seticon();
     }
-    private void seticon() {
+    public void seticon() {
 			     setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
     /**

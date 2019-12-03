@@ -7,6 +7,7 @@ package pijavaparty.proderp.GUI.Customers;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.entity.Customer;
 
@@ -21,6 +22,8 @@ public class CustomerEdit extends javax.swing.JFrame {
      */
     public CustomerEdit() {
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
         showCustomersTable();
     }
 

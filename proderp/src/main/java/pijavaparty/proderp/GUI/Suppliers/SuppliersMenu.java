@@ -5,6 +5,8 @@
  */
 package pijavaparty.proderp.GUI.Suppliers;
 
+import pijavaparty.proderp.GUI.LogIn;
+
 /**
  *
  * @author Ctell
@@ -16,6 +18,8 @@ public class SuppliersMenu extends javax.swing.JFrame {
      */
     public SuppliersMenu() {
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

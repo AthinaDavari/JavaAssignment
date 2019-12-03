@@ -6,6 +6,7 @@
 package pijavaparty.proderp.GUI.Products;
 
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.ProductDao;
 
 /**
@@ -20,6 +21,8 @@ public class ProductGui extends javax.swing.JFrame {
     public ProductGui() {
         initComponents();
         showProductTable();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

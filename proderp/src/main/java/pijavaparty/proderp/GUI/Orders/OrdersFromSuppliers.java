@@ -5,6 +5,8 @@
  */
 package pijavaparty.proderp.GUI.Orders;
 
+import pijavaparty.proderp.GUI.LogIn;
+
 /**
  *
  * @author MariaKokkorou
@@ -16,6 +18,8 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
      */
     public OrdersFromSuppliers() {
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

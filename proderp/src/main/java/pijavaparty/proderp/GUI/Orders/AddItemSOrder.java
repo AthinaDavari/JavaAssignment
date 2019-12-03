@@ -8,6 +8,7 @@ package pijavaparty.proderp.GUI.Orders;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.dao.SupplierDao;
@@ -29,6 +30,8 @@ public class AddItemSOrder extends javax.swing.JFrame {
      */
     public AddItemSOrder() {
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
     }
     /**
      * This method is called from within the constructor to initialize the form.

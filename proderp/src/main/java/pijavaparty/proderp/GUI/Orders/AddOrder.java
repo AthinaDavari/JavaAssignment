@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.RawMaterial;
@@ -29,6 +30,8 @@ public class AddOrder extends javax.swing.JFrame {
     public AddOrder() {
         initComponents();
         comboBox();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

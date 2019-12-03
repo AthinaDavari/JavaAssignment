@@ -21,6 +21,8 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
      */
     public StorageUpdateQuantity() {
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

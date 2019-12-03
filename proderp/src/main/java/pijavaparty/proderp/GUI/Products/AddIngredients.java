@@ -8,6 +8,7 @@ package pijavaparty.proderp.GUI.Products;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
@@ -37,7 +38,8 @@ public class AddIngredients extends javax.swing.JFrame {
         obj5.setId(-1);
         initComponents();
         fillcombo();
-
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     public AddIngredients(int id) {
@@ -54,6 +56,8 @@ public class AddIngredients extends javax.swing.JFrame {
         }
         initComponents();
         fillcombo();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     public AddIngredients(List<ProductRawMaterial> prodraw, Product obj5) {
@@ -61,11 +65,15 @@ public class AddIngredients extends javax.swing.JFrame {
         this.obj5 = obj5;
         initComponents();
         fillcombo();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     public AddIngredients() {
         initComponents();
         fillcombo();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

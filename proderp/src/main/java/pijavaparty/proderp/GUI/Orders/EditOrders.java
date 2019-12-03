@@ -10,6 +10,7 @@ import pijavaparty.proderp.dao.SOrderDao;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.SOrderItemDao;
 import pijavaparty.proderp.entity.Supplier;
 import pijavaparty.proderp.dao.SupplierDao;
@@ -27,6 +28,8 @@ private javax.swing.JScrollPane jScrollPane1;
     public EditOrders() {
         initComponents();
         showSOrdersTable();
+        LogIn login = new LogIn();
+        login.seticon();
     }
     /**
      * This method is called from within the constructor to initialize the form.

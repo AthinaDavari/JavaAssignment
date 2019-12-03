@@ -5,6 +5,8 @@
  */
 package pijavaparty.proderp.GUI.Orders;
 
+import pijavaparty.proderp.GUI.LogIn;
+
 /**
  *
  * @author USER
@@ -16,6 +18,8 @@ public class DeleteOrder extends javax.swing.JFrame {
      */
     public DeleteOrder() {
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

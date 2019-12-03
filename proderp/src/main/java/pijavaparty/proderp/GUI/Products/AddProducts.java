@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.GUI.Products;
 
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.entity.Product;
 
@@ -19,6 +20,8 @@ public class AddProducts extends javax.swing.JFrame {
      */
     public AddProducts() {
         initComponents();
+        LogIn login = new LogIn();
+        login.seticon();
     }
 
     /**

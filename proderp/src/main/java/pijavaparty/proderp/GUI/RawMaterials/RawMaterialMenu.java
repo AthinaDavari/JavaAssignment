@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pijavaparty.proderp.test.RawMaterialGui;
+package pijavaparty.proderp.GUI.RawMaterials;
 
 import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
-import pijavaparty.proderp.test.CuiCustomers.CustomerEdit;
-import pijavaparty.proderp.test.LogIn;
-import pijavaparty.proderp.test.Menu;
+import pijavaparty.proderp.GUI.Customers.CustomerEdit;
+import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.GUI.Menu;
 
 /**
  *

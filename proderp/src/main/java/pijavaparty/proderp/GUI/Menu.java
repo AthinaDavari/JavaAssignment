@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pijavaparty.proderp.test;
+package pijavaparty.proderp.GUI;
 
 import java.awt.Toolkit;
 import pijavaparty.proderp.GUI.Storage.StorageMain;
-import pijavaparty.proderp.test.CuiCustomers.CustomerMenu;
-import pijavaparty.proderp.test.OrdersGui.OrdersFrame;
-import pijavaparty.proderp.test.RawMaterialGui.RawMaterialMenu;
-import pijavaparty.proderp.test.RawMaterials.ProductGui;
-
+import pijavaparty.proderp.GUI.Customers.CustomerMenu;
+import pijavaparty.proderp.GUI.Orders.OrdersFrame;
+import pijavaparty.proderp.GUI.Products.ProductGui;
+import pijavaparty.proderp.GUI.RawMaterials.RawMaterialMenu;
 /**
  *
  * @author aggel

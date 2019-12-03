@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pijavaparty.proderp.test.OrdersGui;
+package pijavaparty.proderp.GUI.Orders;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -15,8 +15,8 @@ import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.SOrderItem;
 import pijavaparty.proderp.entity.Supplier;
-import static pijavaparty.proderp.test.OrdersGui.AddOrder.list;
-import static pijavaparty.proderp.test.OrdersGui.AddOrder.supid;
+import static pijavaparty.proderp.GUI.Orders.AddOrder.list;
+import static pijavaparty.proderp.GUI.Orders.AddOrder.supid;
 
 /**
  *

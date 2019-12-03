@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pijavaparty.proderp.test.RawMaterialGui;
+package pijavaparty.proderp.GUI.RawMaterials;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.Supplier;
-import pijavaparty.proderp.test.LogIn;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.entity.RawMaterial;
 /**
  *

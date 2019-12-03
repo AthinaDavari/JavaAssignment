@@ -1,5 +1,5 @@
 
-package pijavaparty.proderp.test.OrdersGui;
+package pijavaparty.proderp.GUI.Orders;
 
 /**
  *

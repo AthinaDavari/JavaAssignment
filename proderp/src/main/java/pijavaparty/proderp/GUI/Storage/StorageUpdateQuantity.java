@@ -8,7 +8,7 @@ package pijavaparty.proderp.GUI.Storage;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
-import pijavaparty.proderp.test.LogIn;
+import pijavaparty.proderp.GUI.LogIn;
 
 /**
  *
@@ -164,7 +164,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
             RawMaterialDao rawmaterialDao=new RawMaterialDao();
             rawmaterialDao.updateQuantity(id,quant);
         }
-        JOptionPane.showMessageDialog(null,"Added");
+        JOptionPane.showMessageDialog(null,"Updated");
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_update_buttonActionPerformed

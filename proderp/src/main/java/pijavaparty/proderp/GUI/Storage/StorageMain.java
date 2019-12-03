@@ -8,8 +8,8 @@ package pijavaparty.proderp.GUI.Storage;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
-import pijavaparty.proderp.test.LogIn;
-import pijavaparty.proderp.test.Menu;
+import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.GUI.Menu;
 
 /**
  *

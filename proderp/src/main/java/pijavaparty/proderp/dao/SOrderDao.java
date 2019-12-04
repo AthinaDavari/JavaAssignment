@@ -67,7 +67,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
         return c;
     }
-
+    
     public void update(SOrder s) {
         SOrder fromTable = getById(s.getId());
         PreparedStatement pst = null;

@@ -22,15 +22,15 @@ import pijavaparty.proderp.entity.Supplier;
  */
 public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
 
-    private static final String GETALL = "SELECT * FROM Raw_Materials WHERE quantity >= 0";
+    private static final String GETALL = "SELECT * FROM Raw_Materials WHERE is_deleted = 0";
     private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ?";
-    private static final String GETBYNAME = "SELECT * FROM Raw_materials WHERE name = ?";
     private static final String INSERT = "INSERT INTO Raw_Materials(name, supplier_id, quantity, price) VALUES (?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Raw_Materials SET name = ?, supplier_id = ?, quantity = ?, price = ? WHERE id = ?";
     private static final String UPDATENAME = "UPDATE Raw_Materials SET name = ? WHERE id = ?";
     private static final String UPDATESUP = "UPDATE Raw_Materials SET supplier_id = ? WHERE id = ?";
     private static final String UPDATEQUANT = "UPDATE Raw_Materials SET quantity = ? WHERE id = ?";
     private static final String UPDATEPRICE = "UPDATE Raw_Materials SET price = ? WHERE id = ?";
+    private static final String DELETE = "UPDATE Raw_Materials SET is_deleted = 1 WHERE id = ?";
     private static final String DELETEPERM = "DELETE FROM Raw_Materials WHERE id = ?";
 
     private SupplierDao supplierDao = new SupplierDao();
@@ -72,25 +72,6 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
             closeConnections(rs, pst);
         }
         return r;
-    }
-
-    public List<RawMaterial> getByName(String name) {
-        List<RawMaterial> rawMaterials = new LinkedList();
-        PreparedStatement pst = null;
-            ResultSet rs = null;
-        try {
-            pst = getConnection().prepareStatement(GETBYNAME);
-            pst.setString(1, name);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                rawMaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), supplierDao.getById(rs.getInt(3))));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            closeConnections(rs, pst);
-        }
-        return rawMaterials;
     }
 
     @Override
@@ -260,9 +241,8 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
     public void delete(int id) {
         PreparedStatement pst = null;
         try {
-            pst = getConnection().prepareStatement(UPDATEQUANT);
-            pst.setInt(1, -1);
-            pst.setInt(2, id);
+            pst = getConnection().prepareStatement(DELETE);
+            pst.setInt(1, id);
             pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);

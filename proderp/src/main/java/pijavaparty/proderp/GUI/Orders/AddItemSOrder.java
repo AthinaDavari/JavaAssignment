@@ -15,14 +15,14 @@ import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.SOrderItem;
 import pijavaparty.proderp.entity.Supplier;
 import static pijavaparty.proderp.GUI.Orders.AddOrder.list;
-import static pijavaparty.proderp.GUI.Orders.AddOrder.supid;
+import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
 
 /**
  *
  * @author MariaKokkorou
  */
 public class AddItemSOrder extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form AddItemSOrder
      */
@@ -30,9 +30,11 @@ public class AddItemSOrder extends javax.swing.JFrame {
         initComponents();
         seticon();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,18 +142,12 @@ public class AddItemSOrder extends javax.swing.JFrame {
             int rawm = Integer.parseInt(raw.getText().trim());
             int quan = Integer.parseInt(qu.getText().trim());
 
-            SupplierDao sd = new SupplierDao();
-            String supplierid = supid.getSelectedItem().toString().trim();
-            int suplierid = Integer.parseInt(supplierid);
-            Supplier sup = sd.getById(suplierid);
-            SOrder so = new SOrder(sup);
-
             RawMaterialDao rmd = new RawMaterialDao();
             RawMaterial rm = rmd.getById(rawm);
-  
-            SOrderItem sorderitem = new SOrderItem(so, rm, quan);
+
+            SOrderItem sorderitem = new SOrderItem(sorder, rm, quan);
             list.add(sorderitem);
-            
+
             JOptionPane.showMessageDialog(null, "Added to Order List.");
             new AddItemSOrder().setVisible(true);
 
@@ -159,22 +155,23 @@ public class AddItemSOrder extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-  
-        
+
+
     }//GEN-LAST:event_newitemActionPerformed
 
     private void addorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addorderActionPerformed
 
         JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
 
-        SupplierDao sd = new SupplierDao();
-        String supplierid = supid.getSelectedItem().toString().trim();
-        int suplierid = Integer.parseInt(supplierid);
-        Supplier sup = sd.getById(suplierid);
-        SOrder so = new SOrder(sup);
-        
         SOrderDao sod = new SOrderDao();
-        sod.insertSOrderAndSOrderItems(so, list);
+        RawMaterialDao rmd = new RawMaterialDao();
+        int rmId = Integer.parseInt(raw.getText().trim());
+        int quan = Integer.parseInt(qu.getText().trim());
+
+        SOrderItem sorderitem = new SOrderItem(sorder, rmd.getById(rmId), quan);
+        list.add(sorderitem);
+
+        sod.insertSOrderAndSOrderItems(sorder, list);
 
         JOptionPane.showMessageDialog(null, "Order Saved.");
         dispose();
@@ -227,4 +224,3 @@ public class AddItemSOrder extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 }
-

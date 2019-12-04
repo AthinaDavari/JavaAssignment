@@ -9,7 +9,6 @@ package pijavaparty.proderp.GUI.Orders;
  *
  * @author MariaKokkorou
  */
-
 import java.awt.Toolkit;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.SOrder;
@@ -23,18 +22,21 @@ import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrderItem;
 import pijavaparty.proderp.entity.Supplier;
 
-        
 public class AddOrder extends javax.swing.JFrame {
-    public static ArrayList<SOrderItem> list = new ArrayList<SOrderItem>();
-    
+
+    static SOrder sorder;
+    static ArrayList<SOrderItem> list = new ArrayList<SOrderItem>();
+
     public AddOrder() {
         initComponents();
         comboBox();
         seticon();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,95 +179,86 @@ public class AddOrder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void quActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_quActionPerformed
-    
-    private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
-        
-        try {
-            
-            
-            SOrderDao sod = new SOrderDao();
-            int id = sod.bringTheIdOfTheLatestSOrder();
-            String ids = Integer.toString(id);
-            orderid.setText(ids + 1);
-            
-            String supplier = supid.getSelectedItem().toString();
-            
-            String[] supplierTable = supplier.split(" ");
-            int supplierId = Integer.parseInt(supplierTable[0]);
-            System.out.println(supplierId);
 
-            
-            int raw = Integer.parseInt(rawm.getText().trim());
-            int quan = Integer.parseInt(qu.getText().trim());
+    private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
+
+        try {
+            String supplierAsString = supid.getSelectedItem().toString();
+            createSOrder(supplierAsString);
            
-            SupplierDao sd = new SupplierDao();
-            
-            Supplier supp = sd.getById(supplierId);
-            SOrder so = new SOrder(supp);
-            
+            int raw = Integer.parseInt(rawm.getText().trim());
+            int quan = Integer.parseInt(qu.getText().trim());    
+
             RawMaterialDao rmd = new RawMaterialDao();
             RawMaterial rm = rmd.getById(raw);
-            
-            SOrderItem sorderitem = new SOrderItem(so, rm, quan);
+
+            SOrderItem sorderitem = new SOrderItem(sorder, rm, quan);
             list.add(sorderitem);
-            
-            JOptionPane.showMessageDialog(null,"Added to Order List.");
+
+            JOptionPane.showMessageDialog(null, "Added to Order List.");
             new AddItemSOrder().setVisible(true);
-            
-            
+
             dispose();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
+
     }//GEN-LAST:event_newitemActionPerformed
 
-    private void comboBox(){
+    private void comboBox() {
         SupplierDao sd = new SupplierDao();
         List<Supplier> suppliers = new LinkedList();
         suppliers = sd.getAll();
         int num = sd.getAll().size();
-        try{
-            for(int i=0; i<num; i++){
+        try {
+            for (int i = 0; i < num; i++) {
                 supid.addItem(suppliers.get(i).getId() + " " + suppliers.get(i).getFullName());
             }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
 
     }
+
     /*public void dispar(ArrayList<SOrderItem> list){
         for (int i=0; i<= list.size(); i++){
             System.out.println(list.get(i));
         }
     }*/
-    
-    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        
-        //dispar(list);
-        JOptionPane.showMessageDialog(null,"Do You Want To Save Order?");
-        
-        SupplierDao sd = new SupplierDao();
-        String supplier = supid.getSelectedItem().toString().trim();
-           String[] supplierTable = supplier.split(" ");
-            int supplierId = Integer.parseInt(supplierTable[0]);
-        
-        SOrder so = new SOrder(sd.getById(supplierId));
-        
-        SOrderDao sod = new SOrderDao();
-        sod.insertSOrderAndSOrderItems(so, list);
-        
-        JOptionPane.showMessageDialog(null,"Order Saved.");
-        dispose();
-        
-    }//GEN-LAST:event_saveActionPerformed
 
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+
+        //dispar(list);
+        JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
+
+        String supplier = supid.getSelectedItem().toString().trim();
+        createSOrder(supplier);
+        SOrderDao sod = new SOrderDao();
+        int raw = Integer.parseInt(rawm.getText().trim());
+        int quan = Integer.parseInt(qu.getText().trim());
+
+        RawMaterialDao rmd = new RawMaterialDao();
+        RawMaterial rm = rmd.getById(raw);
+
+        SOrderItem sorderitem = new SOrderItem(sorder, rm, quan);
+        list.add(sorderitem);
+        sod.insertSOrderAndSOrderItems(sorder, list);
+
+        JOptionPane.showMessageDialog(null, "Order Saved.");
+        dispose();
+
+    }//GEN-LAST:event_saveActionPerformed
+    
+    private void createSOrder(String supplier) {
+        SupplierDao sd = new SupplierDao();
+        String[] supplierTable = supplier.split(" ");
+        int supplierId = Integer.parseInt(supplierTable[0]);
+        sorder = new SOrder(sd.getById(supplierId));
+    }
     private void supidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_supidActionPerformed

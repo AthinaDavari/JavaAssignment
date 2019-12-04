@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author Natalia
  */
-public class Dao<T> {
+public class Dao {
 
     protected static final String URL = "jdbc:mysql://localhost:3306/proderp?serverTimezone=Etc/GMT-2";
     protected static final String initialTestURL = "jdbc:h2:mem:testdb;INIT=RUNSCRIPT FROM './src/test/resources/test.sql';DB_CLOSE_DELAY=-1";
@@ -40,7 +40,6 @@ public class Dao<T> {
                 break;
             }
         }
-
         try {
             conn = DriverManager.getConnection(urlToConnect, USERNAME, PASS);
         } catch (SQLException ex) {

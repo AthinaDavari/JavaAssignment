@@ -192,8 +192,11 @@ public class AddOrder extends javax.swing.JFrame {
             String ids = Integer.toString(id);
             orderid.setText(ids + 1);
             
-            String suppliername = supid.getSelectedItem().toString();
-            int supplierid = (int)supid.getSelectedItem();
+            String supplier = supid.getSelectedItem().toString();
+            
+            String[] supplierTable = supplier.split(" ");
+            int supplierId = Integer.parseInt(supplierTable[0]);
+            System.out.println(supplierId);
 
             
             int raw = Integer.parseInt(rawm.getText().trim());
@@ -201,7 +204,7 @@ public class AddOrder extends javax.swing.JFrame {
            
             SupplierDao sd = new SupplierDao();
             
-            Supplier supp = sd.getById(supplierid);
+            Supplier supp = sd.getById(supplierId);
             SOrder so = new SOrder(supp);
             
             RawMaterialDao rmd = new RawMaterialDao();
@@ -229,7 +232,7 @@ public class AddOrder extends javax.swing.JFrame {
         int num = sd.getAll().size();
         try{
             for(int i=0; i<num; i++){
-                supid.addItem(suppliers.get(i).getFullName());
+                supid.addItem(suppliers.get(i).getId() + " " + suppliers.get(i).getFullName());
             }
         }
         catch(Exception e){
@@ -249,10 +252,11 @@ public class AddOrder extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Do You Want To Save Order?");
         
         SupplierDao sd = new SupplierDao();
-        String suppliername = supid.getSelectedItem().toString().trim();
-        Supplier supplierid = (Supplier)supid.getSelectedItem();
+        String supplier = supid.getSelectedItem().toString().trim();
+           String[] supplierTable = supplier.split(" ");
+            int supplierId = Integer.parseInt(supplierTable[0]);
         
-        SOrder so = new SOrder(supplierid);
+        SOrder so = new SOrder(sd.getById(supplierId));
         
         SOrderDao sod = new SOrderDao();
         sod.insertSOrderAndSOrderItems(so, list);

@@ -97,6 +97,9 @@ public class InsertCustomer extends javax.swing.JFrame {
 
         valid_Phonenumber.setForeground(new java.awt.Color(255, 0, 0));
 
+        valid_Email.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        valid_Email.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

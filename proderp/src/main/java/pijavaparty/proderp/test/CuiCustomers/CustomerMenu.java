@@ -5,6 +5,9 @@
  */
 package pijavaparty.proderp.test.CuiCustomers;
 
+import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.dao.CustomerDao;
+
 /**
  *
  * @author Ctell
@@ -16,6 +19,7 @@ public class CustomerMenu extends javax.swing.JFrame {
      */
     public CustomerMenu() {
         initComponents();
+        showCustomersTable();
     }
 
     /**
@@ -30,6 +34,8 @@ public class CustomerMenu extends javax.swing.JFrame {
         editCustomer = new javax.swing.JButton();
         insertCustomer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Customers_table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Customer Menu");
@@ -51,20 +57,34 @@ public class CustomerMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("      Customer Menu");
 
+        Customers_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Fullname", "Address", "Phonenumber", "Email"
+            }
+        ));
+        Customers_table.setEnabled(false);
+        jScrollPane1.setViewportView(Customers_table);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(insertCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(insertCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,11 +96,14 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(insertCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(92, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void editCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerActionPerformed
         new CustomerEdit().setVisible(true);
     }//GEN-LAST:event_editCustomerActionPerformed
@@ -88,7 +111,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     private void insertCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertCustomerActionPerformed
         new InsertCustomer().setVisible(true);
     }//GEN-LAST:event_insertCustomerActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -123,10 +146,25 @@ public class CustomerMenu extends javax.swing.JFrame {
             }
         });
     }
-
+public void showCustomersTable(){
+        CustomerDao obj=new CustomerDao();
+        DefaultTableModel model=(DefaultTableModel) Customers_table.getModel();
+        int number=obj.getAll().size();
+        Object[] row=new Object[5];
+        for(int i=0; i<number; i++){
+            row[0]=obj.getAll().get(i).getId();
+            row[1]=obj.getAll().get(i).getFullName();
+            row[2]=obj.getAll().get(i).getAddress();
+            row[3]=obj.getAll().get(i).getPhonenumber();
+            row[4]=obj.getAll().get(i).getEmail();
+            model.addRow(row);
+        }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Customers_table;
     private javax.swing.JButton editCustomer;
     private javax.swing.JButton insertCustomer;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

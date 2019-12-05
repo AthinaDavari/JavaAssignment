@@ -55,7 +55,7 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
         try {
             pst = getConnection().prepareStatement(GETBYIDS);
             pst.setInt(1, coid);
-            pst.setInt(1, prid);
+            pst.setInt(2, prid);
             rs = pst.executeQuery();
             if (rs.next()) {
                 return new COrderItem(co.getById(rs.getInt(1)), pr.getById(rs.getInt(2)), rs.getInt(3));
@@ -117,19 +117,28 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
             closeConnections(pst);
         }
     }
+    
+    @Override
+    public void delete(int cordId, int pId) {
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(DELETE);
+            pst.setInt(1, cordId);
+            pst.setInt(2, pId);
+            pst.execute();
+            closeConnections(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);//εδω τι θα μπει;
+        } finally {
+            closeConnections(pst);
+        }
+    }
+
 
     @Override
     public void update(COrderItem t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public void deletePermanently(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

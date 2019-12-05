@@ -1,6 +1,3 @@
-CREATE schema proderp;
-USE proderp;
-
 CREATE TABLE `Users`(
 `full_name` varchar(255),
 `username` varchar(255) PRIMARY KEY,
@@ -91,20 +88,23 @@ CREATE TABLE `P_Materials` (
 
 -- INSERTS
 insert into suppliers(full_name, address, phonenumber, email) 
-values('SideroA.E.', 'A.Papadreou 30', 2105678934, 'info@sidero.gr'),
-	  ('PetaloudaA.E.', 'Palaiologou 156', 2103789023, 'info@petalouda.gr');
+values ('SideroA.E.', 'A.Papadreou 30', 2105678934, 'info@sidero.gr'),
+       ('PetaloudaA.E.', 'Palaiologou 156', 2103789023, 'info@petalouda.gr');
       
 insert into products(name, quantity, price)
-values('Merenda Pavlidis', 10, 47.65),
-	  ('Nucrema ION', 32, 125.34);
+values ('Merenda Pavlidis', 10, 47.65),
+       ('Nucrema ION', 32, 125.34);
 
 -- insert into raw_materials(name, supplier_id, quantity, price) 
 -- values ("plastic", 2, 47, 0.25),
 -- 	   ("metal", 1, 32, 1.2),
 --        ("wood", 1, 17, 3.7);
 --        
--- insert into s_orders(supplier_id,status) 
--- values (1,'delivered');
+insert into s_orders(supplier_id,status) 
+values (1,'delivered'),
+       (1, 'pending'),
+       (2, 'delivered')
+        ;
 --        
 -- insert into users(full_name, username, password, role)
 -- values ("maria","maria", aes_encrypt("1234","prod"),1);

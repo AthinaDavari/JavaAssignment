@@ -27,7 +27,7 @@ public class SOrder {
         this.status = Status.pending;
     }
 
-    public SOrder(int id, Supplier supplier_id, String status, Timestamp created_at) {
+    public SOrder(int id, Supplier supplier, String status, Timestamp created_at) {
         this.id = id;
         this.supplier = supplier;
         this.status = Status.valueOf(status);

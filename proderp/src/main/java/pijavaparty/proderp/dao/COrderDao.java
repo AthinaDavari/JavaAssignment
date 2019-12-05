@@ -39,7 +39,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
                 corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.getInt(5)));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(rs, st);
         }
@@ -60,7 +60,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
                 c = new COrder(rs.getInt(1), cu.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.getInt(5));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(rs, pst);
         }
@@ -77,7 +77,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             pst.setString(2, co.getStatus());
             pst.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(pst);
         }
@@ -98,11 +98,6 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
     }
 
     @Override
-    public List<COrder> getByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public int bringLastId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -112,9 +107,5 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void deletePermanently(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

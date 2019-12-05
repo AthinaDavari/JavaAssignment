@@ -26,6 +26,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     private static final String INSERT = "INSERT INTO P_Materials VALUES (?, ?, ?)";
     private static final String UPDATE = "UPDATE P_Materials SET raw_material_id = ?, quantity_of_raw_material = ? WHERE product_id = ?";
     private static final String DELETE = "DELETE FROM P_Materials WHERE product_id = ? AND raw_material_id = ?";
+    private static final String GETBYIDS = "SELECT * FROM P_Materials WHERE product_id = ? AND raw_material_id = ?";
     private ProductDao productDao = new ProductDao();
     private RawMaterialDao rawMaterialDao = new RawMaterialDao();
 
@@ -148,6 +149,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
 
     }
 
+    @Override
     public void delete(int pid, int rmid) {
         PreparedStatement pst = null;
         try {
@@ -163,15 +165,33 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         }
  
     }
-
+    
+    /**
+     * 
+     * @param id1
+     * @param id2
+     * @return 
+     */
     @Override
-    public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ProductRawMaterial getByIds(int pid, int rmid) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            pst = getConnection().prepareStatement(GETBYIDS);
+            pst.setInt(1, pid);
+            pst.setInt(2, rmid);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                return new ProductRawMaterial(productDao.getById(rs.getInt(1)), rawMaterialDao.getById(rs.getInt(1)), rs.getInt(3));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnections(rs, pst);
+        }
+        return null;
     }
 
-    @Override
-    public void deletePermanently(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
 }

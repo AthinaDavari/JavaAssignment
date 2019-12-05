@@ -14,8 +14,7 @@ CREATE TABLE `Suppliers` (
   `full_name` varchar(255),
   `address` varchar(255),
   `phonenumber` int,
-  `email` varchar(255),
-  `is_deleted` boolean default false
+  `email` varchar(255)
 );
 
 CREATE TABLE `Customers` (
@@ -23,8 +22,7 @@ CREATE TABLE `Customers` (
   `full_name` varchar(255),
   `address` varchar(255),
   `phonenumber` int,
-  `email` varchar(255),
-  `is_deleted` boolean default false
+  `email` varchar(255)
 );
 
 CREATE TABLE `Raw_Materials` (
@@ -33,7 +31,6 @@ CREATE TABLE `Raw_Materials` (
   `supplier_id` int NOT NULL,
   `quantity` int,
   `price` double,
-  `is_deleted` boolean default false,
   FOREIGN KEY (`supplier_id`) REFERENCES `Suppliers` (`id`)
 );
 
@@ -41,8 +38,7 @@ CREATE TABLE `Products` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `quantity` int,
-  `price` double,
-  `is_deleted` boolean default false
+  `price` double
 );
 
 CREATE TABLE `S_Orders` (

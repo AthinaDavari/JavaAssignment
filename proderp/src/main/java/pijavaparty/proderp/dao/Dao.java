@@ -27,7 +27,7 @@ public class Dao {
     private static boolean isFirstTest = true;
     protected static final String USERNAME = "root";
     protected static final String PASS = "12345";
-    private Connection conn;
+    private static Connection conn;
 
     public Connection getConnection() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();

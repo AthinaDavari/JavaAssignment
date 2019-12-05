@@ -5,7 +5,6 @@
 /.metadata/
 */.metadata/**
 */target/**
-.settings
 
 *\.metadata\**
 \build\

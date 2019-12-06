@@ -167,7 +167,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     }
     
     /**
-     * IMPLEMENT THISSSSSSS
+     * 
      * @param id1
      * @param id2
      * @return 

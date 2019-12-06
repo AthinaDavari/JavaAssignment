@@ -19,15 +19,15 @@ import java.util.List;
  *
  * @author Natalia
  */
-public class Dao<T> {
+public class Dao {
 
     protected static final String URL = "jdbc:mysql://localhost:3306/proderp?serverTimezone=Etc/GMT-2";
     protected static final String initialTestURL = "jdbc:h2:mem:testdb;INIT=RUNSCRIPT FROM './src/test/resources/test.sql';DB_CLOSE_DELAY=-1";
     protected static final String testURL = "jdbc:h2:mem:testdb";
     private static boolean isFirstTest = true;
     protected static final String USERNAME = "root";
-    protected static final String PASS = "st7136";
-    private Connection conn;
+    protected static final String PASS = "12345";
+    private static Connection conn;
 
     public Connection getConnection() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
@@ -40,11 +40,12 @@ public class Dao<T> {
                 break;
             }
         }
-
-        try {
-            conn = DriverManager.getConnection(urlToConnect, USERNAME, PASS);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        if (conn == null) {
+            try {
+                conn = DriverManager.getConnection(urlToConnect, USERNAME, PASS);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         return conn;
     }
@@ -58,9 +59,6 @@ public class Dao<T> {
             if (st != null) {
                 st.close();
             }
-            if (conn != null) {
-                conn.close();
-            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -68,12 +66,8 @@ public class Dao<T> {
 
     public void closeConnections(PreparedStatement pst) {
         try {
-
             if (pst != null) {
                 pst.close();
-            }
-            if (conn != null) {
-                conn.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

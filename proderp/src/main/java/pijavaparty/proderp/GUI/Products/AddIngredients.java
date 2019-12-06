@@ -48,7 +48,7 @@ public class AddIngredients extends javax.swing.JFrame {
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
         ProductDao obj2 = new ProductDao();
         this.id = id;
-        prodraw = prodrawdao.getMaterialsPerProduct(id);
+        //prodraw = prodrawdao.getMaterialsPerProduct(id);
         for (i = 0; i < obj2.getAll().size(); i++) {
             if (id == obj2.getAll().get(i).getId()) {
                 prod = obj2.getAll().get(i);
@@ -204,15 +204,15 @@ public class AddIngredients extends javax.swing.JFrame {
         ProductDao obj4 = new ProductDao();
         if (prod.getId() == -1) {
             ProductDao proddao = new ProductDao();
-            for (int i = 0; i < prodraw.size(); i++) {
-                prodraw.get(i).getProduct().setId(proddao.bringLastId());
-            }
             obj4.insertProductAndProductsRecipe(prod, prodraw);
+            System.out.print(prodraw);
         }else {
             for(int i=0;i<prodraw.size();i++) {
+                System.out.print(prodraw);
                 prodrawdao.insert(prodraw.get(i));
             }
         }
+        prodraw.clear();
         JOptionPane.showMessageDialog(null, "Added");
         dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

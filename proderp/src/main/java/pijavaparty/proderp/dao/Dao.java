@@ -40,10 +40,12 @@ public class Dao {
                 break;
             }
         }
-        try {
-            conn = DriverManager.getConnection(urlToConnect, USERNAME, PASS);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        if (conn == null) {
+            try {
+                conn = DriverManager.getConnection(urlToConnect, USERNAME, PASS);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         return conn;
     }
@@ -57,9 +59,6 @@ public class Dao {
             if (st != null) {
                 st.close();
             }
-            if (conn != null) {
-                conn.close();
-            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -67,12 +66,8 @@ public class Dao {
 
     public void closeConnections(PreparedStatement pst) {
         try {
-
             if (pst != null) {
                 pst.close();
-            }
-            if (conn != null) {
-                conn.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

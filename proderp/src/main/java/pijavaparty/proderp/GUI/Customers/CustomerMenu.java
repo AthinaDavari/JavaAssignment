@@ -44,8 +44,10 @@ public class CustomerMenu extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Customers_table = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Customer Menu");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFocusCycleRoot(false);
 
         editCustomer.setText("Edit Customer Data");
         editCustomer.addActionListener(new java.awt.event.ActionListener() {

@@ -7,7 +7,7 @@ package pijavaparty.proderp.GUI;
 
 /**
  *
- * @author user
+ * @author anna
  */
 public class MainMenu extends javax.swing.JFrame {
 

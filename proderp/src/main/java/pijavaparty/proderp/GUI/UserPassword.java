@@ -10,7 +10,7 @@ import pijavaparty.proderp.dao.UserDao;
 
 /**
  *
- * @author user
+ * @author anna
  */
 public class UserPassword extends javax.swing.JFrame {
 

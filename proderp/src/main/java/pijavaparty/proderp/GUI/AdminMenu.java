@@ -14,7 +14,7 @@ import pijavaparty.proderp.GUI.Suppliers.SuppliersMenu;
 
 /**
  *
- * @author user
+ * @author anna
  */
 public class AdminMenu extends javax.swing.JFrame {
 

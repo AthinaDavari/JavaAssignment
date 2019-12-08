@@ -109,6 +109,12 @@ public class UserDao extends Dao {
     public void delete(String username) {
         PreparedStatement pst = null;
         try {
+            /*for (User u : getAll()) {
+                if (u.getUsername().equals(user.getUsername())) {
+                    
+                }
+              }
+            */
             pst = getConnection().prepareStatement(DELETE);
             pst.setString(1, username);
             pst.execute();

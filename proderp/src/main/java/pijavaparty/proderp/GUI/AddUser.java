@@ -162,10 +162,10 @@ public class AddUser extends javax.swing.JFrame {
             String u = username.getText();
             String p = passwd.getText();
             int r = Integer.parseInt(role.getText());
-                User us1 = new User(f, u, p, r);
-                UserDao us2 = new UserDao();
-                us2.insert(us1);
-                JOptionPane.showMessageDialog(rootPane,"User Added" );
+            User us1 = new User(f, u, p, r);
+            UserDao us2 = new UserDao();
+            us2.insert(us1);
+            JOptionPane.showMessageDialog(rootPane,"User Added" );
        } catch (Exception e){
            JOptionPane.showMessageDialog(rootPane,"Fields are empty");
        }

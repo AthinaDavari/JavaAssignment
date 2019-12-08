@@ -6,24 +6,24 @@
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
-import java.util.LinkedList;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.SOrderDao;
 import javax.swing.table.DefaultTableModel;
-import static pijavaparty.proderp.GUI.Orders.AddOrder.supid;
+import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SOrderItemDao;
-import pijavaparty.proderp.dao.SupplierDao;
+import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrder;
-import pijavaparty.proderp.entity.Supplier;
+import pijavaparty.proderp.entity.SOrderItem;
 
 /**
  *
  * @author MariaKokkorou
  */
 public class EditOrders extends javax.swing.JFrame {
-private javax.swing.JScrollPane jScrollPane1;
+
+    private javax.swing.JScrollPane jScrollPane1;
+
     /**
      * Creates new form EditOrders
      */
@@ -32,9 +32,11 @@ private javax.swing.JScrollPane jScrollPane1;
         showSOrdersTable();
         seticon();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,34 +164,38 @@ private javax.swing.JScrollPane jScrollPane1;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try{
+        try {
             String orderIDString = jTextField1.getText();
             int orderIDint = Integer.parseInt(orderIDString);
-            
+
             String statusString = status.getSelectedItem().toString();
-             if (selectedStatus.equals("Delivered")){
-                 JOptionPane.showMessageDialog(null,"Order is already delivered. You cannot change it.");
-             } else {
+            if (selectedStatus.equals("Delivered")) {
+                JOptionPane.showMessageDialog(null, "Order is already delivered. You cannot change it.");
+            } else {
                 SOrderDao sd = new SOrderDao();
                 sd.updateStatus(orderIDint, statusString);
-                JOptionPane.showMessageDialog(null,"Status Updated.");
-             }
+                SOrderItemDao orderItemDao = new SOrderItemDao();
+                List<SOrderItem> orderItems = orderItemDao.getItemsperSOrder(orderIDint);
+                RawMaterialDao rmd = new RawMaterialDao();
+                for (SOrderItem sOrderItem : orderItems) {
+                    RawMaterial rawFromOrder = sOrderItem.getRawmaterial();
+                    rmd.updateQuantity(rawFromOrder.getId(), rmd.getById(rawFromOrder.getId()).getQuantity() + sOrderItem.getQuantity());
+                }
+                JOptionPane.showMessageDialog(null, "Status Updated.");
+            }
             new EditOrders().setVisible(true);
             dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null,e);      
-        }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_updateActionPerformed
 
     private void comboBox() {
-  
+
         try {
             status.addItem("Delivered");
             status.addItem("Pending");
@@ -197,20 +203,20 @@ private javax.swing.JScrollPane jScrollPane1;
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    private static String selectedStatus ;
+    private static String selectedStatus;
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
-       
-        int selectedRow=SOrdersTable.getSelectedRow();
-        DefaultTableModel model =(DefaultTableModel) SOrdersTable.getModel();
+
+        int selectedRow = SOrdersTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) SOrdersTable.getModel();
         jTextField1.setText((model.getValueAt(selectedRow, 0).toString()));
         selectedStatus = model.getValueAt(selectedRow, 2).toString();
         status.setSelectedItem(selectedStatus);
-        
+
     }//GEN-LAST:event_SOrdersTableMouseClicked
 
-    
+
     private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
- 
+
     }//GEN-LAST:event_statusActionPerformed
 
     public void showSOrdersTable() {
@@ -218,23 +224,23 @@ private javax.swing.JScrollPane jScrollPane1;
             /*SOrderDao obj = new SOrderDao();
             int number = obj.getAll().size();
             DefaultTableModel model = (DefaultTableModel) SOrdersTable.getModel();*/
-            
+
             SOrderDao obj2 = new SOrderDao();
             List<SOrder> sorders = obj2.getAll();
             int number1 = sorders.size();
             DefaultTableModel model2 = (DefaultTableModel) SOrdersTable.getModel();
-            
+
             Object[] row = new Object[4];
 
             for (int i = 0; i < number1; i++) {
                 row[0] = sorders.get(i).getId();
-                row[1] = sorders.get(i).getSupplier().getId()+" "+sorders.get(i).getSupplier().getFullName();
+                row[1] = sorders.get(i).getSupplier().getId() + " " + sorders.get(i).getSupplier().getFullName();
                 row[2] = sorders.get(i).getStatus();
                 row[3] = sorders.get(i).getCreated_at();
-        
+
                 model2.addRow(row);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

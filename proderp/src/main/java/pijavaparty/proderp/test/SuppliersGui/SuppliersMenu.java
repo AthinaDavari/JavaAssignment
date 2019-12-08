@@ -3,14 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pijavaparty.proderp.GUI.Suppliers;
-
+package pijavaparty.proderp.test.SuppliersGui;
 
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.SupplierDao;
-
-
-import java.awt.Toolkit;
 
 /**
  *
@@ -24,12 +20,8 @@ public class SuppliersMenu extends javax.swing.JFrame {
     public SuppliersMenu() {
         initComponents();
         showSupplierstable();
-        seticon();
     }
-    public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,7 +37,7 @@ public class SuppliersMenu extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Suppliers_table = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Supplier Menu");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

@@ -27,7 +27,9 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     private static final String INSERT = "INSERT INTO S_Orders(supplier_id,status) VALUES(?,?)";
     private static final String DELETE = "DELETE FROM S_Orders WHERE id = ?";
     private static final String UPDATE = "UPDATE S_Orders SET supplier_id = ?, status = ?, created_at = ? WHERE id = ?";
+    private static final String UPDATESTATUS = "UPDATE S_Orders SET status = ? WHERE id = ?";
     private static final String SELECTLASTID = "SELECT max(id) FROM S_Orders";
+    
     @Override
     public List<SOrder> getAll() {
         List<SOrder> sorders = new LinkedList();
@@ -136,6 +138,20 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
+        } finally {
+            closeConnections(pst);
+        }
+    }
+    
+    public void updateStatus(int orderId, String status) {
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(UPDATESTATUS);
+            pst.setString(1, status);
+            pst.setInt(2, orderId);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnections(pst);
         }

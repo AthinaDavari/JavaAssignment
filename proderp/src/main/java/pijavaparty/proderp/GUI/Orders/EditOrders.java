@@ -52,9 +52,7 @@ private javax.swing.JScrollPane jScrollPane1;
         SOrdersTable = new javax.swing.JTable();
         status = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("jButton1");
@@ -81,11 +79,11 @@ private javax.swing.JScrollPane jScrollPane1;
 
             },
             new String [] {
-                "Order's ID", "Supplier's Name", "Status"
+                "Order's ID", "Supplier", "Status", "Created At"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -100,7 +98,7 @@ private javax.swing.JScrollPane jScrollPane1;
         jScrollPane2.setViewportView(SOrdersTable);
 
         status.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Delivered", "Pending" }));
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Delivered" }));
         status.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 statusActionPerformed(evt);
@@ -110,23 +108,10 @@ private javax.swing.JScrollPane jScrollPane1;
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Order's ID");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Supplier's Name");
-
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(153, 153, 153));
+        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,13 +127,11 @@ private javax.swing.JScrollPane jScrollPane1;
                                 .addGap(150, 150, 150))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(48, 48, 48)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(status, 0, 257, Short.MAX_VALUE)
-                                    .addComponent(jTextField2)
                                     .addComponent(jTextField1))
                                 .addGap(10, 10, 10))))
                     .addGroup(layout.createSequentialGroup()
@@ -165,15 +148,11 @@ private javax.swing.JScrollPane jScrollPane1;
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -188,11 +167,15 @@ private javax.swing.JScrollPane jScrollPane1;
         try{
             String orderIDString = jTextField1.getText();
             int orderIDint = Integer.parseInt(orderIDString);
-            String supplierName = jTextField2.getText();
+            
             String statusString = status.getSelectedItem().toString();
-            
-            
-            JOptionPane.showMessageDialog(null,"Updated.");
+             if (selectedStatus.equals("Delivered")){
+                 JOptionPane.showMessageDialog(null,"Order is already delivered. You cannot change it.");
+             } else {
+                SOrderDao sd = new SOrderDao();
+                sd.updateStatus(orderIDint, statusString);
+                JOptionPane.showMessageDialog(null,"Status Updated.");
+             }
             new EditOrders().setVisible(true);
             dispose();
         }
@@ -214,14 +197,15 @@ private javax.swing.JScrollPane jScrollPane1;
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+    private static String selectedStatus ;
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
        
         int selectedRow=SOrdersTable.getSelectedRow();
         DefaultTableModel model =(DefaultTableModel) SOrdersTable.getModel();
         jTextField1.setText((model.getValueAt(selectedRow, 0).toString()));
-        jTextField2.setText((model.getValueAt(selectedRow, 1).toString()));
-        status.
+        selectedStatus = model.getValueAt(selectedRow, 2).toString();
+        status.setSelectedItem(selectedStatus);
+        
     }//GEN-LAST:event_SOrdersTableMouseClicked
 
     
@@ -229,26 +213,24 @@ private javax.swing.JScrollPane jScrollPane1;
  
     }//GEN-LAST:event_statusActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     public void showSOrdersTable() {
         try {
             /*SOrderDao obj = new SOrderDao();
             int number = obj.getAll().size();
             DefaultTableModel model = (DefaultTableModel) SOrdersTable.getModel();*/
-        
-            SOrderItemDao obj2 = new SOrderItemDao();
-            int number1 = obj2.getAll().size();
+            
+            SOrderDao obj2 = new SOrderDao();
+            List<SOrder> sorders = obj2.getAll();
+            int number1 = sorders.size();
             DefaultTableModel model2 = (DefaultTableModel) SOrdersTable.getModel();
             
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
 
             for (int i = 0; i < number1; i++) {
-                row[0] = obj2.getAll().get(i).getSorder().getId();
-                row[1] = obj2.getAll().get(i).getSorder().getSupplier();
-                row[2] = obj2.getAll().get(i).getSorder().getStatus();
+                row[0] = sorders.get(i).getId();
+                row[1] = sorders.get(i).getSupplier().getId()+" "+sorders.get(i).getSupplier().getFullName();
+                row[2] = sorders.get(i).getStatus();
+                row[3] = sorders.get(i).getCreated_at();
         
                 model2.addRow(row);
             }
@@ -298,11 +280,9 @@ private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> status;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables

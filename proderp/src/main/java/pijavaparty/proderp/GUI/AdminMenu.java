@@ -10,7 +10,7 @@ import pijavaparty.proderp.GUI.Orders.OrdersFrame;
 import pijavaparty.proderp.GUI.Products.ProductGui;
 import pijavaparty.proderp.GUI.RawMaterials.RawMaterialMenu;
 import pijavaparty.proderp.GUI.Storage.StorageMain;
-import pijavaparty.proderp.GUI.Suppliers.SuppliersMenu;
+import pijavaparty.proderp.GUI.Suppliers1.SuppliersMenu;
 
 /**
  *

@@ -7,6 +7,7 @@ package pijavaparty.proderp.GUI;
 
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
+import pijavaparty.proderp.entity.User;
 
 /**
  *
@@ -134,13 +135,14 @@ public class AdminPassword extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String id = id_value.getText();
         String password = passwd_value.getText();
-        UserDao user = new UserDao();      
-        if (user.getUser(id, password) != null) {
-            Menu obj = new Menu();
+        UserDao u = new UserDao(); 
+        User user = u.getUser(id, password);
+        if (user != null && user.getRole() == 1) {
+            AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(rootPane,"Id and Password fields are empty." );
+            JOptionPane.showMessageDialog(rootPane,"Username or Password is Incorrect!" );
            // JOptionPane.showConfirmDialog(rootPane, "Username or Password is Incorrect!");
         }         
     }//GEN-LAST:event_jButton1ActionPerformed

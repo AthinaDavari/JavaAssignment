@@ -5,6 +5,10 @@
  */
 package pijavaparty.proderp.GUI;
 
+import javax.swing.JOptionPane;
+import pijavaparty.proderp.dao.UserDao;
+import pijavaparty.proderp.entity.User;
+
 /**
  * @author anna
  * This class allows the administrator to add a new user
@@ -68,6 +72,11 @@ public class AddUser extends javax.swing.JFrame {
         add.setBackground(java.awt.SystemColor.activeCaption);
         add.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Cancel");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,6 +155,22 @@ public class AddUser extends javax.swing.JFrame {
     private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_roleActionPerformed
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+       try {
+            String f= fullname.getText();
+            String u = username.getText();
+            String p = passwd.getText();
+            int r = Integer.parseInt(role.getText());
+                User us1 = new User(f, u, p, r);
+                UserDao us2 = new UserDao();
+                us2.insert(us1);
+                JOptionPane.showMessageDialog(rootPane,"User Added" );
+       } catch (Exception e){
+           JOptionPane.showMessageDialog(rootPane,"Fields are empty");
+       }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addActionPerformed
 
     /**
      * @param args the command line arguments

@@ -8,6 +8,7 @@ package pijavaparty.proderp.GUI.Suppliers;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.Supplier;
+import pijavaparty.proderp.main.ValidVariables;
 
 /**
  *
@@ -41,8 +42,12 @@ public class SupplierInsert extends javax.swing.JFrame {
         value_Phonenumber = new javax.swing.JTextField();
         value_Email = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        valid_Fullname = new javax.swing.JLabel();
+        valid_Phonenumber = new javax.swing.JLabel();
+        valid_Email = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Insert New Supplier");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Fullname");
@@ -59,6 +64,24 @@ public class SupplierInsert extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Insert New Supplier");
 
+        value_Fullname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_FullnameKeyReleased(evt);
+            }
+        });
+
+        value_Phonenumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_PhonenumberKeyReleased(evt);
+            }
+        });
+
+        value_Email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_EmailKeyReleased(evt);
+            }
+        });
+
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +89,15 @@ public class SupplierInsert extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        valid_Fullname.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Fullname.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_Phonenumber.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Phonenumber.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_Email.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Email.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,18 +114,26 @@ public class SupplierInsert extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(value_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(value_Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(value_Fullname, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                .addComponent(value_Address))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(value_Fullname, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                        .addComponent(value_Address))
+                                    .addComponent(value_Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(value_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(valid_Fullname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(valid_Email, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                    .addComponent(valid_Phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jLabel5)))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +143,8 @@ public class SupplierInsert extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(value_Fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(value_Fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valid_Fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -111,14 +152,16 @@ public class SupplierInsert extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(value_Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(value_Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valid_Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(value_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(value_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valid_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -140,6 +183,31 @@ public class SupplierInsert extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,a);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void value_FullnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_FullnameKeyReleased
+        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_Fullname.getText())){
+            valid_Fullname.setText("Name is invalid!");
+        }
+        else {
+            valid_Fullname.setText(null);
+        }
+    }//GEN-LAST:event_value_FullnameKeyReleased
+
+    private void value_PhonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_PhonenumberKeyReleased
+        if (ValidVariables.isValidPhonenumber(value_Phonenumber.getText())==false){
+            valid_Phonenumber.setText("Phonenumber is invalid!");
+        }else {
+            valid_Phonenumber.setText(null);
+        }
+    }//GEN-LAST:event_value_PhonenumberKeyReleased
+
+    private void value_EmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_EmailKeyReleased
+        if (!ValidVariables.isValidEmailAddress(value_Email.getText())){
+            valid_Email.setText("Email is invalid!");
+        }else {
+            valid_Email.setText(null);
+        }
+    }//GEN-LAST:event_value_EmailKeyReleased
 
     /**
      * @param args the command line arguments
@@ -183,6 +251,9 @@ public class SupplierInsert extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel valid_Email;
+    private javax.swing.JLabel valid_Fullname;
+    private javax.swing.JLabel valid_Phonenumber;
     private javax.swing.JTextField value_Address;
     private javax.swing.JTextField value_Email;
     private javax.swing.JTextField value_Fullname;

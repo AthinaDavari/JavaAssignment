@@ -10,7 +10,7 @@ import pijavaparty.proderp.GUI.Orders.OrdersFrame;
 import pijavaparty.proderp.GUI.Products.ProductGui;
 import pijavaparty.proderp.GUI.RawMaterials.RawMaterialMenu;
 import pijavaparty.proderp.GUI.Storage.StorageMain;
-import pijavaparty.proderp.GUI.Suppliers.SuppliersMenu;
+import pijavaparty.proderp.GUI.Suppliers1.SuppliersMenu;
 
 /**
  *
@@ -105,6 +105,11 @@ public class AdminMenu extends javax.swing.JFrame {
         });
 
         AddUser.setText("Add User");
+        AddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddUserActionPerformed(evt);
+            }
+        });
 
         DeleteUser.setText("Delete User");
         DeleteUser.addActionListener(new java.awt.event.ActionListener() {
@@ -220,8 +225,15 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_OrdersActionPerformed
 
     private void DeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserActionPerformed
+        new DeleteUser().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteUserActionPerformed
+
+    private void AddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserActionPerformed
+        new AddUser().setVisible(true);
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddUserActionPerformed
 
     /**
      * @param args the command line arguments

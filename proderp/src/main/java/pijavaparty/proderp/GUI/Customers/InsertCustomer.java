@@ -212,11 +212,9 @@ public class InsertCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void value_FullNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_FullNameKeyReleased
-        /*String PATTERN="^[a-zA-Z]{5,}$";
-        Pattern patt=Pattern.compile(PATTERN);
-        Matcher match=patt.matcher(value_FullName.getText());*/
-        if (/*!match.matches()*/!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_FullName.getText())){
-            valid_Fullname.setText("Name is invalid");
+       
+        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_FullName.getText())){
+            valid_Fullname.setText("Name is invalid!");
         }
         else {
             valid_Fullname.setText(null);
@@ -225,7 +223,7 @@ public class InsertCustomer extends javax.swing.JFrame {
 
     private void value_PhonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_PhonenumberKeyReleased
         if (ValidVariables.isValidPhonenumber(value_Phonenumber.getText())==false){
-            valid_Phonenumber.setText("Phonenumber is invalid");
+            valid_Phonenumber.setText("Phonenumber is invalid!");
         }else {
             valid_Phonenumber.setText(null);
         }
@@ -233,7 +231,7 @@ public class InsertCustomer extends javax.swing.JFrame {
 
     private void value_EmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_EmailKeyReleased
         if (!ValidVariables.isValidEmailAddress(value_Email.getText())){
-            valid_Email.setText("Email is invalid");
+            valid_Email.setText("Email is invalid!");
         }else {
             valid_Email.setText(null);
         }

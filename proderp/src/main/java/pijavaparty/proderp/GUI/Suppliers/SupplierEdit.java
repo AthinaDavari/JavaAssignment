@@ -5,6 +5,9 @@
  */
 package pijavaparty.proderp.GUI.Suppliers;
 
+import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.dao.SupplierDao;
+
 /**
  *
  * @author Ctell
@@ -16,6 +19,7 @@ public class SupplierEdit extends javax.swing.JFrame {
      */
     public SupplierEdit() {
         initComponents();
+        showSuppliersTable();
     }
 
     /**
@@ -41,7 +45,7 @@ public class SupplierEdit extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Suppliers_table = new javax.swing.JTable();
         valid_Fullname = new javax.swing.JLabel();
         valid_Phonenumber = new javax.swing.JLabel();
         valid_Email = new javax.swing.JLabel();
@@ -68,7 +72,7 @@ public class SupplierEdit extends javax.swing.JFrame {
 
         jButton2.setText("Delete");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Suppliers_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -76,7 +80,7 @@ public class SupplierEdit extends javax.swing.JFrame {
                 "Supplier Id", "Fullname", "Address", "Phonenumber", "Email"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Suppliers_table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,6 +172,20 @@ public class SupplierEdit extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+     public void showSuppliersTable(){
+    SupplierDao obj=new SupplierDao();
+    DefaultTableModel model=(DefaultTableModel) Suppliers_table.getModel();
+        int number=obj.getAll().size();
+        Object[] row=new Object[5];
+        for(int i=0; i<number; i++){
+            row[0]=obj.getAll().get(i).getId();
+            row[1]=obj.getAll().get(i).getFullName();
+            row[2]=obj.getAll().get(i).getAddress();
+            row[3]=obj.getAll().get(i).getPhonenumber();
+            row[4]=obj.getAll().get(i).getEmail();
+            model.addRow(row);
+        }
+}
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -201,6 +219,7 @@ public class SupplierEdit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Suppliers_table;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -210,7 +229,6 @@ public class SupplierEdit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel valid_Email;
     private javax.swing.JLabel valid_Fullname;

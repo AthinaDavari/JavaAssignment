@@ -48,7 +48,7 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         RawMaterial_table2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

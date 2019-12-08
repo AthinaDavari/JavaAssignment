@@ -8,6 +8,7 @@ package pijavaparty.proderp.GUI;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
+import pijavaparty.proderp.entity.User;
 
 /**
  *
@@ -154,8 +155,12 @@ public class LogIn extends javax.swing.JFrame {
         String password = jPasswordField1.getText();
 
         UserDao u = new UserDao();
-        
-        if (u.getUser(un, password) != null) {
+        User user = u.getUser(un, password);
+        if (user != null && user.getRole() == 1) {
+            AdminMenu obj = new AdminMenu();
+            obj.setVisible(true);
+            dispose();
+        } else if (user.getRole() == 2) {
             Menu obj = new Menu();
             obj.setVisible(true);
             dispose();

@@ -73,15 +73,21 @@ public class CustomerEdit extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Customers_table);
 
-        jLabel2.setText("full_name:");
+        jLabel2.setText("Fullname:");
 
         jTextField2.setText("jTextField2");
 
-        jLabel3.setText("address:");
+        jLabel3.setText("Address:");
 
-        jLabel4.setText(" phonenumber:");
+        value_address.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                value_addressActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText(" email:");
+        jLabel4.setText("Phonenumber:");
+
+        jLabel5.setText("Email:");
 
         txt_update.setText("update");
         txt_update.addActionListener(new java.awt.event.ActionListener() {
@@ -248,6 +254,10 @@ public class CustomerEdit extends javax.swing.JFrame {
     private void value_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_value_idActionPerformed
+
+    private void value_addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_addressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_value_addressActionPerformed
 
     
     public void showCustomersTable(){

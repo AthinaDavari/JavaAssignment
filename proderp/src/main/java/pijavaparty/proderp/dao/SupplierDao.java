@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.Supplier;
 
 /**
@@ -130,6 +131,19 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } finally {
             closeConnections(pst);
         }
+    }
+    
+    public List<RawMaterial> getRawMaterialsPerSupplier(int supplierId) {
+        RawMaterialDao rmd = new RawMaterialDao();
+        LinkedList<RawMaterial> rawPerSupplier = new LinkedList();
+        List<RawMaterial> rawMaterials  = rmd.getAll();
+        Supplier s = getById(supplierId);
+        for (RawMaterial rm : rawMaterials) {
+            if (rm.getSupplier().equals(s)) {
+                rawPerSupplier.add(rm);
+            }
+        }
+        return rawPerSupplier;
     }
 
     /**

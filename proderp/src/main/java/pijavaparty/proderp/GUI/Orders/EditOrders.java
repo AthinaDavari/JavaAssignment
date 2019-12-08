@@ -10,11 +10,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.SOrderDao;
 import javax.swing.table.DefaultTableModel;
-import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SOrderItemDao;
-import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrder;
-import pijavaparty.proderp.entity.SOrderItem;
 
 /**
  *
@@ -189,12 +186,7 @@ public class EditOrders extends javax.swing.JFrame {
                 SOrderDao sd = new SOrderDao();
                 sd.updateStatus(orderIDint, statusString);
                 SOrderItemDao orderItemDao = new SOrderItemDao();
-                List<SOrderItem> orderItems = orderItemDao.getItemsperSOrder(orderIDint);
-                RawMaterialDao rmd = new RawMaterialDao();
-                for (SOrderItem sOrderItem : orderItems) {
-                    RawMaterial rawFromOrder = sOrderItem.getRawmaterial();
-                    rmd.updateQuantity(rawFromOrder.getId(), rmd.getById(rawFromOrder.getId()).getQuantity() + sOrderItem.getQuantity());
-                }
+                orderItemDao.increaseQuantities(orderIDint);
                 JOptionPane.showMessageDialog(null, "Status Updated.");
             }
             new EditOrders().setVisible(true);

@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrderItem;
 
 /**
@@ -114,8 +115,17 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } finally {
             closeConnections(pst);
         }
-    }    
-    
+    }
+
+    public void increaseQuantities(int orderId) {
+        List<SOrderItem> orderItems = getItemsperSOrder(orderId);
+        RawMaterialDao rmd = new RawMaterialDao();
+        for (SOrderItem sOrderItem : orderItems) {
+            RawMaterial rawFromOrder = sOrderItem.getRawmaterial();
+            rmd.updateQuantity(rawFromOrder.getId(), rmd.getById(rawFromOrder.getId()).getQuantity() + sOrderItem.getQuantity());
+        }
+    }
+
     @Override
     public void delete(int sordId, int rawMId) {
         PreparedStatement pst = null;

@@ -42,7 +42,7 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return customers;
     }
@@ -63,7 +63,7 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return c;
     }
@@ -84,7 +84,7 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                closeConnections(pst);
+                closeStatementAndResultSet(pst);
             }
         }
     }
@@ -102,7 +102,7 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
 
         }
 
@@ -117,7 +117,7 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
 
         }
     }
@@ -132,7 +132,7 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }   

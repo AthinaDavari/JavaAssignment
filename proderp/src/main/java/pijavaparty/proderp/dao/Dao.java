@@ -44,7 +44,7 @@ public class Dao {
         return conn;
     }
 
-    public void closeConnections(ResultSet rs, Statement st) {
+    public void closeStatementAndResultSet(ResultSet rs, Statement st) {
         try {
 
             if (rs != null) {
@@ -58,7 +58,7 @@ public class Dao {
         }
     }
 
-    public void closeConnections(PreparedStatement pst) {
+    public void closeStatementAndResultSet(PreparedStatement pst) {
         try {
             if (pst != null) {
                 pst.close();

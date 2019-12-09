@@ -42,7 +42,7 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return u;
     }
@@ -61,7 +61,7 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return users;
     }
@@ -85,7 +85,7 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -102,7 +102,7 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -115,7 +115,7 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 }

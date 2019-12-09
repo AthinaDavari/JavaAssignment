@@ -135,16 +135,6 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
             closeConnections(pst);
         }
 
-    }
-
-    
-    /**
-     * IMPLEMENT THIS!!!!!!!!!!!!!!!!!
-     * @return 
-     */
-    @Override
-    public int bringLastId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }   
 
 }

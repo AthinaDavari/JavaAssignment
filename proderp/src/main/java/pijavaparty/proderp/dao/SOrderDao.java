@@ -172,8 +172,4 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
     }
 
-    @Override
-    public int bringLastId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -135,10 +135,4 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
     }
 
 
-    @Override
-    public void update(COrderItem t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
 }

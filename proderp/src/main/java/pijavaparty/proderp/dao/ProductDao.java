@@ -187,7 +187,6 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
 
     }
 
-    @Override
     public void update(Product p) {
         Product fromTable = getById(p.getId());
         if (fromTable != null && !fromTable.equals(p)) {

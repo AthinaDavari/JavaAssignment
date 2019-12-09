@@ -68,7 +68,6 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         return c;
     }
 
-    @Override
     public void update(Customer c) {
         Customer fromTable = getById(c.getId());
         PreparedStatement pst = null;

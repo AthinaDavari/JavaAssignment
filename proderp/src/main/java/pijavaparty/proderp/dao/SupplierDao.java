@@ -85,7 +85,6 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
 
     }
 
-    @Override
     public void update(Supplier s) {
         Supplier fromTable = getById(s.getId());
         if (fromTable != null && !fromTable.equals(s)) {

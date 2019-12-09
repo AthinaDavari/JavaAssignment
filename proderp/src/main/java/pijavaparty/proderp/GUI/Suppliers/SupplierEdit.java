@@ -5,8 +5,10 @@
  */
 package pijavaparty.proderp.GUI.Suppliers;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.SupplierDao;
+import pijavaparty.proderp.entity.Supplier;
 import pijavaparty.proderp.main.ValidVariables;
 
 /**
@@ -38,13 +40,13 @@ public class SupplierEdit extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        value_id = new javax.swing.JTextField();
         value_full_name = new javax.swing.JTextField();
         value_address = new javax.swing.JTextField();
         value_phonenumber = new javax.swing.JTextField();
         value_email = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        update = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Suppliers_table = new javax.swing.JTable();
         valid_Fullname = new javax.swing.JLabel();
@@ -68,7 +70,7 @@ public class SupplierEdit extends javax.swing.JFrame {
 
         jLabel6.setText("Email:");
 
-        jTextField1.setEnabled(false);
+        value_id.setEnabled(false);
 
         value_full_name.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -88,9 +90,19 @@ public class SupplierEdit extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Update");
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Delete");
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
         Suppliers_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,6 +112,11 @@ public class SupplierEdit extends javax.swing.JFrame {
                 "Supplier Id", "Fullname", "Address", "Phonenumber", "Email"
             }
         ));
+        Suppliers_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Suppliers_tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Suppliers_table);
 
         valid_Fullname.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
@@ -127,7 +144,7 @@ public class SupplierEdit extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
@@ -149,9 +166,9 @@ public class SupplierEdit extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(82, 82, 82)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(111, 111, 111)
                                 .addComponent(jLabel1)))
@@ -168,7 +185,7 @@ public class SupplierEdit extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -191,8 +208,8 @@ public class SupplierEdit extends javax.swing.JFrame {
                         .addComponent(value_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,6 +243,55 @@ public class SupplierEdit extends javax.swing.JFrame {
             valid_Email.setText(null);
         }
     }//GEN-LAST:event_value_emailKeyReleased
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        try{
+            String value1_id=value_id.getText();
+            int newvalue1_id=Integer.parseInt(value1_id);
+            String value2_full_name=value_full_name.getText();
+            String value3_address=value_address.getText();
+            String value4_phonenumber=value_phonenumber.getText();
+            long newvalue4_phonenumber=Long.parseLong(value4_phonenumber);
+            String value5_email=value_email.getText();
+            
+            Supplier objc=new Supplier(newvalue1_id,value2_full_name,value3_address,newvalue4_phonenumber,value5_email);
+            SupplierDao obj=new SupplierDao();
+            obj.update(objc);
+            
+            JOptionPane.showMessageDialog(null,"Updated");
+            new SupplierEdit().setVisible(true);
+            dispose();
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null,e);      
+        }
+    }//GEN-LAST:event_updateActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        try {
+        String value1_id=value_id.getText();
+         int newvalue1_id=Integer.parseInt(value1_id);
+         SupplierDao customerDao=new SupplierDao();
+         customerDao.delete(newvalue1_id);
+         JOptionPane.showMessageDialog(null,"Deleted");
+         new SupplierEdit().setVisible(true);
+         dispose();
+        }
+        catch (Exception b){
+            JOptionPane.showMessageDialog(null,b);
+            
+        }
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void Suppliers_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Suppliers_tableMouseClicked
+        int selectedRow=Suppliers_table.getSelectedRow();
+        DefaultTableModel model2 =(DefaultTableModel) Suppliers_table.getModel();
+        value_id.setText((model2.getValueAt(selectedRow, 0).toString()));
+        value_full_name.setText((model2.getValueAt(selectedRow, 1).toString()));
+        value_address.setText((model2.getValueAt(selectedRow, 2).toString()));
+        value_phonenumber.setText((model2.getValueAt(selectedRow, 3).toString()));
+        value_email.setText((model2.getValueAt(selectedRow, 4).toString()));
+    }//GEN-LAST:event_Suppliers_tableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -278,8 +344,7 @@ public class SupplierEdit extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Suppliers_table;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -287,13 +352,14 @@ public class SupplierEdit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton update;
     private javax.swing.JLabel valid_Email;
     private javax.swing.JLabel valid_Fullname;
     private javax.swing.JLabel valid_Phonenumber;
     private javax.swing.JTextField value_address;
     private javax.swing.JTextField value_email;
     private javax.swing.JTextField value_full_name;
+    private javax.swing.JTextField value_id;
     private javax.swing.JTextField value_phonenumber;
     // End of variables declaration//GEN-END:variables
 }

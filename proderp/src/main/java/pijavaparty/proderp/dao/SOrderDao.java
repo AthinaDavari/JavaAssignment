@@ -45,7 +45,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return sorders;
     }
@@ -65,7 +65,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return c;
     }
@@ -84,7 +84,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                closeConnections(pst);
+                closeStatementAndResultSet(pst);
             }
         }
     }
@@ -139,7 +139,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
     
@@ -153,7 +153,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -168,12 +168,8 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
-    @Override
-    public int bringLastId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

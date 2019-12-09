@@ -17,6 +17,6 @@ public interface PlainEntityI<T> extends DaoI<T>{
     
     T getById(int id);
     
-    int bringLastId();
+    //int bringLastId();
     
 }

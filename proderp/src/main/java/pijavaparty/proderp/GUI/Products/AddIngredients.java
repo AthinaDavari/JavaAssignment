@@ -44,11 +44,12 @@ public class AddIngredients extends javax.swing.JFrame {
     public AddIngredients(int id) {
         int i;
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
-        ProductDao obj2 = new ProductDao();
+        ProductDao proddao2 = new ProductDao();
         this.id = id;
-        for (i = 0; i < obj2.getAll().size(); i++) {
-            if (id == obj2.getAll().get(i).getId()) {
-                prod = obj2.getAll().get(i);
+        //prodraw = prodrawdao.getMaterialsPerProduct(id);
+        for (i = 0; i < proddao2.getAll().size(); i++) {
+            if (id == proddao2.getAll().get(i).getId()) {
+                prod = proddao2.getAll().get(i);
                 break;
             }
         }
@@ -89,6 +90,7 @@ public class AddIngredients extends javax.swing.JFrame {
         drop_down = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -236,7 +238,7 @@ public class AddIngredients extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

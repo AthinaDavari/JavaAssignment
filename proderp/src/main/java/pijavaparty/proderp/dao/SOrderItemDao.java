@@ -44,7 +44,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return sorders;
     }
@@ -63,7 +63,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return null;
     }
@@ -82,7 +82,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return soi;
     }
@@ -98,7 +98,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -109,11 +109,11 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
             pst.setInt(1, soi.getSorder().getId());
             pst.setInt(2, soi.getRawmaterial().getId());
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -134,11 +134,11 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
             pst.setInt(1, sordId);
             pst.setInt(2, rawMId);
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 

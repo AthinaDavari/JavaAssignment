@@ -56,6 +56,7 @@ public class CustomerEdit extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Customer Data");
+        setResizable(false);
 
         Customers_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

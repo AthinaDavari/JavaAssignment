@@ -53,6 +53,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         addorder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Add New Item Order To Supplier");

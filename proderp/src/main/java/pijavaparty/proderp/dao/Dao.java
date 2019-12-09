@@ -35,7 +35,8 @@ public class Dao {
         }
         if (conn == null) {
             try {
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbname + "?serverTimezone=Etc/GMT-2", "root", "12345");
+                String url = "jdbc:mysql://localhost:3306/" + dbname + "?serverTimezone=Etc/GMT-2";
+                conn = DriverManager.getConnection(url, "root", "12345");
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

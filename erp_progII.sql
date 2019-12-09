@@ -133,37 +133,36 @@ values (1,'delivered'),
        
        
 insert into c_orders(customer_id, status, username)
-values (2, 'preparing', "Athanasia Petrou"),
-       (1, 'ready', "Serafim Georgiou"),
-       (3, 'deliverd', "Kostas Antonatos"),
-       (5, 'ready', "Maria Prokou"),
-       (4, 'ready', "Anna Kiousi");
+values (38, 'preparing', "ath"),
+       (37, 'ready', "maria"),
+       (39, 'delivered', "maria"),
+       (36, 'ready', "nat"),
+       (40, 'ready', "ath");
        
 insert into s_order_items(s_order_id, raw_material_id, quantity)
-values (1, 1, 50),
-	   (2, 5, 90),
-       (5, 2, 100),
-       (3, 3, 27);
+values (1, 7, 50),
+	   (2, 8, 90),
+       (5, 9, 100),
+       (3, 10, 27);
        
 insert into c_order_items(c_order_id, product_id, quantity)
-values (1,  5, 100),
-       (5, 2, 49),
-       (3, 4, 50),
-       (4, 1, 35);
+values (61,  5, 100),
+       (62, 2, 49),
+       (63, 4, 50),
+       (64, 1, 35);
        
 insert into p_materials(product_id, raw_material_id, quantity_of_raw_material)
-values (5, 1, 80),
-       (3, 4, 50),
-       (1, 5, 180),
-       (4, 5, 39),
-       (2, 3, 78);
+values (5, 7, 80),
+       (3, 8, 50),
+       (1, 9, 180),
+       (4, 10, 39),
+       (2, 11, 78);
        
-insert into users(full_name, username, password, role)
-values ("maria","maria", aes_encrypt("1234","prod"),1);
 
 insert into users(full_name, username, password, role)
 values  ("athina", "ath", aes_encrypt("asdfg","prod"), 1),
-        ("natalia", "nat", aes_encrypt("12345", "prod"), 2);
+        ("natalia", "nat", aes_encrypt("12345", "prod"), 2),
+        ("maria","maria", aes_encrypt("1234","prod"),1);
      
 insert into Customers (full_name,address,phonenumber,email)
 values ("Ora Gia Podilato", "Tositsa 45", 2109237849, "info@oragiapodilato.com"),
@@ -174,7 +173,10 @@ values ("Ora Gia Podilato", "Tositsa 45", 2109237849, "info@oragiapodilato.com")
        ("SuperBikes", "Peiraios 17", 2104828947, "info@superbikes.com"),
        ("Smart Fitness", "Trion Ierarxon 86", 210829894, "info@smartfitness.com");
 
-
+select * from users;
+select * from products;
+select * from customers;
+select * from c_orders;
 select last_insert_id();
 select * from S_orders;
 select * from S_order_items;  

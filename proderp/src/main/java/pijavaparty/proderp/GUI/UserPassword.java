@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.GUI;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
@@ -20,8 +21,12 @@ public class UserPassword extends javax.swing.JFrame {
      */
     public UserPassword() {
         initComponents();
+        seticon();
     }
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

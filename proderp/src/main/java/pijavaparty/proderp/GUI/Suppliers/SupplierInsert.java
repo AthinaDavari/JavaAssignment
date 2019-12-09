@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.GUI.Suppliers;
 
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.SupplierDao;
@@ -22,8 +23,12 @@ public class SupplierInsert extends javax.swing.JFrame {
      */
     public SupplierInsert() {
         initComponents();
+        seticon();
     }
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

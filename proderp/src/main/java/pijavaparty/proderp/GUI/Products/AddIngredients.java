@@ -109,7 +109,7 @@ public class AddIngredients extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("Add Ingredients:");
 
-        jLabel2.setText("Name:");
+        jLabel2.setText("Name-Id:");
 
         jLabel3.setText("Quantity: ");
 
@@ -137,7 +137,7 @@ public class AddIngredients extends javax.swing.JFrame {
                                 .addComponent(value_quantity)
                                 .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel3))
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +222,7 @@ public class AddIngredients extends javax.swing.JFrame {
         try {
             for (int i = 0; i < num; i++) {
 
-                drop_down.addItem(raw_material.get(i).getName());
+                drop_down.addItem(raw_material.get(i).getName()+" - "+raw_material.get(i).getId());
 
             }
 

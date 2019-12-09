@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrderItem;
 
 /**
@@ -43,7 +44,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return sorders;
     }
@@ -62,7 +63,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return null;
     }
@@ -81,7 +82,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return soi;
     }
@@ -97,7 +98,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -108,14 +109,23 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
             pst.setInt(1, soi.getSorder().getId());
             pst.setInt(2, soi.getRawmaterial().getId());
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
-    }    
-    
+    }
+
+    public void increaseQuantities(int orderId) {
+        List<SOrderItem> orderItems = getItemsperSOrder(orderId);
+        RawMaterialDao rmd = new RawMaterialDao();
+        for (SOrderItem sOrderItem : orderItems) {
+            RawMaterial rawFromOrder = sOrderItem.getRawmaterial();
+            rmd.updateQuantity(rawFromOrder.getId(), rmd.getById(rawFromOrder.getId()).getQuantity() + sOrderItem.getQuantity());
+        }
+    }
+
     @Override
     public void delete(int sordId, int rawMId) {
         PreparedStatement pst = null;
@@ -124,11 +134,11 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
             pst.setInt(1, sordId);
             pst.setInt(2, rawMId);
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 

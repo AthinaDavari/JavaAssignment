@@ -21,28 +21,21 @@ import java.util.List;
  */
 public class Dao {
 
-    protected static final String URL = "jdbc:mysql://localhost:3306/proderp?serverTimezone=Etc/GMT-2";
-    protected static final String initialTestURL = "jdbc:h2:mem:testdb;INIT=RUNSCRIPT FROM './src/test/resources/test.sql';DB_CLOSE_DELAY=-1";
-    protected static final String testURL = "jdbc:h2:mem:testdb";
-    private static boolean isFirstTest = true;
-    protected static final String USERNAME = "root";
-    protected static final String PASS = "12345";
     private static Connection conn;
 
     public Connection getConnection() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         List<StackTraceElement> list = Arrays.asList(stackTrace);
-        String urlToConnect = URL;
+        String dbname = "proderp";
         for (StackTraceElement element : list) {
             if (element.getClassName().startsWith("org.junit.")) {
-                urlToConnect = isFirstTest ? initialTestURL : testURL;
-                isFirstTest = false;
+                dbname = "test_proderp";
                 break;
             }
         }
         if (conn == null) {
             try {
-                conn = DriverManager.getConnection(urlToConnect, USERNAME, PASS);
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbname + "?serverTimezone=Etc/GMT-2", "root", "12345");
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

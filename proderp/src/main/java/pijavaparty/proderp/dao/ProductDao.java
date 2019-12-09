@@ -47,7 +47,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return products;
     }
@@ -64,11 +64,11 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             if (rs.next()) {
                 p = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
             }
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return p;
     }
@@ -106,7 +106,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -122,7 +122,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -142,7 +142,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -162,7 +162,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -182,7 +182,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -201,7 +201,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                closeConnections(pst);
+                closeStatementAndResultSet(pst);
             }
         }
     }
@@ -215,7 +215,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -229,7 +229,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }

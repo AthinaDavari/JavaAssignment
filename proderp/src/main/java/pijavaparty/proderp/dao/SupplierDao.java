@@ -43,7 +43,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return suppliers;
     }
@@ -62,7 +62,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return null;
     }
@@ -80,7 +80,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -101,7 +101,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                closeConnections(pst);
+                closeStatementAndResultSet(pst);
             }
         }
     }
@@ -115,7 +115,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -129,7 +129,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
     

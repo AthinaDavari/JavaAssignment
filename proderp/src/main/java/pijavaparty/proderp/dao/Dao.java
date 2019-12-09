@@ -36,6 +36,10 @@ public class Dao {
         if (conn == null) {
             try {
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbname + "?serverTimezone=Etc/GMT-2", "root", "st7136");
+
+                String url = "jdbc:mysql://localhost:3306/" + dbname + "?serverTimezone=Etc/GMT-2";
+                conn = DriverManager.getConnection(url, "root", "12345");
+
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -43,7 +47,7 @@ public class Dao {
         return conn;
     }
 
-    public void closeConnections(ResultSet rs, Statement st) {
+    public void closeStatementAndResultSet(ResultSet rs, Statement st) {
         try {
 
             if (rs != null) {
@@ -57,7 +61,7 @@ public class Dao {
         }
     }
 
-    public void closeConnections(PreparedStatement pst) {
+    public void closeStatementAndResultSet(PreparedStatement pst) {
         try {
             if (pst != null) {
                 pst.close();

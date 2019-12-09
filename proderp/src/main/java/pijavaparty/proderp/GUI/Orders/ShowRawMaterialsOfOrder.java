@@ -52,6 +52,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         RawMaterialsTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Raw Materials Of Order");

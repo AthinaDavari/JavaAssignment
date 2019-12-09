@@ -32,8 +32,6 @@ public class AddIngredients extends javax.swing.JFrame {
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
-    //private List<Ingredients> ingredients=new LinkedList();
-    //private List<int> quantity=new LinkedList();
     public AddIngredients(String name, double price) {
         prod.setName(name);
         prod.setPrice(price);
@@ -48,7 +46,6 @@ public class AddIngredients extends javax.swing.JFrame {
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
         ProductDao obj2 = new ProductDao();
         this.id = id;
-        //prodraw = prodrawdao.getMaterialsPerProduct(id);
         for (i = 0; i < obj2.getAll().size(); i++) {
             if (id == obj2.getAll().get(i).getId()) {
                 prod = obj2.getAll().get(i);
@@ -205,10 +202,8 @@ public class AddIngredients extends javax.swing.JFrame {
         if (prod.getId() == -1) {
             ProductDao proddao = new ProductDao();
             obj4.insertProductAndProductsRecipe(prod, prodraw);
-            System.out.print(prodraw);
         }else {
             for(int i=0;i<prodraw.size();i++) {
-                System.out.print(prodraw);
                 prodrawdao.insert(prodraw.get(i));
             }
         }

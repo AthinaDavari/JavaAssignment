@@ -7,6 +7,7 @@ package pijavaparty.proderp.GUI.Suppliers;
 
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.SupplierDao;
+import pijavaparty.proderp.main.ValidVariables;
 
 /**
  *
@@ -69,6 +70,24 @@ public class SupplierEdit extends javax.swing.JFrame {
 
         jTextField1.setEnabled(false);
 
+        value_full_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_full_nameKeyReleased(evt);
+            }
+        });
+
+        value_phonenumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_phonenumberKeyReleased(evt);
+            }
+        });
+
+        value_email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_emailKeyReleased(evt);
+            }
+        });
+
         jButton1.setText("Update");
 
         jButton2.setText("Delete");
@@ -83,6 +102,15 @@ public class SupplierEdit extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Suppliers_table);
 
+        valid_Fullname.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Fullname.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_Phonenumber.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Phonenumber.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_Email.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Email.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,12 +122,8 @@ public class SupplierEdit extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addGap(82, 82, 82)
-                                .addComponent(value_email))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(40, 40, 40)
-                                .addComponent(value_phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(value_email, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)
@@ -109,22 +133,29 @@ public class SupplierEdit extends javax.swing.JFrame {
                                 .addGap(50, 50, 50)
                                 .addComponent(value_full_name, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(67, 67, 67)
-                                .addComponent(value_address, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(value_address, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(value_phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(valid_Phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(valid_Email, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                             .addComponent(valid_Fullname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -170,6 +201,31 @@ public class SupplierEdit extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void value_full_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_full_nameKeyReleased
+        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText())){
+            valid_Fullname.setText("Name is invalid!");
+        }
+        else {
+            valid_Fullname.setText(null);
+        }
+    }//GEN-LAST:event_value_full_nameKeyReleased
+
+    private void value_phonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_phonenumberKeyReleased
+        if (ValidVariables.isValidPhonenumber(value_phonenumber.getText())==false){
+            valid_Phonenumber.setText("Phonenumber is invalid!");
+        }else {
+            valid_Phonenumber.setText(null);
+        }
+    }//GEN-LAST:event_value_phonenumberKeyReleased
+
+    private void value_emailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_emailKeyReleased
+        if (!ValidVariables.isValidEmailAddress(value_email.getText())){
+            valid_Email.setText("Email is invalid!");
+        }else {
+            valid_Email.setText(null);
+        }
+    }//GEN-LAST:event_value_emailKeyReleased
 
     /**
      * @param args the command line arguments

@@ -251,14 +251,4 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
             closeConnections(pst);
         }
     }
-    
-    /**
-     * IMPLEMENT THIS!!!!!!!!!!!!!
-     * @return 
-     */
-    @Override
-    public int bringLastId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

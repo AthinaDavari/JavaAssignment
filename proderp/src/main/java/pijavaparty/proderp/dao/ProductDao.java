@@ -73,7 +73,6 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         return p;
     }
     
-    @Override
     public int bringLastId(){
         Statement st = null;
         ResultSet rs = null;

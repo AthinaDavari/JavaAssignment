@@ -46,12 +46,12 @@ public class AddIngredients extends javax.swing.JFrame {
     public AddIngredients(int id) {
         int i;
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
-        ProductDao obj2 = new ProductDao();
+        ProductDao proddao2 = new ProductDao();
         this.id = id;
         //prodraw = prodrawdao.getMaterialsPerProduct(id);
-        for (i = 0; i < obj2.getAll().size(); i++) {
-            if (id == obj2.getAll().get(i).getId()) {
-                prod = obj2.getAll().get(i);
+        for (i = 0; i < proddao2.getAll().size(); i++) {
+            if (id == proddao2.getAll().get(i).getId()) {
+                prod = proddao2.getAll().get(i);
                 break;
             }
         }

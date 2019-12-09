@@ -24,8 +24,8 @@ public class ValidVariables {
     }
 
     public static boolean isValidEmailAddress(String email) { //Έλεγχος αν το String είναι μία έγκυρη διεύθυνση email.
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
-                + "[a-zA-Z0-9_+&*-]+)*@"
+        String emailRegex = "^[a-zA-Z0-9]+(?:\\."
+                + "[a-zA-Z0-9]+)*@"
                 + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
                 + "A-Z]{2,7}$";
 

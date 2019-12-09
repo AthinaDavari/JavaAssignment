@@ -1,11 +1,12 @@
-drop schema proderp;
+-- drop schema proderp;
 CREATE DATABASE proderp;
 USE proderp;
 
 CREATE TABLE `Users`(
+`id` int PRIMARY KEY AUTO_INCREMENT,
 `full_name` varchar(255),
-`username` varchar(255) PRIMARY KEY,
-`password` varbinary(255),
+`user_name` varchar(255),
+`password` varchar(255),
 `role` int
 );
 
@@ -14,8 +15,7 @@ CREATE TABLE `Suppliers` (
   `full_name` varchar(255),
   `address` varchar(255),
   `phonenumber` int,
-  `email` varchar(255),
-  `is_deleted` boolean default false
+  `email` varchar(255)
 );
 
 CREATE TABLE `Customers` (
@@ -23,8 +23,7 @@ CREATE TABLE `Customers` (
   `full_name` varchar(255),
   `address` varchar(255),
   `phonenumber` int,
-  `email` varchar(255),
-  `is_deleted` boolean default false
+  `email` varchar(255)
 );
 
 CREATE TABLE `Raw_Materials` (
@@ -33,7 +32,6 @@ CREATE TABLE `Raw_Materials` (
   `supplier_id` int NOT NULL,
   `quantity` int,
   `price` double,
-  `is_deleted` boolean default false,
   FOREIGN KEY (`supplier_id`) REFERENCES `Suppliers` (`id`)
 );
 
@@ -41,13 +39,12 @@ CREATE TABLE `Products` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `quantity` int,
-  `price` double,
-  `is_deleted` boolean default false
+  `price` double
 );
 
 CREATE TABLE `S_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `supplier_id` int NOT NULL,
+  `supplier_id` int UNIQUE NOT NULL,
   `status` ENUM ('delivered', 'pending'),
 
   `created_at` datetime DEFAULT now(),
@@ -56,13 +53,12 @@ CREATE TABLE `S_Orders` (
 
 CREATE TABLE `C_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `customer_id` int NOT NULL,
+  `customer_id` int UNIQUE NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  `username` varchar(255) NOT NULL,
+  `users_id` int UNIQUE NOT NULL,
   FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
-  FOREIGN KEY (`username`) REFERENCES `Users` (`username`)
-
+  FOREIGN KEY (`users_id`) REFERENCES `Users` (`id`)
 );
 
 CREATE TABLE `C_order_items` (
@@ -106,30 +102,53 @@ values("INA PLASTICS SA", "A.Papadreou 30", 2105678934, "info@inaplastics.gr"),
       
 delete from products;
 insert into products(name, quantity, price)
-values("Orient City Classic", 10, 479.65),
+values("Merenda Pavlidis", 10, 47.65),
+	  ("Nucrema ION", 32, 125.34),
+      ("Nutella Kinder", 25, "87.69"),
+      ("Orient City Classic", 10, 479.65),
 	  ("GT Air 20", 32, 567.34),
       ("Bullet Freestyle 20", 25, "235.69"),
       ("Olmo Graffito 20", 33, 800.99),
       ("Scott Volt X20", 50, 1000.0),
       ("Regina Urban Freestyle 20", 15, 540.56),
       ("Montana Wax S500 20", 35, 1800.00);
-
-delete from raw_materials;
+      
 insert into raw_materials(name, supplier_id, quantity, price) 
-values ("Plastic", 3, 47, 3.25),
+values ("plastic", 4, 47, 0.25),
+	   ("metal", 3, 32, 1.2),
+       ("wood", 3, 17, 3.7),
+       ("Plastic", 3, 47, 3.25),
 	   ("Titanium", 1, 32, 15.2),
        ("Steel", 4, 7, 3.7),
        ("Aluminum", 2, 7, 5.67),
        ("Carbon fiber", 5, 10, 9.67),
        ("Magnesium", 4, 3, 35.79);
+
+delete from raw_materials;
        
 delete from s_orders;
-insert into s_orders(supplier_id,status) 
-values (1,'delivered'),
+insert into s_orders(supplier_id,status)
+values (3,'delivered'),
+       (1,'delivered'),
 	   (3, 'pending'),
        (2, 'pending'),
        (4, 'delivered'),
        (5, 'pending');
+       
+insert into users(full_name,user_name,password,role)
+values  ("athina", "ath", "asdfg",1),
+        ("natalia", "nat", "12345", 2);
+     
+insert into Customers (full_name,address,phonenumber,email)
+values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
+       ("Mouzouris", "Markou 14", 987560, "mouz@gmail.com");
+
+select * from products;
+select * from S_Orders;
+select * from Customers;
+select * from raw_materials;
+select * from suppliers;
+select * from users;
        
        
 insert into c_orders(customer_id, status, username)
@@ -184,3 +203,4 @@ select * from Suppliers;
 Select * from raw_materials;
 SELECT max(id) FROM S_Orders;
 select full_name, username, aes_decrypt( password,"prod"), role from users;
+

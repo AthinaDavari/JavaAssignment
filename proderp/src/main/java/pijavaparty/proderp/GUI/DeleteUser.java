@@ -5,6 +5,8 @@
  */
 package pijavaparty.proderp.GUI;
 
+import java.awt.Toolkit;
+
 /**
  * @author anna
  * This class allows the administrator to delete an existing user
@@ -17,6 +19,11 @@ public class DeleteUser extends javax.swing.JFrame {
      */
     public DeleteUser() {
         initComponents();
+        seticon();
+    }
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+
     }
 
     /**

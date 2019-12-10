@@ -133,6 +133,7 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         } finally {
             closeStatementAndResultSet(pst);
         }
+    }
 
 
 }

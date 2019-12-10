@@ -131,7 +131,19 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } finally {
             closeStatementAndResultSet(pst);
         }
-
+    }
+        public int bringLastId(){
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = getConnection().createStatement();
+            rs = st.executeQuery(SELECTLASTID);
+            if (rs.next())
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 
     public void updateQuantity(int id, int quantity) {

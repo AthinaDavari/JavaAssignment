@@ -14,7 +14,7 @@ import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.SOrderItem;
 import pijavaparty.proderp.entity.Supplier;
 import pijavaparty.proderp.entity.User;
-import pijavaparty.proderp.test.LogIn;
+import pijavaparty.proderp.GUI.LogIn;
 
 /**
  *

@@ -46,67 +46,53 @@ public class SupplierDaoTest {
     /**
      * Test of getAll method, of class SupplierDao.
      */
-    @Test
-    public void testGetAll() {
-        System.out.println("getAll");
-        SupplierDao instance = new SupplierDao();
-        List<Supplier> expResult = new LinkedList();
-        expResult.add(new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr"));
-        expResult.add(new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr"));
-        List<Supplier> result = instance.getAll();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getById method, of class SupplierDao.
-     */
-    @Test
-    public void testGetById() {
-        System.out.println("getById");
-        int id = 2;
-        SupplierDao instance = new SupplierDao();
-        Supplier expResult = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
-        Supplier result = instance.getById(id);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getByName method, of class SupplierDao.
-     */
-    @Test
-    public void testGetByName() {
-        System.out.println("getByName");
-        String name = "PetaloudaA.E.";
-        SupplierDao instance = new SupplierDao();
-        List<Supplier> expResult = new LinkedList();
-        expResult.add(new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr"));
-        List<Supplier> result = instance.getByName(name);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of insert method, of class SupplierDao.
-     */
-    @Test
-    public void testInsert() {
-        System.out.println("insert");
-        Supplier s = new Supplier(3, "GoldSuppl", "Panepistimiou 27", 2105454554l, "info@gold.gr");
-        SupplierDao instance = new SupplierDao();
-        instance.insert(s);
-        assertEquals(s, instance.getById(3));
-    }
-
-    /**
-     * Test of update method, of class SupplierDao.
-     */
-    @Test
-    public void testUpdate() {
-        System.out.println("update");
-        Supplier s = new Supplier(3, "GoldSupplUpdated", "Panepistimiou 30", 2105454554l, "info@gold.gr");
-        SupplierDao instance = new SupplierDao();
-        instance.update(s);
-        assertEquals(s, instance.getById(3));
-    }
+//    @Test
+//    public void testGetAll() {
+//        System.out.println("getAll");
+//        SupplierDao instance = new SupplierDao();
+//        List<Supplier> expResult = new LinkedList();
+//        expResult.add(new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr"));
+//        expResult.add(new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr"));
+//        List<Supplier> result = instance.getAll();
+//        assertEquals(expResult, result);
+//    }
+//
+//    /**
+//     * Test of getById method, of class SupplierDao.
+//     */
+//    @Test
+//    public void testGetById() {
+//        System.out.println("getById");
+//        int id = 2;
+//        SupplierDao instance = new SupplierDao();
+//        Supplier expResult = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
+//        Supplier result = instance.getById(id);
+//        assertEquals(expResult, result);
+//    }
+//
+//    /**
+//     * Test of insert method, of class SupplierDao.
+//     */
+//    @Test
+//    public void testInsert() {
+//        System.out.println("insert");
+//        Supplier s = new Supplier(3, "GoldSuppl", "Panepistimiou 27", 2105454554l, "info@gold.gr");
+//        SupplierDao instance = new SupplierDao();
+//        instance.insert(s);
+//        assertEquals(s, instance.getById(3));
+//    }
+//
+//    /**
+//     * Test of update method, of class SupplierDao.
+//     */
+//    @Test
+//    public void testUpdate() {
+//        System.out.println("update");
+//        Supplier s = new Supplier(3, "GoldSupplUpdated", "Panepistimiou 30", 2105454554l, "info@gold.gr");
+//        SupplierDao instance = new SupplierDao();
+//        instance.update(s);
+//        assertEquals(s, instance.getById(3));
+//    }
 
     /**
      * Test of delete method, of class SupplierDao.

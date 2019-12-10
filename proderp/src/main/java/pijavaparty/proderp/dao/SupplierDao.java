@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.Supplier;
 
 /**
@@ -21,13 +22,12 @@ import pijavaparty.proderp.entity.Supplier;
  */
 public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
 
-    private static final String GETALL = "SELECT * FROM Suppliers WHERE phonenumber > 0";
+    private static final String GETALL = "SELECT * FROM Suppliers WHERE is_deleted = 0";
     private static final String GETBYID = "SELECT * FROM Suppliers WHERE id = ?";
-    private static final String GETBYNAME = "SELECT * FROM Suppliers WHERE full_name = ?";
     private static final String INSERT = "INSERT INTO Suppliers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Suppliers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ?";
     private static final String DELETEPERM = "DELETE FROM Suppliers WHERE id = ?";
-    private static final String UPDATEPN = "UPDATE Suppliers SET phonenumber = ? WHERE id = ?";
+    private static final String DELETE = "UPDATE Suppliers SET is_deleted = 1 WHERE id = ?";
 
     @Override
     public List<Supplier> getAll() {
@@ -43,7 +43,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return suppliers;
     }
@@ -62,29 +62,9 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return null;
-    }
-
-    public List<Supplier> getByName(String name) {
-        List<Supplier> suppliers = new LinkedList();
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        try {
-            pst = getConnection().prepareStatement(GETBYNAME);
-            pst.setString(1, name);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                suppliers.add(new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5)));
-            }
-            closeConnections(rs, pst);
-        } catch (SQLException ex) {
-            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeConnections(rs, pst);
-        }
-        return suppliers;
     }
 
     @Override
@@ -100,12 +80,11 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
 
-    @Override
     public void update(Supplier s) {
         Supplier fromTable = getById(s.getId());
         if (fromTable != null && !fromTable.equals(s)) {
@@ -121,7 +100,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                closeConnections(pst);
+                closeStatementAndResultSet(pst);
             }
         }
     }
@@ -135,7 +114,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -143,15 +122,27 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
     public void delete(int id) {
         PreparedStatement pst = null;
         try {
-            pst = getConnection().prepareStatement(UPDATEPN);
-            pst.setInt(1, -1);
-            pst.setInt(2, id);
+            pst = getConnection().prepareStatement(DELETE);
+            pst.setInt(1, id);
             pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
     
+    public List<RawMaterial> getRawMaterialsPerSupplier(int supplierId) {
+        RawMaterialDao rmd = new RawMaterialDao();
+        LinkedList<RawMaterial> rawPerSupplier = new LinkedList();
+        List<RawMaterial> rawMaterials  = rmd.getAll();
+        Supplier s = getById(supplierId);
+        for (RawMaterial rm : rawMaterials) {
+            if (rm.getSupplier().equals(s)) {
+                rawPerSupplier.add(rm);
+            }
+        }
+        return rawPerSupplier;
+    }
+
 }

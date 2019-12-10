@@ -22,12 +22,12 @@ import pijavaparty.proderp.entity.ProductRawMaterial;
  */
 public class ProductDao extends Dao implements PlainEntityI<Product> {
 
-    private static final String GETALL = "SELECT * FROM Products WHERE quantity >= 0";
+    private static final String GETALL = "SELECT * FROM Products WHERE is_deleted = 0";
     private static final String GETBYID = "SELECT * FROM Products WHERE id = ?";
-    private static final String GETBYNAME = "SELECT * FROM Products WHERE name = ?";
     private static final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";
     private static final String UPDATE = "UPDATE Products SET name = ?, price = ? WHERE id = ?";
     private static final String DELETEPERM = "DELETE FROM Products WHERE id = ?";
+    private static final String DELETE = "UPDATE Products SET is_deleted = 1 WHERE id = ?";
     private static final String UPDATEN = "UPDATE Products SET name = ? WHERE id = ?";
     private static final String UPDATEQ = "UPDATE Products SET quantity = ? WHERE id = ?";
     private static final String UPDATEP = "UPDATE Products SET price = ? WHERE id = ?";
@@ -47,7 +47,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return products;
     }
@@ -64,48 +64,15 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             if (rs.next()) {
                 p = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
             }
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
-        }
-        return p;
-    }
-
-    public List<Product> getByName(String name) {
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        List<Product> p = new LinkedList();
-        try {
-            pst = getConnection().prepareStatement(GETBYNAME);
-            pst.setString(1, name);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                p.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4)));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return p;
     }
     
-    
-    public int bringLastId(){
-        Statement st = null;
-        ResultSet rs = null;
-        try {
-            st = getConnection().createStatement();
-            rs = st.executeQuery(SELECTLASTID);
-            if (rs.next())
-            return rs.getInt(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return 0;
-    }
     
     public void insertProductAndProductsRecipe(Product p,List<ProductRawMaterial> rml) {
         PreparedStatement pst = null;
@@ -126,7 +93,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -142,7 +109,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -162,7 +129,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -182,7 +149,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -202,12 +169,11 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
 
-    @Override
     public void update(Product p) {
         Product fromTable = getById(p.getId());
         if (fromTable != null && !fromTable.equals(p)) {
@@ -221,7 +187,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                closeConnections(pst);
+                closeStatementAndResultSet(pst);
             }
         }
     }
@@ -235,7 +201,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -243,14 +209,13 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     public void delete(int id) {
         PreparedStatement pst = null;
         try {
-            pst = getConnection().prepareStatement(UPDATEQ);
-            pst.setInt(1, -1);
+            pst = getConnection().prepareStatement(DELETE);
             pst.setInt(1, id);
             pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }

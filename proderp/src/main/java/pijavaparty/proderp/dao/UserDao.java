@@ -27,6 +27,12 @@ public class UserDao extends Dao {
     private static final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE username = ?";
     private static final String DELETE = "DELETE FROM Users WHERE username = ?";
 
+    /**
+     * Returns the fields of an already created user or null.
+     * @param username
+     * @param password
+     * @return 
+     */
     public User getUser(String username, String password) {
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -42,12 +48,15 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return u;
     }
 
-    
+    /**
+     * Adds new users in a List and then returns it.
+     * @return 
+     */
     public List<User> getAll() {
         List<User> users = new LinkedList();
         Statement st = null;
@@ -61,20 +70,23 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return users;
     }
 
-    
-    public void insert(User user) {
+    /**
+     * Checks if a specific user exists in the List. If so, the method is terminated. Otherwise, the user is inserted in the List.  
+     * @param user 
+     */
+    public boolean insert(User user) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(INSERT);
             for (User u : getAll()) {
                 if (u.getUsername().equals(user.getUsername())) {
                     System.out.println("Username already exists");
-                    return;
+                    return false;
                 }
             }
             pst.setString(1, user.getFullName());
@@ -82,14 +94,19 @@ public class UserDao extends Dao {
             pst.setString(3, user.getPassword());
             pst.setInt(4, user.getRole());
             pst.execute();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
-    
+    /**
+     * Changes/Updates the fields of a user.
+     * @param u 
+     */
     public void update(User u) {
         PreparedStatement pst = null;
         try {
@@ -102,10 +119,14 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
+    /**
+     * Deletes a user with a specific username.
+     * @param username 
+     */
     public void delete(String username) {
         PreparedStatement pst = null;
         try {
@@ -115,7 +136,7 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 }

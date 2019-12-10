@@ -5,11 +5,12 @@
  */
 package pijavaparty.proderp.GUI.Storage;
 
+import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
-import pijavaparty.proderp.test.LogIn;
-import pijavaparty.proderp.test.Menu;
+import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.GUI.Menu;
 
 /**
  *
@@ -23,8 +24,11 @@ public class StorageMain extends javax.swing.JFrame {
     public StorageMain() {
         initComponents();
         showStorageTable();
+        seticon();
     }
-
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +47,8 @@ public class StorageMain extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,7 +127,7 @@ public class StorageMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1920, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -130,31 +135,31 @@ public class StorageMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void showStorageTable(){
-        RawMaterialDao obj=new RawMaterialDao();
-        ProductDao obj1=new ProductDao();
+        RawMaterialDao rawdao=new RawMaterialDao();
+        ProductDao proddao=new ProductDao();
         DefaultTableModel model=(DefaultTableModel) RawMaterial_table2.getModel();
-        int number=obj.getAll().size();
+        int number=rawdao.getAll().size();
         Object[] row=new Object[4];
         for(int i=0; i<number; i++){
-                row[0]=obj.getAll().get(i).getId();
-                row[1]=obj.getAll().get(i).getName();
-                row[2]=obj.getAll().get(i).getPrice();
-                row[3]=obj.getAll().get(i).getQuantity();
+                row[0]=rawdao.getAll().get(i).getId();
+                row[1]=rawdao.getAll().get(i).getName();
+                row[2]=rawdao.getAll().get(i).getPrice();
+                row[3]=rawdao.getAll().get(i).getQuantity();
                 model.addRow(row);
         }
-        number=obj1.getAll().size();
+        number=proddao.getAll().size();
         row=new Object[4];
         for(int i=0; i<number; i++){
-            row[0]=obj1.getAll().get(i).getId();
-            row[1]=obj1.getAll().get(i).getName();
-            row[2]=obj1.getAll().get(i).getPrice();
-            row[3]=obj1.getAll().get(i).getQuantity();
+            row[0]=proddao.getAll().get(i).getId();
+            row[1]=proddao.getAll().get(i).getName();
+            row[2]=proddao.getAll().get(i).getPrice();
+            row[3]=proddao.getAll().get(i).getQuantity();
             model.addRow(row);
         }
         
@@ -165,8 +170,8 @@ public class StorageMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void editCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerActionPerformed
-        StorageUpdateQuantity obj = new StorageUpdateQuantity();
-        obj.setVisible(true);// TODO add your handling code here:
+        StorageUpdateQuantity storup = new StorageUpdateQuantity();
+        storup.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_editCustomerActionPerformed
 
     private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked
@@ -174,14 +179,14 @@ public class StorageMain extends javax.swing.JFrame {
     }//GEN-LAST:event_RawMaterial_table2MouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        LogIn obj = new LogIn();
-        obj.setVisible(true);
+        LogIn login = new LogIn();
+        login.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        Menu obj = new Menu();
-        obj.setVisible(true);
+        Menu menu = new Menu();
+        menu.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu5MouseClicked
 
@@ -213,10 +218,8 @@ public class StorageMain extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StorageMain().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new StorageMain().setVisible(true);
         });
     }
 

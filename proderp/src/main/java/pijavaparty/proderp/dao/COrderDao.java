@@ -39,9 +39,9 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
                 corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.getInt(5)));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return corders;
     }
@@ -60,9 +60,9 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
                 c = new COrder(rs.getInt(1), cu.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.getInt(5));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return c;
     }
@@ -77,9 +77,9 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             pst.setString(2, co.getStatus());
             pst.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -93,13 +93,8 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
-    }
-
-    @Override
-    public void update(COrder t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

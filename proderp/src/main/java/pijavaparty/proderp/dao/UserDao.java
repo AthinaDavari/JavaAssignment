@@ -79,14 +79,14 @@ public class UserDao extends Dao {
      * Checks if a specific user exists in the List. If so, the method is terminated. Otherwise, the user is inserted in the List.  
      * @param user 
      */
-    public void insert(User user) {
+    public boolean insert(User user) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(INSERT);
             for (User u : getAll()) {
                 if (u.getUsername().equals(user.getUsername())) {
                     System.out.println("Username already exists");
-                    return;
+                    return false;
                 }
             }
             pst.setString(1, user.getFullName());
@@ -94,8 +94,10 @@ public class UserDao extends Dao {
             pst.setString(3, user.getPassword());
             pst.setInt(4, user.getRole());
             pst.execute();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
             closeStatementAndResultSet(pst);
         }

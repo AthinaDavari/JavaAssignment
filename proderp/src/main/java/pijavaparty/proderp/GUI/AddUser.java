@@ -170,8 +170,10 @@ public class AddUser extends javax.swing.JFrame {
             int r = Integer.parseInt(role.getText());
                 User us1 = new User(f, u, p, r);
                 UserDao us2 = new UserDao();
-                us2.insert(us1);
-                JOptionPane.showMessageDialog(rootPane,"User Added" );
+                if (us2.insert(us1))
+                    JOptionPane.showMessageDialog(rootPane,"User Added" );
+                else
+                    JOptionPane.showMessageDialog(rootPane,"Could not add user" );
        } catch (Exception e){
            JOptionPane.showMessageDialog(rootPane,"Fields are empty");
        }

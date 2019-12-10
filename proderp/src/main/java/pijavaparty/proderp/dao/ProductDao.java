@@ -73,19 +73,6 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         return p;
     }
     
-    public int bringLastId(){
-        Statement st = null;
-        ResultSet rs = null;
-        try {
-            st = getConnection().createStatement();
-            rs = st.executeQuery(SELECTLASTID);
-            if (rs.next())
-            return rs.getInt(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return 0;
-    }
     
     public void insertProductAndProductsRecipe(Product p,List<ProductRawMaterial> rml) {
         PreparedStatement pst = null;

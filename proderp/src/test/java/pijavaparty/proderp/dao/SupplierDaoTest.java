@@ -13,12 +13,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 import pijavaparty.proderp.entity.Supplier;
 
 /**
  *
  * @author Natalia
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SupplierDaoTest {
 
     public SupplierDaoTest() {
@@ -92,29 +95,27 @@ public class SupplierDaoTest {
 //    }
 
     /**
+     * Test of delete method, of class SupplierDao.
+     */
+    @Test
+    public void xtestDelete() {
+        System.out.println("delete");
+        int id = 3;
+        SupplierDao instance = new SupplierDao();
+        instance.delete(id);
+        assertEquals(new Supplier(3, "GoldSupplUpdated", "Panepistimiou 30", -1l, "info@gold.gr"), instance.getById(3));
+    }
+
+    /**
      * Test of deletePerm method, of class SupplierDao.
      */
-//    @Test
-//    public void testDeletePermanently()  { 
-//        System.out.println("deletePermanently");
-//        int id = 0;
-//        SupplierDao instance = new SupplierDao();
-//        instance.deletePermanently(id);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-//    /**
-//     * Test of delete method, of class SupplierDao.
-//     */
-//    @Test
-//    public void testDelete() {
-//        System.out.println("delete");
-//        int id = 0;
-//        SupplierDao instance = new SupplierDao();
-//        instance.delete(id);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void ztestDeletePermanently() {
+        System.out.println("deletePermanently");
+        int id = 3;
+        SupplierDao instance = new SupplierDao();
+        instance.deletePermanently(id);
+        assertEquals(null, instance.getById(3));
+    }
 
 }

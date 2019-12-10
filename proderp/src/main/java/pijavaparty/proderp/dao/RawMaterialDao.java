@@ -250,4 +250,5 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
             closeStatementAndResultSet(pst);
         }
     }
+
 }

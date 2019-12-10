@@ -98,6 +98,4 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
     }
 
 
-
-
 }

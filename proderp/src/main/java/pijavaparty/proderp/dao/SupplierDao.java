@@ -144,4 +144,5 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         }
         return rawPerSupplier;
     }
+
 }

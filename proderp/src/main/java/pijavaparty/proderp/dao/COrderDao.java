@@ -41,7 +41,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return corders;
     }
@@ -62,7 +62,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return c;
     }
@@ -79,7 +79,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -93,18 +93,8 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
-    }
-
-    @Override
-    public int bringLastId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(COrder t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

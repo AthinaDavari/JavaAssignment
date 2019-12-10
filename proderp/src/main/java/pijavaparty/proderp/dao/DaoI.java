@@ -11,12 +11,10 @@ import java.util.List;
  *
  * @author Natalia
  */
-public interface DaoI<T> {
+public interface DaoI<T>{
 
     List<T> getAll();
     
     void insert(T t);
-    
-    void update(T t);
-        
+            
 }

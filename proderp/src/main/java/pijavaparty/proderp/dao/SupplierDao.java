@@ -43,7 +43,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return suppliers;
     }
@@ -62,7 +62,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return null;
     }
@@ -80,12 +80,11 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
 
-    @Override
     public void update(Supplier s) {
         Supplier fromTable = getById(s.getId());
         if (fromTable != null && !fromTable.equals(s)) {
@@ -101,7 +100,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                closeConnections(pst);
+                closeStatementAndResultSet(pst);
             }
         }
     }
@@ -115,7 +114,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -129,7 +128,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
     
@@ -146,12 +145,4 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         return rawPerSupplier;
     }
 
-    /**
-     * IMPLEMENT THIS!!!!!!!!!!!
-     * @return 
-     */
-    @Override
-    public int bringLastId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

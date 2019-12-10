@@ -44,7 +44,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return productRawMaterials;
     }
@@ -63,7 +63,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return productsMaterials;
     }
@@ -79,7 +79,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -91,11 +91,11 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
             pst.setInt(2, rmid);
             pst.setInt(3, quantity);
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -107,11 +107,11 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
             pst.setInt(2, productRawMaterial.getQuantityOfRawMaterial());
             pst.setInt(3, productRawMaterial.getProduct().getId());
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -124,11 +124,11 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
             pst.setInt(2, quantity);
             pst.setInt(3, pid);
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -140,11 +140,11 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
             pst.setInt(1, prm.getProduct().getId());
             pst.setInt(2, prm.getRawMaterial().getId());
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
 
     }
@@ -157,11 +157,11 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
             pst.setInt(1, pid);
             pst.setInt(2, rmid);
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
  
     }
@@ -187,7 +187,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return null;
     }

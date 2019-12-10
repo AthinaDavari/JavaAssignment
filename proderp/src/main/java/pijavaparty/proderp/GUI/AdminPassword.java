@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.GUI;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
@@ -20,6 +21,11 @@ public class AdminPassword extends javax.swing.JFrame {
      */
     public AdminPassword() {
         initComponents();
+        seticon();
+    }
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+
     }
 
     /**

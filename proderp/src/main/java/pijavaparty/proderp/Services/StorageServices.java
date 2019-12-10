@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pijavaparty.proderp.test;
+package pijavaparty.proderp.Services;
 
 /**
  *
  * @author aggel
  */
-public class test {
+public class StorageServices {
     
 }

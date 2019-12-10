@@ -49,7 +49,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return rawMaterials;
     }
@@ -69,7 +69,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterial.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return r;
     }
@@ -87,11 +87,10 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
-    @Override
     public void update(RawMaterial r) {
         PreparedStatement pst = null;
         RawMaterial fromTable = getById(r.getId());
@@ -106,7 +105,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
             } catch (SQLException ex) {
                 Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                closeConnections(pst);
+                closeStatementAndResultSet(pst);
             }
 
         }
@@ -126,7 +125,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
             } catch (SQLException ex) {
                 Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                closeConnections(pst);
+                closeStatementAndResultSet(pst);
             }
 
         }
@@ -146,7 +145,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -164,7 +163,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -182,7 +181,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -200,7 +199,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -218,7 +217,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         } catch (SQLException ex) {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -232,7 +231,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
 
         }
     }
@@ -248,17 +247,8 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
             Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
-    }
-    
-    /**
-     * IMPLEMENT THIS!!!!!!!!!!!!!
-     * @return 
-     */
-    @Override
-    public int bringLastId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

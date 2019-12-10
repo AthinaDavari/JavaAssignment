@@ -5,12 +5,13 @@
  */
 package pijavaparty.proderp.GUI;
 
+import java.awt.Toolkit;
 import pijavaparty.proderp.GUI.Customers.CustomerMenu;
 import pijavaparty.proderp.GUI.Orders.OrdersFrame;
 import pijavaparty.proderp.GUI.Products.ProductGui;
 import pijavaparty.proderp.GUI.RawMaterials.RawMaterialMenu;
 import pijavaparty.proderp.GUI.Storage.StorageMain;
-import pijavaparty.proderp.GUI.Suppliers1.SuppliersMenu;
+import pijavaparty.proderp.GUI.Suppliers.SuppliersMenu;
 
 /**
  *
@@ -23,6 +24,11 @@ public class AdminMenu extends javax.swing.JFrame {
      */
     public AdminMenu() {
         initComponents();
+        seticon();
+    }
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+
     }
 
     /**

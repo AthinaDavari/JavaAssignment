@@ -32,8 +32,6 @@ public class AddIngredients extends javax.swing.JFrame {
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
-    //private List<Ingredients> ingredients=new LinkedList();
-    //private List<int> quantity=new LinkedList();
     public AddIngredients(String name, double price) {
         prod.setName(name);
         prod.setPrice(price);
@@ -46,12 +44,12 @@ public class AddIngredients extends javax.swing.JFrame {
     public AddIngredients(int id) {
         int i;
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
-        ProductDao obj2 = new ProductDao();
+        ProductDao proddao2 = new ProductDao();
         this.id = id;
         //prodraw = prodrawdao.getMaterialsPerProduct(id);
-        for (i = 0; i < obj2.getAll().size(); i++) {
-            if (id == obj2.getAll().get(i).getId()) {
-                prod = obj2.getAll().get(i);
+        for (i = 0; i < proddao2.getAll().size(); i++) {
+            if (id == proddao2.getAll().get(i).getId()) {
+                prod = proddao2.getAll().get(i);
                 break;
             }
         }
@@ -92,6 +90,7 @@ public class AddIngredients extends javax.swing.JFrame {
         drop_down = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +109,7 @@ public class AddIngredients extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("Add Ingredients:");
 
-        jLabel2.setText("Name:");
+        jLabel2.setText("Name-Id:");
 
         jLabel3.setText("Quantity: ");
 
@@ -118,13 +117,13 @@ public class AddIngredients extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(143, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(242, 242, 242)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel1)
-                            .addGap(223, 223, 223))
+                            .addGap(99, 99, 99))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -134,11 +133,11 @@ public class AddIngredients extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addGap(170, 170, 170)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(value_quantity)
-                                .addComponent(drop_down, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(124, 124, 124)))
-                    .addComponent(jLabel3)))
+                                .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel3))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +148,7 @@ public class AddIngredients extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(value_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,10 +204,8 @@ public class AddIngredients extends javax.swing.JFrame {
         if (prod.getId() == -1) {
             ProductDao proddao = new ProductDao();
             obj4.insertProductAndProductsRecipe(prod, prodraw);
-            System.out.print(prodraw);
         }else {
             for(int i=0;i<prodraw.size();i++) {
-                System.out.print(prodraw);
                 prodrawdao.insert(prodraw.get(i));
             }
         }
@@ -225,7 +222,7 @@ public class AddIngredients extends javax.swing.JFrame {
         try {
             for (int i = 0; i < num; i++) {
 
-                drop_down.addItem(raw_material.get(i).getName());
+                drop_down.addItem(raw_material.get(i).getName()+" - "+raw_material.get(i).getId());
 
             }
 
@@ -241,7 +238,7 @@ public class AddIngredients extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

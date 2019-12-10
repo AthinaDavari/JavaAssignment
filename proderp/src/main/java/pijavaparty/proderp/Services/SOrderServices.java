@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pijavaparty.proderp.dao;
-
-import java.util.List;
+package pijavaparty.proderp.Services;
 
 /**
  *
- * @author Natalia
+ * @author aggel
  */
-public interface PlainEntityI<T> extends DaoI<T>{
+public class SOrderServices {
     
-    void delete(int id);
-    
-    T getById(int id);
-
 }

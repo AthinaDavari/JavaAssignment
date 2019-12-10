@@ -44,7 +44,7 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, st);
+            closeStatementAndResultSet(rs, st);
         }
         return corders;
     }
@@ -63,7 +63,7 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return null;
     }
@@ -82,7 +82,7 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            closeConnections(rs, pst);
+            closeStatementAndResultSet(rs, pst);
         }
         return coi;
     }
@@ -99,7 +99,7 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);//εδω τι θα μπει;
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -110,11 +110,11 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
             pst.setInt(1, coi.getCorder().getId());
             pst.setInt(2, coi.getProduct().getId());
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);//εδω τι θα μπει;
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
     
@@ -126,18 +126,12 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
             pst.setInt(1, cordId);
             pst.setInt(2, pId);
             pst.execute();
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);//εδω τι θα μπει;
         } finally {
-            closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
-    }
-
-
-    @Override
-    public void update(COrderItem t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

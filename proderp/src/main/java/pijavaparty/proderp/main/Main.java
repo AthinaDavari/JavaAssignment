@@ -32,9 +32,10 @@ public class Main {
 //        ud.insert(new User("maria k", "maria", "abc12", 2));
         //ud.insert(new User("anna", "anna", "213", 1));
         //System.out.println(ud.getAll());
-  SupplierDao sd = new SupplierDao();
-        System.out.println(sd.getAll());        
-
+//  SupplierDao sd = new SupplierDao();
+//        System.out.println(sd.getAll());        
+UserDao u = new UserDao();
+System.out.println(u.permissionToDeleteAnAdministratorUser());
 
 //System.out.println(cd.getAll());
 //        SOrderDao s= new SOrderDao();

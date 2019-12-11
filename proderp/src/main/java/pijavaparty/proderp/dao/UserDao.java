@@ -20,18 +20,20 @@ import pijavaparty.proderp.entity.User;
  * @author athinaDavari
  */
 public class UserDao extends Dao {
-    
+
     private static final String GETUSER = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
     private static final String GETALL = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
     private static final String INSERT = "INSERT INTO Users(full_name, username, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
     private static final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE username = ?";
     private static final String DELETE = "DELETE FROM Users WHERE username = ?";
+    private static final String PERMISSIONTODELETE = "SELECT COUNT(*) FROM users WHERE role = 1;";
 
     /**
      * Returns the fields of an already created user or null.
+     *
      * @param username
      * @param password
-     * @return 
+     * @return
      */
     public User getUser(String username, String password) {
         PreparedStatement pst = null;
@@ -55,7 +57,8 @@ public class UserDao extends Dao {
 
     /**
      * Adds new users in a List and then returns it.
-     * @return 
+     *
+     * @return
      */
     public List<User> getAll() {
         List<User> users = new LinkedList();
@@ -76,8 +79,10 @@ public class UserDao extends Dao {
     }
 
     /**
-     * Checks if a specific user exists in the List. If so, the method is terminated. Otherwise, the user is inserted in the List.  
-     * @param user 
+     * Checks if a specific user exists in the List. If so, the method is
+     * terminated. Otherwise, the user is inserted in the List.
+     *
+     * @param user
      */
     public boolean insert(User user) {
         PreparedStatement pst = null;
@@ -105,7 +110,8 @@ public class UserDao extends Dao {
 
     /**
      * Changes/Updates the fields of a user.
-     * @param u 
+     *
+     * @param u
      */
     public void update(User u) {
         PreparedStatement pst = null;
@@ -125,7 +131,8 @@ public class UserDao extends Dao {
 
     /**
      * Deletes a user with a specific username.
-     * @param username 
+     *
+     * @param username
      */
     public void delete(String username) {
         PreparedStatement pst = null;
@@ -138,5 +145,26 @@ public class UserDao extends Dao {
         } finally {
             closeStatementAndResultSet(pst);
         }
+    }
+
+    public boolean permissionToDeleteAnAdministratorUser() {
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = getConnection().createStatement();
+            rs = st.executeQuery(PERMISSIONTODELETE);
+            if (rs.next()) {
+                if (rs.getInt(1) > 1) {
+                    return true;
+                }
+                return false;
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, st);
+        }
+        return false;
     }
 }

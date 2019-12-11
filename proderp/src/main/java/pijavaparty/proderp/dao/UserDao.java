@@ -22,6 +22,7 @@ import pijavaparty.proderp.entity.User;
 public class UserDao extends Dao {
 
     private static final String GETUSER = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
+    private static final String GETUSERBYUSERNAME = "SELECT full_name, username, role FROM users WHERE username =";
     private static final String GETALL = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
     private static final String INSERT = "INSERT INTO Users(full_name, username, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
     private static final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE username = ?";
@@ -46,6 +47,25 @@ public class UserDao extends Dao {
             rs = pst.executeQuery();
             if (rs.next()) {
                 u = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, pst);
+        }
+        return u;
+    }
+    
+     public User getUserByUsername(String username) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        User u = null;
+        try {
+            pst = getConnection().prepareStatement(GETUSERBYUSERNAME);
+            pst.setString(1, username);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                u = new User(rs.getString(1), rs.getString(2), rs.getInt(3));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);

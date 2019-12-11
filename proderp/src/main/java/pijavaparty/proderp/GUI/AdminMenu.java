@@ -61,6 +61,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         Customers.setBackground(new java.awt.Color(255, 255, 255));
         Customers.setText("Customers");

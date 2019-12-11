@@ -47,6 +47,7 @@ public class AddUser extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Add New User");
@@ -166,6 +167,9 @@ public class AddUser extends javax.swing.JFrame {
             UserDao us2 = new UserDao();
             us2.insert(us1);
             JOptionPane.showMessageDialog(rootPane,"User Added" );
+            AdminMenu obj = new AdminMenu();
+            obj.setVisible(true);
+            dispose();
        } catch (Exception e){
            JOptionPane.showMessageDialog(rootPane,"Fields are empty");
        }

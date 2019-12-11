@@ -39,6 +39,7 @@ public class DeleteUser extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Delete User");
@@ -116,7 +117,10 @@ public class DeleteUser extends javax.swing.JFrame {
             UserDao us2 = new UserDao();
             boolean isdeleted = us2.delete(us2.getUserByUsername(u));
             if (isdeleted == true) {
+                AdminMenu obj = new AdminMenu();
                 JOptionPane.showMessageDialog(rootPane, "User Deleted.");
+                obj.setVisible(true);
+                dispose();
             } else {
                 if (us2.permissionToDeleteAnAdministratorUser() == false && us2.getUserByUsername(u).getRole() == "admin") {
                     JOptionPane.showMessageDialog(rootPane, "You have no permission to delete the user.");

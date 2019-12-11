@@ -147,7 +147,7 @@ public class UserPassword extends javax.swing.JFrame {
         String password = passwd_value.getText();
         UserDao u = new UserDao();
         User user = u.getUser(id, password);
-        if (user != null && user.getRole() == 2) {
+        if (user != null && user.getRole() == "simpleuser") {
             Menu obj = new Menu();
             obj.setVisible(true);
             dispose();

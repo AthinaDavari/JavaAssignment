@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.management.relation.Role;
 import pijavaparty.proderp.entity.User;
 
 /**
@@ -46,7 +47,7 @@ public class UserDao extends Dao {
             pst.setString(2, password);
             rs = pst.executeQuery();
             if (rs.next()) {
-                u = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                u = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,7 +66,7 @@ public class UserDao extends Dao {
             pst.setString(1, username);
             rs = pst.executeQuery();
             if (rs.next()) {
-                u = new User(rs.getString(1), rs.getString(2), rs.getInt(3));
+                u = new User(rs.getString(1), rs.getString(2), rs.getString(3));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,7 +89,7 @@ public class UserDao extends Dao {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+                users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -117,7 +118,7 @@ public class UserDao extends Dao {
             pst.setString(1, user.getFullName());
             pst.setString(2, user.getUsername());
             pst.setString(3, user.getPassword());
-            pst.setInt(4, user.getRole());
+            pst.setString(4, user.getRole());
             pst.execute();
             return true;
         } catch (SQLException ex) {
@@ -139,7 +140,7 @@ public class UserDao extends Dao {
             pst = getConnection().prepareStatement(UPDATE);
             pst.setString(1, u.getFullName());
             pst.setString(2, u.getPassword());
-            pst.setInt(3, u.getRole());
+            pst.setString(3, u.getRole());
             pst.setString(4, u.getUsername());
             pst.execute();
         } catch (SQLException ex) {

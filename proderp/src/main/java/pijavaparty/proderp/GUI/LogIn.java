@@ -155,11 +155,11 @@ public class LogIn extends javax.swing.JFrame {
 
         UserDao u = new UserDao();
         User user = u.getUser(un, password);
-        if (user != null && user.getRole() == 1) {
+        if (user != null && user.getRole() == "admin") {
             AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
             dispose();
-        } else if (user.getRole() == 2) {
+        } else if (user.getRole() == "simpleuser") {
             Menu obj = new Menu();
             obj.setVisible(true);
             dispose();

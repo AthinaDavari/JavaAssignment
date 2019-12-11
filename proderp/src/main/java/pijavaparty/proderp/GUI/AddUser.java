@@ -161,7 +161,7 @@ public class AddUser extends javax.swing.JFrame {
             String f= fullname.getText();
             String u = username.getText();
             String p = passwd.getText();
-            int r = Integer.parseInt(role.getText());
+            String r = role.getText();
             User us1 = new User(f, u, p, r);
             UserDao us2 = new UserDao();
             us2.insert(us1);

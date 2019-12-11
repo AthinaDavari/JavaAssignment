@@ -137,7 +137,7 @@ public class AdminPassword extends javax.swing.JFrame {
         String password = passwd_value.getText();
         UserDao u = new UserDao(); 
         User user = u.getUser(id, password);
-        if (user != null && user.getRole() == 1) {
+        if (user != null && user.getRole() == "admin") {
             AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
             dispose();

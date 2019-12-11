@@ -5,7 +5,6 @@
  */
 package pijavaparty.proderp.GUI;
 
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
@@ -21,11 +20,6 @@ public class AdminPassword extends javax.swing.JFrame {
      */
     public AdminPassword() {
         initComponents();
-        seticon();
-    }
-    public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
-
     }
 
     /**
@@ -153,6 +147,10 @@ public class AdminPassword extends javax.swing.JFrame {
         }         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {                                    
+        if(evt.getKeyCode() == evt.VK_ENTER)
+        jButton1.doClick();   // TODO add your handling code here:
+    }                     
     /**
      * @param args the command line arguments
      */

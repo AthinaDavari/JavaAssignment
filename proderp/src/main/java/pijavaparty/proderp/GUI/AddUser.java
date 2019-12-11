@@ -5,7 +5,6 @@
  */
 package pijavaparty.proderp.GUI;
 
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
@@ -22,11 +21,6 @@ public class AddUser extends javax.swing.JFrame {
      */
     public AddUser() {
         initComponents();
-        seticon();
-    }
-    public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
-
     }
 
     /**
@@ -168,12 +162,10 @@ public class AddUser extends javax.swing.JFrame {
             String u = username.getText();
             String p = passwd.getText();
             int r = Integer.parseInt(role.getText());
-                User us1 = new User(f, u, p, r);
-                UserDao us2 = new UserDao();
-                if (us2.insert(us1))
-                    JOptionPane.showMessageDialog(rootPane,"User Added" );
-                else
-                    JOptionPane.showMessageDialog(rootPane,"Could not add user" );
+            User us1 = new User(f, u, p, r);
+            UserDao us2 = new UserDao();
+            us2.insert(us1);
+            JOptionPane.showMessageDialog(rootPane,"User Added" );
        } catch (Exception e){
            JOptionPane.showMessageDialog(rootPane,"Fields are empty");
        }

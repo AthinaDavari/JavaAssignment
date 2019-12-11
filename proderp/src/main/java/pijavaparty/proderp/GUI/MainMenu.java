@@ -38,7 +38,7 @@ public class MainMenu extends javax.swing.JFrame {
         Admin = new javax.swing.JButton();
         User = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProdErp_Logo.png"))); // NOI18N

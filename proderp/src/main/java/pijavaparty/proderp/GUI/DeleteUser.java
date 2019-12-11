@@ -115,8 +115,16 @@ public class DeleteUser extends javax.swing.JFrame {
         try {
             String u = username.getText();
             UserDao us2 = new UserDao();
-            us2.delete(u);
+            boolean isdeleted = us2.delete(us2.getUserByUsername(u));
+            if (isdeleted == true) {
             JOptionPane.showMessageDialog(rootPane,"User Deleted." );
+            } else {
+            if (us2.permissionToDeleteAnAdministratorUser() == false && us2.getUserByUsername(u).getRole() == 1){
+                JOptionPane.showMessageDialog(rootPane,"You have no permission to delete the user." );
+            } else {
+            JOptionPane.showMessageDialog(rootPane,"Something gone wrong." );
+            }
+        }
         } catch (Exception e){
             JOptionPane.showMessageDialog(rootPane,"Fields are empty");
 

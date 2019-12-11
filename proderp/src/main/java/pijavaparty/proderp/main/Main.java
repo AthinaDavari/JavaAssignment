@@ -36,6 +36,7 @@ public class Main {
 //        System.out.println(sd.getAll());        
 UserDao u = new UserDao();
 System.out.println(u.permissionToDeleteAnAdministratorUser());
+System.out.println(u.delete(u.getUserByUsername("nat")));
 
 //System.out.println(cd.getAll());
 //        SOrderDao s= new SOrderDao();

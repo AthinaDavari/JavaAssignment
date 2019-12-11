@@ -9,8 +9,7 @@ import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
 
 /**
- * @author anna
- * This class allows the administrator to delete an existing user
+ * @author anna This class allows the administrator to delete an existing user
  * by entering user's username and password and then asks for comfirmation.
  */
 public class DeleteUser extends javax.swing.JFrame {
@@ -117,16 +116,16 @@ public class DeleteUser extends javax.swing.JFrame {
             UserDao us2 = new UserDao();
             boolean isdeleted = us2.delete(us2.getUserByUsername(u));
             if (isdeleted == true) {
-            JOptionPane.showMessageDialog(rootPane,"User Deleted." );
+                JOptionPane.showMessageDialog(rootPane, "User Deleted.");
             } else {
-            if (us2.permissionToDeleteAnAdministratorUser() == false && us2.getUserByUsername(u).getRole() == 1){
-                JOptionPane.showMessageDialog(rootPane,"You have no permission to delete the user." );
-            } else {
-            JOptionPane.showMessageDialog(rootPane,"Something gone wrong." );
+                if (us2.permissionToDeleteAnAdministratorUser() == false && us2.getUserByUsername(u).getRole() == 1) {
+                    JOptionPane.showMessageDialog(rootPane, "You have no permission to delete the user.");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Something gone wrong.");
+                }
             }
-        }
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(rootPane,"Fields are empty");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fields are empty");
 
         }
     }//GEN-LAST:event_deleteActionPerformed

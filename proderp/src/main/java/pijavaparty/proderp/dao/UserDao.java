@@ -21,12 +21,12 @@ import pijavaparty.proderp.entity.User;
  */
 public class UserDao extends Dao {
 
-    private static final String GETUSER = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM users WHERE username = ? and password = aes_encrypt(?, \"prod\")";
-    private static final String GETUSERBYUSERNAME = "SELECT full_name, username, role FROM users WHERE username =";
-    private static final String GETALL = "SELECT full_name, username, aes_decrypt(password, \"prod\"), role FROM Users";
-    private static final String INSERT = "INSERT INTO Users(full_name, username, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
-    private static final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE username = ?";
-    private static final String DELETE = "DELETE FROM Users WHERE username = ?";
+    private static final String GETUSER = "SELECT full_name, user_name, aes_decrypt(password, \"prod\"), role FROM users WHERE user_name = ? and password = aes_encrypt(?, \"prod\")";
+    private static final String GETUSERBYUSERNAME = "SELECT full_name, user_name, role FROM users WHERE user_name = ? ";
+    private static final String GETALL = "SELECT full_name, user_name, aes_decrypt(password, \"prod\"), role FROM Users";
+    private static final String INSERT = "INSERT INTO Users(full_name, user_name, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
+    private static final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? WHERE user_name = ?";
+    private static final String DELETE = "DELETE FROM Users WHERE user_name = ?";
     private static final String PERMISSIONTODELETE = "SELECT COUNT(*) FROM users WHERE role = 1;";
 
     /**
@@ -158,11 +158,11 @@ public class UserDao extends Dao {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(DELETE);
-            if ((permissionToDeleteAnAdministratorUser() == true && user.getRole() == 1) || user.getRole() ==2 ){
+            //if ((permissionToDeleteAnAdministratorUser() == true && user.getRole() == 1) || user.getRole() ==2 ){
             pst.setString(1, user.getUsername());
             pst.execute();
             return true;
-            }
+            //}
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

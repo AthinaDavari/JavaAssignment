@@ -194,4 +194,4 @@ select * from Suppliers;
 Select * from raw_materials;
 SELECT max(id) FROM S_Orders;
 select full_name, user_name, aes_decrypt( password,"prod"), role from users;
-
+SELECT full_name, user_name, role FROM users WHERE user_name = "nat";

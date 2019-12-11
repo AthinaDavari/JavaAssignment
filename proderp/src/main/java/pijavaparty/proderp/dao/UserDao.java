@@ -134,23 +134,21 @@ public class UserDao extends Dao {
      *
      * @param username
      */
-    public void delete(String username) {
+    public boolean delete(User user) {
         PreparedStatement pst = null;
         try {
-            /*for (User u : getAll()) {
-                if (u.getUsername().equals(user.getUsername())) {
-                    
-                }
-              }
-            */
             pst = getConnection().prepareStatement(DELETE);
-            pst.setString(1, username);
+            if ((permissionToDeleteAnAdministratorUser() == true && user.getRole() == 1) || user.getRole() ==2 ){
+            pst.setString(1, user.getUsername());
             pst.execute();
+            return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeStatementAndResultSet(pst);
         }
+        return false;
     }
 
     public boolean permissionToDeleteAnAdministratorUser() {
@@ -163,8 +161,6 @@ public class UserDao extends Dao {
                 if (rs.getInt(1) > 1) {
                     return true;
                 }
-                return false;
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);

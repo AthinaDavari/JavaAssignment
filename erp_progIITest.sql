@@ -4,9 +4,9 @@ USE erp_progIITest;
 
 CREATE TABLE `Users`(
 `full_name` varchar(255),
-`username` varchar(255) PRIMARY KEY,
+`user_name` varchar(255) PRIMARY KEY,
 `password` varbinary(255),
-`role` int
+`role` ENUM ('admin', 'simpleuser')
 );
 
 CREATE TABLE `Suppliers` (
@@ -14,8 +14,7 @@ CREATE TABLE `Suppliers` (
   `full_name` varchar(255),
   `address` varchar(255),
   `phonenumber` int,
-  `email` varchar(255),
-  `is_deleted` boolean default false
+  `email` varchar(255)
 );
 
 CREATE TABLE `Customers` (
@@ -23,8 +22,7 @@ CREATE TABLE `Customers` (
   `full_name` varchar(255),
   `address` varchar(255),
   `phonenumber` int,
-  `email` varchar(255),
-  `is_deleted` boolean default false
+  `email` varchar(255)
 );
 
 CREATE TABLE `Raw_Materials` (
@@ -33,7 +31,6 @@ CREATE TABLE `Raw_Materials` (
   `supplier_id` int NOT NULL,
   `quantity` int,
   `price` double,
-  `is_deleted` boolean default false,
   FOREIGN KEY (`supplier_id`) REFERENCES `Suppliers` (`id`)
 );
 
@@ -41,15 +38,13 @@ CREATE TABLE `Products` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `quantity` int,
-  `price` double,
-  `is_deleted` boolean default false
+  `price` double
 );
 
 CREATE TABLE `S_Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `supplier_id` int NOT NULL,
   `status` ENUM ('delivered', 'pending'),
-
   `created_at` datetime DEFAULT now(),
   FOREIGN KEY (`supplier_id`) REFERENCES `Suppliers` (`id`)
 );
@@ -59,10 +54,9 @@ CREATE TABLE `C_Orders` (
   `customer_id` int NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  `username` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
   FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
-  FOREIGN KEY (`username`) REFERENCES `Users` (`username`)
-
+  FOREIGN KEY (`user_name`) REFERENCES `Users` (`user_name`)
 );
 
 CREATE TABLE `C_order_items` (

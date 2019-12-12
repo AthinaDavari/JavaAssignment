@@ -6,7 +6,7 @@ CREATE TABLE `Users`(
 `full_name` varchar(255),
 `user_name` varchar(255) PRIMARY KEY,
 `password` varbinary(255),
-`role` int
+`role` ENUM ('admin', 'simpleuser')
 );
 
 CREATE TABLE `Suppliers` (
@@ -144,9 +144,9 @@ values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
 -- select * from users;
      
 insert into users(full_name, user_name, password, role)
-values  ("athina", "ath", aes_encrypt("asdfg","prod"), 1),
-        ("natalia", "nat", aes_encrypt("12345", "prod"), 2),
-        ("maria","maria", aes_encrypt("1234","prod"),1);
+values  ("athina", "ath", aes_encrypt("asdfg","prod"), 'admin'),
+        ("natalia", "nat", aes_encrypt("12345", "prod"),'simpleuser'),
+        ("maria","maria", aes_encrypt("1234","prod"),'admin');
      
 insert into Customers (full_name,address,phonenumber,email)
 values ("Ora Gia Podilato", "Tositsa 45", 2109237849, "info@oragiapodilato.com"),

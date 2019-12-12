@@ -233,6 +233,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void DeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserActionPerformed
         new DeleteUser().setVisible(true);
+        dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteUserActionPerformed
 

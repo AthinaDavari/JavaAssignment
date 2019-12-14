@@ -22,15 +22,16 @@ import pijavaparty.proderp.entity.Supplier;
  */
 public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
 
-    private static final String GETALL = "SELECT * FROM Raw_Materials WHERE is_deleted = 0";
-    private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ?";
+    private static final String GETALL = "SELECT * FROM Raw_Materials WHERE is_deleted = false";
+    private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ? AND is_deleted = false";
     private static final String INSERT = "INSERT INTO Raw_Materials(name, supplier_id, quantity, price) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE Raw_Materials SET name = ?, supplier_id = ?, quantity = ?, price = ? WHERE id = ?";
-    private static final String UPDATENAME = "UPDATE Raw_Materials SET name = ? WHERE id = ?";
-    private static final String UPDATESUP = "UPDATE Raw_Materials SET supplier_id = ? WHERE id = ?";
-    private static final String UPDATEQUANT = "UPDATE Raw_Materials SET quantity = ? WHERE id = ?";
-    private static final String UPDATEPRICE = "UPDATE Raw_Materials SET price = ? WHERE id = ?";
-    private static final String DELETE = "UPDATE Raw_Materials SET is_deleted = 1 WHERE id = ?";
+    private static final String UPDATE = "UPDATE Raw_Materials SET name = ?, supplier_id = ?, quantity = ?, price = ? "
+                                       + "WHERE id = ? AND is_deleted = false";
+    private static final String UPDATENAME = "UPDATE Raw_Materials SET name = ? WHERE id = ? AND is_deleted = false";
+    private static final String UPDATESUP = "UPDATE Raw_Materials SET supplier_id = ? WHERE id = ? AND is_deleted = false";
+    private static final String UPDATEQUANT = "UPDATE Raw_Materials SET quantity = ? WHERE id = ? AND is_deleted = false";
+    private static final String UPDATEPRICE = "UPDATE Raw_Materials SET price = ? WHERE id = ? AND is_deleted = false";
+    private static final String DELETE = "UPDATE Raw_Materials SET is_deleted = true WHERE id = ?";
     private static final String DELETEPERM = "DELETE FROM Raw_Materials WHERE id = ?";
 
     private SupplierDao supplierDao = new SupplierDao();

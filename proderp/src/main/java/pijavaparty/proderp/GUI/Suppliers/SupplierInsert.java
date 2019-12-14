@@ -190,7 +190,7 @@ public class SupplierInsert extends javax.swing.JFrame {
                 supplierdao.insert(supplier);
                 JOptionPane.showMessageDialog(null, "Saved");
             } else {
-                JOptionPane.showMessageDialog(null, "Incorrect validations");
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
         } catch (Exception a) {
             JOptionPane.showMessageDialog(null, a);

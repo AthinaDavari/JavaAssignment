@@ -25,10 +25,12 @@ public class SupplierInsert extends javax.swing.JFrame {
         initComponents();
         seticon();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -176,43 +178,45 @@ public class SupplierInsert extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {   
-        String value2_full_name=value_Fullname.getText();
-            String value3_address=value_Address.getText();
-            String value4_phonenumber=value_Phonenumber.getText();
-            long newvalue4_phonenumber=Long.parseLong(value4_phonenumber);
-            String value5_email=value_Email.getText();
-            
-            Supplier supplier=new Supplier(value2_full_name,value3_address,newvalue4_phonenumber,value5_email);
-            SupplierDao supplierdao=new SupplierDao();
-            supplierdao.insert(supplier);
-             JOptionPane.showMessageDialog(null,"Saved");
-        }catch (Exception a){
-            JOptionPane.showMessageDialog(null,a);
+        try {
+            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_Fullname.getText()) && ValidVariables.isValidPhonenumber(value_Phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_Email.getText())) {
+                String value2_full_name = value_Fullname.getText();
+                String value3_address = value_Address.getText();
+                String value4_phonenumber = value_Phonenumber.getText();
+                long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
+                String value5_email = value_Email.getText();
+                Supplier supplier = new Supplier(value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
+                SupplierDao supplierdao = new SupplierDao();
+                supplierdao.insert(supplier);
+                JOptionPane.showMessageDialog(null, "Saved");
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect validations");
+            }
+        } catch (Exception a) {
+            JOptionPane.showMessageDialog(null, a);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void value_FullnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_FullnameKeyReleased
-        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_Fullname.getText())){
+        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_Fullname.getText())) {
             valid_Fullname.setText("Name is invalid!");
-        }
-        else {
+        } else {
             valid_Fullname.setText(null);
         }
     }//GEN-LAST:event_value_FullnameKeyReleased
 
     private void value_PhonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_PhonenumberKeyReleased
-        if (ValidVariables.isValidPhonenumber(value_Phonenumber.getText())==false){
+        if (ValidVariables.isValidPhonenumber(value_Phonenumber.getText()) == false) {
             valid_Phonenumber.setText("Phonenumber is invalid!");
-        }else {
+        } else {
             valid_Phonenumber.setText(null);
         }
     }//GEN-LAST:event_value_PhonenumberKeyReleased
 
     private void value_EmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_EmailKeyReleased
-        if (!ValidVariables.isValidEmailAddress(value_Email.getText())){
+        if (!ValidVariables.isValidEmailAddress(value_Email.getText())) {
             valid_Email.setText("Email is invalid!");
-        }else {
+        } else {
             valid_Email.setText(null);
         }
     }//GEN-LAST:event_value_EmailKeyReleased
@@ -245,7 +249,7 @@ public class SupplierInsert extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        JFrame myFrame= new JFrame();
+        JFrame myFrame = new JFrame();
         myFrame.setResizable(false);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

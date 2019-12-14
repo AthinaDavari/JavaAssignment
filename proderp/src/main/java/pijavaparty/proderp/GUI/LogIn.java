@@ -160,12 +160,12 @@ public class LogIn extends javax.swing.JFrame {
             AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
             dispose();
-        } else if (user.getRole() == "simpleuser") {
+        } else if (user != null && user.getRole() == "simpleuser") {
             Menu obj = new Menu();
             obj.setVisible(true);
             dispose();
         } else {
-            JOptionPane.showConfirmDialog(rootPane, "Username or Password is Incorrect!");
+            JOptionPane.showMessageDialog(rootPane, "Username or Password is Incorrect!");
         }         // TODO add your handling code here:*/
     }//GEN-LAST:event_jButton1ActionPerformed
 

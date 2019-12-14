@@ -37,35 +37,8 @@ public class SupplierDaoTest {
     }
 
     @BeforeClass
-    public static void setUp() {
-        String queries = "";
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(".\\src\\test\\resources\\test.sql"));
-            String line = br.readLine();
-
-            while (line != null) {
-                queries += line;
-                line = br.readLine();
-            }
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(SupplierDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SupplierDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            String[] queryTable = queries.split(";");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erp_progIITest?serverTimezone=UTC", "root", "12345");
-            for (String query : queryTable) {
-                Statement st = conn.createStatement();
-                st.execute(query);
-                st.close();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SupplierDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static void setUpClass() {
+        TestUtilities.runTestScript();
     }
 
     /**

@@ -31,7 +31,7 @@ public class UserDao extends Dao {
     private static final String INSERT = "INSERT INTO Users(full_name, user_name, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
     private static final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? "
                                        + "WHERE user_name = ?";
-    private static final String DELETE = "UPDATE Users SET is_deleted=true WHERE user_name = ?";
+    private static final String DELETE = "UPDATE Users SET is_deleted = true WHERE user_name = ?";
     private static final String PERMISSIONTODELETE = "SELECT COUNT(*) FROM users WHERE role = admin;";
 
     /**

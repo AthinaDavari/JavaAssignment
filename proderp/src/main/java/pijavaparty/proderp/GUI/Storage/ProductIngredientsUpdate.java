@@ -1,5 +1,6 @@
 package pijavaparty.proderp.GUI.Storage;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.Services.StorageServices;
 
@@ -19,8 +20,11 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
         this.id=id;
         this.quant=quant;
         initComponents();
+        seticon();
     }
-
+    public void seticon() {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

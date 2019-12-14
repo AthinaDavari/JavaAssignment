@@ -48,6 +48,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         setTitle("Customer Menu");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusCycleRoot(false);
+        setResizable(false);
 
         editCustomer.setText("Edit Customer Data");
         editCustomer.addActionListener(new java.awt.event.ActionListener() {

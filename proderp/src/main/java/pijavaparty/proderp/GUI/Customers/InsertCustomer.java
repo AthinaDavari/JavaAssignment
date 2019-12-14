@@ -55,6 +55,7 @@ public class InsertCustomer extends javax.swing.JFrame {
         valid_Email = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setText("Full Name:");
 

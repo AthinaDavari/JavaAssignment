@@ -28,7 +28,7 @@ public class Dao {
         List<StackTraceElement> list = Arrays.asList(stackTrace);
         String dbname = "proderp";
         for (StackTraceElement element : list) {
-            if (element.getClassName().startsWith("org.junit.")) {
+            if (element.getClassName().startsWith("org.apache.maven.surefire.junit.")) {
                 dbname = "erp_progIITest";
                 break;
             }

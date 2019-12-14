@@ -26,13 +26,13 @@ public class UserDao extends Dao {
                                         + "WHERE user_name = ? and password = aes_encrypt(?, \"prod\") and is_deleted = false";
     private static final String GETUSERBYUSERNAME = "SELECT full_name, user_name, role FROM users "
                                                   + "WHERE user_name = ? and is_deleted=false ";
-    private static final String GETALL = "SELECT full_name, user_name, aes_decrypt(password, \"prod\"), role FROM Users "
+    private static final String GETALL = "SELECT full_name, user_name, role FROM Users "
                                        + "WHERE is_deleted=false";
     private static final String INSERT = "INSERT INTO Users(full_name, user_name, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
     private static final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? "
                                        + "WHERE user_name = ?";
     private static final String DELETE = "UPDATE Users SET is_deleted = true WHERE user_name = ?";
-    private static final String PERMISSIONTODELETE = "SELECT COUNT(*) FROM users WHERE role = admin;";
+    private static final String PERMISSIONTODELETE = "SELECT COUNT(*) FROM users WHERE role = 'admin'";
 
     /**
      * Returns the fields of an already created user or null.
@@ -93,7 +93,7 @@ public class UserDao extends Dao {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);

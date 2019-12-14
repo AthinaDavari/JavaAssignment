@@ -29,7 +29,7 @@ public class Dao {
         String dbname = "proderp";
         for (StackTraceElement element : list) {
             if (element.getClassName().startsWith("org.junit.")) {
-                dbname = "test_proderp";
+                dbname = "erp_progIITest";
                 break;
             }
         }

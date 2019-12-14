@@ -35,7 +35,7 @@ CREATE TABLE `Raw_Materials` (
   `quantity` int,
   `price` double,
   `is_deleted` boolean default false,
-  FOREIGN KEY (`supplier_id`) REFERENCES `Suppliers` (`id`)
+  FOREIGN KEY (`supplier_id`) REFERENCES `Suppliers` (`id`) on delete cascade
 );
 
 CREATE TABLE `Products` (
@@ -51,7 +51,7 @@ CREATE TABLE `S_Orders` (
   `supplier_id` int NOT NULL,
   `status` ENUM ('delivered', 'pending'),
   `created_at` datetime DEFAULT now(),
-  FOREIGN KEY (`supplier_id`) REFERENCES `Suppliers` (`id`)
+  FOREIGN KEY (`supplier_id`) REFERENCES `Suppliers` (`id`) on delete cascade
 );
 
 CREATE TABLE `C_Orders` (
@@ -60,8 +60,8 @@ CREATE TABLE `C_Orders` (
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
   `user_name` varchar(255) NOT NULL,
-  FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`),
-  FOREIGN KEY (`user_name`) REFERENCES `Users` (`user_name`)
+  FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`) on delete cascade,
+  FOREIGN KEY (`user_name`) REFERENCES `Users` (`user_name`) on delete cascade 
 );
 
 CREATE TABLE `C_order_items` (
@@ -69,8 +69,8 @@ CREATE TABLE `C_order_items` (
   `product_id` int,
   `quantity` int DEFAULT 1,
   primary key(c_order_id, product_id),
-  FOREIGN KEY (`c_order_id`) REFERENCES `C_Orders` (`id`),
-  FOREIGN KEY (`product_id`) REFERENCES `Products` (`id`)
+  FOREIGN KEY (`c_order_id`) REFERENCES `C_Orders` (`id`) on delete cascade,
+  FOREIGN KEY (`product_id`) REFERENCES `Products` (`id`) on delete cascade
 );
 
 CREATE TABLE `S_order_items` (
@@ -78,8 +78,8 @@ CREATE TABLE `S_order_items` (
   `raw_material_id` int,
   `quantity` int DEFAULT 1,
   primary key(s_order_id, raw_material_id),
-  FOREIGN KEY (`s_order_id`) REFERENCES `S_Orders` (`id`),
-  FOREIGN KEY (`raw_material_id`) REFERENCES `Raw_Materials` (`id`)
+  FOREIGN KEY (`s_order_id`) REFERENCES `S_Orders` (`id`) on delete cascade,
+  FOREIGN KEY (`raw_material_id`) REFERENCES `Raw_Materials` (`id`) on delete cascade
 );
 
 CREATE TABLE `P_Materials` (
@@ -87,8 +87,8 @@ CREATE TABLE `P_Materials` (
   `raw_material_id` int,
   `quantity_of_raw_material` int,
   primary key(product_id, raw_material_id),
-  FOREIGN KEY (`product_id`) REFERENCES `Products` (`id`),
-  FOREIGN KEY (`raw_material_id`) REFERENCES `Raw_Materials` (`id`)
+  FOREIGN KEY (`product_id`) REFERENCES `Products` (`id`) on delete cascade,
+  FOREIGN KEY (`raw_material_id`) REFERENCES `Raw_Materials` (`id`) on delete cascade
 );
 
 

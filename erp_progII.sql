@@ -6,7 +6,8 @@ CREATE TABLE `Users`(
 `full_name` varchar(255),
 `user_name` varchar(255) PRIMARY KEY,
 `password` varbinary(255),
-`role` ENUM ('admin', 'simpleuser')
+`role` ENUM ('admin', 'simpleuser'),
+`is_deleted` boolean default false
 );
 
 CREATE TABLE `Suppliers` (
@@ -14,7 +15,8 @@ CREATE TABLE `Suppliers` (
   `full_name` varchar(255),
   `address` varchar(255),
   `phonenumber` int,
-  `email` varchar(255)
+  `email` varchar(255),
+  `is_deleted` boolean default false
 );
 
 CREATE TABLE `Customers` (
@@ -22,7 +24,8 @@ CREATE TABLE `Customers` (
   `full_name` varchar(255),
   `address` varchar(255),
   `phonenumber` int,
-  `email` varchar(255)
+  `email` varchar(255),
+  `is_deleted` boolean default false
 );
 
 CREATE TABLE `Raw_Materials` (
@@ -31,6 +34,7 @@ CREATE TABLE `Raw_Materials` (
   `supplier_id` int NOT NULL,
   `quantity` int,
   `price` double,
+  `is_deleted` boolean default false,
   FOREIGN KEY (`supplier_id`) REFERENCES `Suppliers` (`id`)
 );
 
@@ -38,7 +42,8 @@ CREATE TABLE `Products` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `quantity` int,
-  `price` double
+  `price` double,
+  `is_deleted` boolean default false
 );
 
 CREATE TABLE `S_Orders` (

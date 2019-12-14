@@ -17,25 +17,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.TestMethodOrder;
+import static junit.framework.Assert.assertEquals;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import pijavaparty.proderp.entity.User;
+
+
 
 /**
  *
  * @author athina
  */
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserDaoTest {
     
     public UserDaoTest() {
     }
     
-    @BeforeAll
+    @BeforeClass
     public static void setUp() {
         String queries = "";
 
@@ -84,8 +85,7 @@ public class UserDaoTest {
      * Test of getUser method, of class UserDao.
      */
     @Test
-    @Order(1)
-    public void testGetUser() {
+    public void atestGetUser() {
         System.out.println("getUser");
         String username = "ath";
         String password = "asdfg";
@@ -101,8 +101,7 @@ public class UserDaoTest {
     
     
     @Test
-    @Order(2)
-    public void testGetUserByUsername() {
+    public void btestGetUserByUsername() {
         System.out.println("getUserByUsername");
         String username = "ath";
         UserDao instance = new UserDao();
@@ -116,8 +115,7 @@ public class UserDaoTest {
      */
   
     @Test
-    @Order(3)
-    public void testGetAll() {
+    public void ctestGetAll() {
         System.out.println("getAll");
         UserDao instance = new UserDao();
         List<User> expResult = new ArrayList<User>();
@@ -179,8 +177,7 @@ public class UserDaoTest {
      */
   
     @Test
-    @Order(4)
-    public void testPermissionToDeleteAnAdministratorUser() {
+    public void dtestPermissionToDeleteAnAdministratorUser() {
         System.out.println("permissionToDeleteAnAdministratorUser");
         UserDao instance = new UserDao();
         boolean expResult = true;

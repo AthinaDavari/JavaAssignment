@@ -23,7 +23,7 @@ import pijavaparty.proderp.entity.Supplier;
 public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
 
     private static final String GETALL = "SELECT * FROM Suppliers WHERE is_deleted = false";
-    private static final String GETBYID = "SELECT * FROM Suppliers WHERE id = ? AND is_deleted = false";
+    private static final String GETBYID = "SELECT * FROM Suppliers WHERE id = ?";
     private static final String INSERT = "INSERT INTO Suppliers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Suppliers SET full_name = ?, address = ?, phonenumber = ?, email = ? "
                                        + "WHERE id = ? AND is_deleted = false";

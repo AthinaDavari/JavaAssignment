@@ -33,15 +33,15 @@ public class User {
     public User() {
     }
 
-    public User(String fullName, String password, Role role) {
+    public User(String fullName, String username, Role role) {
         this.fullName = fullName;
-        this.password = password;
+        this.username = username;
         this.role = role;
     }
     
-    public User(String fullName, String password, String role) {
+    public User(String fullName, String username, String role) {
         this.fullName = fullName;
-        this.password = password;
+        this.username = username;
         this.role = Role.valueOf(role);
     }
     

@@ -22,15 +22,15 @@ import pijavaparty.proderp.entity.ProductRawMaterial;
  */
 public class ProductDao extends Dao implements PlainEntityI<Product> {
 
-    private static final String GETALL = "SELECT * FROM Products WHERE is_deleted = 0";
-    private static final String GETBYID = "SELECT * FROM Products WHERE id = ?";
+    private static final String GETALL = "SELECT * FROM Products WHERE is_deleted = false";
+    private static final String GETBYID = "SELECT * FROM Products WHERE id = ? AND is_deleted = false";
     private static final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";
-    private static final String UPDATE = "UPDATE Products SET name = ?, price = ? WHERE id = ?";
+    private static final String UPDATE = "UPDATE Products SET name = ?, price = ? WHERE id = ? AND is_deleted = false";
     private static final String DELETEPERM = "DELETE FROM Products WHERE id = ?";
-    private static final String DELETE = "UPDATE Products SET is_deleted = 1 WHERE id = ?";
-    private static final String UPDATEN = "UPDATE Products SET name = ? WHERE id = ?";
-    private static final String UPDATEQ = "UPDATE Products SET quantity = ? WHERE id = ?";
-    private static final String UPDATEP = "UPDATE Products SET price = ? WHERE id = ?";
+    private static final String DELETE = "UPDATE Products SET is_deleted = true WHERE id = ?";
+    private static final String UPDATEN = "UPDATE Products SET name = ? WHERE id = ? AND is_deleted = false";
+    private static final String UPDATEQ = "UPDATE Products SET quantity = ? WHERE id = ? AND is_deleted = false";
+    private static final String UPDATEP = "UPDATE Products SET price = ? WHERE id = ? AND is_deleted = false";
     private static final String SELECTLASTID = "SELECT max(id) FROM Products";
 
     @Override

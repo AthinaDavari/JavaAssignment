@@ -65,11 +65,6 @@ public class InsertCustomer extends javax.swing.JFrame {
 
         jLabel5.setText("Email:");
 
-        value_FullName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                value_FullNameActionPerformed(evt);
-            }
-        });
         value_FullName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 value_FullNameKeyReleased(evt);
@@ -184,10 +179,6 @@ public class InsertCustomer extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void value_FullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_FullNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_value_FullNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{    

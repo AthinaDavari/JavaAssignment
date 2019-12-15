@@ -74,7 +74,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     }
     
     
-    public void insertProductAndProductsRecipe(Product p,List<ProductRawMaterial> rml) {
+    public void insertProductAndProductsRecipe(Product p, List<ProductRawMaterial> rml) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(INSERT);
@@ -186,36 +186,36 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
 
     }
 
-    public void update(Product p) {
-        Product fromTable = getById(p.getId());
-        if (fromTable != null && !fromTable.equals(p)) {
-            PreparedStatement pst = null;
-            try {
-                pst = getConnection().prepareStatement(UPDATE);
-                pst.setString(1, p.getName());
-                pst.setDouble(2, p.getPrice());
-                pst.setInt(3, p.getId());
-                pst.execute();
-            } catch (SQLException ex) {
-                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                closeStatementAndResultSet(pst);
-            }
-        }
-    }
+//    public void update(Product p) {
+//        Product fromTable = getById(p.getId());
+//        if (fromTable != null && !fromTable.equals(p)) {
+//            PreparedStatement pst = null;
+//            try {
+//                pst = getConnection().prepareStatement(UPDATE);
+//                pst.setString(1, p.getName());
+//                pst.setDouble(2, p.getPrice());
+//                pst.setInt(3, p.getId());
+//                pst.execute();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+//            } finally {
+//                closeStatementAndResultSet(pst);
+//            }
+//        }
+//    }
 
-    public void deletePermanently(int id) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(DELETEPERM);
-            pst.setInt(1, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-    }
+//    public void deletePermanently(int id) {
+//        PreparedStatement pst = null;
+//        try {
+//            pst = getConnection().prepareStatement(DELETEPERM);
+//            pst.setInt(1, id);
+//            pst.execute();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            closeStatementAndResultSet(pst);
+//        }
+//    }
 
     @Override
     public void delete(int id) {

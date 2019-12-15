@@ -34,6 +34,11 @@ public class SOrder {
         this.created_at = created_at;
     }
 
+    public SOrder(Supplier supplier, String status) {
+        this.supplier = supplier;
+        this.status = Status.valueOf(status);
+    }
+
     enum Status {
         delivered, pending;
     }

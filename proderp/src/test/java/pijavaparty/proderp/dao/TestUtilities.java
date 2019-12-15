@@ -34,9 +34,9 @@ public class TestUtilities {
             }
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SupplierDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestUtilities.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(SupplierDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestUtilities.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         try {
@@ -49,7 +49,7 @@ public class TestUtilities {
                 st.close();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SupplierDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestUtilities.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

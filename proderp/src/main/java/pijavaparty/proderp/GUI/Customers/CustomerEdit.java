@@ -25,9 +25,11 @@ public class CustomerEdit extends javax.swing.JFrame {
         initComponents();
         showCustomersTable();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,12 +82,6 @@ public class CustomerEdit extends javax.swing.JFrame {
 
         jLabel3.setText("Address:");
 
-        value_address.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                value_addressActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Phonenumber:");
 
         jLabel5.setText("Email:");
@@ -104,11 +100,6 @@ public class CustomerEdit extends javax.swing.JFrame {
 
         value_id.setEditable(false);
         value_id.setBackground(new java.awt.Color(204, 204, 204));
-        value_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                value_idActionPerformed(evt);
-            }
-        });
 
         delete.setText("delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -199,83 +190,73 @@ public class CustomerEdit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
-        try{
-            String value1_id=value_id.getText();
-            int newvalue1_id=Integer.parseInt(value1_id);
-            String value2_full_name=value_full_name.getText();
-            String value3_address=value_address.getText();
-            String value4_phonenumber=value_phonenumber.getText();
-            long newvalue4_phonenumber=Long.parseLong(value4_phonenumber);
-            String value5_email=value_email.getText();
-            
-            Customer objc=new Customer(newvalue1_id,value2_full_name,value3_address,newvalue4_phonenumber,value5_email);
-            CustomerDao obj=new CustomerDao();
+        try {
+            String value1_id = value_id.getText();
+            int newvalue1_id = Integer.parseInt(value1_id);
+            String value2_full_name = value_full_name.getText();
+            String value3_address = value_address.getText();
+            String value4_phonenumber = value_phonenumber.getText();
+            long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
+            String value5_email = value_email.getText();
+
+            Customer objc = new Customer(newvalue1_id, value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
+            CustomerDao obj = new CustomerDao();
             obj.update(objc);
-            
-            JOptionPane.showMessageDialog(null,"Updated");
+
+            JOptionPane.showMessageDialog(null, "Updated");
             new CustomerEdit().setVisible(true);
             dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null,e);      
-        }
-        
+
     }//GEN-LAST:event_txt_updateActionPerformed
 
     private void Customers_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Customers_tableMouseClicked
-        
-        int selectedRow=Customers_table.getSelectedRow();
-        DefaultTableModel model2 =(DefaultTableModel) Customers_table.getModel();
+
+        int selectedRow = Customers_table.getSelectedRow();
+        DefaultTableModel model2 = (DefaultTableModel) Customers_table.getModel();
         value_id.setText((model2.getValueAt(selectedRow, 0).toString()));
         value_full_name.setText((model2.getValueAt(selectedRow, 1).toString()));
         value_address.setText((model2.getValueAt(selectedRow, 2).toString()));
         value_phonenumber.setText((model2.getValueAt(selectedRow, 3).toString()));
         value_email.setText((model2.getValueAt(selectedRow, 4).toString()));
-         
+
     }//GEN-LAST:event_Customers_tableMouseClicked
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
-        String value1_id=value_id.getText();
-         int newvalue1_id=Integer.parseInt(value1_id);
-         CustomerDao customerDao=new CustomerDao();
-         customerDao.delete(newvalue1_id);
-         JOptionPane.showMessageDialog(null,"Deleted");
-         new CustomerEdit().setVisible(true);
-         dispose();
+            String value1_id = value_id.getText();
+            int newvalue1_id = Integer.parseInt(value1_id);
+            CustomerDao customerDao = new CustomerDao();
+            customerDao.delete(newvalue1_id);
+            JOptionPane.showMessageDialog(null, "Deleted");
+            new CustomerEdit().setVisible(true);
+            dispose();
+        } catch (Exception b) {
+            JOptionPane.showMessageDialog(null, b);
+
         }
-        catch (Exception b){
-            JOptionPane.showMessageDialog(null,b);
-            
-        }
-         
-         
+
+
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void value_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_value_idActionPerformed
-
-    private void value_addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_addressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_value_addressActionPerformed
-
-    
-    public void showCustomersTable(){
-        CustomerDao obj=new CustomerDao();
-        DefaultTableModel model=(DefaultTableModel) Customers_table.getModel();
-        int number=obj.getAll().size();
-        Object[] row=new Object[5];
-        for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getFullName();
-            row[2]=obj.getAll().get(i).getAddress();
-            row[3]=obj.getAll().get(i).getPhonenumber();
-            row[4]=obj.getAll().get(i).getEmail();
+    public void showCustomersTable() {
+        CustomerDao obj = new CustomerDao();
+        DefaultTableModel model = (DefaultTableModel) Customers_table.getModel();
+        int number = obj.getAll().size();
+        Object[] row = new Object[5];
+        for (int i = 0; i < number; i++) {
+            row[0] = obj.getAll().get(i).getId();
+            row[1] = obj.getAll().get(i).getFullName();
+            row[2] = obj.getAll().get(i).getAddress();
+            row[3] = obj.getAll().get(i).getPhonenumber();
+            row[4] = obj.getAll().get(i).getEmail();
             model.addRow(row);
         }
-        
+
     }
+
     /**
      * @param args the command line arguments
      */

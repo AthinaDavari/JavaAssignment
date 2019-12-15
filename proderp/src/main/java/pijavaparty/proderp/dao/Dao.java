@@ -29,14 +29,14 @@ public class Dao {
         String dbname = "proderp";
         for (StackTraceElement element : list) {
             if (element.getClassName().startsWith("org.junit.")) {
-                dbname = "test_proderp";
+                dbname = "erp_progIITest";
                 break;
             }
         }
         if (conn == null) {
             try {
                 String url = "jdbc:mysql://localhost:3306/" + dbname + "?serverTimezone=Etc/GMT-2";
-                conn = DriverManager.getConnection(url, "root", "12345"/*"st7136"*/);
+                conn = DriverManager.getConnection(url, "root", "12345");
 
             } catch (SQLException ex) {
                 ex.printStackTrace();

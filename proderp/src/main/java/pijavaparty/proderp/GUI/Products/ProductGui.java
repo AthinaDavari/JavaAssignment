@@ -2,6 +2,7 @@
 package pijavaparty.proderp.GUI.Products;
 
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.GUI.Menu;
 import pijavaparty.proderp.dao.ProductDao;
@@ -94,6 +95,7 @@ public class ProductGui extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("PRODUCT");
 
+        product_id.setEditable(false);
         product_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 product_idActionPerformed(evt);
@@ -195,8 +197,15 @@ public class ProductGui extends javax.swing.JFrame {
     }//GEN-LAST:event_update_deleteActionPerformed
 
     private void Show_IngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show_IngredientsActionPerformed
-        int id=Integer.parseInt(product_id.getText());
-        new Ingredients(id).setVisible(true);
+        try {
+            int id=Integer.parseInt(product_id.getText());
+            new Ingredients(id).setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Select a Product.","Error",  JOptionPane.ERROR_MESSAGE);
+            ProductGui stor = new ProductGui();
+            stor.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_Show_IngredientsActionPerformed
 
     private void product_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_product_idActionPerformed

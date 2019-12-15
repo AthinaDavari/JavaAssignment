@@ -2,6 +2,7 @@
 package pijavaparty.proderp.GUI.Products;
 
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import pijavaparty.proderp.GUI.LogIn;
 
 /**
@@ -119,8 +120,13 @@ public class AddProducts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AddIngredients(value_name.getText(),Double.parseDouble(value_price.getText())).setVisible(true);
-       dispose();
+       try {
+           new AddIngredients(value_name.getText(),Double.parseDouble(value_price.getText())).setVisible(true);
+            dispose();
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
+       }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked

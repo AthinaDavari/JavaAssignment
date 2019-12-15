@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.GUI.Storage.StorageMain;
 
 /**
  *
@@ -43,7 +44,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -64,6 +65,8 @@ public class RawMaterialEdit extends javax.swing.JFrame {
                 txt_updateActionPerformed(evt);
             }
         });
+
+        value_id.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -224,9 +227,11 @@ public class RawMaterialEdit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Updated");
             new RawMaterialEdit().setVisible(true);
             dispose();
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null,e);
+        }  catch (Exception e){
+            JOptionPane.showMessageDialog(null,"No details were inserted.","Error",  JOptionPane.ERROR_MESSAGE);
+            RawMaterialEdit stor = new RawMaterialEdit();
+            stor.setVisible(true);
+            dispose();
         }
 
     }//GEN-LAST:event_txt_updateActionPerformed

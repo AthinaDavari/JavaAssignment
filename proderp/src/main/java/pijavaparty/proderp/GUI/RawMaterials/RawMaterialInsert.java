@@ -9,6 +9,7 @@ import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.Supplier;
 import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.GUI.Storage.StorageUpdateQuantity;
 import pijavaparty.proderp.entity.RawMaterial;
 /**
  *
@@ -204,28 +205,35 @@ public class RawMaterialInsert extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String value2_name=value_name.getText();
-        String value_supplier_name=drop_down.getSelectedItem().toString();
-        SupplierDao supdao = new SupplierDao();
-        List<Supplier> suppliers;
-        suppliers=supdao.getAll();
-        Supplier sup = null;
-        int num=suppliers.size();
-        for(int i=0; i<num; i++){
-            if (suppliers.get(i).getFullName().equals(value_supplier_name)) {  
-                sup=suppliers.get(i);
-                
-                break;
+        try {
+            String value2_name=value_name.getText();
+            String value_supplier_name=drop_down.getSelectedItem().toString();
+            SupplierDao supdao = new SupplierDao();
+            List<Supplier> suppliers;
+            suppliers=supdao.getAll();
+            Supplier sup = null;
+            int num=suppliers.size();
+            for(int i=0; i<num; i++){
+                if (suppliers.get(i).getFullName().equals(value_supplier_name)) {  
+                    sup=suppliers.get(i);
+
+                    break;
+                }
             }
+            String value4_quantity=value_quantity.getText();
+            int newvalue4_quantity=Integer.parseInt(value4_quantity);
+            double value5_price=Double.parseDouble(value_price.getText());
+            RawMaterialDao rawdao=new RawMaterialDao();
+            RawMaterial rawmat = new RawMaterial(value2_name, newvalue4_quantity, value5_price, sup);
+            rawdao.insert(rawmat);
+            JOptionPane.showMessageDialog(null,"Added");
+            dispose();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Insert all the details.","Error",  JOptionPane.ERROR_MESSAGE);
+            StorageUpdateQuantity stor = new StorageUpdateQuantity();
+            stor.setVisible(true);
+            dispose();
         }
-        String value4_quantity=value_quantity.getText();
-        int newvalue4_quantity=Integer.parseInt(value4_quantity);
-        double value5_price=Double.parseDouble(value_price.getText());
-        RawMaterialDao rawdao=new RawMaterialDao();
-        RawMaterial rawmat = new RawMaterial(value2_name, newvalue4_quantity, value5_price, sup);
-        rawdao.insert(rawmat);
-        JOptionPane.showMessageDialog(null,"Added");
-        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void drop_downActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drop_downActionPerformed

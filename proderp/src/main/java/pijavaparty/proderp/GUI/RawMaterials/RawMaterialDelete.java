@@ -32,7 +32,7 @@ public class RawMaterialDelete extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -128,12 +128,21 @@ public class RawMaterialDelete extends javax.swing.JFrame {
     }//GEN-LAST:event_value_idActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String value1_id=value_id.getText();
-        int newvalue1_id=Integer.parseInt(value1_id);
-        RawMaterialDao rawdao=new RawMaterialDao();
-        rawdao.delete(newvalue1_id);
-        JOptionPane.showMessageDialog(null,"Deleted");
-        dispose();
+        try {
+            if (value_id.getText().equals(""))
+                throw new Exception();
+            String value1_id=value_id.getText();
+            int newvalue1_id=Integer.parseInt(value1_id);
+            RawMaterialDao rawdao=new RawMaterialDao();
+            rawdao.delete(newvalue1_id);
+            JOptionPane.showMessageDialog(null,"Deleted");
+            dispose();
+        }  catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Insert Quantity.","Error",  JOptionPane.ERROR_MESSAGE);
+            RawMaterialDelete stor = new RawMaterialDelete();
+            stor.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

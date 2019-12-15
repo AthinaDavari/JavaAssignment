@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.GUI.RawMaterials.RawMaterialDelete;
 import pijavaparty.proderp.dao.ProductDao;
 
 /**
@@ -89,6 +90,8 @@ public class EditProduct extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(products_table);
+
+        value_id.setEditable(false);
 
         Delete.setBackground(java.awt.SystemColor.activeCaption);
         Delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -195,10 +198,11 @@ public class EditProduct extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Deleted");
             new EditProduct().setVisible(true);
             dispose();
-        }
-        catch (Exception b){
-            JOptionPane.showMessageDialog(null,b);
-            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Insert Details.","Error",  JOptionPane.ERROR_MESSAGE);
+            EditProduct stor = new EditProduct();
+            stor.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_DeleteActionPerformed
 
@@ -219,9 +223,11 @@ public class EditProduct extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Updated");
             new EditProduct().setVisible(true);
             dispose();
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null,e);      
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Insert Details.","Error",  JOptionPane.ERROR_MESSAGE);
+            EditProduct stor = new EditProduct();
+            stor.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_UpdateActionPerformed
 
@@ -293,14 +299,8 @@ public class EditProduct extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable products_table;

@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.GUI;
 
+import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
@@ -21,6 +22,7 @@ public class AddUser extends javax.swing.JFrame {
      */
     public AddUser() {
         initComponents();
+        fillcombobox();
     }
 
     /**
@@ -40,8 +42,8 @@ public class AddUser extends javax.swing.JFrame {
         fullname = new javax.swing.JTextField();
         username = new javax.swing.JTextField();
         passwd = new javax.swing.JTextField();
-        role = new javax.swing.JTextField();
         add = new javax.swing.JButton();
+        role = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -64,18 +66,18 @@ public class AddUser extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Role:");
 
-        role.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roleActionPerformed(evt);
-            }
-        });
-
         add.setBackground(java.awt.SystemColor.activeCaption);
         add.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         add.setText("Add");
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addActionPerformed(evt);
+            }
+        });
+
+        role.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleActionPerformed(evt);
             }
         });
 
@@ -108,7 +110,7 @@ public class AddUser extends javax.swing.JFrame {
                             .addComponent(fullname, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                             .addComponent(username)
                             .addComponent(passwd)
-                            .addComponent(role)))
+                            .addComponent(role, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(271, 271, 271)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,19 +155,26 @@ public class AddUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1MouseClicked
 
-    private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roleActionPerformed
-
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
        try {
             String f= fullname.getText();
             String u = username.getText();
             String p = passwd.getText();
-            String r = role.getText();
-            User us1 = new User(f, u, p, r);
-            UserDao us2 = new UserDao();
-            us2.insert(us1);
+            String r=role.getSelectedItem().toString();
+            UserDao userdao = new UserDao();
+            List<User> users;
+            users=userdao.getAll();
+            User ur = null;
+            int num=users.size();
+            for(int i=0; i<num; i++){
+                if (users.get(i).getFullName().equals(r)) {  
+                    ur=users.get(i);
+                    break;
+                }
+            }
+            UserDao us1 = new UserDao();
+            User us2 = new User(f, u, p, r);
+            us1.insert(us2);
             JOptionPane.showMessageDialog(rootPane,"User Added" );
             AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
@@ -176,6 +185,24 @@ public class AddUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addActionPerformed
 
+    private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleActionPerformed
+
+    private void fillcombobox(){
+        UserDao userdao = new UserDao();
+        List<User> users;
+        users = userdao.getAll();
+        int size=userdao.getAll().size();
+        try{
+            for(int i=0; i<size; i++){
+                role.addItem(users.get(i).getFullName());
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -223,7 +250,7 @@ public class AddUser extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField passwd;
-    private javax.swing.JTextField role;
+    private javax.swing.JComboBox<String> role;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,3 +26,6 @@ insert into Customers (full_name,address,phonenumber,email)
 values ("Ora Gia Podilato", "Tositsa 45", 2109237849, "info@oragiapodilato.com"),
        ("Mouzouris", "Markou 14", 2104534790, "info@mouzouris.com"),
        ("BikeMall", "Patision 18", 2136789267, "info@bikemall.com");
+insert into raw_materials(name, supplier_id, quantity, price)
+values ("plastic", 1, 47, 0.25),
+       ("metal", 2, 32, 1.2)

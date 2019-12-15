@@ -74,7 +74,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     }
     
     
-    public void insertProductAndProductsRecipe(Product p,List<ProductRawMaterial> rml) {
+    public void insertProductAndProductsRecipe(Product p, List<ProductRawMaterial> rml) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(INSERT);

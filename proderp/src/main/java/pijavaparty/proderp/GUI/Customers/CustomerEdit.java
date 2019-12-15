@@ -130,6 +130,15 @@ public class CustomerEdit extends javax.swing.JFrame {
             }
         });
 
+        valid_Fullname.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Fullname.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_Phonenumber.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Phonenumber.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_Email.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Email.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,6 +237,7 @@ public class CustomerEdit extends javax.swing.JFrame {
 
     private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
         try {
+            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText()) ){
             String value1_id = value_id.getText();
             int newvalue1_id = Integer.parseInt(value1_id);
             String value2_full_name = value_full_name.getText();
@@ -243,6 +253,9 @@ public class CustomerEdit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Updated");
             new CustomerEdit().setVisible(true);
             dispose();
+        } else {
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

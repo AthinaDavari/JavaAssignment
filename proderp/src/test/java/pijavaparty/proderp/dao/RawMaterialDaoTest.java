@@ -42,7 +42,9 @@ public class RawMaterialDaoTest {
         Supplier s2 = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
         expResult.add(new RawMaterial(1, "plastic", 47, 0.25, s1));
         expResult.add(new RawMaterial(2, "metal", 32, 1.2, s2));
-//        expResult.add(e)
+        expResult.add(new RawMaterial(3, "wood", 17, 3.7, s2));
+        expResult.add(new RawMaterial(4, "Plastic", 47, 3.25, s2));
+        expResult.add(new RawMaterial(5, "Titanium", 32, 15.2, s1));
         List<RawMaterial> result = instance.getAll();
         assertEquals(expResult, result);
     }
@@ -68,11 +70,11 @@ public class RawMaterialDaoTest {
     public void ctestInsert() {
         System.out.println("insert");
         Supplier s1 = new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr");
-        RawMaterial r = new RawMaterial("titanium", 54, 1.8, s1);
+        RawMaterial r = new RawMaterial("steel", 54, 1.8, s1);
         RawMaterialDao instance = new RawMaterialDao();
         instance.insert(r);
-        r.setId(3);
-        assertEquals(r, instance.getById(3));
+        r.setId(6);
+        assertEquals(r, instance.getById(6));
     }
 
 //    /**
@@ -184,18 +186,17 @@ public class RawMaterialDaoTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-//
-//    /**
-//     * Test of delete method, of class RawMaterialDao.
-//     */
-//    @Test
-//    public void testDelete() {
-//        System.out.println("delete");
-//        int id = 0;
-//        RawMaterialDao instance = new RawMaterialDao();
-//        instance.delete(id);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//    
+
+    /**
+     * Test of delete method, of class RawMaterialDao.
+     */
+    @Test
+    public void testDelete() {
+        System.out.println("delete");
+        int id = 2;
+        RawMaterialDao instance = new RawMaterialDao();
+        instance.delete(id);
+        assertEquals(false, instance.getAll().contains(instance.getById(id)));
+    }
+    
 }

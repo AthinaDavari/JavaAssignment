@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,7 +37,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.getInt(5)));
+                corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4)), rs.getInt(5)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);

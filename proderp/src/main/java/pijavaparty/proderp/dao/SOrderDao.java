@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -40,7 +42,8 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                sorders.add(new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4)));
+                // Not using directly rs.getTimestamp(4) due to Daylight Saving Time auto conversion
+                sorders.add(new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +63,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
-                c = new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4));
+                c = new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);

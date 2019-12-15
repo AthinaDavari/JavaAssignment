@@ -1,4 +1,4 @@
-drop schema erp_progIITest;
+-- drop schema erp_progIITest;
 CREATE DATABASE erp_progIITest;
 USE erp_progIITest;
 

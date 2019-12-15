@@ -29,8 +29,6 @@ public class UserDao extends Dao {
     private static final String GETALL = "SELECT full_name, user_name, role FROM Users "
                                        + "WHERE is_deleted=false";
     private static final String INSERT = "INSERT INTO Users(full_name, user_name, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
-    private static final String UPDATE = "UPDATE Users SET full_name = ?, password = aes_encrypt(?, \"prod\"), role = ? "
-                                       + "WHERE user_name = ?";
     private static final String DELETE = "UPDATE Users SET is_deleted = true WHERE user_name = ?";
     private static final String PERMISSIONTODELETE = "SELECT COUNT(*) FROM users WHERE role = 'admin'";
 
@@ -128,27 +126,6 @@ public class UserDao extends Dao {
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-    }
-
-    /**
-     * Changes/Updates the fields of a user.
-     *
-     * @param u
-     */
-    public void update(User u) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(UPDATE);
-            pst.setString(1, u.getFullName());
-            pst.setString(2, u.getPassword());
-            pst.setString(3, u.getRole());
-            pst.setString(4, u.getUsername());
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeStatementAndResultSet(pst);
         }

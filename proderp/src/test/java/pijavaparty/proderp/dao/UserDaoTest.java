@@ -23,13 +23,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
 import pijavaparty.proderp.entity.User;
 
 /**
  *
- * @author athina
+ * @author Athina Davari
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserDaoTest {
     
     public UserDaoTest() {
@@ -56,7 +59,7 @@ public class UserDaoTest {
 
         try {
             String[] queryTable = queries.split(";");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erp_progIITest?serverTimezone=UTC", "root", "12345");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erp_progIITest?serverTimezone=Etc/GMT-2", "root", "12345");
             for (String query : queryTable) {
                 Statement st = conn.createStatement();
                 st.execute(query);
@@ -128,6 +131,7 @@ public class UserDaoTest {
         assertEquals(result, expResult);
     }
 
+    
     /**
      * Test of insert method, of class UserDao.
      */

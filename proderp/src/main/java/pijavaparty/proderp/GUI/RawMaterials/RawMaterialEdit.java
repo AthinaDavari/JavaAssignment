@@ -1,6 +1,7 @@
 
 package pijavaparty.proderp.GUI.RawMaterials;
 
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -227,8 +228,13 @@ public class RawMaterialEdit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Updated");
             new RawMaterialEdit().setVisible(true);
             dispose();
-        }  catch (Exception e){
+        }  catch (NumberFormatException e){
             JOptionPane.showMessageDialog(null,"No details were inserted.","Error",  JOptionPane.ERROR_MESSAGE);
+            RawMaterialEdit stor = new RawMaterialEdit();
+            stor.setVisible(true);
+            dispose();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Wrong details.","Error",  JOptionPane.ERROR_MESSAGE);
             RawMaterialEdit stor = new RawMaterialEdit();
             stor.setVisible(true);
             dispose();
@@ -243,7 +249,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
             for(int i=0; i<number; i++){
                 row[0]=obj.getAll().get(i).getId();
                 row[1]=obj.getAll().get(i).getName();
-                row[2]=obj.getAll().get(i).getSupplier().getFullName();
+                row[2]=obj.getAll().get(i).getSupplier().getId();
                 row[3]=obj.getAll().get(i).getPrice();
                 model.addRow(row);
             }

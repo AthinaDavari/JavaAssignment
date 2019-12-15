@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sql.DataSource;
 import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.Supplier;
 
@@ -29,6 +31,19 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
                                        + "WHERE id = ? AND is_deleted = false";
     private static final String DELETEPERM = "DELETE FROM Suppliers WHERE id = ?";
     private static final String DELETE = "UPDATE Suppliers SET is_deleted = true WHERE id = ?";
+    
+    Connection conn;
+
+    public SupplierDao() {
+    }
+
+    public SupplierDao(DataSource ds) {
+        try {
+            conn = ds.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public List<Supplier> getAll() {

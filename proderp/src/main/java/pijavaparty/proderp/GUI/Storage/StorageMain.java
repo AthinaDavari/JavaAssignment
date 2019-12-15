@@ -1,6 +1,7 @@
 package pijavaparty.proderp.GUI.Storage;
 
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
@@ -56,6 +57,7 @@ public class StorageMain extends javax.swing.JFrame {
             }
         });
 
+        product_id.setEditable(false);
         product_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 product_idActionPerformed(evt);
@@ -172,8 +174,18 @@ public class StorageMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void editCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerActionPerformed
-        StorageUpdateQuantity storup = new StorageUpdateQuantity(id, prodorraw);
-        storup.setVisible(true);
+        try {
+           if (prodorraw.equals(""))
+               throw new Exception();
+           StorageUpdateQuantity storup = new StorageUpdateQuantity(id, prodorraw);
+            storup.setVisible(true); 
+        }  catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Choose Product or Raw Material.","Error",  JOptionPane.ERROR_MESSAGE);
+            StorageMain stor = new StorageMain();
+            stor.setVisible(true);
+            dispose();
+        }
+        
     }//GEN-LAST:event_editCustomerActionPerformed
 
     private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked

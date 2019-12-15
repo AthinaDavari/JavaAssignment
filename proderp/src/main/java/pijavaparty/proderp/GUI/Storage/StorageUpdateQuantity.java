@@ -1,6 +1,7 @@
 package pijavaparty.proderp.GUI.Storage;
 
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.GUI.LogIn;
@@ -41,7 +42,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -146,16 +147,23 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
 
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
         //Method that excequtes the quantity update of a product in the sql data base
-        int quant = Integer.parseInt(value_quantity.getText());
-        if (prodorraw.equals("Product")) {
-            ProductDao productDao=new ProductDao();
-            Product prod = productDao.getById(id);
-            ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, prod.getQuantity() - quant);
-            prodingup.setVisible(true);
-            productDao.updateQuantity(id,quant);
-        } else {
-            RawMaterialDao rawmaterialDao=new RawMaterialDao();
-            rawmaterialDao.updateQuantity(id,quant);
+        try {   
+            int quant = Integer.parseInt(value_quantity.getText());
+            if (prodorraw.equals("Product")) {
+                ProductDao productDao=new ProductDao();
+                Product prod = productDao.getById(id);
+                ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, prod.getQuantity() - quant);
+                prodingup.setVisible(true);
+                productDao.updateQuantity(id,quant);
+            } else {
+                RawMaterialDao rawmaterialDao=new RawMaterialDao();
+                rawmaterialDao.updateQuantity(id,quant);
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Insert quantity.","Error",  JOptionPane.ERROR_MESSAGE);
+            StorageUpdateQuantity stor = new StorageUpdateQuantity();
+            stor.setVisible(true);
+            dispose();
         }
         dispose();
     }//GEN-LAST:event_update_buttonActionPerformed

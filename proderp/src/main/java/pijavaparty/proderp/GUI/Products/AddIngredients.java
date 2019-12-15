@@ -73,7 +73,7 @@ public class AddIngredients extends javax.swing.JFrame {
         value_quantity = new javax.swing.JTextField();
         drop_down = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jButton1.setText("Save");
@@ -147,73 +147,81 @@ public class AddIngredients extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     //method for add ingredients but not save
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String value_name = drop_down.getSelectedItem().toString();
-        String stringnamearray[];
-        stringnamearray = value_name.split("[^0-9]");
-        String stringname="";
-        for (String stringnamearray1 : stringnamearray) {
-            stringname = stringname + stringnamearray1;
-        }
-        selected=Integer.parseInt(stringname);
-        int quant = Integer.parseInt(value_quantity.getText());
-        RawMaterialDao rawdao = new RawMaterialDao();
-        List<RawMaterial> rawmaterial;
-        rawmaterial = rawdao.getAll();
-        RawMaterial rawmat = null;
-        int num = rawmaterial.size();
-        int a;
-        for (int i = 0; i < num; i++) {
-            a = rawmaterial.get(i).getId();
-            if (a==selected) {
-                rawmat = rawmaterial.get(i);
-                break;
+        try {
+            String value_name = drop_down.getSelectedItem().toString();
+            String stringnamearray[];
+            stringnamearray = value_name.split("[^0-9]");
+            String stringname="";
+            for (String stringnamearray1 : stringnamearray) {
+                stringname = stringname + stringnamearray1;
             }
+            selected=Integer.parseInt(stringname);
+            int quant = Integer.parseInt(value_quantity.getText());
+            RawMaterialDao rawdao = new RawMaterialDao();
+            List<RawMaterial> rawmaterial;
+            rawmaterial = rawdao.getAll();
+            RawMaterial rawmat = null;
+            int num = rawmaterial.size();
+            int a;
+            for (int i = 0; i < num; i++) {
+                a = rawmaterial.get(i).getId();
+                if (a==selected) {
+                    rawmat = rawmaterial.get(i);
+                    break;
+                }
+            }
+            String value4_quantity = value_quantity.getText();
+            ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
+            prodraw.add(prodrawmat);
+            new AddIngredients(prodraw, prod).setVisible(true);
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
         }
-        String value4_quantity = value_quantity.getText();
-        ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
-        prodraw.add(prodrawmat);
-        new AddIngredients(prodraw, prod).setVisible(true);
-        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
     //method for adding one more ingredient and then save
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String value_name = drop_down.getSelectedItem().toString();
-        String stringnamearray[];
-        stringnamearray = value_name.split("[^0-9]");
-        String stringname="";
-        for (String stringnamearray1 : stringnamearray) {
-            stringname = stringname + stringnamearray1;
-        }
-        selected=Integer.parseInt(stringname);
-        int quant = Integer.parseInt(value_quantity.getText());
-        RawMaterialDao rawdao = new RawMaterialDao();
-        List<RawMaterial> rawmaterial;
-        rawmaterial = rawdao.getAll();
-        RawMaterial rawmat = null;
-        int num = rawmaterial.size();
-        int a;
-        for (int i = 0; i < num; i++) {
-            a = rawmaterial.get(i).getId();
-            if (a==selected) {
-                rawmat = rawmaterial.get(i);
-                break;
+        try {
+            String value_name = drop_down.getSelectedItem().toString();
+            String stringnamearray[];
+            stringnamearray = value_name.split("[^0-9]");
+            String stringname="";
+            for (String stringnamearray1 : stringnamearray) {
+                stringname = stringname + stringnamearray1;
             }
-        }
-        ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
-        ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
-        prodraw.add(prodrawmat);
-        ProductDao obj4 = new ProductDao();
-        if (prod.getId() == -1) {
-            ProductDao proddao = new ProductDao();
-            obj4.insertProductAndProductsRecipe(prod, prodraw);
-        }else {
-            for(int i=0;i<prodraw.size();i++) {
-                prodrawdao.insert(prodraw.get(i));
+            selected=Integer.parseInt(stringname);
+            int quant = Integer.parseInt(value_quantity.getText());
+            RawMaterialDao rawdao = new RawMaterialDao();
+            List<RawMaterial> rawmaterial;
+            rawmaterial = rawdao.getAll();
+            RawMaterial rawmat = null;
+            int num = rawmaterial.size();
+            int a;
+            for (int i = 0; i < num; i++) {
+                a = rawmaterial.get(i).getId();
+                if (a==selected) {
+                    rawmat = rawmaterial.get(i);
+                    break;
+                }
             }
+            ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
+            ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
+            prodraw.add(prodrawmat);
+            ProductDao obj4 = new ProductDao();
+            if (prod.getId() == -1) {
+                ProductDao proddao = new ProductDao();
+                obj4.insertProductAndProductsRecipe(prod, prodraw);
+            }else {
+                for(int i=0;i<prodraw.size();i++) {
+                    prodrawdao.insert(prodraw.get(i));
+                }
+            }
+            prodraw.clear();
+            JOptionPane.showMessageDialog(null, "Added");
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
         }
-        prodraw.clear();
-        JOptionPane.showMessageDialog(null, "Added");
-        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     //fill up the drop down with raw materials and ids from the data base
     private void fillcombo() {

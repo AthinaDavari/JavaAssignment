@@ -2,9 +2,13 @@
 package pijavaparty.proderp.GUI.Products;
 
 import java.awt.Toolkit;
+import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
+import pijavaparty.proderp.dao.RawMaterialDao;
+import pijavaparty.proderp.entity.ProductRawMaterial;
+import pijavaparty.proderp.entity.RawMaterial;
 
 /**
  *
@@ -21,6 +25,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
         this.id=id;
         initComponents();
         seticon();
+        fillcombo();
     }
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -30,23 +35,20 @@ public class DeleteIngredients extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        value_id = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        drop_down = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Type the Id you want to delete:");
-
-        value_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                value_idActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Select the Id you want to delete:");
 
         jButton1.setText("Delete");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +56,35 @@ public class DeleteIngredients extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(371, 371, 371)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(331, 331, 331)
+                        .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(361, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jButton1)
+                .addGap(121, 121, 121))
+        );
 
         jMenu2.setForeground(new java.awt.Color(51, 51, 255));
         jMenu2.setText("Log Out");
@@ -79,43 +110,36 @@ public class DeleteIngredients extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(298, 298, 298)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(value_id)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(95, 95, 95)))
-                .addContainerGap(298, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jButton1)
-                .addContainerGap(131, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void value_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_idActionPerformed
-
-    }//GEN-LAST:event_value_idActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String value1_id=value_id.getText();
-        int newvalue1_id=Integer.parseInt(value1_id);
-        ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
-        prodrawdao.delete(id, newvalue1_id);
-        JOptionPane.showMessageDialog(null,"Deleted");
-        dispose();
+        try {
+            String value1_id = drop_down.getSelectedItem().toString();
+            String stringnamearray[];
+            stringnamearray = value1_id.split("[^0-9]");
+            String stringname="";
+            for (String stringnamearray1 : stringnamearray) {
+                value1_id = stringname + stringnamearray1;
+            }
+            int newvalue1_id=Integer.parseInt(value1_id);
+            ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
+            prodrawdao.delete(id, newvalue1_id);
+            JOptionPane.showMessageDialog(null,"Deleted");
+            dispose();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Choose Id.","Error",  JOptionPane.ERROR_MESSAGE);
+            EditProduct stor = new EditProduct();
+            stor.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
@@ -129,7 +153,16 @@ public class DeleteIngredients extends javax.swing.JFrame {
         ingredients.setVisible(true);
         dispose();      
     }//GEN-LAST:event_jMenu5MouseClicked
-
+    private void fillcombo() {
+        ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
+        ProductRawMaterialDao rawdao = new ProductRawMaterialDao();
+        List<ProductRawMaterial> rawlist = prodrawdao.getMaterialsPerProduct(id);
+        int number=rawlist.size();
+        for(int i=0; i<number; i++){
+                System.out.println(rawlist.get(i).getRawMaterial().getName());
+                drop_down.addItem(rawlist.get(i).getRawMaterial().getId()+" - "+rawlist.get(i).getRawMaterial().getName());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -166,11 +199,12 @@ public class DeleteIngredients extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> drop_down;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField value_id;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

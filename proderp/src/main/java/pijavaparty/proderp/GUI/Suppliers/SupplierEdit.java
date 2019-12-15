@@ -26,10 +26,12 @@ public class SupplierEdit extends javax.swing.JFrame {
         showSuppliersTable();
         seticon();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -225,72 +227,71 @@ public class SupplierEdit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void value_full_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_full_nameKeyReleased
-        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText())){
+        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText())) {
             valid_Fullname.setText("Name is invalid!");
-        }
-        else {
+        } else {
             valid_Fullname.setText(null);
         }
     }//GEN-LAST:event_value_full_nameKeyReleased
 
     private void value_phonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_phonenumberKeyReleased
-        if (ValidVariables.isValidPhonenumber(value_phonenumber.getText())==false){
+        if (!ValidVariables.isValidPhonenumber(value_phonenumber.getText())) {
             valid_Phonenumber.setText("Phonenumber is invalid!");
-        }else {
+        } else {
             valid_Phonenumber.setText(null);
         }
     }//GEN-LAST:event_value_phonenumberKeyReleased
 
     private void value_emailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_emailKeyReleased
-        if (!ValidVariables.isValidEmailAddress(value_email.getText())){
+        if (!ValidVariables.isValidEmailAddress(value_email.getText())) {
             valid_Email.setText("Email is invalid!");
-        }else {
+        } else {
             valid_Email.setText(null);
         }
     }//GEN-LAST:event_value_emailKeyReleased
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try{
-            String value1_id=value_id.getText();
-            int newvalue1_id=Integer.parseInt(value1_id);
-            String value2_full_name=value_full_name.getText();
-            String value3_address=value_address.getText();
-            String value4_phonenumber=value_phonenumber.getText();
-            long newvalue4_phonenumber=Long.parseLong(value4_phonenumber);
-            String value5_email=value_email.getText();
-            
-            Supplier objc=new Supplier(newvalue1_id,value2_full_name,value3_address,newvalue4_phonenumber,value5_email);
-            SupplierDao obj=new SupplierDao();
-            obj.update(objc);
-            
-            JOptionPane.showMessageDialog(null,"Updated");
-            new SupplierEdit().setVisible(true);
-            dispose();
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null,e);      
+        try {
+            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText())) {
+                String value1_id = value_id.getText();
+                int newvalue1_id = Integer.parseInt(value1_id);
+                String value2_full_name = value_full_name.getText();
+                String value3_address = value_address.getText();
+                String value4_phonenumber = value_phonenumber.getText();
+                long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
+                String value5_email = value_email.getText();
+                Supplier objc = new Supplier(newvalue1_id, value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
+                SupplierDao obj = new SupplierDao();
+                obj.update(objc);
+                JOptionPane.showMessageDialog(null, "Updated");
+                new SupplierEdit().setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_updateActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
-        String value1_id=value_id.getText();
-         int newvalue1_id=Integer.parseInt(value1_id);
-         SupplierDao customerDao=new SupplierDao();
-         customerDao.delete(newvalue1_id);
-         JOptionPane.showMessageDialog(null,"Deleted");
-         new SupplierEdit().setVisible(true);
-         dispose();
-        }
-        catch (Exception b){
-            JOptionPane.showMessageDialog(null,b);
-            
+            String value1_id = value_id.getText();
+            int newvalue1_id = Integer.parseInt(value1_id);
+            SupplierDao customerDao = new SupplierDao();
+            customerDao.delete(newvalue1_id);
+            JOptionPane.showMessageDialog(null, "Deleted");
+            new SupplierEdit().setVisible(true);
+            dispose();
+        } catch (Exception b) {
+            JOptionPane.showMessageDialog(null, b);
+
         }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void Suppliers_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Suppliers_tableMouseClicked
-        int selectedRow=Suppliers_table.getSelectedRow();
-        DefaultTableModel model2 =(DefaultTableModel) Suppliers_table.getModel();
+        int selectedRow = Suppliers_table.getSelectedRow();
+        DefaultTableModel model2 = (DefaultTableModel) Suppliers_table.getModel();
         value_id.setText((model2.getValueAt(selectedRow, 0).toString()));
         value_full_name.setText((model2.getValueAt(selectedRow, 1).toString()));
         value_address.setText((model2.getValueAt(selectedRow, 2).toString()));
@@ -301,20 +302,21 @@ public class SupplierEdit extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-     public void showSuppliersTable(){
-    SupplierDao obj=new SupplierDao();
-    DefaultTableModel model=(DefaultTableModel) Suppliers_table.getModel();
-        int number=obj.getAll().size();
-        Object[] row=new Object[5];
-        for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getFullName();
-            row[2]=obj.getAll().get(i).getAddress();
-            row[3]=obj.getAll().get(i).getPhonenumber();
-            row[4]=obj.getAll().get(i).getEmail();
+    public void showSuppliersTable() {
+        SupplierDao obj = new SupplierDao();
+        DefaultTableModel model = (DefaultTableModel) Suppliers_table.getModel();
+        int number = obj.getAll().size();
+        Object[] row = new Object[5];
+        for (int i = 0; i < number; i++) {
+            row[0] = obj.getAll().get(i).getId();
+            row[1] = obj.getAll().get(i).getFullName();
+            row[2] = obj.getAll().get(i).getAddress();
+            row[3] = obj.getAll().get(i).getPhonenumber();
+            row[4] = obj.getAll().get(i).getEmail();
             model.addRow(row);
         }
-}
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

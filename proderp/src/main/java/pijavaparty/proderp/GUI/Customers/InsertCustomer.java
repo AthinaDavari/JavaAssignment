@@ -26,11 +26,13 @@ public class InsertCustomer extends javax.swing.JFrame {
     public InsertCustomer() {
         initComponents();
         seticon();
-      
+
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -181,50 +183,51 @@ public class InsertCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{    
-        
-            
-            String value2_full_name=value_FullName.getText();
-            String value3_address=value_Address.getText();
-            String value4_phonenumber=value_Phonenumber.getText();
-            long newvalue4_phonenumber=Long.parseLong(value4_phonenumber);
-            String value5_email=value_Email.getText();
-            
-            Customer ant=new Customer(value2_full_name,value3_address,newvalue4_phonenumber,value5_email);
-            CustomerDao ant2=new CustomerDao();
-            ant2.insert(ant);
-            
-             JOptionPane.showMessageDialog(null,"Saved");
-            
+        try {
+
+            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_FullName.getText()) && ValidVariables.isValidPhonenumber(value_Phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_Email.getText())) {
+                String value2_full_name = value_FullName.getText();
+                String value3_address = value_Address.getText();
+                String value4_phonenumber = value_Phonenumber.getText();
+                long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
+                String value5_email = value_Email.getText();
+
+                Customer ant = new Customer(value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
+                CustomerDao ant2 = new CustomerDao();
+                ant2.insert(ant);
+
+                JOptionPane.showMessageDialog(null, "Saved");
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+            }
+
+        } catch (Exception a) {
+            JOptionPane.showMessageDialog(null, a);
         }
-        catch (Exception a){
-            JOptionPane.showMessageDialog(null,a);
-        }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void value_FullNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_FullNameKeyReleased
-       
-        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_FullName.getText())){
+
+        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_FullName.getText())) {
             valid_Fullname.setText("Name is invalid!");
-        }
-        else {
+        } else {
             valid_Fullname.setText(null);
         }
     }//GEN-LAST:event_value_FullNameKeyReleased
 
     private void value_PhonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_PhonenumberKeyReleased
-        if (ValidVariables.isValidPhonenumber(value_Phonenumber.getText())==false){
+        if (!ValidVariables.isValidPhonenumber(value_Phonenumber.getText())) {
             valid_Phonenumber.setText("Phonenumber is invalid!");
-        }else {
+        } else {
             valid_Phonenumber.setText(null);
         }
     }//GEN-LAST:event_value_PhonenumberKeyReleased
 
     private void value_EmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_EmailKeyReleased
-        if (!ValidVariables.isValidEmailAddress(value_Email.getText())){
+        if (!ValidVariables.isValidEmailAddress(value_Email.getText())) {
             valid_Email.setText("Email is invalid!");
-        }else {
+        } else {
             valid_Email.setText(null);
         }
     }//GEN-LAST:event_value_EmailKeyReleased
@@ -232,8 +235,6 @@ public class InsertCustomer extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

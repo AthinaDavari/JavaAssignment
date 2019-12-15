@@ -44,3 +44,15 @@ insert into Customers (full_name,address,phonenumber,email)
 values ("Ora Gia Podilato", "Tositsa 45", 2109237849, "info@oragiapodilato.com"),
        ("Mouzouris", "Markou 14", 2104534790, "info@mouzouris.com"),
        ("BikeMall", "Patision 18", 2136789267, "info@bikemall.com");
+insert into products(name, quantity, price)
+values("Orient City Classic", 10, 479.65),
+      ("GT Air 20", 32, 567.34),
+      ("Bullet Freestyle 20", 25, 235.69),
+      ("Olmo Graffito 20", 33, 800.99),
+      ("Scott Volt X20", 50, 1000.0);
+insert into raw_materials(name, supplier_id, quantity, price) 
+values ("plastic", 4, 47, 0.25),
+       ("metal", 3, 32, 1.2),
+       ("wood", 3, 17, 3.7),
+       ("Plastic", 3, 47, 3.25),
+       ("Titanium", 1, 32, 15.2);

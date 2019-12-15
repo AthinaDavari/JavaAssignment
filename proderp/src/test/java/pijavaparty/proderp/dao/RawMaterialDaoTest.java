@@ -42,6 +42,7 @@ public class RawMaterialDaoTest {
         Supplier s2 = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
         expResult.add(new RawMaterial(1, "plastic", 47, 0.25, s1));
         expResult.add(new RawMaterial(2, "metal", 32, 1.2, s2));
+//        expResult.add(e)
         List<RawMaterial> result = instance.getAll();
         assertEquals(expResult, result);
     }

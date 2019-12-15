@@ -129,7 +129,7 @@ public class SOrderDaoTest {
         String status = "delivered";
         SOrderDao instance = new SOrderDao();
         instance.updateStatus(5, status);
-        assertEquals(status, instance.getById(5).getStatus());
+        assertEquals(status, instance.getById(orderId).getStatus());
     }
 
     /**
@@ -141,7 +141,7 @@ public class SOrderDaoTest {
         int id = 5;
         SOrderDao instance = new SOrderDao();
         instance.delete(id);
-        assertEquals(null, instance.getById(5));
+        assertEquals(null, instance.getById(id));
     }
 
 }

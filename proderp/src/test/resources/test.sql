@@ -15,3 +15,8 @@ insert into users(full_name, user_name, password, role)
 values  ("athina", "ath", aes_encrypt("asdfg","prod"), 'admin'),
         ("maria","maria", aes_encrypt("1234","prod"),'admin'),
         ("natalia", "nat", aes_encrypt("12345", "prod"),'simpleuser');
+insert into s_orders(supplier_id, status, created_at)
+values (1, "pending", "2019-12-14 20:02:43"),
+       (2, "delivered", "2018-11-13 11:04:45"),
+       (2, "pending", "2019-08-12 21:02:01"),
+       (1, "delivered", "2019-08-16 09:02:43");

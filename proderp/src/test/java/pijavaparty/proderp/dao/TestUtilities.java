@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
  * @author Natalia
  */
 public class TestUtilities {
-    
+
     public static void runTestScript() {
         String queries = "";
 
@@ -53,5 +52,5 @@ public class TestUtilities {
             Logger.getLogger(SupplierDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

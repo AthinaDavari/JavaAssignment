@@ -216,7 +216,6 @@ public class EditProduct extends javax.swing.JFrame {
             
             ProductDao proddao=new ProductDao();
             proddao.updateName(newvalue1_id, value2_name);
-            proddao.updateName(newvalue1_id, value2_name);
             proddao.updatePrice(newvalue1_id, newvalue4_price);
             
             

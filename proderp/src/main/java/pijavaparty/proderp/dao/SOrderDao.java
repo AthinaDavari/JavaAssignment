@@ -25,6 +25,7 @@ import pijavaparty.proderp.entity.SOrderItem;
 public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
 
     private static final String GETALL = "SELECT * FROM S_Orders";
+    private static final String GETALLPENDINGORDERS = "SELECT * FROM S_Orders WHERE status = 'pending'";
     private static final String GETBYID = "SELECT * FROM S_Orders WHERE id = ?";
     private static final String INSERT = "INSERT INTO S_Orders(supplier_id,status) VALUES(?,?)";
     private static final String DELETE = "DELETE FROM S_Orders WHERE id = ?";
@@ -41,6 +42,26 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         try {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
+            while (rs.next()) {
+                // Not using directly rs.getTimestamp(4) due to Daylight Saving Time auto conversion
+                sorders.add(new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4))));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, st);
+        }
+        return sorders;
+    }
+    
+    public List<SOrder> getAllPendingOrders() {
+        List<SOrder> sorders = new LinkedList();
+        SupplierDao s = new SupplierDao();
+        ResultSet rs = null;
+        Statement st = null;
+        try {
+            st = getConnection().createStatement();
+            rs = st.executeQuery(GETALLPENDINGORDERS);
             while (rs.next()) {
                 // Not using directly rs.getTimestamp(4) due to Daylight Saving Time auto conversion
                 sorders.add(new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4))));

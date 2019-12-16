@@ -105,12 +105,9 @@ values("INA PLASTICS SA", "A.Papadreou 30", 2105678934, "info@inaplastics.gr"),
       
 -- delete from products;
 insert into products(name, quantity, price)
-values("Merenda Pavlidis", 10, 47.65),
-	  ("Nucrema ION", 32, 125.34),
-      ("Nutella Kinder", 25, "87.69"),
-      ("Orient City Classic", 10, 479.65),
+values("Orient City Classic", 10, 479.65),
 	  ("GT Air 20", 32, 567.34),
-      ("Bullet Freestyle 20", 25, "235.69"),
+      ("Bullet Freestyle 20", 25, 235.69),
       ("Olmo Graffito 20", 33, 800.99),
       ("Scott Volt X20", 50, 1000.0),
       ("Regina Urban Freestyle 20", 15, 540.56),

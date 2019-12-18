@@ -42,7 +42,6 @@ public class EditProduct extends javax.swing.JFrame {
         value_id = new javax.swing.JTextField();
         Delete = new javax.swing.JButton();
         jMenuBar4 = new javax.swing.JMenuBar();
-        jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -102,17 +101,8 @@ public class EditProduct extends javax.swing.JFrame {
             }
         });
 
-        jMenu5.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu5.setText("Log Out");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
-            }
-        });
-        jMenuBar4.add(jMenu5);
-
         jMenu6.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu6.setText("Back");
+        jMenu6.setText("Cancel");
         jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu6MouseClicked(evt);
@@ -229,12 +219,6 @@ public class EditProduct extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UpdateActionPerformed
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        LogIn login = new LogIn();
-        login.setVisible(true);
-        dispose(); 
-    }//GEN-LAST:event_jMenu5MouseClicked
-
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
         ProductGui productGui = new ProductGui();
         productGui.setVisible(true);
@@ -297,7 +281,6 @@ public class EditProduct extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JScrollPane jScrollPane1;

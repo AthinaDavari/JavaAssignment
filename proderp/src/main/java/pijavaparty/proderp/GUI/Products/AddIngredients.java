@@ -72,6 +72,8 @@ public class AddIngredients extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         value_quantity = new javax.swing.JTextField();
         drop_down = new javax.swing.JComboBox<>();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -96,6 +98,17 @@ public class AddIngredients extends javax.swing.JFrame {
         jLabel2.setText("Name-Id:");
 
         jLabel3.setText("Quantity: ");
+
+        jMenu5.setForeground(new java.awt.Color(51, 51, 255));
+        jMenu5.setText("Cancel");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu5);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,7 +145,7 @@ public class AddIngredients extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(value_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -223,6 +236,12 @@ public class AddIngredients extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        ProductGui rawmenu = new ProductGui();
+        rawmenu.setVisible(true);
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu5MouseClicked
     //fill up the drop down with raw materials and ids from the data base
     private void fillcombo() {
         RawMaterialDao rawdao = new RawMaterialDao();
@@ -295,6 +314,8 @@ public class AddIngredients extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField value_quantity;
     // End of variables declaration//GEN-END:variables
 }

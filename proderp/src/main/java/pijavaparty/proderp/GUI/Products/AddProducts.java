@@ -30,7 +30,6 @@ public class AddProducts extends javax.swing.JFrame {
         value_price = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,17 +52,8 @@ public class AddProducts extends javax.swing.JFrame {
             }
         });
 
-        jMenu2.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu2.setText("Log Out");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu2);
-
         jMenu5.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu5.setText("Back");
+        jMenu5.setText("Cancel");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu5MouseClicked(evt);
@@ -129,12 +119,6 @@ public class AddProducts extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        LogIn login = new LogIn();
-        login.setVisible(true);
-        dispose(); 
-    }//GEN-LAST:event_jMenu2MouseClicked
-
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
         ProductGui productGui = new ProductGui();
         productGui.setVisible(true);
@@ -181,7 +165,6 @@ public class AddProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField value_name;

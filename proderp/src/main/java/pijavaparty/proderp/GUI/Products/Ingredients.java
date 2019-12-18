@@ -3,6 +3,7 @@ package pijavaparty.proderp.GUI.Products;
 
 import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
 
@@ -36,6 +37,9 @@ public class Ingredients extends javax.swing.JFrame {
         Ingredients_Table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -73,6 +77,26 @@ public class Ingredients extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jMenu2.setForeground(new java.awt.Color(51, 51, 255));
+        jMenu2.setText("Log Out");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu2);
+
+        jMenu5.setForeground(new java.awt.Color(51, 51, 255));
+        jMenu5.setText("Back");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu5);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,6 +141,18 @@ public class Ingredients extends javax.swing.JFrame {
         new AddIngredients(id).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        LogIn login = new LogIn();
+        login.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        ProductGui menu = new ProductGui();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenu5MouseClicked
     //showing colums of product table in data base 
     public void showIngredientsTable(){
         ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
@@ -173,6 +209,9 @@ public class Ingredients extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -232,26 +232,30 @@ public class AddIngredients extends javax.swing.JFrame {
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
         prodrawlist = prodrawdao.getMaterialsPerProduct(prod.getId());
         int num;
-        num = rawdao.getAll().size();
-        
+        num = raw_material.size();
         try {
-            for (int i = 0; i < num; i++) {
-                for (int j = 0; j < prodrawlist.size(); j++) {
+            int j;
+            int i;
+            int m;
+            for (i = 0; i < num; i++) {
+                for (j = 0; j < prodrawlist.size(); j++) {
                     if (raw_material.get(i).getId()==prodrawlist.get(j).getRawMaterial().getId()) {
                         break;
                     }
-                    if (prodraw.size()>j) {
-                        if (raw_material.get(i).getId()==prodraw.get(j).getRawMaterial().getId()) {
-                            break;
-                        }
+                }
+                for (m = 0; m < prodraw.size(); m++) {
+                    if (raw_material.get(i).getId()==prodraw.get(m).getRawMaterial().getId()) {
+                        break;
                     }
+                }
+                if (j==prodrawlist.size() && m==prodraw.size()) { 
                     drop_down.addItem(raw_material.get(i).getName()+" - "+raw_material.get(i).getId());
                 }
             }
-
         } catch (Exception e) {
-            //JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e);
         }
+        
     }
 
     public static void main(String args[]) {

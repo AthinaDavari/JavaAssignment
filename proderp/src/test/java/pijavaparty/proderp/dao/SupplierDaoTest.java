@@ -5,18 +5,8 @@
  */
 package pijavaparty.proderp.dao;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static junit.framework.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;

@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

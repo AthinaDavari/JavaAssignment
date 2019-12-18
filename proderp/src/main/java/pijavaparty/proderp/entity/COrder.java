@@ -17,26 +17,28 @@ public class COrder {
     private Customer customer;
     private Status status;
     private Timestamp created_at;
-    private int users_id;
+    private User user;
     
     public COrder() {
 }
     
-public COrder(Customer customer) {
+public COrder(Customer customer, User user) {
     this.customer = customer;
     this.status = Status.ready;
+    this.user = user;
 }
 
-public COrder(int id, Customer customer, String status, Timestamp created_at, int users_id) {
+public COrder(int id, Customer customer, String status, Timestamp created_at, User user) {
     this.id = id;
     this.customer = customer;
     this.status = Status.valueOf(status);
     this.created_at = created_at;
-    this.users_id = users_id;
+    this.user = user;
 }
 
 
- enum Status
+
+    enum Status
     { 
         preparing, ready, delivered; 
     }
@@ -57,9 +59,7 @@ public COrder(int id, Customer customer, String status, Timestamp created_at, in
         return created_at;
     }
 
-    public int getUsers_id() {
-            return users_id;
-}
+
     public void setId(int id) {
         this.id = id;
     }
@@ -79,19 +79,23 @@ public COrder(int id, Customer customer, String status, Timestamp created_at, in
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
-    
-    public void setUsers_id(int users_id) {
-        this.users_id = users_id;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + this.id;
-        hash = 17 * hash + Objects.hashCode(this.customer);
-        hash = 17 * hash + Objects.hashCode(this.status);
-        hash = 17 * hash + Objects.hashCode(this.created_at);
-        hash = 17 * hash + this.users_id;
+        int hash = 5;
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + Objects.hashCode(this.customer);
+        hash = 59 * hash + Objects.hashCode(this.status);
+        hash = 59 * hash + Objects.hashCode(this.created_at);
+        hash = 59 * hash + Objects.hashCode(this.user);
         return hash;
     }
 
@@ -110,9 +114,6 @@ public COrder(int id, Customer customer, String status, Timestamp created_at, in
         if (this.id != other.id) {
             return false;
         }
-        if (this.users_id != other.users_id) {
-            return false;
-        }
         if (!Objects.equals(this.customer, other.customer)) {
             return false;
         }
@@ -122,12 +123,15 @@ public COrder(int id, Customer customer, String status, Timestamp created_at, in
         if (!Objects.equals(this.created_at, other.created_at)) {
             return false;
         }
+        if (!Objects.equals(this.user, other.user)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "COrder{" + "id=" + id + ", customer=" + customer + ", status=" + status + ", created_at=" + created_at + ", users_id=" + users_id + '}';
+        return "COrder{" + "id=" + id + ", customer=" + customer + ", status=" + status + ", created_at=" + created_at + ", user=" + user + '}';
     }
 
 }

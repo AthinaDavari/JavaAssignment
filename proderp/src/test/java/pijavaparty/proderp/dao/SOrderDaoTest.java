@@ -7,14 +7,18 @@ package pijavaparty.proderp.dao;
 
 import java.sql.Timestamp;
 import static java.time.Instant.now;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrder;
+import pijavaparty.proderp.entity.SOrderItem;
 import pijavaparty.proderp.entity.Supplier;
 
 /**
@@ -51,10 +55,26 @@ public class SOrderDaoTest {
     }
 
     /**
+     * Test of getAllPendingOrders method, of class SOrderDao.
+     */
+    @Test
+    public void btestgetAllPendingOrders() {
+        System.out.println("getAllPendingOrders");
+        SOrderDao instance = new SOrderDao();
+        List<SOrder> expResult = new LinkedList();
+        Supplier s1 = new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr");
+        Supplier s2 = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
+        expResult.add(new SOrder(1, s1, "pending", Timestamp.valueOf("2019-12-14 20:02:43")));
+        expResult.add(new SOrder(3, s2, "pending", Timestamp.valueOf("2019-08-12 21:02:01")));
+        List<SOrder> result = instance.getAllPendingOrders();
+        assertEquals(expResult, result);
+    }
+
+    /**
      * Test of getById method, of class SOrderDao.
      */
     @Test
-    public void btestGetById() {
+    public void ctestGetById() {
         System.out.println("getById");
         int id = 1;
         SOrderDao instance = new SOrderDao();
@@ -78,7 +98,7 @@ public class SOrderDaoTest {
      * Test of insert method, of class SOrderDao.
      */
     @Test
-    public void ctestInsert() {
+    public void dtestInsert() {
         System.out.println("insert");
         SOrder so = new SOrder(new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr"), "pending");
         SOrderDao instance = new SOrderDao();
@@ -86,7 +106,6 @@ public class SOrderDaoTest {
         instance.insert(so);
         SOrder fromDatabase = instance.getById(5);
         int date = now.getDate();
-        System.out.println(date);
         assertEquals(date, fromDatabase.getCreated_at().getDate());
         assertEquals(so.getStatus(), fromDatabase.getStatus());
         assertEquals(so.getSupplier(), fromDatabase.getSupplier());
@@ -96,7 +115,7 @@ public class SOrderDaoTest {
      * Test of bringTheIdOfTheLatestSOrder method, of class SOrderDao.
      */
     @Test
-    public void dtestBringTheIdOfTheLatestSOrder() {
+    public void etestBringTheIdOfTheLatestSOrder() {
         System.out.println("bringTheIdOfTheLatestSOrder");
         SOrderDao instance = new SOrderDao();
         int expResult = 5;
@@ -105,25 +124,40 @@ public class SOrderDaoTest {
         assertEquals(expResult, result);
     }
 
-//    /**
-//     * Test of insertSOrderAndSOrderItems method, of class SOrderDao.
-//     */
-//    @Test
-//    public void testInsertSOrderAndSOrderItems() {
-//        System.out.println("insertSOrderAndSOrderItems");
-//        SOrder so = null;
-//        List<SOrderItem> soi = null;
-//        SOrderDao instance = new SOrderDao();
-//        instance.insertSOrderAndSOrderItems(so, soi);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
+    /**
+     * Test of insertSOrderAndSOrderItems method, of class SOrderDao.
+     */
+    @Test
+    public void ftestInsertSOrderAndSOrderItems() {
+        System.out.println("insertSOrderAndSOrderItems");
+        Supplier s2 = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
+        RawMaterial rm1 = new RawMaterial(2, "metal", 32, 1.2, s2);
+        RawMaterial rm2 = new RawMaterial(3, "wood", 17, 3.7, s2);
+        SOrder so = new SOrder(s2);
+        SOrderItemDao dao = new SOrderItemDao();
+        SOrderItem orderItem1 = new SOrderItem(so, rm1, 11);
+        SOrderItem orderItem2 = new SOrderItem(so, rm2, 17);
+        List<SOrderItem> soi = Arrays.asList(orderItem1, orderItem2);
+        SOrderDao instance = new SOrderDao();
+        instance.insertSOrderAndSOrderItems(so, soi);
+        SOrder fromDatabase = instance.getById(6);
+        so.setCreated_at(Timestamp.from(now()));
+        so.setId(6);
+        so.setStatus("pending");
+        assertEquals(so.getCreated_at().getDate(), fromDatabase.getCreated_at().getDate());
+        assertEquals(so.getSupplier(), fromDatabase.getSupplier());
+        assertEquals(so.getStatus(), fromDatabase.getStatus());
+        assertEquals(orderItem1.getRawmaterial(), dao.getByIds(6, rm1.getId()).getRawmaterial());
+        assertEquals(orderItem1.getQuantity(), dao.getByIds(6, rm1.getId()).getQuantity());
+        assertEquals(orderItem2.getRawmaterial(), dao.getByIds(6, rm2.getId()).getRawmaterial());
+        assertEquals(orderItem2.getQuantity(), dao.getByIds(6, rm2.getId()).getQuantity());
+    }
+
     /**
      * Test of updateStatus method, of class SOrderDao.
      */
     @Test
-    public void ftestUpdateStatus() {
+    public void gtestUpdateStatus() {
         System.out.println("updateStatus");
         int orderId = 5;
         String status = "delivered";
@@ -136,7 +170,7 @@ public class SOrderDaoTest {
      * Test of delete method, of class SOrderDao.
      */
     @Test
-    public void gtestDelete() {
+    public void htestDelete() {
         System.out.println("delete");
         int id = 5;
         SOrderDao instance = new SOrderDao();

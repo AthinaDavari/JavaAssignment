@@ -55,7 +55,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         try {
             pst = getConnection().prepareStatement(GETBYIDS);
             pst.setInt(1, soid);
-            pst.setInt(1, rmid);
+            pst.setInt(2, rmid);
             rs = pst.executeQuery();
             if (rs.next()) {
                 return new SOrderItem(so.getById(rs.getInt(1)), rm.getById(rs.getInt(2)), rs.getInt(3));

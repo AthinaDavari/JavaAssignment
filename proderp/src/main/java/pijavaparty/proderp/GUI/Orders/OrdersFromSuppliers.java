@@ -9,7 +9,6 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static pijavaparty.proderp.GUI.Orders.EditOrders.jTextField1;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.SOrder;
 
@@ -75,7 +74,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order ID", "Supplier", "Status", "Created At"
+                "Order ID", "Supplier ID - Name", "Status", "Created At"
             }
         ) {
             Class[] types = new Class [] {
@@ -152,13 +151,13 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new EditOrders().setVisible(true);
+        new EditSOrders().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void showrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showrawActionPerformed
       int id = Integer.parseInt(orid.getText());
-       new ShowRawMaterialsOfOrder(id).setVisible(true);
-        
+      new ShowRawMaterialsOfOrder(id).setVisible(true);
+       
     }//GEN-LAST:event_showrawActionPerformed
 
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
@@ -183,7 +182,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
             for (int i = 0; i < number1; i++) {
                 row[0] = sorders.get(i).getId();
-                row[1] = sorders.get(i).getSupplier().getFullName();
+                row[1] = sorders.get(i).getSupplier().getId() + "-" + sorders.get(i).getSupplier().getFullName();
                 row[2] = sorders.get(i).getStatus();
                 row[3] = sorders.get(i).getCreated_at();
 

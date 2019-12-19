@@ -6,15 +6,12 @@
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SOrderDao;
-import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.RawMaterial;
-import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.SOrderItem;
-import pijavaparty.proderp.entity.Supplier;
-import static pijavaparty.proderp.GUI.Orders.AddOrder.list;
 import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
 
 /**
@@ -23,6 +20,8 @@ import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
  */
 public class AddItemSOrder extends javax.swing.JFrame {
 
+    private ArrayList<SOrderItem> SOrderItemsList = new ArrayList<SOrderItem>();
+    
     /**
      * Creates new form AddItemSOrder
      */
@@ -47,10 +46,10 @@ public class AddItemSOrder extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        raw = new javax.swing.JTextField();
         qu = new javax.swing.JTextField();
         newitem = new javax.swing.JButton();
         addorder = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -63,8 +62,6 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Enter Quantity:");
-
-        raw.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         qu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -83,6 +80,8 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 addorderActionPerformed(evt);
             }
         });
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,8 +105,8 @@ public class AddItemSOrder extends javax.swing.JFrame {
                                         .addComponent(qu))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(raw)))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(87, 87, 87))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,8 +121,8 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(raw, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(jComboBox1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -147,7 +146,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
             RawMaterial rm = rmd.getById(rawm);
 
             SOrderItem sorderitem = new SOrderItem(sorder, rm, quan);
-            list.add(sorderitem);
+            SOrderItemsList.add(sorderitem);
 
             JOptionPane.showMessageDialog(null, "Added to Order List.");
             new AddItemSOrder().setVisible(true);
@@ -170,15 +169,30 @@ public class AddItemSOrder extends javax.swing.JFrame {
         int quan = Integer.parseInt(qu.getText().trim());
 
         SOrderItem sorderitem = new SOrderItem(sorder, rmd.getById(rmId), quan);
-        list.add(sorderitem);
+        SOrderItemsList.add(sorderitem);
 
-        sod.insertSOrderAndSOrderItems(sorder, list);
+        sod.insertSOrderAndSOrderItems(sorder, SOrderItemsList);
 
         JOptionPane.showMessageDialog(null, "Order Saved.");
         dispose();
 
     }//GEN-LAST:event_addorderActionPerformed
 
+    
+     private void fillcombobox(){
+        RawMaterialDao rmd = new RawMaterialDao();
+        List<User> users;
+        users = userdao.getAll();
+        int size=userdao.getAll().size();
+        try{
+            for(int i=0; i<size; i++){
+                role.addItem(users.get(i).getFullName());
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -216,12 +230,12 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addorder;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton newitem;
     private javax.swing.JTextField qu;
-    private javax.swing.JTextField raw;
     // End of variables declaration//GEN-END:variables
 
 }

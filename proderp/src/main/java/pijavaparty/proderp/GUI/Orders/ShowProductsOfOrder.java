@@ -8,29 +8,31 @@ package pijavaparty.proderp.GUI.Orders;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.dao.COrderItemDao;
 import pijavaparty.proderp.dao.SOrderItemDao;
+import pijavaparty.proderp.entity.COrderItem;
 import pijavaparty.proderp.entity.SOrderItem;
 
 /**
  *
  * @author MariaKokkorou
  */
-public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
+public class ShowProductsOfOrder extends javax.swing.JFrame {
     
     /**
      * Creates new form ShowRawMaterialsOfOrder
      */
-    public ShowRawMaterialsOfOrder() {
+    public ShowProductsOfOrder() {
         initComponents();
-        showRawMaterialsTable();
+        showProductsTable();
         seticon();
     }
     
-    private int orid;
-    public ShowRawMaterialsOfOrder(int orid) {
-        this.orid=orid;
+    private int prodid;
+    public ShowProductsOfOrder(int prodid) {
+        this.prodid=prodid;
         initComponents();
-        showRawMaterialsTable();
+        showProductsTable();
         seticon();
     }
 
@@ -49,20 +51,20 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        RawMaterialsTable = new javax.swing.JTable();
+        ProductsTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Raw Materials Of Order");
+        jLabel1.setText("Products Of Order");
 
-        RawMaterialsTable.setModel(new javax.swing.table.DefaultTableModel(
+        ProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Raw Material ID", "Raw Material Name", "Quantity"
+                "Product ID", "Product Name", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
@@ -73,7 +75,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(RawMaterialsTable);
+        jScrollPane1.setViewportView(ProductsTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,7 +88,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
+                .addGap(78, 78, 78))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,19 +101,19 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void showRawMaterialsTable() {
+    public void showProductsTable() {
 
-        SOrderItemDao soid = new SOrderItemDao();
-        DefaultTableModel model = (DefaultTableModel) RawMaterialsTable.getModel();
-        List<SOrderItem> itemsPerSOrder = soid.getItemsperSOrder(orid);
-        int number = itemsPerSOrder.size();
+        COrderItemDao coid = new COrderItemDao();
+        DefaultTableModel model = (DefaultTableModel) ProductsTable.getModel();
+        List<COrderItem> itemsPerCOrder = coid.getItemsperCOrder(prodid);
+        int number = itemsPerCOrder.size();
         Object[] row = new Object[3];
 
         for (int i = 0; i < number; i++) {
 
-            row[0] = itemsPerSOrder.get(i).getRawmaterial().getId();
-            row[1] = itemsPerSOrder.get(i).getRawmaterial().getName();
-            row[2] = itemsPerSOrder.get(i).getQuantity();
+            row[0] = itemsPerCOrder.get(i).getProduct().getId();
+            row[1] = itemsPerCOrder.get(i).getProduct().getName();
+            row[2] = itemsPerCOrder.get(i).getQuantity();
 
             model.addRow(row);
 
@@ -155,7 +157,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable RawMaterialsTable;
+    private javax.swing.JTable ProductsTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

@@ -12,20 +12,19 @@ import pijavaparty.proderp.dao.SOrderDao;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.SOrderItemDao;
 import pijavaparty.proderp.entity.SOrder;
-import pijavaparty.proderp.entity.SOrderItem;
 
 /**
  *
  * @author MariaKokkorou
  */
-public class EditOrders extends javax.swing.JFrame {
+public class EditSOrders extends javax.swing.JFrame {
 
     private javax.swing.JScrollPane jScrollPane1;
 
     /**
      * Creates new form EditOrders
      */
-    public EditOrders() {
+    public EditSOrders() {
         initComponents();
         showSOrdersTable();
         seticon();
@@ -51,7 +50,6 @@ public class EditOrders extends javax.swing.JFrame {
         SOrdersTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         delete = new javax.swing.JButton();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -77,7 +75,7 @@ public class EditOrders extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order's ID", "Supplier", "Status", "Created At"
+                "Order's ID", "Supplier ID - Name", "Status", "Created At"
             }
         ) {
             Class[] types = new Class [] {
@@ -103,14 +101,6 @@ public class EditOrders extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Show Raw Materials of Order");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         delete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -126,21 +116,22 @@ public class EditOrders extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(update)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)))
+                        .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -156,7 +147,6 @@ public class EditOrders extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
@@ -177,7 +167,7 @@ public class EditOrders extends javax.swing.JFrame {
             orderItemDao.increaseQuantities(orderIDint);
             JOptionPane.showMessageDialog(null, "Status Updated.");
             
-            new EditOrders().setVisible(true);
+            new EditSOrders().setVisible(true);
             dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -195,14 +185,6 @@ public class EditOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_SOrdersTableMouseClicked
 
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
-        int id = Integer.parseInt(jTextField1.getText());
-        new ShowRawMaterialsOfOrder(id).setVisible(true);
-        dispose();
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         
         String orderIDString = jTextField1.getText();
@@ -212,7 +194,7 @@ public class EditOrders extends javax.swing.JFrame {
             SOrderDao sod = new SOrderDao();
             sod.delete(orderIDint);
             JOptionPane.showMessageDialog(null,"Order Deleted");
-            new EditOrders().setVisible(true);
+            new EditSOrders().setVisible(true);
             dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
@@ -231,7 +213,7 @@ public class EditOrders extends javax.swing.JFrame {
 
             for (int i = 0; i < number1; i++) {
                 row[0] = sorders.get(i).getId();
-                row[1] = sorders.get(i).getSupplier().getFullName();
+                row[1] = sorders.get(i).getSupplier().getId() + "-" + sorders.get(i).getSupplier().getFullName();
                 row[2] = sorders.get(i).getStatus();
                 row[3] = sorders.get(i).getCreated_at();
 
@@ -260,20 +242,20 @@ public class EditOrders extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditOrders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditSOrders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditOrders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditSOrders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditOrders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditSOrders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditOrders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditSOrders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditOrders().setVisible(true);
+                new EditSOrders().setVisible(true);
             }
         });
     }
@@ -282,7 +264,6 @@ public class EditOrders extends javax.swing.JFrame {
     private javax.swing.JTable SOrdersTable;
     private javax.swing.JButton delete;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;

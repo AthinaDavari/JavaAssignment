@@ -25,7 +25,7 @@ import pijavaparty.proderp.entity.Supplier;
 public class AddOrder extends javax.swing.JFrame {
 
     static SOrder sorder;
-    static ArrayList<SOrderItem> list = new ArrayList<SOrderItem>();
+    
 
     public AddOrder() {
         initComponents();
@@ -47,15 +47,8 @@ public class AddOrder extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         newitem = new javax.swing.JButton();
-        save = new javax.swing.JButton();
-        orderid = new javax.swing.JTextField();
-        rawm = new javax.swing.JTextField();
-        qu = new javax.swing.JTextField();
         supid = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -64,44 +57,14 @@ public class AddOrder extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Add Order To Supplier");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Enter Order ID:");
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Enter Supplier ID:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Enter Raw Material:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Enter Quantity:");
+        jLabel3.setText("Enter Supplier ID - Name:");
 
         newitem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         newitem.setText("New Item Order");
         newitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newitemActionPerformed(evt);
-            }
-        });
-
-        save.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        save.setText("Save");
-        save.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveActionPerformed(evt);
-            }
-        });
-
-        orderid.setEditable(false);
-        orderid.setBackground(new java.awt.Color(153, 153, 153));
-        orderid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        rawm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        qu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        qu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quActionPerformed(evt);
             }
         });
 
@@ -121,59 +84,28 @@ public class AddOrder extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(86, 86, 86))
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(29, 29, 29))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(orderid)
-                            .addComponent(rawm)
-                            .addComponent(qu, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                            .addComponent(supid, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(supid, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(orderid, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(supid))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rawm, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(qu, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(newitem, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(supid, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -181,26 +113,13 @@ public class AddOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void quActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quActionPerformed
-
     private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
 
         try {
             String supplierAsString = supid.getSelectedItem().toString();
             createSOrder(supplierAsString);
-           
-            int raw = Integer.parseInt(rawm.getText().trim());
-            int quan = Integer.parseInt(qu.getText().trim());    
 
-            RawMaterialDao rmd = new RawMaterialDao();
-            RawMaterial rm = rmd.getById(raw);
-
-            SOrderItem sorderitem = new SOrderItem(sorder, rm, quan);
-            list.add(sorderitem);
-
-            JOptionPane.showMessageDialog(null, "Added to Order List.");
+            
             new AddItemSOrder().setVisible(true);
 
             dispose();
@@ -225,35 +144,7 @@ public class AddOrder extends javax.swing.JFrame {
 
     }
 
-    /*public void dispar(ArrayList<SOrderItem> list){
-        for (int i=0; i<= list.size(); i++){
-            System.out.println(list.get(i));
-        }
-    }*/
-
-    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-
-        //dispar(list);
-        JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
-
-        String supplier = supid.getSelectedItem().toString().trim();
-        createSOrder(supplier);
-        SOrderDao sod = new SOrderDao();
-        int raw = Integer.parseInt(rawm.getText().trim());
-        int quan = Integer.parseInt(qu.getText().trim());
-
-        RawMaterialDao rmd = new RawMaterialDao();
-        RawMaterial rm = rmd.getById(raw);
-
-        SOrderItem sorderitem = new SOrderItem(sorder, rm, quan);
-        list.add(sorderitem);
-        sod.insertSOrderAndSOrderItems(sorder, list);
-
-        JOptionPane.showMessageDialog(null, "Order Saved.");
-        dispose();
-
-    }//GEN-LAST:event_saveActionPerformed
-    
+   
     private void createSOrder(String supplier) {
         SupplierDao sd = new SupplierDao();
         String[] supplierTable = supplier.split(" ");
@@ -301,15 +192,8 @@ public class AddOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JButton newitem;
-    private javax.swing.JTextField orderid;
-    private javax.swing.JTextField qu;
-    private javax.swing.JTextField rawm;
-    private javax.swing.JButton save;
     public static javax.swing.JComboBox<String> supid;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,7 +75,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order ID", "Supplier", "Status", "Created At"
+                "Order ID", "Supplier ID - Name", "Status", "Created At"
             }
         ) {
             Class[] types = new Class [] {
@@ -133,10 +133,11 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(showraw, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(showraw, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(orid, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -156,8 +157,8 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
     private void showrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showrawActionPerformed
       int id = Integer.parseInt(orid.getText());
-       new ShowRawMaterialsOfOrder(id).setVisible(true);
-        
+      new ShowRawMaterialsOfOrder(id).setVisible(true);
+       
     }//GEN-LAST:event_showrawActionPerformed
 
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
@@ -182,7 +183,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
             for (int i = 0; i < number1; i++) {
                 row[0] = sorders.get(i).getId();
-                row[1] = sorders.get(i).getSupplier().getFullName();
+                row[1] = sorders.get(i).getSupplier().getId() + "-" + sorders.get(i).getSupplier().getFullName();
                 row[2] = sorders.get(i).getStatus();
                 row[3] = sorders.get(i).getCreated_at();
 

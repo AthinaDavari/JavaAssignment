@@ -16,7 +16,7 @@ import pijavaparty.proderp.entity.SOrderItem;
  * @author MariaKokkorou
  */
 public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form ShowRawMaterialsOfOrder
      */
@@ -26,9 +26,9 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         seticon();
     }
     
-    private int id;
-    public ShowRawMaterialsOfOrder(int id) {
-        this.id=id;
+    private int orid;
+    public ShowRawMaterialsOfOrder(int orid) {
+        this.orid=orid;
         initComponents();
         showRawMaterialsTable();
         seticon();
@@ -101,11 +101,9 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     public void showRawMaterialsTable() {
 
-        String orderIDString = EditOrders.jTextField1.getText();
-        int orderIDint = Integer.parseInt(orderIDString);
         SOrderItemDao soid = new SOrderItemDao();
         DefaultTableModel model = (DefaultTableModel) RawMaterialsTable.getModel();
-        List<SOrderItem> itemsPerSOrder = soid.getItemsperSOrder(orderIDint);
+        List<SOrderItem> itemsPerSOrder = soid.getItemsperSOrder(orid);
         int number = itemsPerSOrder.size();
         Object[] row = new Object[3];
 

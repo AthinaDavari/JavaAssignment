@@ -30,25 +30,25 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        answerNo = new javax.swing.JButton();
+        answerYes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Update Ingredients Quantity Acordingly?");
 
-        jButton1.setText("NO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        answerNo.setText("NO");
+        answerNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                answerNoActionPerformed(evt);
             }
         });
 
-        jButton2.setText("YES");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        answerYes.setText("YES");
+        answerYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                answerYesActionPerformed(evt);
             }
         });
 
@@ -61,9 +61,9 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(answerYes)
                         .addGap(48, 48, 48)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(answerNo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
@@ -74,8 +74,8 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(answerYes)
+                    .addComponent(answerNo))
                 .addGap(42, 42, 42))
         );
 
@@ -83,16 +83,16 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //update ingredients quantty method
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void answerYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerYesActionPerformed
         StorageServices storser= new StorageServices();
         storser.UpdateIngredients(id, quant);
         JOptionPane.showMessageDialog(null,"Updated");
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_answerYesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void answerNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerNoActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_answerNoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,8 +130,8 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton answerNo;
+    private javax.swing.JButton answerYes;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }

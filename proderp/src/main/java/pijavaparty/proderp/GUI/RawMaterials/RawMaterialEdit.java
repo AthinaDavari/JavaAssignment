@@ -41,7 +41,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_update = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu5 = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,14 +89,14 @@ public class RawMaterialEdit extends javax.swing.JFrame {
             }
         });
 
-        jMenu5.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu5.setText("Cancel");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setForeground(new java.awt.Color(51, 51, 255));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(cancel);
 
         setJMenuBar(jMenuBar1);
 
@@ -159,11 +159,11 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         RawMaterialMenu rawmenu = new RawMaterialMenu();
         rawmenu.setVisible(true);
         dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu5MouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
     //fill text area with details of a clicked raw material
     private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked
 
@@ -254,12 +254,12 @@ public class RawMaterialEdit extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable RawMaterial_table2;
+    private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton txt_update;

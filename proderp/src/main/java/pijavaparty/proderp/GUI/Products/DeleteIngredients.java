@@ -35,32 +35,32 @@ public class DeleteIngredients extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        Delete = new javax.swing.JButton();
         drop_down = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu5 = new javax.swing.JMenu();
+        Cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Delete.setText("Delete");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                DeleteActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Select the Id you want to delete:");
 
-        jMenu5.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu5.setText("Cancel");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cancel.setForeground(new java.awt.Color(51, 51, 255));
+        Cancel.setText("Cancel");
+        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+                CancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(Cancel);
 
         setJMenuBar(jMenuBar1);
 
@@ -80,7 +80,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
                         .addGap(334, 334, 334))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(371, 371, 371))
         );
         layout.setVerticalGroup(
@@ -91,14 +91,14 @@ public class DeleteIngredients extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(105, 105, 105)
-                .addComponent(jButton1)
+                .addComponent(Delete)
                 .addGap(98, 98, 98))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         try {
             String value1_id = drop_down.getSelectedItem().toString();
             String stringnamearray[];
@@ -118,13 +118,13 @@ public class DeleteIngredients extends javax.swing.JFrame {
             stor.setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_DeleteActionPerformed
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
         Ingredients  ingredients = new Ingredients();
         ingredients.setVisible(true);
         dispose();      
-    }//GEN-LAST:event_jMenu5MouseClicked
+    }//GEN-LAST:event_CancelMouseClicked
     private void fillcombo() {
         ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
         ProductRawMaterialDao rawdao = new ProductRawMaterialDao();
@@ -171,10 +171,10 @@ public class DeleteIngredients extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Cancel;
+    private javax.swing.JButton Delete;
     private javax.swing.JComboBox<String> drop_down;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

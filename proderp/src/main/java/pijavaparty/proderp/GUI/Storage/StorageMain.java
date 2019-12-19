@@ -30,12 +30,12 @@ public class StorageMain extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         RawMaterial_table2 = new javax.swing.JTable();
         product_id = new javax.swing.JTextField();
-        editCustomer = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        updateQuantity = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        logOut = new javax.swing.JMenu();
+        back = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -63,40 +63,40 @@ public class StorageMain extends javax.swing.JFrame {
             }
         });
 
-        editCustomer.setText("Update Quantity");
-        editCustomer.addActionListener(new java.awt.event.ActionListener() {
+        updateQuantity.setText("Update Quantity");
+        updateQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCustomerActionPerformed(evt);
+                updateQuantityActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
+        refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                refreshActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("Storage");
 
-        jMenu2.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu2.setText("Log Out");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        logOut.setForeground(new java.awt.Color(51, 51, 255));
+        logOut.setText("Log Out");
+        logOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                logOutMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(logOut);
 
-        jMenu5.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu5.setText("Back");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        back.setForeground(new java.awt.Color(51, 51, 255));
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+                backMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(back);
 
         setJMenuBar(jMenuBar1);
 
@@ -108,13 +108,13 @@ public class StorageMain extends javax.swing.JFrame {
                 .addGap(381, 381, 381)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(249, Short.MAX_VALUE)
                 .addComponent(product_id, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addComponent(editCustomer)
+                .addComponent(updateQuantity)
                 .addGap(253, 253, 253))
             .addComponent(jScrollPane3)
         );
@@ -124,13 +124,13 @@ public class StorageMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(product_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5))
         );
 
@@ -163,12 +163,12 @@ public class StorageMain extends javax.swing.JFrame {
         }
         
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         new StorageMain().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_refreshActionPerformed
 
-    private void editCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerActionPerformed
+    private void updateQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateQuantityActionPerformed
         try {
            if (prodorraw.equals(""))
                throw new Exception();
@@ -181,7 +181,7 @@ public class StorageMain extends javax.swing.JFrame {
             dispose();
         }
         
-    }//GEN-LAST:event_editCustomerActionPerformed
+    }//GEN-LAST:event_updateQuantityActionPerformed
 
     private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked
         int selectedRow=RawMaterial_table2.getSelectedRow();
@@ -192,17 +192,17 @@ public class StorageMain extends javax.swing.JFrame {
         prodorraw=model2.getValueAt(selectedRow, 4).toString();
     }//GEN-LAST:event_RawMaterial_table2MouseClicked
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+    private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn login = new LogIn();
         login.setVisible(true);
         dispose();        
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_logOutMouseClicked
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         Menu menu = new Menu();
         menu.setVisible(true);
         dispose();        
-    }//GEN-LAST:event_jMenu5MouseClicked
+    }//GEN-LAST:event_backMouseClicked
 
     private void product_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_product_idActionPerformed
 
@@ -243,13 +243,13 @@ public class StorageMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable RawMaterial_table2;
-    private javax.swing.JButton editCustomer;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JMenu back;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JMenu logOut;
     private javax.swing.JTextField product_id;
+    private javax.swing.JButton refresh;
+    private javax.swing.JButton updateQuantity;
     // End of variables declaration//GEN-END:variables
 }

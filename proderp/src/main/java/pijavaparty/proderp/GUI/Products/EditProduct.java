@@ -42,7 +42,7 @@ public class EditProduct extends javax.swing.JFrame {
         value_id = new javax.swing.JTextField();
         Delete = new javax.swing.JButton();
         jMenuBar4 = new javax.swing.JMenuBar();
-        jMenu6 = new javax.swing.JMenu();
+        Cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,14 +101,14 @@ public class EditProduct extends javax.swing.JFrame {
             }
         });
 
-        jMenu6.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu6.setText("Cancel");
-        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cancel.setForeground(new java.awt.Color(51, 51, 255));
+        Cancel.setText("Cancel");
+        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu6MouseClicked(evt);
+                CancelMouseClicked(evt);
             }
         });
-        jMenuBar4.add(jMenu6);
+        jMenuBar4.add(Cancel);
 
         setJMenuBar(jMenuBar4);
 
@@ -219,11 +219,11 @@ public class EditProduct extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UpdateActionPerformed
 
-    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
         ProductGui productGui = new ProductGui();
         productGui.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenu6MouseClicked
+    }//GEN-LAST:event_CancelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -275,13 +275,13 @@ public class EditProduct extends javax.swing.JFrame {
     }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Cancel;
     private javax.swing.JButton Delete;
     private javax.swing.JButton Update;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable products_table;

@@ -28,9 +28,9 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         value_name = new javax.swing.JTextField();
         value_price = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        AddProduct = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu5 = new javax.swing.JMenu();
+        Cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -43,23 +43,23 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Price");
 
-        jButton1.setBackground(java.awt.SystemColor.activeCaption);
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AddProduct.setBackground(java.awt.SystemColor.activeCaption);
+        AddProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        AddProduct.setText("Add");
+        AddProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AddProductActionPerformed(evt);
             }
         });
 
-        jMenu5.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu5.setText("Cancel");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cancel.setForeground(new java.awt.Color(51, 51, 255));
+        Cancel.setText("Cancel");
+        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+                CancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(Cancel);
 
         setJMenuBar(jMenuBar1);
 
@@ -85,7 +85,7 @@ public class AddProducts extends javax.swing.JFrame {
                                     .addComponent(value_name, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(AddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(286, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,14 +102,14 @@ public class AddProducts extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(115, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed
        try {
            new AddIngredients(value_name.getText(),Double.parseDouble(value_price.getText())).setVisible(true);
             dispose();
@@ -117,13 +117,13 @@ public class AddProducts extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
        }
        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AddProductActionPerformed
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
         ProductGui productGui = new ProductGui();
         productGui.setVisible(true);
         dispose(); 
-    }//GEN-LAST:event_jMenu5MouseClicked
+    }//GEN-LAST:event_CancelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -161,11 +161,11 @@ public class AddProducts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton AddProduct;
+    private javax.swing.JMenu Cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField value_name;
     private javax.swing.JTextField value_price;

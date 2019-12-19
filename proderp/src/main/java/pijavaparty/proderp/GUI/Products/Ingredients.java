@@ -35,11 +35,11 @@ public class Ingredients extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Ingredients_Table = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        DeleteIngredient = new javax.swing.JButton();
+        AddIngredient = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        LogOut = new javax.swing.JMenu();
+        Back = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,37 +64,37 @@ public class Ingredients extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Ingredients_Table);
 
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        DeleteIngredient.setText("Delete");
+        DeleteIngredient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                DeleteIngredientActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Add");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        AddIngredient.setText("Add");
+        AddIngredient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AddIngredientActionPerformed(evt);
             }
         });
 
-        jMenu2.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu2.setText("Log Out");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        LogOut.setForeground(new java.awt.Color(51, 51, 255));
+        LogOut.setText("Log Out");
+        LogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                LogOutMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(LogOut);
 
-        jMenu5.setForeground(new java.awt.Color(51, 51, 255));
-        jMenu5.setText("Back");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        Back.setForeground(new java.awt.Color(51, 51, 255));
+        Back.setText("Back");
+        Back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+                BackMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(Back);
 
         setJMenuBar(jMenuBar1);
 
@@ -110,9 +110,9 @@ public class Ingredients extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(267, 267, 267)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AddIngredient, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(98, 98, 98)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DeleteIngredient, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(253, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,35 +124,35 @@ public class Ingredients extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AddIngredient, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteIngredient, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void DeleteIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteIngredientActionPerformed
         new DeleteIngredients(id).setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_DeleteIngredientActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void AddIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddIngredientActionPerformed
         new AddIngredients(id).setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AddIngredientActionPerformed
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+    private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
         LogIn login = new LogIn();
         login.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_LogOutMouseClicked
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+    private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
         ProductGui menu = new ProductGui();
         menu.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenu5MouseClicked
+    }//GEN-LAST:event_BackMouseClicked
     //showing colums of product table in data base 
     public void showIngredientsTable(){
         ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
@@ -205,12 +205,12 @@ public class Ingredients extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddIngredient;
+    private javax.swing.JMenu Back;
+    private javax.swing.JButton DeleteIngredient;
     private javax.swing.JTable Ingredients_Table;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JMenu LogOut;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

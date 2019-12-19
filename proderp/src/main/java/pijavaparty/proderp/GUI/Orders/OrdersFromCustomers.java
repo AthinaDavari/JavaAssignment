@@ -6,9 +6,14 @@
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.dao.COrderDao;
+import pijavaparty.proderp.entity.COrder;
 /**
  *
- * @author USER
+ * @author MariaKokkorou
  */
 public class OrdersFromCustomers extends javax.swing.JFrame {
 
@@ -18,6 +23,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     public OrdersFromCustomers() {
         initComponents();
         seticon();
+        showCOrdersTable();
     }
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -32,9 +38,12 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        addCustOrder = new javax.swing.JButton();
+        editCustOrder = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        COrdersTable = new javax.swing.JTable();
+        showProducts = new javax.swing.JButton();
+        prodid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Orders From Customers Menu");
@@ -43,22 +52,50 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Orders From Customers");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Add New Order");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addCustOrder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        addCustOrder.setText("Add New Order");
+        addCustOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addCustOrderActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Delete Order");
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Edit Order");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        editCustOrder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        editCustOrder.setText("Update / Delete Order");
+        editCustOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                editCustOrderActionPerformed(evt);
+            }
+        });
+
+        COrdersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Order ID", "Customer ID", "Status", "Created At", "User Name"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        COrdersTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                COrdersTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(COrdersTable);
+
+        showProducts.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        showProducts.setText("Show Products ");
+        showProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showProductsActionPerformed(evt);
             }
         });
 
@@ -66,44 +103,93 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(166, 166, 166))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(editCustOrder)
+                        .addGap(65, 65, 65)
+                        .addComponent(addCustOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(showProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(prodid, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(251, 251, 251)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(editCustOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addCustOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prodid, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addCustOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustOrderActionPerformed
         new AddNewCustOrder().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addCustOrderActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void editCustOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustOrderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_editCustOrderActionPerformed
 
+    private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
+        int selectedRow = COrdersTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
+        prodid.setText((model.getValueAt(selectedRow, 0).toString()));
+        
+    }//GEN-LAST:event_COrdersTableMouseClicked
+
+    private void showProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProductsActionPerformed
+       
+        int id = Integer.parseInt(prodid.getText());
+        new ShowProductsOfOrder(id).setVisible(true);
+        
+    }//GEN-LAST:event_showProductsActionPerformed
+
+    
+     public void showCOrdersTable() {
+        try {
+            
+            COrderDao obj = new COrderDao();
+            List<COrder> corders = obj.getAll();
+            int number = corders.size();
+            DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
+
+            Object[] row = new Object[5];
+
+            for (int i = 0; i < number; i++) {
+                row[0] = corders.get(i).getId();
+                row[1] = corders.get(i).getCustomer().getId() + "-" + corders.get(i).getCustomer().getFullName();
+                row[2] = corders.get(i).getStatus();
+                row[3] = corders.get(i).getCreated_at();
+                row[4] = corders.get(i).getUser().getUsername();
+
+                model.addRow(row);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+     
+     
     /**
      * @param args the command line arguments
      */
@@ -140,9 +226,12 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JTable COrdersTable;
+    private javax.swing.JButton addCustOrder;
+    private javax.swing.JButton editCustOrder;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField prodid;
+    private javax.swing.JButton showProducts;
     // End of variables declaration//GEN-END:variables
 }

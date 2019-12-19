@@ -8,10 +8,8 @@ package pijavaparty.proderp.GUI.Orders;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
-import pijavaparty.proderp.dao.SOrderDao;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.COrderDao;
-import pijavaparty.proderp.dao.SOrderItemDao;
 import pijavaparty.proderp.entity.COrder;
 
 /**
@@ -52,6 +50,8 @@ public class EditCOrders extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         orderid = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        stat = new javax.swing.JTextField();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("jButton1");
@@ -64,7 +64,7 @@ public class EditCOrders extends javax.swing.JFrame {
         jLabel1.setText("Edit Orders");
 
         update.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        update.setText("Update To Delivered");
+        update.setText("Update Status");
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateActionPerformed(evt);
@@ -110,18 +110,19 @@ public class EditCOrders extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Status");
+
+        stat.setEditable(false);
+        stat.setBackground(new java.awt.Color(204, 204, 204));
+        stat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addComponent(orderid, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -132,7 +133,17 @@ public class EditCOrders extends javax.swing.JFrame {
                                 .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
                                 .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 50, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(orderid, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                            .addComponent(stat))
+                        .addGap(29, 29, 29)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -140,15 +151,18 @@ public class EditCOrders extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(orderid, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderid, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stat, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
         );
 
@@ -161,10 +175,11 @@ public class EditCOrders extends javax.swing.JFrame {
             String orderIDString = orderid.getText();
             int orderIDint = Integer.parseInt(orderIDString);
 
+            String status = stat.getText();
+            
             COrderDao cod = new COrderDao();
-            cod.updateStatus(orderIDint, "delivered");
-            SOrderItemDao orderItemDao = new SOrderItemDao();
-            orderItemDao.increaseQuantities(orderIDint);
+            cod.updateStatus(orderIDint, ((status.equals("ready"))?"delivered":"ready"));
+    
             JOptionPane.showMessageDialog(null, "Status Updated.");
             
             new EditCOrders().setVisible(true);
@@ -181,6 +196,7 @@ public class EditCOrders extends javax.swing.JFrame {
         int selectedRow = COrdersTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
         orderid.setText((model.getValueAt(selectedRow, 0).toString()));
+        stat.setText((model.getValueAt(selectedRow, 2).toString()));
         
     }//GEN-LAST:event_COrdersTableMouseClicked
 
@@ -207,7 +223,7 @@ public class EditCOrders extends javax.swing.JFrame {
         try {
             
             COrderDao cod = new COrderDao();
-            List<COrder> corders = cod.getAll();
+            List<COrder> corders = cod.getAllExceptFromDelivered();
             int number = corders.size();
             DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
 
@@ -269,8 +285,10 @@ public class EditCOrders extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTextField orderid;
+    private javax.swing.JTextField stat;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

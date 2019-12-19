@@ -16,6 +16,7 @@ import pijavaparty.proderp.entity.User;
  */
 public class LogIn extends javax.swing.JFrame {
 
+    public static User user;
     /**
      * Creates new form LogIn
      */
@@ -158,10 +159,12 @@ public class LogIn extends javax.swing.JFrame {
         User user = u.getUser(un, password);
         if (user != null && user.getRole() == "admin") {
             AdminMenu obj = new AdminMenu();
+            LogIn.user = user; 
             obj.setVisible(true);
             dispose();
         } else if (user != null && user.getRole() == "simpleuser") {
             Menu obj = new Menu();
+            LogIn.user = user; 
             obj.setVisible(true);
             dispose();
         } else {

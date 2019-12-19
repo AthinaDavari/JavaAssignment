@@ -167,7 +167,7 @@ public class AddUser extends javax.swing.JFrame {
             User ur = null;
             int num=users.size();
             for(int i=0; i<num; i++){
-                if (users.get(i).getFullName().equals(r)) {  
+                if (users.get(i).getRole().equals(r)) {  
                     ur=users.get(i);
                     break;
                 }

@@ -4,6 +4,7 @@ package pijavaparty.proderp.GUI.Products;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.GUI.AdminMenu;
 import pijavaparty.proderp.GUI.Menu;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.GUI.LogIn;
@@ -226,13 +227,19 @@ public class ProductGui extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         LogIn login = new LogIn();
+        LogIn.user = null;
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        Menu menu = new Menu();
-        menu.setVisible(true);
+        if((LogIn.user.getRole()).equals("admin")){
+            AdminMenu menu = new AdminMenu();
+            menu.setVisible(true);
+        } else {
+            Menu menu = new Menu();
+            menu.setVisible(true);
+        }
         dispose();
     }//GEN-LAST:event_jMenu5MouseClicked
 

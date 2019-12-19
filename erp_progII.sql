@@ -94,7 +94,6 @@ CREATE TABLE `P_Materials` (
 
 
 -- INSERTS
--- delete from suppliers;
 insert into suppliers(full_name, address, phonenumber, email) 
 values("INA PLASTICS SA", "A.Papadreou 30", 2105678934, "info@inaplastics.gr"),
 	  ("Titanium Fabrication Corporation", "Palaiologou 156", 2103789023, "info@tfc.gr"),
@@ -102,8 +101,6 @@ values("INA PLASTICS SA", "A.Papadreou 30", 2105678934, "info@inaplastics.gr"),
       ("Salomon’s Metalen", "Anatolikis Romilias 26", 2115027459, "info@salomonsmetalen.gr"),
       ("Toray Carbon Fibers", "Perikleous 89", 2130796782, "info@torays@.gr");
       
-      
--- delete from products;
 insert into products(name, quantity, price)
 values("Orient City Classic", 10, 479.65),
 	  ("GT Air 20", 32, 567.34),
@@ -124,9 +121,6 @@ values ("plastic", 4, 47, 0.25),
        ("Carbon fiber", 5, 10, 9.67),
        ("Magnesium", 4, 3, 35.79);
 
--- delete from raw_materials;
-       
--- delete from s_orders;
 insert into s_orders(supplier_id,status)
 values (3,'delivered'),
        (1,'delivered'),

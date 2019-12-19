@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.COrder;
+import pijavaparty.proderp.entity.COrderItem;
 
 /**
  *
@@ -28,6 +29,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
     private static final String UPDATESTATUS = "UPDATE C_Orders SET status = ? WHERE id = ?";
     private static final String INSERT = "INSERT INTO C_Orders(customer_id,status, user_name) VALUES(?,?, ?)";
     private static final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
+    private static final String SELECTLASTID = "SELECT max(id) FROM C_Orders";
     private static UserDao ud = new UserDao();
     
     @Override
@@ -119,7 +121,33 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             closeStatementAndResultSet(pst);
         }
     }
+    
+    public int bringTheIdOfTheLatestCOrder() {
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = getConnection().createStatement();
+            rs = st.executeQuery(SELECTLASTID);
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 
+    public void insertCOrderAndCOrderItems(COrder co, List<COrderItem> coi) {
+        insert(co);
+        co.setId(bringTheIdOfTheLatestCOrder());
+        for (int i = 0; i < coi.size(); i++) {
+            COrderItem coil;
+            coil = coi.get(i);
+            COrderItemDao cod = new COrderItemDao();
+            cod.insert(coil);
+        }
+    }
+    
     @Override
     public void delete(int id) {
         PreparedStatement pst = null;
@@ -133,6 +161,5 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             closeStatementAndResultSet(pst);
         }
     }
-
 
 }

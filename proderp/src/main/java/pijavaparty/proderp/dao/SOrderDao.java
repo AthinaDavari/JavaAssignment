@@ -145,27 +145,13 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     }
 
     public void insertSOrderAndSOrderItems(SOrder so, List<SOrderItem> soi) {
-        PreparedStatement pst = null;
-        try {
-            //SupplierDao s = new SupplierDao();
-            pst = getConnection().prepareStatement(INSERT);
-            pst.setInt(1, so.getSupplier().getId());
-            pst.setString(2, so.getStatus());
-            pst.execute();
-            so.setId(bringTheIdOfTheLatestSOrder());
-            for (int i = 0; i < soi.size(); i++) {
-                SOrderItem soil;
-                soil = soi.get(i);
-
-                //soil.setSorder(this.getById(id));
-                SOrderItemDao sod = new SOrderItemDao();
-                sod.insert(soil);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-            closeStatementAndResultSet(pst);
+        insert(so);
+        so.setId(bringTheIdOfTheLatestSOrder());
+        for (int i = 0; i < soi.size(); i++) {
+            SOrderItem soil;
+            soil = soi.get(i);
+            SOrderItemDao sod = new SOrderItemDao();
+            sod.insert(soil);
         }
     }
 

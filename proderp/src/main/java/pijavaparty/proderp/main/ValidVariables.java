@@ -46,4 +46,13 @@ public class ValidVariables {
         }
 
     }
+    public static boolean isValidInteger(String integer){
+       String pattern = "\\d+";
+       if (Pattern.matches(pattern, integer)){
+           return true;
+       } else {
+           return false;
+       }
+        
+    }
 }

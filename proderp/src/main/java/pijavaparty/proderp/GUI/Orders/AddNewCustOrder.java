@@ -6,10 +6,15 @@
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import pijavaparty.proderp.dao.CustomerDao;
+import pijavaparty.proderp.entity.Customer;
 
 /**
  *
- * @author USER
+ * @author MariaKokkorou
  */
 public class AddNewCustOrder extends javax.swing.JFrame {
 
@@ -19,6 +24,7 @@ public class AddNewCustOrder extends javax.swing.JFrame {
     public AddNewCustOrder() {
         initComponents();
         seticon();
+        comboBox();
     }
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -33,7 +39,11 @@ public class AddNewCustOrder extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        custid = new javax.swing.JComboBox<>();
+        addNewProduct = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        customerName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -41,7 +51,29 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Add New Order From Customer");
 
-        jCheckBox1.setText("jCheckBox1");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Customer ID:");
+
+        custid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        custid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custidActionPerformed(evt);
+            }
+        });
+
+        addNewProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        addNewProduct.setText("Add New Product To Order");
+        addNewProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewProductActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Customer Name");
+
+        customerName.setEditable(false);
+        customerName.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,23 +84,88 @@ public class AddNewCustOrder extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(73, 73, 73))
             .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jCheckBox1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(addNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(custid, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(customerName))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
-                .addComponent(jCheckBox1)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(custid, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(customerName, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(addNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void custidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_custidActionPerformed
+
+    private void addNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewProductActionPerformed
+        
+        try {
+            
+            String customerIdString = custid.getSelectedItem().toString();
+            int customerIdInt = Integer.valueOf(customerIdString);
+            CustomerDao cd = new CustomerDao();
+            customerName.setText((cd.getById(customerIdInt)).getFullName());
+            
+            new AddProductToCOrder().setVisible(true);
+            dispose();
+            
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, e);
+        }
+        
+        
+        
+    }//GEN-LAST:event_addNewProductActionPerformed
+
+    
+     private void comboBox() {
+         
+        CustomerDao cd = new CustomerDao();
+        List<Customer> customers = new LinkedList();
+        customers = cd.getAll();
+        int number = cd.getAll().size();
+        
+        try {
+            
+            for (int i = 0; i < number; i++) {
+                
+                custid.addItem(String.valueOf(customers.get(i).getId()));
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }
+
+     
     /**
      * @param args the command line arguments
      */
@@ -105,7 +202,11 @@ public class AddNewCustOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton addNewProduct;
+    private javax.swing.JComboBox<String> custid;
+    private javax.swing.JTextField customerName;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

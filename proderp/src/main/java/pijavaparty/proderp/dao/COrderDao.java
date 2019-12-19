@@ -22,7 +22,8 @@ import pijavaparty.proderp.entity.COrder;
  */
 public class COrderDao extends Dao implements PlainEntityI<COrder> {
 
-    private static final String GETALL = "SELECT * FROM C_Orders";
+    private static final String GETALL = "SELECT * FROM C_Orders WHERE status = 'preparing' OR status = 'ready'";
+    private static final String GETALLEXCEPTFROMDELIVERED = "SELECT * FROM C_Orders";
     private static final String GETBYID = "SELECT * FROM C_Orders WHERE id = ?";
     private static final String UPDATESTATUS = "UPDATE C_Orders SET status = ? WHERE id = ?";
     private static final String INSERT = "INSERT INTO C_Orders(customer_id,status, user_name) VALUES(?,?, ?)";
@@ -38,6 +39,25 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         try {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
+            while (rs.next()) {
+                corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4)), ud.getUserByUsername(rs.getString(5))));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, st);
+        }
+        return corders;
+    }
+    
+    public List<COrder> getAllExceptFromDelivered() {
+        List<COrder> corders = new LinkedList();
+        CustomerDao c = new CustomerDao();
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = getConnection().createStatement();
+            rs = st.executeQuery(GETALLEXCEPTFROMDELIVERED);
             while (rs.next()) {
                 corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4)), ud.getUserByUsername(rs.getString(5))));
             }

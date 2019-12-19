@@ -9,7 +9,6 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static pijavaparty.proderp.GUI.Orders.EditOrders.jTextField1;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.SOrder;
 

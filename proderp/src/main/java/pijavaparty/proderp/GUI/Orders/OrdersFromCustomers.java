@@ -146,7 +146,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     }//GEN-LAST:event_addCustOrderActionPerformed
 
     private void editCustOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustOrderActionPerformed
-        // TODO add your handling code here:
+        new EditCOrders().setVisible(true);
     }//GEN-LAST:event_editCustOrderActionPerformed
 
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked

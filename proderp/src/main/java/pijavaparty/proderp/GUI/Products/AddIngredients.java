@@ -49,6 +49,7 @@ public class AddIngredients extends javax.swing.JFrame {
        //product doesnt exist but ingridients already have been chosen
     public AddIngredients(List<ProductRawMaterial> prodraw, Product obj5) {
         this.prodraw = prodraw;
+        
         this.prod = obj5;
         initComponents();
         fillcombo();

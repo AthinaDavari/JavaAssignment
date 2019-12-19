@@ -31,7 +31,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
                                        + "WHERE id = ? AND is_deleted = false";
     private static final String DELETEPERM = "DELETE FROM Suppliers WHERE id = ?";
     private static final String DELETE = "UPDATE Suppliers SET is_deleted = true WHERE id = ?";
-    
+    private static final String GETRAWMATERIALPERSUPPLIER = "SELECT * FROM Raw_Materials WHERE supplier_id = ?";
     Connection conn;
 
     public SupplierDao() {
@@ -62,6 +62,25 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
             closeStatementAndResultSet(rs, st);
         }
         return suppliers;
+    }
+    
+    public List<RawMaterial> getRawMaterialPerSupplier(int id) {
+        List<RawMaterial> rawmaterials = new LinkedList();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            pst = getConnection().prepareStatement(GETRAWMATERIALPERSUPPLIER);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                rawmaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), getById(rs.getInt(5))));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, pst);
+        }
+        return rawmaterials;
     }
 
     @Override

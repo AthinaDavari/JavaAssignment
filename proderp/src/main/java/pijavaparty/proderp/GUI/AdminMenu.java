@@ -61,6 +61,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         Customers.setBackground(new java.awt.Color(255, 255, 255));
         Customers.setText("Customers");
@@ -188,7 +189,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
-        MainMenu obj = new MainMenu();
+        LogIn obj = new LogIn();;
         obj.setVisible(true);
         dispose();
         // TODO add your handling code here:
@@ -232,6 +233,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void DeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserActionPerformed
         new DeleteUser().setVisible(true);
+        dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteUserActionPerformed
 

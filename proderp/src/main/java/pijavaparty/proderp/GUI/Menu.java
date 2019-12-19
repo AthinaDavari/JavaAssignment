@@ -50,6 +50,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

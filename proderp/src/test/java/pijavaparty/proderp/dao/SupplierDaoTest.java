@@ -7,18 +7,20 @@ package pijavaparty.proderp.dao;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
+import static junit.framework.Assert.assertEquals;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.runners.MethodSorters;
 import pijavaparty.proderp.entity.Supplier;
+
+
 
 /**
  *
  * @author Natalia
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SupplierDaoTest {
 
     public SupplierDaoTest() {
@@ -26,95 +28,84 @@ public class SupplierDaoTest {
 
     @BeforeClass
     public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
+        TestUtilities.runTestScript();
     }
 
     /**
      * Test of getAll method, of class SupplierDao.
      */
-//    @Test
-//    public void testGetAll() {
-//        System.out.println("getAll");
-//        SupplierDao instance = new SupplierDao();
-//        List<Supplier> expResult = new LinkedList();
-//        expResult.add(new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr"));
-//        expResult.add(new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr"));
-//        List<Supplier> result = instance.getAll();
-//        assertEquals(expResult, result);
-//    }
-//
-//    /**
-//     * Test of getById method, of class SupplierDao.
-//     */
-//    @Test
-//    public void testGetById() {
-//        System.out.println("getById");
-//        int id = 2;
-//        SupplierDao instance = new SupplierDao();
-//        Supplier expResult = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
-//        Supplier result = instance.getById(id);
-//        assertEquals(expResult, result);
-//    }
-//
-//    /**
-//     * Test of insert method, of class SupplierDao.
-//     */
-//    @Test
-//    public void testInsert() {
-//        System.out.println("insert");
-//        Supplier s = new Supplier(3, "GoldSuppl", "Panepistimiou 27", 2105454554l, "info@gold.gr");
-//        SupplierDao instance = new SupplierDao();
-//        instance.insert(s);
-//        assertEquals(s, instance.getById(3));
-//    }
-//
-//    /**
-//     * Test of update method, of class SupplierDao.
-//     */
-//    @Test
-//    public void testUpdate() {
-//        System.out.println("update");
-//        Supplier s = new Supplier(3, "GoldSupplUpdated", "Panepistimiou 30", 2105454554l, "info@gold.gr");
-//        SupplierDao instance = new SupplierDao();
-//        instance.update(s);
-//        assertEquals(s, instance.getById(3));
-//    }
+    @Test
+    public void atestGetAll() {
+        System.out.println("getAll");
+        SupplierDao instance = new SupplierDao();
+        List<Supplier> expResult = new LinkedList();
+        expResult.add(new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr"));
+        expResult.add(new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr"));
+        expResult.add(new Supplier(3, "Titanium Fabrication Corporation", "Palaiologou 156", 2103789023l, "info@tfc.gr"));
+        List<Supplier> result = instance.getAll();
+        assertEquals(expResult, result);
+    }
 
     /**
-     * Test of deletePerm method, of class SupplierDao.
+     * Test of getById method, of class SupplierDao.
      */
-//    @Test
-//    public void testDeletePermanently()  { 
-//        System.out.println("deletePermanently");
-//        int id = 0;
-//        SupplierDao instance = new SupplierDao();
-//        instance.deletePermanently(id);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void btestGetById() {
+        System.out.println("getById");
+        int id = 1;
+        SupplierDao instance = new SupplierDao();
+        Supplier expResult = new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr");
+        Supplier result = instance.getById(id);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of insert method, of class SupplierDao.
+     */
+    @Test
+    public void ctestInsert() {
+        System.out.println("insert");
+        Supplier s = new Supplier("GoldSuppl", "Panepistimiou 27", 2105454554l, "info@gold.gr");
+        SupplierDao instance = new SupplierDao();
+        instance.insert(s);
+        s.setId(4);
+        assertEquals(s, instance.getById(4));
+    }
+
+    /**
+     * Test of update method, of class SupplierDao.
+     */
+    @Test
+    public void dtestUpdate() {
+        System.out.println("update");
+        Supplier s = new Supplier(2, "PetaloudUpdatedaA.E.", "Palaiologou 156", 2103789023l, "info@petalnew.gr");
+        SupplierDao instance = new SupplierDao();
+        instance.update(s);
+        assertEquals(s, instance.getById(2));
+    }
+
+    /**
+     * Test of delete method, of class SupplierDao.
+     */
+    @Test
+    public void etestDelete() {
+        System.out.println("delete");
+        int id = 3;
+        SupplierDao instance = new SupplierDao();
+        instance.delete(id);
+        assertEquals(false, instance.getAll().contains(instance.getById(3)));
+    }
 
 //    /**
-//     * Test of delete method, of class SupplierDao.
+//     * Test of deletePerm method, of class SupplierDao.
 //     */
 //    @Test
-//    public void testDelete() {
-//        System.out.println("delete");
-//        int id = 0;
+//    public void ftestDeletePermanently() {
+//        System.out.println("deletePermanently");
+//        int id = 3;
 //        SupplierDao instance = new SupplierDao();
-//        instance.delete(id);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+//        instance.deletePermanently(id);
+//        assertEquals(null, instance.getById(3));
 //    }
 
 }

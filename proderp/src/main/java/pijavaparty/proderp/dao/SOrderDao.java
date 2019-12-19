@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,13 +25,14 @@ import pijavaparty.proderp.entity.SOrderItem;
 public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
 
     private static final String GETALL = "SELECT * FROM S_Orders";
+    private static final String GETALLPENDINGORDERS = "SELECT * FROM S_Orders WHERE status = 'pending'";
     private static final String GETBYID = "SELECT * FROM S_Orders WHERE id = ?";
     private static final String INSERT = "INSERT INTO S_Orders(supplier_id,status) VALUES(?,?)";
     private static final String DELETE = "DELETE FROM S_Orders WHERE id = ?";
     private static final String UPDATE = "UPDATE S_Orders SET supplier_id = ?, status = ?, created_at = ? WHERE id = ?";
     private static final String UPDATESTATUS = "UPDATE S_Orders SET status = ? WHERE id = ?";
     private static final String SELECTLASTID = "SELECT max(id) FROM S_Orders";
-    
+
     @Override
     public List<SOrder> getAll() {
         List<SOrder> sorders = new LinkedList();
@@ -40,7 +43,28 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                sorders.add(new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4)));
+                // Not using directly rs.getTimestamp(4) due to Daylight Saving Time auto conversion
+                sorders.add(new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4))));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, st);
+        }
+        return sorders;
+    }
+
+    public List<SOrder> getAllPendingOrders() {
+        List<SOrder> sorders = new LinkedList();
+        SupplierDao s = new SupplierDao();
+        ResultSet rs = null;
+        Statement st = null;
+        try {
+            st = getConnection().createStatement();
+            rs = st.executeQuery(GETALLPENDINGORDERS);
+            while (rs.next()) {
+                // Not using directly rs.getTimestamp(4) due to Daylight Saving Time auto conversion
+                sorders.add(new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +84,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
-                c = new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4));
+                c = new SOrder(rs.getInt(1), s.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,7 +93,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
         return c;
     }
-    
+
     public void update(SOrder s) {
         SOrder fromTable = getById(s.getId());
         PreparedStatement pst = null;
@@ -105,20 +129,22 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
     }
 
-    public int bringTheIdOfTheLatestSOrder(){
+    public int bringTheIdOfTheLatestSOrder() {
         Statement st = null;
         ResultSet rs = null;
         try {
             st = getConnection().createStatement();
             rs = st.executeQuery(SELECTLASTID);
-            if (rs.next())
-            return rs.getInt(1);
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
-    public void insertSOrderAndSOrderItems(SOrder so,List<SOrderItem > soi) {
+
+    public void insertSOrderAndSOrderItems(SOrder so, List<SOrderItem> soi) {
         PreparedStatement pst = null;
         try {
             //SupplierDao s = new SupplierDao();
@@ -127,10 +153,10 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             pst.setString(2, so.getStatus());
             pst.execute();
             so.setId(bringTheIdOfTheLatestSOrder());
-            for (int i=0; i< soi.size();i++) {
+            for (int i = 0; i < soi.size(); i++) {
                 SOrderItem soil;
-                soil =soi.get(i);
-                
+                soil = soi.get(i);
+
                 //soil.setSorder(this.getById(id));
                 SOrderItemDao sod = new SOrderItemDao();
                 sod.insert(soil);
@@ -142,7 +168,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             closeStatementAndResultSet(pst);
         }
     }
-    
+
     public void updateStatus(int orderId, String status) {
         PreparedStatement pst = null;
         try {
@@ -157,7 +183,6 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
     }
 
-    
     public void delete(int id) {
         PreparedStatement pst = null;
         try {

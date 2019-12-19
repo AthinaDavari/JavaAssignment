@@ -5,11 +5,11 @@
  */
 package pijavaparty.proderp.GUI;
 
-import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import pijavaparty.proderp.dao.UserDao;
 
 /**
- * @author anna
- * This class allows the administrator to delete an existing user
+ * @author anna This class allows the administrator to delete an existing user
  * by entering user's username and password and then asks for comfirmation.
  */
 public class DeleteUser extends javax.swing.JFrame {
@@ -19,11 +19,6 @@ public class DeleteUser extends javax.swing.JFrame {
      */
     public DeleteUser() {
         initComponents();
-        seticon();
-    }
-    public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
-
     }
 
     /**
@@ -37,15 +32,14 @@ public class DeleteUser extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
-        passwd = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Delete User");
@@ -53,12 +47,14 @@ public class DeleteUser extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Username:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Password:");
-
         delete.setBackground(java.awt.SystemColor.activeCaption);
         delete.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Cancel");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -77,13 +73,9 @@ public class DeleteUser extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3))
+                .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                    .addComponent(passwd))
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,11 +96,7 @@ public class DeleteUser extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(passwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(76, 76, 76)
                 .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
@@ -122,6 +110,29 @@ public class DeleteUser extends javax.swing.JFrame {
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        try {
+            String u = username.getText();
+            UserDao us2 = new UserDao();
+            boolean isdeleted = us2.delete(us2.getUserByUsername(u));
+            if (isdeleted == true) {
+                AdminMenu obj = new AdminMenu();
+                JOptionPane.showMessageDialog(rootPane, "User Deleted.");
+                obj.setVisible(true);
+                dispose();
+            } else {
+                if (us2.permissionToDeleteAnAdministratorUser() == false && us2.getUserByUsername(u).getRole() == "admin") {
+                    JOptionPane.showMessageDialog(rootPane, "You have no permission to delete the user.");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Something gone wrong.");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fields are empty");
+
+        }
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,11 +173,9 @@ public class DeleteUser extends javax.swing.JFrame {
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField passwd;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

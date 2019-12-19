@@ -34,6 +34,11 @@ public class SOrder {
         this.created_at = created_at;
     }
 
+    public SOrder(Supplier supplier, String status) {
+        this.supplier = supplier;
+        this.status = Status.valueOf(status);
+    }
+
     enum Status {
         delivered, pending;
     }
@@ -77,10 +82,10 @@ public class SOrder {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 37 * hash + this.id;
-        hash = 37 * hash + Objects.hashCode(this.supplier);
-        hash = 37 * hash + Objects.hashCode(this.status);
-        hash = 37 * hash + Objects.hashCode(this.created_at);
+        hash = 97 * hash + this.id;
+        hash = 97 * hash + Objects.hashCode(this.supplier);
+        hash = 97 * hash + Objects.hashCode(this.status);
+        hash = 97 * hash + Objects.hashCode(this.created_at);
         return hash;
     }
 

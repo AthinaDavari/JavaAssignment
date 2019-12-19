@@ -16,6 +16,7 @@ import pijavaparty.proderp.entity.User;
  */
 public class LogIn extends javax.swing.JFrame {
 
+    public static User user;
     /**
      * Creates new form LogIn
      */
@@ -44,6 +45,7 @@ public class LogIn extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,16 +157,18 @@ public class LogIn extends javax.swing.JFrame {
 
         UserDao u = new UserDao();
         User user = u.getUser(un, password);
-        if (user != null && user.getRole() == 1) {
+        if (user != null && user.getRole() == "admin") {
             AdminMenu obj = new AdminMenu();
+            LogIn.user = user; 
             obj.setVisible(true);
             dispose();
-        } else if (user.getRole() == 2) {
+        } else if (user != null && user.getRole() == "simpleuser") {
             Menu obj = new Menu();
+            LogIn.user = user; 
             obj.setVisible(true);
             dispose();
         } else {
-            JOptionPane.showConfirmDialog(rootPane, "Username or Password is Incorrect!");
+            JOptionPane.showMessageDialog(rootPane, "Username or Password is Incorrect!");
         }         // TODO add your handling code here:*/
     }//GEN-LAST:event_jButton1ActionPerformed
 

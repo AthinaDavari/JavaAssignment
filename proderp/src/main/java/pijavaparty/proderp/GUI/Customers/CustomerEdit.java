@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.entity.Customer;
+import pijavaparty.proderp.main.ValidVariables;
 
 /**
  *
@@ -25,9 +26,11 @@ public class CustomerEdit extends javax.swing.JFrame {
         initComponents();
         showCustomersTable();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +56,9 @@ public class CustomerEdit extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         value_id = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
+        valid_Fullname = new javax.swing.JLabel();
+        valid_Phonenumber = new javax.swing.JLabel();
+        valid_Email = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Customer Data");
@@ -78,17 +84,29 @@ public class CustomerEdit extends javax.swing.JFrame {
 
         jTextField2.setText("jTextField2");
 
-        jLabel3.setText("Address:");
-
-        value_address.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                value_addressActionPerformed(evt);
+        value_full_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_full_nameKeyReleased(evt);
             }
         });
 
+        jLabel3.setText("Address:");
+
         jLabel4.setText("Phonenumber:");
 
+        value_phonenumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_phonenumberKeyReleased(evt);
+            }
+        });
+
         jLabel5.setText("Email:");
+
+        value_email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_emailKeyReleased(evt);
+            }
+        });
 
         txt_update.setText("update");
         txt_update.addActionListener(new java.awt.event.ActionListener() {
@@ -104,11 +122,6 @@ public class CustomerEdit extends javax.swing.JFrame {
 
         value_id.setEditable(false);
         value_id.setBackground(new java.awt.Color(204, 204, 204));
-        value_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                value_idActionPerformed(evt);
-            }
-        });
 
         delete.setText("delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +129,15 @@ public class CustomerEdit extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
+
+        valid_Fullname.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Fullname.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_Phonenumber.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Phonenumber.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_Email.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Email.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,32 +149,42 @@ public class CustomerEdit extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(value_email, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                    .addComponent(value_phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                    .addComponent(value_address, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                    .addComponent(value_full_name, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                    .addComponent(value_id)))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(txt_update, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
-                                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(value_email, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                            .addComponent(value_phonenumber)
+                                            .addComponent(value_address)
+                                            .addComponent(value_full_name)
+                                            .addComponent(value_id)))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
+                                        .addComponent(valid_Fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(valid_Email, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                            .addComponent(valid_Phonenumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(62, 62, 62)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,108 +206,131 @@ public class CustomerEdit extends javax.swing.JFrame {
                                         .addComponent(jLabel2))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(value_full_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(value_full_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(valid_Fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(value_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(value_phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(value_phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4))
+                            .addComponent(valid_Phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(value_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(valid_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_update, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 36, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
-        try{
-            String value1_id=value_id.getText();
-            int newvalue1_id=Integer.parseInt(value1_id);
-            String value2_full_name=value_full_name.getText();
-            String value3_address=value_address.getText();
-            String value4_phonenumber=value_phonenumber.getText();
-            long newvalue4_phonenumber=Long.parseLong(value4_phonenumber);
-            String value5_email=value_email.getText();
-            
-            Customer objc=new Customer(newvalue1_id,value2_full_name,value3_address,newvalue4_phonenumber,value5_email);
-            CustomerDao obj=new CustomerDao();
+        try {
+            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText()) ){
+            String value1_id = value_id.getText();
+            int newvalue1_id = Integer.parseInt(value1_id);
+            String value2_full_name = value_full_name.getText();
+            String value3_address = value_address.getText();
+            String value4_phonenumber = value_phonenumber.getText();
+            long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
+            String value5_email = value_email.getText();
+
+            Customer objc = new Customer(newvalue1_id, value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
+            CustomerDao obj = new CustomerDao();
             obj.update(objc);
-            
-            JOptionPane.showMessageDialog(null,"Updated");
+
+            JOptionPane.showMessageDialog(null, "Updated");
             new CustomerEdit().setVisible(true);
             dispose();
+        } else {
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null,e);      
-        }
-        
+
     }//GEN-LAST:event_txt_updateActionPerformed
 
     private void Customers_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Customers_tableMouseClicked
-        
-        int selectedRow=Customers_table.getSelectedRow();
-        DefaultTableModel model2 =(DefaultTableModel) Customers_table.getModel();
+
+        int selectedRow = Customers_table.getSelectedRow();
+        DefaultTableModel model2 = (DefaultTableModel) Customers_table.getModel();
         value_id.setText((model2.getValueAt(selectedRow, 0).toString()));
         value_full_name.setText((model2.getValueAt(selectedRow, 1).toString()));
         value_address.setText((model2.getValueAt(selectedRow, 2).toString()));
         value_phonenumber.setText((model2.getValueAt(selectedRow, 3).toString()));
         value_email.setText((model2.getValueAt(selectedRow, 4).toString()));
-         
+
     }//GEN-LAST:event_Customers_tableMouseClicked
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
-        String value1_id=value_id.getText();
-         int newvalue1_id=Integer.parseInt(value1_id);
-         CustomerDao customerDao=new CustomerDao();
-         customerDao.delete(newvalue1_id);
-         JOptionPane.showMessageDialog(null,"Deleted");
-         new CustomerEdit().setVisible(true);
-         dispose();
+            String value1_id = value_id.getText();
+            int newvalue1_id = Integer.parseInt(value1_id);
+            CustomerDao customerDao = new CustomerDao();
+            customerDao.delete(newvalue1_id);
+            JOptionPane.showMessageDialog(null, "Deleted");
+            new CustomerEdit().setVisible(true);
+            dispose();
+        } catch (Exception b) {
+            JOptionPane.showMessageDialog(null, b);
+
         }
-        catch (Exception b){
-            JOptionPane.showMessageDialog(null,b);
-            
-        }
-         
-         
+
+
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void value_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_value_idActionPerformed
+    private void value_full_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_full_nameKeyReleased
+         if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText())) {
+            valid_Fullname.setText("Name is invalid!");
+        } else {
+            valid_Fullname.setText(null);
+        }
+    }//GEN-LAST:event_value_full_nameKeyReleased
 
-    private void value_addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_addressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_value_addressActionPerformed
+    private void value_phonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_phonenumberKeyReleased
+        if (!ValidVariables.isValidPhonenumber(value_phonenumber.getText())) {
+            valid_Phonenumber.setText("Phonenumber is invalid!");
+        } else {
+            valid_Phonenumber.setText(null);
+        }
+    }//GEN-LAST:event_value_phonenumberKeyReleased
 
-    
-    public void showCustomersTable(){
-        CustomerDao obj=new CustomerDao();
-        DefaultTableModel model=(DefaultTableModel) Customers_table.getModel();
-        int number=obj.getAll().size();
-        Object[] row=new Object[5];
-        for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getFullName();
-            row[2]=obj.getAll().get(i).getAddress();
-            row[3]=obj.getAll().get(i).getPhonenumber();
-            row[4]=obj.getAll().get(i).getEmail();
+    private void value_emailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_emailKeyReleased
+        if (!ValidVariables.isValidEmailAddress(value_email.getText())) {
+            valid_Email.setText("Email is invalid!");
+        } else {
+            valid_Email.setText(null);
+        }
+    }//GEN-LAST:event_value_emailKeyReleased
+
+    public void showCustomersTable() {
+        CustomerDao obj = new CustomerDao();
+        DefaultTableModel model = (DefaultTableModel) Customers_table.getModel();
+        int number = obj.getAll().size();
+        Object[] row = new Object[5];
+        for (int i = 0; i < number; i++) {
+            row[0] = obj.getAll().get(i).getId();
+            row[1] = obj.getAll().get(i).getFullName();
+            row[2] = obj.getAll().get(i).getAddress();
+            row[3] = obj.getAll().get(i).getPhonenumber();
+            row[4] = obj.getAll().get(i).getEmail();
             model.addRow(row);
         }
-        
+
     }
+
     /**
      * @param args the command line arguments
      */
@@ -323,6 +378,9 @@ public class CustomerEdit extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton txt_update;
+    private javax.swing.JLabel valid_Email;
+    private javax.swing.JLabel valid_Fullname;
+    private javax.swing.JLabel valid_Phonenumber;
     private javax.swing.JTextField value_address;
     private javax.swing.JTextField value_email;
     private javax.swing.JTextField value_full_name;

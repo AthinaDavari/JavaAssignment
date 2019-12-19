@@ -15,22 +15,38 @@ public class User {
     private String fullName;
     private String username;
     private String password;
-    private int role;
+    private Role role;
 
-    public User(String fullName, String username, String password, int role) {
+    public User(String fullName, String username, String password, Role role) {
         this.fullName = fullName;
         this.username = username;
         this.password = password;
         this.role = role;
     }
+    public User(String fullName, String username, String password, String role) {
+        this.fullName = fullName;
+        this.username = username;
+        this.password = password;
+        this.role = Role.valueOf(role);
+    }
 
     public User() {
     }
 
-    public User(String fullName, String password, int role) {
+    public User(String fullName, String username, Role role) {
         this.fullName = fullName;
-        this.password = password;
+        this.username = username;
         this.role = role;
+    }
+    
+    public User(String fullName, String username, String role) {
+        this.fullName = fullName;
+        this.username = username;
+        this.role = Role.valueOf(role);
+    }
+    
+    enum Role{
+        admin, simpleuser
     }
 
     public void setFullName(String fullName) {
@@ -45,7 +61,7 @@ public class User {
         this.password = password;
     }
 
-    public void setRole(int role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -61,17 +77,17 @@ public class User {
         return password;
     }
 
-    public int getRole() {
-        return role;
+    public String getRole() {
+        return role.name();
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.fullName);
-        hash = 97 * hash + Objects.hashCode(this.username);
-        hash = 97 * hash + Objects.hashCode(this.password);
-        hash = 97 * hash + this.role;
+        hash = 71 * hash + Objects.hashCode(this.fullName);
+        hash = 71 * hash + Objects.hashCode(this.username);
+        hash = 71 * hash + Objects.hashCode(this.password);
+        hash = 71 * hash + Objects.hashCode(this.role);
         return hash;
     }
 
@@ -87,9 +103,6 @@ public class User {
             return false;
         }
         final User other = (User) obj;
-        if (this.role != other.role) {
-            return false;
-        }
         if (!Objects.equals(this.fullName, other.fullName)) {
             return false;
         }
@@ -99,8 +112,13 @@ public class User {
         if (!Objects.equals(this.password, other.password)) {
             return false;
         }
+        if (this.role != other.role) {
+            return false;
+        }
         return true;
     }
+
+    
 
     @Override
     public String toString() {

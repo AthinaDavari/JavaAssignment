@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,9 +24,10 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
 
     private static final String GETALL = "SELECT * FROM C_Orders";
     private static final String GETBYID = "SELECT * FROM C_Orders WHERE id = ?";
-    private static final String INSERT = "INSERT INTO C_Orders(customer_id,status) VALUES(?,?)";
+    private static final String INSERT = "INSERT INTO C_Orders(customer_id,status, user_name) VALUES(?,?, ?)";
     private static final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
-
+    private static UserDao ud = new UserDao();
+    
     @Override
     public List<COrder> getAll() {
         List<COrder> corders = new LinkedList();
@@ -36,7 +38,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
             while (rs.next()) {
-                corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.getInt(5)));
+                corders.add(new COrder(rs.getInt(1), c.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4)), ud.getUserByUsername(rs.getString(5))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,7 +59,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
-                c = new COrder(rs.getInt(1), cu.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), rs.getInt(5));
+                c = new COrder(rs.getInt(1), cu.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), ud.getUserByUsername(rs.getString(5)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,6 +77,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             pst = getConnection().prepareStatement(INSERT);
             pst.setInt(1, co.getCustomer().getId());
             pst.setString(2, co.getStatus());
+            pst.setString(3, co.getUser().getUsername());
             pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,8 +99,6 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             closeStatementAndResultSet(pst);
         }
     }
-
-
 
 
 }

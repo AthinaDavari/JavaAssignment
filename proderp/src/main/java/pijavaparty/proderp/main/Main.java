@@ -15,6 +15,7 @@ import pijavaparty.proderp.entity.SOrderItem;
 import pijavaparty.proderp.entity.Supplier;
 import pijavaparty.proderp.entity.User;
 import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.entity.ProductRawMaterial;
 
 /**
  *
@@ -32,10 +33,13 @@ public class Main {
 //        ud.insert(new User("maria k", "maria", "abc12", 2));
         //ud.insert(new User("anna", "anna", "213", 1));
         //System.out.println(ud.getAll());
-  SupplierDao sd = new SupplierDao();
-        System.out.println(sd.getAll());        
-
-
+//  SupplierDao sd = new SupplierDao();
+//        System.out.println(sd.getAll());        
+RawMaterialDao rmd = new RawMaterialDao();
+        System.out.println(rmd.getById(1));
+        System.out.println(rmd.getById(2));
+        System.out.println(rmd.getById(3));
+        System.out.println(rmd.getAll());
 //System.out.println(cd.getAll());
 //        SOrderDao s= new SOrderDao();
 //        SupplierDao sd = new SupplierDao();

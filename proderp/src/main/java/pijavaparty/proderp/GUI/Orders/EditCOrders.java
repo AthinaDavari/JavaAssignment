@@ -111,11 +111,16 @@ public class EditCOrders extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Status");
+        jLabel3.setText("Update to");
 
         stat.setEditable(false);
         stat.setBackground(new java.awt.Color(204, 204, 204));
         stat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        stat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,7 +183,7 @@ public class EditCOrders extends javax.swing.JFrame {
             String status = stat.getText();
             
             COrderDao cod = new COrderDao();
-            cod.updateStatus(orderIDint, ((status.equals("ready"))?"delivered":"ready"));
+            cod.updateStatus(orderIDint, (status));
     
             JOptionPane.showMessageDialog(null, "Status Updated.");
             
@@ -196,7 +201,7 @@ public class EditCOrders extends javax.swing.JFrame {
         int selectedRow = COrdersTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
         orderid.setText((model.getValueAt(selectedRow, 0).toString()));
-        stat.setText((model.getValueAt(selectedRow, 2).toString()));
+        stat.setText(((model.getValueAt(selectedRow, 2).toString().equals("ready")))?"delivered":"ready");
         
     }//GEN-LAST:event_COrdersTableMouseClicked
 
@@ -218,6 +223,10 @@ public class EditCOrders extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void statActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statActionPerformed
 
     public void showCOrdersTable() {
         try {

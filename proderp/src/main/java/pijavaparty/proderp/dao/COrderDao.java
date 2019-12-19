@@ -24,6 +24,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
 
     private static final String GETALL = "SELECT * FROM C_Orders";
     private static final String GETBYID = "SELECT * FROM C_Orders WHERE id = ?";
+    private static final String UPDATESTATUS = "UPDATE C_Orders SET status = ? WHERE id = ?";
     private static final String INSERT = "INSERT INTO C_Orders(customer_id,status, user_name) VALUES(?,?, ?)";
     private static final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
     private static UserDao ud = new UserDao();
@@ -69,6 +70,19 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         return c;
     }
 
+    public void updateStatus(int orderId, String status) {
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(UPDATESTATUS);
+            pst.setString(1, status);
+            pst.setInt(2, orderId);
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(pst);
+        }
+    }
     
     @Override
     public void insert(COrder co) {

@@ -131,19 +131,18 @@ public class EditOrders extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(update)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,12 +171,11 @@ public class EditOrders extends javax.swing.JFrame {
             String orderIDString = jTextField1.getText();
             int orderIDint = Integer.parseInt(orderIDString);
 
-            
-                SOrderDao sd = new SOrderDao();
-                sd.updateStatus(orderIDint, "delivered");
-                SOrderItemDao orderItemDao = new SOrderItemDao();
-                orderItemDao.increaseQuantities(orderIDint);
-                JOptionPane.showMessageDialog(null, "Status Updated.");
+            SOrderDao sd = new SOrderDao();
+            sd.updateStatus(orderIDint, "delivered");
+            SOrderItemDao orderItemDao = new SOrderItemDao();
+            orderItemDao.increaseQuantities(orderIDint);
+            JOptionPane.showMessageDialog(null, "Status Updated.");
             
             new EditOrders().setVisible(true);
             dispose();
@@ -225,7 +223,7 @@ public class EditOrders extends javax.swing.JFrame {
         try {
             
             SOrderDao obj2 = new SOrderDao();
-            List<SOrder> sorders = obj2.getAll();
+            List<SOrder> sorders = obj2.getAllPendingOrders();
             int number1 = sorders.size();
             DefaultTableModel model2 = (DefaultTableModel) SOrdersTable.getModel();
 
@@ -233,7 +231,7 @@ public class EditOrders extends javax.swing.JFrame {
 
             for (int i = 0; i < number1; i++) {
                 row[0] = sorders.get(i).getId();
-                row[1] = sorders.get(i).getSupplier().getId() + " " + sorders.get(i).getSupplier().getFullName();
+                row[1] = sorders.get(i).getSupplier().getFullName();
                 row[2] = sorders.get(i).getStatus();
                 row[3] = sorders.get(i).getCreated_at();
 

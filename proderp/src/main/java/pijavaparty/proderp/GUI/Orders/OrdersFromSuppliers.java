@@ -182,7 +182,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
             for (int i = 0; i < number1; i++) {
                 row[0] = sorders.get(i).getId();
-                row[1] = sorders.get(i).getSupplier().getId() + " " + sorders.get(i).getSupplier().getFullName();
+                row[1] = sorders.get(i).getSupplier().getFullName();
                 row[2] = sorders.get(i).getStatus();
                 row[3] = sorders.get(i).getCreated_at();
 

@@ -4,6 +4,7 @@ package pijavaparty.proderp.GUI.Products;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.GUI.LogIn;
+import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
 
 /**
  *
@@ -29,6 +30,7 @@ public class AddProducts extends javax.swing.JFrame {
         value_name = new javax.swing.JTextField();
         value_price = new javax.swing.JTextField();
         AddProduct = new javax.swing.JButton();
+        valid_Price = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Cancel = new javax.swing.JMenu();
 
@@ -43,6 +45,12 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Price");
 
+        value_price.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_priceKeyReleased(evt);
+            }
+        });
+
         AddProduct.setBackground(java.awt.SystemColor.activeCaption);
         AddProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         AddProduct.setText("Add");
@@ -51,6 +59,9 @@ public class AddProducts extends javax.swing.JFrame {
                 AddProductActionPerformed(evt);
             }
         });
+
+        valid_Price.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Price.setForeground(new java.awt.Color(255, 0, 0));
 
         Cancel.setForeground(new java.awt.Color(51, 51, 255));
         Cancel.setText("Cancel");
@@ -81,12 +92,15 @@ public class AddProducts extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(value_name, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(value_name, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(valid_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(AddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +114,8 @@ public class AddProducts extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valid_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addComponent(AddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(115, Short.MAX_VALUE))
@@ -111,8 +126,12 @@ public class AddProducts extends javax.swing.JFrame {
 
     private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed
        try {
+           if (isValidDouble(value_price.getText())){
            new AddIngredients(value_name.getText(),Double.parseDouble(value_price.getText())).setVisible(true);
             dispose();
+           } else {
+               JOptionPane.showMessageDialog(null, "Incorrect validation! Please try again!");
+           }
        } catch (Exception e) {
            JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
        }
@@ -124,6 +143,14 @@ public class AddProducts extends javax.swing.JFrame {
         productGui.setVisible(true);
         dispose(); 
     }//GEN-LAST:event_CancelMouseClicked
+
+    private void value_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_priceKeyReleased
+       if (!isValidDouble(value_price.getText())){
+            valid_Price.setText("Price is invalid!");
+        } else {
+            valid_Price.setText(null);
+        }
+    }//GEN-LAST:event_value_priceKeyReleased
 
     /**
      * @param args the command line arguments
@@ -167,6 +194,7 @@ public class AddProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel valid_Price;
     private javax.swing.JTextField value_name;
     private javax.swing.JTextField value_price;
     // End of variables declaration//GEN-END:variables

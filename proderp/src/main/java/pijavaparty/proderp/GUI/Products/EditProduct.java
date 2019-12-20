@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.GUI.RawMaterials.RawMaterialDelete;
 import pijavaparty.proderp.dao.ProductDao;
+import pijavaparty.proderp.main.ValidVariables;
+import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
 
 /**
  *
@@ -41,6 +43,8 @@ public class EditProduct extends javax.swing.JFrame {
         products_table = new javax.swing.JTable();
         value_id = new javax.swing.JTextField();
         Delete = new javax.swing.JButton();
+        valid_Name = new javax.swing.JLabel();
+        valid_Price = new javax.swing.JLabel();
         jMenuBar4 = new javax.swing.JMenuBar();
         Cancel = new javax.swing.JMenu();
 
@@ -57,6 +61,18 @@ public class EditProduct extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Price");
+
+        value_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_nameKeyReleased(evt);
+            }
+        });
+
+        value_price.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_priceKeyReleased(evt);
+            }
+        });
 
         Update.setBackground(java.awt.SystemColor.activeCaption);
         Update.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -101,6 +117,12 @@ public class EditProduct extends javax.swing.JFrame {
             }
         });
 
+        valid_Name.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Name.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_Price.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Price.setForeground(new java.awt.Color(255, 0, 0));
+
         Cancel.setForeground(new java.awt.Color(51, 51, 255));
         Cancel.setText("Cancel");
         Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,7 +160,13 @@ public class EditProduct extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(valid_Price, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(valid_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,11 +180,13 @@ public class EditProduct extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(value_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(value_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valid_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valid_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,6 +227,7 @@ public class EditProduct extends javax.swing.JFrame {
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
        try{
+           if(ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) ){
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
             String value2_name=value_name.getText();
@@ -211,6 +242,9 @@ public class EditProduct extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Updated");
             new EditProduct().setVisible(true);
             dispose();
+           } else {
+               JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+           }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,"Insert Details.","Error",  JOptionPane.ERROR_MESSAGE);
             EditProduct stor = new EditProduct();
@@ -224,6 +258,22 @@ public class EditProduct extends javax.swing.JFrame {
         productGui.setVisible(true);
         dispose();
     }//GEN-LAST:event_CancelMouseClicked
+
+    private void value_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_nameKeyReleased
+        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText())) {
+            valid_Name.setText("Name is invalid!");
+        } else {
+            valid_Name.setText(null);
+        }
+    }//GEN-LAST:event_value_nameKeyReleased
+
+    private void value_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_priceKeyReleased
+        if (!isValidDouble(value_price.getText())){
+            valid_Price.setText("Price is invalid!");
+        } else {
+            valid_Price.setText(null);
+        }
+    }//GEN-LAST:event_value_priceKeyReleased
 
     /**
      * @param args the command line arguments
@@ -285,6 +335,8 @@ public class EditProduct extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable products_table;
+    private javax.swing.JLabel valid_Name;
+    private javax.swing.JLabel valid_Price;
     private javax.swing.JTextField value_id;
     private javax.swing.JTextField value_name;
     private javax.swing.JTextField value_price;

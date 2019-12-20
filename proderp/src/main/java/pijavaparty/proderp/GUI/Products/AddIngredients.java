@@ -11,6 +11,7 @@ import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.entity.Product;
 import pijavaparty.proderp.entity.ProductRawMaterial;
 import pijavaparty.proderp.entity.RawMaterial;
+import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
 
 /**
  *
@@ -73,6 +74,7 @@ public class AddIngredients extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         value_quantity = new javax.swing.JTextField();
         drop_down = new javax.swing.JComboBox<>();
+        valid_Quantity = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Cancel = new javax.swing.JMenu();
 
@@ -99,6 +101,15 @@ public class AddIngredients extends javax.swing.JFrame {
         jLabel2.setText("Name-Id:");
 
         jLabel3.setText("Quantity: ");
+
+        value_quantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_quantityKeyReleased(evt);
+            }
+        });
+
+        valid_Quantity.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Quantity.setForeground(new java.awt.Color(255, 0, 0));
 
         Cancel.setForeground(new java.awt.Color(51, 51, 255));
         Cancel.setText("Cancel");
@@ -135,7 +146,9 @@ public class AddIngredients extends javax.swing.JFrame {
                                 .addComponent(value_quantity)
                                 .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel3))
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +162,8 @@ public class AddIngredients extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(value_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(value_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddMoreIngredients, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,6 +176,7 @@ public class AddIngredients extends javax.swing.JFrame {
     //method for add ingredients but not save
     private void AddMoreIngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddMoreIngredientsActionPerformed
         try {
+            if(isValidInteger(value_quantity.getText())){
             String value_name = drop_down.getSelectedItem().toString();
             String stringnamearray[];
             stringnamearray = value_name.split("[^0-9]");
@@ -189,6 +204,9 @@ public class AddIngredients extends javax.swing.JFrame {
             prodraw.add(prodrawmat);
             new AddIngredients(prodraw, prod).setVisible(true);
             dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
         }
@@ -196,6 +214,7 @@ public class AddIngredients extends javax.swing.JFrame {
     //method for adding one more ingredient and then save
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         try {
+            if (isValidInteger(value_quantity.getText())){
             String value_name = drop_down.getSelectedItem().toString();
             String stringnamearray[];
             stringnamearray = value_name.split("[^0-9]");
@@ -233,6 +252,9 @@ public class AddIngredients extends javax.swing.JFrame {
             prodraw.clear();
             JOptionPane.showMessageDialog(null, "Added");
             dispose();
+            } else {
+                JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE); 
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
         }
@@ -243,6 +265,14 @@ public class AddIngredients extends javax.swing.JFrame {
         rawmenu.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_CancelMouseClicked
+
+    private void value_quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_quantityKeyReleased
+        if(!isValidInteger(value_quantity.getText())){
+            valid_Quantity.setText("Quantity is invalid!");
+        }else {
+            valid_Quantity.setText(null);
+        }
+    }//GEN-LAST:event_value_quantityKeyReleased
     //fill up the drop down with raw materials and ids from the data base
     private void fillcombo() {
         RawMaterialDao rawdao = new RawMaterialDao();
@@ -317,6 +347,7 @@ public class AddIngredients extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel valid_Quantity;
     private javax.swing.JTextField value_quantity;
     // End of variables declaration//GEN-END:variables
 }

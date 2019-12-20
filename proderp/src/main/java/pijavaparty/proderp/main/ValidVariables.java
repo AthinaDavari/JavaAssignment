@@ -56,7 +56,7 @@ public class ValidVariables {
         
     }
      public static boolean isValidDouble(String double_number){
-         String pattern="[0-9]+(.){1}[0-9]*";
+         String pattern="[0-9]+(\\.){1}[0-9]+";
           if (Pattern.matches(pattern, double_number)){
            return true;
        } else {

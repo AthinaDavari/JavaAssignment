@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.sql.PreparedStatement;
@@ -17,17 +12,19 @@ import javax.management.relation.Role;
 import pijavaparty.proderp.entity.User;
 
 /**
+ * UserDao.java - a class for interacting and modifying the fields of a user.
  *
  * @author athinaDavari
+ * @see User
  */
 public class UserDao extends Dao {
 
     private static final String GETUSER = "SELECT full_name, user_name, aes_decrypt(password, \"prod\"), role FROM users "
-                                        + "WHERE user_name = ? and password = aes_encrypt(?, \"prod\") and is_deleted = false";
+            + "WHERE user_name = ? and password = aes_encrypt(?, \"prod\") and is_deleted = false";
     private static final String GETUSERBYUSERNAME = "SELECT full_name, user_name, role FROM users "
-                                                  + "WHERE user_name = ? and is_deleted=false ";
+            + "WHERE user_name = ? and is_deleted=false ";
     private static final String GETALL = "SELECT full_name, user_name, role FROM Users "
-                                       + "WHERE is_deleted=false";
+            + "WHERE is_deleted=false";
     private static final String INSERT = "INSERT INTO Users(full_name, user_name, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
     private static final String DELETE = "UPDATE Users SET is_deleted = true WHERE user_name = ?";
     private static final String PERMISSIONTODELETE = "SELECT COUNT(*) FROM users WHERE role = 'admin'";
@@ -35,9 +32,9 @@ public class UserDao extends Dao {
     /**
      * Returns the fields of an already created user or null.
      *
-     * @param username
-     * @param password
-     * @return
+     * @param username A variable of type String.
+     * @param password A variable of type String.
+     * @return A User data type object.
      */
     public User getUser(String username, String password) {
         PreparedStatement pst = null;
@@ -58,8 +55,14 @@ public class UserDao extends Dao {
         }
         return u;
     }
-    
-     public User getUserByUsername(String username) {
+
+    /**
+     * Return the fields of an already created user or null.
+     *
+     * @param username A variable of type String.
+     * @return A user data type object.
+     */
+    public User getUserByUsername(String username) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         User u = null;
@@ -79,9 +82,9 @@ public class UserDao extends Dao {
     }
 
     /**
-     * Adds new users in a List and then returns it.
+     * Add new users in a List and then returns it.
      *
-     * @return
+     * @return A User data type List.
      */
     public List<User> getAll() {
         List<User> users = new LinkedList();
@@ -102,10 +105,10 @@ public class UserDao extends Dao {
     }
 
     /**
-     * Checks if a specific user exists in the List. If so, the method is
+     * Check if a specific user exists in the List. If so, the method is
      * terminated. Otherwise, the user is inserted in the List.
      *
-     * @param user
+     * @param user A variable of type User.
      */
     public boolean insert(User user) {
         PreparedStatement pst = null;
@@ -132,9 +135,9 @@ public class UserDao extends Dao {
     }
 
     /**
-     * Deletes a user with a specific username.
+     * Delete a user with a specific username.
      *
-     * @param username
+     * @param username A variable of type String.
      */
     public boolean delete(User user) {
         PreparedStatement pst = null;
@@ -153,6 +156,11 @@ public class UserDao extends Dao {
         return false;
     }
 
+    /**
+     * Return if an administrator user exists or not.
+     *
+     * @return A variable of type boolean.
+     */
     public boolean permissionToDeleteAnAdministratorUser() {
         Statement st = null;
         ResultSet rs = null;

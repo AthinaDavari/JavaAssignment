@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.entity;
 
 import java.util.Objects;
 
 /**
+ * Supplier.java - a class with the necessary getters and setters for a Supplier
+ * data type object.
  *
  * @author Natalia
  */
@@ -19,9 +16,20 @@ public class Supplier {
     private Long phonenumber;
     private String email;
 
+    /**
+     * A no-argument Constructor.
+     */
     public Supplier() {
     }
 
+    /**
+     * A Constructor with arguments.
+     *
+     * @param fullName A variable of type String.
+     * @param address A variable of type String.
+     * @param phonenumber A variable of type Long.
+     * @param email A variable of type String.
+     */
     public Supplier(String fullName, String address, Long phonenumber, String email) {
         this.fullName = fullName;
         this.address = address;
@@ -29,6 +37,15 @@ public class Supplier {
         this.email = email;
     }
 
+    /**
+     * A Constructor with arguments.
+     *
+     * @param id A variable of type int.
+     * @param fullName A variable of type String.
+     * @param address A variable of type String.
+     * @param phonenumber A variable of type Long.
+     * @param email A variable of type String.
+     */
     public Supplier(int id, String fullName, String address, Long phonenumber, String email) {
         this.id = id;
         this.fullName = fullName;
@@ -37,46 +54,101 @@ public class Supplier {
         this.email = email;
     }
 
+    /**
+     * Retrieve the value of id.
+     *
+     * @return An int data type.
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Set the value of id.
+     *
+     * @param id A variable of type int.
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Retrieve the value of fullName.
+     *
+     * @return A String data type.
+     */
     public String getFullName() {
         return fullName;
     }
 
+    /**
+     * Set the value of fullName.
+     *
+     * @param fullName A variable of type String.
+     */
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
+    /**
+     * Retrieve the value of address.
+     *
+     * @return A String data type.
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     * Set the value of address.
+     *
+     * @param address A variable of type String.
+     */
     public void setAddress(String address) {
         this.address = address;
     }
 
+    /**
+     * Retrieve the value of phonenumber.
+     *
+     * @return A Long data type.
+     */
     public Long getPhonenumber() {
         return phonenumber;
     }
 
+    /**
+     * Set the value of phonenumber.
+     *
+     * @param phonenumber A variable of type Long.
+     */
     public void setPhonenumber(Long phonenumber) {
         this.phonenumber = phonenumber;
     }
 
+    /**
+     * Retrieve the value of email.
+     *
+     * @return A String data type.
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Set the value of email.
+     *
+     * @param email A variable of type String.
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * Return the hash code value for this set.
+     *
+     * @return An int data type.
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -88,6 +160,12 @@ public class Supplier {
         return hash;
     }
 
+    /**
+     * Compares the specified object with this set for equality.
+     *
+     * @param obj A variable of type Object.
+     * @return A boolean data type.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -118,10 +196,14 @@ public class Supplier {
         return true;
     }
 
+    /**
+     * Returns a string representation of this collection.
+     *
+     * @return A String data type.
+     */
     @Override
     public String toString() {
         return "Supplier{" + "id=" + id + ", fullName=" + fullName + ", address=" + address + ", phonenumber=" + phonenumber + ", email=" + email + '}';
     }
-    
 
 }

@@ -108,6 +108,9 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         valid_Name.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Name.setForeground(new java.awt.Color(255, 0, 0));
 
+        valid_Price.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Price.setForeground(new java.awt.Color(255, 0, 0));
+
         cancel.setForeground(new java.awt.Color(51, 51, 255));
         cancel.setText("Cancel");
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {

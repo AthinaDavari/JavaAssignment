@@ -63,4 +63,12 @@ public class ValidVariables {
            return false;
        }
      }
+     public static boolean isStringOnlyAlphabetAndNumbersAndWhiteSpaces(String input){
+         String pattern="^[a-zA-Z]+(\\s{1,10}[a-zA-Z0-9]*){0,5}$";
+         if(Pattern.matches(pattern,input)){
+             return true;
+         } else {
+             return false;
+         }
+     }
 }

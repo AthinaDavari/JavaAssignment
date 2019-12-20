@@ -8,6 +8,7 @@ import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.GUI.RawMaterials.RawMaterialDelete;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.main.ValidVariables;
+import static pijavaparty.proderp.main.ValidVariables.isStringOnlyAlphabetAndNumbersAndWhiteSpaces;
 import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
 
 /**
@@ -227,7 +228,7 @@ public class EditProduct extends javax.swing.JFrame {
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
        try{
-           if(ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) ){
+           if(isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) ){
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
             String value2_name=value_name.getText();
@@ -260,7 +261,7 @@ public class EditProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelMouseClicked
 
     private void value_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_nameKeyReleased
-        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText())) {
+        if (!isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())) {
             valid_Name.setText("Name is invalid!");
         } else {
             valid_Name.setText(null);

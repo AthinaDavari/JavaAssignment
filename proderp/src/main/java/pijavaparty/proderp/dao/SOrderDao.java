@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.sql.PreparedStatement;
@@ -19,8 +14,11 @@ import pijavaparty.proderp.entity.SOrder;
 import pijavaparty.proderp.entity.SOrderItem;
 
 /**
+ * SOrderDao.java - a class for interacting and modifying the fields of a
+ * supplier's order.
  *
  * @author athina
+ * @see SOrder, SOrderItem
  */
 public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
 
@@ -33,6 +31,11 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     private static final String UPDATESTATUS = "UPDATE S_Orders SET status = ? WHERE id = ?";
     private static final String SELECTLASTID = "SELECT max(id) FROM S_Orders";
 
+    /**
+     * Add a new supplier's order in a List.
+     *
+     * @return A SOrder data type List.
+     */
     @Override
     public List<SOrder> getAll() {
         List<SOrder> sorders = new LinkedList();
@@ -74,6 +77,12 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         return sorders;
     }
 
+    /**
+     * Return a supplier's order with a specific id.
+     *
+     * @param id A variable of type int.
+     * @return A SOrder data type object.
+     */
     public SOrder getById(int id) {
         PreparedStatement pst = null;
         SOrder c = null;
@@ -94,6 +103,11 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         return c;
     }
 
+    /**
+     * Change/Update the fields of a supplier's order.
+     *
+     * @param s A variable of type SOrder.
+     */
     public void update(SOrder s) {
         SOrder fromTable = getById(s.getId());
         PreparedStatement pst = null;
@@ -113,6 +127,11 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
     }
 
+    /**
+     * Insert a new supplier's order.
+     *
+     * @param so A variable of type SOrder.
+     */
     public void insert(SOrder so) {
         PreparedStatement pst = null;
         try {
@@ -129,6 +148,11 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
     }
 
+    /**
+     * Retrieve the last supplier's order id.
+     *
+     * @return An int data type variable.
+     */
     public int bringTheIdOfTheLatestSOrder() {
         Statement st = null;
         ResultSet rs = null;
@@ -144,6 +168,12 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         return 0;
     }
 
+    /**
+     * Insert a new supplier's order and items.
+     *
+     * @param so A SOrder data type object.
+     * @param soi A SOrderItem data type object.
+     */
     public void insertSOrderAndSOrderItems(SOrder so, List<SOrderItem> soi) {
         insert(so);
         so.setId(bringTheIdOfTheLatestSOrder());
@@ -155,6 +185,12 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
     }
 
+    /**
+     * Modify the status of supplier's order.
+     *
+     * @param orderId A variable of type int.
+     * @param status A variable of type String.
+     */
     public void updateStatus(int orderId, String status) {
         PreparedStatement pst = null;
         try {
@@ -169,6 +205,11 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
     }
 
+    /**
+     * Delete a supplier's order with a specific id.
+     *
+     * @param id A variable of type int.
+     */
     public void delete(int id) {
         PreparedStatement pst = null;
         try {

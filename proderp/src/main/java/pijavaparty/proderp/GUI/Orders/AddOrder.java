@@ -10,22 +10,17 @@ package pijavaparty.proderp.GUI.Orders;
  * @author MariaKokkorou
  */
 import java.awt.Toolkit;
-import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.SOrder;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SupplierDao;
-import pijavaparty.proderp.entity.RawMaterial;
-import pijavaparty.proderp.entity.SOrderItem;
 import pijavaparty.proderp.entity.Supplier;
 
 public class AddOrder extends javax.swing.JFrame {
 
     static SOrder sorder;
-    
+    static int supplierId;
 
     public AddOrder() {
         initComponents();
@@ -116,13 +111,14 @@ public class AddOrder extends javax.swing.JFrame {
     private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
 
         try {
+            
             String supplierAsString = supid.getSelectedItem().toString();
             createSOrder(supplierAsString);
-
             
             new AddItemSOrder().setVisible(true);
 
             dispose();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -148,9 +144,10 @@ public class AddOrder extends javax.swing.JFrame {
     private void createSOrder(String supplier) {
         SupplierDao sd = new SupplierDao();
         String[] supplierTable = supplier.split(" ");
-        int supplierId = Integer.parseInt(supplierTable[0]);
+        supplierId = Integer.parseInt(supplierTable[0]);
         sorder = new SOrder(sd.getById(supplierId));
     }
+    
     private void supidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_supidActionPerformed

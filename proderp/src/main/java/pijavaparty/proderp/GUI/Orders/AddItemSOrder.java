@@ -7,12 +7,16 @@ package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrderItem;
 import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
+import static pijavaparty.proderp.GUI.Orders.AddOrder.supplierId;
+import pijavaparty.proderp.dao.SupplierDao;
 
 /**
  *
@@ -27,6 +31,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
      */
     public AddItemSOrder() {
         initComponents();
+        comboBox();
         seticon();
     }
 
@@ -46,10 +51,10 @@ public class AddItemSOrder extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        qu = new javax.swing.JTextField();
+        quantity = new javax.swing.JTextField();
         newitem = new javax.swing.JButton();
         addorder = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        rawMaterialsCombo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -63,7 +68,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Enter Quantity:");
 
-        qu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        quantity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         newitem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         newitem.setText("New Item Order To Supplier");
@@ -81,7 +86,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rawMaterialsCombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,11 +107,11 @@ public class AddItemSOrder extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(qu))
+                                        .addComponent(quantity))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(rawMaterialsCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(87, 87, 87))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,11 +127,11 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(jComboBox1))
+                    .addComponent(rawMaterialsCombo))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(qu, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                    .addComponent(quantity, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,13 +144,15 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
     private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
         try {
-            int rawm = Integer.parseInt(raw.getText().trim());
-            int quan = Integer.parseInt(qu.getText().trim());
+            
+            String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
+            int rawMaterialInt = Integer.parseInt(rawMaterialsString);
+            int quantityInt = Integer.parseInt(quantity.getText().trim());
 
             RawMaterialDao rmd = new RawMaterialDao();
-            RawMaterial rm = rmd.getById(rawm);
+            RawMaterial rawmaterial = rmd.getById(rawMaterialInt);
 
-            SOrderItem sorderitem = new SOrderItem(sorder, rm, quan);
+            SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
             SOrderItemsList.add(sorderitem);
 
             JOptionPane.showMessageDialog(null, "Added to Order List.");
@@ -162,15 +169,18 @@ public class AddItemSOrder extends javax.swing.JFrame {
     private void addorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addorderActionPerformed
 
         JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
+        
+        String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
+        int rawMaterialInt = Integer.parseInt(rawMaterialsString);
+        int quantityInt = Integer.parseInt(quantity.getText().trim());
 
-        SOrderDao sod = new SOrderDao();
         RawMaterialDao rmd = new RawMaterialDao();
-        int rmId = Integer.parseInt(raw.getText().trim());
-        int quan = Integer.parseInt(qu.getText().trim());
+        RawMaterial rawmaterial = rmd.getById(rawMaterialInt);
 
-        SOrderItem sorderitem = new SOrderItem(sorder, rmd.getById(rmId), quan);
+        SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
         SOrderItemsList.add(sorderitem);
-
+        
+        SOrderDao sod = new SOrderDao();
         sod.insertSOrderAndSOrderItems(sorder, SOrderItemsList);
 
         JOptionPane.showMessageDialog(null, "Order Saved.");
@@ -179,20 +189,29 @@ public class AddItemSOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_addorderActionPerformed
 
     
-     private void fillcombobox(){
+     private void comboBox(){
+         
         RawMaterialDao rmd = new RawMaterialDao();
-        List<User> users;
-        users = userdao.getAll();
-        int size=userdao.getAll().size();
-        try{
-            for(int i=0; i<size; i++){
-                role.addItem(users.get(i).getFullName());
+        List<RawMaterial> rawMaterials = new LinkedList();
+        
+        SupplierDao sd = new SupplierDao();
+        rawMaterials = sd.getRawMaterialsPerSupplier(supplierId);
+        
+        int number = sd.getAll().size();
+        
+        try {
+            
+            for (int i = 0; i < number; i++) {
+                
+                rawMaterialsCombo.addItem(rawMaterials.get(i).getId() + "-" + rawMaterials.get(i).getName());
+                
             }
-        }
-        catch(Exception e){
+            
+         } catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
     }
+     
     /**
      * @param args the command line arguments
      */
@@ -230,12 +249,12 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addorder;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton newitem;
-    private javax.swing.JTextField qu;
+    private javax.swing.JTextField quantity;
+    private javax.swing.JComboBox<String> rawMaterialsCombo;
     // End of variables declaration//GEN-END:variables
 
 }

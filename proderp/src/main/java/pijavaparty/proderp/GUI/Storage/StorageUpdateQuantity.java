@@ -6,6 +6,7 @@ import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.entity.Product;
+import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
 
 /**
  *
@@ -46,6 +47,12 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
         update_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 update_buttonActionPerformed(evt);
+            }
+        });
+
+        value_quantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_quantityKeyReleased(evt);
             }
         });
 
@@ -117,7 +124,8 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
 
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
         //Method that excequtes the quantity update of a product in the sql data base
-        try {   
+        try { 
+            if(isValidInteger(value_quantity.getText())){
             int quant = Integer.parseInt(value_quantity.getText());
             if (prodorraw.equals("Product")) {
                 ProductDao productDao=new ProductDao();
@@ -129,6 +137,9 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
                 RawMaterialDao rawmaterialDao=new RawMaterialDao();
                 rawmaterialDao.updateQuantity(id,quant);
             }
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+            }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,"Insert quantity.","Error",  JOptionPane.ERROR_MESSAGE);
             StorageUpdateQuantity stor = new StorageUpdateQuantity();
@@ -137,6 +148,14 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
         }
         dispose();
     }//GEN-LAST:event_update_buttonActionPerformed
+
+    private void value_quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_quantityKeyReleased
+         if(!isValidInteger(value_quantity.getText())){
+            valid_Quantity.setText("Quantity is invalid!");
+        }else {
+            valid_Quantity.setText(null);
+        }
+    }//GEN-LAST:event_value_quantityKeyReleased
 
     /**
      * @param args the command line arguments

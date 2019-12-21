@@ -17,6 +17,7 @@ import pijavaparty.proderp.entity.SOrderItem;
 import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
 import static pijavaparty.proderp.GUI.Orders.AddOrder.supplierId;
 import pijavaparty.proderp.dao.SupplierDao;
+import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
 
 /**
  *
@@ -55,6 +56,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         newitem = new javax.swing.JButton();
         addorder = new javax.swing.JButton();
         rawMaterialsCombo = new javax.swing.JComboBox<>();
+        valid_Quantity = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -69,6 +71,11 @@ public class AddItemSOrder extends javax.swing.JFrame {
         jLabel3.setText("Enter Quantity:");
 
         quantity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        quantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                quantityKeyReleased(evt);
+            }
+        });
 
         newitem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         newitem.setText("New Item Order To Supplier");
@@ -88,6 +95,9 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
         rawMaterialsCombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        valid_Quantity.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Quantity.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,28 +106,28 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(quantity))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rawMaterialsCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(87, 87, 87))
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel1)
+                        .addGap(162, 162, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addorder, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(quantity))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rawMaterialsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,8 +141,10 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(quantity, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(quantity, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                        .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addorder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,7 +156,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
     private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
         try {
-            
+            if (isValidInteger(quantity.getText())){
             String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
             int rawMaterialInt = Integer.parseInt(rawMaterialsString);
             int quantityInt = Integer.parseInt(quantity.getText().trim());
@@ -159,6 +171,9 @@ public class AddItemSOrder extends javax.swing.JFrame {
             new AddItemSOrder().setVisible(true);
 
             dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -168,6 +183,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
     private void addorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addorderActionPerformed
 
+        if(isValidInteger(quantity.getText())){
         JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
         
         String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
@@ -185,8 +201,19 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, "Order Saved.");
         dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+        }
 
     }//GEN-LAST:event_addorderActionPerformed
+
+    private void quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityKeyReleased
+       if(!isValidInteger(quantity.getText())){
+            valid_Quantity.setText("Quantity is invalid!");
+        }else {
+            valid_Quantity.setText(null);
+        }
+    }//GEN-LAST:event_quantityKeyReleased
 
     
      private void comboBox(){
@@ -255,6 +282,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
     private javax.swing.JButton newitem;
     private javax.swing.JTextField quantity;
     private javax.swing.JComboBox<String> rawMaterialsCombo;
+    private javax.swing.JLabel valid_Quantity;
     // End of variables declaration//GEN-END:variables
 
 }

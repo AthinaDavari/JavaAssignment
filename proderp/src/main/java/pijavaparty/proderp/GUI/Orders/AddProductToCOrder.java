@@ -16,6 +16,7 @@ import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.entity.COrderItem;
 import pijavaparty.proderp.entity.Product;
+import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
 
 /**
  *
@@ -55,6 +56,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         newProduct = new javax.swing.JButton();
         addorder = new javax.swing.JButton();
         product = new javax.swing.JComboBox<>();
+        valid_Quantity = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -69,6 +71,11 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         jLabel3.setText("Enter Quantity:");
 
         quantity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        quantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                quantityKeyReleased(evt);
+            }
+        });
 
         newProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         newProduct.setText("New Product Order From Customer");
@@ -88,6 +95,9 @@ public class AddProductToCOrder extends javax.swing.JFrame {
 
         product.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        valid_Quantity.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_Quantity.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,11 +109,10 @@ public class AddProductToCOrder extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
-                                .addComponent(jLabel1)
-                                .addGap(0, 6, Short.MAX_VALUE))
+                                .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -111,8 +120,10 @@ public class AddProductToCOrder extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(quantity)))))
-                        .addGap(81, 81, 81))
+                                        .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(52, 52, 52)
+                                .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,7 +142,8 @@ public class AddProductToCOrder extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(quantity, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                    .addComponent(quantity)
+                    .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(newProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
@@ -144,7 +156,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
 
     private void newProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductActionPerformed
         try {
-            
+            if (isValidInteger(quantity.getText())){
             String productString = product.getSelectedItem().toString();
             int quantityInt = Integer.parseInt(quantity.getText().trim());
             
@@ -160,6 +172,9 @@ public class AddProductToCOrder extends javax.swing.JFrame {
             new AddProductToCOrder().setVisible(true);
 
             dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -168,7 +183,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_newProductActionPerformed
 
     private void addorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addorderActionPerformed
-
+         if (isValidInteger(quantity.getText())){
         JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
 
         COrderDao cod = new COrderDao();
@@ -188,8 +203,19 @@ public class AddProductToCOrder extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, "Order Saved.");
         dispose();
+         } else {
+             JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+         }
 
     }//GEN-LAST:event_addorderActionPerformed
+
+    private void quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityKeyReleased
+        if(!isValidInteger(quantity.getText())){
+            valid_Quantity.setText("Quantity is invalid!");
+        }else {
+            valid_Quantity.setText(null);
+        }
+    }//GEN-LAST:event_quantityKeyReleased
 
     
      private void comboBox() {
@@ -256,6 +282,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     private javax.swing.JButton newProduct;
     private javax.swing.JComboBox<String> product;
     private javax.swing.JTextField quantity;
+    private javax.swing.JLabel valid_Quantity;
     // End of variables declaration//GEN-END:variables
 
 }

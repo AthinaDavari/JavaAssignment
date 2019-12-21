@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.sql.PreparedStatement;
@@ -18,6 +13,8 @@ import pijavaparty.proderp.entity.COrder;
 import pijavaparty.proderp.entity.COrderItem;
 
 /**
+ * COrderDao.java - a class for interacting and modifying the fields of a
+ * customer's order.
  *
  * @author Athina P.
  */
@@ -31,7 +28,13 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
     private static final String DELETE = "DELETE FROM C_Orders WHERE id = ?";
     private static final String SELECTLASTID = "SELECT max(id) FROM C_Orders";
     private static UserDao ud = new UserDao();
-    
+
+    /**
+     * Add new orders in a List and then return it.
+     *
+     * @return A COrder data type List.
+     * @see COrder
+     */
     @Override
     public List<COrder> getAll() {
         List<COrder> corders = new LinkedList();
@@ -51,7 +54,12 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         }
         return corders;
     }
-    
+
+    /**
+     * Add to a List customer's orders that are either preparing or pending.
+     *
+     * @return A COrder data type List.
+     */
     public List<COrder> getAllExceptFromDelivered() {
         List<COrder> corders = new LinkedList();
         CustomerDao c = new CustomerDao();
@@ -71,6 +79,12 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         return corders;
     }
 
+    /**
+     * Return a customer's order with a specific id.
+     *
+     * @param id A variable of type int.
+     * @return A COrder data type object.
+     */
     @Override
     public COrder getById(int id) {
         PreparedStatement pst = null;
@@ -92,6 +106,12 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         return c;
     }
 
+    /**
+     * Modify the status of customer's order.
+     *
+     * @param orderId A variable of type int.
+     * @param status A variable of type String.
+     */
     public void updateStatus(int orderId, String status) {
         PreparedStatement pst = null;
         try {
@@ -105,7 +125,12 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             closeStatementAndResultSet(pst);
         }
     }
-    
+
+    /**
+     * Insert a new order.
+     *
+     * @param co A COrder data type object.
+     */
     @Override
     public void insert(COrder co) {
         PreparedStatement pst = null;
@@ -121,7 +146,12 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             closeStatementAndResultSet(pst);
         }
     }
-    
+
+    /**
+     * Retrieve the last customer's order id.
+     *
+     * @return An int data type.
+     */
     public int bringTheIdOfTheLatestCOrder() {
         Statement st = null;
         ResultSet rs = null;
@@ -137,6 +167,12 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
         return 0;
     }
 
+    /**
+     * Insert a new customer's order and items.
+     *
+     * @param co A COrder data type object.
+     * @param coi A COrder data type List.
+     */
     public void insertCOrderAndCOrderItems(COrder co, List<COrderItem> coi) {
         insert(co);
         co.setId(bringTheIdOfTheLatestCOrder());
@@ -147,7 +183,12 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             cod.insert(coil);
         }
     }
-    
+
+    /**
+     * Delete a customer's order with a specific id.
+     *
+     * @param id A variable of type int.
+     */
     @Override
     public void delete(int id) {
         PreparedStatement pst = null;

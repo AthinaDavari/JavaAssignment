@@ -9,8 +9,13 @@ import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
+import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.dao.CustomerDao;
+import pijavaparty.proderp.dao.SupplierDao;
+import pijavaparty.proderp.entity.COrder;
 import pijavaparty.proderp.entity.Customer;
+import pijavaparty.proderp.entity.SOrder;
 
 /**
  *
@@ -18,6 +23,8 @@ import pijavaparty.proderp.entity.Customer;
  */
 public class AddNewCustOrder extends javax.swing.JFrame {
 
+        static COrder corder;
+        
     /**
      * Creates new form AddNewCustOrder
      */
@@ -129,9 +136,13 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         try {
             
             String customerIdString = custid.getSelectedItem().toString();
-            int customerIdInt = Integer.valueOf(customerIdString);
+            int customerIdInt = Integer.parseInt(customerIdString);
             CustomerDao cd = new CustomerDao();
             customerName.setText((cd.getById(customerIdInt)).getFullName());
+            
+            
+            
+            corder = new COrder();
             
             new AddProductToCOrder().setVisible(true);
             dispose();
@@ -165,7 +176,8 @@ public class AddNewCustOrder extends javax.swing.JFrame {
 
     }
 
-     
+ 
+      
     /**
      * @param args the command line arguments
      */

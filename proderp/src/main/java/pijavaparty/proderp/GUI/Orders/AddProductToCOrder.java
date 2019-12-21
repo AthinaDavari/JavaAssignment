@@ -10,27 +10,26 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import pijavaparty.proderp.dao.RawMaterialDao;
-import pijavaparty.proderp.dao.SOrderDao;
-import pijavaparty.proderp.entity.RawMaterial;
-import pijavaparty.proderp.entity.SOrderItem;
-import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
-import static pijavaparty.proderp.GUI.Orders.AddOrder.supplierId;
-import pijavaparty.proderp.dao.SupplierDao;
+import static pijavaparty.proderp.GUI.Orders.AddNewCustOrder.corder;
+import pijavaparty.proderp.dao.COrderDao;
+import pijavaparty.proderp.dao.ProductDao;
+import pijavaparty.proderp.entity.COrderItem;
+import pijavaparty.proderp.entity.Product;
 import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
 
 /**
  *
  * @author MariaKokkorou
  */
-public class AddItemSOrder extends javax.swing.JFrame {
+public class AddProductToCOrder extends javax.swing.JFrame {
 
-    private ArrayList<SOrderItem> SOrderItemsList = new ArrayList<SOrderItem>();
+    private ArrayList<COrderItem> COrderItemsList = new ArrayList<COrderItem>();
     
     /**
      * Creates new form AddItemSOrder
      */
-    public AddItemSOrder() {
+    
+    public AddProductToCOrder() {
         initComponents();
         comboBox();
         seticon();
@@ -53,19 +52,19 @@ public class AddItemSOrder extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         quantity = new javax.swing.JTextField();
-        newitem = new javax.swing.JButton();
+        newProduct = new javax.swing.JButton();
         addorder = new javax.swing.JButton();
-        rawMaterialsCombo = new javax.swing.JComboBox<>();
+        product = new javax.swing.JComboBox<>();
         valid_Quantity = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Add New Item Order To Supplier");
+        jLabel1.setText("Add New Product Order From Customer");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Enter Raw Materials:");
+        jLabel2.setText("Enter Products:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Enter Quantity:");
@@ -77,23 +76,23 @@ public class AddItemSOrder extends javax.swing.JFrame {
             }
         });
 
-        newitem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        newitem.setText("New Item Order To Supplier");
-        newitem.addActionListener(new java.awt.event.ActionListener() {
+        newProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        newProduct.setText("New Product Order From Customer");
+        newProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newitemActionPerformed(evt);
+                newProductActionPerformed(evt);
             }
         });
 
-        addorder.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        addorder.setText("Add Order To Supplier");
+        addorder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        addorder.setText("Add Product Order From Customer");
         addorder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addorderActionPerformed(evt);
             }
         });
 
-        rawMaterialsCombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        product.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         valid_Quantity.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Quantity.setForeground(new java.awt.Color(255, 0, 0));
@@ -106,28 +105,29 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel1)
-                        .addGap(162, 162, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(product, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(52, 52, 52)
+                                .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(newProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addorder, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(quantity))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rawMaterialsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))))
+                        .addComponent(addorder, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,39 +137,38 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(rawMaterialsCombo))
+                    .addComponent(product))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(quantity, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                        .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addorder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quantity)
+                    .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(newProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addComponent(addorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
+    private void newProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductActionPerformed
         try {
             if (isValidInteger(quantity.getText())){
-            String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
+            String productString = product.getSelectedItem().toString();
             int quantityInt = Integer.parseInt(quantity.getText().trim());
+            
+            String[] productId = productString.split("-");
+            int productIdInt = Integer.parseInt(productId[0]);
+            ProductDao pd = new ProductDao();
+            Product product = pd.getById(productIdInt);
 
-            String[] rawMaterialIdInt = rawMaterialsString.split("-");
-            int rawMaterialId = Integer.parseInt(rawMaterialIdInt[0]);
-            RawMaterialDao rmd = new RawMaterialDao();
-            RawMaterial rawmaterial = rmd.getById(rawMaterialId);
-
-            SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
-            SOrderItemsList.add(sorderitem);
+            COrderItem corderitem = new COrderItem(corder, product, quantityInt);
+            COrderItemsList.add(corderitem);
 
             JOptionPane.showMessageDialog(null, "Added to Order List.");
-            new AddItemSOrder().setVisible(true);
+            new AddProductToCOrder().setVisible(true);
 
             dispose();
             } else {
@@ -180,37 +179,37 @@ public class AddItemSOrder extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_newitemActionPerformed
+    }//GEN-LAST:event_newProductActionPerformed
 
     private void addorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addorderActionPerformed
-
-        if(isValidInteger(quantity.getText())){
+         if (isValidInteger(quantity.getText())){
         JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
+
+        COrderDao cod = new COrderDao();
         
-        String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
+        String productString = product.getSelectedItem().toString();
         int quantityInt = Integer.parseInt(quantity.getText().trim());
-
-        String[] rawMaterialIdInt = rawMaterialsString.split("-");
-        int rawMaterialId = Integer.parseInt(rawMaterialIdInt[0]);
-        RawMaterialDao rmd = new RawMaterialDao();
-        RawMaterial rawmaterial = rmd.getById(rawMaterialId);
-
-        SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
-        SOrderItemsList.add(sorderitem);
         
-        SOrderDao sod = new SOrderDao();
-        sod.insertSOrderAndSOrderItems(sorder, SOrderItemsList);
+        String[] productId = productString.split("-");
+        int productIdInt = Integer.parseInt(productId[0]);
+        ProductDao pd = new ProductDao();
+        Product product = pd.getById(productIdInt);
+
+        COrderItem corderitem = new COrderItem(corder, product, quantityInt);
+        COrderItemsList.add(corderitem);
+
+        cod.insertCOrderAndCOrderItems(corder, COrderItemsList);
 
         JOptionPane.showMessageDialog(null, "Order Saved.");
         dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
-        }
+         } else {
+             JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+         }
 
     }//GEN-LAST:event_addorderActionPerformed
 
     private void quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityKeyReleased
-       if(!isValidInteger(quantity.getText())){
+        if(!isValidInteger(quantity.getText())){
             valid_Quantity.setText("Quantity is invalid!");
         }else {
             valid_Quantity.setText(null);
@@ -218,28 +217,26 @@ public class AddItemSOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_quantityKeyReleased
 
     
-     private void comboBox(){
+     private void comboBox() {
          
-        RawMaterialDao rmd = new RawMaterialDao();
-        List<RawMaterial> rawMaterials = new LinkedList();
-        
-        SupplierDao sd = new SupplierDao();
-        rawMaterials = sd.getRawMaterialsPerSupplier(supplierId);
-        
-        int number = sd.getAll().size();
+        ProductDao pd = new ProductDao();
+        List<Product> products = new LinkedList();
+        products = pd.getAll();
+        int number = pd.getAll().size();
         
         try {
             
             for (int i = 0; i < number; i++) {
                 
-                rawMaterialsCombo.addItem(rawMaterials.get(i).getId() + "-" + rawMaterials.get(i).getName());
+                product.addItem(products.get(i).getId() + "-" + products.get(i).getName());
                 
             }
-            
-         } catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
+
     }
+     
      
     /**
      * @param args the command line arguments
@@ -281,9 +278,9 @@ public class AddItemSOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton newitem;
+    private javax.swing.JButton newProduct;
+    private javax.swing.JComboBox<String> product;
     private javax.swing.JTextField quantity;
-    private javax.swing.JComboBox<String> rawMaterialsCombo;
     private javax.swing.JLabel valid_Quantity;
     // End of variables declaration//GEN-END:variables
 

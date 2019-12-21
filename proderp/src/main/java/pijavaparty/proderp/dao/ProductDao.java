@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.sql.PreparedStatement;
@@ -17,8 +12,11 @@ import pijavaparty.proderp.entity.Product;
 import pijavaparty.proderp.entity.ProductRawMaterial;
 
 /**
+ * ProductDao.java - a class for interacting and modifying the fields of a
+ * product.
  *
  * @author Athina P.
+ * @see Product
  */
 public class ProductDao extends Dao implements PlainEntityI<Product> {
 
@@ -33,6 +31,11 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     private static final String UPDATEP = "UPDATE Products SET price = ? WHERE id = ? AND is_deleted = false";
     private static final String SELECTLASTID = "SELECT max(id) FROM Products";
 
+    /**
+     * Add new products in a List.
+     *
+     * @return A Product data type List.
+     */
     @Override
     public List<Product> getAll() {
         List<Product> products = new LinkedList();
@@ -52,6 +55,12 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         return products;
     }
 
+    /**
+     * Return a product with a specific id.
+     *
+     * @param id A variable of type int.
+     * @return A Product data type object.
+     */
     @Override
     public Product getById(int id) {
         ResultSet rs = null;
@@ -72,8 +81,13 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         }
         return p;
     }
-    
-    
+
+    /**
+     * Insert a new product to a List.
+     *
+     * @param p A Product data type object.
+     * @param rml A ProductRawMaterial data type List.
+     */
     public void insertProductAndProductsRecipe(Product p, List<ProductRawMaterial> rml) {
         PreparedStatement pst = null;
         try {
@@ -83,9 +97,9 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             pst.setDouble(3, p.getPrice());
             pst.execute();
             p.setId(bringLastId());
-            for (int i=0; i< rml.size();i++) {
+            for (int i = 0; i < rml.size(); i++) {
                 ProductRawMaterial rm;
-                rm =rml.get(i);
+                rm = rml.get(i);
                 ProductRawMaterialDao rmd = new ProductRawMaterialDao();
                 rmd.insert(rm);
             }
@@ -97,6 +111,11 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         }
     }
 
+    /**
+     * Insert a new product.
+     *
+     * @param p A Product data type object.
+     */
     @Override
     public void insert(Product p) {
         PreparedStatement pst = null;
@@ -114,6 +133,12 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
 
     }
 
+    /**
+     * Modify the id and name of a product.
+     *
+     * @param id A variable of type int.
+     * @param name A variable of type String.
+     */
     public void updateName(int id, String name) {
         ProductDao pDao = new ProductDao();
         Product c = pDao.getById(id);
@@ -132,20 +157,33 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             closeStatementAndResultSet(pst);
         }
     }
-        public int bringLastId(){
+
+    /**
+     * Retrieve the last product's id.
+     *
+     * @return An int data type.
+     */
+    public int bringLastId() {
         Statement st = null;
         ResultSet rs = null;
         try {
             st = getConnection().createStatement();
             rs = st.executeQuery(SELECTLASTID);
-            if (rs.next())
-            return rs.getInt(1);
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
 
+    /**
+     * Modify the quantity of a product.
+     *
+     * @param id A variable of type int.
+     * @param quantity A variable of type int.
+     */
     public void updateQuantity(int id, int quantity) {
         ProductDao pDao = new ProductDao();
         Product c = pDao.getById(id);
@@ -166,6 +204,12 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
 
     }
 
+    /**
+     * Change the price of a product.
+     *
+     * @param id A variable of type int.
+     * @param price A variable of type Double.
+     */
     public void updatePrice(int id, double price) {
         ProductDao pDao = new ProductDao();
         Product c = pDao.getById(id);
@@ -203,7 +247,6 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
 //            }
 //        }
 //    }
-
 //    public void deletePermanently(int id) {
 //        PreparedStatement pst = null;
 //        try {
@@ -216,7 +259,11 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
 //            closeStatementAndResultSet(pst);
 //        }
 //    }
-
+    /**
+     * Delete a product with a specific id.
+     *
+     * @param id A variable of type int.
+     */
     @Override
     public void delete(int id) {
         PreparedStatement pst = null;
@@ -231,7 +278,5 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         }
 
     }
-
-
 
 }

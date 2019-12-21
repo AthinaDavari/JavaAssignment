@@ -9,8 +9,13 @@ import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
+import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.dao.CustomerDao;
+import pijavaparty.proderp.dao.SupplierDao;
+import pijavaparty.proderp.entity.COrder;
 import pijavaparty.proderp.entity.Customer;
+import pijavaparty.proderp.entity.SOrder;
 
 /**
  *
@@ -18,6 +23,8 @@ import pijavaparty.proderp.entity.Customer;
  */
 public class AddNewCustOrder extends javax.swing.JFrame {
 
+        static COrder corder;
+        
     /**
      * Creates new form AddNewCustOrder
      */
@@ -44,6 +51,8 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         addNewProduct = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         customerName = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -74,6 +83,17 @@ public class AddNewCustOrder extends javax.swing.JFrame {
 
         customerName.setEditable(false);
         customerName.setBackground(new java.awt.Color(204, 204, 204));
+
+        cancel.setForeground(new java.awt.Color(0, 0, 153));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(cancel);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,7 +132,7 @@ public class AddNewCustOrder extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(customerName, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(addNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -129,9 +149,13 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         try {
             
             String customerIdString = custid.getSelectedItem().toString();
-            int customerIdInt = Integer.valueOf(customerIdString);
+            int customerIdInt = Integer.parseInt(customerIdString);
             CustomerDao cd = new CustomerDao();
             customerName.setText((cd.getById(customerIdInt)).getFullName());
+            
+            
+            
+            corder = new COrder();
             
             new AddProductToCOrder().setVisible(true);
             dispose();
@@ -143,6 +167,14 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_addNewProductActionPerformed
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        
+        OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
+        ordersfromcustomers.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_cancelMouseClicked
 
     
      private void comboBox() {
@@ -165,7 +197,8 @@ public class AddNewCustOrder extends javax.swing.JFrame {
 
     }
 
-     
+ 
+      
     /**
      * @param args the command line arguments
      */
@@ -203,10 +236,12 @@ public class AddNewCustOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewProduct;
+    private javax.swing.JMenu cancel;
     private javax.swing.JComboBox<String> custid;
     private javax.swing.JTextField customerName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

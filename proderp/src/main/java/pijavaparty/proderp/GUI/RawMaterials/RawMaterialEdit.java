@@ -10,6 +10,7 @@ import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.GUI.Storage.StorageMain;
 import pijavaparty.proderp.main.ValidVariables;
 import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
+import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
 
 /**
  *
@@ -44,6 +45,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         txt_update = new javax.swing.JButton();
         valid_Name = new javax.swing.JLabel();
         valid_Price = new javax.swing.JLabel();
+        valid_SupplierId = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         cancel = new javax.swing.JMenu();
 
@@ -81,6 +83,12 @@ public class RawMaterialEdit extends javax.swing.JFrame {
             }
         });
 
+        value_supplier_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_supplier_idKeyReleased(evt);
+            }
+        });
+
         value_price.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 value_priceKeyReleased(evt);
@@ -110,6 +118,9 @@ public class RawMaterialEdit extends javax.swing.JFrame {
 
         valid_Price.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Price.setForeground(new java.awt.Color(255, 0, 0));
+
+        valid_SupplierId.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        valid_SupplierId.setForeground(new java.awt.Color(255, 0, 0));
 
         cancel.setForeground(new java.awt.Color(51, 51, 255));
         cancel.setText("Cancel");
@@ -148,14 +159,17 @@ public class RawMaterialEdit extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(valid_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(value_supplier_id, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(valid_Price, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(valid_Price, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(value_supplier_id, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(valid_SupplierId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(8, 8, 8)))))
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -175,11 +189,16 @@ public class RawMaterialEdit extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(value_name, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(valid_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(value_supplier_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(value_supplier_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(valid_SupplierId, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +230,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
 
     private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
         try{
-            if(ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText())){
+            if(ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) && isValidInteger(value_supplier_id.getText())){
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
             String value2_name=value_name.getText();
@@ -258,6 +277,14 @@ public class RawMaterialEdit extends javax.swing.JFrame {
             valid_Price.setText(null);
         }
     }//GEN-LAST:event_value_priceKeyReleased
+
+    private void value_supplier_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_supplier_idKeyReleased
+        if(!isValidInteger(value_supplier_id.getText())){
+            valid_SupplierId.setText("Supplier Id is invalid!");
+        } else {
+            valid_SupplierId.setText(null);
+        }
+    }//GEN-LAST:event_value_supplier_idKeyReleased
     public void showRawMaterialTable(){
             RawMaterialDao obj=new RawMaterialDao();
             DefaultTableModel model=(DefaultTableModel) RawMaterial_table2.getModel();
@@ -318,6 +345,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
     private javax.swing.JButton txt_update;
     private javax.swing.JLabel valid_Name;
     private javax.swing.JLabel valid_Price;
+    private javax.swing.JLabel valid_SupplierId;
     private javax.swing.JTextField value_id;
     private javax.swing.JTextField value_name;
     private javax.swing.JTextField value_price;

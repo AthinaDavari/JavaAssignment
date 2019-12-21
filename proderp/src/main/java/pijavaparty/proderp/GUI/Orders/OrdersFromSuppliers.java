@@ -45,6 +45,8 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         SOrdersTable = new javax.swing.JTable();
         showraw = new javax.swing.JButton();
         orid = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        back = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Orders To Suppliers");
@@ -102,6 +104,17 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
         orid.setEditable(false);
         orid.setBackground(new java.awt.Color(153, 153, 153));
+
+        back.setForeground(new java.awt.Color(0, 0, 204));
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(back);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,6 +181,14 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
          
     }//GEN-LAST:event_SOrdersTableMouseClicked
 
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        
+        OrdersFrame ordersframe = new OrdersFrame();
+        ordersframe.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_backMouseClicked
+
     
     
     public void showSOrdersTable() {
@@ -232,9 +253,11 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable SOrdersTable;
+    private javax.swing.JMenu back;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField orid;
     private javax.swing.JButton showraw;

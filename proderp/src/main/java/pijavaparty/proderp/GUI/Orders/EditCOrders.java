@@ -52,6 +52,8 @@ public class EditCOrders extends javax.swing.JFrame {
         delete = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         stat = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        cancel = new javax.swing.JMenu();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("jButton1");
@@ -122,6 +124,17 @@ public class EditCOrders extends javax.swing.JFrame {
             }
         });
 
+        cancel.setForeground(new java.awt.Color(0, 0, 204));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(cancel);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,7 +181,7 @@ public class EditCOrders extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
         );
 
         pack();
@@ -227,6 +240,14 @@ public class EditCOrders extends javax.swing.JFrame {
     private void statActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_statActionPerformed
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        
+        OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
+        ordersfromcustomers.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_cancelMouseClicked
 
     public void showCOrdersTable() {
         try {
@@ -290,11 +311,13 @@ public class EditCOrders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable COrdersTable;
+    private javax.swing.JMenu cancel;
     private javax.swing.JButton delete;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTextField orderid;
     private javax.swing.JTextField stat;

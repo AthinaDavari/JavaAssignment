@@ -146,11 +146,12 @@ public class AddItemSOrder extends javax.swing.JFrame {
         try {
             
             String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
-            int rawMaterialInt = Integer.parseInt(rawMaterialsString);
             int quantityInt = Integer.parseInt(quantity.getText().trim());
 
+            String[] rawMaterialIdInt = rawMaterialsString.split("-");
+            int rawMaterialId = Integer.parseInt(rawMaterialIdInt[0]);
             RawMaterialDao rmd = new RawMaterialDao();
-            RawMaterial rawmaterial = rmd.getById(rawMaterialInt);
+            RawMaterial rawmaterial = rmd.getById(rawMaterialId);
 
             SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
             SOrderItemsList.add(sorderitem);
@@ -171,11 +172,12 @@ public class AddItemSOrder extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
         
         String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
-        int rawMaterialInt = Integer.parseInt(rawMaterialsString);
         int quantityInt = Integer.parseInt(quantity.getText().trim());
 
+        String[] rawMaterialIdInt = rawMaterialsString.split("-");
+        int rawMaterialId = Integer.parseInt(rawMaterialIdInt[0]);
         RawMaterialDao rmd = new RawMaterialDao();
-        RawMaterial rawmaterial = rmd.getById(rawMaterialInt);
+        RawMaterial rawmaterial = rmd.getById(rawMaterialId);
 
         SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
         SOrderItemsList.add(sorderitem);

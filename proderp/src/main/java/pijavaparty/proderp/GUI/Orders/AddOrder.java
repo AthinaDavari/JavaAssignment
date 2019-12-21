@@ -45,6 +45,8 @@ public class AddOrder extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         newitem = new javax.swing.JButton();
         supid = new javax.swing.JComboBox<>();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -69,6 +71,17 @@ public class AddOrder extends javax.swing.JFrame {
                 supidActionPerformed(evt);
             }
         });
+
+        cancel.setForeground(new java.awt.Color(0, 0, 255));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(cancel);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,7 +112,7 @@ public class AddOrder extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(supid, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -126,13 +139,16 @@ public class AddOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_newitemActionPerformed
 
     private void comboBox() {
+        
         SupplierDao sd = new SupplierDao();
         List<Supplier> suppliers = new LinkedList();
         suppliers = sd.getAll();
-        int num = sd.getAll().size();
+        int number = sd.getAll().size();
         try {
-            for (int i = 0; i < num; i++) {
-                supid.addItem(suppliers.get(i).getId() + " " + suppliers.get(i).getFullName());
+            
+            for (int i = 0; i < number; i++) {
+                supid.addItem(suppliers.get(i).getId() + "-" + suppliers.get(i).getFullName());
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -143,7 +159,7 @@ public class AddOrder extends javax.swing.JFrame {
    
     private void createSOrder(String supplier) {
         SupplierDao sd = new SupplierDao();
-        String[] supplierTable = supplier.split(" ");
+        String[] supplierTable = supplier.split("-");
         supplierId = Integer.parseInt(supplierTable[0]);
         sorder = new SOrder(sd.getById(supplierId));
     }
@@ -151,6 +167,14 @@ public class AddOrder extends javax.swing.JFrame {
     private void supidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_supidActionPerformed
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        
+        OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
+        ordersfromsuppliers.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_cancelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -188,8 +212,10 @@ public class AddOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton newitem;
     public static javax.swing.JComboBox<String> supid;
     // End of variables declaration//GEN-END:variables

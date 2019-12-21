@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import static pijavaparty.proderp.GUI.Orders.AddNewCustOrder.corder;
-import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
 import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.entity.COrderItem;

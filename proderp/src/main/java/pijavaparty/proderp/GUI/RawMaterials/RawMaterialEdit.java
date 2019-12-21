@@ -230,7 +230,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
 
     private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
         try{
-            if(ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText())){
+            if(ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) && isValidInteger(value_supplier_id.getText())){
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
             String value2_name=value_name.getText();

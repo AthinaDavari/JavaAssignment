@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.sql.PreparedStatement;
@@ -16,8 +11,11 @@ import java.util.logging.Logger;
 import pijavaparty.proderp.entity.ProductRawMaterial;
 
 /**
+ * ProductRawMaterialDao.java - a class for interacting and modifying the fields
+ * of a product's raw materials.
  *
  * @author Natalia
+ * @see ProductRawMaterial
  */
 public class ProductRawMaterialDao extends Dao implements CompositeEntityI<ProductRawMaterial> {
 
@@ -30,6 +28,11 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     private ProductDao productDao = new ProductDao();
     private RawMaterialDao rawMaterialDao = new RawMaterialDao();
 
+    /**
+     * Add new raw materials of a product in a List.
+     *
+     * @return A ProductRawMaterial data type List.
+     */
     @Override
     public List<ProductRawMaterial> getAll() {
         Statement st = null;
@@ -48,7 +51,13 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         }
         return productRawMaterials;
     }
-
+    
+    /**
+     * Add raw materials of a product.
+     *
+     * @param pid A variable of type int.
+     * @return A ProductRawMaterial data type List.
+     */
     public List<ProductRawMaterial> getMaterialsPerProduct(int pid) {
         List<ProductRawMaterial> productsMaterials = new LinkedList();
         PreparedStatement pst = null;
@@ -68,6 +77,11 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         return productsMaterials;
     }
 
+    /**
+     * Insert new raw materials of a product..
+     *
+     * @param prm An object of type ProductRawMaterial.
+     */
     public void insert(ProductRawMaterial prm) {
         PreparedStatement pst = null;
         try {
@@ -83,6 +97,14 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         }
     }
 
+
+//    /**
+//     * Insert new raw materials of a product..
+//     *
+//     * @param pid A variable of type int.
+//     * @param rmid A variable of type int.
+//     * @param quantity A variable of type int.
+//     */
 //    public void insert(int pid, int rmid, int quantity) {
 //        PreparedStatement pst = null;
 //        try {
@@ -98,7 +120,12 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
 //            closeStatementAndResultSet(pst);
 //        }
 //    }
-
+//
+//    /**
+//     * Change/Modify the fields of a product's raw materials.
+//     *
+//     * @param productRawMaterial A ProductRawMaterial data type object.
+//     */
 //    public void update(ProductRawMaterial productRawMaterial) {
 //        PreparedStatement pst = null;
 //        try {
@@ -115,7 +142,14 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
 //        }
 //
 //    }
-
+//
+//    /**
+//     * Change/Modify the fields of a product's raw materials.
+//     *
+//     * @param pid A variable of type int.
+//     * @param rmid A variable of type int.
+//     * @param quantity A variable of type int.
+//     */
 //    public void update(int pid, int rmid, int quantity) {
 //        PreparedStatement pst = null;
 //        try {
@@ -132,7 +166,12 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
 //        }
 //
 //    }
-
+//
+//    /**
+//     * Delete the raw materials of a product.
+//     *
+//     * @param prm A ProductRawMaterial data type object.
+//     */
 //    public void delete(ProductRawMaterial prm) {
 //        PreparedStatement pst = null;
 //        try {
@@ -149,6 +188,13 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
 //
 //    }
 
+
+    /**
+     * Delete the raw materials of a product.
+     *
+     * @param pid A variable of type int.
+     * @param rmid A variable of type int.
+     */
     @Override
     public void delete(int pid, int rmid) {
         PreparedStatement pst = null;
@@ -163,14 +209,15 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         } finally {
             closeStatementAndResultSet(pst);
         }
- 
+
     }
-    
+
     /**
-     * 
-     * @param id1
-     * @param id2
-     * @return 
+     * Return the raw materials of a product with a specific id.
+     *
+     * @param pid A variable of type int.
+     * @param rmid A variable of type int.
+     * @return A ProductRawMaterial data type object.
      */
     @Override
     public ProductRawMaterial getByIds(int pid, int rmid) {
@@ -191,7 +238,5 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         }
         return null;
     }
-
-
 
 }

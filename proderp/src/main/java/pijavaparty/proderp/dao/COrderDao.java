@@ -96,7 +96,7 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
-                c = new COrder(rs.getInt(1), cu.getById(rs.getInt(2)), rs.getString(3), rs.getTimestamp(4), ud.getUserByUsername(rs.getString(5)));
+                c = new COrder(rs.getInt(1), cu.getById(rs.getInt(2)), rs.getString(3), Timestamp.valueOf(rs.getString(4)), ud.getUserByUsername(rs.getString(5)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);

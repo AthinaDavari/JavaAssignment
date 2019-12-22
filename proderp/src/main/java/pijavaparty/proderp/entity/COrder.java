@@ -31,7 +31,7 @@ public class COrder {
      */
     public COrder(Customer customer, User user) {
         this.customer = customer;
-        this.status = Status.ready;
+        this.status = Status.preparing;
         this.user = user;
     }
 

@@ -30,7 +30,7 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
     /**
      * Add new customer's items in a List.
      *
-     * @return A COrder data type List.
+     * @return A COrderItem data type List.
      */
     @Override
     public List<COrderItem> getAll() {

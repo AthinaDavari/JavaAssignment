@@ -135,8 +135,6 @@ public class COrderDaoTest {
         List<COrderItem> orderItemsList = Arrays.asList(orderItem1, orderItem2);
         instance.insertCOrderAndCOrderItems(cOrder, orderItemsList);
         COrder fromDatabase = instance.getById(5);
-        System.out.println("Database order " + fromDatabase);
-        System.out.println("My order " + cOrder);
         cOrder.setCreated_at(Timestamp.from(now()));
         cOrder.setId(5);
         assertEquals(cOrder.getCreated_at().getDate(), fromDatabase.getCreated_at().getDate());

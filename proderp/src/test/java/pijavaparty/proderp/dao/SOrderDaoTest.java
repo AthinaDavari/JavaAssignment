@@ -142,7 +142,6 @@ public class SOrderDaoTest {
         SOrder fromDatabase = instance.getById(6);
         so.setCreated_at(Timestamp.from(now()));
         so.setId(6);
-        so.setStatus("pending");
         assertEquals(so.getCreated_at().getDate(), fromDatabase.getCreated_at().getDate());
         assertEquals(so.getSupplier(), fromDatabase.getSupplier());
         assertEquals(so.getStatus(), fromDatabase.getStatus());

@@ -38,14 +38,6 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
     public SupplierDao() {
     }
 
-    public SupplierDao(DataSource ds) {
-        try {
-            conn = ds.getConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     /**
      * Add new suppliers in a List.
      *
@@ -76,7 +68,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
      * @param id A variable of type int.
      * @return A RawMaterial type List.
      */
-    public List<RawMaterial> getRawMaterialPerSupplier(int id) {
+    public List<RawMaterial> getRawMaterialsPerSupplier(int id) {
         List<RawMaterial> rawmaterials = new LinkedList();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -205,23 +197,5 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         }
     }
 
-    /**
-     * Add raw materials sorted by supplier.
-     *
-     * @param supplierId A variable of type int.
-     * @return A RawMaterial type List.
-     */
-    public List<RawMaterial> getRawMaterialsPerSupplier(int supplierId) {
-        RawMaterialDao rmd = new RawMaterialDao();
-        LinkedList<RawMaterial> rawPerSupplier = new LinkedList();
-        List<RawMaterial> rawMaterials = rmd.getAll();
-        Supplier s = getById(supplierId);
-        for (RawMaterial rm : rawMaterials) {
-            if (rm.getSupplier().equals(s)) {
-                rawPerSupplier.add(rm);
-            }
-        }
-        return rawPerSupplier;
-    }
 
 }

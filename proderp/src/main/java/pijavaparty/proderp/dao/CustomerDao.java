@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.sql.PreparedStatement;
@@ -16,10 +11,13 @@ import java.util.logging.Logger;
 import pijavaparty.proderp.entity.Customer;
 
 /**
+ * CustomerDao.java - a class for interacting and modifying the fields of a
+ * customer.
  *
  * @author athinaDavari
+ * @see Customer
  */
-public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
+public class CustomerDao extends Dao implements PlainEntityI<Customer> {
 
     private static final String GETALL = "SELECT * FROM Customers WHERE is_deleted = false";
     private static final String GETBYID = "SELECT * FROM Customers WHERE id = ? AND is_deleted = false";
@@ -28,6 +26,11 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
     private static final String DELETE = "UPDATE Customers SET is_deleted = true WHERE id = ?";
     private static final String DELETEPERM = "DELETE FROM Customers WHERE id = ?";
 
+    /**
+     * Add new customers in a List and then return it.
+     *
+     * @return A Customer data type List.
+     */
     @Override
     public List<Customer> getAll() {
         Statement st = null;
@@ -47,7 +50,12 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         return customers;
     }
 
-   
+    /**
+     * Return a customer with a specific id.
+     *
+     * @param id A variable of type int.
+     * @return A Customer data type object.
+     */
     @Override
     public Customer getById(int id) {
         Customer c = null;
@@ -68,6 +76,11 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         return c;
     }
 
+    /**
+     * Change/Update the fields of a customer.
+     *
+     * @param c An object of type Customer.
+     */
     public void update(Customer c) {
         Customer fromTable = getById(c.getId());
         PreparedStatement pst = null;
@@ -88,6 +101,11 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         }
     }
 
+    /**
+     * Insert a new customer.
+     *
+     * @param c An object of type Customer.
+     */
     @Override
     public void insert(Customer c) {
         PreparedStatement pst = null;
@@ -107,6 +125,11 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
 
     }
 
+    /**
+     * Delete permanently a customer with a specific id.
+     *
+     * @param id A variable of type int.
+     */
     public void deletePermanently(int id) {
         PreparedStatement pst = null;
         try {
@@ -121,6 +144,11 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
         }
     }
 
+    /**
+     * Delete a customer with a specific id.
+     *
+     * @param id A variable of type int.
+     */
     @Override
     public void delete(int id) {
         PreparedStatement pst = null;
@@ -134,6 +162,5 @@ public class CustomerDao  extends Dao implements PlainEntityI<Customer> {
             closeStatementAndResultSet(pst);
         }
     }
-
 
 }

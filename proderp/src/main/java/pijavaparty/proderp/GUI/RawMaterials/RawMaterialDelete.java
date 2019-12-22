@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.Services.Checks;
 
 /**
  *
@@ -100,16 +101,22 @@ public class RawMaterialDelete extends javax.swing.JFrame {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
-            if (value_id.getText().equals(""))
+            if (value_id.getText().equals("")) {
                 throw new Exception();
+            }
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
-            RawMaterialDao rawdao=new RawMaterialDao();
-            rawdao.delete(newvalue1_id);
-            JOptionPane.showMessageDialog(null,"Deleted");
-            dispose();
+            Checks check = new Checks();
+            if (check.CheckIfRawMaterialIsUsed(newvalue1_id)) {
+                JOptionPane.showMessageDialog(null,"Cannot be deleted. Raw Material used in a product's recipe.","Error",  JOptionPane.ERROR_MESSAGE);
+            } else {
+                RawMaterialDao rawdao=new RawMaterialDao();
+                rawdao.delete(newvalue1_id);
+                JOptionPane.showMessageDialog(null,"Deleted");
+                dispose();
+            }
         }  catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Insert Quantity.","Error",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Insert id or raw material doesn't exist.","Error",  JOptionPane.ERROR_MESSAGE);
             RawMaterialDelete stor = new RawMaterialDelete();
             stor.setVisible(true);
             dispose();

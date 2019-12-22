@@ -101,8 +101,9 @@ public class RawMaterialDelete extends javax.swing.JFrame {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
-            if (value_id.getText().equals(""))
+            if (value_id.getText().equals("")) {
                 throw new Exception();
+            }
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
             Checks check = new Checks();
@@ -114,9 +115,8 @@ public class RawMaterialDelete extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Deleted");
                 dispose();
             }
-            
         }  catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Insert Quantity.","Error",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Insert id or raw material doesn't exist.","Error",  JOptionPane.ERROR_MESSAGE);
             RawMaterialDelete stor = new RawMaterialDelete();
             stor.setVisible(true);
             dispose();

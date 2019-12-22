@@ -12,7 +12,7 @@ import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrderItem;
 
 /**
- * SOrderItemDao.java - a class for interacting and modifying the fields of a
+ * SOrderItemDao.java - a class for interacting and modifying the fields of
  * supplier's items.
  *
  * @author athinaDavari

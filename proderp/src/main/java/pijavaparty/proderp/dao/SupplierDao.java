@@ -77,7 +77,8 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
-                rawmaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), getById(rs.getInt(5))));
+                System.out.println(getById(rs.getInt(3)));
+                rawmaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), getById(rs.getInt(3))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -160,23 +161,23 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
         }
     }
 
-    /**
-     * Delete permanently a supplier with a specific id.
-     *
-     * @param id A variable of type int.
-     */
-    public void deletePermanently(int id) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(DELETEPERM);
-            pst.setInt(1, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-    }
+//    /**
+//     * Delete permanently a supplier with a specific id.
+//     *
+//     * @param id A variable of type int.
+//     */
+//    public void deletePermanently(int id) {
+//        PreparedStatement pst = null;
+//        try {
+//            pst = getConnection().prepareStatement(DELETEPERM);
+//            pst.setInt(1, id);
+//            pst.execute();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            closeStatementAndResultSet(pst);
+//        }
+//    }
 
     /**
      * Delete a supplier with a specific id.

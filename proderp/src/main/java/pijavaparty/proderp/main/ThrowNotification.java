@@ -34,23 +34,30 @@ public class ThrowNotification implements Runnable {
                 Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
             }
             for (Window w : windows) {
-                if (w.isVisible() || count == 0) {
+                System.out.println(w.isVisible());
+                if (w.isVisible()|| count == 0) {
                     ++count;
                     foundActive = true;
                     break;
                 }
             }
+            System.out.println("Found active " + foundActive);
             if (!foundActive) {
-                return;
+                System.exit(0);
             }
             showOptionPane();
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
     }
 
     public void showOptionPane() {
         Checks checks = new Checks();
-        try {
             if (LogIn.user != null) {
                 List<RawMaterial> raws = checks.checkRawQuantities();
                 List<Product> products = checks.checkProductQuantities();
@@ -71,10 +78,7 @@ public class ThrowNotification implements Runnable {
                 JOptionPane.showMessageDialog(null, sb.toString(), "Alert", JOptionPane.INFORMATION_MESSAGE);
 
             }
-            Thread.sleep(10000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
 }

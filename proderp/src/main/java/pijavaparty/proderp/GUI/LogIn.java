@@ -222,12 +222,9 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
 //        java.awt.EventQueue.invokeLater(b);
         a.start();
         b.start();
-        try {
-            b.join();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+      
+     }
+
 
     @Override
     public void run() {

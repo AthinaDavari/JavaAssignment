@@ -83,7 +83,7 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
      * @param coid A variable of type int.
      * @return A COrderItem data type List.
      */
-    public List<COrderItem> getItemsperCOrder(int coid) {
+    public List<COrderItem> getItemsPerCOrder(int coid) {
         List<COrderItem> coi = new LinkedList();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -123,25 +123,6 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
         }
     }
 
-    /**
-     * Delete a customer's item with a specific id.
-     *
-     * @param coi A COrderItem data type object.
-     */
-    public void delete(COrderItem coi) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(DELETE);
-            pst.setInt(1, coi.getCorder().getId());
-            pst.setInt(2, coi.getProduct().getId());
-            pst.execute();
-            closeStatementAndResultSet(pst);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);//εδω τι θα μπει;
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-    }
 
     /**
      * Delete a customer's item with a specific id.

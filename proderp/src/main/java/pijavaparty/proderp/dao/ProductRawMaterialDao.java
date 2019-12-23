@@ -51,7 +51,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         }
         return productRawMaterials;
     }
-
+    
     /**
      * Add raw materials of a product.
      *
@@ -97,95 +97,97 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
         }
     }
 
-    /**
-     * Insert new raw materials of a product..
-     *
-     * @param pid A variable of type int.
-     * @param rmid A variable of type int.
-     * @param quantity A variable of type int.
-     */
-    public void insert(int pid, int rmid, int quantity) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(INSERT);
-            pst.setInt(1, pid);
-            pst.setInt(2, rmid);
-            pst.setInt(3, quantity);
-            pst.execute();
-            closeStatementAndResultSet(pst);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-    }
 
-    /**
-     * Change/Modify the fields of a product's raw materials.
-     *
-     * @param productRawMaterial A ProductRawMaterial data type object.
-     */
-    public void update(ProductRawMaterial productRawMaterial) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(UPDATE);
-            pst.setInt(1, productRawMaterial.getRawMaterial().getId());
-            pst.setInt(2, productRawMaterial.getQuantityOfRawMaterial());
-            pst.setInt(3, productRawMaterial.getProduct().getId());
-            pst.execute();
-            closeStatementAndResultSet(pst);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
+//    /**
+//     * Insert new raw materials of a product..
+//     *
+//     * @param pid A variable of type int.
+//     * @param rmid A variable of type int.
+//     * @param quantity A variable of type int.
+//     */
+//    public void insert(int pid, int rmid, int quantity) {
+//        PreparedStatement pst = null;
+//        try {
+//            pst = getConnection().prepareStatement(INSERT);
+//            pst.setInt(1, pid);
+//            pst.setInt(2, rmid);
+//            pst.setInt(3, quantity);
+//            pst.execute();
+//            closeStatementAndResultSet(pst);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            closeStatementAndResultSet(pst);
+//        }
+//    }
+//
+//    /**
+//     * Change/Modify the fields of a product's raw materials.
+//     *
+//     * @param productRawMaterial A ProductRawMaterial data type object.
+//     */
+//    public void update(ProductRawMaterial productRawMaterial) {
+//        PreparedStatement pst = null;
+//        try {
+//            pst = getConnection().prepareStatement(UPDATE);
+//            pst.setInt(1, productRawMaterial.getRawMaterial().getId());
+//            pst.setInt(2, productRawMaterial.getQuantityOfRawMaterial());
+//            pst.setInt(3, productRawMaterial.getProduct().getId());
+//            pst.execute();
+//            closeStatementAndResultSet(pst);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            closeStatementAndResultSet(pst);
+//        }
+//
+//    }
+//
+//    /**
+//     * Change/Modify the fields of a product's raw materials.
+//     *
+//     * @param pid A variable of type int.
+//     * @param rmid A variable of type int.
+//     * @param quantity A variable of type int.
+//     */
+//    public void update(int pid, int rmid, int quantity) {
+//        PreparedStatement pst = null;
+//        try {
+//            pst = getConnection().prepareStatement(UPDATE);
+//            pst.setInt(1, rmid);
+//            pst.setInt(2, quantity);
+//            pst.setInt(3, pid);
+//            pst.execute();
+//            closeStatementAndResultSet(pst);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            closeStatementAndResultSet(pst);
+//        }
+//
+//    }
+//
+//    /**
+//     * Delete the raw materials of a product.
+//     *
+//     * @param prm A ProductRawMaterial data type object.
+//     */
+//    public void delete(ProductRawMaterial prm) {
+//        PreparedStatement pst = null;
+//        try {
+//            pst = getConnection().prepareStatement(DELETE);
+//            pst.setInt(1, prm.getProduct().getId());
+//            pst.setInt(2, prm.getRawMaterial().getId());
+//            pst.execute();
+//            closeStatementAndResultSet(pst);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            closeStatementAndResultSet(pst);
+//        }
+//
+//    }
 
-    }
-
-    /**
-     * Change/Modify the fields of a product's raw materials.
-     *
-     * @param pid A variable of type int.
-     * @param rmid A variable of type int.
-     * @param quantity A variable of type int.
-     */
-    public void update(int pid, int rmid, int quantity) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(UPDATE);
-            pst.setInt(1, rmid);
-            pst.setInt(2, quantity);
-            pst.setInt(3, pid);
-            pst.execute();
-            closeStatementAndResultSet(pst);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-
-    }
-
-    /**
-     * Delete the raw materials of a product.
-     *
-     * @param prm A ProductRawMaterial data type object.
-     */
-    public void delete(ProductRawMaterial prm) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(DELETE);
-            pst.setInt(1, prm.getProduct().getId());
-            pst.setInt(2, prm.getRawMaterial().getId());
-            pst.execute();
-            closeStatementAndResultSet(pst);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-
-    }
 
     /**
      * Delete the raw materials of a product.
@@ -227,7 +229,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
             pst.setInt(2, rmid);
             rs = pst.executeQuery();
             if (rs.next()) {
-                return new ProductRawMaterial(productDao.getById(rs.getInt(1)), rawMaterialDao.getById(rs.getInt(1)), rs.getInt(3));
+                return new ProductRawMaterial(productDao.getById(rs.getInt(1)), rawMaterialDao.getById(rs.getInt(2)), rs.getInt(3));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);

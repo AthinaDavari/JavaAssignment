@@ -6,17 +6,22 @@
 package pijavaparty.proderp.GUI;
 
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
+import pijavaparty.proderp.main.ThrowNotification;
 
 /**
  *
  * @author aggel
  */
-public class LogIn extends javax.swing.JFrame {
+public class LogIn extends javax.swing.JFrame implements Runnable {
 
     public static User user;
+
     /**
      * Creates new form LogIn
      */
@@ -24,9 +29,11 @@ public class LogIn extends javax.swing.JFrame {
         initComponents();
         seticon();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -160,13 +167,13 @@ public class LogIn extends javax.swing.JFrame {
         if (user != null && user.getRole() == "admin") {
             AdminMenu obj = new AdminMenu();
             user.setPassword(null);
-            LogIn.user = user; 
+            LogIn.user = user;
             obj.setVisible(true);
             dispose();
         } else if (user != null && user.getRole() == "simpleuser") {
             Menu obj = new Menu();
             user.setPassword(null);
-            LogIn.user = user; 
+            LogIn.user = user;
             obj.setVisible(true);
             dispose();
         } else {
@@ -175,9 +182,10 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
-        if(evt.getKeyCode() == evt.VK_ENTER)
-        jButton1.doClick();   // TODO add your handling code here:
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            jButton1.doClick();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1KeyPressed
+    }
 
     /**
      * @param args the command line arguments
@@ -205,14 +213,29 @@ public class LogIn extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        ThrowNotification th = new ThrowNotification();
+        LogIn in = new LogIn();
+        Thread a = new Thread(th);
+        Thread b = new Thread(in);
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LogIn().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(b);
+        a.start();
+        b.start();
+        try {
+            b.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
+    @Override
+    public void run() {
+     
+        new LogIn().setVisible(true);
+        
+        }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

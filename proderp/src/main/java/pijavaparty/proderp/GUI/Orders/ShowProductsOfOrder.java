@@ -122,11 +122,12 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
       dispose();
         
     }//GEN-LAST:event_cancelMouseClicked
+    
     public void showProductsTable() {
 
         COrderItemDao coid = new COrderItemDao();
         DefaultTableModel model = (DefaultTableModel) ProductsTable.getModel();
-        List<COrderItem> itemsPerCOrder = coid.getItemsperCOrder(prodid);
+        List<COrderItem> itemsPerCOrder = coid.getItemsPerCOrder(prodid);
         int number = itemsPerCOrder.size();
         Object[] row = new Object[3];
 

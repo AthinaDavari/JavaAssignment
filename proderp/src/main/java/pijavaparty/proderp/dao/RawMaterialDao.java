@@ -23,12 +23,9 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
     private static final String GETALL = "SELECT * FROM Raw_Materials WHERE is_deleted = false";
     private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ? AND is_deleted = false";
     private static final String INSERT = "INSERT INTO Raw_Materials(name, supplier_id, quantity, price) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE Raw_Materials SET name = ?, supplier_id = ?, quantity = ?, price = ? "
-            + "WHERE id = ? AND is_deleted = false";
-    private static final String UPDATENAME = "UPDATE Raw_Materials SET name = ? WHERE id = ? AND is_deleted = false";
-    private static final String UPDATESUP = "UPDATE Raw_Materials SET supplier_id = ? WHERE id = ? AND is_deleted = false";
+    private static final String UPDATE = "UPDATE Raw_Materials SET name = ?, supplier_id = ?, price = ? "
+            + "WHERE id = ?";
     private static final String UPDATEQUANT = "UPDATE Raw_Materials SET quantity = ? WHERE id = ? AND is_deleted = false";
-    private static final String UPDATEPRICE = "UPDATE Raw_Materials SET price = ? WHERE id = ? AND is_deleted = false";
     private static final String DELETE = "UPDATE Raw_Materials SET is_deleted = true WHERE id = ?";
     private static final String DELETEPERM = "DELETE FROM Raw_Materials WHERE id = ?";
 
@@ -120,113 +117,14 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
                 pst = getConnection().prepareStatement(UPDATE);
                 pst.setString(1, r.getName());
                 pst.setInt(2, r.getSupplier().getId());
-                pst.setInt(3, r.getQuantity());
-                pst.setDouble(4, r.getPrice());
-                pst.setInt(5, r.getId());
+                pst.setDouble(3, r.getPrice());
+                pst.setInt(4, r.getId());
             } catch (SQLException ex) {
                 Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 closeStatementAndResultSet(pst);
             }
 
-        }
-    }
-
-    /**
-     * Change/modify the fields of a supplier's raw material.
-     *
-     * @param r A variable of type RawMaterial.
-     * @param supId A variable of type int.
-     */
-    public void update(RawMaterial r, int supId) {
-        PreparedStatement pst = null;
-        RawMaterial fromTable = getById(r.getId());
-        if (fromTable != null && !fromTable.equals(r)) {
-            try {
-                pst = getConnection().prepareStatement(UPDATE);
-                pst.setString(1, r.getName());
-                pst.setInt(2, supId);
-                pst.setInt(3, r.getQuantity());
-                pst.setDouble(4, r.getPrice());
-                pst.setInt(5, r.getId());
-            } catch (SQLException ex) {
-                Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                closeStatementAndResultSet(pst);
-            }
-
-        }
-    }
-
-    /**
-     * Change/modify the name of a raw material.
-     *
-     * @param id A variable of type int.
-     * @param name A variable of type String.
-     */
-    public void updateName(int id, String name) {
-        RawMaterial r = getById(id);
-        if (r == null) {
-            return;
-        }
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(UPDATENAME);
-            pst.setString(1, name);
-            pst.setInt(2, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-    }
-
-    /**
-     * Change/modify the supplier's id.
-     *
-     * @param id A variable of type int.
-     * @param supplier A variable of type Supplier.
-     */
-    public void updateSupplier(int id, Supplier supplier) {
-        RawMaterial r = getById(id);
-        if (r == null) {
-            return;
-        }
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(UPDATESUP);
-            pst.setInt(1, supplier.getId());
-            pst.setInt(2, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-    }
-
-    /**
-     * Change/modify the supplier's id.
-     *
-     * @param id A variable of type int.
-     * @param supId A variable of type int.
-     */
-    public void updateSupplier(int id, int supId) {
-        RawMaterial r = getById(id);
-        if (r == null) {
-            return;
-        }
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(UPDATESUP);
-            pst.setInt(1, supId);
-            pst.setInt(2, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
         }
     }
 
@@ -254,50 +152,26 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         }
     }
 
-    /**
-     * Change/modify the price of a raw material.
-     *
-     * @param id A variable of type int.
-     * @param price A variable of type Double.
-     */
-    public void updatePrice(int id, double price) {
-        RawMaterial r = getById(id);
-        if (r == null) {
-            return;
-        }
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(UPDATEPRICE);
-            pst.setDouble(1, price);
-            pst.setInt(2, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-    }
-
-    /**
-     * Delete permanently a raw material with a specific id.
-     *
-     * @param id A variable of type int.
-     *
-     */
-    public void deletePermanently(int id) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(DELETEPERM);
-            pst.setInt(1, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-            closeStatementAndResultSet(pst);
-
-        }
-    }
+//    /**
+//     * Delete permanently a raw material with a specific id.
+//     *
+//     * @param id A variable of type int.
+//     *
+//     */
+//    public void deletePermanently(int id) {
+//        PreparedStatement pst = null;
+//        try {
+//            pst = getConnection().prepareStatement(DELETEPERM);
+//            pst.setInt(1, id);
+//            pst.execute();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        } finally {
+//            closeStatementAndResultSet(pst);
+//
+//        }
+//    }
 
     /**
      * Delete a raw material with a specific id.

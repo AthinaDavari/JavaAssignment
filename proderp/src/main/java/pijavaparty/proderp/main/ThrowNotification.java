@@ -25,17 +25,13 @@ public class ThrowNotification implements Runnable {
     public void run() {
         Checks checks = new Checks();
         Window[] windows;
-        for (;;) {
-            windows = Window.getWindows();
-            boolean areClosed = true;
-            for(Window w : windows) {
-                if (w.isActive()) {
-                    areClosed = false;
-                    break;
-                }
-            }
+        boolean areClosed = true;
+
+        do {
+           
+
             try {
-                if (LogIn.user != null && !areClosed) {
+                if (LogIn.user != null) {
                     List<RawMaterial> raws = checks.checkRawQuantities();
                     List<Product> products = checks.checkProductQuantities();
                     StringBuilder sb = new StringBuilder();
@@ -58,9 +54,21 @@ public class ThrowNotification implements Runnable {
                 Thread.sleep(10000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+            
+            windows = Window.getWindows();
+            for (Window w : windows) {
+                System.out.println(w.isActive());
+                if (w.isActive()) {
+                    areClosed = false;
+                    break;
+                }
+            }
+            if (areClosed) {
+                return;
             }
 
-        }
+        } while (!areClosed);
 
     }
 

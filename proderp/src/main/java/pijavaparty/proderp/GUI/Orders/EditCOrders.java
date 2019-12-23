@@ -9,15 +9,24 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.Services.StorageServices;
 import pijavaparty.proderp.dao.COrderDao;
+import pijavaparty.proderp.dao.COrderItemDao;
+import pijavaparty.proderp.dao.ProductDao;
+import pijavaparty.proderp.dao.ProductRawMaterialDao;
+import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.entity.COrder;
+import pijavaparty.proderp.entity.COrderItem;
+import pijavaparty.proderp.entity.Product;
+import pijavaparty.proderp.entity.ProductRawMaterial;
+import pijavaparty.proderp.entity.RawMaterial;
 
 /**
  *
  * @author MariaKokkorou
  */
 public class EditCOrders extends javax.swing.JFrame {
-
+    
     private javax.swing.JScrollPane jScrollPane1;
 
     /**
@@ -78,7 +87,7 @@ public class EditCOrders extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order's ID", "Supplier ID - Name", "Status", "Created At"
+                "Order's ID", "Customer ID - Name", "Status", "Created At"
             }
         ) {
             Class[] types = new Class [] {
@@ -185,13 +194,27 @@ public class EditCOrders extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
-            String orderIDString = orderid.getText();
-            int orderIDint = Integer.parseInt(orderIDString);
+            String orderIdString = orderid.getText();
+            int orderIdInt = Integer.parseInt(orderIdString);
 
             String status = stat.getText();
             
+            
+            if (status.equals("ready")){
+                
+               updateIngridients(orderIdInt, );
+               increaseProduct(orderIdInt);
+                
+            }
+            
+            if (status.equals("delivered")){
+                
+               decreaseProduct(orderIdInt);
+                
+            }
+            
             COrderDao cod = new COrderDao();
-            cod.updateStatus(orderIDint, (status));
+            cod.updateStatus(orderIdInt, (status));
     
             JOptionPane.showMessageDialog(null, "Status Updated.");
             
@@ -265,6 +288,35 @@ public class EditCOrders extends javax.swing.JFrame {
         }
     }
 
+    public void increaseProduct(int corderid){
+        
+        COrderItemDao coid = new COrderItemDao();
+        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        ProductDao pd = new ProductDao();
+        for (COrderItem cOrderItem : corderitems) {
+            
+            Product productFromOrder = cOrderItem.getProduct();
+            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() + cOrderItem.getQuantity());
+       
+        }
+        
+    }
+    
+    public void decreaseProduct(int corderid){
+        
+        COrderItemDao coid = new COrderItemDao();
+        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        ProductDao pd = new ProductDao();
+        for (COrderItem cOrderItem : corderitems) {
+            
+            Product productFromOrder = cOrderItem.getProduct();
+            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
+       
+        }
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

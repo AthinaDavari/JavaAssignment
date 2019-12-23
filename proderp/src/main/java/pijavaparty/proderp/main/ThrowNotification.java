@@ -5,6 +5,7 @@
  */
 package pijavaparty.proderp.main;
 
+import java.awt.Window;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,9 +24,18 @@ public class ThrowNotification implements Runnable {
     @Override
     public void run() {
         Checks checks = new Checks();
+        Window[] windows;
         for (;;) {
+            windows = Window.getWindows();
+            boolean areClosed = true;
+            for(Window w : windows) {
+                if (w.isActive()) {
+                    areClosed = false;
+                    break;
+                }
+            }
             try {
-                if (LogIn.user != null) {
+                if (LogIn.user != null && !areClosed) {
                     List<RawMaterial> raws = checks.checkRawQuantities();
                     List<Product> products = checks.checkProductQuantities();
                     StringBuilder sb = new StringBuilder();
@@ -42,10 +52,10 @@ public class ThrowNotification implements Runnable {
                             sb.append(p.getId() + " " + p.getName() + "\n");
                         }
                     }
-                    JOptionPane.showMessageDialog(null, sb.toString(), "Alert", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, sb.toString(), "Alert", JOptionPane.INFORMATION_MESSAGE);
 
                 }
-                Thread.sleep(1000000000);
+                Thread.sleep(10000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
             }

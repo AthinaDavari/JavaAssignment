@@ -231,8 +231,10 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
 
     @Override
     public void run() {
+     
         new LogIn().setVisible(true);
-    }
+        
+        }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

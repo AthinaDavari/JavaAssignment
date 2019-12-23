@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.entity.COrder;
 import pijavaparty.proderp.entity.Customer;
@@ -171,7 +172,7 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         CustomerDao cd = new CustomerDao();
         String[] customerTable = customer.split("-");
         customerId = Integer.parseInt(customerTable[0]);
-        corder = new COrder(cd.getById(customerId), );
+        corder = new COrder(cd.getById(customerId), LogIn.user);
         
     }
  

@@ -23,53 +23,58 @@ public class ThrowNotification implements Runnable {
 
     @Override
     public void run() {
-        Checks checks = new Checks();
         Window[] windows;
-        boolean areClosed = true;
-
-        do {
-           
-
+        int count = 0;
+        for (;;) {
+            windows = Window.getWindows();
+            boolean foundActive = false;
             try {
-                if (LogIn.user != null) {
-                    List<RawMaterial> raws = checks.checkRawQuantities();
-                    List<Product> products = checks.checkProductQuantities();
-                    StringBuilder sb = new StringBuilder();
-                    if (!raws.isEmpty()) {
-                        sb.append("Low Quantity for RawMaterials: " + "\n");
-                        for (RawMaterial r : raws) {
-                            sb.append(r.getId() + " " + r.getName() + "\n");
-                        }
-                        sb.append("----------------------------------------\n");
-                    }
-                    if (!products.isEmpty()) {
-                        sb.append("Low Quantity for Products: " + "\n");
-                        for (Product p : products) {
-                            sb.append(p.getId() + " " + p.getName() + "\n");
-                        }
-                    }
-                    JOptionPane.showMessageDialog(null, sb.toString(), "Alert", JOptionPane.INFORMATION_MESSAGE);
-
-                }
-                Thread.sleep(10000);
+                Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            
-            windows = Window.getWindows();
+            }
             for (Window w : windows) {
-                System.out.println(w.isActive());
-                if (w.isActive()) {
-                    areClosed = false;
+                if (w.isVisible() || count == 0) {
+                    ++count;
+                    foundActive = true;
                     break;
                 }
             }
-            if (areClosed) {
+            if (!foundActive) {
                 return;
             }
+            showOptionPane();
+        }
 
-        } while (!areClosed);
+    }
 
+    public void showOptionPane() {
+        Checks checks = new Checks();
+        try {
+            if (LogIn.user != null) {
+                List<RawMaterial> raws = checks.checkRawQuantities();
+                List<Product> products = checks.checkProductQuantities();
+                StringBuilder sb = new StringBuilder();
+                if (!raws.isEmpty()) {
+                    sb.append("Low Quantity for RawMaterials: " + "\n");
+                    for (RawMaterial r : raws) {
+                        sb.append(r.getId() + " " + r.getName() + "\n");
+                    }
+                    sb.append("----------------------------------------\n");
+                }
+                if (!products.isEmpty()) {
+                    sb.append("Low Quantity for Products: " + "\n");
+                    for (Product p : products) {
+                        sb.append(p.getId() + " " + p.getName() + "\n");
+                    }
+                }
+                JOptionPane.showMessageDialog(null, sb.toString(), "Alert", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+            Thread.sleep(10000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

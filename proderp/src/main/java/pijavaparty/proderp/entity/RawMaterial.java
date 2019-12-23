@@ -36,6 +36,21 @@ public class RawMaterial {
         this.price = price;
         this.supplier = supplier;
     }
+    
+    /**
+     * A constructor with arguments.
+     * 
+     * @param id A variable of type int
+     * @param name A variable of type String.
+     * @param price A variable of type Double.
+     * @param supplier A variable of type Supplier.
+     */
+    public RawMaterial(int id, String name, double price, Supplier supplier) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.supplier = supplier;
+    }
 
     /**
      * A constructor with arguments.

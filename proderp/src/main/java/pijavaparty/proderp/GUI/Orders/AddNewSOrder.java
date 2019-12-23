@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.Supplier;
 
-public class AddOrder extends javax.swing.JFrame {
+public class AddNewSOrder extends javax.swing.JFrame {
 
     static SOrder sorder;
     static int supplierId;
 
-    public AddOrder() {
+    public AddNewSOrder() {
         initComponents();
         comboBox();
         seticon();
@@ -43,7 +43,7 @@ public class AddOrder extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        newitem = new javax.swing.JButton();
+        addNewItem = new javax.swing.JButton();
         supid = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         cancel = new javax.swing.JMenu();
@@ -57,20 +57,15 @@ public class AddOrder extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Enter Supplier ID - Name:");
 
-        newitem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        newitem.setText("New Item Order");
-        newitem.addActionListener(new java.awt.event.ActionListener() {
+        addNewItem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        addNewItem.setText("Add New Item Order");
+        addNewItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newitemActionPerformed(evt);
+                addNewItemActionPerformed(evt);
             }
         });
 
         supid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        supid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supidActionPerformed(evt);
-            }
-        });
 
         cancel.setForeground(new java.awt.Color(0, 0, 255));
         cancel.setText("Cancel");
@@ -96,7 +91,7 @@ public class AddOrder extends javax.swing.JFrame {
                         .addComponent(supid, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(addNewItem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -113,7 +108,7 @@ public class AddOrder extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(supid, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addNewItem, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -121,7 +116,7 @@ public class AddOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
+    private void addNewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewItemActionPerformed
 
         try {
             
@@ -136,7 +131,7 @@ public class AddOrder extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
 
-    }//GEN-LAST:event_newitemActionPerformed
+    }//GEN-LAST:event_addNewItemActionPerformed
 
     private void comboBox() {
         
@@ -164,10 +159,6 @@ public class AddOrder extends javax.swing.JFrame {
         sorder = new SOrder(sd.getById(supplierId));
     }
     
-    private void supidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supidActionPerformed
-
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         
         OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
@@ -193,30 +184,31 @@ public class AddOrder extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddNewSOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddNewSOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddNewSOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddNewSOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddOrder().setVisible(true);
+                new AddNewSOrder().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addNewItem;
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JButton newitem;
     public static javax.swing.JComboBox<String> supid;
     // End of variables declaration//GEN-END:variables
 }

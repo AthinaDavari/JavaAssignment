@@ -2,6 +2,8 @@
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
+import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.GUI.Menu;
 
 /**
  *
@@ -30,9 +32,12 @@ public class OrdersFrame extends javax.swing.JFrame {
 
         jButton3 = new javax.swing.JButton();
         Orders = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ordersCust = new javax.swing.JButton();
+        orderSup = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        logOut = new javax.swing.JMenu();
+        back = new javax.swing.JMenu();
 
         jButton3.setText("jButton3");
 
@@ -40,19 +45,19 @@ public class OrdersFrame extends javax.swing.JFrame {
         setTitle("Orders Menu");
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Orders From Customers");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ordersCust.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        ordersCust.setText("Orders From Customers");
+        ordersCust.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ordersCustActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Orders To Suppliers");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        orderSup.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        orderSup.setText("Orders To Suppliers");
+        orderSup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                orderSupActionPerformed(evt);
             }
         });
 
@@ -64,12 +69,12 @@ public class OrdersFrame extends javax.swing.JFrame {
         OrdersLayout.setHorizontalGroup(
             OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrdersLayout.createSequentialGroup()
-                .addContainerGap(109, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(ordersCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(orderSup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(103, 103, 103))
         );
         OrdersLayout.setVerticalGroup(
@@ -78,11 +83,31 @@ public class OrdersFrame extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(orderSup, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addComponent(ordersCust, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
+
+        logOut.setForeground(new java.awt.Color(0, 0, 204));
+        logOut.setText("Log Out");
+        logOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logOutMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(logOut);
+
+        back.setForeground(new java.awt.Color(0, 0, 204));
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(back);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,13 +125,29 @@ public class OrdersFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void orderSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderSupActionPerformed
         new OrdersFromSuppliers().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_orderSupActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ordersCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersCustActionPerformed
         new OrdersFromCustomers().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ordersCustActionPerformed
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        
+       Menu menu = new Menu();
+       menu.setVisible(true);
+       dispose();
+       
+    }//GEN-LAST:event_backMouseClicked
+
+    private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
+        
+        LogIn login = new LogIn();
+        login.setVisible(true);
+        dispose(); 
+        
+    }//GEN-LAST:event_logOutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -141,9 +182,12 @@ public class OrdersFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Orders;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JMenu back;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu logOut;
+    private javax.swing.JButton orderSup;
+    private javax.swing.JButton ordersCust;
     // End of variables declaration//GEN-END:variables
 }

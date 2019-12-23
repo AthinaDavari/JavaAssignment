@@ -65,7 +65,7 @@ public class EditCOrders extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Edit Orders");
 
-        update.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        update.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         update.setText("Update Status");
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +104,7 @@ public class EditCOrders extends javax.swing.JFrame {
         orderid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         orderid.setDisabledTextColor(new java.awt.Color(102, 102, 102));
 
-        delete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,11 +118,6 @@ public class EditCOrders extends javax.swing.JFrame {
         stat.setEditable(false);
         stat.setBackground(new java.awt.Color(204, 204, 204));
         stat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        stat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statActionPerformed(evt);
-            }
-        });
 
         cancel.setForeground(new java.awt.Color(0, 0, 204));
         cancel.setText("Cancel");
@@ -236,10 +231,6 @@ public class EditCOrders extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_deleteActionPerformed
-
-    private void statActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statActionPerformed
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         

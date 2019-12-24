@@ -155,11 +155,17 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCustOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustOrderActionPerformed
+        
         new AddNewCustOrder().setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_addCustOrderActionPerformed
 
     private void editCustOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustOrderActionPerformed
+        
         new EditCOrders().setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_editCustOrderActionPerformed
 
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
@@ -174,6 +180,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
        
         int id = Integer.parseInt(prodid.getText());
         new ShowProductsOfOrder(id).setVisible(true);
+        dispose();
         
     }//GEN-LAST:event_showProductsActionPerformed
 

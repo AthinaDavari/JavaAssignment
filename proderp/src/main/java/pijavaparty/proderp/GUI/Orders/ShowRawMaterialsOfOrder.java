@@ -120,6 +120,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_cancelMouseClicked
+    
     public void showRawMaterialsTable() {
 
         SOrderItemDao soid = new SOrderItemDao();

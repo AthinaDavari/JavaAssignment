@@ -77,18 +77,18 @@ public class RawMaterialDaoTest {
         assertEquals(r, instance.getById(6));
     }
 
-//    /**
-//     * Test of update method, of class RawMaterialDao.
-//     */
-//    @Test
-//    public void testUpdate_RawMaterial() {
-//        System.out.println("update");
-//        RawMaterial r = null;
-//        RawMaterialDao instance = new RawMaterialDao();
-//        instance.update(r);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    /**
+     * Test of update method, of class RawMaterialDao.
+     */
+    @Test
+    public void dtestUpdate() {
+        System.out.println("update");
+        Supplier s1 = new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr");
+        RawMaterial r = new RawMaterial(5, "TitaniumUpdated", 32, 17.2, s1);
+        RawMaterialDao instance = new RawMaterialDao();
+        instance.update(r);
+        assertEquals(r, instance.getById(5));
+    }
 //
 //    /**
 //     * Test of update method, of class RawMaterialDao.
@@ -146,11 +146,12 @@ public class RawMaterialDaoTest {
 //        fail("The test case is a prototype.");
 //    }
 //
+
     /**
      * Test of updateQuantity method, of class RawMaterialDao.
      */
     @Test
-    public void dtestUpdateQuantity() {
+    public void etestUpdateQuantity() {
         System.out.println("updateQuantity");
         int id = 3;
         int quantity = 12;
@@ -191,12 +192,12 @@ public class RawMaterialDaoTest {
      * Test of delete method, of class RawMaterialDao.
      */
     @Test
-    public void testDelete() {
+    public void festDelete() {
         System.out.println("delete");
         int id = 2;
         RawMaterialDao instance = new RawMaterialDao();
         instance.delete(id);
         assertEquals(false, instance.getAll().contains(instance.getById(id)));
     }
-    
+
 }

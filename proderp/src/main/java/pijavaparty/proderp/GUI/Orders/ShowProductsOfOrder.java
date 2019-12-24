@@ -122,6 +122,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
       dispose();
         
     }//GEN-LAST:event_cancelMouseClicked
+    
     public void showProductsTable() {
 
         COrderItemDao coid = new COrderItemDao();

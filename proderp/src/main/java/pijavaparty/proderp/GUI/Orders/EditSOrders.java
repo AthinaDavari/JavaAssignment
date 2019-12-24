@@ -64,7 +64,7 @@ public class EditSOrders extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Edit Orders");
 
-        update.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        update.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         update.setText("Update To Delivered");
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +103,7 @@ public class EditSOrders extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
 
-        delete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

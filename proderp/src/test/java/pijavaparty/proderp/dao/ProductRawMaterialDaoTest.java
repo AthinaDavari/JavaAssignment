@@ -65,12 +65,12 @@ public class ProductRawMaterialDaoTest {
     @Test
     public void btestGetMaterialsPerProduct() {
         System.out.println("getMaterialsPerProduct");
-        int pid = 0;
+        int pid = 1;
         ProductRawMaterialDao instance = new ProductRawMaterialDao();
         List<ProductRawMaterial> expResult = new ArrayList<>();
         expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(3), 180));
         expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(4), 20));
-        List<ProductRawMaterial> result = instance.getMaterialsPerProduct(1);
+        List<ProductRawMaterial> result = instance.getMaterialsPerProduct(pid);
         assertEquals(expResult, result);
     }
 
@@ -78,7 +78,7 @@ public class ProductRawMaterialDaoTest {
      * Test of insert method, of class ProductRawMaterialDao.
      */
     @Test
-    public void ctestInsert_ProductRawMaterial() {
+    public void ctestInsert() {
         System.out.println("insert");
         ProductRawMaterial prm = new ProductRawMaterial(pdao.getById(2), rmdao.getById(2), 80);
         ProductRawMaterialDao instance = new ProductRawMaterialDao();

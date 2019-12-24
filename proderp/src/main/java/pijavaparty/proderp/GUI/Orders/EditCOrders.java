@@ -9,15 +9,24 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.Services.StorageServices;
 import pijavaparty.proderp.dao.COrderDao;
+import pijavaparty.proderp.dao.COrderItemDao;
+import pijavaparty.proderp.dao.ProductDao;
+import pijavaparty.proderp.dao.ProductRawMaterialDao;
+import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.entity.COrder;
+import pijavaparty.proderp.entity.COrderItem;
+import pijavaparty.proderp.entity.Product;
+import pijavaparty.proderp.entity.ProductRawMaterial;
+import pijavaparty.proderp.entity.RawMaterial;
 
 /**
  *
  * @author MariaKokkorou
  */
 public class EditCOrders extends javax.swing.JFrame {
-
+    
     private javax.swing.JScrollPane jScrollPane1;
 
     /**
@@ -65,7 +74,7 @@ public class EditCOrders extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Edit Orders");
 
-        update.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        update.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         update.setText("Update Status");
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +87,7 @@ public class EditCOrders extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order's ID", "Supplier ID - Name", "Status", "Created At"
+                "Order's ID", "Customer ID - Name", "Status", "Created At"
             }
         ) {
             Class[] types = new Class [] {
@@ -104,7 +113,7 @@ public class EditCOrders extends javax.swing.JFrame {
         orderid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         orderid.setDisabledTextColor(new java.awt.Color(102, 102, 102));
 
-        delete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,11 +127,6 @@ public class EditCOrders extends javax.swing.JFrame {
         stat.setEditable(false);
         stat.setBackground(new java.awt.Color(204, 204, 204));
         stat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        stat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statActionPerformed(evt);
-            }
-        });
 
         cancel.setForeground(new java.awt.Color(0, 0, 204));
         cancel.setText("Cancel");
@@ -190,13 +194,27 @@ public class EditCOrders extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
-            String orderIDString = orderid.getText();
-            int orderIDint = Integer.parseInt(orderIDString);
+            String orderIdString = orderid.getText();
+            int orderIdInt = Integer.parseInt(orderIdString);
 
             String status = stat.getText();
             
+            
+            if (status.equals("ready")){
+                
+//               updateIngridients(orderIdInt, );
+               increaseProduct(orderIdInt);
+                
+            }
+            
+            if (status.equals("delivered")){
+                
+               decreaseProduct(orderIdInt);
+                
+            }
+            
             COrderDao cod = new COrderDao();
-            cod.updateStatus(orderIDint, (status));
+            cod.updateStatus(orderIdInt, (status));
     
             JOptionPane.showMessageDialog(null, "Status Updated.");
             
@@ -237,10 +255,6 @@ public class EditCOrders extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void statActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statActionPerformed
-
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         
         OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
@@ -274,6 +288,35 @@ public class EditCOrders extends javax.swing.JFrame {
         }
     }
 
+    public void increaseProduct(int corderid){
+        
+        COrderItemDao coid = new COrderItemDao();
+        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        ProductDao pd = new ProductDao();
+        for (COrderItem cOrderItem : corderitems) {
+            
+            Product productFromOrder = cOrderItem.getProduct();
+            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() + cOrderItem.getQuantity());
+       
+        }
+        
+    }
+    
+    public void decreaseProduct(int corderid){
+        
+        COrderItemDao coid = new COrderItemDao();
+        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        ProductDao pd = new ProductDao();
+        for (COrderItem cOrderItem : corderitems) {
+            
+            Product productFromOrder = cOrderItem.getProduct();
+            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
+       
+        }
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

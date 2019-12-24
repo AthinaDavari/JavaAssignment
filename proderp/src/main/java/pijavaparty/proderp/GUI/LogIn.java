@@ -6,19 +6,19 @@
 package pijavaparty.proderp.GUI;
 
 import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
+import pijavaparty.proderp.main.ThrowNotification;
 
 /**
  *
  * @author aggel
  */
-public class LogIn extends javax.swing.JFrame {
+public class LogIn extends javax.swing.JFrame implements Runnable {
 
     public static User user;
+
     /**
      * Creates new form LogIn
      */
@@ -26,9 +26,11 @@ public class LogIn extends javax.swing.JFrame {
         initComponents();
         seticon();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -161,24 +163,24 @@ public class LogIn extends javax.swing.JFrame {
         User user = u.getUser(un, password);
         if (user != null && user.getRole() == "admin") {
             user.setPassword(null);
-            LogIn.user = user; 
+            LogIn.user = user;
             AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
             dispose();
         } else if (user != null && user.getRole() == "simpleuser") {
             user.setPassword(null);
-            LogIn.user = user; 
-            Menu obj = new Menu(); 
+            LogIn.user = user;
+            Menu obj = new Menu();
             obj.setVisible(true);
             dispose();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Username or Password is Incorrect!");
-        }         // TODO add your handling code here:*/
+        }
     }//GEN-LAST:event_logInActionPerformed
 
     private void logInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logInKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER)
-        logIn.doClick();   // TODO add your handling code here:
+        logIn.doClick();
     }//GEN-LAST:event_logInKeyPressed
 
     /**
@@ -188,7 +190,7 @@ public class LogIn extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -207,14 +209,26 @@ public class LogIn extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        ThrowNotification th = new ThrowNotification();
+        LogIn in = new LogIn();
+        Thread a = new Thread(th);
+        Thread b = new Thread(in);
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LogIn().setVisible(true);
-            }
-        });
-    }
+//        java.awt.EventQueue.invokeLater(b);
+        a.start();
+        b.start();
+
+     }
+
+
+    @Override
+    public void run() {
+
+        new LogIn().setVisible(true);
+
+        }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

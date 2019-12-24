@@ -163,6 +163,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     }//GEN-LAST:event_editCustOrderActionPerformed
 
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
+       
         int selectedRow = COrdersTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
         prodid.setText((model.getValueAt(selectedRow, 0).toString()));

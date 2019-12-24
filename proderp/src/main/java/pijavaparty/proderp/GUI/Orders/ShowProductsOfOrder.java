@@ -9,9 +9,7 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.COrderItemDao;
-import pijavaparty.proderp.dao.SOrderItemDao;
 import pijavaparty.proderp.entity.COrderItem;
-import pijavaparty.proderp.entity.SOrderItem;
 
 /**
  *

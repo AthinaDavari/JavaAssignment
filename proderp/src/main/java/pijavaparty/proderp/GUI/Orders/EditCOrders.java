@@ -9,17 +9,12 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pijavaparty.proderp.Services.StorageServices;
 import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.dao.COrderItemDao;
 import pijavaparty.proderp.dao.ProductDao;
-import pijavaparty.proderp.dao.ProductRawMaterialDao;
-import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.entity.COrder;
 import pijavaparty.proderp.entity.COrderItem;
 import pijavaparty.proderp.entity.Product;
-import pijavaparty.proderp.entity.ProductRawMaterial;
-import pijavaparty.proderp.entity.RawMaterial;
 
 /**
  *

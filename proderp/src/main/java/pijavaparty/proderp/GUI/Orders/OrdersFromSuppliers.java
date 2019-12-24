@@ -160,17 +160,25 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrderActionPerformed
+       
         new AddNewSOrder().setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_addOrderActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+       
         new EditSOrders().setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_updateActionPerformed
 
     private void showrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showrawActionPerformed
-      int id = Integer.parseInt(orid.getText());
-      new ShowRawMaterialsOfOrder(id).setVisible(true);
-       
+      
+        int id = Integer.parseInt(orid.getText());
+        new ShowRawMaterialsOfOrder(id).setVisible(true);
+        dispose();
+      
     }//GEN-LAST:event_showrawActionPerformed
 
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked

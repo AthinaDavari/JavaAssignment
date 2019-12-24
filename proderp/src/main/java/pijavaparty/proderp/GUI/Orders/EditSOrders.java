@@ -52,6 +52,7 @@ public class EditSOrders extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
         cancelMenu = new javax.swing.JMenuBar();
+        back = new javax.swing.JMenu();
         cancel = new javax.swing.JMenu();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -110,6 +111,15 @@ public class EditSOrders extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
+
+        back.setForeground(new java.awt.Color(0, 0, 255));
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        cancelMenu.add(back);
 
         cancel.setForeground(new java.awt.Color(0, 0, 255));
         cancel.setText("Cancel");
@@ -170,6 +180,7 @@ public class EditSOrders extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
+            
             String orderIDString = jTextField1.getText();
             int orderIDint = Integer.parseInt(orderIDString);
 
@@ -181,6 +192,7 @@ public class EditSOrders extends javax.swing.JFrame {
             
             new EditSOrders().setVisible(true);
             dispose();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -203,20 +215,28 @@ public class EditSOrders extends javax.swing.JFrame {
         int orderIDint = Integer.parseInt(orderIDString);
         
         try {
+            
             SOrderDao sod = new SOrderDao();
             sod.delete(orderIDint);
             JOptionPane.showMessageDialog(null,"Order Deleted");
             new EditSOrders().setVisible(true);
             dispose();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
       
         OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
         ordersfromsuppliers.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_backMouseClicked
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        
         dispose();
         
     }//GEN-LAST:event_cancelMouseClicked
@@ -282,6 +302,7 @@ public class EditSOrders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable SOrdersTable;
+    private javax.swing.JMenu back;
     private javax.swing.JMenu cancel;
     private javax.swing.JMenuBar cancelMenu;
     private javax.swing.JButton delete;

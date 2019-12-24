@@ -45,6 +45,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         SOrdersTable = new javax.swing.JTable();
         showraw = new javax.swing.JButton();
         orid = new javax.swing.JTextField();
+        refresh = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         back = new javax.swing.JMenu();
 
@@ -105,6 +106,13 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         orid.setEditable(false);
         orid.setBackground(new java.awt.Color(153, 153, 153));
 
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+
         back.setForeground(new java.awt.Color(0, 0, 204));
         back.setText("Back");
         back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,7 +131,9 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(296, 296, 296))
+                .addGap(215, 215, 215)
+                .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,8 +149,13 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(refresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -196,6 +211,14 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_backMouseClicked
+
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+       
+        OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
+        ordersfromsuppliers.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_refreshActionPerformed
 
     
     
@@ -267,6 +290,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField orid;
+    private javax.swing.JButton refresh;
     private javax.swing.JButton showraw;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables

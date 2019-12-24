@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
@@ -14,7 +9,9 @@ import pijavaparty.proderp.dao.SOrderItemDao;
 import pijavaparty.proderp.entity.SOrder;
 
 /**
- *
+ * EditSOrders.java - A graphical class for modifying the status of an order 
+ * to suppliers and delete an order to suppliers.
+ * 
  * @author MariaKokkorou
  */
 public class EditSOrders extends javax.swing.JFrame {
@@ -24,6 +21,7 @@ public class EditSOrders extends javax.swing.JFrame {
     /**
      * Creates new form EditOrders
      */
+    
     public EditSOrders() {
         initComponents();
         showSOrdersTable();
@@ -31,7 +29,8 @@ public class EditSOrders extends javax.swing.JFrame {
     }
 
     public void seticon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(
+                getClass().getResource("/logo.jpg")));
     }
 
     /**
@@ -177,7 +176,13 @@ public class EditSOrders extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    /**
+    * Edit the status of an order from suppliers and update this order in the 
+    * database.
+    * 
+    * @param evt action event
+    */
+    
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
             
@@ -200,6 +205,14 @@ public class EditSOrders extends javax.swing.JFrame {
 
     }//GEN-LAST:event_updateActionPerformed
 
+    /**
+      * 
+      * Select a row of the table by clicking on it, and insert the order's ID 
+      * in the Order's ID field.
+      * 
+      * @param evt action event
+      */
+    
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
 
         int selectedRow = SOrdersTable.getSelectedRow();
@@ -209,6 +222,12 @@ public class EditSOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_SOrdersTableMouseClicked
 
 
+    /**
+     * Delete permanently an order to supplier from the database.
+     * 
+     * @param evt action event
+     */
+    
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         
         String orderIDString = jTextField1.getText();
@@ -241,6 +260,12 @@ public class EditSOrders extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelMouseClicked
 
+    /** 
+     * Get id, supplier id and name, status and order's time of creation data 
+     * from database and show them in showSOrdersTable.
+     * 
+     */
+    
     public void showSOrdersTable() {
         try {
             

@@ -1,9 +1,3 @@
-/*
- 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.sql.Connection;
@@ -16,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Dao.java - a class with the necessary methods for the java-database
+ * connection.
  *
  * @author Natalia
  */
@@ -23,6 +19,11 @@ public class Dao {
 
     private static Connection conn;
 
+    /**
+     * Make the connection with the database proderp.
+     *
+     * @return A Connection data type.
+     */
     public Connection getConnection() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         List<StackTraceElement> list = Arrays.asList(stackTrace);
@@ -45,6 +46,12 @@ public class Dao {
         return conn;
     }
 
+    /**
+     * Close connections.
+     *
+     * @param rs A variable of type ResultSet.
+     * @param st A variable of type Statement.
+     */
     public void closeStatementAndResultSet(ResultSet rs, Statement st) {
         try {
 
@@ -59,6 +66,11 @@ public class Dao {
         }
     }
 
+    /**
+     * Close connections.
+     *
+     * @param pst A variable of type PreparedStatement.
+     */
     public void closeStatementAndResultSet(PreparedStatement pst) {
         try {
             if (pst != null) {
@@ -85,6 +97,11 @@ public class Dao {
         }
 
     }*/
+    /**
+     * Retrieve the value of conn.
+     *
+     * @return A Connection data type.
+     */
     public Connection getConn() {
         return conn;
     }

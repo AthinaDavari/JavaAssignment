@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import pijavaparty.proderp.Services.Fillcombo;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
@@ -275,37 +276,11 @@ public class AddIngredients extends javax.swing.JFrame {
     }//GEN-LAST:event_value_quantityKeyReleased
     //fill up the drop down with raw materials and ids from the data base
     private void fillcombo() {
-        RawMaterialDao rawdao = new RawMaterialDao();
-        List<RawMaterial> raw_material;
-        raw_material = rawdao.getAll();
-        List<ProductRawMaterial> prodrawlist;
-        ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
-        prodrawlist = prodrawdao.getMaterialsPerProduct(prod.getId());
-        int num;
-        num = raw_material.size();
-        try {
-            int j;
-            int i;
-            int m;
-            for (i = 0; i < num; i++) {
-                for (j = 0; j < prodrawlist.size(); j++) {
-                    if (raw_material.get(i).getId()==prodrawlist.get(j).getRawMaterial().getId()) {
-                        break;
-                    }
-                }
-                for (m = 0; m < prodraw.size(); m++) {
-                    if (raw_material.get(i).getId()==prodraw.get(m).getRawMaterial().getId()) {
-                        break;
-                    }
-                }
-                if (j==prodrawlist.size() && m==prodraw.size()) { 
-                    drop_down.addItem(raw_material.get(i).getName()+" - "+raw_material.get(i).getId());
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        Fillcombo fill = new Fillcombo();
+        LinkedList<String> combocontents = fill.FillcomboArray(prodraw, prod);
+        for (int i = 0; i < combocontents.size(); i++) {
+            drop_down.addItem(combocontents.get(i));
         }
-        
     }
 
     public static void main(String args[]) {

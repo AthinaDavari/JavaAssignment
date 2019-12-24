@@ -1,13 +1,11 @@
-
 package pijavaparty.proderp.GUI.RawMaterials;
 
-import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.RawMaterialDao;
-import pijavaparty.proderp.GUI.LogIn;
-import pijavaparty.proderp.GUI.Storage.StorageMain;
+import pijavaparty.proderp.dao.SupplierDao;
+import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.main.ValidVariables;
 import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
 import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
@@ -23,8 +21,9 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         showRawMaterialTable();
         seticon();
     }
+
     private void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
     @SuppressWarnings("unchecked")
@@ -219,8 +218,8 @@ public class RawMaterialEdit extends javax.swing.JFrame {
     //fill text area with details of a clicked raw material
     private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked
 
-        int selectedRow=RawMaterial_table2.getSelectedRow();
-        DefaultTableModel model2 =(DefaultTableModel) RawMaterial_table2.getModel();
+        int selectedRow = RawMaterial_table2.getSelectedRow();
+        DefaultTableModel model2 = (DefaultTableModel) RawMaterial_table2.getModel();
         value_id.setText((model2.getValueAt(selectedRow, 0).toString()));
         value_name.setText((model2.getValueAt(selectedRow, 1).toString()));
         value_supplier_id.setText((model2.getValueAt(selectedRow, 2).toString()));
@@ -229,32 +228,31 @@ public class RawMaterialEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_RawMaterial_table2MouseClicked
 
     private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
-        try{
-            if(ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) && isValidInteger(value_supplier_id.getText())){
-            String value1_id=value_id.getText();
-            int newvalue1_id=Integer.parseInt(value1_id);
-            String value2_name=value_name.getText();
-            int value3_supplier_id=Integer.parseInt(value_supplier_id.getText());
-            double value5_price=Double.parseDouble(value_price.getText());
+        try {
+            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) && isValidInteger(value_supplier_id.getText())) {
+                String value1_id = value_id.getText();
+                int newvalue1_id = Integer.parseInt(value1_id);
+                String value2_name = value_name.getText();
+                int value3_supplier_id = Integer.parseInt(value_supplier_id.getText());
+                double value5_price = Double.parseDouble(value_price.getText());
 
-            RawMaterialDao rawdao=new RawMaterialDao();
-            rawdao.updateName(newvalue1_id, value2_name);
-            rawdao.updateSupplier(newvalue1_id, value3_supplier_id);
-            rawdao.updatePrice(newvalue1_id, value5_price);
-
-            JOptionPane.showMessageDialog(null,"Updated");
-            new RawMaterialEdit().setVisible(true);
-            dispose();
+                RawMaterialDao rawdao = new RawMaterialDao();
+                SupplierDao sdao = new SupplierDao();
+                RawMaterial rm = new RawMaterial(newvalue1_id, value2_name, value5_price, sdao.getById(value3_supplier_id));
+                rawdao.update(rm);
+                JOptionPane.showMessageDialog(null, "Updated");
+                new RawMaterialEdit().setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
-        }  catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"No details were inserted.","Error",  JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "No details were inserted.", "Error", JOptionPane.ERROR_MESSAGE);
             RawMaterialEdit stor = new RawMaterialEdit();
             stor.setVisible(true);
             dispose();
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Wrong details.","Error",  JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Wrong details.", "Error", JOptionPane.ERROR_MESSAGE);
             RawMaterialEdit stor = new RawMaterialEdit();
             stor.setVisible(true);
             dispose();
@@ -271,7 +269,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_value_nameKeyReleased
 
     private void value_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_priceKeyReleased
-        if (!isValidDouble(value_price.getText())){
+        if (!isValidDouble(value_price.getText())) {
             valid_Price.setText("Price is invalid!");
         } else {
             valid_Price.setText(null);
@@ -279,26 +277,27 @@ public class RawMaterialEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_value_priceKeyReleased
 
     private void value_supplier_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_supplier_idKeyReleased
-        if(!isValidInteger(value_supplier_id.getText())){
+        if (!isValidInteger(value_supplier_id.getText())) {
             valid_SupplierId.setText("Supplier Id is invalid!");
         } else {
             valid_SupplierId.setText(null);
         }
     }//GEN-LAST:event_value_supplier_idKeyReleased
-    public void showRawMaterialTable(){
-            RawMaterialDao obj=new RawMaterialDao();
-            DefaultTableModel model=(DefaultTableModel) RawMaterial_table2.getModel();
-            int number=obj.getAll().size();
-            Object[] row=new Object[4];
-            for(int i=0; i<number; i++){
-                row[0]=obj.getAll().get(i).getId();
-                row[1]=obj.getAll().get(i).getName();
-                row[2]=obj.getAll().get(i).getSupplier().getId();
-                row[3]=obj.getAll().get(i).getPrice();
-                model.addRow(row);
-            }
-
+    public void showRawMaterialTable() {
+        RawMaterialDao obj = new RawMaterialDao();
+        DefaultTableModel model = (DefaultTableModel) RawMaterial_table2.getModel();
+        int number = obj.getAll().size();
+        Object[] row = new Object[4];
+        for (int i = 0; i < number; i++) {
+            row[0] = obj.getAll().get(i).getId();
+            row[1] = obj.getAll().get(i).getName();
+            row[2] = obj.getAll().get(i).getSupplier().getId();
+            row[3] = obj.getAll().get(i).getPrice();
+            model.addRow(row);
         }
+
+    }
+
     /**
      * @param args the command line arguments
      */

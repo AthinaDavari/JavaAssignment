@@ -38,7 +38,8 @@ values ('plastic', 1, 47, 0.25),
        ('metal', 2, 32, 1.2),
        ('wood', 2, 17, 3.7),
        ('Plastic', 2, 47, 3.25),
-       ('Titanium', 1, 32, 15.2);
+       ('Titanium', 1, 32, 15.2),
+       ("Steel", 2, 7, 3.7);
 insert into c_orders(customer_id, status, user_name, created_at)
 values (3, 'preparing', 'nat', '2019-01-12 08:02:01'),
        (1, 'ready', 'nat', '2019-05-12 11:02:59'),
@@ -46,3 +47,9 @@ values (3, 'preparing', 'nat', '2019-01-12 08:02:01'),
 insert into c_order_items(c_order_id, product_id, quantity)
 values (3,  5, 100),
        (3, 2, 49);
+insert into p_materials(product_id, raw_material_id, quantity_of_raw_material)
+values (3, 4, 50),
+       (1, 3, 180),
+       (1, 4, 20),
+       (4, 2, 39),
+       (2, 1, 78);

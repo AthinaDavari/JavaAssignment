@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
- * COrder.java - a class for interacting and modifying the fields of a
- * customer's order.
+ * COrder.java - a class with the necessary getters and setters for a customer's
+ * order. 
  *
  * @author Athina P.
  */
@@ -31,7 +31,7 @@ public class COrder {
      */
     public COrder(Customer customer, User user) {
         this.customer = customer;
-        this.status = Status.ready;
+        this.status = Status.preparing;
         this.user = user;
     }
 

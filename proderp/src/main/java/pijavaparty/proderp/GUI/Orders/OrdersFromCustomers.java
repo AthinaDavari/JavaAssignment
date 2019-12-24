@@ -44,6 +44,8 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         COrdersTable = new javax.swing.JTable();
         showProducts = new javax.swing.JButton();
         prodid = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        back = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Orders From Customers Menu");
@@ -99,6 +101,17 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
             }
         });
 
+        back.setForeground(new java.awt.Color(0, 0, 204));
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(back);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,6 +163,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     }//GEN-LAST:event_editCustOrderActionPerformed
 
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
+       
         int selectedRow = COrdersTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
         prodid.setText((model.getValueAt(selectedRow, 0).toString()));
@@ -162,6 +176,14 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         new ShowProductsOfOrder(id).setVisible(true);
         
     }//GEN-LAST:event_showProductsActionPerformed
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        
+        OrdersFrame ordersframe = new OrdersFrame();
+        ordersframe.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_backMouseClicked
 
     
      public void showCOrdersTable() {
@@ -228,8 +250,10 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable COrdersTable;
     private javax.swing.JButton addCustOrder;
+    private javax.swing.JMenu back;
     private javax.swing.JButton editCustOrder;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField prodid;
     private javax.swing.JButton showProducts;

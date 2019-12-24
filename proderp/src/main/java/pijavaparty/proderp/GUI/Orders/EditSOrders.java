@@ -51,6 +51,9 @@ public class EditSOrders extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
+        cancelMenu = new javax.swing.JMenuBar();
+        back = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("jButton1");
@@ -62,7 +65,7 @@ public class EditSOrders extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Edit Orders");
 
-        update.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        update.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         update.setText("Update To Delivered");
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,13 +104,33 @@ public class EditSOrders extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
 
-        delete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
             }
         });
+
+        back.setForeground(new java.awt.Color(0, 0, 255));
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        cancelMenu.add(back);
+
+        cancel.setForeground(new java.awt.Color(0, 0, 255));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
+        cancelMenu.add(cancel);
+
+        setJMenuBar(cancelMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,7 +155,6 @@ public class EditSOrders extends javax.swing.JFrame {
                                 .addGap(39, 39, 39)
                                 .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -149,7 +171,7 @@ public class EditSOrders extends javax.swing.JFrame {
                     .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
         );
 
         pack();
@@ -158,6 +180,7 @@ public class EditSOrders extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
+            
             String orderIDString = jTextField1.getText();
             int orderIDint = Integer.parseInt(orderIDString);
 
@@ -169,6 +192,7 @@ public class EditSOrders extends javax.swing.JFrame {
             
             new EditSOrders().setVisible(true);
             dispose();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -191,15 +215,31 @@ public class EditSOrders extends javax.swing.JFrame {
         int orderIDint = Integer.parseInt(orderIDString);
         
         try {
+            
             SOrderDao sod = new SOrderDao();
             sod.delete(orderIDint);
             JOptionPane.showMessageDialog(null,"Order Deleted");
             new EditSOrders().setVisible(true);
             dispose();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+      
+        OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
+        ordersfromsuppliers.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_backMouseClicked
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        
+        dispose();
+        
+    }//GEN-LAST:event_cancelMouseClicked
 
     public void showSOrdersTable() {
         try {
@@ -262,6 +302,9 @@ public class EditSOrders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable SOrdersTable;
+    private javax.swing.JMenu back;
+    private javax.swing.JMenu cancel;
+    private javax.swing.JMenuBar cancelMenu;
     private javax.swing.JButton delete;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

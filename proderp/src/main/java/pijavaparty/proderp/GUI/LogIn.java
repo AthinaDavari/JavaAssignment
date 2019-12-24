@@ -9,14 +9,16 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
+import pijavaparty.proderp.main.ThrowNotification;
 
 /**
  *
  * @author aggel
  */
-public class LogIn extends javax.swing.JFrame {
+public class LogIn extends javax.swing.JFrame implements Runnable {
 
     public static User user;
+
     /**
      * Creates new form LogIn
      */
@@ -24,9 +26,11 @@ public class LogIn extends javax.swing.JFrame {
         initComponents();
         seticon();
     }
+
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +46,7 @@ public class LogIn extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        logIn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -73,15 +77,15 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Log In");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        logIn.setText("Log In");
+        logIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                logInActionPerformed(evt);
             }
         });
-        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+        logIn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButton1KeyPressed(evt);
+                logInKeyPressed(evt);
             }
         });
 
@@ -104,7 +108,7 @@ public class LogIn extends javax.swing.JFrame {
                 .addGap(167, 167, 167))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(386, 386, 386)
-                .addComponent(jButton1)
+                .addComponent(logIn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -123,7 +127,7 @@ public class LogIn extends javax.swing.JFrame {
                         .addGap(102, 102, 102)
                         .addComponent(jLabel3)))
                 .addGap(39, 39, 39)
-                .addComponent(jButton1)
+                .addComponent(logIn)
                 .addGap(327, 327, 327))
         );
 
@@ -151,33 +155,33 @@ public class LogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void logInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInActionPerformed
         String un = jTextField1.getText();
         String password = jPasswordField1.getText();
 
         UserDao u = new UserDao();
         User user = u.getUser(un, password);
         if (user != null && user.getRole() == "admin") {
-            AdminMenu obj = new AdminMenu();
             user.setPassword(null);
-            LogIn.user = user; 
+            LogIn.user = user;
+            AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
             dispose();
         } else if (user != null && user.getRole() == "simpleuser") {
-            Menu obj = new Menu();
             user.setPassword(null);
-            LogIn.user = user; 
+            LogIn.user = user;
+            Menu obj = new Menu();
             obj.setVisible(true);
             dispose();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Username or Password is Incorrect!");
-        }         // TODO add your handling code here:*/
-    }//GEN-LAST:event_jButton1ActionPerformed
+        }
+    }//GEN-LAST:event_logInActionPerformed
 
-    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+    private void logInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logInKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER)
-        jButton1.doClick();   // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1KeyPressed
+        logIn.doClick();
+    }//GEN-LAST:event_logInKeyPressed
 
     /**
      * @param args the command line arguments
@@ -186,7 +190,7 @@ public class LogIn extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -205,22 +209,34 @@ public class LogIn extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        ThrowNotification th = new ThrowNotification();
+        LogIn in = new LogIn();
+        Thread a = new Thread(th);
+        Thread b = new Thread(in);
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LogIn().setVisible(true);
-            }
-        });
-    }
+//        java.awt.EventQueue.invokeLater(b);
+        a.start();
+        b.start();
+
+     }
+
+
+    @Override
+    public void run() {
+
+        new LogIn().setVisible(true);
+
+        }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton logIn;
     // End of variables declaration//GEN-END:variables
 }

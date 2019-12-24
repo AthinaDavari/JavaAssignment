@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.sql.PreparedStatement;
@@ -17,8 +12,11 @@ import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrderItem;
 
 /**
+ * SOrderItemDao.java - a class for interacting and modifying the fields of
+ * supplier's items.
  *
  * @author athinaDavari
+ * @see SOrderItem
  */
 public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
 
@@ -30,6 +28,11 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
     private SOrderDao so = new SOrderDao();
     private RawMaterialDao rm = new RawMaterialDao();
 
+    /**
+     * Add new supplier's items in a List.
+     *
+     * @return A SOrderItem data type List.
+     */
     @Override
     public List<SOrderItem> getAll() {
         List<SOrderItem> sorders = new LinkedList();
@@ -49,6 +52,13 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         return sorders;
     }
 
+    /**
+     * Return a supplier's order item with a specific id.
+     *
+     * @param soid A variable of type int.
+     * @param rmid A variable of type int.
+     * @return A SOrderItem data type object.
+     */
     public SOrderItem getByIds(int soid, int rmid) {
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -68,6 +78,12 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         return null;
     }
 
+    /**
+     * Add items sorted by supplier.
+     *
+     * @param soid A variable of type int.
+     * @return A SOrderItem data type List.
+     */
     public List<SOrderItem> getItemsperSOrder(int soid) {
         List<SOrderItem> soi = new LinkedList();
         PreparedStatement pst = null;
@@ -87,6 +103,11 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         return soi;
     }
 
+    /**
+     * Insert a new supplier's item.
+     *
+     * @param soi An object of type SOrderItem.
+     */
     public void insert(SOrderItem soi) {
         PreparedStatement pst = null;
         try {
@@ -102,6 +123,11 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         }
     }
 
+    /**
+     * Delete a supplier's item with a specific id.
+     *
+     * @param soi A SOrderItem data type object.
+     */
     public void delete(SOrderItem soi) {
         PreparedStatement pst = null;
         try {
@@ -117,6 +143,11 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         }
     }
 
+    /**
+     * Increase the quantity of raw materials.
+     *
+     * @param orderId A variable of type int.
+     */
     public void increaseQuantities(int orderId) {
         List<SOrderItem> orderItems = getItemsperSOrder(orderId);
         RawMaterialDao rmd = new RawMaterialDao();
@@ -126,6 +157,12 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
         }
     }
 
+    /**
+     * Delete a customer's item with a specific id.
+     *
+     * @param sordId A variable of type int.
+     * @param rawMId A variable of type int.
+     */
     @Override
     public void delete(int sordId, int rawMId) {
         PreparedStatement pst = null;

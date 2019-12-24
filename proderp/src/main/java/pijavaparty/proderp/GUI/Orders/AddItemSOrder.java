@@ -6,6 +6,10 @@
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,8 +18,8 @@ import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SOrderDao;
 import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrderItem;
-import static pijavaparty.proderp.GUI.Orders.AddOrder.sorder;
-import static pijavaparty.proderp.GUI.Orders.AddOrder.supplierId;
+import static pijavaparty.proderp.GUI.Orders.AddNewSOrder.sorder;
+import static pijavaparty.proderp.GUI.Orders.AddNewSOrder.supplierId;
 import pijavaparty.proderp.dao.SupplierDao;
 import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
 
@@ -35,7 +39,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         comboBox();
         seticon();
     }
-
+    
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -57,6 +61,8 @@ public class AddItemSOrder extends javax.swing.JFrame {
         addorder = new javax.swing.JButton();
         rawMaterialsCombo = new javax.swing.JComboBox<>();
         valid_Quantity = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -77,7 +83,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
             }
         });
 
-        newitem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        newitem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         newitem.setText("New Item Order To Supplier");
         newitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +91,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
             }
         });
 
-        addorder.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addorder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         addorder.setText("Add Order To Supplier");
         addorder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +103,17 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
         valid_Quantity.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Quantity.setForeground(new java.awt.Color(255, 0, 0));
+
+        cancel.setForeground(new java.awt.Color(0, 0, 204));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(cancel);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,7 +161,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(quantity, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                         .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addorder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -157,20 +174,21 @@ public class AddItemSOrder extends javax.swing.JFrame {
     private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
         try {
             if (isValidInteger(quantity.getText())){
-            String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
-            int rawMaterialInt = Integer.parseInt(rawMaterialsString);
-            int quantityInt = Integer.parseInt(quantity.getText().trim());
+                String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
+                int quantityInt = Integer.parseInt(quantity.getText().trim());
 
-            RawMaterialDao rmd = new RawMaterialDao();
-            RawMaterial rawmaterial = rmd.getById(rawMaterialInt);
+                String[] rawMaterialIdInt = rawMaterialsString.split("-");
+                int rawMaterialId = Integer.parseInt(rawMaterialIdInt[0]);
+                RawMaterialDao rmd = new RawMaterialDao();
+                RawMaterial rawmaterial = rmd.getById(rawMaterialId);
 
-            SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
-            SOrderItemsList.add(sorderitem);
+                SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
+                SOrderItemsList.add(sorderitem);
 
-            JOptionPane.showMessageDialog(null, "Added to Order List.");
-            new AddItemSOrder().setVisible(true);
+                JOptionPane.showMessageDialog(null, "Added to Order List.");
+                new AddItemSOrder().setVisible(true);
 
-            dispose();
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
@@ -184,23 +202,24 @@ public class AddItemSOrder extends javax.swing.JFrame {
     private void addorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addorderActionPerformed
 
         if(isValidInteger(quantity.getText())){
-        JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
-        
-        String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
-        int rawMaterialInt = Integer.parseInt(rawMaterialsString);
-        int quantityInt = Integer.parseInt(quantity.getText().trim());
+            JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
 
-        RawMaterialDao rmd = new RawMaterialDao();
-        RawMaterial rawmaterial = rmd.getById(rawMaterialInt);
+            String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
+            int quantityInt = Integer.parseInt(quantity.getText().trim());
 
-        SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
-        SOrderItemsList.add(sorderitem);
-        
-        SOrderDao sod = new SOrderDao();
-        sod.insertSOrderAndSOrderItems(sorder, SOrderItemsList);
+            String[] rawMaterialIdInt = rawMaterialsString.split("-");
+            int rawMaterialId = Integer.parseInt(rawMaterialIdInt[0]);
+            RawMaterialDao rmd = new RawMaterialDao();
+            RawMaterial rawmaterial = rmd.getById(rawMaterialId);
 
-        JOptionPane.showMessageDialog(null, "Order Saved.");
-        dispose();
+            SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
+            SOrderItemsList.add(sorderitem);
+
+            SOrderDao sod = new SOrderDao();
+            sod.insertSOrderAndSOrderItems(sorder, SOrderItemsList);
+
+            JOptionPane.showMessageDialog(null, "Order Saved.");
+            dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
         }
@@ -214,6 +233,14 @@ public class AddItemSOrder extends javax.swing.JFrame {
             valid_Quantity.setText(null);
         }
     }//GEN-LAST:event_quantityKeyReleased
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        
+        AddNewSOrder addnewsorder = new AddNewSOrder();
+        addnewsorder.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_cancelMouseClicked
 
     
      private void comboBox(){
@@ -276,9 +303,11 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addorder;
+    private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton newitem;
     private javax.swing.JTextField quantity;
     private javax.swing.JComboBox<String> rawMaterialsCombo;

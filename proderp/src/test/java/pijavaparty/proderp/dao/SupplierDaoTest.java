@@ -12,9 +12,8 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.Supplier;
-
-
 
 /**
  *
@@ -60,10 +59,26 @@ public class SupplierDaoTest {
     }
 
     /**
+     * Test of getRawMaterialsPerSupplier, of class SupplierDao.
+     */
+    @Test
+    public void ctestGetRawMaterialsPerSupplier() {
+        System.out.println("getRawMaterialsPerSupplier");
+        int id = 1;
+        SupplierDao instance = new SupplierDao();
+        List<RawMaterial> expResult = new LinkedList();
+        Supplier s = new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr");
+        expResult.add(new RawMaterial(1, "plastic", 47, 0.25, s));
+        expResult.add(new RawMaterial(5, "Titanium", 32, 15.2, s));
+        List<RawMaterial> result = instance.getRawMaterialsPerSupplier(id);
+        assertEquals(expResult, result);
+    }
+
+    /**
      * Test of insert method, of class SupplierDao.
      */
     @Test
-    public void ctestInsert() {
+    public void dtestInsert() {
         System.out.println("insert");
         Supplier s = new Supplier("GoldSuppl", "Panepistimiou 27", 2105454554l, "info@gold.gr");
         SupplierDao instance = new SupplierDao();
@@ -76,7 +91,7 @@ public class SupplierDaoTest {
      * Test of update method, of class SupplierDao.
      */
     @Test
-    public void dtestUpdate() {
+    public void etestUpdate() {
         System.out.println("update");
         Supplier s = new Supplier(2, "PetaloudUpdatedaA.E.", "Palaiologou 156", 2103789023l, "info@petalnew.gr");
         SupplierDao instance = new SupplierDao();
@@ -88,7 +103,7 @@ public class SupplierDaoTest {
      * Test of delete method, of class SupplierDao.
      */
     @Test
-    public void etestDelete() {
+    public void ftestDelete() {
         System.out.println("delete");
         int id = 3;
         SupplierDao instance = new SupplierDao();
@@ -107,5 +122,4 @@ public class SupplierDaoTest {
 //        instance.deletePermanently(id);
 //        assertEquals(null, instance.getById(3));
 //    }
-
 }

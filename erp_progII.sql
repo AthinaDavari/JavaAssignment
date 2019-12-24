@@ -99,7 +99,7 @@ values("INA PLASTICS SA", "A.Papadreou 30", 2105678934, "info@inaplastics.gr"),
 	  ("Titanium Fabrication Corporation", "Palaiologou 156", 2103789023, "info@tfc.gr"),
       ("Universal Metals", "Vasileos Georgiou 59", 2103825677, "info@unimetals.gr"),
       ("Salomon’s Metalen", "Anatolikis Romilias 26", 2115027459, "info@salomonsmetalen.gr"),
-      ("Toray Carbon Fibers", "Perikleous 89", 2130796782, "info@torays@.gr");
+      ("Toray Carbon Fibers", "Perikleous 89", 2130796782, "info@torays.gr");
       
 insert into products(name, quantity, price)
 values("Orient City Classic", 10, 479.65),

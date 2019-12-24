@@ -6,6 +6,10 @@
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,7 +39,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         comboBox();
         seticon();
     }
-
+    
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

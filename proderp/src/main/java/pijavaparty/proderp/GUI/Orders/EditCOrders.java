@@ -197,7 +197,7 @@ public class EditCOrders extends javax.swing.JFrame {
             
             if (status.equals("ready")){
                 
-               updateIngridients(orderIdInt, );
+//               updateIngridients(orderIdInt, );
                increaseProduct(orderIdInt);
                 
             }

@@ -103,29 +103,29 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         return c;
     }
 
-    /**
-     * Change/Update the fields of a supplier's order.
-     *
-     * @param s A variable of type SOrder.
-     */
-    public void update(SOrder s) {
-        SOrder fromTable = getById(s.getId());
-        PreparedStatement pst = null;
-        if (fromTable != null && !fromTable.equals(s)) {
-            try {
-                pst = getConnection().prepareStatement(UPDATE);
-                pst.setInt(1, s.getSupplier().getId());
-                pst.setString(2, s.getStatus());
-                pst.setTimestamp(3, s.getCreated_at());
-                pst.setInt(4, s.getId());
-                pst.execute();
-            } catch (SQLException ex) {
-                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                closeStatementAndResultSet(pst);
-            }
-        }
-    }
+//    /**
+//     * Change/Update the fields of a supplier's order.
+//     *
+//     * @param s A variable of type SOrder.
+//     */
+//    public void update(SOrder s) {
+//        SOrder fromTable = getById(s.getId());
+//        PreparedStatement pst = null;
+//        if (fromTable != null && !fromTable.equals(s)) {
+//            try {
+//                pst = getConnection().prepareStatement(UPDATE);
+//                pst.setInt(1, s.getSupplier().getId());
+//                pst.setString(2, s.getStatus());
+//                pst.setTimestamp(3, s.getCreated_at());
+//                pst.setInt(4, s.getId());
+//                pst.execute();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+//            } finally {
+//                closeStatementAndResultSet(pst);
+//            }
+//        }
+//    }
 
     /**
      * Insert a new supplier's order.

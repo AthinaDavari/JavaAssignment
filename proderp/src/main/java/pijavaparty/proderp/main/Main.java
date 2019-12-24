@@ -1,6 +1,6 @@
 package pijavaparty.proderp.main;
 
-import pijavaparty.proderp.GUI.LogIn;
+import pijavaparty.proderp.dao.SupplierDao;
 
 /**
  *
@@ -9,7 +9,8 @@ import pijavaparty.proderp.GUI.LogIn;
 public class Main {
 
     public static void main(String[] args) {
-   
+        SupplierDao sd = new SupplierDao();
+        System.out.println(sd.getRawMaterialsPerSupplier(1));
     }
 
 }

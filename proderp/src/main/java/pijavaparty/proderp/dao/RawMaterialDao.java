@@ -12,7 +12,7 @@ import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.Supplier;
 
 /**
- * RawMaterialDao.java - a calss for interacting and modifying the fields of raw
+ * RawMaterialDao.java - a class for interacting and modifying the fields of raw
  * materials.
  *
  * @author Natalia
@@ -119,6 +119,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
                 pst.setInt(2, r.getSupplier().getId());
                 pst.setDouble(3, r.getPrice());
                 pst.setInt(4, r.getId());
+                pst.execute();
             } catch (SQLException ex) {
                 Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
             } finally {

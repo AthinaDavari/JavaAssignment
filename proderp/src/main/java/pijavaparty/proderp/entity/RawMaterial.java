@@ -36,10 +36,10 @@ public class RawMaterial {
         this.price = price;
         this.supplier = supplier;
     }
-    
+
     /**
      * A constructor with arguments.
-     * 
+     *
      * @param id A variable of type int
      * @param name A variable of type String.
      * @param price A variable of type Double.
@@ -218,7 +218,7 @@ public class RawMaterial {
      */
     @Override
     public String toString() {
-        return "RawMaterial{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", supplierid=" + supplier.getId() + '}';
+        return "RawMaterial{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", supplier=" + supplier + '}';
     }
 
 }

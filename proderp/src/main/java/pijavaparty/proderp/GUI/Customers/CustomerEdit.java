@@ -13,8 +13,8 @@ import pijavaparty.proderp.entity.Customer;
 import pijavaparty.proderp.main.ValidVariables;
 
 /**
- *
- * @author Ctell
+ * CustomerEdit.java -a graphical class for modifying the data of a customer 
+ * @author Stella
  */
 public class CustomerEdit extends javax.swing.JFrame {
 
@@ -51,7 +51,7 @@ public class CustomerEdit extends javax.swing.JFrame {
         value_phonenumber = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         value_email = new javax.swing.JTextField();
-        txt_update = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         value_id = new javax.swing.JTextField();
@@ -108,10 +108,10 @@ public class CustomerEdit extends javax.swing.JFrame {
             }
         });
 
-        txt_update.setText("update");
-        txt_update.addActionListener(new java.awt.event.ActionListener() {
+        update.setText("update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_updateActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
 
@@ -149,7 +149,7 @@ public class CustomerEdit extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txt_update, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -227,7 +227,7 @@ public class CustomerEdit extends javax.swing.JFrame {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_update, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
@@ -236,7 +236,12 @@ public class CustomerEdit extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
+   /**
+    * Add valid and edited data of a customer in the database.
+    * 
+    * @param evt a reference to an ActionEvent object is sent to the method by clicking the update button. 
+    */
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
             if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText()) ){
             String value1_id = value_id.getText();
@@ -261,8 +266,13 @@ public class CustomerEdit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
 
-    }//GEN-LAST:event_txt_updateActionPerformed
-
+    }//GEN-LAST:event_updateActionPerformed
+     /**
+      * 
+      * Select a row of the table and put the customer's data in the fields.
+      * 
+      * @param evt a reference to an MouseEvent object is sent to the method by putting the mouse cursor in a selected row of the table. 
+      */
     private void Customers_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Customers_tableMouseClicked
 
         int selectedRow = Customers_table.getSelectedRow();
@@ -274,7 +284,11 @@ public class CustomerEdit extends javax.swing.JFrame {
         value_email.setText((model2.getValueAt(selectedRow, 4).toString()));
 
     }//GEN-LAST:event_Customers_tableMouseClicked
-
+    /**
+     * Delete the data of a customer in the database.
+     * 
+     * @param evt a reference to an ActionEvent object is sent to the method by clicking the delete button. 
+     */
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
             String value1_id = value_id.getText();
@@ -378,7 +392,7 @@ public class CustomerEdit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton txt_update;
+    private javax.swing.JButton update;
     private javax.swing.JLabel valid_Email;
     private javax.swing.JLabel valid_Fullname;
     private javax.swing.JLabel valid_Phonenumber;

@@ -20,12 +20,21 @@ import pijavaparty.proderp.entity.ProductRawMaterial;
  */
 public class StorageServices {
 
+    /**
+     *
+     */
     public void StorageServices() {
 
     }
 
     //method that takes the quantity of all the ingrediaents in a product recipe 
     //and as the quantity of the product chages the quantity of all the raw matirials changes as well
+
+    /**
+     *
+     * @param id
+     * @param quant
+     */
     public void UpdateIngredients(int id, int quant) {
         ProductRawMaterial prodraw;
         int quantrecipe;
@@ -47,6 +56,11 @@ public class StorageServices {
 
     }
 
+    /**
+     *
+     * @param q
+     * @return
+     */
     public Function<Integer, Integer> updateQuantityOfRawMaterialBy(int q) {
         return x -> q * x;
     }

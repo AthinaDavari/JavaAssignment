@@ -26,6 +26,10 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         showSOrdersTable();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -189,8 +193,9 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backMouseClicked
 
-    
-    
+    /**
+     *
+     */
     public void showSOrdersTable() {
         try {
             

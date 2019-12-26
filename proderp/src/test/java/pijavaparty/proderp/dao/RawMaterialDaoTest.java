@@ -22,9 +22,15 @@ import pijavaparty.proderp.entity.Supplier;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RawMaterialDaoTest {
 
+    /**
+     *
+     */
     public RawMaterialDaoTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();
@@ -45,6 +51,7 @@ public class RawMaterialDaoTest {
         expResult.add(new RawMaterial(3, "wood", 17, 3.7, s2));
         expResult.add(new RawMaterial(4, "Plastic", 47, 3.25, s2));
         expResult.add(new RawMaterial(5, "Titanium", 32, 15.2, s1));
+        expResult.add(new RawMaterial(6, "Steel", 7, 3.7, s2));
         List<RawMaterial> result = instance.getAll();
         assertEquals(expResult, result);
     }
@@ -73,8 +80,8 @@ public class RawMaterialDaoTest {
         RawMaterial r = new RawMaterial("steel", 54, 1.8, s1);
         RawMaterialDao instance = new RawMaterialDao();
         instance.insert(r);
-        r.setId(6);
-        assertEquals(r, instance.getById(6));
+        r.setId(7);
+        assertEquals(r, instance.getById(7));
     }
 
     /**

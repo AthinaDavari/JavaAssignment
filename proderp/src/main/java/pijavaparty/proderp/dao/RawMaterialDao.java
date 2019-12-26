@@ -177,8 +177,8 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
     /**
      * Delete a raw material with a specific id.
      *
-     * @param idd A variable of type int.
      *
+     * @param id
      */
     @Override
     public void delete(int id) {

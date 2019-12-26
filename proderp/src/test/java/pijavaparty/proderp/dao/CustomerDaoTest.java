@@ -24,9 +24,15 @@ import pijavaparty.proderp.entity.Customer;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CustomerDaoTest {
     
+    /**
+     *
+     */
     public CustomerDaoTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();

@@ -13,6 +13,9 @@ import pijavaparty.proderp.GUI.Menu;
  */
 public class RawMaterialMenu extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public RawMaterialMenu() {
         initComponents();
         showRawMaterialTable();
@@ -189,6 +192,10 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         rawmenu.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     *
+     */
     public void showRawMaterialTable(){
         RawMaterialDao rawdao=new RawMaterialDao();
         DefaultTableModel model=(DefaultTableModel) RawMaterial_table2.getModel();

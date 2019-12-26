@@ -18,6 +18,9 @@ import static org.junit.Assert.*;
  */
 public class ChecksTest {
     
+    /**
+     *
+     */
     public ChecksTest() {
     }
     
@@ -34,7 +37,7 @@ public class ChecksTest {
         int id = 1;
         Checks instance = new Checks();
         boolean expResult = true;
-        boolean result = instance.CheckIfRawMaterialIsUsed(id);
+        boolean result = instance.checkIfRawMaterialIsUsed(id);
         assertEquals(expResult, result);
 
     }

@@ -16,6 +16,9 @@ import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
  */
 public class RawMaterialEdit extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public RawMaterialEdit() {
         initComponents();
         showRawMaterialTable();
@@ -283,6 +286,10 @@ public class RawMaterialEdit extends javax.swing.JFrame {
             valid_SupplierId.setText(null);
         }
     }//GEN-LAST:event_value_supplier_idKeyReleased
+
+    /**
+     *
+     */
     public void showRawMaterialTable() {
         RawMaterialDao obj = new RawMaterialDao();
         DefaultTableModel model = (DefaultTableModel) RawMaterial_table2.getModel();

@@ -24,14 +24,23 @@ import pijavaparty.proderp.entity.User;
  */
 public class LogInTest {
     
+    /**
+     *
+     */
     public LogInTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
         runTestScript();
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
 //        JPanel myPanel = new JPanel();
@@ -47,6 +56,7 @@ public class LogInTest {
 
     /**
      * Test of main method, of class LogIn.
+     * @throws java.awt.AWTException
      */
     @Test
     public void testMain() throws AWTException {
@@ -65,6 +75,7 @@ public class LogInTest {
 
     /**
      * Test of logInKeyPressed method, of class LogIn.
+     * @throws java.awt.AWTException
      */
     @Test
     public void logInKeyPressed() throws AWTException {

@@ -22,9 +22,15 @@ import pijavaparty.proderp.entity.Supplier;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SupplierDaoTest {
 
+    /**
+     *
+     */
     public SupplierDaoTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();

@@ -25,10 +25,10 @@ public class RawMaterial {
     /**
      * A constructor with arguments.
      *
-     * @param name A variable of type String.
-     * @param quantity A variable of type int.
-     * @param price A variable of type Double.
-     * @param supplier A variable of type Supplier.
+     * @param string
+     * @param i
+     * @param d
+     * @param splr
      */
     public RawMaterial(String name, int quantity, double price, Supplier supplier) {
         this.name = name;
@@ -40,10 +40,10 @@ public class RawMaterial {
     /**
      * A constructor with arguments.
      *
-     * @param id A variable of type int
-     * @param name A variable of type String.
-     * @param price A variable of type Double.
-     * @param supplier A variable of type Supplier.
+     * @param i
+     * @param string
+     * @param d
+     * @param splr
      */
     public RawMaterial(int id, String name, double price, Supplier supplier) {
         this.id = id;
@@ -55,11 +55,11 @@ public class RawMaterial {
     /**
      * A constructor with arguments.
      *
-     * @param id A variable of type int.
-     * @param name A variable of type String.
-     * @param quantity A variable of type int.
-     * @param price A variable of type Double.
-     * @param supplier A variable of type Supplier.
+     * @param i
+     * @param string
+     * @param i1
+     * @param d
+     * @param splr
      */
     public RawMaterial(int id, String name, int quantity, double price, Supplier supplier) {
         this.id = id;

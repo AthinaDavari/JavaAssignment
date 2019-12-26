@@ -17,16 +17,28 @@ import pijavaparty.proderp.entity.RawMaterial;
 public class DeleteIngredients extends javax.swing.JFrame {
     private int id;
 
+    /**
+     *
+     */
     public DeleteIngredients() {
         initComponents();
         seticon();
     }
+
+    /**
+     *
+     * @param id
+     */
     public DeleteIngredients(int id) {
         this.id=id;
         initComponents();
         seticon();
         fillcombo();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

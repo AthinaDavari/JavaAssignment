@@ -13,10 +13,17 @@ import pijavaparty.proderp.Services.Checks;
  */
 public class RawMaterialDelete extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public RawMaterialDelete() {
         initComponents();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

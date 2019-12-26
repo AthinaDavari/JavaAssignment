@@ -33,9 +33,15 @@ import pijavaparty.proderp.entity.User;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserDaoTest {
 
+    /**
+     *
+     */
     public UserDaoTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();

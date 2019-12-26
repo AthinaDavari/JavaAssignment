@@ -17,6 +17,9 @@ import pijavaparty.proderp.main.ThrowNotification;
  */
 public class LogIn extends javax.swing.JFrame implements Runnable {
 
+    /**
+     *
+     */
     public static User user;
 
     /**
@@ -27,6 +30,9 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         seticon();
     }
 
+    /**
+     *
+     */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

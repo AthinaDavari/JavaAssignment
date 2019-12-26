@@ -30,6 +30,9 @@ public class EditSOrders extends javax.swing.JFrame {
         seticon();
     }
 
+    /**
+     *
+     */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -221,6 +224,9 @@ public class EditSOrders extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelMouseClicked
 
+    /**
+     *
+     */
     public void showSOrdersTable() {
         try {
             

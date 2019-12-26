@@ -31,6 +31,10 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         seticon();
         comboBox();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

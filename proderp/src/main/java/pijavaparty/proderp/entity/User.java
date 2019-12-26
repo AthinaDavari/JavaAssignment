@@ -18,8 +18,8 @@ public class User {
     /**
      * A Constructor with arguments.
      *
-     * @param fullName A variable of type String.
-     * @param username A variable of type String.
+     * @param string1
+     * @param string2
      * @param password A variable of type String.
      * @param role A variable of type Role.
      */
@@ -33,8 +33,9 @@ public class User {
     /**
      * A Constructor with arguments.
      *
-     * @param fullName A variable of type String.
-     * @param username A variable of type String.
+     * @param string
+     * @param string1
+     * @param string2
      * @param password A variable of type String.
      * @param role A variable of type String.
      */
@@ -54,7 +55,8 @@ public class User {
     /**
      * A Constructor with arguments.
      *
-     * @param fullName A variable of type String.
+     * @param string
+     * @param string1
      * @param password A variable of type String.
      * @param role A variable of type Role.
      */
@@ -67,9 +69,11 @@ public class User {
     /**
      * A Constructor with arguments.
      *
+     * @param string
      * @param fullName A variable of type String.
-     * @param username A variable of type String.
+     * @param string1
      * @param role A variable of type String.
+     * @param string2
      */
     public User(String fullName, String username, String role) {
         this.fullName = fullName;

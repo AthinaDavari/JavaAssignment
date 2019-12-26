@@ -20,11 +20,18 @@ import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
  */
 public class RawMaterialInsert extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public RawMaterialInsert() {
         initComponents();
         fillcombo();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

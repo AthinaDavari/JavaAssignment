@@ -35,6 +35,9 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         seticon();
     }
 
+    /**
+     *
+     */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

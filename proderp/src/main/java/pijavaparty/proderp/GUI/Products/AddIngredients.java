@@ -25,12 +25,22 @@ public class AddIngredients extends javax.swing.JFrame {
     private int id;
     private Product prod=new Product();
     private int selected;
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
     //multiple constructors 
     //construcor if product doesnt exist
+
+    /**
+     *
+     * @param name
+     * @param price
+     */
     public AddIngredients(String name, double price) {
         prod.setName(name);
         prod.setPrice(price);
@@ -40,6 +50,11 @@ public class AddIngredients extends javax.swing.JFrame {
         seticon();
     }
     //product exist
+
+    /**
+     *
+     * @param id
+     */
     public AddIngredients(int id) {
         ProductDao proddao2 = new ProductDao();
         this.id = id;
@@ -49,6 +64,12 @@ public class AddIngredients extends javax.swing.JFrame {
         seticon();
     }
        //product doesnt exist but ingridients already have been chosen
+
+    /**
+     *
+     * @param prodraw
+     * @param obj5
+     */
     public AddIngredients(List<ProductRawMaterial> prodraw, Product obj5) {
         this.prodraw = prodraw;
         
@@ -58,6 +79,9 @@ public class AddIngredients extends javax.swing.JFrame {
         seticon();
     }
 
+    /**
+     *
+     */
     public AddIngredients() {
         initComponents();
         fillcombo();
@@ -283,6 +307,10 @@ public class AddIngredients extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

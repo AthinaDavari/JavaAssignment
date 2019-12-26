@@ -57,6 +57,10 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         return sorders;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<SOrder> getAllPendingOrders() {
         List<SOrder> sorders = new LinkedList();
         SupplierDao s = new SupplierDao();

@@ -56,6 +56,9 @@ public class ThrowNotification implements Runnable {
 
     }
 
+    /**
+     *
+     */
     public void showOptionPane() {
         Checks checks = new Checks();
             if (LogIn.user != null) {

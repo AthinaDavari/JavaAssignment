@@ -17,17 +17,27 @@ import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.Supplier;
 
+/**
+ *
+ * @author athina
+ */
 public class AddNewSOrder extends javax.swing.JFrame {
 
     static SOrder sorder;
     static int supplierId;
 
+    /**
+     *
+     */
     public AddNewSOrder() {
         initComponents();
         comboBox();
         seticon();
     }
 
+    /**
+     *
+     */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

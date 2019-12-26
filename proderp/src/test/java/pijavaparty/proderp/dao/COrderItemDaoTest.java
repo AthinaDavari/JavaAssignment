@@ -27,9 +27,15 @@ import pijavaparty.proderp.entity.User;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class COrderItemDaoTest {
 
+    /**
+     *
+     */
     public COrderItemDaoTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();

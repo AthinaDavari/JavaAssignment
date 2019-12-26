@@ -13,10 +13,17 @@ import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
  */
 public class AddProducts extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public AddProducts() {
         initComponents();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

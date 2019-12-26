@@ -31,6 +31,10 @@ public class SuppliersMenu extends javax.swing.JFrame {
         showSupplierstable();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
@@ -167,7 +171,6 @@ public class SuppliersMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_backMouseClicked
 
     /**
-     * @param args the command line arguments
      */
     public void showSupplierstable(){
         SupplierDao obj=new SupplierDao();
@@ -183,6 +186,11 @@ public class SuppliersMenu extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

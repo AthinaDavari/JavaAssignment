@@ -23,9 +23,15 @@ public class ProductRawMaterialDaoTest {
     private ProductDao pdao = new ProductDao();
     private RawMaterialDao rmdao = new RawMaterialDao();
 
+    /**
+     *
+     */
     public ProductRawMaterialDaoTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
         runTestScript();

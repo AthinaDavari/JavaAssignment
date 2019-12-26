@@ -15,12 +15,18 @@ import pijavaparty.proderp.GUI.LogIn;
  */
 public class ProductGui extends javax.swing.JFrame {
 
-
+    /**
+     *
+     */
     public ProductGui() {
         initComponents();
         showProductTable();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -174,6 +180,10 @@ public class ProductGui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //showing colums from table product in data base
+
+    /**
+     *
+     */
     public void showProductTable(){
         ProductDao proddao=new ProductDao();
         DefaultTableModel model=(DefaultTableModel) product_table.getModel();

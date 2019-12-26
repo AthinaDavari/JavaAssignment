@@ -38,6 +38,9 @@ public class EditCOrders extends javax.swing.JFrame {
         seticon();
     }
 
+    /**
+     *
+     */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -263,6 +266,9 @@ public class EditCOrders extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelMouseClicked
 
+    /**
+     *
+     */
     public void showCOrdersTable() {
         try {
             
@@ -288,6 +294,10 @@ public class EditCOrders extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @param corderid
+     */
     public void increaseProduct(int corderid){
         
         COrderItemDao coid = new COrderItemDao();
@@ -302,6 +312,10 @@ public class EditCOrders extends javax.swing.JFrame {
         
     }
     
+    /**
+     *
+     * @param corderid
+     */
     public void decreaseProduct(int corderid){
         
         COrderItemDao coid = new COrderItemDao();

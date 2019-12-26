@@ -14,15 +14,28 @@ import pijavaparty.proderp.dao.RawMaterialDao;
 public class Ingredients extends javax.swing.JFrame {
 
     private int id;
+
+    /**
+     *
+     * @param id
+     */
     public Ingredients(int id) {
         this.id=id;
         initComponents();
         showIngredientsTable();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     } 
+
+    /**
+     *
+     */
     public Ingredients() {
         initComponents();
         showIngredientsTable();
@@ -154,6 +167,10 @@ public class Ingredients extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BackMouseClicked
     //showing colums of product table in data base 
+
+    /**
+     *
+     */
     public void showIngredientsTable(){
         ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
         DefaultTableModel model=(DefaultTableModel) Ingredients_Table.getModel();

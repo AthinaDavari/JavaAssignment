@@ -16,6 +16,11 @@ import pijavaparty.proderp.entity.RawMaterial;
  */
 public class Checks {
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public boolean checkIfRawMaterialIsUsed(int id) {
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
         List<ProductRawMaterial> prodrawall = prodrawdao.getAll();
@@ -29,6 +34,10 @@ public class Checks {
         return false;
     }
     
+    /**
+     *
+     * @return
+     */
     public List<RawMaterial> checkRawQuantities() {
         RawMaterialDao materialDao = new RawMaterialDao();
         List<RawMaterial> rawMaterials = materialDao.getAll();
@@ -38,6 +47,10 @@ public class Checks {
         return rawMaterials;
     } 
     
+    /**
+     *
+     * @return
+     */
     public List<Product> checkProductQuantities() {
         ProductDao proDao = new ProductDao();
         List<Product> products = proDao.getAll();

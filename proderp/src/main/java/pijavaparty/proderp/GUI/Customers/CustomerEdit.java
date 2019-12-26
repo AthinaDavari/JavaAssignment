@@ -27,6 +27,9 @@ public class CustomerEdit extends javax.swing.JFrame {
         showCustomersTable();
     }
 
+    /**
+     *
+     */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -316,6 +319,9 @@ public class CustomerEdit extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_emailKeyReleased
 
+    /**
+     *
+     */
     public void showCustomersTable() {
         CustomerDao obj = new CustomerDao();
         DefaultTableModel model = (DefaultTableModel) Customers_table.getModel();

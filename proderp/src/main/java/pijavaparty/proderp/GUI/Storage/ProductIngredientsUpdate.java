@@ -9,19 +9,40 @@ import pijavaparty.proderp.Services.StorageServices;
  * @author aggel
  */
 public class ProductIngredientsUpdate extends javax.swing.JFrame {
+
+    /**
+     *
+     */
     public int id;
+
+    /**
+     *
+     */
     public int quant;
 
+    /**
+     *
+     */
     public ProductIngredientsUpdate() {
         initComponents();
     }
     //constracor to get id and quantity from previous window
+
+    /**
+     *
+     * @param id
+     * @param quant
+     */
     public ProductIngredientsUpdate(int id, int quant) {
         this.id=id;
         this.quant=quant;
         initComponents();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

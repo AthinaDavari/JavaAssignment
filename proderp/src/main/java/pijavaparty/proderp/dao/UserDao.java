@@ -105,10 +105,11 @@ public class UserDao extends Dao {
     }
 
     /**
-     * Check if a specific user exists in the List. If so, the method is
-     * terminated. Otherwise, the user is inserted in the List.
+     * Check if a specific user exists in the List.If so, the method is
+ terminated. Otherwise, the user is inserted in the List.
      *
      * @param user A variable of type User.
+     * @return 
      */
     public boolean insert(User user) {
         PreparedStatement pst = null;
@@ -137,7 +138,8 @@ public class UserDao extends Dao {
     /**
      * Delete a user with a specific username.
      *
-     * @param username A variable of type String.
+     * @param user
+     * @return 
      */
     public boolean delete(User user) {
         PreparedStatement pst = null;

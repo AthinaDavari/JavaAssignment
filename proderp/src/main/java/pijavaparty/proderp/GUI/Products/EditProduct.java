@@ -25,6 +25,10 @@ public class EditProduct extends javax.swing.JFrame {
         showProductsTable();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -312,6 +316,10 @@ public class EditProduct extends javax.swing.JFrame {
     }
 
     //methos showing colums of products from data base 
+
+    /**
+     *
+     */
     public void showProductsTable(){
         ProductDao proddao=new ProductDao();
         DefaultTableModel model=(DefaultTableModel) products_table.getModel();

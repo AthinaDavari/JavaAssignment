@@ -125,24 +125,24 @@ public class CustomerDao extends Dao implements PlainEntityI<Customer> {
 
     }
 
-    /**
-     * Delete permanently a customer with a specific id.
-     *
-     * @param id A variable of type int.
-     */
-    public void deletePermanently(int id) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(DELETEPERM);
-            pst.setInt(1, id);
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-
-        }
-    }
+//    /**
+//     * Delete permanently a customer with a specific id.
+//     *
+//     * @param id A variable of type int.
+//     */
+//    public void deletePermanently(int id) {
+//        PreparedStatement pst = null;
+//        try {
+//            pst = getConnection().prepareStatement(DELETEPERM);
+//            pst.setInt(1, id);
+//            pst.execute();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            closeStatementAndResultSet(pst);
+//
+//        }
+//    }
 
     /**
      * Delete a customer with a specific id.

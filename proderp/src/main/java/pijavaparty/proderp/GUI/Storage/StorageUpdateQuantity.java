@@ -15,16 +15,30 @@ import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
 public class StorageUpdateQuantity extends javax.swing.JFrame {
     private int id;
     private String prodorraw;
+
+    /**
+     *
+     */
     public StorageUpdateQuantity() {
         initComponents();
         seticon();
     }
+
+    /**
+     *
+     * @param id
+     * @param prodorraw
+     */
     public StorageUpdateQuantity(int id, String prodorraw) {
         this.id=id;
         this.prodorraw=prodorraw;
         initComponents();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

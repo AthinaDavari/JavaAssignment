@@ -14,6 +14,11 @@ import java.util.regex.Pattern;
  */
 public class ValidVariables {
 
+    /**
+     *
+     * @param str
+     * @return
+     */
     public static boolean isStringOnlyAlphabetAndWhiteSpaces(String str) {
         if (str == null) {
             return false;
@@ -23,6 +28,11 @@ public class ValidVariables {
 
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public static boolean isValidEmailAddress(String email) { //Έλεγχος αν το String είναι μία έγκυρη διεύθυνση email.
         String emailRegex = "^[a-zA-Z0-9]+(?:\\."
                 + "[a-zA-Z0-9]+)*@"
@@ -36,6 +46,11 @@ public class ValidVariables {
         return pat.matcher(email).matches();
     }
 
+    /**
+     *
+     * @param phonenumber
+     * @return
+     */
     public static boolean isValidPhonenumber(String phonenumber) {
         String PATTERN = "\\d{10}";
         if (phonenumber.matches(PATTERN) == true) {
@@ -46,6 +61,12 @@ public class ValidVariables {
         }
 
     }
+
+    /**
+     *
+     * @param integer
+     * @return
+     */
     public static boolean isValidInteger(String integer){
        String pattern = "^[1-9]\\d*$";
        if (Pattern.matches(pattern, integer)){
@@ -55,7 +76,13 @@ public class ValidVariables {
        }
         
     }
-     public static boolean isValidDouble(String double_number){
+
+    /**
+     *
+     * @param double_number
+     * @return
+     */
+    public static boolean isValidDouble(String double_number){
          String pattern="[0-9]+(\\.){1}[0-9]+";
           if (Pattern.matches(pattern, double_number)){
            return true;
@@ -63,7 +90,13 @@ public class ValidVariables {
            return false;
        }
      }
-     public static boolean isStringOnlyAlphabetAndNumbersAndWhiteSpaces(String input){
+
+    /**
+     *
+     * @param input
+     * @return
+     */
+    public static boolean isStringOnlyAlphabetAndNumbersAndWhiteSpaces(String input){
          String pattern="^[a-zA-Z]+((\\s[a-zA-Z0-9]+))*$";
          String regex="^[A-Za-z0-9\\s]{4,}$";
          if(Pattern.matches(pattern,input) && Pattern.matches(regex,input)){

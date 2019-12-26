@@ -26,6 +26,10 @@ public class AdminMenu extends javax.swing.JFrame {
         initComponents();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 

@@ -21,6 +21,9 @@ import java.util.logging.Logger;
  */
 public class TestUtilities {
 
+    /**
+     *
+     */
     public static void runTestScript() {
         String queries = "";
 

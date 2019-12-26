@@ -27,6 +27,11 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
     }
     
     private int orid;
+
+    /**
+     *
+     * @param orid
+     */
     public ShowRawMaterialsOfOrder(int orid) {
         this.orid=orid;
         initComponents();
@@ -121,6 +126,9 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelMouseClicked
     
+    /**
+     *
+     */
     public void showRawMaterialsTable() {
 
         SOrderItemDao soid = new SOrderItemDao();

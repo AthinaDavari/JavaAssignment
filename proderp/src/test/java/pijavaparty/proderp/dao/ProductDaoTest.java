@@ -25,9 +25,15 @@ import pijavaparty.proderp.entity.ProductRawMaterial;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ProductDaoTest {
     
+    /**
+     *
+     */
     public ProductDaoTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();

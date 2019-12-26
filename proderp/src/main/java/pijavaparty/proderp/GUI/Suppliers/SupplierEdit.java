@@ -27,6 +27,9 @@ public class SupplierEdit extends javax.swing.JFrame {
         seticon();
     }
 
+    /**
+     *
+     */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
@@ -319,7 +322,6 @@ public class SupplierEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelMouseClicked
 
     /**
-     * @param args the command line arguments
      */
     public void showSuppliersTable() {
         SupplierDao obj = new SupplierDao();
@@ -336,6 +338,10 @@ public class SupplierEdit extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

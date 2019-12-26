@@ -26,7 +26,7 @@ public class COrder {
     /**
      * A constructor with arguments.
      *
-     * @param customer A variable of type Customer.
+     * @param cstmr
      * @param user A variable of type User.
      */
     public COrder(Customer customer, User user) {
@@ -38,10 +38,10 @@ public class COrder {
     /**
      * A constructor with arguments.
      *
-     * @param id A variable of type int.
-     * @param customer A variable of type Customer.
-     * @param status A variable of type String.
-     * @param created_at A variable of type Timestamp.
+     * @param i
+     * @param string
+     * @param cstmr
+     * @param tmstmp
      * @param user A variable of type User.
      */
     public COrder(int id, Customer customer, String status, Timestamp created_at, User user) {

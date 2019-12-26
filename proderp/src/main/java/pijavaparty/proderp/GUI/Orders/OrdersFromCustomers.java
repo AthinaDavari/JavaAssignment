@@ -25,6 +25,10 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         seticon();
         showCOrdersTable();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -185,8 +189,10 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backMouseClicked
 
-    
-     public void showCOrdersTable() {
+    /**
+     *
+     */
+    public void showCOrdersTable() {
         try {
             
             COrderDao obj = new COrderDao();

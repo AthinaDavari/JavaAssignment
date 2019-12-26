@@ -29,6 +29,9 @@ public class InsertCustomer extends javax.swing.JFrame {
 
     }
 
+    /**
+     *
+     */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

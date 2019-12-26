@@ -15,11 +15,19 @@ import pijavaparty.proderp.GUI.Menu;
 public class StorageMain extends javax.swing.JFrame {
     private int id;
     private String prodorraw;
+
+    /**
+     *
+     */
     public StorageMain() {
         initComponents();
         showStorageTable();
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -136,6 +144,10 @@ public class StorageMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     *
+     */
     public void showStorageTable(){
         //Mathod that is responsible for the appearance of the table with the contents of the database
         RawMaterialDao rawdao = new RawMaterialDao();

@@ -8,6 +8,10 @@ import pijavaparty.proderp.dao.SupplierDao;
  */
 public class Main {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         SupplierDao sd = new SupplierDao();
         System.out.println(sd.getRawMaterialsPerSupplier(1));

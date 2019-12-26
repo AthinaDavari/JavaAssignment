@@ -20,14 +20,24 @@ import static pijavaparty.proderp.dao.TestUtilities.runTestScript;
  */
 public class RawMaterialDeleteTest {
     
+    /**
+     *
+     */
     public RawMaterialDeleteTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
         runTestScript();
     }
   
+    /**
+     *
+     * @throws AWTException
+     */
     @Test
     public void deleteActionPerformed() throws AWTException{
         new RawMaterialDelete().setVisible(true);

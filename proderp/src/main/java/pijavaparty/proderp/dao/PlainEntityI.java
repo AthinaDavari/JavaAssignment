@@ -10,11 +10,21 @@ import java.util.List;
 /**
  *
  * @author Natalia
+ * @param <T>
  */
 public interface PlainEntityI<T> extends DaoI<T>{
     
+    /**
+     *
+     * @param id
+     */
     void delete(int id);
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     T getById(int id);
 
 }

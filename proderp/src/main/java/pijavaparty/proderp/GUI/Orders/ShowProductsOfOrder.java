@@ -29,6 +29,11 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
     }
     
     private int prodid;
+
+    /**
+     *
+     * @param prodid
+     */
     public ShowProductsOfOrder(int prodid) {
         this.prodid=prodid;
         initComponents();
@@ -123,6 +128,9 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelMouseClicked
     
+    /**
+     *
+     */
     public void showProductsTable() {
 
         COrderItemDao coid = new COrderItemDao();

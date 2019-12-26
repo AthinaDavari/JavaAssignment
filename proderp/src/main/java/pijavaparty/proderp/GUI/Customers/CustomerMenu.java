@@ -28,6 +28,10 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         seticon();
     }
+
+    /**
+     *
+     */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
@@ -199,7 +203,11 @@ public class CustomerMenu extends javax.swing.JFrame {
             }
         });
     }
-public void showCustomersTable(){
+
+    /**
+     *
+     */
+    public void showCustomersTable(){
         CustomerDao obj=new CustomerDao();
         DefaultTableModel model=(DefaultTableModel) Customers_table.getModel();
         int number=obj.getAll().size();

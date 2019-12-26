@@ -19,6 +19,13 @@ import pijavaparty.proderp.entity.RawMaterial;
  * @author aggel
  */
 public class Fillcombo {
+
+    /**
+     *
+     * @param prodraw
+     * @param prod
+     * @return
+     */
     public LinkedList<String> FillcomboArray(List<ProductRawMaterial> prodraw,Product prod ) {
         LinkedList<String> fillcomboarray=new LinkedList<String>();
         RawMaterialDao rawdao = new RawMaterialDao();

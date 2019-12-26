@@ -9,17 +9,12 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pijavaparty.proderp.Services.StorageServices;
 import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.dao.COrderItemDao;
 import pijavaparty.proderp.dao.ProductDao;
-import pijavaparty.proderp.dao.ProductRawMaterialDao;
-import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.entity.COrder;
 import pijavaparty.proderp.entity.COrderItem;
 import pijavaparty.proderp.entity.Product;
-import pijavaparty.proderp.entity.ProductRawMaterial;
-import pijavaparty.proderp.entity.RawMaterial;
 
 /**
  *
@@ -65,6 +60,7 @@ public class EditCOrders extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         stat = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
+        back = new javax.swing.JMenu();
         cancel = new javax.swing.JMenu();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -130,6 +126,15 @@ public class EditCOrders extends javax.swing.JFrame {
         stat.setEditable(false);
         stat.setBackground(new java.awt.Color(204, 204, 204));
         stat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        back.setForeground(new java.awt.Color(0, 0, 204));
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(back);
 
         cancel.setForeground(new java.awt.Color(0, 0, 204));
         cancel.setText("Cancel");
@@ -258,10 +263,16 @@ public class EditCOrders extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         
         OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
         ordersfromcustomers.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_backMouseClicked
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+       
         dispose();
         
     }//GEN-LAST:event_cancelMouseClicked
@@ -368,6 +379,7 @@ public class EditCOrders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable COrdersTable;
+    private javax.swing.JMenu back;
     private javax.swing.JMenu cancel;
     private javax.swing.JButton delete;
     private javax.swing.JButton jButton1;

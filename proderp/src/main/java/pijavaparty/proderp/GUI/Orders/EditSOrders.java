@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
@@ -14,7 +9,9 @@ import pijavaparty.proderp.dao.SOrderItemDao;
 import pijavaparty.proderp.entity.SOrder;
 
 /**
- *
+ * EditSOrders.java - A graphical class for modifying the status of an order 
+ * to suppliers and delete an order to suppliers.
+ * 
  * @author MariaKokkorou
  */
 public class EditSOrders extends javax.swing.JFrame {
@@ -24,6 +21,7 @@ public class EditSOrders extends javax.swing.JFrame {
     /**
      * Creates new form EditOrders
      */
+    
     public EditSOrders() {
         initComponents();
         showSOrdersTable();
@@ -34,7 +32,8 @@ public class EditSOrders extends javax.swing.JFrame {
      *
      */
     public void seticon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(
+                getClass().getResource("/logo.jpg")));
     }
 
     /**
@@ -55,6 +54,7 @@ public class EditSOrders extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
         cancelMenu = new javax.swing.JMenuBar();
+        back = new javax.swing.JMenu();
         cancel = new javax.swing.JMenu();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -114,6 +114,15 @@ public class EditSOrders extends javax.swing.JFrame {
             }
         });
 
+        back.setForeground(new java.awt.Color(0, 0, 255));
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        cancelMenu.add(back);
+
         cancel.setForeground(new java.awt.Color(0, 0, 255));
         cancel.setText("Cancel");
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -170,9 +179,16 @@ public class EditSOrders extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    /**
+    * Edit the status of an order from suppliers and update this order in the 
+    * database.
+    * 
+    * @param evt action event
+    */
+    
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
+            
             String orderIDString = jTextField1.getText();
             int orderIDint = Integer.parseInt(orderIDString);
 
@@ -184,6 +200,7 @@ public class EditSOrders extends javax.swing.JFrame {
             
             new EditSOrders().setVisible(true);
             dispose();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -191,6 +208,14 @@ public class EditSOrders extends javax.swing.JFrame {
 
     }//GEN-LAST:event_updateActionPerformed
 
+    /**
+      * 
+      * Select a row of the table by clicking on it, and insert the order's ID 
+      * in the Order's ID field.
+      * 
+      * @param evt action event
+      */
+    
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
 
         int selectedRow = SOrdersTable.getSelectedRow();
@@ -200,33 +225,56 @@ public class EditSOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_SOrdersTableMouseClicked
 
 
+    /**
+     * Delete permanently an order to supplier from the database.
+     * 
+     * @param evt action event
+     */
+    
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         
         String orderIDString = jTextField1.getText();
         int orderIDint = Integer.parseInt(orderIDString);
         
         try {
+            
             SOrderDao sod = new SOrderDao();
             sod.delete(orderIDint);
             JOptionPane.showMessageDialog(null,"Order Deleted");
             new EditSOrders().setVisible(true);
             dispose();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
       
         OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
         ordersfromsuppliers.setVisible(true);
         dispose();
         
+    }//GEN-LAST:event_backMouseClicked
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        
+        dispose();
+        
     }//GEN-LAST:event_cancelMouseClicked
 
+<<<<<<< HEAD
     /**
      *
      */
+=======
+    /** 
+     * Get id, supplier id and name, status and order's time of creation data 
+     * from database and show them in showSOrdersTable.
+     * 
+     */
+    
+>>>>>>> 91beeba3ee77d600a6975bf57ec9c056f0b12a5a
     public void showSOrdersTable() {
         try {
             
@@ -288,6 +336,7 @@ public class EditSOrders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable SOrdersTable;
+    private javax.swing.JMenu back;
     private javax.swing.JMenu cancel;
     private javax.swing.JMenuBar cancelMenu;
     private javax.swing.JButton delete;

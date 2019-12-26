@@ -51,27 +51,18 @@
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                              <Component id="Save" min="-2" pref="83" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="value_Fullname" pref="112" max="32767" attributes="0"/>
+                              <Component id="value_Address" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="value_Fullname" pref="112" max="32767" attributes="0"/>
-                                      <Component id="value_Address" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="value_Phonenumber" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                                  <Component id="value_Email" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="valid_Fullname" max="32767" attributes="0"/>
-                                  <Component id="valid_Email" pref="152" max="32767" attributes="0"/>
-                                  <Component id="valid_Phonenumber" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="value_Phonenumber" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="value_Email" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="valid_Fullname" max="32767" attributes="0"/>
+                          <Component id="valid_Email" pref="152" max="32767" attributes="0"/>
+                          <Component id="valid_Phonenumber" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -80,6 +71,11 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+              <Component id="Save" min="-2" pref="83" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -158,7 +154,7 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="24" style="1"/>
+          <Font name="Calibri" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Insert New Supplier"/>
       </Properties>

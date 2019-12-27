@@ -7,9 +7,9 @@ import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.GUI.RawMaterials.RawMaterialDelete;
 import pijavaparty.proderp.dao.ProductDao;
-import pijavaparty.proderp.main.ValidVariables;
-import static pijavaparty.proderp.main.ValidVariables.isStringOnlyAlphabetAndNumbersAndWhiteSpaces;
-import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
+import pijavaparty.proderp.Services.ValidVariables;
+import static pijavaparty.proderp.Services.ValidVariables.isStringOnlyAlphabetAndNumbersAndWhiteSpaces;
+import static pijavaparty.proderp.Services.ValidVariables.isValidDouble;
 
 /**
  *

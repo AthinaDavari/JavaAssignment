@@ -12,7 +12,7 @@ import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.entity.Product;
 import pijavaparty.proderp.entity.ProductRawMaterial;
 import pijavaparty.proderp.entity.RawMaterial;
-import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
+import static pijavaparty.proderp.Services.ValidVariables.isValidInteger;
 
 /**
  *

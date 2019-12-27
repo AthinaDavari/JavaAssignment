@@ -6,7 +6,7 @@ import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.entity.Product;
-import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
+import static pijavaparty.proderp.Services.ValidVariables.isValidInteger;
 
 /**
  *

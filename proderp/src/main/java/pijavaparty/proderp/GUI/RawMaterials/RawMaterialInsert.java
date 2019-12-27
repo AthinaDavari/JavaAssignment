@@ -11,9 +11,9 @@ import pijavaparty.proderp.entity.Supplier;
 import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.GUI.Storage.StorageUpdateQuantity;
 import pijavaparty.proderp.entity.RawMaterial;
-import pijavaparty.proderp.main.ValidVariables;
-import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
-import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
+import pijavaparty.proderp.Services.ValidVariables;
+import static pijavaparty.proderp.Services.ValidVariables.isValidDouble;
+import static pijavaparty.proderp.Services.ValidVariables.isValidInteger;
 /**
  *
  * @author aggel

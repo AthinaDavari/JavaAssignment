@@ -45,7 +45,9 @@ public class ThrowNotification implements Runnable {
             if (!foundActive) {
                 System.exit(0);
             }
+            if (LogIn.user != null) {
             showOptionPane();
+            }
             try {
                 Thread.sleep(10000);
             } catch (InterruptedException ex) {

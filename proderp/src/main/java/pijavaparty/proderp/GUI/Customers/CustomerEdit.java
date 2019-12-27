@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.entity.Customer;
-import pijavaparty.proderp.main.ValidVariables;
+import pijavaparty.proderp.Services.ValidVariables;
 
 /**
  * CustomerEdit.java -a graphical class for modifying the data of a customer 

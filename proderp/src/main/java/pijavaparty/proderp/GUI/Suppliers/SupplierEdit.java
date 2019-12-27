@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.Supplier;
-import pijavaparty.proderp.main.ValidVariables;
+import pijavaparty.proderp.Services.ValidVariables;
 
 /**
  *

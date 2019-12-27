@@ -207,12 +207,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backMouseClicked
 
-<<<<<<< HEAD
-    /**
-     *
-     */
-    public void showCOrdersTable() {
-=======
+
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
        
         
@@ -224,7 +219,6 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
 
     
      public void showCOrdersTable() {
->>>>>>> 91beeba3ee77d600a6975bf57ec9c056f0b12a5a
         try {
             
             COrderDao obj = new COrderDao();

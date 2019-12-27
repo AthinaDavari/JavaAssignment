@@ -263,18 +263,12 @@ public class EditSOrders extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelMouseClicked
 
-<<<<<<< HEAD
-    /**
-     *
-     */
-=======
+
     /** 
      * Get id, supplier id and name, status and order's time of creation data 
      * from database and show them in showSOrdersTable.
      * 
      */
-    
->>>>>>> 91beeba3ee77d600a6975bf57ec9c056f0b12a5a
     public void showSOrdersTable() {
         try {
             

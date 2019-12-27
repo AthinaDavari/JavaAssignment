@@ -6,9 +6,9 @@ import javax.swing.table.DefaultTableModel;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.RawMaterial;
-import pijavaparty.proderp.main.ValidVariables;
-import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
-import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
+import pijavaparty.proderp.Services.ValidVariables;
+import static pijavaparty.proderp.Services.ValidVariables.isValidDouble;
+import static pijavaparty.proderp.Services.ValidVariables.isValidInteger;
 
 /**
  *

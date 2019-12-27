@@ -4,8 +4,8 @@ package pijavaparty.proderp.GUI.Products;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.GUI.LogIn;
-import static pijavaparty.proderp.main.ValidVariables.isStringOnlyAlphabetAndNumbersAndWhiteSpaces;
-import static pijavaparty.proderp.main.ValidVariables.isValidDouble;
+import static pijavaparty.proderp.Services.ValidVariables.isStringOnlyAlphabetAndNumbersAndWhiteSpaces;
+import static pijavaparty.proderp.Services.ValidVariables.isValidDouble;
 
 /**
  *

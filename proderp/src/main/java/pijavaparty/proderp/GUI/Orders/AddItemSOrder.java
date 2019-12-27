@@ -21,7 +21,7 @@ import pijavaparty.proderp.entity.SOrderItem;
 import static pijavaparty.proderp.GUI.Orders.AddNewSOrder.sorder;
 import static pijavaparty.proderp.GUI.Orders.AddNewSOrder.supplierId;
 import pijavaparty.proderp.dao.SupplierDao;
-import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
+import static pijavaparty.proderp.Services.ValidVariables.isValidInteger;
 
 /**
  *
@@ -254,7 +254,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         SupplierDao sd = new SupplierDao();
         rawMaterials = sd.getRawMaterialsPerSupplier(supplierId);
         
-        int number = sd.getAll().size();
+        int number = rawMaterials.size();
         
         try {
             

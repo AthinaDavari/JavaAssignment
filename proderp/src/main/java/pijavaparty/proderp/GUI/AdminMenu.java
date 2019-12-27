@@ -193,7 +193,8 @@ public class AdminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
-        LogIn obj = new LogIn();;
+        LogIn.user = null;
+        LogIn obj = new LogIn();
         obj.setVisible(true);
         dispose();
         // TODO add your handling code here:

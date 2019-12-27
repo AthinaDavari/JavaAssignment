@@ -216,11 +216,6 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backMouseClicked
 
-<<<<<<< HEAD
-    /**
-     *
-     */
-=======
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
        
         OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
@@ -229,9 +224,7 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_refreshActionPerformed
 
-    
-    
->>>>>>> 91beeba3ee77d600a6975bf57ec9c056f0b12a5a
+
     public void showSOrdersTable() {
         try {
             

@@ -15,7 +15,7 @@ import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.entity.COrderItem;
 import pijavaparty.proderp.entity.Product;
-import static pijavaparty.proderp.main.ValidVariables.isValidInteger;
+import static pijavaparty.proderp.Services.ValidVariables.isValidInteger;
 
 /**
  *
@@ -226,7 +226,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         ProductDao pd = new ProductDao();
         List<Product> products = new LinkedList();
         products = pd.getAll();
-        int number = pd.getAll().size();
+        int number = products.size();
         
         try {
             

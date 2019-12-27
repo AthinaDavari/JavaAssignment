@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import pijavaparty.proderp.GUI.LogIn;
 import pijavaparty.proderp.dao.CustomerDao;
 import pijavaparty.proderp.entity.Customer;
-import pijavaparty.proderp.main.ValidVariables;
+import pijavaparty.proderp.Services.ValidVariables;
 
 /**
  *

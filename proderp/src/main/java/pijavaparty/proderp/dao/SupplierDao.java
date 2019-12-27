@@ -29,7 +29,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
             + "WHERE id = ? AND is_deleted = false";
     private static final String DELETEPERM = "DELETE FROM Suppliers WHERE id = ?";
     private static final String DELETE = "UPDATE Suppliers SET is_deleted = true WHERE id = ?";
-    private static final String GETRAWMATERIALPERSUPPLIER = "SELECT * FROM Raw_Materials WHERE supplier_id = ?";
+    private static final String GETRAWMATERIALPERSUPPLIER = "SELECT * FROM Raw_Materials WHERE supplier_id = ? and is_deleted = false";
     Connection conn;
 
     /**

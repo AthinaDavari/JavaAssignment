@@ -13,7 +13,7 @@ import pijavaparty.proderp.entity.Customer;
 import pijavaparty.proderp.Services.ValidVariables;
 
 /**
- * CustomerEdit.java -a graphical class for modifying the data of a customer 
+ * CustomerEdit.java -a gui class for modifying the data of a customer.
  * @author Stella
  */
 public class CustomerEdit extends javax.swing.JFrame {

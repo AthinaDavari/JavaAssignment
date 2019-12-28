@@ -118,7 +118,7 @@ public class LogInTest {
             Thread.sleep(500);
         } catch (InterruptedException e) {
         }
-        Window w[] = Window.getWindows();
+        Window w[] = Window.get;
 
         for (Window window : w) {
 

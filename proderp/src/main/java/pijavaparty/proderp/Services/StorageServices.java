@@ -5,12 +5,13 @@
  */
 package pijavaparty.proderp.Services;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
+import pijavaparty.proderp.dao.COrderItemDao;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
+import pijavaparty.proderp.entity.COrderItem;
 import pijavaparty.proderp.entity.Product;
 import pijavaparty.proderp.entity.ProductRawMaterial;
 
@@ -64,5 +65,53 @@ public class StorageServices {
     public Function<Integer, Integer> updateQuantityOfRawMaterialBy(int q) {
         return x -> q * x;
     }
-
+    
+    
+    
+    /**
+     * @author MariaKokkorou
+     * @param corderid
+     */
+    public void increaseProduct(int corderid){
+        
+        COrderItemDao coid = new COrderItemDao();
+        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        ProductDao pd = new ProductDao();
+        for (COrderItem cOrderItem : corderitems) {
+            
+            Product productFromOrder = cOrderItem.getProduct();
+            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() + cOrderItem.getQuantity());
+       
+        }
+        
+    }
+    
+    public void updateProduct(int corderid){
+        
+        COrderItemDao coid = new COrderItemDao();
+        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid); 
+        for (COrderItem cOrderItem : corderitems) {
+            
+            UpdateIngredients(corderid, cOrderItem.getQuantity());
+            
+        }
+    }
+    
+    /**
+     *
+     * @param corderid
+     */
+    public void decreaseProduct(int corderid){
+        
+        COrderItemDao coid = new COrderItemDao();
+        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        ProductDao pd = new ProductDao();
+        for (COrderItem cOrderItem : corderitems) {
+            
+            Product productFromOrder = cOrderItem.getProduct();
+            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
+       
+        }
+        
+    }
 }

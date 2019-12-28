@@ -9,12 +9,9 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.Services.StorageServices;
 import pijavaparty.proderp.dao.COrderDao;
-import pijavaparty.proderp.dao.COrderItemDao;
-import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.entity.COrder;
-import pijavaparty.proderp.entity.COrderItem;
-import pijavaparty.proderp.entity.Product;
 
 /**
  *
@@ -207,17 +204,18 @@ public class EditCOrders extends javax.swing.JFrame {
 
             String status = stat.getText();
             
+            StorageServices storageservices = new StorageServices();
             
             if (status.equals("ready")){
                 
-//               updateIngridients(orderIdInt, );
-               increaseProduct(orderIdInt);
+               storageservices.updateProduct(orderIdInt);
+               storageservices.increaseProduct(orderIdInt);
                 
             }
             
             if (status.equals("delivered")){
                 
-               decreaseProduct(orderIdInt);
+               storageservices.decreaseProduct(orderIdInt);
                 
             }
             
@@ -305,41 +303,6 @@ public class EditCOrders extends javax.swing.JFrame {
         }
     }
 
-    /**
-     *
-     * @param corderid
-     */
-    public void increaseProduct(int corderid){
-        
-        COrderItemDao coid = new COrderItemDao();
-        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
-        ProductDao pd = new ProductDao();
-        for (COrderItem cOrderItem : corderitems) {
-            
-            Product productFromOrder = cOrderItem.getProduct();
-            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() + cOrderItem.getQuantity());
-       
-        }
-        
-    }
-    
-    /**
-     *
-     * @param corderid
-     */
-    public void decreaseProduct(int corderid){
-        
-        COrderItemDao coid = new COrderItemDao();
-        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
-        ProductDao pd = new ProductDao();
-        for (COrderItem cOrderItem : corderitems) {
-            
-            Product productFromOrder = cOrderItem.getProduct();
-            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
-       
-        }
-        
-    }
     
     
     /**

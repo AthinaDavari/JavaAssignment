@@ -7,10 +7,10 @@ package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import static pijavaparty.proderp.GUI.Orders.AddNewCustOrder.corder;
+import pijavaparty.proderp.Services.COrderServices;
 import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.entity.COrderItem;
@@ -24,17 +24,16 @@ import static pijavaparty.proderp.Services.ValidVariables.isValidInteger;
 public class AddProductToCOrder extends javax.swing.JFrame {
 
     private ArrayList<COrderItem> COrderItemsList = new ArrayList<COrderItem>();
-    
+
     /**
      * Creates new form AddItemSOrder
      */
-    
     public AddProductToCOrder() {
         initComponents();
         comboBox();
         seticon();
     }
-    
+
     public AddProductToCOrder(ArrayList<COrderItem> COrderItemsList) {
         this.COrderItemsList = COrderItemsList;
         initComponents();
@@ -166,22 +165,22 @@ public class AddProductToCOrder extends javax.swing.JFrame {
 
     private void newProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductActionPerformed
         try {
-            if (isValidInteger(quantity.getText())){
-            String productString = product.getSelectedItem().toString();
-            int quantityInt = Integer.parseInt(quantity.getText().trim());
-            
-            String[] productId = productString.split("-");
-            int productIdInt = Integer.parseInt(productId[0]);
-            ProductDao pd = new ProductDao();
-            Product product = pd.getById(productIdInt);
+            if (isValidInteger(quantity.getText())) {
+                String productString = product.getSelectedItem().toString();
+                int quantityInt = Integer.parseInt(quantity.getText().trim());
 
-            COrderItem corderitem = new COrderItem(corder, product, quantityInt);
-            COrderItemsList.add(corderitem);
+                String[] productId = productString.split("-");
+                int productIdInt = Integer.parseInt(productId[0]);
+                ProductDao pd = new ProductDao();
+                Product product = pd.getById(productIdInt);
 
-            JOptionPane.showMessageDialog(null, "Added to Order List.");
-            new AddProductToCOrder(COrderItemsList).setVisible(true);
+                COrderItem corderitem = new COrderItem(corder, product, quantityInt);
+                COrderItemsList.add(corderitem);
 
-            dispose();
+                JOptionPane.showMessageDialog(null, "Added to Order List.");
+                new AddProductToCOrder(COrderItemsList).setVisible(true);
+
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
@@ -193,62 +192,70 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_newProductActionPerformed
 
     private void addorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addorderActionPerformed
-         if (isValidInteger(quantity.getText())){
-        JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
+        if (isValidInteger(quantity.getText())) {
+            JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
 
-        COrderDao cod = new COrderDao();
-        
-        String productString = product.getSelectedItem().toString();
-        int quantityInt = Integer.parseInt(quantity.getText().trim());
-        
-        String[] productId = productString.split("-");
-        int productIdInt = Integer.parseInt(productId[0]);
-        ProductDao pd = new ProductDao();
-        Product product = pd.getById(productIdInt);
+            COrderDao cod = new COrderDao();
 
-        COrderItem corderitem = new COrderItem(corder, product, quantityInt);
-        COrderItemsList.add(corderitem);
+            String productString = product.getSelectedItem().toString();
+            int quantityInt = Integer.parseInt(quantity.getText().trim());
 
-        cod.insertCOrderAndCOrderItems(corder, COrderItemsList);
+            String[] productId = productString.split("-");
+            int productIdInt = Integer.parseInt(productId[0]);
+            ProductDao pd = new ProductDao();
+            Product product = pd.getById(productIdInt);
 
-        JOptionPane.showMessageDialog(null, "Order Saved.");
-        dispose();
-         } else {
-             JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
-         }
+            COrderItem corderitem = new COrderItem(corder, product, quantityInt);
+            COrderItemsList.add(corderitem);
+
+            cod.insertCOrderAndCOrderItems(corder, COrderItemsList);
+
+            JOptionPane.showMessageDialog(null, "Order Saved.");
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+        }
 
     }//GEN-LAST:event_addorderActionPerformed
 
     private void quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityKeyReleased
-        if(!isValidInteger(quantity.getText())){
+        if (!isValidInteger(quantity.getText())) {
             valid_Quantity.setText("Quantity is invalid!");
-        }else {
+        } else {
             valid_Quantity.setText(null);
         }
     }//GEN-LAST:event_quantityKeyReleased
 
-    
-     private void comboBox() {
-         
-        ProductDao pd = new ProductDao();
-        List<Product> products = new LinkedList();
-        products = pd.getAll();
+    private void comboBox() {
+
+        List<String> products = COrderServices.RawMaterialsNotIncludedInSuppliersOrder(COrderItemsList);
         int number = products.size();
-        
+
         try {
-            
+
             for (int i = 0; i < number; i++) {
-                
-                product.addItem(products.get(i).getId() + "-" + products.get(i).getName());
-                
+
+                product.addItem(products.get(i));
+
+            }
+            
+            //Disable newProduct button if combo box has only one item
+            if (number == 1){
+                disable_newProduct_button();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
     }
-     
-     
+
+    /**
+      * Disable newProduct button
+      */
+    private void disable_newProduct_button() {
+        newProduct.setEnabled(false);
+    }
+
     /**
      * @param args the command line arguments
      */

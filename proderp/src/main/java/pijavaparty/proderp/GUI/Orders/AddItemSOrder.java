@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
-import java.awt.Window;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.RawMaterialDao;
@@ -271,11 +262,22 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 rawMaterialsCombo.addItem(rawMaterials.get(i));
                 
             }
+            //Disable newitem button if combo box has only one item
+            if (number == 1){
+                disable_newitem_button();
+            }
             
          } catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
     }
+     
+     /**
+      * Disable newitem button
+      */
+     private void disable_newitem_button(){
+         newitem.setEnabled(false);
+     }
      
     /**
      * @param args the command line arguments

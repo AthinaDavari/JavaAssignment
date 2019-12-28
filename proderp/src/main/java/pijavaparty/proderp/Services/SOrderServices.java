@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.dao.SupplierDao;
 import pijavaparty.proderp.entity.RawMaterial;
+import pijavaparty.proderp.entity.SOrderItem;
 import pijavaparty.proderp.entity.Supplier;
 
 /**
@@ -21,7 +22,7 @@ public class SOrderServices {
      * @param sup the consignee(supplier) of order
      * @return list of raw materials (string type objects with raw materials' names and ids) not included in the order
      */
-    public ArrayList<String> RawMaterialsNotIncludedInSuppliersOrder (List<RawMaterial> rawmat, Supplier sup) {
+    public static ArrayList<String> RawMaterialsNotIncludedInSuppliersOrder (List<SOrderItem> rawmat, Supplier sup) {
         ArrayList<String> rawmaterialist = new ArrayList<String>();
         SupplierDao supdao = new SupplierDao();
         List<RawMaterial> raw_material_per_supplier;
@@ -34,14 +35,15 @@ public class SOrderServices {
             int i;
             for (i = 0; i < num; i++) {
                 for (j = 0; j < rawmatsize; j++) {
-                    if (raw_material_per_supplier.get(i).getId() == rawmat.get(j).getId()) {
+                    if (raw_material_per_supplier.get(i).getId() == rawmat.get(j).getRawmaterial().getId()) {
                         break;
                     }
-                    if (j == rawmatsize) {
-                        rawmaterialist.add(raw_material_per_supplier.get(i).getId()+"-"+raw_material_per_supplier.get(i).getName());
                     }
+                if (j == rawmatsize) {
+                        rawmaterialist.add(raw_material_per_supplier.get(i).getId()+"-"+raw_material_per_supplier.get(i).getName());
                 }
             }
+            System.out.println(rawmaterialist.size());
             return rawmaterialist;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

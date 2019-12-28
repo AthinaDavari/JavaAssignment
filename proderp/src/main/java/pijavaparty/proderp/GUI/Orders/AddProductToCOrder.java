@@ -34,6 +34,13 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         comboBox();
         seticon();
     }
+    
+    public AddProductToCOrder(ArrayList<COrderItem> COrderItemsList) {
+        this.COrderItemsList = COrderItemsList;
+        initComponents();
+        comboBox();
+        seticon();
+    }
 
     /**
      *
@@ -172,7 +179,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
             COrderItemsList.add(corderitem);
 
             JOptionPane.showMessageDialog(null, "Added to Order List.");
-            new AddProductToCOrder().setVisible(true);
+            new AddProductToCOrder(COrderItemsList).setVisible(true);
 
             dispose();
             } else {

@@ -20,6 +20,7 @@ import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.SOrderItem;
 import static pijavaparty.proderp.GUI.Orders.AddNewSOrder.sorder;
 import static pijavaparty.proderp.GUI.Orders.AddNewSOrder.supplierId;
+import pijavaparty.proderp.Services.SOrderServices;
 import pijavaparty.proderp.dao.SupplierDao;
 import static pijavaparty.proderp.Services.ValidVariables.isValidInteger;
 
@@ -35,6 +36,13 @@ public class AddItemSOrder extends javax.swing.JFrame {
      * Creates new form AddItemSOrder
      */
     public AddItemSOrder() {
+        initComponents();
+        comboBox();
+        seticon();
+    }
+    
+    public AddItemSOrder(ArrayList<SOrderItem> SOrderItemsList) {
+        this.SOrderItemsList = SOrderItemsList;
         initComponents();
         comboBox();
         seticon();
@@ -189,7 +197,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 SOrderItemsList.add(sorderitem);
 
                 JOptionPane.showMessageDialog(null, "Added to Order List.");
-                new AddItemSOrder().setVisible(true);
+                new AddItemSOrder(SOrderItemsList).setVisible(true);
 
                 dispose();
             } else {
@@ -249,10 +257,10 @@ public class AddItemSOrder extends javax.swing.JFrame {
      private void comboBox(){
          
         RawMaterialDao rmd = new RawMaterialDao();
-        List<RawMaterial> rawMaterials = new LinkedList();
+        List<String> rawMaterials;
         
         SupplierDao sd = new SupplierDao();
-        rawMaterials = sd.getRawMaterialsPerSupplier(supplierId);
+        rawMaterials = SOrderServices.RawMaterialsNotIncludedInSuppliersOrder(SOrderItemsList, sd.getById(supplierId));
         
         int number = rawMaterials.size();
         
@@ -260,7 +268,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
             
             for (int i = 0; i < number; i++) {
                 
-                rawMaterialsCombo.addItem(rawMaterials.get(i).getId() + "-" + rawMaterials.get(i).getName());
+                rawMaterialsCombo.addItem(rawMaterials.get(i));
                 
             }
             

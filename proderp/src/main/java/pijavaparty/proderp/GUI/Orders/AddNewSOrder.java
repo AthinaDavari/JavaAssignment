@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pijavaparty.proderp.GUI.Orders;
 
-/**
- *
- * @author MariaKokkorou
- */
 import java.awt.Toolkit;
 import pijavaparty.proderp.entity.SOrder;
 import java.util.LinkedList;
@@ -19,7 +11,7 @@ import pijavaparty.proderp.entity.Supplier;
 
 /**
  *
- * @author athina
+ * @author MariaKokkorou
  */
 public class AddNewSOrder extends javax.swing.JFrame {
 
@@ -158,7 +150,7 @@ public class AddNewSOrder extends javax.swing.JFrame {
         SupplierDao sd = new SupplierDao();
         List<Supplier> suppliers = new LinkedList();
         suppliers = sd.getAll();
-        int number = sd.getAll().size();
+        int number = suppliers.size();
         try {
             
             for (int i = 0; i < number; i++) {

@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.Services.StorageServices;
 import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.dao.COrderItemDao;
 import pijavaparty.proderp.dao.ProductDao;
@@ -210,7 +211,7 @@ public class EditCOrders extends javax.swing.JFrame {
             
             if (status.equals("ready")){
                 
-//               updateIngridients(orderIdInt, );
+               updateProduct(orderIdInt);
                increaseProduct(orderIdInt);
                 
             }
@@ -321,6 +322,18 @@ public class EditCOrders extends javax.swing.JFrame {
        
         }
         
+    }
+    
+    public void updateProduct(int corderid){
+        
+        COrderItemDao coid = new COrderItemDao();
+        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        StorageServices storageservices = new StorageServices(); 
+        for (COrderItem cOrderItem : corderitems) {
+            
+            storageservices.UpdateIngredients(corderid, cOrderItem.getQuantity());
+            
+        }
     }
     
     /**

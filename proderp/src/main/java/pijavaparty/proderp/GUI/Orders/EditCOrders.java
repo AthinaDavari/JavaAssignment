@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
@@ -14,7 +9,9 @@ import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.entity.COrder;
 
 /**
- *
+ * EditCOrders.java - A graphical user interface (gui) class for modifying the status of an order 
+ * from customers and delete an order to customers.
+ * 
  * @author MariaKokkorou
  */
 public class EditCOrders extends javax.swing.JFrame {
@@ -197,26 +194,40 @@ public class EditCOrders extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * Edit the status of an order from customers, update this order in the 
+    * database and update the quantities of the available 
+    * raw materials and products in the database.
+    * 
+    * @param evt action event
+    */
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
             String orderIdString = orderid.getText();
             int orderIdInt = Integer.parseInt(orderIdString);
-
+            // Get the value from Order's ID field.
             String status = stat.getText();
+            // Get the value from status field.
             
             StorageServices storageservices = new StorageServices();
             
-            if (status.equals("ready")){
+            if (status.equals("ready")){ // check if the order's status is "ready".
                 
                storageservices.updateProduct(orderIdInt);
+               // If the order is "ready", update in the database the quantities
+               // of the raw materials that were used to produse this product.
                storageservices.increaseProduct(orderIdInt);
-                
+               // Also, if the order is "ready", increase in the database the 
+               // number of the products that are available for the customers.
+               
             }
-            
-            if (status.equals("delivered")){
-                
+             
+            if (status.equals("delivered")){ // check if the order's status is "delivered".
+               
                storageservices.decreaseProduct(orderIdInt);
+               // If the order is "delivered" to the customer, decrease in the 
+               // database the number of products that are available fro customers.
                 
             }
             
@@ -234,6 +245,13 @@ public class EditCOrders extends javax.swing.JFrame {
 
     }//GEN-LAST:event_updateActionPerformed
 
+     /**
+      * Select a row of the table by clicking on it, and insert the order's ID 
+      * in the Order's ID field and the order's status in the status field.
+      * 
+      * @param evt action event
+      */
+    
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
 
         int selectedRow = COrdersTable.getSelectedRow();
@@ -243,6 +261,11 @@ public class EditCOrders extends javax.swing.JFrame {
         
     }//GEN-LAST:event_COrdersTableMouseClicked
 
+     /**
+     * Delete permanently an order from customer from the database.
+     * 
+     * @param evt action event
+     */
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         
@@ -276,26 +299,33 @@ public class EditCOrders extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelMouseClicked
 
-    /**
-     *
+    /** 
+     * Get order's id, customer's id and name, status and order's time of creation 
+     * data from database and show them in showCOrdersTable table.
+     * 
      */
+    
     public void showCOrdersTable() {
         try {
             
             COrderDao cod = new COrderDao();
             List<COrder> corders = cod.getAllExceptFromDelivered();
-            int number = corders.size();
+            // corders - an arraylist filled only with all the orders from customers
+            // that are not delivered yet. Orders with status different than "delivered".
+            int number = corders.size(); // the number of orders from customers that are not delivered yet.
             DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
 
             Object[] row = new Object[5];
 
             for (int i = 0; i < number; i++) {
-                row[0] = corders.get(i).getId();
+                row[0] = corders.get(i).getId(); // Fill the first column of the table with the id of the order.
                 row[1] = corders.get(i).getCustomer().getId() + "-" + corders.get(i).getCustomer().getFullName();
-                row[2] = corders.get(i).getStatus();
-                row[3] = corders.get(i).getCreated_at();
-                row[4] = corders.get(i).getUser().getFullName();
-
+                // Fill the second column of the table with the id - name of the customer.
+                row[2] = corders.get(i).getStatus(); // Fill the third column of the table with the status of the order.
+                row[3] = corders.get(i).getCreated_at(); // Fill the fourth column 
+                // of the table with the time of creation of the order.
+                row[4] = corders.get(i).getUser().getFullName(); 
+                // Fill the fifth column of the table with the username of the customer.
                 model.addRow(row);
             }
 

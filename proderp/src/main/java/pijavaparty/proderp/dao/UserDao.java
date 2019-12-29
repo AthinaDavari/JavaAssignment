@@ -4,11 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.management.relation.Role;
 import pijavaparty.proderp.entity.User;
 
 /**
@@ -32,9 +31,9 @@ public class UserDao extends Dao {
     /**
      * Returns the fields of an already created user or null.
      *
-     * @param username A variable of type String.
-     * @param password A variable of type String.
-     * @return A User data type object.
+     * @param username Username to be checked.
+     * @param password Password to be checked.
+     * @return Found User.
      */
     public User getUser(String username, String password) {
         PreparedStatement pst = null;
@@ -57,10 +56,10 @@ public class UserDao extends Dao {
     }
 
     /**
-     * Return the fields of an already created user or null.
+     * Return the fields of an already created user or null - without password.
      *
-     * @param username A variable of type String.
-     * @return A user data type object.
+     * @param username Username to be checked.
+     * @return Found User.
      */
     public User getUserByUsername(String username) {
         PreparedStatement pst = null;
@@ -82,12 +81,12 @@ public class UserDao extends Dao {
     }
 
     /**
-     * Add new users in a List and then returns it.
+     * Get users from database - without password.
      *
      * @return A User data type List.
      */
     public List<User> getAll() {
-        List<User> users = new LinkedList();
+        List<User> users = new ArrayList();
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -105,11 +104,11 @@ public class UserDao extends Dao {
     }
 
     /**
-     * Check if a specific user exists in the List.If so, the method is
- terminated. Otherwise, the user is inserted in the List.
+     * Check if a specific user exists in the List. If so, the method is
+     * terminated. Otherwise, the user is inserted in the List.
      *
      * @param user A variable of type User.
-     * @return 
+     * @return
      */
     public boolean insert(User user) {
         PreparedStatement pst = null;
@@ -138,18 +137,16 @@ public class UserDao extends Dao {
     /**
      * Delete a user with a specific username.
      *
-     * @param user
-     * @return 
+     * @param user User to be deleted.
+     * @return true if deleted - false otherwise
      */
     public boolean delete(User user) {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(DELETE);
-            //if ((permissionToDeleteAnAdministratorUser() == true && user.getRole() == 1) || user.getRole() ==2 ){
             pst.setString(1, user.getUsername());
             pst.execute();
             return true;
-            //}
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -159,9 +156,9 @@ public class UserDao extends Dao {
     }
 
     /**
-     * Return if an administrator user exists or not.
+     * Return if at least one administrator user exists or not.
      *
-     * @return A variable of type boolean.
+     * @return true if exists - false otherwise
      */
     public boolean permissionToDeleteAnAdministratorUser() {
         Statement st = null;

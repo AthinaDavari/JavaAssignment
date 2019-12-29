@@ -5,7 +5,7 @@
  */
 package pijavaparty.proderp.Services;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -50,7 +50,7 @@ public class ChecksTest {
     public void testCheckRawQuantities() {
         System.out.println("checkRawQuantities");
         Checks instance = new Checks();
-        List<RawMaterial> expResult = new LinkedList();
+        List<RawMaterial> expResult = new ArrayList();
         Supplier s = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
 
         expResult.add(new RawMaterial(3, "wood", 17, 3.7, s));
@@ -66,7 +66,7 @@ public class ChecksTest {
     public void testCheckProductQuantities() {
         System.out.println("checkProductQuantities");
         Checks instance = new Checks();
-        List<Product> expResult = new LinkedList();
+        List<Product> expResult = new ArrayList();
         expResult.add(new Product(1, "Orient City Classic", 10, 479.65));
         List<Product> result = instance.checkProductQuantities();
         assertEquals(expResult, result);

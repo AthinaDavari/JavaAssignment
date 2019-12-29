@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,14 +30,13 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
     private static UserDao ud = new UserDao();
 
     /**
-     * Add new orders in a List and then return it.
+     * Retrieve c_orders from database.
      *
      * @return A COrder data type List.
-     * @see COrder
      */
     @Override
     public List<COrder> getAll() {
-        List<COrder> corders = new LinkedList();
+        List<COrder> corders = new ArrayList();
         CustomerDao c = new CustomerDao();
         Statement st = null;
         ResultSet rs = null;
@@ -56,12 +55,12 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
     }
 
     /**
-     * Add to a List customer's orders that are either preparing or pending.
+     * Get a customer's orders List that are either preparing or pending.
      *
      * @return A COrder data type List.
      */
     public List<COrder> getAllExceptFromDelivered() {
-        List<COrder> corders = new LinkedList();
+        List<COrder> corders = new ArrayList();
         CustomerDao c = new CustomerDao();
         Statement st = null;
         ResultSet rs = null;
@@ -80,9 +79,9 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
     }
 
     /**
-     * Return a customer's order with a specific id.
+     * Get a customer's order with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id COrder's id
      * @return A COrder data type object.
      */
     @Override
@@ -109,8 +108,8 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
     /**
      * Modify the status of customer's order.
      *
-     * @param orderId A variable of type int.
-     * @param status A variable of type String.
+     * @param orderId COrder's id. 
+     * @param status New status.
      */
     public void updateStatus(int orderId, String status) {
         PreparedStatement pst = null;

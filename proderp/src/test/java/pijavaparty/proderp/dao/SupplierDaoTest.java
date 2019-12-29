@@ -5,7 +5,7 @@
  */
 package pijavaparty.proderp.dao;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import org.junit.BeforeClass;
@@ -43,7 +43,7 @@ public class SupplierDaoTest {
     public void atestGetAll() {
         System.out.println("getAll");
         SupplierDao instance = new SupplierDao();
-        List<Supplier> expResult = new LinkedList();
+        List<Supplier> expResult = new ArrayList();
         expResult.add(new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr"));
         expResult.add(new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr"));
         expResult.add(new Supplier(3, "Titanium Fabrication Corporation", "Palaiologou 156", 2103789023l, "info@tfc.gr"));
@@ -72,7 +72,7 @@ public class SupplierDaoTest {
         System.out.println("getRawMaterialsPerSupplier");
         int id = 1;
         SupplierDao instance = new SupplierDao();
-        List<RawMaterial> expResult = new LinkedList();
+        List<RawMaterial> expResult = new ArrayList();
         Supplier s = new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr");
         expResult.add(new RawMaterial(1, "plastic", 47, 0.25, s));
         expResult.add(new RawMaterial(5, "Titanium", 32, 15.2, s));

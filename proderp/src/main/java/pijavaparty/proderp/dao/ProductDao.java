@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +23,6 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     private static final String GETALL = "SELECT * FROM Products WHERE is_deleted = false";
     private static final String GETBYID = "SELECT * FROM Products WHERE id = ? AND is_deleted = false";
     private static final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";
-    private static final String UPDATE = "UPDATE Products SET name = ?, price = ? WHERE id = ? AND is_deleted = false";
-    private static final String DELETEPERM = "DELETE FROM Products WHERE id = ?";
     private static final String DELETE = "UPDATE Products SET is_deleted = true WHERE id = ?";
     private static final String UPDATEN = "UPDATE Products SET name = ? WHERE id = ? AND is_deleted = false";
     private static final String UPDATEQ = "UPDATE Products SET quantity = ? WHERE id = ? AND is_deleted = false";
@@ -32,13 +30,13 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     private static final String SELECTLASTID = "SELECT max(id) FROM Products";
 
     /**
-     * Add new products in a List.
+     * Retrieve products from database.
      *
      * @return A Product data type List.
      */
     @Override
     public List<Product> getAll() {
-        List<Product> products = new LinkedList();
+        List<Product> products = new ArrayList();
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -58,7 +56,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     /**
      * Return a product with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id Product's id.
      * @return A Product data type object.
      */
     @Override
@@ -83,10 +81,10 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     }
 
     /**
-     * Insert a new product to a List.
+     * Insert a new product and its ingredients to database.
      *
-     * @param p A Product data type object.
-     * @param rml A ProductRawMaterial data type List.
+     * @param p Product to be added.
+     * @param rml A List of RawMaterials as product's ingredients.
      */
     public void insertProductAndProductsRecipe(Product p, List<ProductRawMaterial> rml) {
         PreparedStatement pst = null;
@@ -114,7 +112,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     /**
      * Insert a new product.
      *
-     * @param p A Product data type object.
+     * @param p Product to be inserted.
      */
     @Override
     public void insert(Product p) {
@@ -134,10 +132,10 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     }
 
     /**
-     * Modify the id and name of a product.
+     * Modify the name of a product.
      *
-     * @param id A variable of type int.
-     * @param name A variable of type String.
+     * @param id Product's id.
+     * @param name New name.
      */
     public void updateName(int id, String name) {
         ProductDao pDao = new ProductDao();
@@ -161,7 +159,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     /**
      * Retrieve the last product's id.
      *
-     * @return An int data type.
+     * @return Id of last inserted product.
      */
     public int bringLastId() {
         Statement st = null;
@@ -181,8 +179,8 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     /**
      * Modify the quantity of a product.
      *
-     * @param id A variable of type int.
-     * @param quantity A variable of type int.
+     * @param id Product's id.
+     * @param quantity New quantity.
      */
     public void updateQuantity(int id, int quantity) {
         ProductDao pDao = new ProductDao();
@@ -207,8 +205,8 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     /**
      * Change the price of a product.
      *
-     * @param id A variable of type int.
-     * @param price A variable of type Double.
+     * @param id Product's id.
+     * @param price New price.
      */
     public void updatePrice(int id, double price) {
         ProductDao pDao = new ProductDao();
@@ -230,39 +228,10 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
 
     }
 
-//    public void update(Product p) {
-//        Product fromTable = getById(p.getId());
-//        if (fromTable != null && !fromTable.equals(p)) {
-//            PreparedStatement pst = null;
-//            try {
-//                pst = getConnection().prepareStatement(UPDATE);
-//                pst.setString(1, p.getName());
-//                pst.setDouble(2, p.getPrice());
-//                pst.setInt(3, p.getId());
-//                pst.execute();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-//            } finally {
-//                closeStatementAndResultSet(pst);
-//            }
-//        }
-//    }
-//    public void deletePermanently(int id) {
-//        PreparedStatement pst = null;
-//        try {
-//            pst = getConnection().prepareStatement(DELETEPERM);
-//            pst.setInt(1, id);
-//            pst.execute();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            closeStatementAndResultSet(pst);
-//        }
-//    }
     /**
      * Delete a product with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id Product's id.
      */
     @Override
     public void delete(int id) {

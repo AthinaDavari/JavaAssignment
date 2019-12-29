@@ -5,7 +5,7 @@
  */
 package pijavaparty.proderp.Services;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.ProductRawMaterialDao;
@@ -26,8 +26,8 @@ public class Fillcombo {
      * @param prod
      * @return
      */
-    public LinkedList<String> FillcomboArray(List<ProductRawMaterial> prodraw,Product prod ) {
-        LinkedList<String> fillcomboarray=new LinkedList<String>();
+    public ArrayList<String> FillcomboArray(List<ProductRawMaterial> prodraw,Product prod ) {
+        ArrayList<String> fillcomboarray=new ArrayList<String>();
         RawMaterialDao rawdao = new RawMaterialDao();
         List<RawMaterial> raw_material;
         raw_material = rawdao.getAll();

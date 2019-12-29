@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,10 +24,9 @@ public class CustomerDao extends Dao implements PlainEntityI<Customer> {
     private static final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ? AND is_deleted = false";
     private static final String DELETE = "UPDATE Customers SET is_deleted = true WHERE id = ?";
-    private static final String DELETEPERM = "DELETE FROM Customers WHERE id = ?";
 
     /**
-     * Add new customers in a List and then return it.
+     * Retrieve customers from database.
      *
      * @return A Customer data type List.
      */
@@ -35,7 +34,7 @@ public class CustomerDao extends Dao implements PlainEntityI<Customer> {
     public List<Customer> getAll() {
         Statement st = null;
         ResultSet rs = null;
-        List<Customer> customers = new LinkedList();
+        List<Customer> customers = new ArrayList();
         try {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
@@ -53,7 +52,7 @@ public class CustomerDao extends Dao implements PlainEntityI<Customer> {
     /**
      * Return a customer with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id Customer's id.
      * @return A Customer data type object.
      */
     @Override
@@ -125,29 +124,10 @@ public class CustomerDao extends Dao implements PlainEntityI<Customer> {
 
     }
 
-//    /**
-//     * Delete permanently a customer with a specific id.
-//     *
-//     * @param id A variable of type int.
-//     */
-//    public void deletePermanently(int id) {
-//        PreparedStatement pst = null;
-//        try {
-//            pst = getConnection().prepareStatement(DELETEPERM);
-//            pst.setInt(1, id);
-//            pst.execute();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            closeStatementAndResultSet(pst);
-//
-//        }
-//    }
-
     /**
      * Delete a customer with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id Customer's id.
      */
     @Override
     public void delete(int id) {

@@ -3,7 +3,7 @@ package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
 import pijavaparty.proderp.entity.SOrder;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.SupplierDao;
@@ -148,7 +148,7 @@ public class AddNewSOrder extends javax.swing.JFrame {
     private void comboBox() {
         
         SupplierDao sd = new SupplierDao();
-        List<Supplier> suppliers = new LinkedList();
+        List<Supplier> suppliers = new ArrayList();
         suppliers = sd.getAll();
         int number = suppliers.size();
         try {

@@ -5,7 +5,7 @@
  */
 package pijavaparty.proderp.dao;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -43,7 +43,7 @@ public class RawMaterialDaoTest {
     public void atestGetAll() {
         System.out.println("getAll");
         RawMaterialDao instance = new RawMaterialDao();
-        List<RawMaterial> expResult = new LinkedList();
+        List<RawMaterial> expResult = new ArrayList();
         Supplier s1 = new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr");
         Supplier s2 = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
         expResult.add(new RawMaterial(1, "plastic", 47, 0.25, s1));

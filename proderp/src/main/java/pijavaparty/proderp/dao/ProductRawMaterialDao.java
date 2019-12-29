@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +29,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     private RawMaterialDao rawMaterialDao = new RawMaterialDao();
 
     /**
-     * Add new raw materials of a product in a List.
+     * Retrieve P_Materials from database.
      *
      * @return A ProductRawMaterial data type List.
      */
@@ -37,7 +37,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     public List<ProductRawMaterial> getAll() {
         Statement st = null;
         ResultSet rs = null;
-        List<ProductRawMaterial> productRawMaterials = new LinkedList();
+        List<ProductRawMaterial> productRawMaterials = new ArrayList();
         try {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
@@ -53,13 +53,13 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     }
     
     /**
-     * Add raw materials of a product.
+     * Get recipe of a specific product.
      *
-     * @param pid A variable of type int.
-     * @return A ProductRawMaterial data type List.
+     * @param pid Product's id.
+     * @return A List of RawMaterials with their quantity.
      */
     public List<ProductRawMaterial> getMaterialsPerProduct(int pid) {
-        List<ProductRawMaterial> productsMaterials = new LinkedList();
+        List<ProductRawMaterial> productsMaterials = new ArrayList();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -78,7 +78,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     }
 
     /**
-     * Insert new raw materials of a product..
+     * Insert new raw materials of a product.
      *
      * @param prm An object of type ProductRawMaterial.
      */
@@ -98,102 +98,11 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     }
 
 
-//    /**
-//     * Insert new raw materials of a product..
-//     *
-//     * @param pid A variable of type int.
-//     * @param rmid A variable of type int.
-//     * @param quantity A variable of type int.
-//     */
-//    public void insert(int pid, int rmid, int quantity) {
-//        PreparedStatement pst = null;
-//        try {
-//            pst = getConnection().prepareStatement(INSERT);
-//            pst.setInt(1, pid);
-//            pst.setInt(2, rmid);
-//            pst.setInt(3, quantity);
-//            pst.execute();
-//            closeStatementAndResultSet(pst);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            closeStatementAndResultSet(pst);
-//        }
-//    }
-//
-//    /**
-//     * Change/Modify the fields of a product's raw materials.
-//     *
-//     * @param productRawMaterial A ProductRawMaterial data type object.
-//     */
-//    public void update(ProductRawMaterial productRawMaterial) {
-//        PreparedStatement pst = null;
-//        try {
-//            pst = getConnection().prepareStatement(UPDATE);
-//            pst.setInt(1, productRawMaterial.getRawMaterial().getId());
-//            pst.setInt(2, productRawMaterial.getQuantityOfRawMaterial());
-//            pst.setInt(3, productRawMaterial.getProduct().getId());
-//            pst.execute();
-//            closeStatementAndResultSet(pst);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            closeStatementAndResultSet(pst);
-//        }
-//
-//    }
-//
-//    /**
-//     * Change/Modify the fields of a product's raw materials.
-//     *
-//     * @param pid A variable of type int.
-//     * @param rmid A variable of type int.
-//     * @param quantity A variable of type int.
-//     */
-//    public void update(int pid, int rmid, int quantity) {
-//        PreparedStatement pst = null;
-//        try {
-//            pst = getConnection().prepareStatement(UPDATE);
-//            pst.setInt(1, rmid);
-//            pst.setInt(2, quantity);
-//            pst.setInt(3, pid);
-//            pst.execute();
-//            closeStatementAndResultSet(pst);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            closeStatementAndResultSet(pst);
-//        }
-//
-//    }
-//
-//    /**
-//     * Delete the raw materials of a product.
-//     *
-//     * @param prm A ProductRawMaterial data type object.
-//     */
-//    public void delete(ProductRawMaterial prm) {
-//        PreparedStatement pst = null;
-//        try {
-//            pst = getConnection().prepareStatement(DELETE);
-//            pst.setInt(1, prm.getProduct().getId());
-//            pst.setInt(2, prm.getRawMaterial().getId());
-//            pst.execute();
-//            closeStatementAndResultSet(pst);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            closeStatementAndResultSet(pst);
-//        }
-//
-//    }
-
-
     /**
-     * Delete the raw materials of a product.
+     * Delete a raw material of a product.
      *
-     * @param pid A variable of type int.
-     * @param rmid A variable of type int.
+     * @param pid Product's id.
+     * @param rmid RawMaterial's id.
      */
     @Override
     public void delete(int pid, int rmid) {
@@ -213,10 +122,10 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     }
 
     /**
-     * Return the raw materials of a product with a specific id.
+     * Return the raw material and quantity with a specific id.
      *
-     * @param pid A variable of type int.
-     * @param rmid A variable of type int.
+     * @param pid Product's id.
+     * @param rmid RawMaterial's id.
      * @return A ProductRawMaterial data type object.
      */
     @Override

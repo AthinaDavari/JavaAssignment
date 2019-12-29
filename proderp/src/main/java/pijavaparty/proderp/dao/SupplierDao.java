@@ -1,15 +1,13 @@
 package pijavaparty.proderp.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sql.DataSource;
 import pijavaparty.proderp.entity.RawMaterial;
 import pijavaparty.proderp.entity.Supplier;
 
@@ -27,10 +25,8 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
     private static final String INSERT = "INSERT INTO Suppliers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Suppliers SET full_name = ?, address = ?, phonenumber = ?, email = ? "
             + "WHERE id = ? AND is_deleted = false";
-    private static final String DELETEPERM = "DELETE FROM Suppliers WHERE id = ?";
     private static final String DELETE = "UPDATE Suppliers SET is_deleted = true WHERE id = ?";
     private static final String GETRAWMATERIALPERSUPPLIER = "SELECT * FROM Raw_Materials WHERE supplier_id = ? and is_deleted = false";
-    Connection conn;
 
     /**
      * A no-argument Constructor.
@@ -39,13 +35,13 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
     }
 
     /**
-     * Add new suppliers in a List.
+     * Retrieve suppliers from database.
      *
      * @return A supplier data type List.
      */
     @Override
     public List<Supplier> getAll() {
-        List<Supplier> suppliers = new LinkedList();
+        List<Supplier> suppliers = new ArrayList();
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -63,13 +59,13 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
     }
 
     /**
-     * Add raw materials sorted by supplier.
+     * Get raw materials provided by a supplier.
      *
-     * @param id A variable of type int.
+     * @param id Supplier's id.
      * @return A RawMaterial type List.
      */
     public List<RawMaterial> getRawMaterialsPerSupplier(int id) {
-        List<RawMaterial> rawmaterials = new LinkedList();
+        List<RawMaterial> rawmaterials = new ArrayList();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -91,7 +87,7 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
     /**
      * Return a supplier with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id Supplier's id.
      * @return A Supplier data type object.
      */
     @Override
@@ -160,29 +156,10 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
             }
         }
     }
-
-//    /**
-//     * Delete permanently a supplier with a specific id.
-//     *
-//     * @param id A variable of type int.
-//     */
-//    public void deletePermanently(int id) {
-//        PreparedStatement pst = null;
-//        try {
-//            pst = getConnection().prepareStatement(DELETEPERM);
-//            pst.setInt(1, id);
-//            pst.execute();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            closeStatementAndResultSet(pst);
-//        }
-//    }
-
     /**
      * Delete a supplier with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id Supplier's id to be deleted.
      */
     @Override
     public void delete(int id) {

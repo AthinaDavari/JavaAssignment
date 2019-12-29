@@ -23,6 +23,7 @@ public class AddUser extends javax.swing.JFrame {
     public AddUser() {
         initComponents();
         fillcombobox();
+        setTitle("Add User");
     }
 
     /**

@@ -30,6 +30,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         initComponents();
         comboBox();
         seticon();
+        setTitle("Add Items");
     }
     
     public AddItemSOrder(ArrayList<SOrderItem> SOrderItemsList) {

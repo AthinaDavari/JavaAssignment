@@ -24,6 +24,7 @@ public class StorageMain extends javax.swing.JFrame {
         initComponents();
         showStorageTable();
         seticon();
+        setTitle("Storage");
     }
 
     /**

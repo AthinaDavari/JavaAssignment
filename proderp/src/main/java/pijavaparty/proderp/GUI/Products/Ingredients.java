@@ -24,6 +24,7 @@ public class Ingredients extends javax.swing.JFrame {
         initComponents();
         showIngredientsTable();
         seticon();
+        setTitle("Ingredients");
     }
 
     /**

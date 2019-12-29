@@ -25,6 +25,7 @@ public class CustomerEdit extends javax.swing.JFrame {
         seticon();
         initComponents();
         showCustomersTable();
+        setTitle("Customer Edit");
     }
 
     /**

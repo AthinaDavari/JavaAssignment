@@ -24,6 +24,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         seticon();
+        setTitle("Users's Menu");
     }
     private void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));

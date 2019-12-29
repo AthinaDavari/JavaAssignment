@@ -24,6 +24,7 @@ public class DeleteUser extends javax.swing.JFrame {
     public DeleteUser() {
         initComponents();
         fillcombobox();
+        setTitle("Delete User");
     }
 
     /**

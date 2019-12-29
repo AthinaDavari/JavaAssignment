@@ -19,6 +19,7 @@ public class RawMaterialDelete extends javax.swing.JFrame {
     public RawMaterialDelete() {
         initComponents();
         seticon();
+        setTitle("Delete Raw Materials");
     }
 
     /**

@@ -44,9 +44,10 @@ public class LogInTest {
         Window w[] = Window.getWindows();
 
         for (Window window : w){
-            window.setVisible(false);
             window.dispose();
+//            window.setVisible(false);
         }
+        
     }
 
     /**
@@ -114,7 +115,7 @@ public class LogInTest {
         } catch (InterruptedException e) {
         }
         Window w[] = Window.getWindows();
-
+        System.out.println("window");
         for (Window window : w) {
 
             System.out.println(window);

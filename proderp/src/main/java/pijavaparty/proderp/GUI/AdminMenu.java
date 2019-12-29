@@ -6,6 +6,7 @@
 package pijavaparty.proderp.GUI;
 
 import java.awt.Toolkit;
+import javax.swing.JFrame;
 import pijavaparty.proderp.GUI.Customers.CustomerMenu;
 import pijavaparty.proderp.GUI.Orders.OrdersFrame;
 import pijavaparty.proderp.GUI.Products.ProductGui;
@@ -31,7 +32,7 @@ public class AdminMenu extends javax.swing.JFrame {
      *
      */
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
     }
 

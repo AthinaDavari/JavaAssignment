@@ -36,7 +36,7 @@ public class StorageServices {
      * @param id
      * @param quant
      */
-    public void UpdateIngredients(int id, int quant) {
+    public boolean UpdateIngredients(int id, int quant) {
         ProductRawMaterial prodraw;
         int quantrecipe;
         int rawquant;
@@ -52,8 +52,19 @@ public class StorageServices {
             rawquant = prodraw.getRawMaterial().getQuantity();
             rawquant += f.apply(quantrecipe);
 //          rawquant = rawquant + quantrecipe * quant;
+            if (rawquant < 0) {
+                return false;
+            }
+        }
+        for (int i = 0; i < prodrawlist.size(); i++) {
+            prodraw = prodrawlist.get(i);
+            quantrecipe = prodraw.getQuantityOfRawMaterial();
+            rawquant = prodraw.getRawMaterial().getQuantity();
+            rawquant += f.apply(quantrecipe);
             rawmatdao.updateQuantity(prodraw.getRawMaterial().getId(), rawquant);
         }
+        
+        return true;
 
     }
 

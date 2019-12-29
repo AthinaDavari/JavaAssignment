@@ -106,8 +106,11 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
     //update ingredients quantty method
     private void answerYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerYesActionPerformed
         StorageServices storser= new StorageServices();
-        storser.UpdateIngredients(id, quant);
-        JOptionPane.showMessageDialog(null,"Updated");
+        if (storser.UpdateIngredients(id, quant)) {
+            JOptionPane.showMessageDialog(null,"Updated");
+        } else {
+            JOptionPane.showMessageDialog(null,"Cannot update, not enough raw materials.","Error",  JOptionPane.ERROR_MESSAGE);
+        }
         dispose();
     }//GEN-LAST:event_answerYesActionPerformed
 

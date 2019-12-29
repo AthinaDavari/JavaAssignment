@@ -145,11 +145,11 @@ public class UserDao extends Dao {
         try {
             pst = getConnection().prepareStatement(DELETE);
 
-            /*if ((permissionToDeleteAnAdministratorUser() == true && user.getRole() == "simpleuser") ){
+            if ((permissionToDeleteAnAdministratorUser() == true && user.getRole() == "simpleuser") ){
                 pst.setString(1, user.getUsername());
                 pst.execute();
             return true;
-            }*/
+            }
             pst.setString(1, user.getUsername());
             pst.execute();
             return true;

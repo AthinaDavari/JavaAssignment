@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 /**
  * @author anna 
  * This class allows the administrator to delete an existing user
- * by entering user's username and password and then asks for comfirmation.
+ * by clicking a username. 
+ * If the username belongs to an administrator deletion is not allowed.
  */
 public class DeleteUser extends javax.swing.JFrame {
 
@@ -128,7 +129,7 @@ public class DeleteUser extends javax.swing.JFrame {
                 obj.setVisible(true);
                 dispose();
             } else {
-                if (us2.permissionToDeleteAnAdministratorUser() == false && us2.getUserByUsername(u).getRole() == "admin") {
+                if (us2.permissionToDeleteAnAdministratorUser() == false || us2.getUserByUsername(u).getRole() == "admin") {
                     JOptionPane.showMessageDialog(rootPane, "You have no permission to delete the user.");
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Something gone wrong.");

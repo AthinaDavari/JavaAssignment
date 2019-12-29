@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.util.List;
@@ -15,14 +10,16 @@ import java.util.List;
 public interface DaoI<T>{
 
     /**
-     *
-     * @return
+     * Retrieve all T objects from database.
+     * 
+     * @return A List of type T objects.
      */
     List<T> getAll();
     
     /**
-     *
-     * @param t
+     * Insert an object
+     * 
+     * @param t An object of type T.
      */
     void insert(T t);
             

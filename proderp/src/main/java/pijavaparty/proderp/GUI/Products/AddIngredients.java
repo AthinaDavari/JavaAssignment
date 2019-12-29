@@ -2,7 +2,7 @@
 package pijavaparty.proderp.GUI.Products;
 
 import java.awt.Toolkit;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.Services.Fillcombo;
@@ -21,7 +21,7 @@ import static pijavaparty.proderp.Services.ValidVariables.isValidInteger;
 
 public class AddIngredients extends javax.swing.JFrame {
     
-    private List<ProductRawMaterial> prodraw=new LinkedList();
+    private List<ProductRawMaterial> prodraw=new ArrayList();
     private int id;
     private Product prod=new Product();
     private int selected;
@@ -301,7 +301,7 @@ public class AddIngredients extends javax.swing.JFrame {
     //fill up the drop down with raw materials and ids from the data base
     private void fillcombo() {
         Fillcombo fill = new Fillcombo();
-        LinkedList<String> combocontents = fill.FillcomboArray(prodraw, prod);
+        ArrayList<String> combocontents = fill.FillcomboArray(prodraw, prod);
         int j = 0;
         for (int i = 0; i < combocontents.size(); i++) {
             drop_down.addItem(combocontents.get(i));

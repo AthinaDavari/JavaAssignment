@@ -6,6 +6,10 @@
 package pijavaparty.proderp.GUI;
 
 import java.awt.Toolkit;
+import java.net.URI;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
@@ -168,11 +172,14 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         UserDao u = new UserDao();
         User user = u.getUser(un, password);
         if (user != null && user.getRole() == "admin") {
-            user.setPassword(null);
-            LogIn.user = user;
-            AdminMenu obj = new AdminMenu();
-            obj.setVisible(true);
-            dispose();
+            try {
+                user.setPassword(null);
+                LogIn.user = user;
+                new AdminMenu().setVisible(true);
+                dispose();
+            } catch (Throwable ex) {
+                Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (user != null && user.getRole() == "simpleuser") {
             user.setPassword(null);
             LogIn.user = user;
@@ -231,7 +238,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
 
-        new LogIn().setVisible(true);
+        this.setVisible(true);
 
         }
 

@@ -195,8 +195,11 @@ public class AddUser extends javax.swing.JFrame {
         users = userdao.getAll();
         int size=userdao.getAll().size();
         try{
-            for(int i=0; i<size; i++){
-                role.addItem(users.get(i).getFullName());
+            role.addItem(users.get(0).getRole());
+            for(int i=1; i<size; i++){
+                if(users.get(i).getRole()!= users.get(i-1).getRole()){
+                    role.addItem(users.get(i).getRole());
+                }
             }
         }
         catch(Exception e){

@@ -7,7 +7,7 @@ package pijavaparty.proderp.dao;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -53,7 +53,7 @@ public class COrderItemDaoTest {
                 new User("natalia", "nat", "simpleuser"));
         Product p1 = new Product(5, "Scott Volt X20", 50, 1000.0);
         Product p2 = new Product(2, "GT Air 20", 32, 567.34);
-        List<COrderItem> expResult = new LinkedList();
+        List<COrderItem> expResult = new ArrayList();
         expResult.add(new COrderItem(cOrder, p2, 49));
         expResult.add(new COrderItem(cOrder, p1, 100));
 
@@ -89,7 +89,7 @@ public class COrderItemDaoTest {
         Product p1 = new Product(5, "Scott Volt X20", 50, 1000.0);
         Product p2 = new Product(2, "GT Air 20", 32, 567.34);
         COrderItemDao instance = new COrderItemDao();
-        List<COrderItem> expResult = new LinkedList();
+        List<COrderItem> expResult = new ArrayList();
         Customer c = new Customer(1, "Ora Gia Podilato", "Tositsa 45", 2109237849l, "info@oragiapodilato.com");
         COrder cOrder = new COrder(3, c, "delivered", Timestamp.valueOf("2017-02-28 17:02:01"),
                 new User("natalia", "nat", "simpleuser"));

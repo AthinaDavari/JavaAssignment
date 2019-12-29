@@ -5,28 +5,29 @@
  */
 package pijavaparty.proderp.Services;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static pijavaparty.proderp.dao.TestUtilities.runTestScript;
+import pijavaparty.proderp.entity.Product;
+import pijavaparty.proderp.entity.RawMaterial;
+import pijavaparty.proderp.entity.Supplier;
 
 /**
  *
  * @author athina
  */
 public class ChecksTest {
-    
-    /**
-     *
-     */
+
     public ChecksTest() {
     }
-    
-//    @BeforeClass
-//    public static void setUpClass() {
-//    }
+
+    @BeforeClass
+    public static void setUpClass() {
+        runTestScript();
+    }
 
     /**
      * Test of CheckIfRawMaterialIsUsed method, of class Checks.
@@ -41,5 +42,34 @@ public class ChecksTest {
         assertEquals(expResult, result);
 
     }
-    
+
+    /**
+     * Test of checkRawQuantities method, of class Checks.
+     */
+    @Test
+    public void testCheckRawQuantities() {
+        System.out.println("checkRawQuantities");
+        Checks instance = new Checks();
+        List<RawMaterial> expResult = new ArrayList();
+        Supplier s = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
+
+        expResult.add(new RawMaterial(3, "wood", 17, 3.7, s));
+        expResult.add(new RawMaterial(6, "Steel", 7, 3.7, s));
+        List<RawMaterial> result = instance.checkRawQuantities();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of checkProductQuantities method, of class Checks.
+     */
+    @Test
+    public void testCheckProductQuantities() {
+        System.out.println("checkProductQuantities");
+        Checks instance = new Checks();
+        List<Product> expResult = new ArrayList();
+        expResult.add(new Product(1, "Orient City Classic", 10, 479.65));
+        List<Product> result = instance.checkProductQuantities();
+        assertEquals(expResult, result);
+    }
+
 }

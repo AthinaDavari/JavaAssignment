@@ -3,14 +3,9 @@ package pijavaparty.proderp.GUI;
 
 import java.awt.AWTException;
 import java.awt.Robot;
-import java.awt.SystemTray;
-import java.awt.TrayIcon;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
-import javax.swing.JPanel;
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -49,9 +44,10 @@ public class LogInTest {
         Window w[] = Window.getWindows();
 
         for (Window window : w){
-            window.setVisible(false);
             window.dispose();
+//            window.setVisible(false);
         }
+        
     }
 
     /**
@@ -118,8 +114,8 @@ public class LogInTest {
             Thread.sleep(500);
         } catch (InterruptedException e) {
         }
-        Window w[] = Window.get;
-
+        Window w[] = Window.getWindows();
+        System.out.println("window");
         for (Window window : w) {
 
             System.out.println(window);

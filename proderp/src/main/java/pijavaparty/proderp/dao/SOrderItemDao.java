@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,13 +29,13 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
     private RawMaterialDao rm = new RawMaterialDao();
 
     /**
-     * Add new supplier's items in a List.
+     * Get S_order_items from database.
      *
      * @return A SOrderItem data type List.
      */
     @Override
     public List<SOrderItem> getAll() {
-        List<SOrderItem> sorders = new LinkedList();
+        List<SOrderItem> sorders = new ArrayList();
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -53,10 +53,10 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
     }
 
     /**
-     * Return a supplier's order item with a specific id.
+     * Return an SOrderItem with specific ids.
      *
-     * @param soid A variable of type int.
-     * @param rmid A variable of type int.
+     * @param soid SOrder's id.
+     * @param rmid RawMaterial's.
      * @return A SOrderItem data type object.
      */
     public SOrderItem getByIds(int soid, int rmid) {
@@ -79,13 +79,13 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
     }
 
     /**
-     * Add items sorted by supplier.
+     * Get items of a specific SOrder.
      *
-     * @param soid A variable of type int.
+     * @param soid SOrder's id.
      * @return A SOrderItem data type List.
      */
     public List<SOrderItem> getItemsperSOrder(int soid) {
-        List<SOrderItem> soi = new LinkedList();
+        List<SOrderItem> soi = new ArrayList();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -104,7 +104,7 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
     }
 
     /**
-     * Insert a new supplier's item.
+     * Insert a new supplier's order item.
      *
      * @param soi An object of type SOrderItem.
      */
@@ -124,9 +124,9 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
     }
 
     /**
-     * Delete a supplier's item with a specific id.
+     * Delete a supplier's order item with a specific id.
      *
-     * @param soi A SOrderItem data type object.
+     * @param soi SOrderItem to be deleted.
      */
     public void delete(SOrderItem soi) {
         PreparedStatement pst = null;
@@ -144,9 +144,9 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
     }
 
     /**
-     * Increase the quantity of raw materials.
+     * Increase the quantity of raw materials by the quantity of a delivered SOrder.
      *
-     * @param orderId A variable of type int.
+     * @param orderId SOrder's id.
      */
     public void increaseQuantities(int orderId) {
         List<SOrderItem> orderItems = getItemsperSOrder(orderId);
@@ -158,10 +158,10 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
     }
 
     /**
-     * Delete a customer's item with a specific id.
+     * Delete a supplier's item with specific ids.
      *
-     * @param sordId A variable of type int.
-     * @param rawMId A variable of type int.
+     * @param sordId SOrder's id.
+     * @param rawMId RawMaterial's id.
      */
     @Override
     public void delete(int sordId, int rawMId) {

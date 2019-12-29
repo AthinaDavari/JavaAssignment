@@ -4,12 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pijavaparty.proderp.entity.RawMaterial;
-import pijavaparty.proderp.entity.Supplier;
 
 /**
  * RawMaterialDao.java - a class for interacting and modifying the fields of raw
@@ -27,18 +26,17 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
             + "WHERE id = ?";
     private static final String UPDATEQUANT = "UPDATE Raw_Materials SET quantity = ? WHERE id = ? AND is_deleted = false";
     private static final String DELETE = "UPDATE Raw_Materials SET is_deleted = true WHERE id = ?";
-    private static final String DELETEPERM = "DELETE FROM Raw_Materials WHERE id = ?";
 
     private SupplierDao supplierDao = new SupplierDao();
 
     /**
-     * Add new raw materials in a List.
+     * Retrieve raw materials from database.
      *
-     * @return A RawMAterial data type List.
+     * @return A RawMaterial data type List.
      */
     @Override
     public List<RawMaterial> getAll() {
-        List<RawMaterial> rawMaterials = new LinkedList();
+        List<RawMaterial> rawMaterials = new ArrayList();
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -58,7 +56,7 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
     /**
      * Return a raw material with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id RawMaterial's id.
      *
      * @return A RawMaterial data type object.
      */
@@ -132,8 +130,8 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
     /**
      * Change/modify the quantity of a raw material.
      *
-     * @param id A variable of type int.
-     * @param quantity A variable of type int.
+     * @param id RawMaterial's id.
+     * @param quantity New quantity.
      */
     public void updateQuantity(int id, int quantity) {
         RawMaterial r = getById(id);
@@ -153,32 +151,10 @@ public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
         }
     }
 
-//    /**
-//     * Delete permanently a raw material with a specific id.
-//     *
-//     * @param id A variable of type int.
-//     *
-//     */
-//    public void deletePermanently(int id) {
-//        PreparedStatement pst = null;
-//        try {
-//            pst = getConnection().prepareStatement(DELETEPERM);
-//            pst.setInt(1, id);
-//            pst.execute();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(RawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-//
-//        } finally {
-//            closeStatementAndResultSet(pst);
-//
-//        }
-//    }
-
     /**
      * Delete a raw material with a specific id.
      *
-     *
-     * @param id
+     * @param id RawMaterial's id.
      */
     @Override
     public void delete(int id) {

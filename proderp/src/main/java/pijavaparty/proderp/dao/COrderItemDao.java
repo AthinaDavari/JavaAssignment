@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,13 +28,13 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
     private ProductDao pr = new ProductDao();
 
     /**
-     * Add new customer's items in a List.
+     * Retrieve customer order items from database
      *
      * @return A COrderItem data type List.
      */
     @Override
     public List<COrderItem> getAll() {
-        List<COrderItem> corders = new LinkedList();
+        List<COrderItem> corders = new ArrayList();
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -52,10 +52,10 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
     }
 
     /**
-     * Return a customer's order item with a specific id.
+     * Get a customer's order item with a specific id.
      *
-     * @param coid A variable of type int.
-     * @param prid A variable of type int.
+     * @param coid COrder's id.
+     * @param prid Product's id.
      * @return A COrderItem data type object.
      */
     public COrderItem getByIds(int coid, int prid) {
@@ -78,13 +78,13 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
     }
 
     /**
-     * Add items sorted by customer.
+     * Get items of a specific COrder.
      *
-     * @param coid A variable of type int.
+     * @param coid COrder's id.
      * @return A COrderItem data type List.
      */
     public List<COrderItem> getItemsPerCOrder(int coid) {
-        List<COrderItem> coi = new LinkedList();
+        List<COrderItem> coi = new ArrayList();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -127,8 +127,8 @@ public class COrderItemDao extends Dao implements CompositeEntityI<COrderItem> {
     /**
      * Delete a customer's item with a specific id.
      *
-     * @param cordId An int data type object.
-     * @param pId An int data type object.
+     * @param cordId COrder's id.
+     * @param pId Product's id.
      */
     @Override
     public void delete(int cordId, int pId) {

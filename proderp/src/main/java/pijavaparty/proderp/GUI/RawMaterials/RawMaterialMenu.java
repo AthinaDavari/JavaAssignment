@@ -204,7 +204,7 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         for(int i=0; i<number; i++){
                 row[0]=rawdao.getAll().get(i).getId();
                 row[1]=rawdao.getAll().get(i).getName();
-                row[2]=rawdao.getAll().get(i).getSupplier().getFullName();
+                row[2]=rawdao.getAll().get(i).getSupplier().getFullName() + " " + rawdao.getAll().get(i).getSupplier().getId();
                 row[3]=rawdao.getAll().get(i).getPrice();
                 model.addRow(row);
         }

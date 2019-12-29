@@ -148,11 +148,11 @@ public class UserDao extends Dao {
             if ((permissionToDeleteAnAdministratorUser() == true && user.getRole() == "simpleuser") ){
                 pst.setString(1, user.getUsername());
                 pst.execute();
-            return true;
+                return true;
             }
-            pst.setString(1, user.getUsername());
+            /*pst.setString(1, user.getUsername());
             pst.execute();
-            return true;
+            return true;*/
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);

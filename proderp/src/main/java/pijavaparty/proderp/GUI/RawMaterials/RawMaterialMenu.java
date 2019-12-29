@@ -161,8 +161,9 @@ public class RawMaterialMenu extends javax.swing.JFrame {
 
     private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
         LogIn login = new LogIn();
+        LogIn.user = null;
         login.setVisible(true);
-        dispose();        
+        dispose();    
     }//GEN-LAST:event_LogOutMouseClicked
 
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked

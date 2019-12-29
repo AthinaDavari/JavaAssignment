@@ -207,8 +207,9 @@ public class StorageMain extends javax.swing.JFrame {
 
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn login = new LogIn();
+        LogIn.user = null;
         login.setVisible(true);
-        dispose();        
+        dispose();       
     }//GEN-LAST:event_logOutMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked

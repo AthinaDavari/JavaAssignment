@@ -173,18 +173,27 @@ public class Ingredients extends javax.swing.JFrame {
      */
     public void showIngredientsTable(){
         ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
+        RawMaterialDao rawdao=new RawMaterialDao();
         DefaultTableModel model=(DefaultTableModel) Ingredients_Table.getModel();
         int number=prodrawdao.getAll().size();
+        int numofraw = rawdao.getAll().size();
         Object[] row=new Object[3];
+        int j = 0;
         for(int i=0; i<number; i++){
             if (prodrawdao.getAll().get(i).getProduct().getId()==id){
                 row[0]=prodrawdao.getAll().get(i).getRawMaterial().getId();
                 row[1]=prodrawdao.getAll().get(i).getRawMaterial().getName();
                 row[2]=prodrawdao.getAll().get(i).getQuantityOfRawMaterial();
                 model.addRow(row);
+                j++;
             }
         }
-        
+        if (j == numofraw) {
+            disablebuttonAdd();
+        }
+    }
+        private void disablebuttonAdd() {
+        AddIngredient.setEnabled(false);
     }
     /**
      * @param args the command line arguments

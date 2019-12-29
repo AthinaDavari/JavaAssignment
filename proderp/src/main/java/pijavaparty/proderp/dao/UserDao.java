@@ -145,11 +145,11 @@ public class UserDao extends Dao {
         PreparedStatement pst = null;
         try {
             pst = getConnection().prepareStatement(DELETE);
-            //if ((permissionToDeleteAnAdministratorUser() == true && user.getRole() == 1) || user.getRole() ==2 ){
-            pst.setString(1, user.getUsername());
-            pst.execute();
+            if ((permissionToDeleteAnAdministratorUser() == true && user.getRole() == "simpleuser") ){
+                pst.setString(1, user.getUsername());
+                pst.execute();
             return true;
-            //}
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

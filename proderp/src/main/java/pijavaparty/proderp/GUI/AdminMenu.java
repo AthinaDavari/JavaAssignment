@@ -15,8 +15,9 @@ import pijavaparty.proderp.GUI.Storage.StorageMain;
 import pijavaparty.proderp.GUI.Suppliers.SuppliersMenu;
 
 /**
- *
  * @author anna
+ * AdminMenu is the menu for the administrators which allows them to have access to all 
+ * the program's operations including adding and deleting users.
  */
 public class AdminMenu extends javax.swing.JFrame {
 

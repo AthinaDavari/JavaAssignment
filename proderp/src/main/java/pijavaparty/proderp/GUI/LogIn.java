@@ -16,8 +16,8 @@ import pijavaparty.proderp.entity.User;
 import pijavaparty.proderp.main.ThrowNotification;
 
 /**
- *
  * @author aggel
+ * Log in as simple user or administrator (admin).
  */
 public class LogIn extends javax.swing.JFrame implements Runnable {
 

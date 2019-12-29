@@ -11,7 +11,8 @@ import pijavaparty.proderp.dao.UserDao;
 import pijavaparty.proderp.entity.User;
 
 /**
- * @author anna This class allows the administrator to delete an existing user
+ * @author anna 
+ * This class allows the administrator to delete an existing user
  * by entering user's username and password and then asks for comfirmation.
  */
 public class DeleteUser extends javax.swing.JFrame {

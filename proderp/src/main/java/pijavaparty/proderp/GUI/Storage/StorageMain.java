@@ -3,6 +3,7 @@ package pijavaparty.proderp.GUI.Storage;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pijavaparty.proderp.GUI.AdminMenu;
 import pijavaparty.proderp.dao.ProductDao;
 import pijavaparty.proderp.dao.RawMaterialDao;
 import pijavaparty.proderp.GUI.LogIn;
@@ -211,9 +212,14 @@ public class StorageMain extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        dispose();        
+        if((LogIn.user.getRole()).equals("admin")){
+            AdminMenu menu = new AdminMenu();
+            menu.setVisible(true);
+        } else {
+            Menu menu = new Menu();
+            menu.setVisible(true);
+        }
+        dispose();       
     }//GEN-LAST:event_backMouseClicked
 
     private void product_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_product_idActionPerformed

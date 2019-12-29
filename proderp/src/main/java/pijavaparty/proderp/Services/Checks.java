@@ -17,14 +17,14 @@ import pijavaparty.proderp.entity.RawMaterial;
 public class Checks {
 
     /**
-     *
-     * @param id
-     * @return
+     * Checks if a RawMaterial is contained in any Product in the Database
+     * 
+     * @param id RawMaterial's id
+     * @return true if it is contained - false otherwise
      */
     public boolean checkIfRawMaterialIsUsed(int id) {
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
         List<ProductRawMaterial> prodrawall = prodrawdao.getAll();
-        ProductRawMaterial prodraw = new ProductRawMaterial();
         for (int i = 0; i < prodrawall.size(); i++) {
             int a = prodrawall.get(i).getRawMaterial().getId();
             if (a == id) {
@@ -35,8 +35,9 @@ public class Checks {
     }
     
     /**
-     *
-     * @return
+     * Get a List with insufficient RawMaterials (quantity < 20)
+     * 
+     * @return a List with RawMaterials
      */
     public List<RawMaterial> checkRawQuantities() {
         RawMaterialDao materialDao = new RawMaterialDao();
@@ -48,14 +49,15 @@ public class Checks {
     } 
     
     /**
-     *
-     * @return
+     * Get a List with insufficient Products (quantity < 10)
+     * 
+     * @return a List with Products
      */
     public List<Product> checkProductQuantities() {
         ProductDao proDao = new ProductDao();
         List<Product> products = proDao.getAll();
         products = products.stream()
-                .filter(x -> x.getQuantity() < 10)
+                .filter(x -> x.getQuantity() < 12)
                 .collect(toList());
         return products;
     }

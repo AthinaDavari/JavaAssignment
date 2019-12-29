@@ -3,15 +3,9 @@ package pijavaparty.proderp.GUI;
 
 import java.awt.AWTException;
 import java.awt.Robot;
-import java.awt.SystemTray;
-import java.awt.TrayIcon;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
-import java.lang.ref.WeakReference;
-import javax.swing.JPanel;
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;

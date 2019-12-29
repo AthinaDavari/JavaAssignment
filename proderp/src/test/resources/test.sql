@@ -39,7 +39,7 @@ values ('plastic', 1, 47, 0.25),
        ('wood', 2, 17, 3.7),
        ('Plastic', 2, 47, 3.25),
        ('Titanium', 1, 32, 15.2),
-       ("Steel", 2, 7, 3.7);
+       ('Steel', 2, 7, 3.7);
 insert into c_orders(customer_id, status, user_name, created_at)
 values (3, 'preparing', 'nat', '2019-01-12 08:02:01'),
        (1, 'ready', 'nat', '2019-05-12 11:02:59'),

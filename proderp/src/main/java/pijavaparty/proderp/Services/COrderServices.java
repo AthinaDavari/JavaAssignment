@@ -17,23 +17,22 @@ public class COrderServices {
     /**
      * Return the products not included in the order
      * @param prod-list of products included in the order
-     * @return list of products (string type objects with products' names and ids) not included in the order
+     * @return list of products (string type objects with products' ids and names) not included in the order
      */
     public static ArrayList<String> RawMaterialsNotIncludedInSuppliersOrder(List<COrderItem> prod) {
         ArrayList<String> productlist = new ArrayList<String>();
         ProductDao pdao = new ProductDao();
         List<Product> allproducts;
         
-        allproducts = pdao.getAll();//take all the product from the database
+        allproducts = pdao.getAll();//take all the product from database
         int num = allproducts.size();//the number of products in database
         int prodsize = prod.size();//the number of products in order
         
         try {
-            int j;
-            int i;
-            for (i = 0; i < num; i++) {// start of 2nd for
+            int j;//counter of 2nd loop
+            for (int i = 0; i < num; i++) {// start of 1st for
                 
-                //find if a product from database exist in the order
+                //find if a product from database exists in the order
                 for (j = 0; j < prodsize; j++) {// start of 2nd for
                     
                     //check if a product from database is equal to a product from the sorderitem list

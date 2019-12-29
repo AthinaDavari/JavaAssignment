@@ -5,11 +5,14 @@
  */
 package pijavaparty.proderp.GUI;
 
+import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.UserDao;
+import pijavaparty.proderp.entity.User;
 
 /**
- * @author anna This class allows the administrator to delete an existing user
+ * @author anna 
+ * This class allows the administrator to delete an existing user
  * by entering user's username and password and then asks for comfirmation.
  */
 public class DeleteUser extends javax.swing.JFrame {
@@ -19,6 +22,7 @@ public class DeleteUser extends javax.swing.JFrame {
      */
     public DeleteUser() {
         initComponents();
+        fillcombobox();
     }
 
     /**
@@ -32,8 +36,8 @@ public class DeleteUser extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
+        username = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -56,6 +60,13 @@ public class DeleteUser extends javax.swing.JFrame {
             }
         });
 
+        username.setSelectedIndex(-1);
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Cancel");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,7 +86,7 @@ public class DeleteUser extends javax.swing.JFrame {
                 .addGap(90, 90, 90)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(username, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,10 +106,10 @@ public class DeleteUser extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76)
                 .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,7 +124,7 @@ public class DeleteUser extends javax.swing.JFrame {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
-            String u = username.getText();
+            String u = username.getSelectedItem().toString();
             UserDao us2 = new UserDao();
             boolean isdeleted = us2.delete(us2.getUserByUsername(u));
             if (isdeleted == true) {
@@ -130,9 +141,27 @@ public class DeleteUser extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Fields are empty");
-
         }
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void fillcombobox(){
+        UserDao userdao = new UserDao();
+        List<User> users;
+        users = userdao.getAll();
+        int size=userdao.getAll().size();
+        try{
+            for(int i=0; i<size; i++){
+                    username.addItem(users.get(i).getUsername());
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
+    
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,6 +205,6 @@ public class DeleteUser extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField username;
+    private javax.swing.JComboBox<String> username;
     // End of variables declaration//GEN-END:variables
 }

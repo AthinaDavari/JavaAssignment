@@ -6,7 +6,7 @@
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.GUI.LogIn;
@@ -170,7 +170,7 @@ public class AddNewCustOrder extends javax.swing.JFrame {
      private void comboBox() {
          
         CustomerDao cd = new CustomerDao();
-        List<Customer> customers = new LinkedList();
+        List<Customer> customers = new ArrayList();
         customers = cd.getAll();
         int number = cd.getAll().size();
         

@@ -9,7 +9,7 @@ import pijavaparty.proderp.dao.SOrderItemDao;
 import pijavaparty.proderp.entity.SOrder;
 
 /**
- * EditSOrders.java - A graphical class for modifying the status of an order 
+ * EditSOrders.java - A graphical user interface (gui) class for modifying the status of an order 
  * to suppliers and delete an order to suppliers.
  * 
  * @author MariaKokkorou
@@ -195,7 +195,10 @@ public class EditSOrders extends javax.swing.JFrame {
             SOrderDao sd = new SOrderDao();
             sd.updateStatus(orderIDint, "delivered");
             SOrderItemDao orderItemDao = new SOrderItemDao();
-            orderItemDao.increaseQuantities(orderIDint);
+            orderItemDao.increaseQuantities(orderIDint); 
+            // When an order to a supplier is delivered, increase the quantity 
+            //of raw materials by the quantity of a delivered SOrder
+            
             JOptionPane.showMessageDialog(null, "Status Updated.");
             
             new EditSOrders().setVisible(true);
@@ -209,7 +212,6 @@ public class EditSOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_updateActionPerformed
 
     /**
-      * 
       * Select a row of the table by clicking on it, and insert the order's ID 
       * in the Order's ID field.
       * 
@@ -266,7 +268,7 @@ public class EditSOrders extends javax.swing.JFrame {
 
     /** 
      * Get id, supplier id and name, status and order's time of creation data 
-     * from database and show them in showSOrdersTable.
+     * from database and show them in showSOrdersTable table.
      * 
      */
     public void showSOrdersTable() {
@@ -274,16 +276,19 @@ public class EditSOrders extends javax.swing.JFrame {
             
             SOrderDao obj2 = new SOrderDao();
             List<SOrder> sorders = obj2.getAllPendingOrders();
-            int number1 = sorders.size();
+            // sorders - an arraylist filled with all the orders to suppliers that are currently pending, not delivered.
+            int number1 = sorders.size(); // the number of orders to suppliers with status "pending".
             DefaultTableModel model2 = (DefaultTableModel) SOrdersTable.getModel();
 
             Object[] row = new Object[4];
 
             for (int i = 0; i < number1; i++) {
-                row[0] = sorders.get(i).getId();
+                row[0] = sorders.get(i).getId(); // Fill the first column of the table with the id of the order.
                 row[1] = sorders.get(i).getSupplier().getId() + "-" + sorders.get(i).getSupplier().getFullName();
-                row[2] = sorders.get(i).getStatus();
-                row[3] = sorders.get(i).getCreated_at();
+                // Fill the second column of the table with the id - name of the supplier.
+                
+                row[2] = sorders.get(i).getStatus(); // Fill the third column of the table with the status of the order.
+                row[3] = sorders.get(i).getCreated_at(); // Fill the fourth column of the table with the time of creation of the order.
 
                 model2.addRow(row);
             }

@@ -8,7 +8,7 @@ package pijavaparty.proderp.dao;
 import java.sql.Timestamp;
 import static java.time.Instant.now;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import org.junit.BeforeClass;
@@ -52,7 +52,7 @@ public class COrderDaoTest {
         COrderDao instance = new COrderDao();
         Customer c1 = new Customer(3, "BikeMall", "Patision 18", 2136789267l, "info@bikemall.com");
         Customer c2 = new Customer(1, "Ora Gia Podilato", "Tositsa 45", 2109237849l, "info@oragiapodilato.com");
-        List<COrder> expResult = new LinkedList();
+        List<COrder> expResult = new ArrayList();
         expResult.add(new COrder(1, c1, "preparing", Timestamp.valueOf("2019-01-12 08:02:01"), u));
         expResult.add(new COrder(2, c2, "ready", Timestamp.valueOf("2019-05-12 11:02:59"), u));
         expResult.add(new COrder(3, c2, "delivered", Timestamp.valueOf("2017-02-28 17:02:01"), u));
@@ -69,7 +69,7 @@ public class COrderDaoTest {
         COrderDao instance = new COrderDao();
         Customer c1 = new Customer(3, "BikeMall", "Patision 18", 2136789267l, "info@bikemall.com");
         Customer c2 = new Customer(1, "Ora Gia Podilato", "Tositsa 45", 2109237849l, "info@oragiapodilato.com");
-        List<COrder> expResult = new LinkedList();
+        List<COrder> expResult = new ArrayList();
         expResult.add(new COrder(1, c1, "preparing", Timestamp.valueOf("2019-01-12 08:02:01"), u));
         expResult.add(new COrder(2, c2, "ready", Timestamp.valueOf("2019-05-12 11:02:59"), u));
         List<COrder> result = instance.getAllExceptFromDelivered();

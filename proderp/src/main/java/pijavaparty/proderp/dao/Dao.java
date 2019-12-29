@@ -20,7 +20,8 @@ public class Dao {
     private static Connection conn;
 
     /**
-     * Make the connection with the database proderp.
+     * Make the connection with the database proderp or erp_progIITest if application
+     * is in test mode.
      *
      * @return A Connection data type.
      */
@@ -37,7 +38,7 @@ public class Dao {
         if (conn == null) {
             try {
                 String url = "jdbc:mysql://localhost:3306/" + dbname + "?serverTimezone=Etc/GMT-2";
-                conn = DriverManager.getConnection(url, "root", "12345");
+                conn = DriverManager.getConnection(url, "root", "CUjpQbA^64");
 
 
             } catch (SQLException ex) {
@@ -48,14 +49,13 @@ public class Dao {
     }
 
     /**
-     * Close connections.
+     * Close resources created by query execution.
      *
      * @param rs A variable of type ResultSet.
      * @param st A variable of type Statement.
      */
     public void closeStatementAndResultSet(ResultSet rs, Statement st) {
         try {
-
             if (rs != null) {
                 rs.close();
             }
@@ -68,7 +68,7 @@ public class Dao {
     }
 
     /**
-     * Close connections.
+     * Close resources created by query execution.
      *
      * @param pst A variable of type PreparedStatement.
      */
@@ -82,28 +82,4 @@ public class Dao {
         }
     }
 
-//    public abstract List<T> getAll();
-//
-//    public abstract void insert(T t);
-//    public abstract void delete(int id);
-//    public abstract void update(T t);
-    /*
-    public void printList(List<T> a) {
-        System.out.println(a.get(0).getClass().getSimpleName());
-        if (a == null) {
-            return;
-        }
-        for (int i = 0; i < a.size(); i++) {
-            System.out.println(a.get(i));
-        }
-
-    }*/
-    /**
-     * Retrieve the value of conn.
-     *
-     * @return A Connection data type.
-     */
-    public Connection getConn() {
-        return conn;
-    }
 }

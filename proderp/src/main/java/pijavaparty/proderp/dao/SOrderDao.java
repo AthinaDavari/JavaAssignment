@@ -5,8 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,18 +26,17 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     private static final String GETBYID = "SELECT * FROM S_Orders WHERE id = ?";
     private static final String INSERT = "INSERT INTO S_Orders(supplier_id,status) VALUES(?,?)";
     private static final String DELETE = "DELETE FROM S_Orders WHERE id = ?";
-    private static final String UPDATE = "UPDATE S_Orders SET supplier_id = ?, status = ?, created_at = ? WHERE id = ?";
     private static final String UPDATESTATUS = "UPDATE S_Orders SET status = ? WHERE id = ?";
     private static final String SELECTLASTID = "SELECT max(id) FROM S_Orders";
 
     /**
-     * Add a new supplier's order in a List.
+     * Retrieve s_orders from database.
      *
      * @return A SOrder data type List.
      */
     @Override
     public List<SOrder> getAll() {
-        List<SOrder> sorders = new LinkedList();
+        List<SOrder> sorders = new ArrayList();
         SupplierDao s = new SupplierDao();
         ResultSet rs = null;
         Statement st = null;
@@ -58,11 +56,12 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     }
 
     /**
-     *
-     * @return
+     * Get SOrders with status = 'pending' 
+     * 
+     * @return A SOrder data type List.
      */
     public List<SOrder> getAllPendingOrders() {
-        List<SOrder> sorders = new LinkedList();
+        List<SOrder> sorders = new ArrayList();
         SupplierDao s = new SupplierDao();
         ResultSet rs = null;
         Statement st = null;
@@ -84,7 +83,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     /**
      * Return a supplier's order with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id SOrder's id.
      * @return A SOrder data type object.
      */
     public SOrder getById(int id) {
@@ -106,30 +105,6 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
         }
         return c;
     }
-
-//    /**
-//     * Change/Update the fields of a supplier's order.
-//     *
-//     * @param s A variable of type SOrder.
-//     */
-//    public void update(SOrder s) {
-//        SOrder fromTable = getById(s.getId());
-//        PreparedStatement pst = null;
-//        if (fromTable != null && !fromTable.equals(s)) {
-//            try {
-//                pst = getConnection().prepareStatement(UPDATE);
-//                pst.setInt(1, s.getSupplier().getId());
-//                pst.setString(2, s.getStatus());
-//                pst.setTimestamp(3, s.getCreated_at());
-//                pst.setInt(4, s.getId());
-//                pst.execute();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-//            } finally {
-//                closeStatementAndResultSet(pst);
-//            }
-//        }
-//    }
 
     /**
      * Insert a new supplier's order.
@@ -155,7 +130,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     /**
      * Retrieve the last supplier's order id.
      *
-     * @return An int data type variable.
+     * @return The id of last inserted order.
      */
     public int bringTheIdOfTheLatestSOrder() {
         Statement st = null;
@@ -176,7 +151,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
      * Insert a new supplier's order and items.
      *
      * @param so A SOrder data type object.
-     * @param soi A SOrderItem data type object.
+     * @param soi A List of SOrderItem data type objects.
      */
     public void insertSOrderAndSOrderItems(SOrder so, List<SOrderItem> soi) {
         insert(so);
@@ -192,8 +167,8 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     /**
      * Modify the status of supplier's order.
      *
-     * @param orderId A variable of type int.
-     * @param status A variable of type String.
+     * @param orderId SOrder's id.
+     * @param status New status.
      */
     public void updateStatus(int orderId, String status) {
         PreparedStatement pst = null;
@@ -212,7 +187,7 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     /**
      * Delete a supplier's order with a specific id.
      *
-     * @param id A variable of type int.
+     * @param id SOrder's id.
      */
     public void delete(int id) {
         PreparedStatement pst = null;

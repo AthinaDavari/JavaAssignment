@@ -2,7 +2,7 @@
 package pijavaparty.proderp.GUI.RawMaterials;
 
 import java.awt.Toolkit;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.RawMaterialDao;

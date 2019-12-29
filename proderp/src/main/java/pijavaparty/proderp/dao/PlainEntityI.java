@@ -1,29 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.dao;
 
 import java.util.List;
 
 /**
- *
+ * A class containing basic methods for handling data of entities
+ * with no more than one foreign key.
+ * 
  * @author Natalia
- * @param <T>
+ * @param <T> Entity class. 
  */
 public interface PlainEntityI<T> extends DaoI<T>{
     
     /**
-     *
+     * Delete with given id.
+     * 
      * @param id
      */
     void delete(int id);
     
     /**
-     *
+     * Retrieve a specific item with given id.
+     * 
      * @param id
-     * @return
+     * @return An object of type T.
      */
     T getById(int id);
 

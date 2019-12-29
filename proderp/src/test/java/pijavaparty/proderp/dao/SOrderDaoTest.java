@@ -8,7 +8,7 @@ package pijavaparty.proderp.dao;
 import java.sql.Timestamp;
 import static java.time.Instant.now;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import org.junit.BeforeClass;
@@ -48,7 +48,7 @@ public class SOrderDaoTest {
     public void atestGetAll() {
         System.out.println("getAll");
         SOrderDao instance = new SOrderDao();
-        List<SOrder> expResult = new LinkedList();
+        List<SOrder> expResult = new ArrayList();
         Supplier s1 = new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr");
         Supplier s2 = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
         expResult.add(new SOrder(1, s1, "pending", Timestamp.valueOf("2019-12-14 20:02:43")));
@@ -66,7 +66,7 @@ public class SOrderDaoTest {
     public void btestgetAllPendingOrders() {
         System.out.println("getAllPendingOrders");
         SOrderDao instance = new SOrderDao();
-        List<SOrder> expResult = new LinkedList();
+        List<SOrder> expResult = new ArrayList();
         Supplier s1 = new Supplier(1, "SideroA.E.", "A.Papadreou 30", 2105678934l, "info@sidero.gr");
         Supplier s2 = new Supplier(2, "PetaloudaA.E.", "Palaiologou 156", 2103789023l, "info@petalouda.gr");
         expResult.add(new SOrder(1, s1, "pending", Timestamp.valueOf("2019-12-14 20:02:43")));

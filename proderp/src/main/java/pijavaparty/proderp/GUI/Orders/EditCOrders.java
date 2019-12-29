@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
@@ -14,7 +9,9 @@ import pijavaparty.proderp.dao.COrderDao;
 import pijavaparty.proderp.entity.COrder;
 
 /**
- *
+ * EditCOrders.java - A graphical user interface (gui) class for modifying the status of an order 
+ * from customers and delete an order to customers.
+ * 
  * @author MariaKokkorou
  */
 public class EditCOrders extends javax.swing.JFrame {
@@ -65,6 +62,7 @@ public class EditCOrders extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Orders");
+        setMaximumSize(new java.awt.Dimension(850, 500));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -83,11 +81,11 @@ public class EditCOrders extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order's ID", "Customer ID - Name", "Status", "Created At"
+                "Order's ID", "Customer ID - Name", "Status", "Created At", "Username"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -149,29 +147,26 @@ public class EditCOrders extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(162, 162, 162)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 50, Short.MAX_VALUE))
+                        .addGap(162, 162, 162)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(orderid, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                            .addComponent(stat))
-                        .addGap(29, 29, 29)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(orderid, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stat, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,26 +191,40 @@ public class EditCOrders extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * Edit the status of an order from customers, update this order in the 
+    * database and update the quantities of the available 
+    * raw materials and products in the database.
+    * 
+    * @param evt action event
+    */
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
             String orderIdString = orderid.getText();
             int orderIdInt = Integer.parseInt(orderIdString);
-
+            // Get the value from Order's ID field.
             String status = stat.getText();
+            // Get the value from status field.
             
             StorageServices storageservices = new StorageServices();
             
-            if (status.equals("ready")){
+            if (status.equals("ready")){ // check if the order's status is "ready".
                 
                storageservices.updateProduct(orderIdInt);
+               // If the order is "ready", update in the database the quantities
+               // of the raw materials that were used to produse this product.
                storageservices.increaseProduct(orderIdInt);
-                
+               // Also, if the order is "ready", increase in the database the 
+               // number of the products that are available for the customers.
+               
             }
-            
-            if (status.equals("delivered")){
-                
+             
+            if (status.equals("delivered")){ // check if the order's status is "delivered".
+               
                storageservices.decreaseProduct(orderIdInt);
+               // If the order is "delivered" to the customer, decrease in the 
+               // database the number of products that are available fro customers.
                 
             }
             
@@ -233,6 +242,13 @@ public class EditCOrders extends javax.swing.JFrame {
 
     }//GEN-LAST:event_updateActionPerformed
 
+     /**
+      * Select a row of the table by clicking on it, and insert the order's ID 
+      * in the Order's ID field and the order's status in the status field.
+      * 
+      * @param evt action event
+      */
+    
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
 
         int selectedRow = COrdersTable.getSelectedRow();
@@ -242,6 +258,11 @@ public class EditCOrders extends javax.swing.JFrame {
         
     }//GEN-LAST:event_COrdersTableMouseClicked
 
+     /**
+     * Delete permanently an order from customer from the database.
+     * 
+     * @param evt action event
+     */
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         
@@ -275,26 +296,33 @@ public class EditCOrders extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelMouseClicked
 
-    /**
-     *
+    /** 
+     * Get order's id, customer's id and name, status and order's time of creation 
+     * data from database and show them in showCOrdersTable table.
+     * 
      */
+    
     public void showCOrdersTable() {
         try {
             
             COrderDao cod = new COrderDao();
             List<COrder> corders = cod.getAllExceptFromDelivered();
-            int number = corders.size();
+            // corders - an arraylist filled only with all the orders from customers
+            // that are not delivered yet. Orders with status different than "delivered".
+            int number = corders.size(); // the number of orders from customers that are not delivered yet.
             DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
 
             Object[] row = new Object[5];
 
             for (int i = 0; i < number; i++) {
-                row[0] = corders.get(i).getId();
+                row[0] = corders.get(i).getId(); // Fill the first column of the table with the id of the order.
                 row[1] = corders.get(i).getCustomer().getId() + "-" + corders.get(i).getCustomer().getFullName();
-                row[2] = corders.get(i).getStatus();
-                row[3] = corders.get(i).getCreated_at();
-                row[4] = corders.get(i).getUser().getFullName();
-
+                // Fill the second column of the table with the id - name of the customer.
+                row[2] = corders.get(i).getStatus(); // Fill the third column of the table with the status of the order.
+                row[3] = corders.get(i).getCreated_at(); // Fill the fourth column 
+                // of the table with the time of creation of the order.
+                row[4] = corders.get(i).getUser().getFullName(); 
+                // Fill the fifth column of the table with the username of the customer.
                 model.addRow(row);
             }
 

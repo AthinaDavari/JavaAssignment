@@ -3,7 +3,7 @@ package pijavaparty.proderp.GUI.Orders;
 
 import java.awt.Toolkit;
 import pijavaparty.proderp.entity.SOrder;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import pijavaparty.proderp.dao.SupplierDao;
@@ -52,6 +52,7 @@ public class AddNewSOrder extends javax.swing.JFrame {
         cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(850, 500));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -148,7 +149,7 @@ public class AddNewSOrder extends javax.swing.JFrame {
     private void comboBox() {
         
         SupplierDao sd = new SupplierDao();
-        List<Supplier> suppliers = new LinkedList();
+        List<Supplier> suppliers = new ArrayList();
         suppliers = sd.getAll();
         int number = suppliers.size();
         try {

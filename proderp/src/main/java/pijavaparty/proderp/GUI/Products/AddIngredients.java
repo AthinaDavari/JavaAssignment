@@ -302,9 +302,17 @@ public class AddIngredients extends javax.swing.JFrame {
     private void fillcombo() {
         Fillcombo fill = new Fillcombo();
         LinkedList<String> combocontents = fill.FillcomboArray(prodraw, prod);
+        int j = 0;
         for (int i = 0; i < combocontents.size(); i++) {
             drop_down.addItem(combocontents.get(i));
+            j++;
         }
+        if (j == 1) {
+            disablebuttonAdd();
+        }
+    }
+    private void disablebuttonAdd() {
+        AddMoreIngredients.setEnabled(false);
     }
 
     /**

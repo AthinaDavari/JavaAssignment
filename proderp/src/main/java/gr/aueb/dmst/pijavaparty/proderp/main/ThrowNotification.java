@@ -12,11 +12,15 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * A class for checking lack of products & raw materials.  
+ * 
  * @author Natalia
  */
 public class ThrowNotification implements Runnable {
 
+    /**
+     * Runs the thread while application is running 
+     */
     @Override
     public void run() {
         Window[] windows;
@@ -41,11 +45,11 @@ public class ThrowNotification implements Runnable {
             if (!foundActive) {
                 System.exit(0);
             }
-            if (LogIn.user != null) {
+            if (LogIn.getUser() != null) {
             showOptionPane();
             }
             try {
-                Thread.sleep(1000000);
+                Thread.sleep(100000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -55,11 +59,11 @@ public class ThrowNotification implements Runnable {
     }
 
     /**
-     *
+     * Shows an OptionPane with information about insufficient products' stock.
      */
     public void showOptionPane() {
         Checks checks = new Checks();
-            if (LogIn.user != null) {
+            if (LogIn.getUser() != null) {
                 List<RawMaterial> raws = checks.checkRawQuantities();
                 List<Product> products = checks.checkProductQuantities();
                 StringBuilder sb = new StringBuilder();

@@ -188,7 +188,7 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         CustomerDao cd = new CustomerDao();
         String[] customerTable = customer.split("-");
         customerId = Integer.parseInt(customerTable[0]);
-        corder = new COrder(cd.getById(customerId), LogIn.user);
+        corder = new COrder(cd.getById(customerId), LogIn.getUser());
         
     }
  

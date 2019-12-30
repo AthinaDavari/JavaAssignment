@@ -189,7 +189,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
-        LogIn.user = null;
+        LogIn.setUser(null);
         LogIn obj = new LogIn();
         obj.setVisible(true);
         dispose();

@@ -207,13 +207,13 @@ public class StorageMain extends javax.swing.JFrame {
 
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn login = new LogIn();
-        LogIn.user = null;
+        LogIn.setUser(null);
         login.setVisible(true);
         dispose();       
     }//GEN-LAST:event_logOutMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        if((LogIn.user.getRole()).equals("admin")){
+        if((LogIn.getUser().getRole()).equals("admin")){
             AdminMenu menu = new AdminMenu();
             menu.setVisible(true);
         } else {

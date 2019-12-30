@@ -65,7 +65,7 @@ public class LogInTest {
             }
             Window w[] = Window.getWindows();
             assertEquals(1, w.length);
-            assertEquals("class pijavaparty.proderp.GUI.LogIn", w[0].getClass().toString());
+            assertEquals("class gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn", w[0].getClass().toString());
             assertEquals(true, w[0].isVisible());
     }
 
@@ -121,14 +121,14 @@ public class LogInTest {
             System.out.println(window);
         }
         assertEquals(3, w.length);
-        assertEquals("class pijavaparty.proderp.GUI.LogIn", w[0].getClass().toString());
+        assertEquals("class gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn", w[0].getClass().toString());
         assertEquals(false, w[0].isVisible());
-        assertEquals("class pijavaparty.proderp.GUI.LogIn", w[1].getClass().toString());
+        assertEquals("class gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn", w[1].getClass().toString());
         assertEquals(false, w[1].isVisible());
-        assertEquals("class pijavaparty.proderp.GUI.AdminMenu", w[2].getClass().toString());
+        assertEquals("class gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu", w[2].getClass().toString());
         assertEquals(true, w[2].isVisible());
         User expResult = new User("athina", "ath", null, "admin");
-        assertEquals(expResult, LogIn.user);
+        assertEquals(expResult, LogIn.getUser());
         assertEquals(expResult, new UserDao().getUserByUsername("ath"));
 
     }

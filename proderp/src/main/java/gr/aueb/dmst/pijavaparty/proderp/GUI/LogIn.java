@@ -1,28 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gr.aueb.dmst.pijavaparty.proderp.GUI;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.UserDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.User;
 import gr.aueb.dmst.pijavaparty.proderp.main.ThrowNotification;
 import java.awt.Toolkit;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- * @author aggel
- * Log in as simple user or administrator (admin).
+ * @author aggel Log in as simple user or administrator (admin).
  */
 public class LogIn extends javax.swing.JFrame implements Runnable {
 
     /**
      *
      */
-    public static User user;
+    private static User user;
 
     /**
      * Creates new form LogIn
@@ -37,6 +33,23 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+    }
+
+    public static void setUser(User u) {
+        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+        List<StackTraceElement> list = Arrays.asList(stackTraceElements);
+        if (list.get(2).getClassName().startsWith("gr.aueb.dmst.pijavaparty.proderp")) {
+            user = u;
+        }
+    }
+
+    public static User getUser() {
+        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+        List<StackTraceElement> list = Arrays.asList(stackTraceElements);
+        if (list.get(2).getClassName().startsWith("gr.aueb.dmst.pijavaparty.proderp")) {
+            return user;
+        } 
+        return null;
     }
 
     /**
@@ -172,7 +185,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         if (user != null && user.getRole() == "admin") {
             try {
                 user.setPassword(null);
-                LogIn.user = user;
+                this.user = user;
                 new AdminMenu().setVisible(true);
                 dispose();
             } catch (Throwable ex) {
@@ -180,7 +193,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
             }
         } else if (user != null && user.getRole() == "simpleuser") {
             user.setPassword(null);
-            LogIn.user = user;
+            this.user = user;
             Menu obj = new Menu();
             obj.setVisible(true);
             dispose();
@@ -190,8 +203,9 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_logInActionPerformed
 
     private void logInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logInKeyPressed
-        if(evt.getKeyCode() == evt.VK_ENTER)
-        logIn.doClick();
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            logIn.doClick();
+        }
     }//GEN-LAST:event_logInKeyPressed
 
     /**
@@ -230,15 +244,14 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         a.start();
         b.start();
 
-     }
-
+    }
 
     @Override
     public void run() {
 
         this.setVisible(true);
 
-        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

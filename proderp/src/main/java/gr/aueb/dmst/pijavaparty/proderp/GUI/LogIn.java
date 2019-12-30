@@ -180,7 +180,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
     private void logInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInActionPerformed
         String un = jTextField1.getText();
         String password = jPasswordField1.getText();
-
+        
         UserDao u = new UserDao();
         User user = u.getUser(un, password);
         if (user != null && user.getRole() == "admin") {

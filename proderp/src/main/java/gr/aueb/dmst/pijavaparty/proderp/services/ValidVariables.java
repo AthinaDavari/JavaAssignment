@@ -19,7 +19,6 @@ public class ValidVariables {
         }
         return ((!str.replace(" ", "").equals("")
                 && (str.replace(" ", "").chars().allMatch(Character::isLetter))));
-
     }
 
     /**

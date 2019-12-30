@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
 /**
  * UserDao.java - a class for interacting and modifying the fields of a user.
  *

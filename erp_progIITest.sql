@@ -14,7 +14,7 @@ CREATE TABLE `Suppliers` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `full_name` varchar(255),
   `address` varchar(255),
-  `phonenumber` int,
+  `phonenumber` bigint,
   `email` varchar(255),
   `is_deleted` boolean default false
 );
@@ -23,7 +23,7 @@ CREATE TABLE `Customers` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `full_name` varchar(255),
   `address` varchar(255),
-  `phonenumber` int,
+  `phonenumber` bigint,
   `email` varchar(255),
   `is_deleted` boolean default false
 );

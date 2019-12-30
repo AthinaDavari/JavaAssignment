@@ -22,6 +22,7 @@ public class SupplierEdit extends javax.swing.JFrame {
         initComponents();
         showSuppliersTable();
         seticon();
+        setTitle("Edit Supplier");
     }
 
     /**

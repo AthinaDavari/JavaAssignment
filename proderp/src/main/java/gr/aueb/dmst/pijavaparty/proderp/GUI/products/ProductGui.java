@@ -22,6 +22,7 @@ public class ProductGui extends javax.swing.JFrame {
         initComponents();
         showProductTable();
         seticon();
+        setTitle("Products");
     }
 
     /**

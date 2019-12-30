@@ -21,6 +21,7 @@ public class EditProduct extends javax.swing.JFrame {
         initComponents();
         showProductsTable();
         seticon();
+        setTitle("Edit Product");
     }
 
     /**

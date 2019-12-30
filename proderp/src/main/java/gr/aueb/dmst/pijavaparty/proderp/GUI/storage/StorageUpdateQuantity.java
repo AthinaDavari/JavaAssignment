@@ -22,6 +22,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
     public StorageUpdateQuantity() {
         initComponents();
         seticon();
+        setTitle("Update Storage Quantity");
     }
 
     /**

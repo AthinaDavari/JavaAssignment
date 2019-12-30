@@ -24,6 +24,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         initComponents();
         showRawMaterialTable();
         seticon();
+        setTitle("Edit Raw Materials");
     }
 
     private void seticon() {

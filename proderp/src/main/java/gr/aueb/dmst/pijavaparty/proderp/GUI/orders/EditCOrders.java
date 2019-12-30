@@ -25,6 +25,7 @@ public class EditCOrders extends javax.swing.JFrame {
         initComponents();
         showCOrdersTable();
         seticon();
+        setTitle("Edit Customer Order");
     }
 
     /**

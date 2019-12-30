@@ -14,13 +14,14 @@ import java.awt.Toolkit;
  * the program's operations including adding and deleting users.
  */
 public class AdminMenu extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form AdminMenu
      */
     public AdminMenu() {
         initComponents();
         seticon();
+        setTitle("Administrator's Menu");
     }
 
     /**
@@ -61,6 +62,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setName("AdminMenu"); // NOI18N
         setResizable(false);
 
         Customers.setBackground(new java.awt.Color(255, 255, 255));
@@ -126,7 +128,6 @@ public class AdminMenu extends javax.swing.JFrame {
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/untitled (4).png"))); // NOI18N
-        jLabel1.setText("jLabel1");
 
         LogOut.setText("Log Out");
         LogOut.addMouseListener(new java.awt.event.MouseAdapter() {

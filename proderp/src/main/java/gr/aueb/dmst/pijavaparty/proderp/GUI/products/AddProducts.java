@@ -17,6 +17,7 @@ public class AddProducts extends javax.swing.JFrame {
     public AddProducts() {
         initComponents();
         seticon();
+        setTitle("Add Products");
     }
 
     /**

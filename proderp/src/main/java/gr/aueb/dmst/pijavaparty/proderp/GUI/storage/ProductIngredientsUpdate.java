@@ -25,6 +25,7 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
      */
     public ProductIngredientsUpdate() {
         initComponents();
+        setTitle("Update Product's Ingredients");
     }
     //constracor to get id and quantity from previous window
 

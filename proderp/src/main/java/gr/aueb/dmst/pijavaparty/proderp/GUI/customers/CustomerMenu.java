@@ -19,7 +19,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     public CustomerMenu() {
         initComponents();
         showCustomersTable();
-
+        setTitle("Customer's Menu");
         seticon();
     }
 

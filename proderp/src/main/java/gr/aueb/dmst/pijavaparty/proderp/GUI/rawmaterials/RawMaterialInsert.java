@@ -26,6 +26,7 @@ public class RawMaterialInsert extends javax.swing.JFrame {
         initComponents();
         fillcombo();
         seticon();
+        setTitle("Insert Raw Materials");
     }
 
     /**

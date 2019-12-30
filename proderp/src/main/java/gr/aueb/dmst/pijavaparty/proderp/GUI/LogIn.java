@@ -26,6 +26,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
     public LogIn() {
         initComponents();
         seticon();
+        setTitle("Log In");
     }
 
     /**

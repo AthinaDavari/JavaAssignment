@@ -47,6 +47,7 @@ public class AddIngredients extends javax.swing.JFrame {
         initComponents();
         fillcombo();
         seticon();
+        setTitle("Add Ingredients");
     }
     //product exist
 

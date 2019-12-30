@@ -20,6 +20,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
     public DeleteIngredients() {
         initComponents();
         seticon();
+        setTitle("Delete Ingredients");
     }
 
     /**

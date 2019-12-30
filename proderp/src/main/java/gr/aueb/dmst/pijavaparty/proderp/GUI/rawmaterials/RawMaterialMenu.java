@@ -21,6 +21,7 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         initComponents();
         showRawMaterialTable();
         seticon();
+        setTitle("Raw Material's Menu");
     }
     private void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));

@@ -36,8 +36,8 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
      * @return A Product data type List.
      */
     @Override
-    public List<Product> getAll() {
-        List<Product> products = new ArrayList();
+    public ArrayList<Product> getAll() {
+        ArrayList<Product> products = new ArrayList();
         Statement st = null;
         ResultSet rs = null;
         try {

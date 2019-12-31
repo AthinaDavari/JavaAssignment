@@ -55,7 +55,6 @@ public class EditCOrders extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         stat = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        back = new javax.swing.JMenu();
         cancel = new javax.swing.JMenu();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -63,7 +62,6 @@ public class EditCOrders extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Orders");
-        setMaximumSize(new java.awt.Dimension(850, 500));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -122,15 +120,6 @@ public class EditCOrders extends javax.swing.JFrame {
         stat.setEditable(false);
         stat.setBackground(new java.awt.Color(204, 204, 204));
         stat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        back.setForeground(new java.awt.Color(0, 0, 204));
-        back.setText("Back");
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(back);
 
         cancel.setForeground(new java.awt.Color(0, 0, 204));
         cancel.setText("Cancel");
@@ -283,14 +272,6 @@ public class EditCOrders extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        
-        OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
-        ordersfromcustomers.setVisible(true);
-        dispose();
-        
-    }//GEN-LAST:event_backMouseClicked
-
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
        
         dispose();
@@ -371,7 +352,6 @@ public class EditCOrders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable COrdersTable;
-    private javax.swing.JMenu back;
     private javax.swing.JMenu cancel;
     private javax.swing.JButton delete;
     private javax.swing.JButton jButton1;

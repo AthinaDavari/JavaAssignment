@@ -10,12 +10,9 @@ import gr.aueb.dmst.pijavaparty.proderp.entity.ProductRawMaterial;
 import java.util.List;
 import java.util.function.Function;
 
-
-
-
 /**
  *
- * @author aggel
+ * @author aggel, MariaKokkorou, Athina Davari
  */
 public class StorageServices {
 
@@ -26,101 +23,139 @@ public class StorageServices {
 
     }
 
-    //method that takes the quantity of all the ingrediaents in a product recipe 
-    //and as the quantity of the product chages the quantity of all the raw matirials changes as well
 
     /**
-     *
-     * @param id
-     * @param quant
+     * Update the quantity of all the ingredients in product's recipe
+     * @param id-the product's id we want to made
+     * @param quant-the quantity of product we want to make(with -) or destroy(with +)
+     * @return if the quantity of product's, return true,
+     * else false
      */
     public boolean UpdateIngredients(int id, int quant) {
-        ProductRawMaterial prodraw;
-        int quantrecipe;
-        int rawquant;
-        ProductDao proddao = new ProductDao();
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
-        List<ProductRawMaterial> prodrawlist;
-        prodrawlist = prodrawdao.getMaterialsPerProduct(id);
+        
+        //list of raw materials,which are included in product's recipe
+        List<ProductRawMaterial> prodrawlist = prodrawdao.getMaterialsPerProduct(id);
         RawMaterialDao rawmatdao = new RawMaterialDao();
         Function<Integer, Integer> f = updateQuantityOfRawMaterialBy(quant);
-        for (int i = 0; i < prodrawlist.size(); i++) {
-            prodraw = prodrawlist.get(i);
-            quantrecipe = prodraw.getQuantityOfRawMaterial();
-            rawquant = prodraw.getRawMaterial().getQuantity();
-            rawquant += f.apply(quantrecipe);
-//          rawquant = rawquant + quantrecipe * quant;
-            if (rawquant < 0) {
-                return false;
-            }
-        }
-        for (int i = 0; i < prodrawlist.size(); i++) {
-            prodraw = prodrawlist.get(i);
-            quantrecipe = prodraw.getQuantityOfRawMaterial();
-            rawquant = prodraw.getRawMaterial().getQuantity();
-            rawquant += f.apply(quantrecipe);
-            rawmatdao.updateQuantity(prodraw.getRawMaterial().getId(), rawquant);
-        }
         
+        //if we want to make products,check the raw materials pieces in storage
+        if(quant < 0){//start 1st if
+        //if at least a raw material has not enough pieces in storage, stop the process 
+        if (permissionToUpdateIngredients(id, quant) == false) {//start 2nd if
+            return false;
+        }//end 2nd if
+        }//end 1st if
+        
+        int prodrawlistsize = prodrawlist.size();//number of raw materials in product's recipe
+        int quantrecipe;
+        int rawquant;
+        
+        //update all raw materials in product's recipe
+        for (int i = 0; i < prodrawlistsize; i++) {
+            //the raw material we want to update
+            ProductRawMaterial prodraw = prodrawlist.get(i);
+            //raw material's quantity, which needs a product's unit to make
+            quantrecipe = prodraw.getQuantityOfRawMaterial();
+            //raw material's quantity in storage
+            rawquant = prodraw.getRawMaterial().getQuantity();
+            rawquant += f.apply(quantrecipe);//same with: rawquant = rawquant + quantrecipe * quant;
+            //update the raw material 
+            rawmatdao.updateQuantity(prodraw.getRawMaterial().getId(), rawquant);
+        }//end for
+
         return true;
 
     }
 
     /**
+     * Check if the storage have enough raw materials to make a product in quantity we want
+     * @param id-the product's id we want to made
+     * @param quant-the quantity of product we want to make(with -)
+     * @return if the storage have enough raw materials to make a product in quantity we want, return true,
+     * else false
+     */
+    public boolean permissionToUpdateIngredients(int id, int quant) {
+        ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
+
+        //get all materials from product's recipe
+        List<ProductRawMaterial> prodrawlist = prodrawdao.getMaterialsPerProduct(id);
+        Function<Integer, Integer> f = updateQuantityOfRawMaterialBy(quant);
+        int prodrawlistsize = prodrawlist.size();//number of raw materials in product's recipe
+        
+        int quantrecipe;
+        int rawquant;
+        for (int i = 0; i < prodrawlistsize; i++) {//start for
+            //the raw material we want to check its quantity
+            ProductRawMaterial prodraw = prodrawlist.get(i);
+            //raw material's quantity, which needs a product's unit to make
+            quantrecipe = prodraw.getQuantityOfRawMaterial();
+            //raw material's quantity in storage
+            rawquant = prodraw.getRawMaterial().getQuantity();
+            rawquant += f.apply(quantrecipe);//same with: rawquant = rawquant + quantrecipe * quant;
+            
+            //if the raw material has not enough pieces in storage, return false
+            if (rawquant < 0) {
+                return false;
+            }//end if
+            
+        }//end for
+        
+        return true;
+    }
+
+    /**
      *
-     * @param q
+     * @param q-the quantity of product we want to make(with -) or destroy(with +)
      * @return
      */
     public Function<Integer, Integer> updateQuantityOfRawMaterialBy(int q) {
         return x -> q * x;
     }
-    
-    
-    
+
     /**
-     * @author MariaKokkorou
      * @param corderid
      */
-    public void increaseProduct(int corderid){
-        
+    public void increaseProduct(int corderid) {
+
         COrderItemDao coid = new COrderItemDao();
-        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
         ProductDao pd = new ProductDao();
         for (COrderItem cOrderItem : corderitems) {
-            
+
             Product productFromOrder = cOrderItem.getProduct();
             pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() + cOrderItem.getQuantity());
-       
+
         }
-        
+
     }
-    
-    public void updateProduct(int corderid){
-        
+
+    public void updateProduct(int corderid) {
+
         COrderItemDao coid = new COrderItemDao();
-        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid); 
+        List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
         for (COrderItem cOrderItem : corderitems) {
-            
+
             UpdateIngredients(corderid, cOrderItem.getQuantity());
-            
+
         }
     }
-    
+
     /**
      *
      * @param corderid
      */
-    public void decreaseProduct(int corderid){
-        
+    public void decreaseProduct(int corderid) {
+
         COrderItemDao coid = new COrderItemDao();
-        List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
         ProductDao pd = new ProductDao();
         for (COrderItem cOrderItem : corderitems) {
-            
+
             Product productFromOrder = cOrderItem.getProduct();
             pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
-       
+
         }
-        
+
     }
 }

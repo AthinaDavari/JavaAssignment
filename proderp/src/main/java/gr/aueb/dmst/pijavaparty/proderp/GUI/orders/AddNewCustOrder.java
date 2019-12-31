@@ -48,7 +48,6 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         custid = new javax.swing.JComboBox<>();
         addNewProduct = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        back = new javax.swing.JMenu();
         cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,15 +68,6 @@ public class AddNewCustOrder extends javax.swing.JFrame {
                 addNewProductActionPerformed(evt);
             }
         });
-
-        back.setForeground(new java.awt.Color(0, 0, 204));
-        back.setText("Back");
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(back);
 
         cancel.setForeground(new java.awt.Color(0, 0, 204));
         cancel.setText("Cancel");
@@ -147,14 +137,6 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_addNewProductActionPerformed
-
-    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        
-        OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
-        ordersfromcustomers.setVisible(true);
-        dispose();
-
-    }//GEN-LAST:event_backMouseClicked
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         
@@ -230,7 +212,6 @@ public class AddNewCustOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewProduct;
-    private javax.swing.JMenu back;
     private javax.swing.JMenu cancel;
     private javax.swing.JComboBox<String> custid;
     private javax.swing.JLabel jLabel1;

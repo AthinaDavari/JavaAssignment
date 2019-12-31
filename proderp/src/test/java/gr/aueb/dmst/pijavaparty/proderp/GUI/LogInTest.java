@@ -11,12 +11,16 @@ import java.awt.event.KeyEvent;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author athina
  */
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LogInTest {
     
     /**
@@ -55,7 +59,7 @@ public class LogInTest {
      * @throws java.awt.AWTException
      */
     @Test
-    public void testMain() throws AWTException {
+    public void atestMain() throws AWTException {
             System.out.println("main");
             String[] args = null;
             LogIn.main(args);
@@ -74,7 +78,7 @@ public class LogInTest {
      * @throws java.awt.AWTException
      */
     @Test
-    public void logInKeyPressed() throws AWTException {
+    public void blogInKeyPressed() throws AWTException {
         System.out.println("logInKeyPressed");
         LogIn li = new LogIn();
         li.setVisible(true);

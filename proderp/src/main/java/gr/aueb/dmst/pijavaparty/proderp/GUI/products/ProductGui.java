@@ -5,7 +5,9 @@ import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.Menu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.ProductDao;
+import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,7 +22,7 @@ public class ProductGui extends javax.swing.JFrame {
      */
     public ProductGui() {
         initComponents();
-        showProductTable();
+        fillProductTable();
         seticon();
         setTitle("Products");
     }
@@ -183,17 +185,20 @@ public class ProductGui extends javax.swing.JFrame {
     //showing colums from table product in data base
 
     /**
-     *
+     *Fill product_table table with all products in database
      */
-    public void showProductTable(){
+    public void fillProductTable(){
         ProductDao proddao=new ProductDao();
         DefaultTableModel model=(DefaultTableModel) product_table.getModel();
-        int number=proddao.getAll().size();
+        //take all products from database
+        ArrayList<Product> products = proddao.getAll();
+        int number=products.size();//number of products in database
         Object[] row=new Object[3];
+        //fill table
         for(int i=0; i<number; i++){
-            row[0]=proddao.getAll().get(i).getId();
-            row[1]=proddao.getAll().get(i).getName();
-            row[2]=proddao.getAll().get(i).getPrice();
+            row[0]=products.get(i).getId();
+            row[1]=products.get(i).getName();
+            row[2]=products.get(i).getPrice();
             model.addRow(row);
         }
     }

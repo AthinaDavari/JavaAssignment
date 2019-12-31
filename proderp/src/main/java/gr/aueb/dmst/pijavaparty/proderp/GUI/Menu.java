@@ -7,6 +7,11 @@ import gr.aueb.dmst.pijavaparty.proderp.GUI.rawmaterials.RawMaterialMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.storage.StorageMain;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.suppliers.SuppliersMenu;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,6 +48,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
+        visitOurWebsite = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -106,6 +112,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu2);
+
+        visitOurWebsite.setText("Visit Our Website");
+        visitOurWebsite.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                visitOurWebsiteMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(visitOurWebsite);
 
         setJMenuBar(jMenuBar1);
 
@@ -193,6 +207,17 @@ public class Menu extends javax.swing.JFrame {
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void visitOurWebsiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visitOurWebsiteMouseClicked
+        try {
+            URI uri = new URI("http://prometheus.dmst.aueb.gr/~nkatsiapi/proderp/index.html");
+            java.awt.Desktop.getDesktop().browse(uri);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(AdminMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_visitOurWebsiteMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -238,5 +263,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu visitOurWebsite;
     // End of variables declaration//GEN-END:variables
 }

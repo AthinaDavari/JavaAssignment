@@ -57,7 +57,6 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         RawMaterialsTable = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         back = new javax.swing.JMenu();
-        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -92,15 +91,6 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         });
         jMenuBar1.add(back);
 
-        cancel.setForeground(new java.awt.Color(0, 0, 204));
-        cancel.setText("Cancel");
-        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(cancel);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,17 +120,9 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         
-        OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
-        ordersfromsuppliers.setVisible(true);
         dispose();
         
     }//GEN-LAST:event_backMouseClicked
-
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        
-        dispose();
-        
-    }//GEN-LAST:event_cancelMouseClicked
     
     /**
      *
@@ -203,7 +185,6 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable RawMaterialsTable;
     private javax.swing.JMenu back;
-    private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;

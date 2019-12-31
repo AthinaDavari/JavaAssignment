@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 public class AddItemSOrder extends javax.swing.JFrame {
 
     private ArrayList<SOrderItem> SOrderItemsList = new ArrayList<SOrderItem>();
-    
+
     /**
      * Creates new form AddItemSOrder
      */
@@ -33,14 +33,14 @@ public class AddItemSOrder extends javax.swing.JFrame {
         seticon();
         setTitle("Add Items");
     }
-    
+
     public AddItemSOrder(ArrayList<SOrderItem> SOrderItemsList) {
         this.SOrderItemsList = SOrderItemsList;
         initComponents();
         comboBox();
         seticon();
     }
-    
+
     /**
      *
      */
@@ -239,48 +239,48 @@ public class AddItemSOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_quantityKeyReleased
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        
+
         AddNewSOrder addnewsorder = new AddNewSOrder();
         addnewsorder.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_cancelMouseClicked
 
-    
+
      private void comboBox(){
-         
+
         RawMaterialDao rmd = new RawMaterialDao();
         List<String> rawMaterials;
-        
+
         SupplierDao sd = new SupplierDao();
         rawMaterials = SOrderServices.RawMaterialsNotIncludedInSuppliersOrder(SOrderItemsList, sd.getById(supplierId));
-        
+
         int number = rawMaterials.size();
-        
+
         try {
-            
+
             for (int i = 0; i < number; i++) {
-                
+
                 rawMaterialsCombo.addItem(rawMaterials.get(i));
-                
+
             }
             //Disable newitem button if combo box has only one item
             if (number == 1){
                 disable_newitem_button();
             }
-            
+
          } catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
     }
-     
+
      /**
       * Disable newitem button
       */
      private void disable_newitem_button(){
          newitem.setEnabled(false);
      }
-     
+
     /**
      * @param args the command line arguments
      */
@@ -288,7 +288,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -322,11 +322,11 @@ public class AddItemSOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton newitem;
     private javax.swing.JTextField quantity;
     private javax.swing.JComboBox<String> rawMaterialsCombo;
     private javax.swing.JLabel valid_Quantity;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 
 }

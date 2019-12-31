@@ -49,11 +49,9 @@ public class AddNewSOrder extends javax.swing.JFrame {
         addNewItem = new javax.swing.JButton();
         supid = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
-        back = new javax.swing.JMenu();
         cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(850, 500));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -71,15 +69,6 @@ public class AddNewSOrder extends javax.swing.JFrame {
         });
 
         supid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        back.setForeground(new java.awt.Color(0, 0, 255));
-        back.setText("Back");
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(back);
 
         cancel.setForeground(new java.awt.Color(0, 0, 255));
         cancel.setText("Cancel");
@@ -175,14 +164,6 @@ public class AddNewSOrder extends javax.swing.JFrame {
         
     }
     
-    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        
-        OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
-        ordersfromsuppliers.setVisible(true);
-        dispose();
-        
-    }//GEN-LAST:event_backMouseClicked
-
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         
         dispose();
@@ -227,7 +208,6 @@ public class AddNewSOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewItem;
-    private javax.swing.JMenu back;
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

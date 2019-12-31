@@ -307,10 +307,13 @@ public class AddIngredients extends javax.swing.JFrame {
             drop_down.addItem(combocontents.get(i));
             j++;
         }
+        //Disable AddMoreIngredients button if combo box has only one item
         if (j == 1) {
             disablebuttonAdd();
         }
     }
+    
+    //Disable AddMoreIngredients button
     private void disablebuttonAdd() {
         AddMoreIngredients.setEnabled(false);
     }

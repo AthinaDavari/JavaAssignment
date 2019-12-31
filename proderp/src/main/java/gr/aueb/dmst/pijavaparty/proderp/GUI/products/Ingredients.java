@@ -1,10 +1,11 @@
 
 package gr.aueb.dmst.pijavaparty.proderp.GUI.products;
 
-import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
 import gr.aueb.dmst.pijavaparty.proderp.dao.ProductRawMaterialDao;
 import gr.aueb.dmst.pijavaparty.proderp.dao.RawMaterialDao;
+import gr.aueb.dmst.pijavaparty.proderp.entity.ProductRawMaterial;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,7 +23,7 @@ public class Ingredients extends javax.swing.JFrame {
     public Ingredients(int id) {
         this.id=id;
         initComponents();
-        showIngredientsTable();
+        fillIngredientsTable();
         seticon();
         setTitle("Ingredients");
     }
@@ -39,7 +40,7 @@ public class Ingredients extends javax.swing.JFrame {
      */
     public Ingredients() {
         initComponents();
-        showIngredientsTable();
+        fillIngredientsTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -52,7 +53,6 @@ public class Ingredients extends javax.swing.JFrame {
         DeleteIngredient = new javax.swing.JButton();
         AddIngredient = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        LogOut = new javax.swing.JMenu();
         Back = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -91,15 +91,6 @@ public class Ingredients extends javax.swing.JFrame {
                 AddIngredientActionPerformed(evt);
             }
         });
-
-        LogOut.setForeground(new java.awt.Color(51, 51, 255));
-        LogOut.setText("Log Out");
-        LogOut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LogOutMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(LogOut);
 
         Back.setForeground(new java.awt.Color(51, 51, 255));
         Back.setText("Back");
@@ -156,12 +147,6 @@ public class Ingredients extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_AddIngredientActionPerformed
 
-    private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
-        LogIn login = new LogIn();
-        login.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_LogOutMouseClicked
-
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
         ProductGui menu = new ProductGui();
         menu.setVisible(true);
@@ -170,31 +155,54 @@ public class Ingredients extends javax.swing.JFrame {
     //showing colums of product table in data base 
 
     /**
-     *
+     *Fill Ingredients_Table table with product's ingredients
      */
-    public void showIngredientsTable(){
+    public void fillIngredientsTable(){
         ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
         RawMaterialDao rawdao=new RawMaterialDao();
         DefaultTableModel model=(DefaultTableModel) Ingredients_Table.getModel();
-        int number=prodrawdao.getAll().size();
-        int numofraw = rawdao.getAll().size();
+        
+        //Take all product's ingredients from database
+        ArrayList<ProductRawMaterial> rawmatperproduct = prodrawdao.getMaterialsPerProduct(id);
+        int number=rawmatperproduct.size();//number of product's ingredients in database
+        int numofraw = rawdao.getAll().size();//number of raw materials in database
+        
         Object[] row=new Object[3];
-        int j = 0;
-        for(int i=0; i<number; i++){
-            if (prodrawdao.getAll().get(i).getProduct().getId()==id){
-                row[0]=prodrawdao.getAll().get(i).getRawMaterial().getId();
-                row[1]=prodrawdao.getAll().get(i).getRawMaterial().getName();
-                row[2]=prodrawdao.getAll().get(i).getQuantityOfRawMaterial();
+        int i = 0;//for's counter
+        //fill table
+        for(i=0; i<number; i++){
+                row[0]=rawmatperproduct.get(i).getRawMaterial().getId();
+                row[1]=rawmatperproduct.get(i).getRawMaterial().getName();
+                row[2]=rawmatperproduct.get(i).getQuantityOfRawMaterial();
                 model.addRow(row);
-                j++;
-            }
-        }
-        if (j == numofraw) {
+        }//end for
+        
+        /*
+        *Disable AddIngredient button 
+        *if product has as many ingredients as the number of raw materials in database
+        */
+        if (i == numofraw) {
             disablebuttonAdd();
-        }
+        }//end if
+        
+        //Disable DeleteIngredient button if product has no ingredients
+        if (i == 0) {
+            disablebuttonDelete();
+        }//end if
     }
+    
+      /**
+      * Disable AddIngredient button
+      */
         private void disablebuttonAdd() {
         AddIngredient.setEnabled(false);
+    }
+        
+      /**
+      * Disable DeleteIngredient button
+      */
+        private void disablebuttonDelete() {
+        DeleteIngredient.setEnabled(false);
     }
     /**
      * @param args the command line arguments
@@ -236,7 +244,6 @@ public class Ingredients extends javax.swing.JFrame {
     private javax.swing.JMenu Back;
     private javax.swing.JButton DeleteIngredient;
     private javax.swing.JTable Ingredients_Table;
-    private javax.swing.JMenu LogOut;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;

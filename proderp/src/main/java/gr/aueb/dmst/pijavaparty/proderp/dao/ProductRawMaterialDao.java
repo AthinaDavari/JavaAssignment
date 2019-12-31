@@ -35,10 +35,10 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
      * @return A ProductRawMaterial data type List.
      */
     @Override
-    public List<ProductRawMaterial> getAll() {
+    public ArrayList<ProductRawMaterial> getAll() {
         Statement st = null;
         ResultSet rs = null;
-        List<ProductRawMaterial> productRawMaterials = new ArrayList();
+        ArrayList<ProductRawMaterial> productRawMaterials = new ArrayList();
         try {
             st = getConnection().createStatement();
             rs = st.executeQuery(GETALL);
@@ -59,8 +59,8 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
      * @param pid Product's id.
      * @return A List of RawMaterials with their quantity.
      */
-    public List<ProductRawMaterial> getMaterialsPerProduct(int pid) {
-        List<ProductRawMaterial> productsMaterials = new ArrayList();
+    public ArrayList<ProductRawMaterial> getMaterialsPerProduct(int pid) {
+        ArrayList<ProductRawMaterial> productsMaterials = new ArrayList();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {

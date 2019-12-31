@@ -7,6 +7,11 @@ import gr.aueb.dmst.pijavaparty.proderp.GUI.rawmaterials.RawMaterialMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.storage.StorageMain;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.suppliers.SuppliersMenu;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author anna
@@ -55,6 +60,7 @@ public class AdminMenu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         LogOut = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        visitOurWebsite = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
@@ -137,6 +143,14 @@ public class AdminMenu extends javax.swing.JFrame {
         });
         jMenuBar1.add(LogOut);
         jMenuBar1.add(jMenu4);
+
+        visitOurWebsite.setText("Visit Our Website");
+        visitOurWebsite.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                visitOurWebsiteMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(visitOurWebsite);
 
         setJMenuBar(jMenuBar1);
 
@@ -245,6 +259,17 @@ public class AdminMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AddUserActionPerformed
 
+    private void visitOurWebsiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visitOurWebsiteMouseClicked
+        try {
+            URI uri = new URI("http://prometheus.dmst.aueb.gr/~nkatsiapi/proderp/index.html");
+            java.awt.Desktop.getDesktop().browse(uri);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(AdminMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_visitOurWebsiteMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -295,5 +320,6 @@ public class AdminMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu visitOurWebsite;
     // End of variables declaration//GEN-END:variables
 }

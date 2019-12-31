@@ -7,8 +7,9 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
+ * InsertCustomer.java -a gui class for adding the data of a customer.
  *
- * @author Ctell
+ * @author Stella
  */
 public class InsertCustomer extends javax.swing.JFrame {
 
@@ -191,7 +192,12 @@ public class InsertCustomer extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Add valid data of a customer in the database.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the save button.
+     */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         try {
 
@@ -217,7 +223,13 @@ public class InsertCustomer extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_saveActionPerformed
-
+    /**
+     * Check if the name input is valid and if it is invalid show a warning
+     * message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
+     */
     private void value_FullNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_FullNameKeyReleased
 
         if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_FullName.getText())) {
@@ -226,7 +238,13 @@ public class InsertCustomer extends javax.swing.JFrame {
             valid_Fullname.setText(null);
         }
     }//GEN-LAST:event_value_FullNameKeyReleased
-
+    /**
+     * Check if the phonenumber input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt @param evt is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */
     private void value_PhonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_PhonenumberKeyReleased
         if (!ValidVariables.isValidPhonenumber(value_Phonenumber.getText())) {
             valid_Phonenumber.setText("Phonenumber is invalid!");
@@ -234,7 +252,13 @@ public class InsertCustomer extends javax.swing.JFrame {
             valid_Phonenumber.setText(null);
         }
     }//GEN-LAST:event_value_PhonenumberKeyReleased
-
+    /**
+     * Check if the email input is valid and if it is invalid show a warning
+     * message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
+     */
     private void value_EmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_EmailKeyReleased
         if (!ValidVariables.isValidEmailAddress(value_Email.getText())) {
             valid_Email.setText("Email is invalid!");

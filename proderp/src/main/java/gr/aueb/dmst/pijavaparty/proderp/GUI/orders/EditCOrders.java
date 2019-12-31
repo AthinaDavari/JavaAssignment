@@ -315,7 +315,7 @@ public class EditCOrders extends javax.swing.JFrame {
                 row[3] = corders.get(i).getCreated_at(); // Fill the fourth column 
                 // of the table with the time of creation of the order.
                 row[4] = corders.get(i).getUser().getFullName(); 
-                // Fill the fifth column of the table with the username of the customer.
+                // Fill the fifth column of the table with the username.
                 model.addRow(row);
             }
 

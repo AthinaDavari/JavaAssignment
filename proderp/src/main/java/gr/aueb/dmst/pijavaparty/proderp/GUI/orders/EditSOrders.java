@@ -10,8 +10,8 @@ import javax.swing.table.DefaultTableModel;
 
 
 /**
- * EditSOrders.java - A graphical user interface (gui) class for modifying the status of an order 
- * to suppliers and delete an order to suppliers.
+ * EditSOrders.java - A graphical user interface (gui) class for modifying 
+ * the status of an order to suppliers and delete an order to suppliers.
  * 
  * @author MariaKokkorou
  */
@@ -175,7 +175,8 @@ public class EditSOrders extends javax.swing.JFrame {
     * Edit the status of an order from suppliers and update this order in the 
     * database.
     * 
-    * @param evt action event
+    * @param evt - an ActionEvent object generated automatically and sent 
+    * to the method by clicking on Update to Delivered button.
     */
     
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
@@ -189,7 +190,7 @@ public class EditSOrders extends javax.swing.JFrame {
             SOrderItemDao orderItemDao = new SOrderItemDao();
             orderItemDao.increaseQuantities(orderIDint); 
             // When an order to a supplier is delivered, increase the quantity 
-            //of raw materials by the quantity of a delivered SOrder
+            // of raw materials by the quantity of a delivered SOrder
             
             JOptionPane.showMessageDialog(null, "Status Updated.");
             
@@ -207,7 +208,8 @@ public class EditSOrders extends javax.swing.JFrame {
       * Select a row of the table by clicking on it, and insert the order's ID 
       * in the Order's ID field.
       * 
-      * @param evt action event
+      * @param evt - a MouseEvent object generated automatically and sent to 
+      * the method by putting the mouse's cursor over a selected row of the table. 
       */
     
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
@@ -222,7 +224,8 @@ public class EditSOrders extends javax.swing.JFrame {
     /**
      * Delete permanently an order to supplier from the database.
      * 
-     * @param evt action event
+     * @param evt - an ActionEvent object generated automatically and sent 
+     * to the method by clicking on Delete button.
      */
     
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
@@ -243,6 +246,14 @@ public class EditSOrders extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteActionPerformed
 
+    /**
+     * Close the Edit Orders to Suppliers window by clicking on cancel 
+     * button on the menu bar.
+     * 
+     * @param evt - an ActionEvent object generated automatically and sent 
+     * to the method by clicking on cancel button on the menu bar.
+     */
+    
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         
         dispose();
@@ -255,6 +266,7 @@ public class EditSOrders extends javax.swing.JFrame {
      * from database and show them in showSOrdersTable table.
      * 
      */
+    
     public void showSOrdersTable() {
         try {
             

@@ -9,6 +9,7 @@ import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
 import gr.aueb.dmst.pijavaparty.proderp.entity.ProductRawMaterial;
 import java.util.List;
 import java.util.function.Function;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -140,18 +141,26 @@ public class StorageServices {
 
     /**
      *
-     * @param corderid
+     * @param corderid - the id of an order from customers.
      */
+    
     public void decreaseProduct(int corderid) {
 
         COrderItemDao coid = new COrderItemDao();
         List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
         ProductDao pd = new ProductDao();
+        
         for (COrderItem cOrderItem : corderitems) {
-
+            
             Product productFromOrder = cOrderItem.getProduct();
-            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
-
+            if (cOrderItem.getQuantity() <= pd.getById(productFromOrder.getId()).getQuantity()){
+            
+                pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
+            
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Not enough products in the storage.");
+            }
         }
 
     }

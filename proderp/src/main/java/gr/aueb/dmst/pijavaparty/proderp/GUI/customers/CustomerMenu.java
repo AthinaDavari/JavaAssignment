@@ -8,8 +8,10 @@ import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * CustomerMenu.java -a gui class for choosing to update or add the date of a
+ * customer.
  *
- * @author Ctell
+ * @author Stella
  */
 public class CustomerMenu extends javax.swing.JFrame {
 
@@ -27,9 +29,10 @@ public class CustomerMenu extends javax.swing.JFrame {
      *
      */
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,11 +153,21 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+    /**
+     * Show the gui CustomerEdit class.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the update button.
+     */
     private void editCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerActionPerformed
         new CustomerEdit().setVisible(true);
     }//GEN-LAST:event_editCustomerActionPerformed
-
+    /**
+     * Show the gui InsertCustomer class.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the add button.
+     */
     private void insertCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertCustomerActionPerformed
         new InsertCustomer().setVisible(true);
     }//GEN-LAST:event_insertCustomerActionPerformed
@@ -167,7 +180,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        if((LogIn.getUser().getRole()).equals("admin")){
+        if ((LogIn.getUser().getRole()).equals("admin")) {
             AdminMenu menu = new AdminMenu();
             menu.setVisible(true);
         } else {
@@ -182,7 +195,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         customermenu.setVisible(true);
         dispose();
     }//GEN-LAST:event_refreshActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
@@ -219,22 +232,23 @@ public class CustomerMenu extends javax.swing.JFrame {
     }
 
     /**
+     * Show customer's data in a table.
      *
      */
-    public void showCustomersTable(){
-        CustomerDao obj=new CustomerDao();
-        DefaultTableModel model=(DefaultTableModel) Customers_table.getModel();
-        int number=obj.getAll().size();
-        Object[] row=new Object[5];
-        for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getFullName();
-            row[2]=obj.getAll().get(i).getAddress();
-            row[3]=obj.getAll().get(i).getPhonenumber();
-            row[4]=obj.getAll().get(i).getEmail();
+    public void showCustomersTable() {
+        CustomerDao obj = new CustomerDao();
+        DefaultTableModel model = (DefaultTableModel) Customers_table.getModel();
+        int number = obj.getAll().size();
+        Object[] row = new Object[5];
+        for (int i = 0; i < number; i++) {
+            row[0] = obj.getAll().get(i).getId();
+            row[1] = obj.getAll().get(i).getFullName();
+            row[2] = obj.getAll().get(i).getAddress();
+            row[3] = obj.getAll().get(i).getPhonenumber();
+            row[4] = obj.getAll().get(i).getEmail();
             model.addRow(row);
         }
-}
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Customers_table;
     private javax.swing.JMenu back;

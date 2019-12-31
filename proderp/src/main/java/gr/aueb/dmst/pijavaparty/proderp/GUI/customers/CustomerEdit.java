@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * CustomerEdit.java -a gui class for modifying the data of a customer.
+ *
  * @author Stella
  */
 public class CustomerEdit extends javax.swing.JFrame {
@@ -235,30 +236,31 @@ public class CustomerEdit extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   /**
-    * Add valid and edited data of a customer in the database.
-    * 
-    * @param evt is a reference to an ActionEvent object that is sent to the method by clicking the update button. 
-    */
+    /**
+     * Add valid and edited data of a customer in the database.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the update button.
+     */
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
-            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText()) ){
-            String value1_id = value_id.getText();
-            int newvalue1_id = Integer.parseInt(value1_id);
-            String value2_full_name = value_full_name.getText();
-            String value3_address = value_address.getText();
-            String value4_phonenumber = value_phonenumber.getText();
-            long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
-            String value5_email = value_email.getText();
+            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText())) {
+                String value1_id = value_id.getText();
+                int newvalue1_id = Integer.parseInt(value1_id);
+                String value2_full_name = value_full_name.getText();
+                String value3_address = value_address.getText();
+                String value4_phonenumber = value_phonenumber.getText();
+                long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
+                String value5_email = value_email.getText();
 
-            Customer objc = new Customer(newvalue1_id, value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
-            CustomerDao obj = new CustomerDao();
-            obj.update(objc);
+                Customer objc = new Customer(newvalue1_id, value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
+                CustomerDao obj = new CustomerDao();
+                obj.update(objc);
 
-            JOptionPane.showMessageDialog(null, "Updated");
-            new CustomerEdit().setVisible(true);
-            dispose();
-        } else {
+                JOptionPane.showMessageDialog(null, "Updated");
+                new CustomerEdit().setVisible(true);
+                dispose();
+            } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
         } catch (Exception e) {
@@ -266,12 +268,13 @@ public class CustomerEdit extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_updateActionPerformed
-     /**
-      * 
-      * Select a row of the table and put the customer's data in the fields.
-      * 
-      * @param evt is a reference to a MouseEvent object that is sent to the method by putting the mouse cursor in a selected row of the table. 
-      */
+    /**
+     *
+     * Select a row of the table and put the customer's data in the fields.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by putting the mouse cursor in a selected row of the table.
+     */
     private void Customers_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Customers_tableMouseClicked
 
         int selectedRow = Customers_table.getSelectedRow();
@@ -285,8 +288,9 @@ public class CustomerEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_Customers_tableMouseClicked
     /**
      * Delete the data of a customer in the database.
-     * 
-     * @param evt is a reference to an ActionEvent object that is sent to the method by clicking the delete button. 
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the delete button.
      */
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
@@ -304,23 +308,27 @@ public class CustomerEdit extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_deleteActionPerformed
-    
+
     /**
-     * Check if the name input is valid and if it is invalid show a warning message.
-     * 
-     * @param evt is a reference to a KeyEvent object that is sent to the method by typing a key in the keyboard.
+     * Check if the name input is valid and if it is invalid show a warning
+     * message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
      */
     private void value_full_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_full_nameKeyReleased
-         if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText())) {
+        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText())) {
             valid_Fullname.setText("Name is invalid!");
         } else {
             valid_Fullname.setText(null);
         }
     }//GEN-LAST:event_value_full_nameKeyReleased
     /**
-     * Check if the phonenumber input is valid and if it is invalid show a warning message.
-     * 
-     * @param evt @param evt is a reference to a KeyEvent object that is sent to the method by typing a key in the keyboard.
+     * Check if the phonenumber input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt @param evt is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
      */
     private void value_phonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_phonenumberKeyReleased
         if (!ValidVariables.isValidPhonenumber(value_phonenumber.getText())) {
@@ -330,9 +338,11 @@ public class CustomerEdit extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_phonenumberKeyReleased
     /**
-     * Check if the email input is valid and if it is invalid show a warning message.
-     * 
-     * @param evt is a reference to a KeyEvent object that is sent to the method by typing a key in the keyboard.
+     * Check if the email input is valid and if it is invalid show a warning
+     * message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
      */
     private void value_emailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_emailKeyReleased
         if (!ValidVariables.isValidEmailAddress(value_email.getText())) {
@@ -341,10 +351,10 @@ public class CustomerEdit extends javax.swing.JFrame {
             valid_Email.setText(null);
         }
     }//GEN-LAST:event_value_emailKeyReleased
-    
+
     /**
-     * Show customer's data in a table  
-     * 
+     * Show customer's data in a table
+     *
      */
     public void showCustomersTable() {
         CustomerDao obj = new CustomerDao();

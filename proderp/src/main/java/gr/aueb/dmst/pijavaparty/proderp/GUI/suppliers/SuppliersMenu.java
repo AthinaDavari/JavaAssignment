@@ -1,6 +1,5 @@
 package gr.aueb.dmst.pijavaparty.proderp.GUI.suppliers;
 
-
 import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.Menu;
@@ -9,8 +8,10 @@ import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * SuppliersMenu.java -a gui class for choosing to update or add the date of a
+ * supplier.
  *
- * @author Ctell
+ * @author Stella
  */
 public class SuppliersMenu extends javax.swing.JFrame {
 
@@ -27,9 +28,10 @@ public class SuppliersMenu extends javax.swing.JFrame {
      *
      */
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,11 +147,21 @@ public class SuppliersMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Show the gui SupplierEdit class.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the update button.
+     */
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         new SupplierEdit().setVisible(true);
     }//GEN-LAST:event_editActionPerformed
-
+    /**
+     * Show the gui SupplierInsert class.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the add button.
+     */
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
         new SupplierInsert().setVisible(true);
     }//GEN-LAST:event_insertActionPerformed
@@ -162,7 +174,7 @@ public class SuppliersMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        if((LogIn.getUser().getRole()).equals("admin")){
+        if ((LogIn.getUser().getRole()).equals("admin")) {
             AdminMenu menu = new AdminMenu();
             menu.setVisible(true);
         } else {
@@ -179,18 +191,20 @@ public class SuppliersMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshActionPerformed
 
     /**
+     * Show supplier's data in a table.
+     *
      */
-    public void showSupplierstable(){
-        SupplierDao obj=new SupplierDao();
-         DefaultTableModel model=(DefaultTableModel) Suppliers_table.getModel();
-         int number=obj.getAll().size();
-        Object[] row=new Object[5];
-        for(int i=0; i<number; i++){
-            row[0]=obj.getAll().get(i).getId();
-            row[1]=obj.getAll().get(i).getFullName();
-            row[2]=obj.getAll().get(i).getAddress();
-            row[3]=obj.getAll().get(i).getPhonenumber();
-            row[4]=obj.getAll().get(i).getEmail();
+    public void showSupplierstable() {
+        SupplierDao obj = new SupplierDao();
+        DefaultTableModel model = (DefaultTableModel) Suppliers_table.getModel();
+        int number = obj.getAll().size();
+        Object[] row = new Object[5];
+        for (int i = 0; i < number; i++) {
+            row[0] = obj.getAll().get(i).getId();
+            row[1] = obj.getAll().get(i).getFullName();
+            row[2] = obj.getAll().get(i).getAddress();
+            row[3] = obj.getAll().get(i).getPhonenumber();
+            row[4] = obj.getAll().get(i).getEmail();
             model.addRow(row);
         }
     }

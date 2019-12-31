@@ -59,6 +59,9 @@ public class CustomerEdit extends javax.swing.JFrame {
         valid_Fullname = new javax.swing.JLabel();
         valid_Phonenumber = new javax.swing.JLabel();
         valid_Email = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        cancel = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Customer Data");
@@ -138,6 +141,17 @@ public class CustomerEdit extends javax.swing.JFrame {
 
         valid_Email.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Email.setForeground(new java.awt.Color(255, 0, 0));
+
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(cancel);
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -352,6 +366,11 @@ public class CustomerEdit extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_emailKeyReleased
 
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        new CustomerMenu().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_cancelMouseClicked
+
     /**
      * Show customer's data in a table
      *
@@ -409,6 +428,7 @@ public class CustomerEdit extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Customers_table;
+    private javax.swing.JMenu cancel;
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -416,6 +436,8 @@ public class CustomerEdit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton update;

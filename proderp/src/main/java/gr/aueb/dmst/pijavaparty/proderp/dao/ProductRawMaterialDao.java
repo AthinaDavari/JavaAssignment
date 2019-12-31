@@ -23,9 +23,9 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     private static final String GETALL = "SELECT * FROM P_Materials";
     private static final String GETMATERIALSPERPRODUCT = "SELECT * FROM P_Materials WHERE product_id = ?";
     private static final String INSERT = "INSERT INTO P_Materials VALUES (?, ?, ?)";
-    private static final String UPDATE = "UPDATE P_Materials SET raw_material_id = ?, quantity_of_raw_material = ? WHERE product_id = ?";
     private static final String DELETE = "DELETE FROM P_Materials WHERE product_id = ? AND raw_material_id = ?";
     private static final String GETBYIDS = "SELECT * FROM P_Materials WHERE product_id = ? AND raw_material_id = ?";
+    private static final String DELETEBYPRODUCT = "DELETE FROM P_Materials WHERE product_id = ?";   
     private ProductDao productDao = new ProductDao();
     private RawMaterialDao rawMaterialDao = new RawMaterialDao();
 
@@ -147,6 +147,25 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
             closeStatementAndResultSet(rs, pst);
         }
         return null;
+    }
+    
+    /**
+     * Delete a product's recipe
+     * 
+     * @param pid Product's id
+     */
+    public void deleteByProduct(int pid) {
+        PreparedStatement pst = null;
+        try {
+            pst = getConnection().prepareStatement(DELETEBYPRODUCT);
+            pst.setInt(1, pid);
+            pst.execute();
+            closeStatementAndResultSet(pst);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(pst);
+        }
     }
 
 }

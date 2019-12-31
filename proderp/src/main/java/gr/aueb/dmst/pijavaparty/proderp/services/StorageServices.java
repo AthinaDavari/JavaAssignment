@@ -10,9 +10,6 @@ import gr.aueb.dmst.pijavaparty.proderp.entity.ProductRawMaterial;
 import java.util.List;
 import java.util.function.Function;
 
-
-
-
 /**
  *
  * @author aggel
@@ -34,7 +31,7 @@ public class StorageServices {
      * @param id
      * @param quant
      */
-    public boolean UpdateIngredients(int id, int quant) {
+    public boolean updateIngredients(int id, int quant) {
         ProductRawMaterial prodraw;
         int quantrecipe;
         int rawquant;
@@ -101,7 +98,7 @@ public class StorageServices {
         List <COrderItem> corderitems = coid.getItemsPerCOrder(corderid); 
         for (COrderItem cOrderItem : corderitems) {
             
-            UpdateIngredients(corderid, cOrderItem.getQuantity());
+            updateIngredients(corderid, cOrderItem.getQuantity());
             
         }
     }

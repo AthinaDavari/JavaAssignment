@@ -30,18 +30,6 @@ public class ProductDaoTest {
     public static void setUpClass() {
         TestUtilities.runTestScript();
     }
-    
-//    @AfterClass
-//    public static void tearDownClass() {
-//    }
-//    
-//    @Before
-//    public void setUp() {
-//    }
-//    
-//    @After
-//    public void tearDown() {
-//    }
 
     /**
      * Test of getAll method, of class ProductDao.
@@ -164,32 +152,6 @@ public class ProductDaoTest {
     }
 
     /**
-     * Test of update method, of class ProductDao.
-     */
-//    @Test
-//    public void testUpdate() {
-//        System.out.println("update");
-//        Product p = null;
-//        ProductDao instance = new ProductDao();
-//        instance.update(p);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    /**
-     * Test of deletePermanently method, of class ProductDao.
-     */
-//    @Test
-//    public void testDeletePermanently() {
-//        System.out.println("deletePermanently");
-//        int id = 0;
-//        ProductDao instance = new ProductDao();
-//        instance.deletePermanently(id);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    /**
      * Test of delete method, of class ProductDao.
      */
     @Test
@@ -199,6 +161,9 @@ public class ProductDaoTest {
         ProductDao instance = new ProductDao();
         instance.delete(id);
         assertEquals(null, instance.getById(id));
+        ProductRawMaterialDao prdDao = new ProductRawMaterialDao();
+        List<ProductRawMaterial> materialsPerProduct = prdDao.getMaterialsPerProduct(5);
+        assertEquals(true, materialsPerProduct.isEmpty());
     }
     
 }

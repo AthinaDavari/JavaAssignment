@@ -230,7 +230,7 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
     }
 
     /**
-     * Delete a product with a specific id.
+     * Delete a product and its recipe with a specific id.
      *
      * @param id Product's id.
      */
@@ -246,6 +246,8 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
         } finally {
             closeStatementAndResultSet(pst);
         }
+        ProductRawMaterialDao prmd = new ProductRawMaterialDao();
+        prmd.deleteByProduct(id);
 
     }
 

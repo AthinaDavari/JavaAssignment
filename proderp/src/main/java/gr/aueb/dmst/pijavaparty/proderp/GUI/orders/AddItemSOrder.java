@@ -253,7 +253,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         List<String> rawMaterials;
         
         SupplierDao sd = new SupplierDao();
-        rawMaterials = SOrderServices.RawMaterialsNotIncludedInSuppliersOrder(SOrderItemsList, sd.getById(supplierId));
+        rawMaterials = SOrderServices.rawMaterialsNotIncludedInSuppliersOrder(SOrderItemsList, sd.getById(supplierId));
         
         int number = rawMaterials.size();
         

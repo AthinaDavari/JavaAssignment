@@ -19,7 +19,7 @@ public class COrderServices {
      * @param prod-list of products included in the order
      * @return list of products (string type objects with products' ids and names) not included in the order
      */
-    public static ArrayList<String> RawMaterialsNotIncludedInSuppliersOrder(List<COrderItem> prod) {
+    public static ArrayList<String> rawMaterialsNotIncludedInSuppliersOrder(List<COrderItem> prod) {
         ArrayList<String> productlist = new ArrayList<String>();
         ProductDao pdao = new ProductDao();
         List<Product> allproducts;

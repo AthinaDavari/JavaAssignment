@@ -29,18 +29,6 @@ public class CustomerDaoTest {
     public static void setUpClass() {
         TestUtilities.runTestScript();
     }
-    
-//    @AfterClass
-//    public static void tearDownClass() {
-//    }
-//    
-//    @Before
-//    public void setUp() {
-//    }
-//    
-//    @After
-//    public void tearDown() {
-//    }
 
     /**
      * Test of getAll method, of class CustomerDao.

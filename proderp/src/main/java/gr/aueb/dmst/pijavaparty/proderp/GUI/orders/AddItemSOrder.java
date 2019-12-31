@@ -29,7 +29,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
      */
     public AddItemSOrder() {
         initComponents();
-        comboBox();
+        fillComboBox();
         seticon();
         setTitle("Add Items");
     }
@@ -37,7 +37,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
     public AddItemSOrder(ArrayList<SOrderItem> SOrderItemsList) {
         this.SOrderItemsList = SOrderItemsList;
         initComponents();
-        comboBox();
+        fillComboBox();
         seticon();
     }
 
@@ -246,19 +246,20 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cancelMouseClicked
 
-
-     private void comboBox(){
-
+    /**
+     * Fill rawMaterialsCombo combobox with all raw materials,which aren't include
+     * in Suppliers' Order
+     */
+     private void fillComboBox(){
         RawMaterialDao rmd = new RawMaterialDao();
         List<String> rawMaterials;
-
-        SupplierDao sd = new SupplierDao();
-        rawMaterials = SOrderServices.RawMaterialsNotIncludedInSuppliersOrder(SOrderItemsList, sd.getById(supplierId));
-
-        int number = rawMaterials.size();
+        SupplierDao sd = new SupplierDao(); 
+        //take all raw materials,which aren't include in order
+        rawMaterials = SOrderServices.rawMaterialsNotIncludedInSuppliersOrder(SOrderItemsList, sd.getById(supplierId));
+        int number = rawMaterials.size();//number of raw materials,which aren't include in order
 
         try {
-
+            //fill combobox
             for (int i = 0; i < number; i++) {
 
                 rawMaterialsCombo.addItem(rawMaterials.get(i));

@@ -301,7 +301,7 @@ public class AddIngredients extends javax.swing.JFrame {
     //fill up the drop down with raw materials and ids from the data base
     private void fillcombo() {
         Fillcombo fill = new Fillcombo();
-        ArrayList<String> combocontents = fill.FillcomboArray(prodraw, prod);
+        ArrayList<String> combocontents = fill.fillcomboArray(prodraw, prod);
         int j = 0;
         for (int i = 0; i < combocontents.size(); i++) {
             drop_down.addItem(combocontents.get(i));

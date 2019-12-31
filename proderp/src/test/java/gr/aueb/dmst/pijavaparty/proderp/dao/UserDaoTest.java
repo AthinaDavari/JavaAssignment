@@ -32,17 +32,6 @@ public class UserDaoTest {
 
     }
 
-//    @AfterAll
-//    public static void tearDownClass() {
-//    }
-//    
-//    @BeforeEach
-//    public void setUp() {
-//    }
-//    
-//    @AfterEach
-//    public void tearDown() {
-//    }
     /**
      * Test of getUser method, of class UserDao.
      */

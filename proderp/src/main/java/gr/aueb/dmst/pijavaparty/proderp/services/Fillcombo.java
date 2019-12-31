@@ -26,7 +26,7 @@ public class Fillcombo {
      * @return list of raw materials (string type objects with raw materials'
      * names and ids) not included in product's recipe
      */
-    public ArrayList<String> FillcomboArray(List<ProductRawMaterial> prodraw, Product prod) {
+    public ArrayList<String> fillcomboArray(List<ProductRawMaterial> prodraw, Product prod) {
         ArrayList<String> fillcomboarray = new ArrayList<String>();
         RawMaterialDao rawdao = new RawMaterialDao();
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();

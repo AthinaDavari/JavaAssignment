@@ -31,7 +31,8 @@ public class StorageServices {
      * @return if the quantity of product's, return true,
      * else false
      */
-    public boolean UpdateIngredients(int id, int quant) {
+
+    public boolean updateIngredients(int id, int quant) {
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
         
         //list of raw materials,which are included in product's recipe
@@ -48,13 +49,13 @@ public class StorageServices {
         }//end 1st if
         
         int prodrawlistsize = prodrawlist.size();//number of raw materials in product's recipe
+        ProductRawMaterial prodraw;
         int quantrecipe;
         int rawquant;
-        
         //update all raw materials in product's recipe
         for (int i = 0; i < prodrawlistsize; i++) {
             //the raw material we want to update
-            ProductRawMaterial prodraw = prodrawlist.get(i);
+            prodraw = prodrawlist.get(i);
             //raw material's quantity, which needs a product's unit to make
             quantrecipe = prodraw.getQuantityOfRawMaterial();
             //raw material's quantity in storage
@@ -63,9 +64,7 @@ public class StorageServices {
             //update the raw material 
             rawmatdao.updateQuantity(prodraw.getRawMaterial().getId(), rawquant);
         }//end for
-
         return true;
-
     }
 
     /**
@@ -135,9 +134,7 @@ public class StorageServices {
         COrderItemDao coid = new COrderItemDao();
         List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
         for (COrderItem cOrderItem : corderitems) {
-
-            UpdateIngredients(corderid, cOrderItem.getQuantity());
-
+            updateIngredients(corderid, cOrderItem.getQuantity());
         }
     }
 

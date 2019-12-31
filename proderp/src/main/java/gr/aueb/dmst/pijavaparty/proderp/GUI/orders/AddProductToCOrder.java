@@ -246,7 +246,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
 
     private void comboBox() {
 
-        List<String> products = COrderServices.RawMaterialsNotIncludedInSuppliersOrder(COrderItemsList);
+        List<String> products = COrderServices.rawMaterialsNotIncludedInSuppliersOrder(COrderItemsList);
         int number = products.size();
 
         try {

@@ -9,6 +9,7 @@ import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
 import gr.aueb.dmst.pijavaparty.proderp.entity.ProductRawMaterial;
 import java.util.List;
 import java.util.function.Function;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -112,46 +113,83 @@ public class StorageServices {
         return x -> q * x;
     }
 
+    
     /**
-     * @param corderid
+     * Increase the quantities of a specific product that are available for 
+     * customers and update this data in the database.
+     * 
+     * @param corderid - An integer that defines the id of an order from customers.
      */
+    
     public void increaseProduct(int corderid) {
 
         COrderItemDao coid = new COrderItemDao();
         List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        // corderitems - an arraylist that contains all the items in a specific 
+        // order from customers.
         ProductDao pd = new ProductDao();
         for (COrderItem cOrderItem : corderitems) {
 
             Product productFromOrder = cOrderItem.getProduct();
             pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() + cOrderItem.getQuantity());
-
+            // Update the quantities of the specific product that are available 
+            // for customers. Increase the existing quantity in the database by 
+            // the extra quantity given in the order from customer.
         }
 
     }
 
+    /**
+     * Increase the quantities of a specific product that are available for 
+     * customers and update this data in the database.
+     * 
+     * @param corderid - An integer that defines the id of an order from customers.
+     */
+    
     public void updateProduct(int corderid) {
 
         COrderItemDao coid = new COrderItemDao();
         List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        // corderitems - an arraylist that contains all the items in a specific 
+        // order from customers.
         for (COrderItem cOrderItem : corderitems) {
+            
             updateIngredients(corderid, cOrderItem.getQuantity());
+            // For each item in a specific order from customer, call the 
+            // updateIngredients method and update the quantities of the 
+            // raw materials that were used.
         }
     }
 
     /**
-     *
-     * @param corderid
+     * Decrease the quantities of a specific product that are available for 
+     * customers and update this data in the database.
+     * 
+     * @param corderid - An integer that defines the id of an order from customers.
      */
+    
     public void decreaseProduct(int corderid) {
 
         COrderItemDao coid = new COrderItemDao();
         List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        // corderitems - an arraylist that contains all the items in a specific 
+        // order from customers.
         ProductDao pd = new ProductDao();
         for (COrderItem cOrderItem : corderitems) {
-
+            
             Product productFromOrder = cOrderItem.getProduct();
-            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
-
+            if (cOrderItem.getQuantity() <= pd.getById(productFromOrder.getId()).getQuantity()){
+            // Check if the quantity of a specific product in an order from customers 
+            // is less or equal to the available quantity of this product in the storage.
+            // Check if there are enough products in the storage.
+                pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
+                // If there are enough products in the storage, decrease the 
+                // quantity of this product by the quantity given in the order 
+                // from customers and update the database.
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Not enough products in the storage.");
+            }
         }
 
     }

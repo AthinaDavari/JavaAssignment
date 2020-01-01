@@ -79,8 +79,8 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel1" alignment="1" min="-2" pref="167" max="-2" attributes="0"/>
                       <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="ordersCust" max="32767" attributes="0"/>
-                          <Component id="orderSup" max="32767" attributes="0"/>
+                          <Component id="ordersFromCustomers" max="32767" attributes="0"/>
+                          <Component id="ordersToSuppliers" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
@@ -93,16 +93,16 @@
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="78" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="orderSup" min="-2" pref="73" max="-2" attributes="0"/>
+                  <Component id="ordersToSuppliers" min="-2" pref="73" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="ordersCust" min="-2" pref="73" max="-2" attributes="0"/>
+                  <Component id="ordersFromCustomers" min="-2" pref="73" max="-2" attributes="0"/>
                   <EmptySpace pref="53" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="ordersCust">
+        <Component class="javax.swing.JButton" name="ordersFromCustomers">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
@@ -110,10 +110,10 @@
             <Property name="text" type="java.lang.String" value="Orders From Customers"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ordersCustActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ordersFromCustomersActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="orderSup">
+        <Component class="javax.swing.JButton" name="ordersToSuppliers">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
@@ -121,7 +121,7 @@
             <Property name="text" type="java.lang.String" value="Orders To Suppliers"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderSupActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ordersToSuppliersActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.COrderDao;
@@ -13,7 +8,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * OrdersFromCustomers - a graphical user interface (gui) class for choosing to 
+ * update, delete, add the data of a customer, or show all the products in a 
+ * customer's order.
+ * 
  * @author MariaKokkorou
  */
 public class OrdersFromCustomers extends javax.swing.JFrame {
@@ -48,7 +46,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         COrdersTable = new javax.swing.JTable();
         showProducts = new javax.swing.JButton();
-        prodid = new javax.swing.JTextField();
+        showprod = new javax.swing.JTextField();
         refresh = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         back = new javax.swing.JMenu();
@@ -81,7 +79,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order ID", "Customer ID", "Status", "Created At", "User Name"
+                "Order ID", "Customer ID - Name", "Status", "Created At", "User Name"
             }
         ) {
             Class[] types = new Class [] {
@@ -137,7 +135,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(showProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(prodid, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(showprod, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,13 +161,21 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(editCustOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(addCustOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(prodid, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(showprod, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * Show the graphical user interface of AddNewCustOrder class, by
+    * clicking on the Add New Order button. 
+    * 
+    * @param evt - an ActionEvent object generated automatically and sent 
+    * to the method by clicking on the Add New Order button.
+    */
+    
     private void addCustOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustOrderActionPerformed
         
         new AddNewCustOrder().setVisible(true);
@@ -177,6 +183,14 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addCustOrderActionPerformed
 
+    /**
+    * Show the graphical user interface of EditCOrders class, by
+    * clicking on the Update / Delete Order button. 
+    * 
+    * @param evt - an ActionEvent object generated automatically and sent 
+    * to the method by clicking on the Update / Delete Order button.
+    */
+        
     private void editCustOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustOrderActionPerformed
         
         new EditCOrders().setVisible(true);
@@ -184,22 +198,47 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_editCustOrderActionPerformed
 
+    /**
+      * Select a row of the table by clicking on it, and insert the order's ID
+      * in the showprod (show product) field.
+      * 
+      * @param evt - a MouseEvent object generated automatically and sent to 
+      * the method by putting the mouse's cursor over a selected row of the table. 
+      */
+    
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
        
         int selectedRow = COrdersTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
-        prodid.setText((model.getValueAt(selectedRow, 0).toString()));
+        showprod.setText((model.getValueAt(selectedRow, 0).toString()));
         
     }//GEN-LAST:event_COrdersTableMouseClicked
 
+    /**
+    * Show the graphical user interface - gui of ShowProductsOfOrder class, by
+    * clicking on the Show Products button. 
+    * 
+    * @param evt - an ActionEvent object generated automatically and sent 
+    * to the method by clicking on the Show Products button.
+    */
+    
     private void showProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProductsActionPerformed
        
-        int id = Integer.parseInt(prodid.getText());
+        int id = Integer.parseInt(showprod.getText());
         new ShowProductsOfOrder(id).setVisible(true);
         dispose();
         
     }//GEN-LAST:event_showProductsActionPerformed
 
+    /**
+     * Close the Orders From Customers window - gui of OrdersFromCustomers class, 
+     * and return back to the orders' menu window - gui of OrdersFrame class,
+     * by clicking on back button on the menu bar.
+     * 
+     * @param evt - an ActionEvent object generated automatically and sent 
+     * to the method by clicking on back button on the menu bar.
+     */
+    
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         
         OrdersFrame ordersframe = new OrdersFrame();
@@ -208,7 +247,17 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backMouseClicked
 
-
+    /**
+     * 
+     * Refresh the Orders From Customers window - gui of OrdersFromCustomers class
+     * 
+     * Close the Orders From Customers window and open a new one, 
+     * so that it contains the most recent data.
+     * 
+     * @param evt - an ActionEvent object generated automatically and sent 
+     * to the method by clicking on refresh button on the menu bar.
+     */
+    
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
        
         
@@ -218,24 +267,32 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_refreshActionPerformed
 
+     /** 
+     * Get order's id, customer's id and name, status and order's time of creation 
+     * and username data from database and show them in showCOrdersTable table.
+     * 
+     */
     
      public void showCOrdersTable() {
         try {
             
             COrderDao obj = new COrderDao();
             List<COrder> corders = obj.getAll();
-            int number = corders.size();
+            // corders - an arraylist filled with all the orders from customers.
+            int number = corders.size(); // the number of orders from customers.
             DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
 
             Object[] row = new Object[5];
 
             for (int i = 0; i < number; i++) {
-                row[0] = corders.get(i).getId();
+                row[0] = corders.get(i).getId(); // Fill the first column of the table with the id of the order.
                 row[1] = corders.get(i).getCustomer().getId() + "-" + corders.get(i).getCustomer().getFullName();
-                row[2] = corders.get(i).getStatus();
-                row[3] = corders.get(i).getCreated_at();
-                row[4] = corders.get(i).getUser().getUsername();
-
+                // Fill the second column of the table with the id - name of the customer.
+                row[2] = corders.get(i).getStatus(); // Fill the third column of the table with the status of the order.
+                row[3] = corders.get(i).getCreated_at(); // Fill the fourth column 
+                // of the table with the time of creation of the order.
+                row[4] = corders.get(i).getUser().getFullName(); 
+                // Fill the fifth column of the table with the username.
                 model.addRow(row);
             }
 
@@ -288,8 +345,8 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField prodid;
     private javax.swing.JButton refresh;
     private javax.swing.JButton showProducts;
+    private javax.swing.JTextField showprod;
     // End of variables declaration//GEN-END:variables
 }

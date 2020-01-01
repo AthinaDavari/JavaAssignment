@@ -53,3 +53,7 @@ values (3, 4, 50),
        (1, 4, 20),
        (4, 2, 39),
        (2, 1, 78);
+insert into s_order_items(s_order_id, raw_material_id, quantity)
+values (1, 1, 35),
+       (1, 5, 48),
+       (3, 4, 12);

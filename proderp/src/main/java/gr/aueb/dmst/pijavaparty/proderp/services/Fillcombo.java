@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author aggel, Athina Davari
@@ -34,7 +33,7 @@ public class Fillcombo {
 
         raw_material = rawdao.getAll();//take all raw materials from database
         List<ProductRawMaterial> prodrawlist;
-        /*get all rawmaterials' ids included in product's recipe.
+        /* get all rawmaterials' ids included in product's recipe.
         If the product doesn't exist for now in database (we create the product now),
         the list has no elements.
          */

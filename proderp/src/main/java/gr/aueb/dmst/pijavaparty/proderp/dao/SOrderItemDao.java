@@ -124,26 +124,6 @@ public class SOrderItemDao extends Dao implements CompositeEntityI<SOrderItem> {
     }
 
     /**
-     * Delete a supplier's order item with a specific id.
-     *
-     * @param soi SOrderItem to be deleted.
-     */
-    public void delete(SOrderItem soi) {
-        PreparedStatement pst = null;
-        try {
-            pst = getConnection().prepareStatement(DELETE);
-            pst.setInt(1, soi.getSorder().getId());
-            pst.setInt(2, soi.getRawmaterial().getId());
-            pst.execute();
-            closeStatementAndResultSet(pst);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductRawMaterialDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeStatementAndResultSet(pst);
-        }
-    }
-
-    /**
      * Increase the quantity of raw materials by the quantity of a delivered SOrder.
      *
      * @param orderId SOrder's id.

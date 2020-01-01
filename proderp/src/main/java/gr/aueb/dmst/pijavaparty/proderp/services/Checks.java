@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 
 /**
  *
- * @author aggel
+ * @author aggel, Natalia
  */
 public class Checks {
 

@@ -12,7 +12,7 @@ import org.junit.Test;
 
 /**
  *
- * @author athina
+ * @author athina, Natalia
  */
 public class ChecksTest {
 

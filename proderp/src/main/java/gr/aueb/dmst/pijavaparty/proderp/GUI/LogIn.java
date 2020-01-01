@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- * @author aggel Log in as simple user or administrator (admin).
+ * Log in as simple user or administrator (admin).
+ * 
+ * @author aggel 
  */
 public class LogIn extends javax.swing.JFrame implements Runnable {
 

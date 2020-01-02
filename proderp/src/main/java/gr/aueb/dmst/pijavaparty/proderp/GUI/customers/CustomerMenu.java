@@ -152,7 +152,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * Show the gui CustomerEdit class.
+     * Show the gui CustomerEdit window.
      *
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the update button.
@@ -161,7 +161,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         new CustomerEdit().setVisible(true);
     }//GEN-LAST:event_editCustomerActionPerformed
     /**
-     * Show the gui InsertCustomer class.
+     * Show the gui InsertCustomer window.
      *
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the add button.
@@ -169,7 +169,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     private void insertCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertCustomerActionPerformed
         new InsertCustomer().setVisible(true);
     }//GEN-LAST:event_insertCustomerActionPerformed
-
+    
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn login = new LogIn();
         LogIn.setUser(null);

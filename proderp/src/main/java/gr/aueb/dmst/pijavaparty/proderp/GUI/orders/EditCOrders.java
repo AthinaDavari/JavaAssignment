@@ -9,13 +9,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * EditCOrders.java - A graphical user interface (gui) class for modifying 
- * the status of an order from customers and delete an order to customers.
- * 
+ * EditCOrders.java - A graphical user interface (gui) class for modifying the
+ * status of an order from customers and delete an order to customers.
+ *
  * @author MariaKokkorou
  */
 public class EditCOrders extends javax.swing.JFrame {
-    
+
     private javax.swing.JScrollPane jScrollPane1;
 
     /**
@@ -182,13 +182,13 @@ public class EditCOrders extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * Edit the status of an order from customers, update this order in the 
-    * database and update the quantities of the available 
-    * raw materials and products in the database.
-    * 
-    * @param evt - an ActionEvent object generated automatically and sent 
-    * to the method by clicking on Update Status button.
-    */
+     * Edit the status of an order from customers, update this order in the
+     * database and update the quantities of the available raw materials and
+     * products in the database.
+     *
+     * @param evt - an ActionEvent object generated automatically and sent to
+     * the method by clicking on Update Status button.
+     */
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
@@ -197,33 +197,33 @@ public class EditCOrders extends javax.swing.JFrame {
             // Get the value from Order's ID field.
             String status = stat.getText();
             // Get the value from status field.
-            
+
             StorageServices storageservices = new StorageServices();
-            
-            if (status.equals("ready")){ // check if the order's status is "ready".
-                
-               storageservices.updateProduct(orderIdInt);
-               // If the order is "ready", update in the database the quantities
-               // of the raw materials that were used to produse this product.
-               storageservices.increaseProduct(orderIdInt);
-               // Also, if the order is "ready", increase in the database the 
-               // number of the products that are available for the customers.
-               
+
+            if (status.equals("ready")) { // check if the order's status is "ready".
+
+                storageservices.updateProduct(orderIdInt);
+                // If the order is "ready", update in the database the quantities
+                // of the raw materials that were used to produse this product.
+                storageservices.increaseProduct(orderIdInt);
+                // Also, if the order is "ready", increase in the database the 
+                // number of the products that are available for the customers.
+
             }
-             
-            if (status.equals("delivered")){ // check if the order's status is "delivered".
-               
-               storageservices.decreaseProduct(orderIdInt);
-               // If the order is "delivered" to the customer, decrease in the 
-               // database the number of products that are available for customers.
-                
+
+            if (status.equals("delivered")) { // check if the order's status is "delivered".
+
+                storageservices.decreaseProduct(orderIdInt);
+                // If the order is "delivered" to the customer, decrease in the 
+                // database the number of products that are available for customers.
+
             }
-            
+
             COrderDao cod = new COrderDao();
             cod.updateStatus(orderIdInt, (status));
-    
+
             JOptionPane.showMessageDialog(null, "Status Updated.");
-            
+
             new EditCOrders().setVisible(true);
             dispose();
         } catch (Exception e) {
@@ -233,71 +233,69 @@ public class EditCOrders extends javax.swing.JFrame {
 
     }//GEN-LAST:event_updateActionPerformed
 
-     /**
-      * Select a row of the table by clicking on it, and insert the order's ID 
-      * in the Order's ID field and the order's status in the status field.
-      * 
-      * @param evt - a MouseEvent object generated automatically and sent to 
-      * the method by putting the mouse's cursor over a selected row of the table. 
-      */
-    
+    /**
+     * Select a row of the table by clicking on it, and insert the order's ID in
+     * the Order's ID field and the order's status in the status field.
+     *
+     * @param evt - a MouseEvent object generated automatically and sent to the
+     * method by putting the mouse's cursor over a selected row of the table.
+     */
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
 
         int selectedRow = COrdersTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
         orderid.setText((model.getValueAt(selectedRow, 0).toString()));
-        stat.setText(((model.getValueAt(selectedRow, 2).toString().equals("ready")))?"delivered":"ready");
-        
+        stat.setText(((model.getValueAt(selectedRow, 2).toString().equals("ready"))) ? "delivered" : "ready");
+
     }//GEN-LAST:event_COrdersTableMouseClicked
 
-     /**
+    /**
      * Delete permanently an order from customer from the database.
-     * 
-     * @param evt - an ActionEvent object generated automatically and sent 
-     * to the method by clicking on Delete button.
+     *
+     * @param evt - an ActionEvent object generated automatically and sent to
+     * the method by clicking on Delete button.
      */
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        
+
         String orderIDString = orderid.getText();
         int orderIDint = Integer.parseInt(orderIDString);
-        
+
         try {
-            
+
             COrderDao cod = new COrderDao();
             cod.delete(orderIDint);
-            JOptionPane.showMessageDialog(null,"Order Deleted.");
+            JOptionPane.showMessageDialog(null, "Order Deleted.");
             new EditCOrders().setVisible(true);
             dispose();
-            
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_deleteActionPerformed
 
     /**
-     * Close the Edit Orders to Suppliers window by clicking on cancel 
-     * button on the menu bar.
-     * 
-     * @param evt - an ActionEvent object generated automatically and sent 
-     * to the method by clicking on cancel button on the menu bar.
+     * Close the Edit Orders to Suppliers window by clicking on cancel button on
+     * the menu bar.
+     *
+     * @param evt - an ActionEvent object generated automatically and sent to
+     * the method by clicking on cancel button on the menu bar.
      */
-    
+
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-       
+
         dispose();
-        
+
     }//GEN-LAST:event_cancelMouseClicked
 
-    /** 
-     * Get order's id, customer's id and name, status and order's time of creation 
-     * data from database and show them in showCOrdersTable table.
-     * 
+    /**
+     * Get order's id, customer's id and name, status and order's time of
+     * creation data from database and show them in showCOrdersTable table.
+     *
      */
-    
     public void showCOrdersTable() {
         try {
-            
+
             COrderDao cod = new COrderDao();
             List<COrder> corders = cod.getAllExceptFromDelivered();
             // corders - an arraylist filled only with all the orders from customers
@@ -314,7 +312,7 @@ public class EditCOrders extends javax.swing.JFrame {
                 row[2] = corders.get(i).getStatus(); // Fill the third column of the table with the status of the order.
                 row[3] = corders.get(i).getCreated_at(); // Fill the fourth column 
                 // of the table with the time of creation of the order.
-                row[4] = corders.get(i).getUser().getFullName(); 
+                row[4] = corders.get(i).getUser().getFullName();
                 // Fill the fifth column of the table with the username.
                 model.addRow(row);
             }
@@ -324,8 +322,6 @@ public class EditCOrders extends javax.swing.JFrame {
         }
     }
 
-    
-    
     /**
      * @param args the command line arguments
      */

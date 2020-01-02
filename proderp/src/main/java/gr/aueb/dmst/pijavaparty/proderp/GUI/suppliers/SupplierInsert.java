@@ -257,7 +257,7 @@ public class SupplierInsert extends javax.swing.JFrame {
     }//GEN-LAST:event_value_EmailKeyReleased
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        new SuppliersMenu().setVisible(true);
+        
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
 

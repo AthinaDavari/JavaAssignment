@@ -364,8 +364,7 @@ public class CustomerEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_value_emailKeyReleased
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        new CustomerMenu().setVisible(true);
-        dispose();
+          dispose();
     }//GEN-LAST:event_cancelMouseClicked
 
     /**

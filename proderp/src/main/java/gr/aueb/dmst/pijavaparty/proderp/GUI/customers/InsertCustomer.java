@@ -105,6 +105,11 @@ public class InsertCustomer extends javax.swing.JFrame {
         valid_Email.setForeground(new java.awt.Color(255, 0, 0));
 
         cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(cancel);
 
         setJMenuBar(jMenuBar1);
@@ -263,13 +268,16 @@ public class InsertCustomer extends javax.swing.JFrame {
             valid_Email.setText(null);
         }
     }//GEN-LAST:event_value_EmailKeyReleased
-
+   
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
-        CustomerMenu c = new CustomerMenu();
-        c.setVisible(true);
+ 
         dispose();
     }//GEN-LAST:event_BackMouseClicked
 
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        dispose();
+    }//GEN-LAST:event_cancelMouseClicked
+   
     /**
      * @param args the command line arguments
      */

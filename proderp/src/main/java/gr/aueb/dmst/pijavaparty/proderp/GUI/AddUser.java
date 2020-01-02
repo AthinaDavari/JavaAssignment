@@ -30,7 +30,7 @@ public class AddUser extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * Method that sets the icon that is shown on the frame when the program is running.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));

@@ -31,7 +31,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
     }
 
     /**
-     * Inserts a photo from resources into LogIn.
+     * Method that sets the icon that is shown on the frame when the program is running.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));

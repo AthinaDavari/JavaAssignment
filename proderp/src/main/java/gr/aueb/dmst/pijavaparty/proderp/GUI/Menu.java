@@ -28,7 +28,7 @@ public class Menu extends javax.swing.JFrame {
         setTitle("Users's Menu");
     }
     /**
-     * Inserts a photo from resources into the Menu.
+     * Method that sets the icon that is shown on the frame when the program is running.
      */
     private void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -46,8 +46,8 @@ public class Menu extends javax.swing.JFrame {
         Suppliers = new javax.swing.JButton();
         Products = new javax.swing.JButton();
         RawMaterials = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        Storage = new javax.swing.JButton();
+        Orders = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         LogOut = new javax.swing.JMenu();
@@ -88,19 +88,19 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Storage");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        Storage.setBackground(new java.awt.Color(255, 255, 255));
+        Storage.setText("Storage");
+        Storage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                StorageActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Orders");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        Orders.setBackground(new java.awt.Color(255, 255, 255));
+        Orders.setText("Orders");
+        Orders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                OrdersActionPerformed(evt);
             }
         });
 
@@ -142,9 +142,9 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(RawMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Storage, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -157,8 +157,8 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(Suppliers, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Products, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RawMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Storage, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Customers, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(79, 79, 79)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,42 +177,63 @@ public class Menu extends javax.swing.JFrame {
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_LogOutMouseClicked
 
+    /**
+     * Closes the window and opens CustomerMenu window.
+     */
     private void CustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomersActionPerformed
         CustomerMenu obj = new CustomerMenu();
         obj.setVisible(true);
         dispose(); // TODO add your handling code here:
     }//GEN-LAST:event_CustomersActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    /**
+     * Closes the window and opens OrdersFrame window.
+     */
+    private void OrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdersActionPerformed
         OrdersFrame obj = new OrdersFrame();
         obj.setVisible(true);
         dispose();    // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_OrdersActionPerformed
 
+    /**
+     * Closes the window and opens RawMaterialMenu window.
+     */
     private void RawMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RawMaterialsActionPerformed
         RawMaterialMenu obj = new RawMaterialMenu();
         obj.setVisible(true);
         dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_RawMaterialsActionPerformed
 
+    /**
+     * Closes the window and opens ProductGui window.
+     */
     private void ProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductsActionPerformed
         ProductGui obj = new ProductGui();
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_ProductsActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    /**
+     * Closes the window and opens StorageMain window.
+     */
+    private void StorageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StorageActionPerformed
         StorageMain obj = new StorageMain();
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_StorageActionPerformed
 
+    /**
+     * Closes the window and opens SuppliersMenu window.
+     */
     private void SuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuppliersActionPerformed
         SuppliersMenu obj = new SuppliersMenu();
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_SuppliersActionPerformed
 
+    /**
+     * Closes the window, opens web and transfers user to Proderp website.
+     */
     private void visitOurWebsiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visitOurWebsiteMouseClicked
         try {
             URI uri = new URI("http://prometheus.dmst.aueb.gr/~nkatsiapi/proderp/index.html");
@@ -262,11 +283,11 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Customers;
     private javax.swing.JMenu LogOut;
+    private javax.swing.JButton Orders;
     private javax.swing.JButton Products;
     private javax.swing.JButton RawMaterials;
+    private javax.swing.JButton Storage;
     private javax.swing.JButton Suppliers;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu visitOurWebsite;

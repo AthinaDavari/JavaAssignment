@@ -150,6 +150,9 @@ public class AddUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Closes window and returns to AdminMenu.
+     */
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         AdminMenu obj = new AdminMenu();
         obj.setVisible(true);
@@ -157,6 +160,10 @@ public class AddUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1MouseClicked
 
+    /**
+     * Takes content from textfields and combobox and 
+     * creates a new user in User List.
+    */
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
        try {
             String f= fullname.getText();
@@ -191,6 +198,9 @@ public class AddUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_roleActionPerformed
 
+    /**
+     * Brings the lists of user roles from UserDao and fills the combobox.
+     */
     private void fillcombobox(){
         UserDao userdao = new UserDao();
         List<User> users;

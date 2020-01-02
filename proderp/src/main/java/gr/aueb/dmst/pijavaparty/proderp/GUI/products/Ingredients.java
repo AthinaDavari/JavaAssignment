@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author anna
+ * @author anna, aggel
  */
 public class Ingredients extends javax.swing.JFrame {
 
@@ -29,7 +29,7 @@ public class Ingredients extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -53,7 +53,7 @@ public class Ingredients extends javax.swing.JFrame {
         DeleteIngredient = new javax.swing.JButton();
         AddIngredient = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Back = new javax.swing.JMenu();
+        Cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -92,14 +92,14 @@ public class Ingredients extends javax.swing.JFrame {
             }
         });
 
-        Back.setForeground(new java.awt.Color(51, 51, 255));
-        Back.setText("Back");
-        Back.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cancel.setForeground(new java.awt.Color(51, 51, 255));
+        Cancel.setText("Cancel");
+        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BackMouseClicked(evt);
+                CancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(Back);
+        jMenuBar1.add(Cancel);
 
         setJMenuBar(jMenuBar1);
 
@@ -137,22 +137,42 @@ public class Ingredients extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     *
+     * Responsible for the continuing of the execution in the delete ingredients
+     * window.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the delete button.
+     */      
     private void DeleteIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteIngredientActionPerformed
         new DeleteIngredients(id).setVisible(true);
         dispose();
     }//GEN-LAST:event_DeleteIngredientActionPerformed
 
+    /**
+     * Responsible for the continuing of the execution in the add ingredient
+     * window.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the add button.
+     */    
     private void AddIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddIngredientActionPerformed
         new AddIngredients(id).setVisible(true);
         dispose();
     }//GEN-LAST:event_AddIngredientActionPerformed
 
-    private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
+    /**
+     * Returning to the product main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */     
+    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
         ProductGui menu = new ProductGui();
         menu.setVisible(true);
         dispose();
-    }//GEN-LAST:event_BackMouseClicked
-    //showing colums of product table in data base 
+    }//GEN-LAST:event_CancelMouseClicked
 
     /**
      *Fill Ingredients_Table table with product's ingredients
@@ -241,7 +261,7 @@ public class Ingredients extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddIngredient;
-    private javax.swing.JMenu Back;
+    private javax.swing.JMenu Cancel;
     private javax.swing.JButton DeleteIngredient;
     private javax.swing.JTable Ingredients_Table;
     private javax.swing.JLabel jLabel3;

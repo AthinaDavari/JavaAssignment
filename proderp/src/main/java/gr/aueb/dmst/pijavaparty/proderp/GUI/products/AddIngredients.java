@@ -26,17 +26,17 @@ public class AddIngredients extends javax.swing.JFrame {
     private int selected;
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
     //multiple constructors 
-    //construcor if product doesnt exist
 
     /**
-     *
+     * Construcor if product doesnt exist
+     * 
      * @param name
      * @param price
      */
@@ -49,10 +49,10 @@ public class AddIngredients extends javax.swing.JFrame {
         seticon();
         setTitle("Add Ingredients");
     }
-    //product exist
 
     /**
-     *
+     * Product exist
+     * 
      * @param id
      */
     public AddIngredients(int id) {
@@ -63,10 +63,10 @@ public class AddIngredients extends javax.swing.JFrame {
         fillcombo();
         seticon();
     }
-       //product doesnt exist but ingridients already have been chosen
 
     /**
-     *
+     * Product doesnt exist but ingridients already have been chosen
+     * 
      * @param prodraw
      * @param obj5
      */
@@ -198,7 +198,13 @@ public class AddIngredients extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //method for add ingredients but not save
+
+    /**
+     * Method for adding ingredients but not save them in the data base yet.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the add more ingredients button.
+     */ 
     private void AddMoreIngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddMoreIngredientsActionPerformed
         try {
             if(isValidInteger(value_quantity.getText())){
@@ -236,7 +242,14 @@ public class AddIngredients extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AddMoreIngredientsActionPerformed
-    //method for adding one more ingredient and then save
+
+    /**
+     * Method for adding one more ingredient and then save this one and all of 
+     * the previous ones in the data base.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the add more ingredients button.
+     */     
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         try {
             if (isValidInteger(value_quantity.getText())){
@@ -285,12 +298,25 @@ public class AddIngredients extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SaveActionPerformed
 
+    /**
+     * Returning to the ingredients window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */     
     private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
         ProductGui rawmenu = new ProductGui();
         rawmenu.setVisible(true);
-        dispose();        // TODO add your handling code here:
+        dispose();        
     }//GEN-LAST:event_CancelMouseClicked
 
+    /**
+     * Check if the quantity input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */     
     private void value_quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_quantityKeyReleased
         if(!isValidInteger(value_quantity.getText())){
             valid_Quantity.setText("Quantity is invalid!");
@@ -298,7 +324,9 @@ public class AddIngredients extends javax.swing.JFrame {
             valid_Quantity.setText(null);
         }
     }//GEN-LAST:event_value_quantityKeyReleased
-    //fill up the drop down with raw materials and ids from the data base
+    /**
+     * Fill up the drop down with raw materials and ids from the data base.
+     */
     private void fillcombo() {
         Fillcombo fill = new Fillcombo();
         ArrayList<String> combocontents = fill.fillcomboArray(prodraw, prod);

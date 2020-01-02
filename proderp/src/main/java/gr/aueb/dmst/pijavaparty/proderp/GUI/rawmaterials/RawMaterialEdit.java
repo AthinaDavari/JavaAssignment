@@ -26,7 +26,9 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         seticon();
         setTitle("Edit Raw Materials");
     }
-
+    /**
+     *Method that sets the icon that is shown on the frame when the program is running. 
+     */
     private void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -161,7 +163,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(value_name, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(valid_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                                .addComponent(valid_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -174,8 +176,8 @@ public class RawMaterialEdit extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(valid_SupplierId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(8, 8, 8)))))
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,12 +217,25 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Returning to the raw material main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         RawMaterialMenu rawmenu = new RawMaterialMenu();
         rawmenu.setVisible(true);
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_cancelMouseClicked
-    //fill text area with details of a clicked raw material
+
+    /**
+     *
+     * Select a row of the table and put the raw materials's data in the fields.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by putting the mouse cursor in a selected row of the table.
+     */
     private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked
 
         int selectedRow = RawMaterial_table2.getSelectedRow();
@@ -232,6 +247,12 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         value_price.setText((model2.getValueAt(selectedRow, 3).toString()));
     }//GEN-LAST:event_RawMaterial_table2MouseClicked
 
+    /**
+     * Update the details of a raw material.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the update button.
+     */    
     private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
         try {
             if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) && isValidInteger(value_supplier_id.getText())) {
@@ -265,6 +286,13 @@ public class RawMaterialEdit extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txt_updateActionPerformed
 
+    /**
+     * Check if the name input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt  is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */    
     private void value_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_nameKeyReleased
         if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText())) {
             valid_Name.setText("Name is invalid!");
@@ -273,6 +301,13 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_nameKeyReleased
 
+    /**
+     * Check if the price input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt  is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */    
     private void value_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_priceKeyReleased
         if (!isValidDouble(value_price.getText())) {
             valid_Price.setText("Price is invalid!");
@@ -281,6 +316,13 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_priceKeyReleased
 
+    /**
+     * Check if the supplier input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt  is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */    
     private void value_supplier_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_supplier_idKeyReleased
         if (!isValidInteger(value_supplier_id.getText())) {
             valid_SupplierId.setText("Supplier Id is invalid!");
@@ -290,7 +332,8 @@ public class RawMaterialEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_value_supplier_idKeyReleased
 
     /**
-     *
+     *Method that shows every raw material that the copmany has along with 
+     *some information for each raw material. 
      */
     public void showRawMaterialTable() {
         RawMaterialDao obj = new RawMaterialDao();

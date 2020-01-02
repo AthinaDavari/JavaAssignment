@@ -38,7 +38,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -131,24 +131,36 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     *
+     * Returning to the Starage main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */    
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         StorageMain stor = new StorageMain();
         stor.setVisible(true);
         dispose();    
     }//GEN-LAST:event_cancelMouseClicked
 
+    /**
+     * Update the quantity of a product or a raw material.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the update button.
+     */
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
-        //Method that excequtes the quantity update of a product in the sql data base
         try { 
             if(isValidInteger(value_quantity.getText())){
             int quant = Integer.parseInt(value_quantity.getText());
-            if (prodorraw.equals("Product")) {
+            if (prodorraw.equals("Product")) { // update quantity of a product
                 ProductDao productDao=new ProductDao();
                 Product prod = productDao.getById(id);
                 ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, prod.getQuantity() - quant);
                 prodingup.setVisible(true);
                 productDao.updateQuantity(id,quant);
-            } else {
+            } else { // update quantity of a raw material
                 RawMaterialDao rawmaterialDao=new RawMaterialDao();
                 rawmaterialDao.updateQuantity(id,quant);
             }

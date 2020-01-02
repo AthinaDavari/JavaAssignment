@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author anna
+ * @author anna, aggel
  */
 public class EditProduct extends javax.swing.JFrame {
 
@@ -25,7 +25,7 @@ public class EditProduct extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -199,6 +199,13 @@ public class EditProduct extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     *
+     * Select a row of the table and put the raw product's data in the fields.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by putting the mouse cursor in a selected row of the table.
+     */    
     private void products_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_products_tableMouseClicked
         
         int selectedRow=products_table.getSelectedRow();
@@ -209,6 +216,12 @@ public class EditProduct extends javax.swing.JFrame {
         value_price.setText((model2.getValueAt(selectedRow, 2).toString()));
     }//GEN-LAST:event_products_tableMouseClicked
 
+    /**
+     * Method that deletes a product.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the delete button.
+     */        
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         try {
             String value1_id=value_id.getText();
@@ -226,6 +239,12 @@ public class EditProduct extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DeleteActionPerformed
 
+    /**
+     * Update the details of a product.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the update button.
+     */    
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
        try{
            if(isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) ){
@@ -254,12 +273,25 @@ public class EditProduct extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UpdateActionPerformed
 
+    /**
+     * Returning to the product main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */       
     private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
         ProductGui productGui = new ProductGui();
         productGui.setVisible(true);
         dispose();
     }//GEN-LAST:event_CancelMouseClicked
 
+    /**
+     * Check if the name input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt  is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */      
     private void value_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_nameKeyReleased
         if (!isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())) {
             valid_Name.setText("Name is invalid!");
@@ -268,6 +300,13 @@ public class EditProduct extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_nameKeyReleased
 
+    /**
+     * Check if the price input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt  is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */      
     private void value_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_priceKeyReleased
         if (!isValidDouble(value_price.getText())){
             valid_Price.setText("Price is invalid!");
@@ -311,10 +350,10 @@ public class EditProduct extends javax.swing.JFrame {
         });
     }
 
-    //methos showing colums of products from data base 
 
     /**
-     *
+     *Method that shows every product that the copmany has along with 
+     *some information for each one. 
      */
     public void showProductsTable(){
         ProductDao proddao=new ProductDao();

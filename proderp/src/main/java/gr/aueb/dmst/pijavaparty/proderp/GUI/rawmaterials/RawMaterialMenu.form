@@ -58,13 +58,13 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="298" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="refresh" min="-2" pref="42" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="Delete" min="-2" pref="143" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                      <Component id="editCustomer" min="-2" pref="140" max="-2" attributes="0"/>
+                      <Component id="editRawMaterial" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                       <Component id="AddRawMaterial" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
@@ -80,13 +80,13 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel1" pref="37" max="32767" attributes="0"/>
-                  <Component id="jButton1" max="32767" attributes="0"/>
+                  <Component id="refresh" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane3" pref="370" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="editCustomer" pref="63" max="32767" attributes="0"/>
+                  <Component id="editRawMaterial" pref="63" max="32767" attributes="0"/>
                   <Component id="AddRawMaterial" max="32767" attributes="0"/>
                   <Component id="Delete" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -148,12 +148,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="editCustomer">
+    <Component class="javax.swing.JButton" name="editRawMaterial">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editCustomerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editRawMaterialActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="AddRawMaterial">
@@ -172,14 +172,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="refresh">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/refresh.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

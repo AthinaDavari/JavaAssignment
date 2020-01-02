@@ -28,7 +28,7 @@ public class StorageMain extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -38,7 +38,7 @@ public class StorageMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        RawMaterial_table2 = new javax.swing.JTable();
+        Storage_Table = new javax.swing.JTable();
         product_id = new javax.swing.JTextField();
         updateQuantity = new javax.swing.JButton();
         refresh = new javax.swing.JButton();
@@ -50,7 +50,7 @@ public class StorageMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        RawMaterial_table2.setModel(new javax.swing.table.DefaultTableModel(
+        Storage_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -58,13 +58,13 @@ public class StorageMain extends javax.swing.JFrame {
                 "id", "Name", "Price", "Quantity", "Product or Raw"
             }
         ));
-        RawMaterial_table2.setUpdateSelectionOnSort(false);
-        RawMaterial_table2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Storage_Table.setUpdateSelectionOnSort(false);
+        Storage_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RawMaterial_table2MouseClicked(evt);
+                Storage_TableMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(RawMaterial_table2);
+        jScrollPane3.setViewportView(Storage_Table);
 
         product_id.setEditable(false);
         product_id.addActionListener(new java.awt.event.ActionListener() {
@@ -148,13 +148,13 @@ public class StorageMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     *
+     *Method that shows everything that exist in the storage along with the 
+     *quantities and some information for each product or raw material. 
      */
     public void showStorageTable(){
-        //Mathod that is responsible for the appearance of the table with the contents of the database
         RawMaterialDao rawdao = new RawMaterialDao();
         ProductDao proddao = new ProductDao();
-        DefaultTableModel model = (DefaultTableModel) RawMaterial_table2.getModel();
+        DefaultTableModel model = (DefaultTableModel) Storage_Table.getModel();
         int number = rawdao.getAll().size();
         Object[] row = new Object[5];
         for(int i = 0; i < number; i++){
@@ -164,7 +164,7 @@ public class StorageMain extends javax.swing.JFrame {
                 row[3] = rawdao.getAll().get(i).getQuantity();
                 row[4] = "Raw Material";
                 model.addRow(row);
-        }
+        } // First all the raw materials are shown.
         number = proddao.getAll().size();
         row = new Object[5];
         for(int i = 0; i<number; i++){
@@ -174,14 +174,29 @@ public class StorageMain extends javax.swing.JFrame {
             row[3] = proddao.getAll().get(i).getQuantity();
             row[4] = "Product";
             model.addRow(row);
-        }
+        } // Lastly all the products are shown in the table.
         
     }
+    
+    /**
+    * Refresh button so that when something is changed, you can see if its also 
+    * successfully changed in the data base.
+    *
+    * @param evt is a reference to an ActionEvent object that is sent to the
+    * method by clicking the refresh quantity button.
+    */
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         new StorageMain().setVisible(true);
         dispose();
     }//GEN-LAST:event_refreshActionPerformed
 
+    /**
+     * Method that pops another window which is used for updating quantities
+     * of products or raw materials.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the update quantity button.
+     */
     private void updateQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateQuantityActionPerformed
         try {
            if (prodorraw.equals(""))
@@ -197,15 +212,29 @@ public class StorageMain extends javax.swing.JFrame {
         
     }//GEN-LAST:event_updateQuantityActionPerformed
 
-    private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked
-        int selectedRow=RawMaterial_table2.getSelectedRow();
-        DefaultTableModel model2 =(DefaultTableModel) RawMaterial_table2.getModel();
+    /**
+     *
+     * Select a row of the table and put the product's or raw materials's data in the fields.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by putting the mouse cursor in a selected row of the table.
+     */
+    private void Storage_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Storage_TableMouseClicked
+        int selectedRow=Storage_Table.getSelectedRow();
+        DefaultTableModel model2 =(DefaultTableModel) Storage_Table.getModel();
         product_id.setText((model2.getValueAt(selectedRow, 0).toString()) +" " + (model2.getValueAt(selectedRow, 1).toString()));
         String ids=model2.getValueAt(selectedRow, 0).toString();
         id=Integer.parseInt(ids);
         prodorraw=model2.getValueAt(selectedRow, 4).toString();
-    }//GEN-LAST:event_RawMaterial_table2MouseClicked
+    }//GEN-LAST:event_Storage_TableMouseClicked
 
+    /**
+     *
+     * Loging out of the user that you are currently loged in in.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the log out button.
+     */
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn login = new LogIn();
         LogIn.setUser(null);
@@ -213,6 +242,13 @@ public class StorageMain extends javax.swing.JFrame {
         dispose();       
     }//GEN-LAST:event_logOutMouseClicked
 
+    /**
+     *
+     * Returning to the main menu window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the back button.
+     */
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         if((LogIn.getUser().getRole()).equals("admin")){
             AdminMenu menu = new AdminMenu();
@@ -262,7 +298,7 @@ public class StorageMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable RawMaterial_table2;
+    private javax.swing.JTable Storage_Table;
     private javax.swing.JMenu back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;

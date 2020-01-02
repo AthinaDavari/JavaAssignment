@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author anna
+ * @author anna, aggel
  */
 public class AddProducts extends javax.swing.JFrame {
 
@@ -21,7 +21,7 @@ public class AddProducts extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -143,6 +143,12 @@ public class AddProducts extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method to add a new product.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the add button.
+     */     
     private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed
        try {
            if (isValidDouble(value_price.getText()) && isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())){
@@ -157,12 +163,25 @@ public class AddProducts extends javax.swing.JFrame {
        
     }//GEN-LAST:event_AddProductActionPerformed
 
+    /**
+     * Returning to the product main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */     
     private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
         ProductGui productGui = new ProductGui();
         productGui.setVisible(true);
         dispose(); 
     }//GEN-LAST:event_CancelMouseClicked
 
+    /**
+     * Check if the price input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */    
     private void value_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_priceKeyReleased
        if (!isValidDouble(value_price.getText())){
             valid_Price.setText("Price is invalid!");
@@ -171,6 +190,13 @@ public class AddProducts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_priceKeyReleased
 
+    /**
+     * Check if the name input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */    
     private void value_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_nameKeyReleased
         if (!isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())) {
             valid_Name.setText("Name is invalid!");

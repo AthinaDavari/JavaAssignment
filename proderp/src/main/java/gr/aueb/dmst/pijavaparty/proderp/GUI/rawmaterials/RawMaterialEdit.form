@@ -64,7 +64,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="value_name" min="-2" pref="143" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="valid_Name" pref="134" max="32767" attributes="0"/>
+                              <Component id="valid_Name" pref="31" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="value_id" min="-2" pref="143" max="-2" attributes="0"/>
@@ -84,8 +84,8 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="jScrollPane3" min="-2" pref="422" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane3" min="-2" pref="530" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

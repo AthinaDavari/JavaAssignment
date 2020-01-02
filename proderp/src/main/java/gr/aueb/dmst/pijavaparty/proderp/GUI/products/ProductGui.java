@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author anna
+ * @author anna, aggel
  */
 public class ProductGui extends javax.swing.JFrame {
 
@@ -28,7 +28,7 @@ public class ProductGui extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -202,17 +202,39 @@ public class ProductGui extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
-    
+
+    /**
+     *
+     * Responsible for the continuing of the execution in the insert product
+     * window.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the add button.
+     */    
     private void add_new_productActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_new_productActionPerformed
-        
         new AddProducts().setVisible(true);
     }//GEN-LAST:event_add_new_productActionPerformed
 
+    /**
+     *
+     * Responsible for the continuing of the execution in the edit product
+     * window.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the update button.
+     */    
     private void update_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_deleteActionPerformed
-        
         new EditProduct().setVisible(true);
     }//GEN-LAST:event_update_deleteActionPerformed
 
+    /**
+     *
+     * Responsible for the continuing of the execution in the ingredients
+     * window.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the show ingredients button.
+     */    
     private void Show_IngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show_IngredientsActionPerformed
         try {
             int id=Integer.parseInt(product_id.getText());
@@ -228,6 +250,13 @@ public class ProductGui extends javax.swing.JFrame {
     private void product_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_product_idActionPerformed
     }//GEN-LAST:event_product_idActionPerformed
 
+    /**
+     *
+     * Select a row of the table and put the product's id in the field to show its ingredients.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by putting the mouse cursor in a selected row of the table.
+     */    
     private void product_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_product_tableMouseClicked
         
         int selectedRow=product_table.getSelectedRow();
@@ -235,12 +264,26 @@ public class ProductGui extends javax.swing.JFrame {
         product_id.setText((model2.getValueAt(selectedRow, 0).toString()));
     }//GEN-LAST:event_product_tableMouseClicked
 
+    /**
+    * Refresh button so that when something is changed, you can see if its also 
+    * successfully changed in the data base.
+    *
+    * @param evt is a reference to an ActionEvent object that is sent to the
+    * method by clicking the refresh quantity button.
+    */    
     private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
         ProductGui prodgui = new ProductGui();
         prodgui.setVisible(true);
         dispose();
     }//GEN-LAST:event_RefreshActionPerformed
 
+    /**
+     *
+     * Loging out of the user that you are currently loged in in.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the log out button.
+     */    
     private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
         LogIn login = new LogIn();
         LogIn.setUser(null);
@@ -248,6 +291,13 @@ public class ProductGui extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_LogOutMouseClicked
 
+    /**
+     *
+     * Returning to the main menu window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the back button.
+     */    
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
         if((LogIn.getUser().getRole()).equals("admin")){
             AdminMenu menu = new AdminMenu();

@@ -30,7 +30,7 @@ public class RawMaterialInsert extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -202,10 +202,22 @@ public class RawMaterialInsert extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Returning to the raw material main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */ 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
 
+    /**
+     * Method to add a new raw material
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the add button.
+     */    
     private void addRawMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRawMaterialActionPerformed
         try {
             if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) && isValidInteger(value_quantity.getText())) {
@@ -216,7 +228,7 @@ public class RawMaterialInsert extends javax.swing.JFrame {
                 suppliers = supdao.getAll();
                 Supplier sup = null;
                 int num = suppliers.size();
-                for (int i = 0; i < num; i++) {
+                for (int i = 0; i < num; i++) { // association of an already existing supplier with the new raw material.
                     if (suppliers.get(i).getFullName().equals(value_supplier_name)) {
                         sup = suppliers.get(i);
 
@@ -247,7 +259,14 @@ public class RawMaterialInsert extends javax.swing.JFrame {
 
     private void value_priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_priceActionPerformed
     }//GEN-LAST:event_value_priceActionPerformed
-
+    
+    /**
+     * Check if the name input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt  is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */
     private void value_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_nameKeyReleased
         if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText())) {
             valid_Name.setText("Name is invalid!");
@@ -255,7 +274,14 @@ public class RawMaterialInsert extends javax.swing.JFrame {
             valid_Name.setText(null);
         }
     }//GEN-LAST:event_value_nameKeyReleased
-
+    
+    /**
+     * Check if the price input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */
     private void value_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_priceKeyReleased
         if (!isValidDouble(value_price.getText())) {
             valid_Price.setText("Price is invalid!");
@@ -263,7 +289,14 @@ public class RawMaterialInsert extends javax.swing.JFrame {
             valid_Price.setText(null);
         }
     }//GEN-LAST:event_value_priceKeyReleased
-
+    
+    /**
+     * Check if the quantity input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */
     private void value_quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_quantityKeyReleased
         if (!isValidInteger(value_quantity.getText())) {
             valid_Quantity.setText("Quantity is invalid!");
@@ -271,7 +304,9 @@ public class RawMaterialInsert extends javax.swing.JFrame {
             valid_Quantity.setText(null);
         }
     }//GEN-LAST:event_value_quantityKeyReleased
-    //fill up the drop down with suppliers
+    /**
+     * Fill the drop down with all the suppliers that the company works with.
+     */
     private void fillcombo() {
         SupplierDao supdao = new SupplierDao();
         List<Supplier> suppliers;

@@ -35,7 +35,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -108,6 +108,12 @@ public class DeleteIngredients extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method that deletes an ingrediantfrom the recipe of a specific product.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the delete button.
+     */        
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         try {
             String value1_id = drop_down.getSelectedItem().toString();
@@ -130,11 +136,22 @@ public class DeleteIngredients extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DeleteActionPerformed
 
+    /**
+     * Returning to the ingredients main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */     
     private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
         Ingredients  ingredients = new Ingredients();
         ingredients.setVisible(true);
         dispose();      
     }//GEN-LAST:event_CancelMouseClicked
+
+    /**
+     * Fill the drop down with all the ids of the ingredients that the specific product has in its
+     * recipe.
+     */    
     private void fillcombo() {
         ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
         ProductRawMaterialDao rawdao = new ProductRawMaterialDao();

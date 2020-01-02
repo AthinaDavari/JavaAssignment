@@ -22,7 +22,7 @@ public class RawMaterialDelete extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -98,6 +98,12 @@ public class RawMaterialDelete extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Returning to the raw material main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         dispose();  
     }//GEN-LAST:event_cancelMouseClicked
@@ -106,6 +112,12 @@ public class RawMaterialDelete extends javax.swing.JFrame {
 
     }//GEN-LAST:event_value_idActionPerformed
 
+    /**
+     * Method that deletes a raw material
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the delete button.
+     */    
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
             if (value_id.getText().equals("")) {

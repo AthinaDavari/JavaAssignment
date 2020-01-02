@@ -11,26 +11,23 @@ import javax.swing.JOptionPane;
 public class ProductIngredientsUpdate extends javax.swing.JFrame {
 
     /**
-     *
+     * Id of the product.
      */
     public int id;
 
     /**
-     *
+     * Quantity of the product.
      */
     public int quant;
 
-    /**
-     *
-     */
+
     public ProductIngredientsUpdate() {
         initComponents();
-        setTitle("Update Product's Ingredients");
+        
     }
-    //constracor to get id and quantity from previous window
 
     /**
-     *
+     * Constracor to get id and quantity from previous window
      * @param id
      * @param quant
      */
@@ -39,10 +36,11 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
         this.quant=quant;
         initComponents();
         seticon();
+        setTitle("Update Product's Ingredients");
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -104,7 +102,12 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //update ingredients quantty method
+    /**
+     * Execution of the quantity update of the materials used in the making of a 
+     * product.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the yes button.
+     */
     private void answerYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerYesActionPerformed
         StorageServices storser= new StorageServices();
         if (storser.updateIngredients(id, quant)) {
@@ -114,7 +117,13 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
         }
         dispose();
     }//GEN-LAST:event_answerYesActionPerformed
-
+    
+    /**
+     * The choice of not updating the materials used in the making of a 
+     * product. 
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the no button.
+     */
     private void answerNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerNoActionPerformed
         dispose();
     }//GEN-LAST:event_answerNoActionPerformed

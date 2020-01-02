@@ -31,25 +31,16 @@ public class StorageServices {
      * Update the quantity of all the ingredients in product's recipe
      *
      * @param id-the product's id we want to made
-     * @param quant-the quantity of product we want to make(with -) or
-     * destroy(with +)
-     * @return if the quantity of product's, return true, else false
+     * @param quant-the quantity of product we want to make(with +) or
+     * destroy(with -)
      */
-    public boolean updateIngredients(int id, int quant) {
+    public void updateIngredients(int id, int quant) {
         ProductRawMaterialDao prodrawdao = new ProductRawMaterialDao();
 
         //list of raw materials,which are included in product's recipe
         List<ProductRawMaterial> prodrawlist = prodrawdao.getMaterialsPerProduct(id);
         RawMaterialDao rawmatdao = new RawMaterialDao();
         Function<Integer, Integer> f = updateQuantityOfRawMaterialBy(quant);
-
-        //if we want to make products,check the raw materials pieces in storage
-        if (quant < 0) {//start 1st if
-            //if at least a raw material has not enough pieces in storage, stop the process 
-            if (permissionToUpdateIngredients(id, quant) == false) {//start 2nd if
-                return false;
-            }//end 2nd if
-        }//end 1st if
 
         int prodrawlistsize = prodrawlist.size();//number of raw materials in product's recipe
         ProductRawMaterial prodraw;
@@ -63,11 +54,10 @@ public class StorageServices {
             quantrecipe = prodraw.getQuantityOfRawMaterial();
             //raw material's quantity in storage
             rawquant = prodraw.getRawMaterial().getQuantity();
-            rawquant += f.apply(quantrecipe);//same with: rawquant = rawquant + quantrecipe * quant;
+            rawquant += f.apply(quantrecipe);//same with: rawquant = rawquant - quantrecipe * quant;
             //update the raw material 
             rawmatdao.updateQuantity(prodraw.getRawMaterial().getId(), rawquant);
         }//end for
-        return true;
     }
 
     /**
@@ -75,7 +65,7 @@ public class StorageServices {
      * quantity we want
      *
      * @param id-the product's id we want to made
-     * @param quant-the quantity of product we want to make(with -)
+     * @param quant-the quantity of product we want to make(with +)
      * @return if the storage have enough raw materials to make a product in
      * quantity we want, return true, else false
      */
@@ -96,7 +86,7 @@ public class StorageServices {
             quantrecipe = prodraw.getQuantityOfRawMaterial();
             //raw material's quantity in storage
             rawquant = prodraw.getRawMaterial().getQuantity();
-            rawquant += f.apply(quantrecipe);//same with: rawquant = rawquant + quantrecipe * quant;
+            rawquant += f.apply(quantrecipe);//same with: rawquant = rawquant - quantrecipe * quant;
 
             //if the raw material has not enough pieces in storage, return false
             if (rawquant < 0) {
@@ -148,12 +138,11 @@ public class StorageServices {
 
     /**
      *
-     * @param q-the quantity of product we want to make(with -) or destroy(with
-     * +)
+     * @param q-the quantity of product we want to make(with +) or destroy(with -)
      * @return
      */
     public Function<Integer, Integer> updateQuantityOfRawMaterialBy(int q) {
-        return x -> q * x;
+        return x -> -q * x;
     }
 
     /**
@@ -190,6 +179,7 @@ public class StorageServices {
      */
     public void updateProduct(int corderid) {
         COrderItemDao coid = new COrderItemDao();
+        ProductDao proddao = new ProductDao();
         List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
         // corderitems - an arraylist that contains all the items in a specific 
         // order from customers.
@@ -202,8 +192,7 @@ public class StorageServices {
     }
 
     /**
-     * Decrease the quantities of a specific product that are available for
-     * customers and update this data in the database.
+     * Decrease the quantities of of order's products in the database.
      *
      * @param corderid - An integer that defines the id of an order from
      * customers.
@@ -218,19 +207,39 @@ public class StorageServices {
         for (COrderItem cOrderItem : corderitems) {
 
             Product productFromOrder = cOrderItem.getProduct();
-            if (cOrderItem.getQuantity() <= pd.getById(productFromOrder.getId()).getQuantity()) {
-                // Check if the quantity of a specific product in an order from customers 
-                // is less or equal to the available quantity of this product in the storage.
-                // Check if there are enough products in the storage.
                 pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
                 // If there are enough products in the storage, decrease the 
                 // quantity of this product by the quantity given in the order 
                 // from customers and update the database.
-            } else {
 
-                JOptionPane.showMessageDialog(null, "Not enough products in the storage.");
-            }
         }
 
     }
+     
+    /**
+     * Check if the quantities of order's products are available for
+     * customers
+     *
+     * @param corderid - An integer that defines the id of an order from
+     * customers.
+     */
+    public boolean permissionToDecreaseProduct(int corderid){
+        COrderItemDao coid = new COrderItemDao();
+        List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
+        // corderitems - an arraylist that contains all the items in a specific 
+        // order from customers.
+        ProductDao pd = new ProductDao();
+        for (COrderItem cOrderItem : corderitems) {
+
+            Product productFromOrder = cOrderItem.getProduct();
+            if (cOrderItem.getQuantity() > pd.getById(productFromOrder.getId()).getQuantity()) {
+                // Check if the quantity of a specific product in an order from customers 
+                // is more to the available quantity of this product in the storage.
+                // if yes stop, return false(there are not enough products in the storage.)
+                return false;
+            }
+        }
+        return true;
+    }
+        
 }

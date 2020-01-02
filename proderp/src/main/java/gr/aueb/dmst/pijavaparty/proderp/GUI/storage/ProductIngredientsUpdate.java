@@ -1,5 +1,6 @@
 package gr.aueb.dmst.pijavaparty.proderp.GUI.storage;
 
+import gr.aueb.dmst.pijavaparty.proderp.dao.ProductDao;
 import gr.aueb.dmst.pijavaparty.proderp.services.StorageServices;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -110,7 +111,12 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
      */
     private void answerYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerYesActionPerformed
         StorageServices storser= new StorageServices();
-        if (storser.updateIngredients(id, quant)) {
+        //Check if the storage have enough raw materials to make a product in quantity we want
+        if (storser.permissionToUpdateIngredients(id, quant)) {
+            //Update the quantity of all the ingredients in product's recipe
+            storser.updateIngredients(id, quant);
+            ProductDao productDao=new ProductDao();
+            productDao.updateQuantity(id,quant);//update the quantity of product
             JOptionPane.showMessageDialog(null,"Updated");
         } else {
             JOptionPane.showMessageDialog(null,"Cannot update, not enough raw materials.","Error",  JOptionPane.ERROR_MESSAGE);
@@ -125,6 +131,8 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
      * method by clicking the no button.
      */
     private void answerNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerNoActionPerformed
+        ProductDao productDao=new ProductDao();
+        productDao.updateQuantity(id,quant);
         dispose();
     }//GEN-LAST:event_answerNoActionPerformed
 

@@ -240,8 +240,6 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
 
-        AddNewSOrder addnewsorder = new AddNewSOrder();
-        addnewsorder.setVisible(true);
         dispose();
 
     }//GEN-LAST:event_cancelMouseClicked

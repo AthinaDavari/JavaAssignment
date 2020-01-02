@@ -125,9 +125,14 @@ public class StorageServices {
             ArrayList<ProductRawMaterial> rawsOfProduct = prd.getMaterialsPerProduct(cOrderItem.getProduct().getId());
             for (ProductRawMaterial prm : rawsOfProduct) {
                 RawMaterial rawMaterial = prm.getRawMaterial();
+                System.out.println(rawMaterial);
                 /* get old value of quantity contained in HashMap and increase it by 
                 the other Product's  needed quantity for this particular RawMaterial */
-                totalRawNeeded.put(rawMaterial, totalRawNeeded.get(rawMaterial) + prm.getQuantityOfRawMaterial());
+                if (totalRawNeeded.get(rawMaterial) != null) {
+                    totalRawNeeded.put(rawMaterial, totalRawNeeded.get(rawMaterial) + prm.getQuantityOfRawMaterial());
+                } else {
+                    totalRawNeeded.put(rawMaterial, prm.getQuantityOfRawMaterial());
+                }
             }
         }
         for (RawMaterial rm : totalRawNeeded.keySet()) {

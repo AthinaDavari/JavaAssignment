@@ -1,5 +1,5 @@
 # JavaAssignment
-Assignment for 2nd semester course "Programming 2" <br />
+Assignment for 3rd semester course "Programming 2" <br />
 Department of Management Science and Technology <br />
 Athens University of Economics and Business
 

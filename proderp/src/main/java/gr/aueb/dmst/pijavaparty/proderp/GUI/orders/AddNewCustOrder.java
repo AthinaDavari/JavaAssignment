@@ -139,7 +139,7 @@ public class AddNewCustOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewProductActionPerformed
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        
+
         dispose();
         
     }//GEN-LAST:event_cancelMouseClicked

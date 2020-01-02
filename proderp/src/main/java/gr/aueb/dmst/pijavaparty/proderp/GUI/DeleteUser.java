@@ -39,8 +39,8 @@ public class DeleteUser extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
+        username = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         Cancel = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -53,12 +53,6 @@ public class DeleteUser extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Username:");
-
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
 
         delete.setBackground(java.awt.SystemColor.activeCaption);
         delete.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
@@ -87,8 +81,8 @@ public class DeleteUser extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,10 +164,6 @@ public class DeleteUser extends javax.swing.JFrame {
         }
     }
     
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -216,6 +206,6 @@ public class DeleteUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField username;
+    private javax.swing.JComboBox<String> username;
     // End of variables declaration//GEN-END:variables
 }

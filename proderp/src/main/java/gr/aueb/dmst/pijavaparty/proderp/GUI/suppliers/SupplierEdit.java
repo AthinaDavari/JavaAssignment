@@ -292,7 +292,6 @@ public class SupplierEdit extends javax.swing.JFrame {
                 SupplierDao obj = new SupplierDao();
                 obj.update(objc);
                 JOptionPane.showMessageDialog(null, "Updated");
-                new SupplierEdit().setVisible(true);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");

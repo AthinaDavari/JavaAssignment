@@ -269,7 +269,7 @@ public class CustomerEdit extends javax.swing.JFrame {
                 obj.update(objc);
 
                 JOptionPane.showMessageDialog(null, "Updated");
-                new CustomerEdit().setVisible(true);
+                
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");

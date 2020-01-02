@@ -14,6 +14,11 @@ This application is a potential module of an ERP system of an industrial company
 * [JUnit 4](https://junit.org/junit4/) - Testing Framework
 * [Javadoc](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html) - Documentation Generator
 
+## Prerequisites
+* Java 8 or newer
+* MySQL server
+* Maven
+
 ## Instructions
 #### Database
 Run both [erp_progII.sql](https://github.com/AthinaDavari/JavaAssignment/blob/master/erp_progII.sql) and [erp_progIITest.sql](https://github.com/AthinaDavari/JavaAssignment/blob/master/erp_progIITest.sql) at a MySQL server
@@ -29,7 +34,11 @@ and then enter the project folder and run
 java -jar target\proderp-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 After the .jar file is created you can just enter target folder and double click it.
-
+#### Testing
+To run tests use
+```bash
+mvn test
+```
 ## Authors
 | Full Name | Github Account |
 | --- | --- |

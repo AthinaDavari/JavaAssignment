@@ -3,7 +3,7 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI.products;
 
 import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
-import gr.aueb.dmst.pijavaparty.proderp.GUI.Menu;
+import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.ProductDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
 import java.awt.Toolkit;
@@ -213,6 +213,7 @@ public class ProductGui extends javax.swing.JFrame {
      */    
     private void add_new_productActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_new_productActionPerformed
         new AddProducts().setVisible(true);
+        dispose();
     }//GEN-LAST:event_add_new_productActionPerformed
 
     /**
@@ -225,6 +226,7 @@ public class ProductGui extends javax.swing.JFrame {
      */    
     private void update_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_deleteActionPerformed
         new EditProduct().setVisible(true);
+        dispose();
     }//GEN-LAST:event_update_deleteActionPerformed
 
     /**
@@ -239,6 +241,7 @@ public class ProductGui extends javax.swing.JFrame {
         try {
             int id=Integer.parseInt(product_id.getText());
             new Ingredients(id).setVisible(true);
+            dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Select a Product.","Error",  JOptionPane.ERROR_MESSAGE);
             ProductGui stor = new ProductGui();
@@ -303,7 +306,7 @@ public class ProductGui extends javax.swing.JFrame {
             AdminMenu menu = new AdminMenu();
             menu.setVisible(true);
         } else {
-            Menu menu = new Menu();
+            SimpleMenu menu = new SimpleMenu();
             menu.setVisible(true);
         }
         dispose();

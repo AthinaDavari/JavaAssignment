@@ -86,18 +86,15 @@
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="AddUser" min="-2" pref="134" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="DeleteUser" min="-2" pref="130" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="620" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <Component id="AddUser" min="-2" pref="134" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="DeleteUser" min="-2" pref="130" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -107,14 +104,14 @@
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="Orders" pref="47" max="32767" attributes="0"/>
                   <Component id="Storage" max="32767" attributes="0"/>
-                  <Component id="RawMaterials" max="32767" attributes="0"/>
                   <Component id="Products" max="32767" attributes="0"/>
                   <Component id="Suppliers" max="32767" attributes="0"/>
                   <Component id="Customers" max="32767" attributes="0"/>
+                  <Component id="RawMaterials" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="352" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="109" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="AddUser" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
                   <Component id="DeleteUser" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>

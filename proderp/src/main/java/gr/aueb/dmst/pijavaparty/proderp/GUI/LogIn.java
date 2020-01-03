@@ -207,7 +207,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         } else if (user != null && user.getRole() == "simpleuser") {
             user.setPassword(null);
             this.user = user;
-            Menu obj = new Menu();
+            SimpleMenu obj = new SimpleMenu();
             obj.setVisible(true);
             dispose();
         } else {

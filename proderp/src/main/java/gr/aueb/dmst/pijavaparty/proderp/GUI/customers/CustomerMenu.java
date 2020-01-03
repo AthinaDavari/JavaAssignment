@@ -2,7 +2,7 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI.customers;
 
 import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
-import gr.aueb.dmst.pijavaparty.proderp.GUI.Menu;
+import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.CustomerDao;
 import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
@@ -182,7 +182,7 @@ public class CustomerMenu extends javax.swing.JFrame {
             AdminMenu menu = new AdminMenu();
             menu.setVisible(true);
         } else {
-            Menu menu = new Menu();
+            SimpleMenu menu = new SimpleMenu();
             menu.setVisible(true);
         }
         dispose();

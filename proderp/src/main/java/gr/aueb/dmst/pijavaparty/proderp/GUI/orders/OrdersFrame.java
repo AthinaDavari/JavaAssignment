@@ -1,7 +1,7 @@
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
-import gr.aueb.dmst.pijavaparty.proderp.GUI.Menu;
+import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
 import java.awt.Toolkit;
 
 
@@ -165,7 +165,7 @@ public class OrdersFrame extends javax.swing.JFrame {
     
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         
-       Menu menu = new Menu();
+       SimpleMenu menu = new SimpleMenu();
        menu.setVisible(true);
        dispose();
        

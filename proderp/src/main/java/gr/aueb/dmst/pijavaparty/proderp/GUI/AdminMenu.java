@@ -30,7 +30,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * Method that sets the icon that is shown on the frame when the program is running.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -202,62 +202,91 @@ public class AdminMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Exits from the window and returns to LogIn window.
+     */
     private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
         LogIn.setUser(null);
         LogIn obj = new LogIn();
         obj.setVisible(true);
         dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_LogOutMouseClicked
 
+    /**
+     * Closes the window and opens CustomerMenu window.
+     */
     private void CustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomersActionPerformed
         CustomerMenu obj = new CustomerMenu();
         obj.setVisible(true);
         dispose(); // TODO add your handling code here:
     }//GEN-LAST:event_CustomersActionPerformed
 
+    /**
+     * Closes the window and opens SuppliersMenu window.
+     */
     private void SuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuppliersActionPerformed
         SuppliersMenu obj = new SuppliersMenu();
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_SuppliersActionPerformed
 
+     /**
+     * Closes the window and opens ProductsGui window.
+     */
     private void ProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductsActionPerformed
         ProductGui obj = new ProductGui();
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_ProductsActionPerformed
 
+     /**
+     * Closes the window and opens RawMaterialMenu window.
+     */
     private void RawMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RawMaterialsActionPerformed
         RawMaterialMenu obj = new RawMaterialMenu();
         obj.setVisible(true);
         dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_RawMaterialsActionPerformed
 
+    /**
+     * Closes the window and opens StorageMain window.
+     */
     private void StorageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StorageActionPerformed
         StorageMain obj = new StorageMain();
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_StorageActionPerformed
 
+    /**
+     * Closes the window and opens OrdersFrame window.
+     */
     private void OrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdersActionPerformed
         OrdersFrame obj = new OrdersFrame();
         obj.setVisible(true);
         dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_OrdersActionPerformed
 
+    /**
+     * Closes the window and opens DeleteUser window.
+     */
     private void DeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserActionPerformed
         new DeleteUser().setVisible(true);
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteUserActionPerformed
 
+    /**
+     * Closes the window and opens AddUser window.
+     */
     private void AddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserActionPerformed
         new AddUser().setVisible(true);
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_AddUserActionPerformed
 
+    /**
+     * Closes the window, opens web and transfers user to Proderp website.
+     */
     private void visitOurWebsiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visitOurWebsiteMouseClicked
         try {
             URI uri = new URI("http://prometheus.dmst.aueb.gr/~nkatsiapi/proderp/index.html");

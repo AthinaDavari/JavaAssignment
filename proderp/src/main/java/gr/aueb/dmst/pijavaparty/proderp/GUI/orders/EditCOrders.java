@@ -201,7 +201,11 @@ public class EditCOrders extends javax.swing.JFrame {
             StorageServices storageservices = new StorageServices();
 
             if (status.equals("ready")) { // check if the order's status is "ready".
-
+                if(!(storageservices.permissionToDecreaseRawMaterials(orderIdInt))){
+                    //if raw materials can be not decreased by this quantity stop the process
+                    JOptionPane.showMessageDialog(null, "Not enough raw materials for this order.");
+                    return;
+                }
                 storageservices.updateProduct(orderIdInt);
                 // If the order is "ready", update in the database the quantities
                 // of the raw materials that were used to produse this product.
@@ -213,9 +217,14 @@ public class EditCOrders extends javax.swing.JFrame {
 
             if (status.equals("delivered")) { // check if the order's status is "delivered".
 
+                if(!(storageservices.permissionToDecreaseProduct(orderIdInt))){
+                    //if products can be not decreased by this quantity stop the process
+                    JOptionPane.showMessageDialog(null, "Not enough products in the storage.");
+                    return;
+                }
+                
                 storageservices.decreaseProduct(orderIdInt);
-                // If the order is "delivered" to the customer, decrease in the 
-                // database the number of products that are available for customers.
+                // Decrease in the database the number of products that are available for customers.
 
             }
 

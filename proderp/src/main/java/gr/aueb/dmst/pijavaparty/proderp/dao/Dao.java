@@ -41,7 +41,7 @@ public class Dao {
 
                 conn = DriverManager.getConnection(url, "root", "12345");
 
-             
+
 
             } catch (SQLException ex) {
                 ex.printStackTrace();

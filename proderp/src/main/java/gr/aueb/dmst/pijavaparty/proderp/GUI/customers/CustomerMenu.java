@@ -26,7 +26,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -56,7 +56,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         setFocusCycleRoot(false);
         setResizable(false);
 
-        editCustomer.setText("Update");
+        editCustomer.setText("Update/Delete");
         editCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editCustomerActionPerformed(evt);

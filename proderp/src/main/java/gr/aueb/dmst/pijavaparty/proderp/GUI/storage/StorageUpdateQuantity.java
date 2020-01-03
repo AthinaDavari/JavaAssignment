@@ -44,7 +44,9 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
     
-    @SuppressWarnings("unchecked")
+    /**
+     * Set StorageUpdateQuantity window
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -157,9 +159,8 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
             if (prodorraw.equals("Product")) { // update quantity of a product
                 ProductDao productDao=new ProductDao();
                 Product prod = productDao.getById(id);
-                ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, prod.getQuantity() - quant);
+                ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, quant - prod.getQuantity());
                 prodingup.setVisible(true);
-                productDao.updateQuantity(id,quant);
             } else { // update quantity of a raw material
                 RawMaterialDao rawmaterialDao=new RawMaterialDao();
                 rawmaterialDao.updateQuantity(id,quant);

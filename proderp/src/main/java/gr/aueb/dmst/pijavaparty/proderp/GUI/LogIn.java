@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 
 /**
  * Log in as simple user or administrator (admin).
- * 
  * @author aggel 
  */
 public class LogIn extends javax.swing.JFrame implements Runnable {
@@ -32,12 +31,15 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
     }
 
     /**
-     *
+     * Method that sets the icon that is shown on the frame when the program is running.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
+    /**
+     * 
+     */
     public static void setUser(User u) {
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
         List<StackTraceElement> list = Arrays.asList(stackTraceElements);
@@ -46,6 +48,10 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         }
     }
 
+    /**
+     * 
+     * @return 
+     */
     public static User getUser() {
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
         List<StackTraceElement> list = Arrays.asList(stackTraceElements);
@@ -179,6 +185,10 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
+    /**
+     * Takes content from textfields and checks whether it is admin, a simple user or null.
+     * Based on the result it opens the corresponding window menu or shows error message.
+     */
     private void logInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInActionPerformed
         String un = jTextField1.getText();
         String password = jPasswordField1.getText();

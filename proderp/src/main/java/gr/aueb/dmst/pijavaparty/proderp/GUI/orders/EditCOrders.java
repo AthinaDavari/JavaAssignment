@@ -206,7 +206,7 @@ public class EditCOrders extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Not enough raw materials for this order.");
                     return;
                 }
-                storageservices.updateProduct(orderIdInt);
+                storageservices.decreaseRawQuantitiesForProducts(orderIdInt);
                 // If the order is "ready", update in the database the quantities
                 // of the raw materials that were used to produse this product.
                 storageservices.increaseProduct(orderIdInt);

@@ -43,13 +43,16 @@ public class COrderItemDaoTest {
         System.out.println("getAll");
         COrderItemDao instance = new COrderItemDao();
         Customer c = new Customer(1, "Ora Gia Podilato", "Tositsa 45", 2109237849l, "info@oragiapodilato.com");
-        COrder cOrder = new COrder(3, c, "delivered", Timestamp.valueOf("2017-02-28 17:02:01"),
+        COrder cOrder1 = new COrder(3, c, "delivered", Timestamp.valueOf("2017-02-28 17:02:01"),
+                new User("natalia", "nat", "simpleuser"));
+        COrder cOrder2 = new COrder(2, c, "ready", Timestamp.valueOf("2019-05-12 11:02:59"),
                 new User("natalia", "nat", "simpleuser"));
         Product p1 = new Product(5, "Scott Volt X20", 50, 1000.0);
         Product p2 = new Product(2, "GT Air 20", 32, 567.34);
         List<COrderItem> expResult = new ArrayList();
-        expResult.add(new COrderItem(cOrder, p2, 49));
-        expResult.add(new COrderItem(cOrder, p1, 100));
+        expResult.add(new COrderItem(cOrder2, p1, 2));
+        expResult.add(new COrderItem(cOrder1, p2, 49));
+        expResult.add(new COrderItem(cOrder1, p1, 100));
 
         List<COrderItem> result = instance.getAll();
         assertEquals(expResult, result);

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,8 +63,8 @@ public class StorageServices {
      * Check if the storage have enough raw materials to make a product in
      * quantity we want
      *
-     * @param id-the product's id we want to made
-     * @param quant-the quantity of product we want to make(with +)
+     * @param id -the product's id we want to made
+     * @param quant -the quantity of product we want to make(with +)
      * @return if the storage have enough raw materials to make a product in
      * quantity we want, return true, else false
      */
@@ -115,7 +114,6 @@ public class StorageServices {
             ArrayList<ProductRawMaterial> rawsOfProduct = prd.getMaterialsPerProduct(cOrderItem.getProduct().getId());
             for (ProductRawMaterial prm : rawsOfProduct) {
                 RawMaterial rawMaterial = prm.getRawMaterial();
-                System.out.println(rawMaterial);
                 /* get old value of quantity contained in HashMap and increase it by 
                 the other Product's  needed quantity for this particular RawMaterial */
                 if (totalRawNeeded.get(rawMaterial) != null) {
@@ -128,7 +126,7 @@ public class StorageServices {
         for (RawMaterial rm : totalRawNeeded.keySet()) {
             int oldQuantity = rm.getQuantity();
             Function<Integer, Integer> f = updateQuantityOfRawMaterialBy(oldQuantity);
-            int newQuantity = oldQuantity + f.apply((-1) * totalRawNeeded.get(rm));
+            int newQuantity = oldQuantity + f.apply(totalRawNeeded.get(rm));
             if (newQuantity < 0) {
                 return false;
             }
@@ -177,9 +175,8 @@ public class StorageServices {
      * @param corderid - An integer that defines the id of an order from
      * customers.
      */
-    public void updateProduct(int corderid) {
+    public void decreaseRawQuantitiesForProducts(int corderid) {
         COrderItemDao coid = new COrderItemDao();
-        ProductDao proddao = new ProductDao();
         List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
         // corderitems - an arraylist that contains all the items in a specific 
         // order from customers.

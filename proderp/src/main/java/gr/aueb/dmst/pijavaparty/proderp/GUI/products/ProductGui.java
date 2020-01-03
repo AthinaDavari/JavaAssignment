@@ -3,7 +3,7 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI.products;
 
 import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
-import gr.aueb.dmst.pijavaparty.proderp.GUI.Menu;
+import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.ProductDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
 import java.awt.Toolkit;
@@ -306,7 +306,7 @@ public class ProductGui extends javax.swing.JFrame {
             AdminMenu menu = new AdminMenu();
             menu.setVisible(true);
         } else {
-            Menu menu = new Menu();
+            SimpleMenu menu = new SimpleMenu();
             menu.setVisible(true);
         }
         dispose();

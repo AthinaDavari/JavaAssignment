@@ -155,16 +155,16 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
         try { 
             if(isValidInteger(value_quantity.getText())){
-            int quant = Integer.parseInt(value_quantity.getText());
-            if (prodorraw.equals("Product")) { // update quantity of a product
-                ProductDao productDao=new ProductDao();
-                Product prod = productDao.getById(id);
-                ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, quant - prod.getQuantity());
-                prodingup.setVisible(true);
-            } else { // update quantity of a raw material
-                RawMaterialDao rawmaterialDao=new RawMaterialDao();
-                rawmaterialDao.updateQuantity(id,quant);
-            }
+                int quant = Integer.parseInt(value_quantity.getText());
+                if (prodorraw.equals("Product")) { // update quantity of a product
+                    ProductDao productDao=new ProductDao();
+                    Product prod = productDao.getById(id);
+                    ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, quant - prod.getQuantity());
+                    prodingup.setVisible(true);
+                } else { // update quantity of a raw material
+                    RawMaterialDao rawmaterialDao=new RawMaterialDao();
+                    rawmaterialDao.updateQuantity(id,quant);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }

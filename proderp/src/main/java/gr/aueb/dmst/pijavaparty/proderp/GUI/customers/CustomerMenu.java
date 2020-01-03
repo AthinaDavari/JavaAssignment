@@ -56,7 +56,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         setFocusCycleRoot(false);
         setResizable(false);
 
-        editCustomer.setText("Update");
+        editCustomer.setText("Update/Delete");
         editCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editCustomerActionPerformed(evt);

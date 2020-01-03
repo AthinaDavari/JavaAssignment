@@ -55,7 +55,7 @@ public class SuppliersMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("Supplier Menu");
 
-        edit.setText("Update");
+        edit.setText("Update/Delete");
         edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editActionPerformed(evt);

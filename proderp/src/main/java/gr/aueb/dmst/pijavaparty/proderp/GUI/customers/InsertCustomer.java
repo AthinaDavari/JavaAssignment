@@ -19,7 +19,7 @@ public class InsertCustomer extends javax.swing.JFrame {
     public InsertCustomer() {
         initComponents();
         seticon();
-        setTitle("Insert Customer");
+        setTitle("Add Customer");
     }
 
     /**
@@ -86,7 +86,7 @@ public class InsertCustomer extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel6.setText("   Insert New Customer");
+        jLabel6.setText("   Add New Customer");
 
         save.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         save.setText("Save");

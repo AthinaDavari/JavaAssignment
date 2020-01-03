@@ -25,7 +25,7 @@ public class SupplierInsert extends javax.swing.JFrame {
     public SupplierInsert() {
         initComponents();
         seticon();
-        setTitle("Insert Supplier");
+        setTitle("Add Supplier");
     }
 
     /**

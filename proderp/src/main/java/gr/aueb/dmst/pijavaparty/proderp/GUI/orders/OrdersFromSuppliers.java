@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.SOrderDao;
@@ -14,9 +9,13 @@ import javax.swing.table.DefaultTableModel;
 
 
 /**
- *
+ * OrdersFromSuppliers - a graphical user interface (gui) class for choosing to 
+ * update, delete, add the data of an order to supplier, or show all the 
+ * raw materials included in a supplier's order.
+ * 
  * @author MariaKokkorou
  */
+
 public class OrdersFromSuppliers extends javax.swing.JFrame {
 
     /**
@@ -29,8 +28,9 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
+    
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -48,8 +48,8 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         update = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         SOrdersTable = new javax.swing.JTable();
-        showraw = new javax.swing.JButton();
-        orid = new javax.swing.JTextField();
+        showRawMaterials = new javax.swing.JButton();
+        selectedOrder = new javax.swing.JTextField();
         refresh = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         back = new javax.swing.JMenu();
@@ -100,16 +100,16 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(SOrdersTable);
 
-        showraw.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        showraw.setText("Show Raw Materials");
-        showraw.addActionListener(new java.awt.event.ActionListener() {
+        showRawMaterials.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        showRawMaterials.setText("Show Raw Materials");
+        showRawMaterials.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showrawActionPerformed(evt);
+                showRawMaterialsActionPerformed(evt);
             }
         });
 
-        orid.setEditable(false);
-        orid.setBackground(new java.awt.Color(153, 153, 153));
+        selectedOrder.setEditable(false);
+        selectedOrder.setBackground(new java.awt.Color(153, 153, 153));
 
         refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
         refresh.addActionListener(new java.awt.event.ActionListener() {
@@ -145,9 +145,9 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(addOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(showraw, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(showRawMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(orid, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectedOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -166,19 +166,27 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(showraw, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(showRawMaterials, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(addOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(orid, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(selectedOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * Show the graphical user interface of AddNewSOrder class, by
+    * clicking on the Add New Order button. 
+    * 
+    * @param evt - an ActionEvent object generated automatically and sent 
+    * to the method by clicking on the Add New Order button.
+    */
+    
     private void addOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrderActionPerformed
        
         new AddNewSOrder().setVisible(true);
@@ -186,6 +194,14 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addOrderActionPerformed
 
+    /**
+    * Show the graphical user interface of EditSOrders class, by
+    * clicking on the Update / Delete Order button. 
+    * 
+    * @param evt - an ActionEvent object generated automatically and sent 
+    * to the method by clicking on the Update / Delete Order button.
+    */
+    
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
        
         new EditSOrders().setVisible(true);
@@ -193,22 +209,48 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_updateActionPerformed
 
-    private void showrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showrawActionPerformed
+    /**
+    * Show the graphical user interface - gui of ShowRawMaterialsOfOrder class,
+    * by clicking on the Show Raw Materials button - Shows all the raw materials
+    * included in the order with the id written in the selectedOrder field.
+    * 
+    * @param evt - an ActionEvent object generated automatically and sent 
+    * to the method by clicking on the Show Products button.
+    */
+    
+    private void showRawMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRawMaterialsActionPerformed
       
-        int id = Integer.parseInt(orid.getText());
+        int id = Integer.parseInt(selectedOrder.getText());
         new ShowRawMaterialsOfOrder(id).setVisible(true);
         dispose();
       
-    }//GEN-LAST:event_showrawActionPerformed
+    }//GEN-LAST:event_showRawMaterialsActionPerformed
 
+    /**
+      * Select a row of the table by clicking on it, and insert the order's ID
+      * in the selectedOrder field.
+      * 
+      * @param evt - a MouseEvent object generated automatically and sent to 
+      * the method by putting the mouse's cursor over a selected row of the table. 
+      */
+    
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
         
         int selectedRow = SOrdersTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) SOrdersTable.getModel();
-        orid.setText((model.getValueAt(selectedRow, 0).toString()));
+        selectedOrder.setText((model.getValueAt(selectedRow, 0).toString()));
          
     }//GEN-LAST:event_SOrdersTableMouseClicked
 
+    /**
+     * Close the Orders From Suppliers window - gui of OrdersFromSuppliers class, 
+     * and return back to the orders' menu window - gui of OrdersFrame class,
+     * by clicking on back button on the menu bar.
+     * 
+     * @param evt - an ActionEvent object generated automatically and sent 
+     * to the method by clicking on back button on the menu bar.
+     */
+    
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         
         OrdersFrame ordersframe = new OrdersFrame();
@@ -217,6 +259,17 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backMouseClicked
 
+    /**
+     * 
+     * Refresh the Orders From Suppliers window - gui of OrdersFromSuppliers class
+     * 
+     * Close the Orders From Suppliers window and open a new one, 
+     * so that it contains the most recent data.
+     * 
+     * @param evt - an ActionEvent object generated automatically and sent 
+     * to the method by clicking on refresh button on the menu bar.
+     */
+    
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
        
         OrdersFromSuppliers ordersfromsuppliers = new OrdersFromSuppliers();
@@ -225,23 +278,32 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_refreshActionPerformed
 
-
+    /** 
+     * Get order's id, supplier's id and name, status and order's time of creation 
+     * data from database and show them in showSOrdersTable table.
+     * 
+     */
+    
     public void showSOrdersTable() {
         try {
             
             SOrderDao obj2 = new SOrderDao();
             List<SOrder> sorders = obj2.getAll();
-            int number1 = sorders.size();
+            // sorders - an arraylist filled with all the orders to suppliers.
+            int number1 = sorders.size(); // the number of orders to suppliers.
             DefaultTableModel model2 = (DefaultTableModel) SOrdersTable.getModel();
 
             Object[] row = new Object[4];
 
             for (int i = 0; i < number1; i++) {
-                row[0] = sorders.get(i).getId();
+                row[0] = sorders.get(i).getId(); // Fill the first column of the table with the id of the order.
                 row[1] = sorders.get(i).getSupplier().getId() + "-" + sorders.get(i).getSupplier().getFullName();
+                // Fill the second column of the table with the id - name of the supplier.
                 row[2] = sorders.get(i).getStatus();
+                // Fill the third column of the table with the status of the order.
                 row[3] = sorders.get(i).getCreated_at();
-
+                // Fill the fourth column of the table with the time of creation of the order.
+                
                 model2.addRow(row);
             }
 
@@ -293,9 +355,9 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField orid;
     private javax.swing.JButton refresh;
-    private javax.swing.JButton showraw;
+    private javax.swing.JTextField selectedOrder;
+    private javax.swing.JButton showRawMaterials;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

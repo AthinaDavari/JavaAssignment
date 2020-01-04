@@ -26,7 +26,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         seticon();
     }
     
-    private int orid;
+    private int selectedOrder;
 
     /**
      * ShowRawMaterialsOfOrder - a special construstor of this class with the selected 
@@ -34,8 +34,8 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
      * 
      * @param selectedOrder
      */
-    public ShowRawMaterialsOfOrder(int orid) {
-        this.orid=orid;
+    public ShowRawMaterialsOfOrder(int selectedOrder) {
+        this.selectedOrder=selectedOrder;
         initComponents();
         showRawMaterialsTable();
         seticon();
@@ -147,7 +147,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
 
         SOrderItemDao soid = new SOrderItemDao();
         DefaultTableModel model = (DefaultTableModel) RawMaterialsTable.getModel();
-        List<SOrderItem> itemsPerSOrder = soid.getItemsperSOrder(orid);
+        List<SOrderItem> itemsPerSOrder = soid.getItemsperSOrder(selectedOrder);
         // itemsPerSOrder - an arraylist filled with all the raw materials 
         // that a specific order to suppliers, with id equal to selectedOrder, 
         // contains.

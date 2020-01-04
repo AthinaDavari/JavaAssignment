@@ -9,8 +9,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * OrdersFromCustomers - a graphical user interface (gui) class for choosing to 
- * update, delete, add the data of a customer, or show all the products included
- * in a customer's order.
+ * update, delete, add the data of an order from customer, or show all the 
+ * products included in a customer's order.
  * 
  * @author MariaKokkorou
  */

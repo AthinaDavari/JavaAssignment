@@ -1,5 +1,6 @@
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
+import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
 import java.awt.Toolkit;
@@ -23,8 +24,9 @@ public class OrdersFrame extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
+    
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -165,9 +167,14 @@ public class OrdersFrame extends javax.swing.JFrame {
     
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         
-       SimpleMenu menu = new SimpleMenu();
-       menu.setVisible(true);
-       dispose();
+       if((LogIn.getUser().getRole()).equals("admin")){
+            AdminMenu menu = new AdminMenu();
+            menu.setVisible(true);
+        } else {
+            SimpleMenu menu = new SimpleMenu();
+            menu.setVisible(true);
+        }
+        dispose();
        
     }//GEN-LAST:event_backMouseClicked
 
@@ -183,6 +190,7 @@ public class OrdersFrame extends javax.swing.JFrame {
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         
         LogIn login = new LogIn();
+        LogIn.setUser(null);
         login.setVisible(true);
         dispose(); 
         

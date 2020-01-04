@@ -1,4 +1,3 @@
-
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.SupplierDao;
@@ -11,7 +10,10 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * AddNewSOrder.java - A graphical user interface (gui) class responsible for 
+ * adding a new order to a supplier - Select the supplier's id and name and then 
+ * shows the graphical user interface (gui) of AddItemSOrder class.
+ * 
  * @author MariaKokkorou
  */
 public class AddNewSOrder extends javax.swing.JFrame {
@@ -29,8 +31,9 @@ public class AddNewSOrder extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
+    
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -118,16 +121,27 @@ public class AddNewSOrder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    /**
+     * Select the supplier's id and name to whom the order is added,and then
+     * shows the graphical user interface (gui) of AddItemSOrder class.
+     *
+     * @param evt - an ActionEvent object generated automatically and sent to
+     * the method by clicking on Add New Item Order button.
+     */
+    
     private void addNewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewItemActionPerformed
 
         try {
             
             String supplierAsString = supid.getSelectedItem().toString();
+            // Get the selected supplier id and name.
             createSOrder(supplierAsString);
+            // Create a SOrder object, which represents the order to the specific 
+            // supplier with the selected id and name. 
             
             new AddItemSOrder().setVisible(true);
-
+            // Shows the graphical user interface (gui) of AddItemSOrder class.
+            
             dispose();
             
         } catch (Exception e) {
@@ -136,16 +150,27 @@ public class AddNewSOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_addNewItemActionPerformed
 
+    /**
+     * Fill the "supid" combobox with the ids and the names of all the suppliers
+     * that exist in the database.
+     * 
+     */
+    
     private void comboBox() {
         
         SupplierDao sd = new SupplierDao();
         List<Supplier> suppliers = new ArrayList();
+        // suppliers - an array list with all the available suppliers that
+        // exist in the database.
         suppliers = sd.getAll();
-        int number = suppliers.size();
+        int number = suppliers.size(); // the number of all the available 
+        // suppliers existing in the database.
+        
         try {
             
             for (int i = 0; i < number; i++) {
                 supid.addItem(suppliers.get(i).getId() + "-" + suppliers.get(i).getFullName());
+                // add in the combo box the id - name of all the suppliers.
                 
             }
         } catch (Exception e) {
@@ -154,15 +179,38 @@ public class AddNewSOrder extends javax.swing.JFrame {
 
     }
 
-   
+    /**
+     * 
+     * A method that gets a string with the id - name of a supplier as a 
+     * parametre, splits it and keeps only the supplier's id and creates 
+     * a SOrder object that represents an order to the supplier with this specific id.
+     * 
+     * @param supplier - a string with the selected id and name of the supplier
+     * from the combo box.
+     */
+    
     private void createSOrder(String supplier) {
         
         SupplierDao sd = new SupplierDao();
         String[] supplierTable = supplier.split("-");
-        supplierId = Integer.parseInt(supplierTable[0]);
-        sorder = new SOrder(sd.getById(supplierId));
+        // split the supplier string in two parts, where the "-" symbol exists
+        // and store the two parts in a table.
         
+        supplierId = Integer.parseInt(supplierTable[0]); // the supplier's id is 
+        // stored in position 0 of the table.
+        sorder = new SOrder(sd.getById(supplierId));
+        // creates a SOrder object that represents an order to the supplier 
+        // with this specific id.
+     
     }
+    
+    /**
+     * Close the Add New SOrder window by clicking on cancel button on
+     * the menu bar.
+     *
+     * @param evt - a MouseEvent object generated automatically and sent to 
+     * the method by putting the mouse's cursor over a selected row of the table. 
+     */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
 

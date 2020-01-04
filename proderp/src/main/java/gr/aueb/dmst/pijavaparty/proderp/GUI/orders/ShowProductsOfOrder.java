@@ -27,16 +27,16 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
         seticon();
     }
     
-    private int prodid;
+    private int selectedOrder;
 
     /**
-     *ShowProductsOfOrder - a special construstor of this class with product id
-     *as a parametre.
+     *ShowProductsOfOrder - a special construstor of this class with the selected 
+     *order's id as a parametre.
      * 
      * @param prodid
      */
-    public ShowProductsOfOrder(int prodid) {
-        this.prodid=prodid;
+    public ShowProductsOfOrder(int selectedOrder) {
+        this.selectedOrder=selectedOrder;
         initComponents();
         showProductsTable();
         seticon();
@@ -151,7 +151,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
 
         COrderItemDao coid = new COrderItemDao();
         DefaultTableModel model = (DefaultTableModel) ProductsTable.getModel();
-        List<COrderItem> itemsPerCOrder = coid.getItemsPerCOrder(prodid);
+        List<COrderItem> itemsPerCOrder = coid.getItemsPerCOrder(selectedOrder);
         // itemsPerCOrder - an arraylist filled with all the products 
         // that a specific order from customers, with id equal to prodid, contains.
         int number = itemsPerCOrder.size(); //the number of products included in 

@@ -46,7 +46,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         COrdersTable = new javax.swing.JTable();
         showProducts = new javax.swing.JButton();
-        showprod = new javax.swing.JTextField();
+        selectedOrder = new javax.swing.JTextField();
         refresh = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         back = new javax.swing.JMenu();
@@ -135,7 +135,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(showProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(showprod, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectedOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,7 +161,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(editCustOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(addCustOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(showprod, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(selectedOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -200,7 +200,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
 
     /**
       * Select a row of the table by clicking on it, and insert the order's ID
-      * in the showprod (show product) field.
+      * in the selectedOrder field.
       * 
       * @param evt - a MouseEvent object generated automatically and sent to 
       * the method by putting the mouse's cursor over a selected row of the table. 
@@ -210,14 +210,14 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
        
         int selectedRow = COrdersTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) COrdersTable.getModel();
-        showprod.setText((model.getValueAt(selectedRow, 0).toString()));
+        selectedOrder.setText((model.getValueAt(selectedRow, 0).toString()));
         
     }//GEN-LAST:event_COrdersTableMouseClicked
 
     /**
     * Show the graphical user interface - gui of ShowProductsOfOrder class, by
     * clicking on the Show Products button - Shows all the products included
-    * in the order with the id written in the showprod field.
+    * in the order with the id written in the selectedOrder field.
     * 
     * @param evt - an ActionEvent object generated automatically and sent 
     * to the method by clicking on the Show Products button.
@@ -225,9 +225,8 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     
     private void showProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProductsActionPerformed
        
-        int id = Integer.parseInt(showprod.getText());
+        int id = Integer.parseInt(selectedOrder.getText());
         new ShowProductsOfOrder(id).setVisible(true);
-        dispose();
         
     }//GEN-LAST:event_showProductsActionPerformed
 
@@ -347,7 +346,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refresh;
+    private javax.swing.JTextField selectedOrder;
     private javax.swing.JButton showProducts;
-    private javax.swing.JTextField showprod;
     // End of variables declaration//GEN-END:variables
 }

@@ -216,7 +216,8 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
 
     /**
     * Show the graphical user interface - gui of ShowProductsOfOrder class, by
-    * clicking on the Show Products button. 
+    * clicking on the Show Products button - Shows all the products included
+    * in the order with the id written in the showprod field.
     * 
     * @param evt - an ActionEvent object generated automatically and sent 
     * to the method by clicking on the Show Products button.

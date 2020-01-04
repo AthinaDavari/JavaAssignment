@@ -314,6 +314,7 @@ public class EditCOrders extends javax.swing.JFrame {
 
             Object[] row = new Object[5];
 
+            //Fill the table.
             for (int i = 0; i < number; i++) {
                 row[0] = corders.get(i).getId(); // Fill the first column of the table with the id of the order.
                 row[1] = corders.get(i).getCustomer().getId() + "-" + corders.get(i).getCustomer().getFullName();

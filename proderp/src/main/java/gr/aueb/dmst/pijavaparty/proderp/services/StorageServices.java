@@ -204,10 +204,10 @@ public class StorageServices {
         for (COrderItem cOrderItem : corderitems) {
 
             Product productFromOrder = cOrderItem.getProduct();
-                pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
-                // If there are enough products in the storage, decrease the 
-                // quantity of this product by the quantity given in the order 
-                // from customers and update the database.
+            pd.updateQuantity(productFromOrder.getId(), pd.getById(productFromOrder.getId()).getQuantity() - cOrderItem.getQuantity());
+            // If there are enough products in the storage, decrease the 
+            // quantity of this product by the quantity given in the order 
+            // from customers and update the database.
 
         }
 

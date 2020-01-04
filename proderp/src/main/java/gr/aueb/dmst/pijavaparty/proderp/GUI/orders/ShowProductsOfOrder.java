@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.COrderItemDao;
@@ -14,6 +9,11 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
+ * ShowProductsOfOrder.java - A graphical user interface (gui) class for 
+ * showing all the products included in an order from customers with a specific 
+ * order id - shows the product id, the product name and the quantity of this 
+ * specific product.
+ * 
  * @author MariaKokkorou
  */
 public class ShowProductsOfOrder extends javax.swing.JFrame {
@@ -30,7 +30,9 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
     private int prodid;
 
     /**
-     *
+     *ShowProductsOfOrder - a special construstor of this class with product id
+     *as a parametre.
+     * 
      * @param prodid
      */
     public ShowProductsOfOrder(int prodid) {
@@ -40,6 +42,10 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
         seticon();
     }
 
+    /**
+     *Method that sets the icon that is shown on the frame when the program is running. 
+     */
+    
     private void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -57,7 +63,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductsTable = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        back = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -83,14 +89,14 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(ProductsTable);
 
-        back.setForeground(new java.awt.Color(0, 0, 204));
-        back.setText("Back");
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setForeground(new java.awt.Color(0, 0, 204));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backMouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(back);
+        jMenuBar1.add(cancel);
 
         setJMenuBar(jMenuBar1);
 
@@ -119,31 +125,49 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+    /**
+     * Close the Show Products Of Order window by clicking on cancel button on
+     * the menu bar.
+     *
+     * @param evt - an ActionEvent object generated automatically and sent to
+     * the method by clicking on cancel button on the menu bar.
+     */
+    
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
 
 //        OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
 //        ordersfromcustomers.setVisible(true);
         dispose();
 
-    }//GEN-LAST:event_backMouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
     
     /**
+     * Get product's id, product's name and product's quantity
+     * data from database and show them in showProductsTable table.
      *
      */
+    
     public void showProductsTable() {
 
         COrderItemDao coid = new COrderItemDao();
         DefaultTableModel model = (DefaultTableModel) ProductsTable.getModel();
         List<COrderItem> itemsPerCOrder = coid.getItemsPerCOrder(prodid);
-        int number = itemsPerCOrder.size();
+        // itemsPerCOrder - an arraylist filled with all the products 
+        // that a specific order from customers, with id equal to prodid, contains.
+        int number = itemsPerCOrder.size(); //the number of products included in 
+        // the specific order from customers.
         Object[] row = new Object[3];
-
+        
+        //Fill the table.
         for (int i = 0; i < number; i++) {
 
-            row[0] = itemsPerCOrder.get(i).getProduct().getId();
+            row[0] = itemsPerCOrder.get(i).getProduct().getId(); 
+            // Fill the first column of the table with the id of the product.
             row[1] = itemsPerCOrder.get(i).getProduct().getName();
+            // Fill the second column of the table with the name of the product.
             row[2] = itemsPerCOrder.get(i).getQuantity();
-
+            // Fill the third column of the table with the quantity of the product.
+            
             model.addRow(row);
 
         }
@@ -187,7 +211,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ProductsTable;
-    private javax.swing.JMenu back;
+    private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;

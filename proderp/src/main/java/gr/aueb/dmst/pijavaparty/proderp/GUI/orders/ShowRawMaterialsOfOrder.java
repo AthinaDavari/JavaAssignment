@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.SOrderItemDao;
@@ -12,7 +7,12 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * 
+ * ShowRawMaterialsOfOrder.java - A graphical user interface (gui) class for 
+ * showing all the raw materials included in an order to suppliers with a specific 
+ * order id - shows the raw material's id, the raw material's name and the 
+ * quantity of this specific raw material.
+ * 
  * @author MariaKokkorou
  */
 public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
@@ -29,8 +29,10 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
     private int orid;
 
     /**
-     *
-     * @param orid
+     * ShowRawMaterialsOfOrder - a special construstor of this class with the selected 
+     * order's id as a parametre.
+     * 
+     * @param selectedOrder
      */
     public ShowRawMaterialsOfOrder(int orid) {
         this.orid=orid;
@@ -39,6 +41,10 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         seticon();
     }
 
+    /**
+     *Method that sets the icon that is shown on the frame when the program is running. 
+     */
+    
     private void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -56,7 +62,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         RawMaterialsTable = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        back = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -82,14 +88,14 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(RawMaterialsTable);
 
-        back.setForeground(new java.awt.Color(0, 0, 204));
-        back.setText("Back");
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setForeground(new java.awt.Color(0, 0, 204));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backMouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(back);
+        jMenuBar1.add(cancel);
 
         setJMenuBar(jMenuBar1);
 
@@ -118,29 +124,46 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+    /**
+     * Close the Show Raw Materials Of Order window by clicking on cancel button 
+     * on the menu bar.
+     *
+     * @param evt - an ActionEvent object generated automatically and sent to
+     * the method by clicking on cancel button on the menu bar.
+     */
+    
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         
         dispose();
         
-    }//GEN-LAST:event_backMouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
     
     /**
-     *
+     * Get raw material's id, raw material's name and raw material's quantity
+     * data from database and show them in showRawMaterialsTable table.
+     * 
      */
     public void showRawMaterialsTable() {
 
         SOrderItemDao soid = new SOrderItemDao();
         DefaultTableModel model = (DefaultTableModel) RawMaterialsTable.getModel();
         List<SOrderItem> itemsPerSOrder = soid.getItemsperSOrder(orid);
-        int number = itemsPerSOrder.size();
+        // itemsPerSOrder - an arraylist filled with all the raw materials 
+        // that a specific order to suppliers, with id equal to selectedOrder, 
+        // contains.
+        int number = itemsPerSOrder.size(); // The number of raw materials included
+        // in the specific order to suppliers.
         Object[] row = new Object[3];
 
         for (int i = 0; i < number; i++) {
 
             row[0] = itemsPerSOrder.get(i).getRawmaterial().getId();
+            // Fill the first column of the table with the id of the raw material.
             row[1] = itemsPerSOrder.get(i).getRawmaterial().getName();
+            // Fill the second column of the table with the name of the raw material.
             row[2] = itemsPerSOrder.get(i).getQuantity();
-
+            // Fill the third column of the table with the quantity of the raw material.
+            
             model.addRow(row);
 
         }
@@ -184,7 +207,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable RawMaterialsTable;
-    private javax.swing.JMenu back;
+    private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;

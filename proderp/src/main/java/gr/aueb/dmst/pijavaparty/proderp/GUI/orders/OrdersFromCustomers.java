@@ -9,8 +9,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * OrdersFromCustomers - a graphical user interface (gui) class for choosing to 
- * update, delete, add the data of a customer, or show all the products in a 
- * customer's order.
+ * update, delete, add the data of a customer, or show all the products included
+ * in a customer's order.
  * 
  * @author MariaKokkorou
  */
@@ -26,8 +26,9 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
+    
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }

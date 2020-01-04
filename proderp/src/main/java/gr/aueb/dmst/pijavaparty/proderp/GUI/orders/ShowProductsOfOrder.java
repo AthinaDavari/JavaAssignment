@@ -30,10 +30,10 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
     private int selectedOrder;
 
     /**
-     *ShowProductsOfOrder - a special construstor of this class with the selected 
-     *order's id as a parametre.
+     * ShowProductsOfOrder - a special construstor of this class with the selected 
+     * order's id as a parametre.
      * 
-     * @param prodid
+     * @param selectedOrder
      */
     public ShowProductsOfOrder(int selectedOrder) {
         this.selectedOrder=selectedOrder;
@@ -43,7 +43,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Method that sets the icon that is shown on the frame when the program is running. 
      */
     
     private void seticon() {
@@ -153,7 +153,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) ProductsTable.getModel();
         List<COrderItem> itemsPerCOrder = coid.getItemsPerCOrder(selectedOrder);
         // itemsPerCOrder - an arraylist filled with all the products 
-        // that a specific order from customers, with id equal to prodid, contains.
+        // that a specific order from customers, with id equal to selectedOrder, contains.
         int number = itemsPerCOrder.size(); //the number of products included in 
         // the specific order from customers.
         Object[] row = new Object[3];

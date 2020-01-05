@@ -122,7 +122,7 @@ public class AddNewSOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Select the supplier's id and name to whom the order is added,and then
+     * Select the supplier's id and name to whom the order is added, and then
      * shows the graphical user interface (gui) of AddItemSOrder class.
      *
      * @param evt - an ActionEvent object generated automatically and sent to

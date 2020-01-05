@@ -142,6 +142,7 @@ public class OrdersFrame extends javax.swing.JFrame {
     
     private void ordersToSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersToSuppliersActionPerformed
         new OrdersFromSuppliers().setVisible(true);
+        dispose();
     }//GEN-LAST:event_ordersToSuppliersActionPerformed
 
     /**
@@ -154,6 +155,7 @@ public class OrdersFrame extends javax.swing.JFrame {
     
     private void ordersFromCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersFromCustomersActionPerformed
         new OrdersFromCustomers().setVisible(true);
+        dispose();
     }//GEN-LAST:event_ordersFromCustomersActionPerformed
 
     /**

@@ -251,9 +251,8 @@ public class EditSOrders extends javax.swing.JFrame {
      */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        
+        new OrdersFromSuppliers().setVisible(true);
         dispose();
-        
     }//GEN-LAST:event_cancelMouseClicked
 
 

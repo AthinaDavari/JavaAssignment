@@ -222,7 +222,8 @@ public class RawMaterialMenu extends javax.swing.JFrame {
      * method by clicking the add button.
      */
     private void AddRawMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRawMaterialActionPerformed
-        new RawMaterialInsert().setVisible(true);// TODO add your handling code here:
+        new RawMaterialInsert().setVisible(true);
+        dispose();
     }//GEN-LAST:event_AddRawMaterialActionPerformed
     
     /**
@@ -234,7 +235,8 @@ public class RawMaterialMenu extends javax.swing.JFrame {
      * method by clicking the delete button.
      */    
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        new RawMaterialDelete().setVisible(true);// TODO add your handling code here:
+        new RawMaterialDelete().setVisible(true);
+        dispose();
     }//GEN-LAST:event_DeleteActionPerformed
 
     /**
@@ -245,9 +247,13 @@ public class RawMaterialMenu extends javax.swing.JFrame {
     * method by clicking the refresh quantity button.
     */  
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-        RawMaterialMenu rawmenu = new RawMaterialMenu();
-        rawmenu.setVisible(true);
-        dispose();// TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)RawMaterial_table2.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+           model.removeRow(i); 
+        }
+        showRawMaterialTable();
     }//GEN-LAST:event_refreshActionPerformed
 
     /**

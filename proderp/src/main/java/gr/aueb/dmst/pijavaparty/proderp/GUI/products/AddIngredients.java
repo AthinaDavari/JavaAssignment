@@ -289,6 +289,8 @@ public class AddIngredients extends javax.swing.JFrame {
             }
             prodraw.clear();
             JOptionPane.showMessageDialog(null, "Added");
+            ProductGui stor = new ProductGui();
+            stor.setVisible(true);
             dispose();
             } else {
                 JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE); 

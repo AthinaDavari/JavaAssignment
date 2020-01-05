@@ -209,6 +209,7 @@ public class RawMaterialInsert extends javax.swing.JFrame {
      * method by clicking the cancel button.
      */ 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        new RawMaterialMenu().setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
 
@@ -242,6 +243,7 @@ public class RawMaterialInsert extends javax.swing.JFrame {
                 RawMaterial rawmat = new RawMaterial(value2_name, newvalue4_quantity, value5_price, sup);
                 rawdao.insert(rawmat);
                 JOptionPane.showMessageDialog(null, "Added");
+                new RawMaterialMenu().setVisible(true);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");

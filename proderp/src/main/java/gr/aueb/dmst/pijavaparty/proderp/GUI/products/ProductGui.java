@@ -7,7 +7,9 @@ import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.ProductDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.util.ArrayList;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -51,6 +53,11 @@ public class ProductGui extends javax.swing.JFrame {
         Back = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowDeactivated(java.awt.event.WindowEvent evt) {
+                formWindowDeactivated(evt);
+            }
+        });
 
         Show_Ingredients.setBackground(java.awt.SystemColor.activeCaption);
         Show_Ingredients.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -275,9 +282,16 @@ public class ProductGui extends javax.swing.JFrame {
     * method by clicking the refresh quantity button.
     */    
     private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
-        ProductGui prodgui = new ProductGui();
-        prodgui.setVisible(true);
-        dispose();
+        DefaultTableModel model = (DefaultTableModel)product_table.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+           model.removeRow(i); 
+        }
+        fillProductTable();
+//        ProductGui prodgui = new ProductGui();
+//        prodgui.setVisible(true);
+//        dispose();
     }//GEN-LAST:event_RefreshActionPerformed
 
     /**
@@ -311,6 +325,10 @@ public class ProductGui extends javax.swing.JFrame {
         }
         dispose();
     }//GEN-LAST:event_BackMouseClicked
+
+    private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowDeactivated
 
     /**
      * @param args the command line arguments

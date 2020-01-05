@@ -105,7 +105,8 @@ public class RawMaterialDelete extends javax.swing.JFrame {
      * method by clicking the cancel button.
      */     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        dispose();  
+        new RawMaterialMenu().setVisible(true);
+        dispose();
     }//GEN-LAST:event_cancelMouseClicked
 
     private void value_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_idActionPerformed
@@ -132,7 +133,8 @@ public class RawMaterialDelete extends javax.swing.JFrame {
                 RawMaterialDao rawdao=new RawMaterialDao();
                 rawdao.delete(newvalue1_id);
                 JOptionPane.showMessageDialog(null,"Deleted");
-                dispose();
+                    new RawMaterialMenu().setVisible(true);
+                    dispose();
             }
         }  catch (Exception e){
             JOptionPane.showMessageDialog(null,"Insert id or raw material doesn't exist.","Error",  JOptionPane.ERROR_MESSAGE);

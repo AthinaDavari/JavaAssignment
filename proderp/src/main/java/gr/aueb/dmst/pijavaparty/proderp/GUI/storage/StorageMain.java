@@ -202,7 +202,8 @@ public class StorageMain extends javax.swing.JFrame {
            if (prodorraw.equals(""))
                throw new Exception();
            StorageUpdateQuantity storup = new StorageUpdateQuantity(id, prodorraw);
-            storup.setVisible(true); 
+           storup.setVisible(true); 
+           dispose();
         }  catch (Exception e){
             JOptionPane.showMessageDialog(null,"Choose Product or Raw Material.","Error",  JOptionPane.ERROR_MESSAGE);
             StorageMain stor = new StorageMain();

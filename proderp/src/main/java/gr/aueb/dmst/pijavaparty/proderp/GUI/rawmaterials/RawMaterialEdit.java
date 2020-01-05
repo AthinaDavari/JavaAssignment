@@ -268,7 +268,6 @@ public class RawMaterialEdit extends javax.swing.JFrame {
                 rawdao.update(rm);
                 JOptionPane.showMessageDialog(null, "Updated");
                 new RawMaterialEdit().setVisible(true);
-                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }

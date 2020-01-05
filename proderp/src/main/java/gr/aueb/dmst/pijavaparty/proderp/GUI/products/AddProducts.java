@@ -153,7 +153,7 @@ public class AddProducts extends javax.swing.JFrame {
        try {
            if (isValidDouble(value_price.getText()) && isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())){
            new AddIngredients(value_name.getText(),Double.parseDouble(value_price.getText())).setVisible(true);
-            dispose();
+           dispose(); 
            } else {
                JOptionPane.showMessageDialog(null, "Incorrect validation! Please try again!");
            }

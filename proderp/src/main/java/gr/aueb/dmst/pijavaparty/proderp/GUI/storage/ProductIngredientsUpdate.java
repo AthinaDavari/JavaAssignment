@@ -121,6 +121,7 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null,"Cannot update, not enough raw materials.","Error",  JOptionPane.ERROR_MESSAGE);
         }
+        new StorageMain().setVisible(true);
         dispose();
     }//GEN-LAST:event_answerYesActionPerformed
     
@@ -133,6 +134,7 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
     private void answerNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerNoActionPerformed
         ProductDao productDao=new ProductDao();
         productDao.updateQuantity(id,quant);
+        new StorageMain().setVisible(true);
         dispose();
     }//GEN-LAST:event_answerNoActionPerformed
 

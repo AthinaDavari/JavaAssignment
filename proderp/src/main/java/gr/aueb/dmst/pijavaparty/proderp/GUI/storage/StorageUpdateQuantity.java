@@ -167,6 +167,9 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+                StorageUpdateQuantity storupquant = new StorageUpdateQuantity();
+                storupquant.setVisible(true);
+                dispose();
             }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,"Insert quantity.","Error",  JOptionPane.ERROR_MESSAGE);
@@ -174,7 +177,6 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
             stor.setVisible(true);
             dispose();
         }
-        dispose();
     }//GEN-LAST:event_update_buttonActionPerformed
 
     private void value_quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_quantityKeyReleased

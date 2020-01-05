@@ -1,4 +1,3 @@
-
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
 import static gr.aueb.dmst.pijavaparty.proderp.GUI.orders.AddNewSOrder.sorder;
@@ -17,13 +16,18 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * AddItemSOrder.java - A graphical user interface (gui) class responsible for 
+ * adding a new order to a supplier - Select the raw material and enter the  
+ * quantity for the selected raw material.
+ * 
  * @author MariaKokkorou
  */
 public class AddItemSOrder extends javax.swing.JFrame {
 
     private ArrayList<SOrderItem> SOrderItemsList = new ArrayList<SOrderItem>();
-
+    // An array list with all the SOrderItem objects included in one specific 
+    // order to a supplier.
+    
     /**
      * Creates new form AddItemSOrder
      */
@@ -34,6 +38,15 @@ public class AddItemSOrder extends javax.swing.JFrame {
         setTitle("Add Items");
     }
 
+    /**
+     * A special constructor for this class with an array list with all the
+     * SOrderItem objects included in one specific order to a supplier 
+     * as a parametre.
+     * 
+     * @param SOrderItemsList - an array list with all the SOrderItem objects 
+     * included in one specific order to a supplier.
+     */
+    
     public AddItemSOrder(ArrayList<SOrderItem> SOrderItemsList) {
         this.SOrderItemsList = SOrderItemsList;
         initComponents();
@@ -42,7 +55,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -62,7 +75,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         quantity = new javax.swing.JTextField();
         newitem = new javax.swing.JButton();
-        addorder = new javax.swing.JButton();
+        addOrder = new javax.swing.JButton();
         rawMaterialsCombo = new javax.swing.JComboBox<>();
         valid_Quantity = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -95,11 +108,11 @@ public class AddItemSOrder extends javax.swing.JFrame {
             }
         });
 
-        addorder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        addorder.setText("Add Order To Supplier");
-        addorder.addActionListener(new java.awt.event.ActionListener() {
+        addOrder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        addOrder.setText("Add Order To Supplier");
+        addOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addorderActionPerformed(evt);
+                addOrderActionPerformed(evt);
             }
         });
 
@@ -133,7 +146,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addorder, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -168,26 +181,48 @@ public class AddItemSOrder extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newitem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addorder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * A method that allows the user to add another raw material with its
+     * quantity in the order to a specific supplier - stores all the raw 
+     * materials that the user wants to be ordered to the same supplier.
+     * 
+     * @param evt - an ActionEvent object generated automatically and sent to
+     * the method by clicking on New Item Order To Supplier button.
+     */
+    
     private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
         try {
-            if (isValidInteger(quantity.getText())){
+            if (isValidInteger(quantity.getText())){ 
+                // Check if the quantity entered is a valid integer.
+                
                 String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
+                // Get the id - name of the selected raw material.
                 int quantityInt = Integer.parseInt(quantity.getText().trim());
-
+                // Get the quantity entered for this raw material.
+                
                 String[] rawMaterialIdInt = rawMaterialsString.split("-");
+                // Split the raw material string in two parts, where the "-" 
+                // symbol exists and store the two parts in a table.
+                
                 int rawMaterialId = Integer.parseInt(rawMaterialIdInt[0]);
+                // The raw material's id is stored in position 0 of the table.
+                
                 RawMaterialDao rmd = new RawMaterialDao();
                 RawMaterial rawmaterial = rmd.getById(rawMaterialId);
+                // Get the RawMaterial object with id equal to rawMaterialId.
 
                 SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
+                // Create a SOrderItem object.
                 SOrderItemsList.add(sorderitem);
+                // Add this SOrderItem object in SOrderItemsList array list.
+                
 
                 JOptionPane.showMessageDialog(null, "Added to Order List.");
                 new AddItemSOrder(SOrderItemsList).setVisible(true);
@@ -203,24 +238,48 @@ public class AddItemSOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_newitemActionPerformed
 
-    private void addorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addorderActionPerformed
+    /**
+     * A method that adds the order to a supplier, with all the selected raw 
+     * materials and their quantities that are stored in SOrderItemsList, in the
+     * database.
+     * 
+     * @param evt - an ActionEvent object generated automatically and sent to
+     * the method by clicking on Add Order To Supplier button.
+     */
+    
+    private void addOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrderActionPerformed
 
         if(isValidInteger(quantity.getText())){
+            // Check if the quantity entered is a valid integer.
+            
             JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
 
             String rawMaterialsString = rawMaterialsCombo.getSelectedItem().toString();
+            // Get the id - name of the selected raw material.
             int quantityInt = Integer.parseInt(quantity.getText().trim());
+            // Get the quantity entered for this raw material.
 
             String[] rawMaterialIdInt = rawMaterialsString.split("-");
+            // split the raw material string in two parts, where the "-" 
+            // symbol exists and store the two parts in a table.
+            
             int rawMaterialId = Integer.parseInt(rawMaterialIdInt[0]);
+            // the raw material's id is stored in position 0 of the table.
+            
             RawMaterialDao rmd = new RawMaterialDao();
             RawMaterial rawmaterial = rmd.getById(rawMaterialId);
+            // Get the RawMaterial object with id equal to rawMaterialId.
 
             SOrderItem sorderitem = new SOrderItem(sorder, rawmaterial, quantityInt);
+            // Create a SOrderItem object.
             SOrderItemsList.add(sorderitem);
+            // Add this SOrderItem object in SOrderItemsList array list.
 
             SOrderDao sod = new SOrderDao();
             sod.insertSOrderAndSOrderItems(sorder, SOrderItemsList);
+            // Add the order to a supplier, with all the selected raw materials 
+            // and their quantities that are stored in SOrderItemsList, in the
+            // database.
 
             JOptionPane.showMessageDialog(null, "Order Saved.");
             dispose();
@@ -228,8 +287,16 @@ public class AddItemSOrder extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
         }
 
-    }//GEN-LAST:event_addorderActionPerformed
+    }//GEN-LAST:event_addOrderActionPerformed
 
+    /**
+     * Check if the quantity input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt - a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */
+    
     private void quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityKeyReleased
        if(!isValidInteger(quantity.getText())){
             valid_Quantity.setText("Quantity is invalid!");
@@ -238,6 +305,14 @@ public class AddItemSOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_quantityKeyReleased
 
+    /**
+     * Close the Add Item SOrder window by clicking on cancel button on
+     * the menu bar.
+     *
+     * @param evt - a MouseEvent object generated automatically and sent to 
+     * the method by putting the mouse's cursor over a selected row of the table. 
+     */
+    
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
 
         dispose();
@@ -245,19 +320,20 @@ public class AddItemSOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelMouseClicked
 
     /**
-     * Fill rawMaterialsCombo combobox with all raw materials,which aren't include
-     * in Suppliers' Order
+     * Fill rawMaterialsCombo combobox with all raw materials,which aren't 
+     * included in Suppliers' Order.
      */
+    
      private void fillComboBox(){
         RawMaterialDao rmd = new RawMaterialDao();
         List<String> rawMaterials;
         SupplierDao sd = new SupplierDao(); 
-        //take all raw materials,which aren't include in order
+        // Get all raw materials, which aren't included in order.
         rawMaterials = SOrderServices.rawMaterialsNotIncludedInSuppliersOrder(SOrderItemsList, sd.getById(supplierId));
-        int number = rawMaterials.size();//number of raw materials,which aren't include in order
+        int number = rawMaterials.size();// Number of raw materials, which aren't included in order.
 
         try {
-            //fill combobox
+            // Fill combobox
             for (int i = 0; i < number; i++) {
 
                 rawMaterialsCombo.addItem(rawMaterials.get(i));
@@ -316,16 +392,16 @@ public class AddItemSOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addorder;
+    private javax.swing.JButton addOrder;
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton newitem;
     private javax.swing.JTextField quantity;
     private javax.swing.JComboBox<String> rawMaterialsCombo;
     private javax.swing.JLabel valid_Quantity;
-    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 
 }

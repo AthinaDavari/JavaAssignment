@@ -53,7 +53,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="newitem" min="-2" pref="227" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="addorder" min="-2" pref="217" max="-2" attributes="0"/>
+                      <Component id="addOrder" min="-2" pref="217" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -99,7 +99,7 @@
               <EmptySpace pref="45" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="newitem" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="addorder" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="addOrder" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
           </Group>
@@ -152,7 +152,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newitemActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="addorder">
+    <Component class="javax.swing.JButton" name="addOrder">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
@@ -160,7 +160,7 @@
         <Property name="text" type="java.lang.String" value="Add Order To Supplier"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addorderActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOrderActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="rawMaterialsCombo">

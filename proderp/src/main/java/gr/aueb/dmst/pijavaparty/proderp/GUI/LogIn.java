@@ -2,7 +2,7 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.UserDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.User;
-import gr.aueb.dmst.pijavaparty.proderp.main.ThrowNotification;
+import gr.aueb.dmst.pijavaparty.proderp.services.ThrowNotification;
 import java.awt.Toolkit;
 import java.util.Arrays;
 import java.util.List;

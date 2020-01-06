@@ -1,4 +1,4 @@
-package gr.aueb.dmst.pijavaparty.proderp.main;
+package gr.aueb.dmst.pijavaparty.proderp.services;
 
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
 import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
@@ -41,7 +41,6 @@ public class ThrowNotification implements Runnable {
                     break;
                 }
             }
-            System.out.println("Found active " + foundActive);
             if (!foundActive) {
                 System.exit(0);
             }

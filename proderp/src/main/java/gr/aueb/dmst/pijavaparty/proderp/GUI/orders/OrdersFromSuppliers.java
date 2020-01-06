@@ -203,7 +203,6 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     */
     
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-       
         new EditSOrders().setVisible(true);
         dispose();
         

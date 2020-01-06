@@ -292,8 +292,11 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
                 row[2] = corders.get(i).getStatus(); // Fill the third column of the table with the status of the order.
                 row[3] = corders.get(i).getCreated_at(); // Fill the fourth column 
                 // of the table with the time of creation of the order.
+                row[4] = " - ";
+                if(corders.get(i).getUser()!=null){
                 row[4] = corders.get(i).getUser().getFullName(); 
                 // Fill the fifth column of the table with the username.
+                }
                 model.addRow(row);
             }
 

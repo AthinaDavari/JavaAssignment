@@ -131,11 +131,9 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
      * @param evt - an ActionEvent object generated automatically and sent to
      * the method by clicking on cancel button on the menu bar.
      */
-    
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        
+        new OrdersFromSuppliers().setVisible(true);
         dispose();
-        
     }//GEN-LAST:event_cancelMouseClicked
     
     /**

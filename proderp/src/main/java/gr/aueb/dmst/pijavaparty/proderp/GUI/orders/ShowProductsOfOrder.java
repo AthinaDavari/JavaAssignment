@@ -134,11 +134,8 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
      */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-
-//        OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
-//        ordersfromcustomers.setVisible(true);
+        new OrdersFromCustomers().setVisible(true);
         dispose();
-
     }//GEN-LAST:event_cancelMouseClicked
     
     /**

@@ -7,6 +7,7 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.UserDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.User;
+import static gr.aueb.dmst.pijavaparty.proderp.services.ValidVariables.isStringOnlyAlphabetAndNumbers;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -52,6 +53,7 @@ public class AddUser extends javax.swing.JFrame {
         passwd = new javax.swing.JTextField();
         add = new javax.swing.JButton();
         role = new javax.swing.JComboBox<>();
+        valueUsername = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -74,6 +76,12 @@ public class AddUser extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Role:");
 
+        username.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                usernameKeyReleased(evt);
+            }
+        });
+
         add.setBackground(java.awt.SystemColor.activeCaption);
         add.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         add.setText("Add");
@@ -86,6 +94,13 @@ public class AddUser extends javax.swing.JFrame {
         role.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roleActionPerformed(evt);
+            }
+        });
+
+        valueUsername.setForeground(new java.awt.Color(255, 51, 51));
+        valueUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                valueUsernameKeyTyped(evt);
             }
         });
 
@@ -118,14 +133,16 @@ public class AddUser extends javax.swing.JFrame {
                             .addComponent(fullname, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                             .addComponent(username)
                             .addComponent(passwd)
-                            .addComponent(role, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(role, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(valueUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(271, 271, 271)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(276, 276, 276)
                         .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,9 +154,11 @@ public class AddUser extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(valueUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -172,7 +191,11 @@ public class AddUser extends javax.swing.JFrame {
     */
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
        try {
-            String f= fullname.getText();
+           if(!isStringOnlyAlphabetAndNumbers(username.getText())){
+           JOptionPane.showMessageDialog(null, "Incorrect validation! Please try again!");
+           return;
+       }
+            String f = fullname.getText();
             String u = username.getText();
             String p = passwd.getText();
             String r=role.getSelectedItem().toString();
@@ -197,12 +220,23 @@ public class AddUser extends javax.swing.JFrame {
        } catch (Exception e){
            JOptionPane.showMessageDialog(rootPane,"Fields are empty");
        }
-        // TODO add your handling code here:
     }//GEN-LAST:event_addActionPerformed
 
     private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_roleActionPerformed
+
+    private void valueUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valueUsernameKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valueUsernameKeyTyped
+
+    private void usernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyReleased
+        if (!isStringOnlyAlphabetAndNumbers(username.getText())){
+            valueUsername.setText("Username is invalid!");
+        } else {
+            valueUsername.setText(null);
+        }
+    }//GEN-LAST:event_usernameKeyReleased
 
     /**
      * Brings the lists of user roles from UserDao and fills the combobox.
@@ -269,5 +303,6 @@ public class AddUser extends javax.swing.JFrame {
     private javax.swing.JTextField passwd;
     private javax.swing.JComboBox<String> role;
     private javax.swing.JTextField username;
+    private javax.swing.JLabel valueUsername;
     // End of variables declaration//GEN-END:variables
 }

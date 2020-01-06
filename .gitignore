@@ -5,15 +5,8 @@
 /.metadata/
 */.metadata/**
 */target/**
-*/.settings
-
-*\.metadata\**
-\build\
-\target\*
-\.metadata\
+*/.settings/**
 .classpath
-\.settings\
 .project
-*\target\**
-*.properties
+.properties
 proderp/nbactions.xml

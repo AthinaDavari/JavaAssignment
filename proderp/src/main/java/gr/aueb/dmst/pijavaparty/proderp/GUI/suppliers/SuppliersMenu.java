@@ -3,8 +3,11 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI.suppliers;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
+import gr.aueb.dmst.pijavaparty.proderp.GUI.customers.CustomerMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.SupplierDao;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -179,6 +182,13 @@ public class SuppliersMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_backMouseClicked
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        setVisible(false);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CustomerMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setVisible(true);
         DefaultTableModel model = (DefaultTableModel)Suppliers_table.getModel(); 
         int rows = model.getRowCount(); 
         for(int i = rows - 1; i >=0; i--)

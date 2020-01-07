@@ -4,11 +4,14 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI.products;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
+import gr.aueb.dmst.pijavaparty.proderp.GUI.customers.CustomerMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.ProductDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +39,9 @@ public class ProductGui extends javax.swing.JFrame {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Set ProductGui window
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -282,6 +287,13 @@ public class ProductGui extends javax.swing.JFrame {
     * method by clicking the refresh quantity button.
     */    
     private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+        setVisible(false);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CustomerMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setVisible(true);
         DefaultTableModel model = (DefaultTableModel)product_table.getModel(); 
         int rows = model.getRowCount(); 
         for(int i = rows - 1; i >=0; i--)

@@ -1,9 +1,12 @@
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
+import gr.aueb.dmst.pijavaparty.proderp.GUI.customers.CustomerMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.COrderDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.COrder;
 import java.awt.Toolkit;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -260,7 +263,14 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
      */
     
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-       DefaultTableModel model = (DefaultTableModel)COrdersTable.getModel(); 
+       setVisible(false);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CustomerMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setVisible(true);
+        DefaultTableModel model = (DefaultTableModel)COrdersTable.getModel(); 
         int rows = model.getRowCount(); 
         for(int i = rows - 1; i >=0; i--)
         {

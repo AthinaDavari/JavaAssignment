@@ -32,7 +32,7 @@ public class ProductGui extends javax.swing.JFrame {
     /**
      *Method that sets the icon that is shown on the frame when the program is running. 
      */
-    public void seticon() {
+    private void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
@@ -194,7 +194,7 @@ public class ProductGui extends javax.swing.JFrame {
     /**
      *Fill product_table table with all products in database
      */
-    public void fillProductTable(){
+    private void fillProductTable(){
         ProductDao proddao=new ProductDao();
         DefaultTableModel model=(DefaultTableModel) product_table.getModel();
         //take all products from database
@@ -289,9 +289,6 @@ public class ProductGui extends javax.swing.JFrame {
            model.removeRow(i); 
         }
         fillProductTable();
-//        ProductGui prodgui = new ProductGui();
-//        prodgui.setVisible(true);
-//        dispose();
     }//GEN-LAST:event_RefreshActionPerformed
 
     /**

@@ -29,7 +29,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
      *Method that sets the icon that is shown on the frame when the program is running. 
      */
     
-    public void seticon() {
+    private void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
     /**
@@ -260,11 +260,13 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
      */
     
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-       
-        
-        OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
-        ordersfromcustomers.setVisible(true);
-        dispose();
+       DefaultTableModel model = (DefaultTableModel)COrdersTable.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+           model.removeRow(i); 
+        }
+        showCOrdersTable();
         
     }//GEN-LAST:event_refreshActionPerformed
 
@@ -274,7 +276,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
      * 
      */
     
-     public void showCOrdersTable() {
+     private void showCOrdersTable() {
         try {
             
             COrderDao obj = new COrderDao();

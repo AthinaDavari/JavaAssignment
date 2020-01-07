@@ -30,7 +30,7 @@ public class StorageMain extends javax.swing.JFrame {
     /**
      *Method that sets the icon that is shown on the frame when the program is running. 
      */
-    public void seticon() {
+    private void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
     @SuppressWarnings("unchecked")
@@ -186,8 +186,13 @@ public class StorageMain extends javax.swing.JFrame {
     * method by clicking the refresh quantity button.
     */
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-        new StorageMain().setVisible(true);
-        dispose();
+        DefaultTableModel model = (DefaultTableModel)Storage_Table.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+           model.removeRow(i); 
+        }
+        showStorageTable();
     }//GEN-LAST:event_refreshActionPerformed
 
     /**

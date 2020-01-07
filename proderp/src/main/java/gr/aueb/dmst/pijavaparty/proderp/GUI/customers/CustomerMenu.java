@@ -28,7 +28,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     /**
      *Method that sets the icon that is shown on the frame when the program is running. 
      */
-    public void seticon() {
+    private void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
     }
@@ -36,7 +36,6 @@ public class CustomerMenu extends javax.swing.JFrame {
     /**
      * Set CustomerMenu window.
      */
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -127,11 +126,8 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addComponent(editCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
                 .addComponent(insertCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addContainerGap(199, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +142,7 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(insertCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,9 +185,13 @@ public class CustomerMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_backMouseClicked
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-        CustomerMenu customermenu = new CustomerMenu();
-        customermenu.setVisible(true);
-        dispose();
+        DefaultTableModel model = (DefaultTableModel)Customers_table.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+           model.removeRow(i); 
+        }
+        showCustomersTable();
     }//GEN-LAST:event_refreshActionPerformed
 
     /**
@@ -233,7 +233,7 @@ public class CustomerMenu extends javax.swing.JFrame {
      * Show customer's data in a table.
      *
      */
-    public void showCustomersTable() {
+    private void showCustomersTable() {
         CustomerDao obj = new CustomerDao();
         DefaultTableModel model = (DefaultTableModel) Customers_table.getModel();
         int number = obj.getAll().size();

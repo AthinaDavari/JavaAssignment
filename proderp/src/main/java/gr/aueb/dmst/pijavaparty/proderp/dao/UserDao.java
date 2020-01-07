@@ -25,7 +25,7 @@ public class UserDao extends Dao {
     private static final String GETALL = "SELECT full_name, user_name, role FROM Users "
             + "WHERE is_deleted=false";
     private static final String INSERT = "INSERT INTO Users(full_name, user_name, password, role) VALUES(?, ?, aes_encrypt(?, \"prod\"), ?)";
-    private static final String DELETE = "UPDATE Users SET is_deleted = true WHERE user_name = ?";
+    private static final String DELETE = "DELETE FROM Users WHERE user_name = ?";
     private static final String PERMISSIONTODELETE = "SELECT COUNT(*) FROM users WHERE role = 'admin'";
 
     /**
@@ -148,9 +148,6 @@ public class UserDao extends Dao {
                 pst.setString(1, user.getUsername());
                 pst.execute();
                 return true;
-           /*pst.setString(1, user.getUsername());
-            pst.execute();
-            return true;*/
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);

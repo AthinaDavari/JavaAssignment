@@ -294,7 +294,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
                 // of the table with the time of creation of the order.
                 row[4] = " - ";
                 if(corders.get(i).getUser()!=null){
-                row[4] = corders.get(i).getUser().getFullName(); 
+                row[4] = corders.get(i).getUser().getUsername(); 
                 // Fill the fifth column of the table with the username.
                 }
                 model.addRow(row);

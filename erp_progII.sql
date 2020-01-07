@@ -6,8 +6,7 @@ CREATE TABLE `Users`(
 `full_name` varchar(255),
 `user_name` varchar(255) PRIMARY KEY,
 `password` varbinary(255),
-`role` ENUM ('admin', 'simpleuser'),
-`is_deleted` boolean default false
+`role` ENUM ('admin', 'simpleuser')
 );
 
 CREATE TABLE `Suppliers` (
@@ -59,9 +58,9 @@ CREATE TABLE `C_Orders` (
   `customer_id` int NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  `user_name` varchar(255) NOT NULL,
+  `user_name` varchar(255),
   FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`) on delete cascade,
-  FOREIGN KEY (`user_name`) REFERENCES `Users` (`user_name`) on delete cascade 
+  FOREIGN KEY (`user_name`) REFERENCES `Users` (`user_name`) ON DELETE SET NULL
 );
 
 CREATE TABLE `C_order_items` (
@@ -180,14 +179,14 @@ values (5, 5, 80),
        (2, 1, 78);
        
 select * from users;
-select * from products;
-select * from customers;
-select * from c_orders;
-select last_insert_id();
-select * from S_orders;
-select * from S_order_items;  
-select * from Suppliers;   
-Select * from raw_materials;
-SELECT max(id) FROM S_Orders;
-select full_name, user_name, aes_decrypt( password,"prod"), role from users;
-SELECT full_name, user_name, role FROM users WHERE user_name = "nat";
+-- select * from products;
+-- select * from customers;
+-- select * from c_orders;
+-- select last_insert_id();
+-- select * from S_orders;
+-- select * from S_order_items;  
+-- select * from Suppliers;   
+-- Select * from raw_materials;
+-- SELECT max(id) FROM S_Orders;
+-- select full_name, user_name, aes_decrypt( password,"prod"), role from users;
+-- SELECT full_name, user_name, role FROM users WHERE user_name = "nat";

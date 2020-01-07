@@ -17,26 +17,25 @@ import javax.swing.JOptionPane;
  *
  * @author aggel
  */
-
 public class AddIngredients extends javax.swing.JFrame {
-    
-    private List<ProductRawMaterial> prodraw=new ArrayList();
+
+    private List<ProductRawMaterial> prodraw = new ArrayList();
     private int id;
-    private Product prod=new Product();
+    private Product prod = new Product();
     private int selected;
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Method that sets the icon that is shown on the frame when the program is
+     * running.
      */
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
     //multiple constructors 
-
     /**
      * Construcor if product doesnt exist
-     * 
+     *
      * @param name
      * @param price
      */
@@ -52,7 +51,7 @@ public class AddIngredients extends javax.swing.JFrame {
 
     /**
      * Product exist
-     * 
+     *
      * @param id
      */
     public AddIngredients(int id) {
@@ -66,13 +65,13 @@ public class AddIngredients extends javax.swing.JFrame {
 
     /**
      * Product doesnt exist but ingridients already have been chosen
-     * 
+     *
      * @param prodraw
      * @param obj5
      */
     public AddIngredients(List<ProductRawMaterial> prodraw, Product obj5) {
         this.prodraw = prodraw;
-        
+
         this.prod = obj5;
         initComponents();
         fillcombo();
@@ -204,63 +203,65 @@ public class AddIngredients extends javax.swing.JFrame {
      *
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the add more ingredients button.
-     */ 
+     */
     private void AddMoreIngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddMoreIngredientsActionPerformed
         try {
-            if(isValidInteger(value_quantity.getText())){
-            String value_name = drop_down.getSelectedItem().toString();
-            String stringnamearray[];
-            stringnamearray = value_name.split("[^0-9]");
-            String stringname="";
-            for (String stringnamearray1 : stringnamearray) {
-                stringname = stringname + stringnamearray1;
-            }
-            selected=Integer.parseInt(stringname);
-            int quant = Integer.parseInt(value_quantity.getText());
-            RawMaterialDao rawdao = new RawMaterialDao();
-            List<RawMaterial> rawmaterial;
-            rawmaterial = rawdao.getAll();
-            RawMaterial rawmat = null;
-            int num = rawmaterial.size();
-            int a;
-            for (int i = 0; i < num; i++) {
-                a = rawmaterial.get(i).getId();
-                if (a==selected) {
-                    rawmat = rawmaterial.get(i);
-                    break;
+            if (isValidInteger(value_quantity.getText())) {
+                String value_name = drop_down.getSelectedItem().toString();
+                String stringnamearray[];
+                stringnamearray = value_name.split("[^0-9]");
+                String stringname = "";
+                StringBuilder sb = new StringBuilder();
+                for (String stringnamearray1 : stringnamearray) {
+                    sb.append(stringnamearray1);
                 }
-            }
-            String value4_quantity = value_quantity.getText();
-            ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
-            prodraw.add(prodrawmat);
-            new AddIngredients(prodraw, prod).setVisible(true);
-            dispose();
+                stringname = sb.toString();
+                selected = Integer.parseInt(stringname);
+                int quant = Integer.parseInt(value_quantity.getText());
+                RawMaterialDao rawdao = new RawMaterialDao();
+                List<RawMaterial> rawmaterial;
+                rawmaterial = rawdao.getAll();
+                RawMaterial rawmat = null;
+                int num = rawmaterial.size();
+                int a;
+                for (int i = 0; i < num; i++) {
+                    a = rawmaterial.get(i).getId();
+                    if (a == selected) {
+                        rawmat = rawmaterial.get(i);
+                        break;
+                    }
+                }
+                ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
+                prodraw.add(prodrawmat);
+                new AddIngredients(prodraw, prod).setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Enter Details.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AddMoreIngredientsActionPerformed
 
     /**
-     * Method for adding one more ingredient and then save this one and all of 
+     * Method for adding one more ingredient and then save this one and all of
      * the previous ones in the data base.
      *
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the add more ingredients button.
-     */     
+     */
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        try {
-            if (isValidInteger(value_quantity.getText())){
+        if (isValidInteger(value_quantity.getText())) {
             String value_name = drop_down.getSelectedItem().toString();
             String stringnamearray[];
             stringnamearray = value_name.split("[^0-9]");
-            String stringname="";
+            String stringname = "";
+            StringBuilder sb = new StringBuilder();
             for (String stringnamearray1 : stringnamearray) {
-                stringname = stringname + stringnamearray1;
+                sb.append(stringnamearray1);
             }
-            selected=Integer.parseInt(stringname);
+            stringname = sb.toString();
+            selected = Integer.parseInt(stringname);
             int quant = Integer.parseInt(value_quantity.getText());
             RawMaterialDao rawdao = new RawMaterialDao();
             List<RawMaterial> rawmaterial;
@@ -270,7 +271,7 @@ public class AddIngredients extends javax.swing.JFrame {
             int a;
             for (int i = 0; i < num; i++) {
                 a = rawmaterial.get(i).getId();
-                if (a==selected) {
+                if (a == selected) {
                     rawmat = rawmaterial.get(i);
                     break;
                 }
@@ -280,10 +281,9 @@ public class AddIngredients extends javax.swing.JFrame {
             prodraw.add(prodrawmat);
             ProductDao obj4 = new ProductDao();
             if (prod.getId() == -1) {
-                ProductDao proddao = new ProductDao();
                 obj4.insertProductAndProductsRecipe(prod, prodraw);
-            }else {
-                for(int i=0;i<prodraw.size();i++) {
+            } else {
+                for (int i = 0; i < prodraw.size(); i++) {
                     prodrawdao.insert(prodraw.get(i));
                 }
             }
@@ -292,37 +292,36 @@ public class AddIngredients extends javax.swing.JFrame {
             ProductGui stor = new ProductGui();
             stor.setVisible(true);
             dispose();
-            } else {
-                JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE); 
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Enter Details.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
+    
     }//GEN-LAST:event_SaveActionPerformed
 
-    /**
-     * Returning to the ingredients window.
-     *
-     * @param evt is a reference to a MouseEvent object that is sent to the
-     * method by clicking the cancel button.
-     */     
+/**
+ * Returning to the ingredients window.
+ *
+ * @param evt is a reference to a MouseEvent object that is sent to the method
+ * by clicking the cancel button.
+ */
     private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
         ProductGui rawmenu = new ProductGui();
         rawmenu.setVisible(true);
-        dispose();        
+        dispose();
     }//GEN-LAST:event_CancelMouseClicked
 
     /**
-     * Check if the quantity input is valid and if it is invalid show a
-     * warning message.
+     * Check if the quantity input is valid and if it is invalid show a warning
+     * message.
      *
-     * @param evt is a reference to a KeyEvent object that is sent to
-     * the method by typing a key in the keyboard.
-     */     
+     * @param evt is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
+     */
     private void value_quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_quantityKeyReleased
-        if(!isValidInteger(value_quantity.getText())){
+        if (!isValidInteger(value_quantity.getText())) {
             valid_Quantity.setText("Quantity is invalid!");
-        }else {
+        } else {
             valid_Quantity.setText(null);
         }
     }//GEN-LAST:event_value_quantityKeyReleased
@@ -342,7 +341,7 @@ public class AddIngredients extends javax.swing.JFrame {
             disablebuttonAdd();
         }
     }
-    
+
     //Disable AddMoreIngredients button
     private void disablebuttonAdd() {
         AddMoreIngredients.setEnabled(false);
@@ -363,16 +362,28 @@ public class AddIngredients extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddIngredients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddIngredients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddIngredients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddIngredients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddIngredients.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AddIngredients.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AddIngredients.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AddIngredients.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

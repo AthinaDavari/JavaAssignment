@@ -42,7 +42,7 @@ public class DeleteUser extends javax.swing.JFrame {
         delete = new javax.swing.JButton();
         username = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Cancel = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,13 +63,13 @@ public class DeleteUser extends javax.swing.JFrame {
             }
         });
 
-        Cancel.setText("Cancel");
-        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CancelMouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(Cancel);
+        jMenuBar1.add(cancel);
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -114,12 +114,12 @@ public class DeleteUser extends javax.swing.JFrame {
     /**
      * Closes window and returns to AdminMenu window.
      */
-    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         AdminMenu obj = new AdminMenu();
         obj.setVisible(true);
         dispose();
         // TODO add your handling code here:
-    }//GEN-LAST:event_CancelMouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
 
     /**
      * Checks if user is not admin and deletes him.
@@ -200,7 +200,7 @@ public class DeleteUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Cancel;
+    private javax.swing.JMenu cancel;
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

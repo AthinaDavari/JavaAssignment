@@ -173,6 +173,8 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             }
         } catch (SQLException ex) {
             Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, st);
         }
         return 0;
     }

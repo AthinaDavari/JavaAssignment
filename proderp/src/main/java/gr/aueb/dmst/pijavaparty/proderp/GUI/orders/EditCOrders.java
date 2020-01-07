@@ -379,7 +379,7 @@ public class EditCOrders extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JTextField orderid;
+    protected static javax.swing.JTextField orderid;
     private javax.swing.JTextField stat;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables

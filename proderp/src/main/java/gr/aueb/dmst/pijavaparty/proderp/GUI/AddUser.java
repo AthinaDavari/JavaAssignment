@@ -12,11 +12,9 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 /**
- * @author anna
- * This class allows the administrator to add a new user
- * by entering user's full name, username, password and role.
+ * @author anna This class allows the administrator to add a new user by
+ * entering user's full name, username, password and role.
  */
 public class AddUser extends javax.swing.JFrame {
 
@@ -31,12 +29,13 @@ public class AddUser extends javax.swing.JFrame {
     }
 
     /**
-     * Method that sets the icon that is shown on the frame when the program is running.
+     * Method that sets the icon that is shown on the frame when the program is
+     * running.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
-    
+
     /**
      * Set AddUser window
      */
@@ -186,40 +185,40 @@ public class AddUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
-     * Takes content from textfields and combobox and 
-     * creates a new user in User List.
-    */
+     * Takes content from textfields and combobox and creates a new user in User
+     * List.
+     */
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-       try {
-           if(!isStringOnlyAlphabetAndNumbers(username.getText())){
-           JOptionPane.showMessageDialog(null, "Incorrect validation! Please try again!");
-           return;
-       }
+        try {
+            if (!isStringOnlyAlphabetAndNumbers(username.getText())) {
+                JOptionPane.showMessageDialog(null, "Incorrect validation! Please try again!");
+                return;
+            }
             String f = fullname.getText();
             String u = username.getText();
             String p = passwd.getText();
-            String r=role.getSelectedItem().toString();
+            String r = role.getSelectedItem().toString();
             UserDao userdao = new UserDao();
             List<User> users;
-            users=userdao.getAll();
+            users = userdao.getAll();
             User ur = null;
-            int num=users.size();
-            for(int i=0; i<num; i++){
-                if (users.get(i).getRole().equals(r)) {  
-                    ur=users.get(i);
+            int num = users.size();
+            for (int i = 0; i < num; i++) {
+                if (users.get(i).getRole().equals(r)) {
+                    ur = users.get(i);
                     break;
                 }
             }
             UserDao us1 = new UserDao();
             User us2 = new User(f, u, p, r);
             us1.insert(us2);
-            JOptionPane.showMessageDialog(rootPane,"User Added" );
+            JOptionPane.showMessageDialog(rootPane, "User Added");
             AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
             dispose();
-       } catch (Exception e){
-           JOptionPane.showMessageDialog(rootPane,"Fields are empty");
-       }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fields are empty");
+        }
     }//GEN-LAST:event_addActionPerformed
 
     private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
@@ -231,7 +230,7 @@ public class AddUser extends javax.swing.JFrame {
     }//GEN-LAST:event_valueUsernameKeyTyped
 
     private void usernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyReleased
-        if (!isStringOnlyAlphabetAndNumbers(username.getText())){
+        if (!isStringOnlyAlphabetAndNumbers(username.getText())) {
             valueUsername.setText("Username is invalid!");
         } else {
             valueUsername.setText(null);
@@ -241,19 +240,15 @@ public class AddUser extends javax.swing.JFrame {
     /**
      * Brings the lists of user roles from UserDao and fills the combobox.
      */
-    private void fillcombobox(){
-        UserDao userdao = new UserDao();
-        List<User> users;
-        users = userdao.getAll();
-        int size=userdao.getAll().size();
-        try{
+    private void fillcombobox() {
+        try {
             role.addItem("admin");
             role.addItem("simpleuser");
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
+
     /**
      * @param args the command line arguments
      */

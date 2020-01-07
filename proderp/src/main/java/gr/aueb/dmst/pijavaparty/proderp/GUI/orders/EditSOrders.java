@@ -333,7 +333,7 @@ public class EditSOrders extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JTextField jTextField1;
+    protected static javax.swing.JTextField jTextField1;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

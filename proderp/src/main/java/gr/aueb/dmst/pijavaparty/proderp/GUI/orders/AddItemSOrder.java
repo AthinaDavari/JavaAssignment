@@ -41,7 +41,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
     /**
      * A special constructor for this class with an array list with all the
      * SOrderItem objects included in one specific order to a supplier 
-     * as a parametre.
+     * as a parameter.
      * 
      * @param SOrderItemsList - an array list with all the SOrderItem objects 
      * included in one specific order to a supplier.
@@ -325,7 +325,6 @@ public class AddItemSOrder extends javax.swing.JFrame {
      */
     
      private void fillComboBox(){
-        RawMaterialDao rmd = new RawMaterialDao();
         List<String> rawMaterials;
         SupplierDao sd = new SupplierDao(); 
         // Get all raw materials, which aren't included in order.

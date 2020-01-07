@@ -9,19 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 /**
- * AddNewCustOrder.java - A graphical user interface (gui) class responsible for 
- * adding a new order from a customer - Select the customer's id and name and 
+ * AddNewCustOrder.java - A graphical user interface (gui) class responsible for
+ * adding a new order from a customer - Select the customer's id and name and
  * then shows the graphical user interface (gui) of AddProductToCOrder class.
- * 
+ *
  * @author MariaKokkorou
  */
 public class AddNewCustOrder extends javax.swing.JFrame {
 
-        static COrder corder;
-        static int customerId;
-        
+    static COrder corder;
+    static int customerId;
+
     /**
      * Creates new form AddNewCustOrder
      */
@@ -32,13 +31,13 @@ public class AddNewCustOrder extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Method that sets the icon that is shown on the frame when the program is
+     * running.
      */
-    
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,50 +130,48 @@ public class AddNewCustOrder extends javax.swing.JFrame {
      * @param evt - an ActionEvent object generated automatically and sent to
      * the method by clicking on Add New Product To Order button.
      */
-    
+
     private void addNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewProductActionPerformed
-        
+
         try {
-            
+
             String customerAsString = custid.getSelectedItem().toString();
             // Get the selected customer id and name.
             createCOrder(customerAsString);
             // Create a COrder object, which represents the order from the specific 
             // customer with the selected id and name. 
-            
+
             new AddProductToCOrder().setVisible(true);
             // Shows the graphical user interface (gui) of AddProductToCOrder class.
             dispose();
-            
+
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e);
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_addNewProductActionPerformed
 
     /**
-     * Close the Add New Cust Order window by clicking on cancel button on
-     * the menu bar.
+     * Close the Add New Cust Order window by clicking on cancel button on the
+     * menu bar.
      *
-     * @param evt - a MouseEvent object generated automatically and sent to 
-     * the method by putting the mouse's cursor over a selected row of the table. 
+     * @param evt - a MouseEvent object generated automatically and sent to the
+     * method by putting the mouse's cursor over a selected row of the table.
      */
-    
+
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         new OrdersFromCustomers().setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
 
     /**
-     * Fill the "custid" combobox with the ids and the names of all the 
+     * Fill the "custid" combobox with the ids and the names of all the
      * customers that exist in the database.
-     * 
+     *
      */
-    
-     private void comboBox() {
-         
+    private void comboBox() {
+
         CustomerDao cd = new CustomerDao();
         List<Customer> customers = new ArrayList();
         // customers - an array list with all the available customers that
@@ -182,14 +179,14 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         customers = cd.getAll();
         int number = cd.getAll().size(); // the number of all the available 
         // customers that exist in the database.
-        
+
         try {
-            
+
             for (int i = 0; i < number; i++) {
-                
+
                 custid.addItem(customers.get(i).getId() + "-" + customers.get(i).getFullName());
                 // add in the combo box the id - name of all the customers.
-                
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -197,17 +194,17 @@ public class AddNewCustOrder extends javax.swing.JFrame {
 
     }
 
-     /**
-     * A method that gets a string with the id - name of a customer as a 
-     * parametre, splits it and keeps only the customers's id and creates 
-     * a COrder object that represents an order to the customer with this specific id.
-     * 
+    /**
+     * A method that gets a string with the id - name of a customer as a
+     * parametre, splits it and keeps only the customers's id and creates a
+     * COrder object that represents an order to the customer with this specific
+     * id.
+     *
      * @param customer - a string with the selected id and name of the customer
      * from the combo box.
      */
-     
-     private void createCOrder(String customer) {
-         
+    private void createCOrder(String customer) {
+
         CustomerDao cd = new CustomerDao();
         String[] customerTable = customer.split("-");
         // split the customer string in two parts, where the "-" symbol exists
@@ -219,8 +216,7 @@ public class AddNewCustOrder extends javax.swing.JFrame {
         // creates a COrder object that represents an order to the customer 
         // with this specific id
     }
- 
-      
+
     /**
      * @param args the command line arguments
      */

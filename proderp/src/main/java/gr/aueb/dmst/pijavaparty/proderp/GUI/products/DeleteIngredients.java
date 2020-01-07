@@ -109,7 +109,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Method that deletes an ingrediantfrom the recipe of a specific product.
+     * Method that deletes an ingredient from the recipe of a specific product.
      *
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the delete button.
@@ -154,7 +154,6 @@ public class DeleteIngredients extends javax.swing.JFrame {
      */    
     private void fillcombo() {
         ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
-        ProductRawMaterialDao rawdao = new ProductRawMaterialDao();
         List<ProductRawMaterial> rawlist = prodrawdao.getMaterialsPerProduct(id);
         int number=rawlist.size();
         for(int i=0; i<number; i++){

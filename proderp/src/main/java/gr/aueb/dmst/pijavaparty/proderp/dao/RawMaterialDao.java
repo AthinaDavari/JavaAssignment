@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class RawMaterialDao extends Dao implements PlainEntityI<RawMaterial> {
 
     private static final String GETALL = "SELECT * FROM Raw_Materials WHERE is_deleted = false";
-    private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ? AND is_deleted = false";
+    private static final String GETBYID = "SELECT * FROM Raw_materials WHERE id = ?";
     private static final String INSERT = "INSERT INTO Raw_Materials(name, supplier_id, quantity, price) VALUES (?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Raw_Materials SET name = ?, supplier_id = ?, price = ? "
             + "WHERE id = ?";

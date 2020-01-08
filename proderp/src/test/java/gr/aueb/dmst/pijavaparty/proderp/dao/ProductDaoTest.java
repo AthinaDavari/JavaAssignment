@@ -159,8 +159,9 @@ public class ProductDaoTest {
         System.out.println("delete");
         int id = 5;
         ProductDao instance = new ProductDao();
+        Product old = instance.getById(id);
         instance.delete(id);
-        assertEquals(null, instance.getById(id));
+        assertEquals(false, instance.getAll().contains(old));
         ProductRawMaterialDao prdDao = new ProductRawMaterialDao();
         List<ProductRawMaterial> materialsPerProduct = prdDao.getMaterialsPerProduct(5);
         assertEquals(true, materialsPerProduct.isEmpty());

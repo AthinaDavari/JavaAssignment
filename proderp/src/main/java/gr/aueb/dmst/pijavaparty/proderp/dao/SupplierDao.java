@@ -73,7 +73,6 @@ public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
-                System.out.println(getById(rs.getInt(3)));
                 rawmaterials.add(new RawMaterial(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(5), getById(rs.getInt(3))));
             }
         } catch (SQLException ex) {

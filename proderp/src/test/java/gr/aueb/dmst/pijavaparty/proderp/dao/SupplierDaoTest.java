@@ -112,15 +112,4 @@ public class SupplierDaoTest {
         assertEquals(false, instance.getAll().contains(instance.getById(3)));
     }
 
-//    /**
-//     * Test of deletePerm method, of class SupplierDao.
-//     */
-//    @Test
-//    public void ftestDeletePermanently() {
-//        System.out.println("deletePermanently");
-//        int id = 3;
-//        SupplierDao instance = new SupplierDao();
-//        instance.deletePermanently(id);
-//        assertEquals(null, instance.getById(3));
-//    }
 }

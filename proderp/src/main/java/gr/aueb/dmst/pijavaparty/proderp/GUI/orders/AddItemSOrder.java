@@ -109,7 +109,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         });
 
         addOrder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        addOrder.setText("Add Order To Supplier");
+        addOrder.setText("Save Order");
         addOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addOrderActionPerformed(evt);
@@ -308,7 +308,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
      */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-
+        new AddNewSOrder().setVisible(true);
         dispose();
 
     }//GEN-LAST:event_cancelMouseClicked

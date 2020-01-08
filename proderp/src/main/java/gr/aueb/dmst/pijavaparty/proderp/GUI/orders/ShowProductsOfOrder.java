@@ -65,7 +65,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         cancel = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -134,7 +134,6 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
      */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        new OrdersFromCustomers().setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
     

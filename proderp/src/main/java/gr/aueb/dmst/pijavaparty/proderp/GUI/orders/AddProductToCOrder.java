@@ -88,7 +88,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         });
 
         newProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        newProduct.setText("New Product Order From Customer");
+        newProduct.setText("New Item");
         newProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newProductActionPerformed(evt);
@@ -96,7 +96,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         });
 
         addorder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        addorder.setText("Add Product Order From Customer");
+        addorder.setText("Save Order");
         addorder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addorderActionPerformed(evt);
@@ -235,7 +235,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_quantityKeyReleased
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-
+        new AddNewCustOrder().setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
 

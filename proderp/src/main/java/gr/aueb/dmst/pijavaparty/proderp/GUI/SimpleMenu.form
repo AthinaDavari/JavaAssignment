@@ -4,12 +4,12 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="LogOut">
+        <Menu class="javax.swing.JMenu" name="logOut">
           <Properties>
             <Property name="text" type="java.lang.String" value="Log Out"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LogOutMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logOutMouseClicked"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu4">
@@ -49,17 +49,17 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="Customers" min="-2" pref="142" max="-2" attributes="0"/>
+              <Component id="customers" min="-2" pref="142" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Suppliers" min="-2" pref="130" max="-2" attributes="0"/>
+              <Component id="suppliers" min="-2" pref="130" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Products" min="-2" pref="135" max="-2" attributes="0"/>
+              <Component id="products" min="-2" pref="135" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="RawMaterials" min="-2" pref="134" max="-2" attributes="0"/>
+              <Component id="rawMaterials" min="-2" pref="134" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Storage" min="-2" pref="129" max="-2" attributes="0"/>
+              <Component id="storage" min="-2" pref="129" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Orders" min="-2" pref="133" max="-2" attributes="0"/>
+              <Component id="orders" min="-2" pref="133" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -75,13 +75,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Orders" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="orders" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="Suppliers" alignment="0" max="32767" attributes="0"/>
-                      <Component id="Customers" alignment="0" pref="47" max="32767" attributes="0"/>
-                      <Component id="Products" alignment="0" max="32767" attributes="0"/>
-                      <Component id="RawMaterials" alignment="0" max="32767" attributes="0"/>
-                      <Component id="Storage" alignment="0" max="32767" attributes="0"/>
+                      <Component id="suppliers" alignment="0" max="32767" attributes="0"/>
+                      <Component id="customers" alignment="0" pref="47" max="32767" attributes="0"/>
+                      <Component id="products" alignment="0" max="32767" attributes="0"/>
+                      <Component id="rawMaterials" alignment="0" max="32767" attributes="0"/>
+                      <Component id="storage" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="427" max="32767" attributes="0"/>
@@ -97,7 +97,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="Customers">
+    <Component class="javax.swing.JButton" name="customers">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -105,10 +105,10 @@
         <Property name="text" type="java.lang.String" value="Customers"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CustomersActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customersActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Suppliers">
+    <Component class="javax.swing.JButton" name="suppliers">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -116,10 +116,10 @@
         <Property name="text" type="java.lang.String" value="Suppliers"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SuppliersActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suppliersActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Products">
+    <Component class="javax.swing.JButton" name="products">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -127,10 +127,10 @@
         <Property name="text" type="java.lang.String" value="Products"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProductsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="productsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="RawMaterials">
+    <Component class="javax.swing.JButton" name="rawMaterials">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -138,10 +138,10 @@
         <Property name="text" type="java.lang.String" value="Raw Materials"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RawMaterialsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rawMaterialsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Storage">
+    <Component class="javax.swing.JButton" name="storage">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -149,10 +149,10 @@
         <Property name="text" type="java.lang.String" value="Storage"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StorageActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storageActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Orders">
+    <Component class="javax.swing.JButton" name="orders">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -160,7 +160,7 @@
         <Property name="text" type="java.lang.String" value="Orders"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OrdersActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ordersActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

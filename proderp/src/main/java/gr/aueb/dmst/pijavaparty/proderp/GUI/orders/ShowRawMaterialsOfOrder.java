@@ -60,7 +60,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        RawMaterialsTable = new javax.swing.JTable();
+        rawMaterialsTable = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         cancel = new javax.swing.JMenu();
 
@@ -70,7 +70,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Raw Materials Of Order");
 
-        RawMaterialsTable.setModel(new javax.swing.table.DefaultTableModel(
+        rawMaterialsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -86,7 +86,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(RawMaterialsTable);
+        jScrollPane1.setViewportView(rawMaterialsTable);
 
         cancel.setForeground(new java.awt.Color(0, 0, 204));
         cancel.setText("Cancel");
@@ -144,7 +144,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
     public void showRawMaterialsTable() {
 
         SOrderItemDao soid = new SOrderItemDao();
-        DefaultTableModel model = (DefaultTableModel) RawMaterialsTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) rawMaterialsTable.getModel();
         List<SOrderItem> itemsPerSOrder = soid.getItemsperSOrder(selectedOrder);
         // itemsPerSOrder - an arraylist filled with all the raw materials 
         // that a specific order to suppliers, with id equal to selectedOrder, 
@@ -204,11 +204,11 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable RawMaterialsTable;
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable rawMaterialsTable;
     // End of variables declaration//GEN-END:variables
 
 }

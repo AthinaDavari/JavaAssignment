@@ -51,7 +51,7 @@ public class SupplierInsert extends javax.swing.JFrame {
         value_Address = new javax.swing.JTextField();
         value_Phonenumber = new javax.swing.JTextField();
         value_Email = new javax.swing.JTextField();
-        Save = new javax.swing.JButton();
+        save = new javax.swing.JButton();
         valid_Fullname = new javax.swing.JLabel();
         valid_Phonenumber = new javax.swing.JLabel();
         valid_Email = new javax.swing.JLabel();
@@ -94,11 +94,11 @@ public class SupplierInsert extends javax.swing.JFrame {
             }
         });
 
-        Save.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Save.setText("Save");
-        Save.addActionListener(new java.awt.event.ActionListener() {
+        save.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveActionPerformed(evt);
+                saveActionPerformed(evt);
             }
         });
 
@@ -152,7 +152,7 @@ public class SupplierInsert extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(180, 180, 180)
-                .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -182,7 +182,7 @@ public class SupplierInsert extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(value_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
@@ -194,7 +194,7 @@ public class SupplierInsert extends javax.swing.JFrame {
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the save button.
      */
-    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         try {
             if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_Fullname.getText()) && ValidVariables.isValidPhonenumber(value_Phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_Email.getText())) {
                 String value2_full_name = value_Fullname.getText();
@@ -212,7 +212,7 @@ public class SupplierInsert extends javax.swing.JFrame {
         } catch (Exception a) {
             JOptionPane.showMessageDialog(null, a);
         }
-    }//GEN-LAST:event_SaveActionPerformed
+    }//GEN-LAST:event_saveActionPerformed
     /**
      * Check if the name input is valid and if it is invalid show a warning
      * message.
@@ -299,7 +299,6 @@ public class SupplierInsert extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Save;
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -307,6 +306,7 @@ public class SupplierInsert extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton save;
     private javax.swing.JLabel valid_Email;
     private javax.swing.JLabel valid_Fullname;
     private javax.swing.JLabel valid_Phonenumber;

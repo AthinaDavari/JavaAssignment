@@ -45,32 +45,32 @@ public class DeleteIngredients extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Delete = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
         drop_down = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Cancel = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        Delete.setText("Delete");
-        Delete.addActionListener(new java.awt.event.ActionListener() {
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Select the Id you want to delete:");
 
-        Cancel.setForeground(new java.awt.Color(51, 51, 255));
-        Cancel.setText("Cancel");
-        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setForeground(new java.awt.Color(51, 51, 255));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CancelMouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(Cancel);
+        jMenuBar1.add(cancel);
 
         setJMenuBar(jMenuBar1);
 
@@ -90,7 +90,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
                         .addGap(334, 334, 334))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(371, 371, 371))
         );
         layout.setVerticalGroup(
@@ -101,7 +101,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(105, 105, 105)
-                .addComponent(Delete)
+                .addComponent(delete)
                 .addGap(98, 98, 98))
         );
 
@@ -114,7 +114,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the delete button.
      */        
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
             String value1_id = drop_down.getSelectedItem().toString();
             String stringnamearray[];
@@ -134,7 +134,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
             stor.setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_DeleteActionPerformed
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * Returning to the ingredients main window.
@@ -142,11 +142,11 @@ public class DeleteIngredients extends javax.swing.JFrame {
      * @param evt is a reference to a MouseEvent object that is sent to the
      * method by clicking the cancel button.
      */     
-    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         Ingredients  ingredients = new Ingredients();
         ingredients.setVisible(true);
         dispose();      
-    }//GEN-LAST:event_CancelMouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
 
     /**
      * Fill the drop down with all the ids of the ingredients that the specific product has in its
@@ -197,8 +197,8 @@ public class DeleteIngredients extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Cancel;
-    private javax.swing.JButton Delete;
+    private javax.swing.JMenu cancel;
+    private javax.swing.JButton delete;
     private javax.swing.JComboBox<String> drop_down;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;

@@ -40,7 +40,7 @@ public class OrdersFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton3 = new javax.swing.JButton();
-        Orders = new javax.swing.JPanel();
+        οrders = new javax.swing.JPanel();
         ordersFromCustomers = new javax.swing.JButton();
         ordersToSuppliers = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -73,22 +73,22 @@ public class OrdersFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText(" Orders Menu");
 
-        javax.swing.GroupLayout OrdersLayout = new javax.swing.GroupLayout(Orders);
-        Orders.setLayout(OrdersLayout);
-        OrdersLayout.setHorizontalGroup(
-            OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OrdersLayout.createSequentialGroup()
+        javax.swing.GroupLayout οrdersLayout = new javax.swing.GroupLayout(οrders);
+        οrders.setLayout(οrdersLayout);
+        οrdersLayout.setHorizontalGroup(
+            οrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(οrdersLayout.createSequentialGroup()
                 .addContainerGap(113, Short.MAX_VALUE)
-                .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(οrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(οrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(ordersFromCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ordersToSuppliers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(103, 103, 103))
         );
-        OrdersLayout.setVerticalGroup(
-            OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OrdersLayout.createSequentialGroup()
+        οrdersLayout.setVerticalGroup(
+            οrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(οrdersLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -122,11 +122,11 @@ public class OrdersFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Orders, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(οrders, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Orders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(οrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -230,7 +230,6 @@ public class OrdersFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Orders;
     private javax.swing.JMenu back;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -238,5 +237,6 @@ public class OrdersFrame extends javax.swing.JFrame {
     private javax.swing.JMenu logOut;
     private javax.swing.JButton ordersFromCustomers;
     private javax.swing.JButton ordersToSuppliers;
+    private javax.swing.JPanel οrders;
     // End of variables declaration//GEN-END:variables
 }

@@ -195,7 +195,6 @@ public class SupplierInsert extends javax.swing.JFrame {
      * method by clicking the save button.
      */
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        try {
             if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_Fullname.getText()) && ValidVariables.isValidPhonenumber(value_Phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_Email.getText())) {
                 String value2_full_name = value_Fullname.getText();
                 String value3_address = value_Address.getText();
@@ -209,9 +208,6 @@ public class SupplierInsert extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
-        } catch (Exception a) {
-            JOptionPane.showMessageDialog(null, a);
-        }
     }//GEN-LAST:event_SaveActionPerformed
     /**
      * Check if the name input is valid and if it is invalid show a warning

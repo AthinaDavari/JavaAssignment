@@ -176,9 +176,7 @@ public class EditSOrders extends javax.swing.JFrame {
     * to the method by clicking on Update to Delivered button.
     */    
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try {
-            
-            String orderIDString = jTextField1.getText();
+                     String orderIDString = jTextField1.getText();
             int orderIDint = Integer.parseInt(orderIDString);
 
             SOrderDao sd = new SOrderDao();
@@ -192,12 +190,6 @@ public class EditSOrders extends javax.swing.JFrame {
             
             new EditSOrders().setVisible(true);
             dispose();
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
     }//GEN-LAST:event_updateActionPerformed
 
     /**

@@ -198,7 +198,6 @@ public class AddItemSOrder extends javax.swing.JFrame {
      */
     
     private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
-        try {
             if (isValidInteger(quantity.getText())){ 
                 // Check if the quantity entered is a valid integer.
                 
@@ -231,11 +230,6 @@ public class AddItemSOrder extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
     }//GEN-LAST:event_newitemActionPerformed
 
     /**

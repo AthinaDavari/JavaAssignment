@@ -178,7 +178,6 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductActionPerformed
-        try {
             if (isValidInteger(quantity.getText())) {
                 String productString = product.getSelectedItem().toString();
                 int quantityInt = Integer.parseInt(quantity.getText().trim());
@@ -198,11 +197,6 @@ public class AddProductToCOrder extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
     }//GEN-LAST:event_newProductActionPerformed
 
     private void addorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addorderActionPerformed

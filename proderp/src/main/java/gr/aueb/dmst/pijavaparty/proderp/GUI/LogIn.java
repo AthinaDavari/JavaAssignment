@@ -197,7 +197,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         
         UserDao u = new UserDao();
         User user = u.getUser(un, password);
-        if (user != null && user.getRole() == "admin") {
+        if (user != null && user.getRole().equals("admin")) {
             try {
                 user.setPassword(null);
                 this.user = user;
@@ -206,7 +206,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
             } catch (Throwable ex) {
                 Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (user != null && user.getRole() == "simpleuser") {
+        } else if (user != null && user.getRole().equals("simpleuser")) {
             user.setPassword(null);
             this.user = user;
             SimpleMenu obj = new SimpleMenu();

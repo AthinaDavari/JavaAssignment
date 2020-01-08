@@ -125,7 +125,6 @@ public class DeleteUser extends javax.swing.JFrame {
      * Checks if user is not admin and deletes him.
      */
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        try {
             String u = username.getSelectedItem().toString();
             UserDao us2 = new UserDao();
             boolean isdeleted = us2.delete(us2.getUserByUsername(u));
@@ -136,10 +135,7 @@ public class DeleteUser extends javax.swing.JFrame {
                 dispose();
             } else {
                     JOptionPane.showMessageDialog(rootPane, "Something gone wrong.");
-                }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Fields are empty");
-        }
+            }
     }//GEN-LAST:event_deleteActionPerformed
 
     /**

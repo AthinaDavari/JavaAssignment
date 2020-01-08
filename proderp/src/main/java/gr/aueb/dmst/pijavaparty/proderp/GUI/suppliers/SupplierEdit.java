@@ -30,7 +30,6 @@ public class SupplierEdit extends javax.swing.JFrame {
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
-
     }
 
     /**
@@ -279,7 +278,6 @@ public class SupplierEdit extends javax.swing.JFrame {
     * @param evt is a reference to an ActionEvent object that is sent to the method by clicking the update button. 
     */
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try {
             if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText())) {
                 String value1_id = value_id.getText();
                 int newvalue1_id = Integer.parseInt(value1_id);
@@ -296,9 +294,6 @@ public class SupplierEdit extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
     }//GEN-LAST:event_updateActionPerformed
     
     /**
@@ -307,7 +302,6 @@ public class SupplierEdit extends javax.swing.JFrame {
      * @param evt is a reference to an ActionEvent object that is sent to the method by clicking the delete button. 
      */
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        try {
             String value1_id = value_id.getText();
             int newvalue1_id = Integer.parseInt(value1_id);
             SupplierDao customerDao = new SupplierDao();
@@ -315,10 +309,6 @@ public class SupplierEdit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Deleted");
             new SupplierEdit().setVisible(true);
             dispose();
-        } catch (Exception b) {
-            JOptionPane.showMessageDialog(null, b);
-
-        }
     }//GEN-LAST:event_deleteActionPerformed
      /**
       * 
@@ -337,7 +327,6 @@ public class SupplierEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_Suppliers_tableMouseClicked
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-       
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
 

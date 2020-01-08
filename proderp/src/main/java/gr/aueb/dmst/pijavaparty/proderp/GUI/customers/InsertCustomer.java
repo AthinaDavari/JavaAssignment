@@ -202,8 +202,6 @@ public class InsertCustomer extends javax.swing.JFrame {
      * method by clicking the save button.
      */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        try {
-
             if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_FullName.getText()) && ValidVariables.isValidPhonenumber(value_Phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_Email.getText())) {
                 String value2_full_name = value_FullName.getText();
                 String value3_address = value_Address.getText();
@@ -220,11 +218,6 @@ public class InsertCustomer extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
-
-        } catch (Exception a) {
-            JOptionPane.showMessageDialog(null, a);
-        }
-
     }//GEN-LAST:event_saveActionPerformed
     /**
      * Check if the name input is valid and if it is invalid show a warning

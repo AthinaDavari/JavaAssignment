@@ -30,6 +30,30 @@ public class ValidVariablesTest {
     }
 
     /**
+     * Test of isValidFullName method, of class ValidVariables.
+     */
+    @Test
+    public void testIsValidFullName() {
+        System.out.println("isValidFullName");
+        String fullName = "Aliki Manou";
+        boolean expResult = true;
+        boolean result = ValidVariables.isValidFullName(fullName);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isStringOnlyAlphabetAndNumbers method, of class ValidVariables.
+     */
+    @Test
+    public void testIsStringOnlyAlphabetAndNumbers() {
+        System.out.println("isStringOnlyAlphabetAndNumbers");
+        String fullName = "Ali8";
+        boolean expResult = true;
+        boolean result = ValidVariables.isStringOnlyAlphabetAndNumbers(fullName);
+        assertEquals(expResult, result);
+    }
+    
+    /**
      * Test of isValidEmailAddress method, of class ValidVariables.
      */
     @Test
@@ -74,6 +98,18 @@ public class ValidVariablesTest {
         String double_number = "Mary";
         boolean expResult = false;
         boolean result = ValidVariables.isValidDouble(double_number);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isValidPassword method, of class ValidVariables.
+     */
+    @Test
+    public void testIsValidPassword() {
+        System.out.println("isValidPassword");
+        String input = ".%6gwdye";
+        boolean expResult = false;
+        boolean result = ValidVariables.isValidPassword(input);
         assertEquals(expResult, result);
     }
 

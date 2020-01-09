@@ -261,7 +261,7 @@ public class AddUser extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameKeyReleased
 
     private void fullnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullnameKeyReleased
-        if (!isStringFullName(fullname.getText())) {
+        if (!isValidFullName(fullname.getText())) {
             validFullName.setText("Full Name is invalid!");
         } else {
             validFullName.setText(null);
@@ -294,7 +294,7 @@ public class AddUser extends javax.swing.JFrame {
      * false-if at least a jtextfield has invalid value
      */
     private boolean checkAllConstraints(){
-        if(!isStringFullName(fullname.getText())){
+        if(!isValidFullName(fullname.getText())){
             return false;
         }
         if(!isStringOnlyAlphabetAndNumbers(username.getText())){

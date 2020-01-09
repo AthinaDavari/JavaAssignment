@@ -23,7 +23,7 @@ public class ValidVariables {
          }
     }
     
-    public static boolean isStringFullName(String str) {
+    public static boolean isValidFullName(String str) {
          String pattern="([A-Z]([a-z]+){3,})+\\s+"       //first name
         		+ "(([A-Z]([a-z]+){3,})+\\s)?+"  //second name (if customer has second name)
         		+ "([A-Z]([a-z]+){3,})";         //last name  
@@ -45,11 +45,12 @@ public class ValidVariables {
     }
 
     /**
-     *
+     * Check if the string is a valid email 
      * @param email
-     * @return
+     * @return true-string is valid email,
+     * false-string isn't valid email
      */
-    public static boolean isValidEmailAddress(String email) { //Έλεγχος αν το String είναι μία έγκυρη διεύθυνση email.
+    public static boolean isValidEmailAddress(String email) {
         String emailRegex = "^[a-zA-Z0-9]+(?:\\."
                 + "[a-zA-Z0-9]+)*@"
                 + "(?:[a-zA-Z0-9-]+\\.)+[a-z"

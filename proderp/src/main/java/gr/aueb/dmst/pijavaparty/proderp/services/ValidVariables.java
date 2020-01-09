@@ -23,6 +23,18 @@ public class ValidVariables {
          }
     }
     
+    public static boolean isStringFullName(String str) {
+         String pattern="([A-Z]([a-z]+){3,})+\\s+"       //first name
+        		+ "(([A-Z]([a-z]+){3,})+\\s)?+"  //second name (if customer has second name)
+        		+ "([A-Z]([a-z]+){3,})";         //last name  
+
+        if(Pattern.matches(pattern,str)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public static boolean isStringOnlyAlphabetAndNumbers(String input) {
         String pattern="^[a-zA-Z][a-zA-Z0-9]{2,}$";
          if(Pattern.matches(pattern,input)){
@@ -94,6 +106,16 @@ public class ValidVariables {
            return false;
        }
      }
+    
+    public static boolean isValidPassword(String str) {
+        String pattern= "[A-Za-z0-9]{7,32}";
+
+        if(Pattern.matches(pattern,str)) {
+            return true;
+        } else {
+            return false;
+        }
+   }
 
     /**
      *

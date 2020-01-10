@@ -31,9 +31,8 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     *Set the icon that is shown on the frame. 
      */
-    
     private void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -201,7 +200,6 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     * @param evt - an ActionEvent object generated automatically and sent 
     * to the method by clicking on the Update / Delete Order button.
     */
-    
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         new EditSOrders().setVisible(true);
         dispose();
@@ -216,7 +214,6 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     * @param evt - an ActionEvent object generated automatically and sent 
     * to the method by clicking on the Show Products button.
     */
-    
     private void showRawMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRawMaterialsActionPerformed
       
         int id = Integer.parseInt(selectedOrder.getText());
@@ -232,7 +229,6 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
       * @param evt - a MouseEvent object generated automatically and sent to 
       * the method by putting the mouse's cursor over a selected row of the table. 
       */
-    
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
         
         int selectedRow = SOrdersTable.getSelectedRow();
@@ -249,7 +245,6 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
      * @param evt - an ActionEvent object generated automatically and sent 
      * to the method by clicking on back button on the menu bar.
      */
-    
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         
         OrdersFrame ordersframe = new OrdersFrame();
@@ -259,16 +254,11 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
     }//GEN-LAST:event_backMouseClicked
 
     /**
-     * 
      * Refresh the Orders From Suppliers window - gui of OrdersFromSuppliers class
-     * 
-     * Close the Orders From Suppliers window and open a new one, 
-     * so that it contains the most recent data.
      * 
      * @param evt - an ActionEvent object generated automatically and sent 
      * to the method by clicking on refresh button on the menu bar.
      */
-    
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
        setVisible(false);
         try {
@@ -291,7 +281,6 @@ public class OrdersFromSuppliers extends javax.swing.JFrame {
      * data from database and show them in showSOrdersTable table.
      * 
      */
-    
     public void showSOrdersTable() {
         try {
             

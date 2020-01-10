@@ -31,7 +31,7 @@ public class EditSOrders extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Set the icon that is shown on the frame.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(
@@ -39,7 +39,7 @@ public class EditSOrders extends javax.swing.JFrame {
     }
 
     /**
-     * Set EditSOrder window
+     * Initialize the form of the window.
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -169,8 +169,8 @@ public class EditSOrders extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * Edit the status of an order from suppliers and update this order in the 
-    * database.
+    * Update the status of an order in the database and increase the quantity 
+    * of raw materials by the quantity of a delivered SOrder.
     * 
     * @param evt - an ActionEvent object generated automatically and sent 
     * to the method by clicking on Update to Delivered button.
@@ -199,7 +199,6 @@ public class EditSOrders extends javax.swing.JFrame {
       * @param evt - a MouseEvent object generated automatically and sent to 
       * the method by putting the mouse's cursor over a selected row of the table. 
       */
-    
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
 
         int selectedRow = SOrdersTable.getSelectedRow();
@@ -214,8 +213,7 @@ public class EditSOrders extends javax.swing.JFrame {
      * 
      * @param evt - an ActionEvent object generated automatically and sent 
      * to the method by clicking on Delete button.
-     */
-    
+     */  
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         
         String orderIDString = jTextField1.getText();
@@ -240,8 +238,7 @@ public class EditSOrders extends javax.swing.JFrame {
      * 
      * @param evt - an ActionEvent object generated automatically and sent 
      * to the method by clicking on cancel button on the menu bar.
-     */
-    
+     */    
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         new OrdersFromSuppliers().setVisible(true);
         dispose();
@@ -253,7 +250,6 @@ public class EditSOrders extends javax.swing.JFrame {
      * from database and show them in showSOrdersTable table.
      * 
      */
-    
     public void showSOrdersTable() {
         try {
             

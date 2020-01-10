@@ -6,8 +6,7 @@ CREATE TABLE `Users`(
 `full_name` varchar(255),
 `user_name` varchar(255) PRIMARY KEY,
 `password` varbinary(255),
-`role` ENUM ('admin', 'simpleuser'),
-`is_deleted` boolean default false
+`role` ENUM ('admin', 'simpleuser')
 );
 
 CREATE TABLE `Suppliers` (

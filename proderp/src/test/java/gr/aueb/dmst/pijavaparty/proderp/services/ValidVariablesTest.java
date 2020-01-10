@@ -66,6 +66,18 @@ public class ValidVariablesTest {
     }
 
     /**
+     * Test of isValidAddress method, of class ValidVariables.
+     */
+    @Test
+    public void testIsValidAddress() {
+        System.out.println("isValidAddress");
+        String address = "Trion Ierarxon 86, Larissa";
+        boolean expResult = true;
+        boolean result = ValidVariables.isValidAddress(address);
+        assertEquals(expResult, result);
+    }
+    
+    /**
      * Test of isValidPhonenumber method, of class ValidVariables.
      */
     @Test

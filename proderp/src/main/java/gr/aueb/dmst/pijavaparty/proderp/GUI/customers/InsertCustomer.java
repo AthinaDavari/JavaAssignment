@@ -23,7 +23,8 @@ public class InsertCustomer extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Method that sets the icon that is shown on the frame when the program is
+     * running.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -51,7 +52,7 @@ public class InsertCustomer extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         cancel = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insert New Customer");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -201,8 +202,6 @@ public class InsertCustomer extends javax.swing.JFrame {
      * method by clicking the save button.
      */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        try {
-
             if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_FullName.getText()) && ValidVariables.isValidPhonenumber(value_Phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_Email.getText())) {
                 String value2_full_name = value_FullName.getText();
                 String value3_address = value_Address.getText();
@@ -219,11 +218,6 @@ public class InsertCustomer extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
-
-        } catch (Exception a) {
-            JOptionPane.showMessageDialog(null, a);
-        }
-
     }//GEN-LAST:event_saveActionPerformed
     /**
      * Check if the name input is valid and if it is invalid show a warning
@@ -268,16 +262,16 @@ public class InsertCustomer extends javax.swing.JFrame {
             valid_Email.setText(null);
         }
     }//GEN-LAST:event_value_EmailKeyReleased
-   
+
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
- 
+
         dispose();
     }//GEN-LAST:event_BackMouseClicked
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
-   
+
     /**
      * @param args the command line arguments
      */

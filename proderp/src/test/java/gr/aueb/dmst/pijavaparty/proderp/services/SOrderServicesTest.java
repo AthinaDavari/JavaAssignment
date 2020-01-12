@@ -11,7 +11,6 @@ import gr.aueb.dmst.pijavaparty.proderp.entity.SOrder;
 import gr.aueb.dmst.pijavaparty.proderp.entity.SOrderItem;
 import gr.aueb.dmst.pijavaparty.proderp.entity.Supplier;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;

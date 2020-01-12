@@ -13,19 +13,19 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
- * AddProductToCOrder.java - A graphical user interface (gui) class responsible for 
- * adding a new order from a customer - Select the product and enter the  
+ * AddProductToCOrder.java - A graphical user interface (gui) class responsible for
+ * adding a new order from a customer - Select the product and enter the
  * quantity for the selected product.
- * 
+ *
  * @author MariaKokkorou
  */
 
 public class AddProductToCOrder extends javax.swing.JFrame {
 
     private ArrayList<COrderItem> COrderItemsList = new ArrayList<COrderItem>();
-    // An array list with all the COrderItem objects included in one specific 
+    // An array list with all the COrderItem objects included in one specific
     // order from a customer.
-    
+
     /**
      * Creates new form AddItemSOrder
      */
@@ -39,11 +39,11 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * A special constructor for this class with an array list with all the
      * COrderItem objects included in one specific order from a customer
      * as a parametre.
-     * 
-     * @param COrderItemsList - an array list with all the COrderItem objects 
+     *
+     * @param COrderItemsList - an array list with all the COrderItem objects
      * included in one specific order from a customer.
      */
-    
+
     public AddProductToCOrder(ArrayList<COrderItem> COrderItemsList) {
         this.COrderItemsList = COrderItemsList;
         initComponents();
@@ -98,7 +98,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         });
 
         newProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        newProduct.setText("New Product Order From Customer");
+        newProduct.setText("New Item");
         newProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newProductActionPerformed(evt);
@@ -108,6 +108,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         addOrder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         addOrder.setText("Add Product Order From Customer");
         addOrder.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addOrderActionPerformed(evt);
             }
@@ -191,27 +192,26 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * A method that allows the user to add another product with its
      * quantity in the order from a specific customer - stores all the products
      * that the user wants to be ordered from the same customer.
-     * 
+     *
      * @param evt - an ActionEvent object generated automatically and sent to
      * the method by clicking on New Product Order From Customer button.
      */
-    
+
     private void newProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductActionPerformed
-        try {
             if (isValidInteger(quantity.getText())) {
                 // Check if the quantity entered is a valid integer.
                 String productString = product.getSelectedItem().toString();
                 // Get the id - name of the selected product.
                 int quantityInt = Integer.parseInt(quantity.getText().trim());
                 // Get the quantity entered for this product.
-                
+
                 String[] productId = productString.split("-");
-                // Split the product string in two parts, where the "-" 
+                // Split the product string in two parts, where the "-"
                 // symbol exists and store the two parts in a table.
-                
+
                 int productIdInt = Integer.parseInt(productId[0]);
                 // The product's id is stored in position 0 of the table.
-                
+
                 ProductDao pd = new ProductDao();
                 Product product = pd.getById(productIdInt);
                 // Get the Product object with id equal to productIdInt.
@@ -228,42 +228,37 @@ public class AddProductToCOrder extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
     }//GEN-LAST:event_newProductActionPerformed
 
     /**
-     * A method that adds the order from a customer, with all the selected 
+     * A method that adds the order from a customer, with all the selected
      * products and their quantities that are stored in COrderItemsList, in the
      * database.
-     * 
+     *
      * @param evt - an ActionEvent object generated automatically and sent to
      * the method by clicking on Add Product Order From Customer button.
      */
-    
+
     private void addOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrderActionPerformed
         if (isValidInteger(quantity.getText())) {
             // Check if the quantity entered is a valid integer.
-            
+
             JOptionPane.showMessageDialog(null, "Do You Want To Save Order?");
 
             COrderDao cod = new COrderDao();
 
             String productString = product.getSelectedItem().toString();
-            // Get the id - name of the selected product.   
+            // Get the id - name of the selected product.
             int quantityInt = Integer.parseInt(quantity.getText().trim());
             // Get the quantity entered for this product.
-            
+
             String[] productId = productString.split("-");
-            // split the product string in two parts, where the "-" 
+            // split the product string in two parts, where the "-"
             // symbol exists and store the two parts in a table.
-            
+
             int productIdInt = Integer.parseInt(productId[0]);
             // the product's id is stored in position 0 of the table.
-            
+
             ProductDao pd = new ProductDao();
             Product product = pd.getById(productIdInt);
             // Get the Product object with id equal to ProductIdInt.
@@ -274,7 +269,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
             // Add this COrderItem object in COrderItemsList array list.
 
             cod.insertCOrderAndCOrderItems(corder, COrderItemsList);
-            // Add the order from a customer, with all the selected products 
+            // Add the order from a customer, with all the selected products
             // and their quantities that are stored in COrderItemsList, in the
             // database.
 
@@ -293,7 +288,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * @param evt - a reference to a KeyEvent object that is sent to
      * the method by typing a key in the keyboard.
      */
-    
+
     private void quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityKeyReleased
         if (!isValidInteger(quantity.getText())) {
             valid_Quantity.setText("Quantity is invalid!");
@@ -306,26 +301,26 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * Close the Add Product To COrder window by clicking on cancel button on
      * the menu bar.
      *
-     * @param evt - a MouseEvent object generated automatically and sent to 
-     * the method by putting the mouse's cursor over a selected row of the table. 
+     * @param evt - a MouseEvent object generated automatically and sent to
+     * the method by putting the mouse's cursor over a selected row of the table.
      */
-    
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
 
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        new AddNewCustOrder().setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_cancelMouseClicked
 
     /**
-     * Fill product combobox with all products, which aren't 
+     * Fill product combobox with all products, which aren't
      * included in Customers' Order.
      */
-    
+
     private void comboBox() {
 
         List<String> products = COrderServices.rawMaterialsNotIncludedInSuppliersOrder(COrderItemsList);
         // Get all products, which aren't included in order.
-        int number = products.size(); 
+        int number = products.size();
         // Number of products, which aren't included in order.
 
         try {
@@ -335,7 +330,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
                 product.addItem(products.get(i));
 
             }
-            
+
             //Disable newProduct button if combo box has only one item
             if (number == 1){
                 disable_newProduct_button();
@@ -360,7 +355,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

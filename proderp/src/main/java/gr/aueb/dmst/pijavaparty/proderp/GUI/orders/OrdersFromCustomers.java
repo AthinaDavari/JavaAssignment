@@ -1,9 +1,12 @@
 package gr.aueb.dmst.pijavaparty.proderp.GUI.orders;
 
+import gr.aueb.dmst.pijavaparty.proderp.GUI.customers.CustomerMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.COrderDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.COrder;
 import java.awt.Toolkit;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,7 +32,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
      *Method that sets the icon that is shown on the frame when the program is running. 
      */
     
-    public void seticon() {
+    private void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
     /**
@@ -260,11 +263,20 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
      */
     
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-       
-        
-        OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
-        ordersfromcustomers.setVisible(true);
-        dispose();
+       setVisible(false);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CustomerMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setVisible(true);
+        DefaultTableModel model = (DefaultTableModel)COrdersTable.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+           model.removeRow(i); 
+        }
+        showCOrdersTable();
         
     }//GEN-LAST:event_refreshActionPerformed
 
@@ -274,7 +286,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
      * 
      */
     
-     public void showCOrdersTable() {
+     private void showCOrdersTable() {
         try {
             
             COrderDao obj = new COrderDao();
@@ -292,8 +304,11 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
                 row[2] = corders.get(i).getStatus(); // Fill the third column of the table with the status of the order.
                 row[3] = corders.get(i).getCreated_at(); // Fill the fourth column 
                 // of the table with the time of creation of the order.
-                row[4] = corders.get(i).getUser().getFullName(); 
+                row[4] = " - ";
+                if(corders.get(i).getUser()!=null){
+                row[4] = corders.get(i).getUser().getUsername(); 
                 // Fill the fifth column of the table with the username.
+                }
                 model.addRow(row);
             }
 

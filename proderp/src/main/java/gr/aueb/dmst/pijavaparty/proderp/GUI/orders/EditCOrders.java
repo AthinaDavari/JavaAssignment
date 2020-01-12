@@ -29,9 +29,9 @@ public class EditCOrders extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Method that sets the icon that is shown on the frame when the program is
+     * running.
      */
-    
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -192,17 +192,14 @@ public class EditCOrders extends javax.swing.JFrame {
      */
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try {
             String orderIdString = orderid.getText();
             int orderIdInt = Integer.parseInt(orderIdString);
             // Get the value from Order's ID field.
             String status = stat.getText();
             // Get the value from status field.
-
             StorageServices storageservices = new StorageServices();
-
             if (status.equals("ready")) { // check if the order's status is "ready".
-                if(!(storageservices.permissionToDecreaseRawMaterials(orderIdInt))){
+                if (!(storageservices.permissionToDecreaseRawMaterials(orderIdInt))) {
                     //if raw materials can be not decreased by this quantity stop the process
                     JOptionPane.showMessageDialog(null, "Not enough raw materials for this order.");
                     return;
@@ -213,34 +210,21 @@ public class EditCOrders extends javax.swing.JFrame {
                 storageservices.increaseProduct(orderIdInt);
                 // Also, if the order is "ready", increase in the database the 
                 // number of the products that are available for the customers.
-
             }
-
             if (status.equals("delivered")) { // check if the order's status is "delivered".
-
-                if(!(storageservices.permissionToDecreaseProduct(orderIdInt))){
+                if (!(storageservices.permissionToDecreaseProduct(orderIdInt))) {
                     //if products can be not decreased by this quantity stop the process
                     JOptionPane.showMessageDialog(null, "Not enough products in the storage.");
                     return;
                 }
-                
                 storageservices.decreaseProduct(orderIdInt);
                 // Decrease in the database the number of products that are available for customers.
-
             }
-
             COrderDao cod = new COrderDao();
             cod.updateStatus(orderIdInt, (status));
-
             JOptionPane.showMessageDialog(null, "Status Updated.");
-
             new EditCOrders().setVisible(true);
             dispose();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
     }//GEN-LAST:event_updateActionPerformed
 
     /**
@@ -293,7 +277,8 @@ public class EditCOrders extends javax.swing.JFrame {
      */
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-
+        OrdersFromCustomers a = new OrdersFromCustomers();
+        a.setVisible(true);
         dispose();
 
     }//GEN-LAST:event_cancelMouseClicked
@@ -378,7 +363,7 @@ public class EditCOrders extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JTextField orderid;
+    protected static javax.swing.JTextField orderid;
     private javax.swing.JTextField stat;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables

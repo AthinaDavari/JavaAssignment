@@ -84,19 +84,6 @@ public class CustomerDaoTest {
     }
 
     /**
-     * Test of deletePermanently method, of class CustomerDao.
-     */
-//    @Test
-//    public void testDeletePermanently() {
-//        System.out.println("deletePermanently");
-//        int id = 0;
-//        CustomerDao instance = new CustomerDao();
-//        instance.deletePermanently(id);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    /**
      * Test of delete method, of class CustomerDao.
      */
     @Test
@@ -104,8 +91,9 @@ public class CustomerDaoTest {
         System.out.println("delete");
         int id = 2;
         CustomerDao instance = new CustomerDao();
+        Customer old = instance.getById(2);
         instance.delete(id);
-        assertEquals(null, instance.getById(2));
+        assertEquals(false, instance.getAll().contains(old));
     }
     
 }

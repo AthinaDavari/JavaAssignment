@@ -14,11 +14,22 @@ public class ValidVariables {
      * @return
      */
     public static boolean isStringOnlyAlphabetAndWhiteSpaces(String str) {
-        if (str == null) {
-            return false;
-        }
-        return ((!str.replace(" ", "").equals("")
-                && (str.replace(" ", "").chars().allMatch(Character::isLetter))));
+         String pattern="^[a-zA-Z]+((\\s[a-zA-Z]+))*$";
+         String regex="^[A-Za-z\\s]{4,}$";
+         if(Pattern.matches(pattern,str) && Pattern.matches(regex,str)){
+             return true;
+         } else {
+             return false;
+         }
+    }
+    
+    public static boolean isStringOnlyAlphabetAndNumbers(String input) {
+        String pattern="^[a-zA-Z][a-zA-Z0-9]{2,}$";
+         if(Pattern.matches(pattern,input)){
+             return true;
+         } else {
+             return false;
+         }
     }
 
     /**

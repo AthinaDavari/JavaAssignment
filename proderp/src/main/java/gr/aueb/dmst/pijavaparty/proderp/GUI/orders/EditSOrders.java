@@ -176,9 +176,7 @@ public class EditSOrders extends javax.swing.JFrame {
     * to the method by clicking on Update to Delivered button.
     */    
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try {
-            
-            String orderIDString = jTextField1.getText();
+                     String orderIDString = jTextField1.getText();
             int orderIDint = Integer.parseInt(orderIDString);
 
             SOrderDao sd = new SOrderDao();
@@ -192,12 +190,6 @@ public class EditSOrders extends javax.swing.JFrame {
             
             new EditSOrders().setVisible(true);
             dispose();
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
     }//GEN-LAST:event_updateActionPerformed
 
     /**
@@ -251,9 +243,8 @@ public class EditSOrders extends javax.swing.JFrame {
      */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        
+        new OrdersFromSuppliers().setVisible(true);
         dispose();
-        
     }//GEN-LAST:event_cancelMouseClicked
 
 
@@ -334,7 +325,7 @@ public class EditSOrders extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JTextField jTextField1;
+    protected static javax.swing.JTextField jTextField1;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

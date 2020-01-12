@@ -27,7 +27,9 @@ public class AddProducts extends javax.swing.JFrame {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Set AddProducts window
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -36,11 +38,11 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         value_name = new javax.swing.JTextField();
         value_price = new javax.swing.JTextField();
-        AddProduct = new javax.swing.JButton();
+        addProduct = new javax.swing.JButton();
         valid_Price = new javax.swing.JLabel();
         valid_Name = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Cancel = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -65,12 +67,12 @@ public class AddProducts extends javax.swing.JFrame {
             }
         });
 
-        AddProduct.setBackground(java.awt.SystemColor.activeCaption);
-        AddProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        AddProduct.setText("Add");
-        AddProduct.addActionListener(new java.awt.event.ActionListener() {
+        addProduct.setBackground(java.awt.SystemColor.activeCaption);
+        addProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        addProduct.setText("Add");
+        addProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddProductActionPerformed(evt);
+                addProductActionPerformed(evt);
             }
         });
 
@@ -80,14 +82,14 @@ public class AddProducts extends javax.swing.JFrame {
         valid_Name.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Name.setForeground(new java.awt.Color(255, 0, 0));
 
-        Cancel.setForeground(new java.awt.Color(51, 51, 255));
-        Cancel.setText("Cancel");
-        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setForeground(new java.awt.Color(51, 51, 255));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CancelMouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(Cancel);
+        jMenuBar1.add(cancel);
 
         setJMenuBar(jMenuBar1);
 
@@ -117,7 +119,7 @@ public class AddProducts extends javax.swing.JFrame {
                                     .addComponent(valid_Price, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(AddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(addProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,7 +138,7 @@ public class AddProducts extends javax.swing.JFrame {
                     .addComponent(value_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valid_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
-                .addComponent(AddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(115, Short.MAX_VALUE))
         );
 
@@ -149,11 +151,11 @@ public class AddProducts extends javax.swing.JFrame {
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the add button.
      */     
-    private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed
+    private void addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductActionPerformed
        try {
            if (isValidDouble(value_price.getText()) && isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())){
            new AddIngredients(value_name.getText(),Double.parseDouble(value_price.getText())).setVisible(true);
-            dispose();
+           dispose(); 
            } else {
                JOptionPane.showMessageDialog(null, "Incorrect validation! Please try again!");
            }
@@ -161,7 +163,7 @@ public class AddProducts extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
        }
        
-    }//GEN-LAST:event_AddProductActionPerformed
+    }//GEN-LAST:event_addProductActionPerformed
 
     /**
      * Returning to the product main window.
@@ -169,11 +171,11 @@ public class AddProducts extends javax.swing.JFrame {
      * @param evt is a reference to a MouseEvent object that is sent to the
      * method by clicking the cancel button.
      */     
-    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         ProductGui productGui = new ProductGui();
         productGui.setVisible(true);
         dispose(); 
-    }//GEN-LAST:event_CancelMouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
 
     /**
      * Check if the price input is valid and if it is invalid show a
@@ -241,8 +243,8 @@ public class AddProducts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddProduct;
-    private javax.swing.JMenu Cancel;
+    private javax.swing.JButton addProduct;
+    private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

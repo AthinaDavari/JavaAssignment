@@ -61,17 +61,17 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ProductsTable = new javax.swing.JTable();
+        productsTable = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         cancel = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Products Of Order");
 
-        ProductsTable.setModel(new javax.swing.table.DefaultTableModel(
+        productsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -87,7 +87,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(ProductsTable);
+        jScrollPane1.setViewportView(productsTable);
 
         cancel.setForeground(new java.awt.Color(0, 0, 204));
         cancel.setText("Cancel");
@@ -134,11 +134,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
      */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-
-//        OrdersFromCustomers ordersfromcustomers = new OrdersFromCustomers();
-//        ordersfromcustomers.setVisible(true);
         dispose();
-
     }//GEN-LAST:event_cancelMouseClicked
     
     /**
@@ -150,7 +146,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
     public void showProductsTable() {
 
         COrderItemDao coid = new COrderItemDao();
-        DefaultTableModel model = (DefaultTableModel) ProductsTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
         List<COrderItem> itemsPerCOrder = coid.getItemsPerCOrder(selectedOrder);
         // itemsPerCOrder - an arraylist filled with all the products 
         // that a specific order from customers, with id equal to selectedOrder, contains.
@@ -210,11 +206,11 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable ProductsTable;
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable productsTable;
     // End of variables declaration//GEN-END:variables
 
 }

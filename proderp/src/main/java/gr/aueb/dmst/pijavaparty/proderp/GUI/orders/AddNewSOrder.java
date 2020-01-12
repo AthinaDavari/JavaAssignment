@@ -213,9 +213,8 @@ public class AddNewSOrder extends javax.swing.JFrame {
      */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-
-        dispose();
-        
+        new OrdersFromSuppliers().setVisible(true);
+        dispose(); 
     }//GEN-LAST:event_cancelMouseClicked
 
     /**
@@ -260,6 +259,6 @@ public class AddNewSOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    public static javax.swing.JComboBox<String> supid;
+    protected static javax.swing.JComboBox<String> supid;
     // End of variables declaration//GEN-END:variables
 }

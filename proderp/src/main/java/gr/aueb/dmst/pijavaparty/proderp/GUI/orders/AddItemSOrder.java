@@ -41,7 +41,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
     /**
      * A special constructor for this class with an array list with all the
      * SOrderItem objects included in one specific order to a supplier 
-     * as a parametre.
+     * as a parameter.
      * 
      * @param SOrderItemsList - an array list with all the SOrderItem objects 
      * included in one specific order to a supplier.
@@ -109,7 +109,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         });
 
         addOrder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        addOrder.setText("Add Order To Supplier");
+        addOrder.setText("Save Order");
         addOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addOrderActionPerformed(evt);
@@ -198,7 +198,6 @@ public class AddItemSOrder extends javax.swing.JFrame {
      */
     
     private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
-        try {
             if (isValidInteger(quantity.getText())){ 
                 // Check if the quantity entered is a valid integer.
                 
@@ -231,11 +230,6 @@ public class AddItemSOrder extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
     }//GEN-LAST:event_newitemActionPerformed
 
     /**
@@ -314,7 +308,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
      */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-
+        new AddNewSOrder().setVisible(true);
         dispose();
 
     }//GEN-LAST:event_cancelMouseClicked
@@ -325,7 +319,6 @@ public class AddItemSOrder extends javax.swing.JFrame {
      */
     
      private void fillComboBox(){
-        RawMaterialDao rmd = new RawMaterialDao();
         List<String> rawMaterials;
         SupplierDao sd = new SupplierDao(); 
         // Get all raw materials, which aren't included in order.

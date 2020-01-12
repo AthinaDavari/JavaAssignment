@@ -313,15 +313,10 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelMouseClicked
 
     /**
-<<<<<<< HEAD
      * Fill product combobox with all products, which aren't
      * included in Customers' Order.
      */
 
-=======
-     * Fill the "product" combobox with products not included in the order.
-     */
->>>>>>> aaaef4079c91d74aae03279e2d8e0a1b9693a783
     private void comboBox() {
 
         List<String> products = COrderServices.rawMaterialsNotIncludedInSuppliersOrder(COrderItemsList);
@@ -390,12 +385,9 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
     private javax.swing.JButton addOrder;
-=======
     private javax.swing.JLabel addNewProductOrderFromCustomer;
     private javax.swing.JButton addorder;
->>>>>>> aaaef4079c91d74aae03279e2d8e0a1b9693a783
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel enterProducts;
     private javax.swing.JLabel enterQuantity;

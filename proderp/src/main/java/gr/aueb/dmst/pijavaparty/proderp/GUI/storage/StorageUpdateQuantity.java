@@ -3,6 +3,7 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI.storage;
 import gr.aueb.dmst.pijavaparty.proderp.dao.ProductDao;
 import gr.aueb.dmst.pijavaparty.proderp.dao.RawMaterialDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
+import gr.aueb.dmst.pijavaparty.proderp.services.StorageServices;
 import static gr.aueb.dmst.pijavaparty.proderp.services.ValidVariables.isValidInteger;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -38,7 +39,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     *Set the icon that is shown on the frame
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -159,8 +160,17 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
                 if (prodorraw.equals("Product")) { // update quantity of a product
                     ProductDao productDao=new ProductDao();
                     Product prod = productDao.getById(id);
-                    ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, quant - prod.getQuantity());
-                    prodingup.setVisible(true);
+                    //ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, quant - prod.getQuantity());
+                    //prodingup.setVisible(true);
+                    
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int dialogResult = JOptionPane.showConfirmDialog (null, "Update Ingredients Quantity Acordingly?","Warning",dialogButton);
+                    if( dialogResult == JOptionPane.YES_OPTION){
+                        answerYesActionPerformed(quant);
+                    } else if(dialogResult == JOptionPane.NO_OPTION) {
+                        answerNoActionPerformed(quant);
+                    }
+                    
                 } else { // update quantity of a raw material
                     RawMaterialDao rawmaterialDao=new RawMaterialDao();
                     rawmaterialDao.updateQuantity(id,quant);
@@ -219,6 +229,37 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
             new StorageUpdateQuantity().setVisible(true);
         });
     }
+    
+     /**
+     * Update the quantity of the selected product and corresponding raw material
+     */
+    private void answerYesActionPerformed(int quant) {                                          
+        StorageServices storser= new StorageServices();
+        //Check if the storage have enough raw materials to make a product in quantity we want
+        ProductDao productDao = new ProductDao();
+        Product prod = productDao.getById(id);
+        if (storser.permissionToUpdateIngredients(id,  quant - prod.getQuantity())) {
+            //Update the quantity of all the ingredients in product's recipe
+            storser.updateIngredients(id,  quant - prod.getQuantity());
+            productDao.updateQuantity(id,quant);//update the quantity of product
+            JOptionPane.showMessageDialog(null,"Updated");
+        } else {
+            JOptionPane.showMessageDialog(null,"Cannot update, not enough raw materials.","Error",  JOptionPane.ERROR_MESSAGE);
+        }
+        new StorageMain().setVisible(true);
+        dispose();
+    }
+    
+     /**
+     * Update the quantity of the selected product 
+     */
+    private void answerNoActionPerformed(int quant) {                                         
+        ProductDao productDao=new ProductDao();
+        productDao.updateQuantity(id,quant);
+        new StorageMain().setVisible(true);
+        dispose();
+    }  
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;

@@ -30,6 +30,30 @@ public class ValidVariablesTest {
     }
 
     /**
+     * Test of isValidFullName method, of class ValidVariables.
+     */
+    @Test
+    public void testIsValidFullName() {
+        System.out.println("isValidFullName");
+        String fullName = "Aliki Manou";
+        boolean expResult = true;
+        boolean result = ValidVariables.isValidFullName(fullName);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isStringOnlyAlphabetAndNumbers method, of class ValidVariables.
+     */
+    @Test
+    public void testIsStringOnlyAlphabetAndNumbers() {
+        System.out.println("isStringOnlyAlphabetAndNumbers");
+        String fullName = "Ali8";
+        boolean expResult = true;
+        boolean result = ValidVariables.isStringOnlyAlphabetAndNumbers(fullName);
+        assertEquals(expResult, result);
+    }
+    
+    /**
      * Test of isValidEmailAddress method, of class ValidVariables.
      */
     @Test
@@ -41,6 +65,18 @@ public class ValidVariablesTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of isValidAddress method, of class ValidVariables.
+     */
+    @Test
+    public void testIsValidAddress() {
+        System.out.println("isValidAddress");
+        String address = "Trion Ierarxon 86, Larissa";
+        boolean expResult = true;
+        boolean result = ValidVariables.isValidAddress(address);
+        assertEquals(expResult, result);
+    }
+    
     /**
      * Test of isValidPhonenumber method, of class ValidVariables.
      */
@@ -74,6 +110,18 @@ public class ValidVariablesTest {
         String double_number = "Mary";
         boolean expResult = false;
         boolean result = ValidVariables.isValidDouble(double_number);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isValidPassword method, of class ValidVariables.
+     */
+    @Test
+    public void testIsValidPassword() {
+        System.out.println("isValidPassword");
+        String input = ".%6gwdye";
+        boolean expResult = false;
+        boolean result = ValidVariables.isValidPassword(input);
         assertEquals(expResult, result);
     }
 

@@ -94,11 +94,11 @@ CREATE TABLE `P_Materials` (
 
 -- INSERTS
 insert into suppliers(full_name, address, phonenumber, email) 
-values("INA PLASTICS SA", "A.Papadreou 30", 2105678934, "info@inaplastics.gr"),
-	  ("Titanium Fabrication Corporation", "Palaiologou 156", 2103789023, "info@tfc.gr"),
-      ("Universal Metals", "Vasileos Georgiou 59", 2103825677, "info@unimetals.gr"),
-      ("Salomon’s Metalen", "Anatolikis Romilias 26", 2115027459, "info@salomonsmetalen.gr"),
-      ("Toray Carbon Fibers", "Perikleous 89", 2130796782, "info@torays.gr");
+values("INA PLASTICS SA", "A.Papadreou 30, Athens", 2105678934, "info@inaplastics.gr"),
+	  ("Titanium Fabrication Corporation", "Palaiologou 156, Athens", 2103789023, "info@tfc.gr"),
+      ("Universal Metals", "Vasileos Georgiou 59, Heraklion", 2103825677, "info@unimetals.gr"),
+      ("Salomon’s Metalen", "Anatolikis Romilias 26, Kalamata", 2115027459, "info@salomonsmetalen.gr"),
+      ("Toray Carbon Fibers", "Perikleous 89, Athens", 2130796782, "info@torays.gr");
       
 insert into products(name, quantity, price)
 values("Orient City Classic", 10, 479.65),
@@ -128,8 +128,8 @@ values (3,'delivered'),
        (5, 'pending');
      
 insert into Customers (full_name,address,phonenumber,email)
-values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
-       ("Mouzouris", "Markou 14", 987560, "mouz@gmail.com");
+values ("Papadopoulos", "Mousitsa 56, Glyfada", 345678, "papadopoulos@gmail.com"),
+       ("Mouzouris", "Markou 14, Athens", 987560, "mouz@gmail.com");
 
 -- select * from products;
 -- select * from S_Orders;
@@ -139,18 +139,18 @@ values ("Papadopoulos", "Mousitsa 56", 345678, "papadopoulos@gmail.com"),
 -- select * from users;
      
 insert into users(full_name, user_name, password, role)
-values  ("athina", "ath", aes_encrypt("asdfg","prod"), 'admin'),
-        ("natalia", "nat", aes_encrypt("12345", "prod"),'simpleuser'),
-        ("maria","maria", aes_encrypt("1234","prod"),'admin');
+values  ("athina", "ath", aes_encrypt("asdfghj","prod"), 'admin'),
+        ("natalia", "nat", aes_encrypt("1234567", "prod"),'simpleuser'),
+        ("maria","maria", aes_encrypt("12341234","prod"),'admin');
      
 insert into Customers (full_name,address,phonenumber,email)
-values ("Ora Gia Podilato", "Tositsa 45", 2109237849, "info@oragiapodilato.com"),
-       ("Mouzouris", "Markou 14", 2104534790, "info@mouzouris.com"),
-       ("BikeMall", "Patision 18", 2136789267, "info@bikemall.com"),
-	   ("BikeCompany", "Chamosternas 12", 2109046784, "info@bikecompany.com"),
-       ("Marios Papachristou Bikes", "Aiolou 178", 2139037562, "info@mpapbikes.com"),
-       ("SuperBikes", "Peiraios 17", 2104828947, "info@superbikes.com"),
-       ("Smart Fitness", "Trion Ierarxon 86", 210829894, "info@smartfitness.com");
+values ("Ora Gia Podilato", "Tositsa 45, Athens", 2109237849, "info@oragiapodilato.com"),
+       ("Mouzouris", "Markou 14, Thessaloniki", 2104534790, "info@mouzouris.com"),
+       ("BikeMall", "Patision 18, Athens", 2136789267, "info@bikemall.com"),
+	   ("BikeCompany", "Chamosternas 12, Heraklion", 2109046784, "info@bikecompany.com"),
+       ("Marios Papachristou Bikes", "Aiolou 178, Athens", 2139037562, "info@mpapbikes.com"),
+       ("SuperBikes", "Peiraios 17, Piraeus", 2104828947, "info@superbikes.com"),
+       ("Smart Fitness", "Trion Ierarxon 86, Larissa", 210829894, "info@smartfitness.com");
        
 insert into c_orders(customer_id, status, user_name)
 values (6, 'preparing', "ath"),

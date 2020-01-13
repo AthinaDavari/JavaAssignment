@@ -132,7 +132,7 @@ public class OrdersFrame extends javax.swing.JFrame {
     * Show the graphical user interface of OrdersFromSuppliers class, by
     * clicking on the Orders To Suppliers button. 
     * 
-    * @param evt - an ActionEvent object generated automatically and sent 
+    * @param evt - a reference to an ActionEvent object that is sent 
     * to the method by clicking on Orders To Suppliers button.
     */   
     private void ordersToSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersToSuppliersActionPerformed
@@ -144,7 +144,7 @@ public class OrdersFrame extends javax.swing.JFrame {
     * Show the graphical user interface of OrdersFromCustomers class, by
     * clicking on the Orders From Customers button. 
     * 
-    * @param evt - an ActionEvent object generated automatically and sent 
+    * @param evt - a reference to an ActionEvent object that is sent 
     * to the method by clicking on Orders From Customers button.
     */ 
     private void ordersFromCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersFromCustomersActionPerformed
@@ -157,8 +157,8 @@ public class OrdersFrame extends javax.swing.JFrame {
      * and return back to the main menu window - gui of Menu class,
      * by clicking on back button on the menu bar.
      * 
-     * @param evt - an ActionEvent object generated automatically and sent 
-     * to the method by clicking on back button on the menu bar.
+     * @param evt - a reference to a MouseEvent object that is sent to the
+     * method by clicking the back button.
      */
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         
@@ -176,10 +176,10 @@ public class OrdersFrame extends javax.swing.JFrame {
     /**
      * Close the Orders Menu window - gui of OrdersFrame class, 
      * and return back to the log in window - gui of LogIn class,
-     * by clicking on back button on the menu bar.
+     * by clicking on Log Out button on the menu bar.
      * 
-     * @param evt - an ActionEvent object generated automatically and sent 
-     * to the method by clicking on log out button on the menu bar.
+     * @param evt - a reference to a MouseEvent object that is sent to
+     * the method by clicking the log out button.
      */
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         

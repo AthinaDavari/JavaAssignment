@@ -124,7 +124,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
      * Close the Show Raw Materials Of Order window by clicking on cancel button 
      * on the menu bar.
      *
-     * @param evt - an ActionEvent object generated automatically and sent to
+     * @param evt - a reference to a MouseEvent object that is  sent to
      * the method by clicking on cancel button on the menu bar.
      */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked

@@ -187,14 +187,12 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * A method that allows the user to add another product with its
-     * quantity in the order from a specific customer - stores all the products
-     * that the user wants to be ordered from the same customer.
+     * Add another product with its quantity in the order from a specific customer
+     * Store all the products that the user wants to be ordered from the same customer.
      *
      * @param evt - a reference to an ActionEvent object that is sent to
      * the method by clicking on New Item button.
      */
-
     private void newProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductActionPerformed
             if (isValidInteger(quantity.getText())) {
                 // Check if the quantity entered is a valid integer.
@@ -229,14 +227,13 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_newProductActionPerformed
 
     /**
-     * A method that adds the order from a customer, with all the selected
+     * Adds the order from a customer, with all the selected
      * products and their quantities that are stored in COrderItemsList, in the
      * database.
      *
      * @param evt - a reference to an ActionEvent object that is sent to
      * the method by clicking on Save Order button.
      */
-
     private void addOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrderActionPerformed
         if (isValidInteger(quantity.getText())) {
             // Check if the quantity entered is a valid integer.
@@ -272,6 +269,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
             // database.
 
             JOptionPane.showMessageDialog(null, "Order Saved.");
+            new OrdersFromCustomers().setVisible(true);
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
@@ -286,7 +284,6 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * @param evt - a reference to a KeyEvent object that is sent to
      * the method by typing a key in the keyboard.
      */
-
     private void quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityKeyReleased
         if (!isValidInteger(quantity.getText())) {
             valid_Quantity.setText("Quantity is invalid!");
@@ -315,20 +312,15 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      */
 
     private void comboBox() {
-
         List<String> products = COrderServices.rawMaterialsNotIncludedInSuppliersOrder(COrderItemsList);
         // Get all products, which aren't included in order.
         int number = products.size();
         // Number of products, which aren't included in order.
-
         try {
             // Fill combobox
             for (int i = 0; i < number; i++) {
-
                 product.addItem(products.get(i));
-
             }
-
             //Disable newProduct button if combo box has only one item
             if (number == 1){
                 disable_newProduct_button();
@@ -336,7 +328,6 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-
     }
 
     /**

@@ -97,7 +97,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
         });
 
         newitem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        newitem.setText("New Item Order To Supplier");
+        newitem.setText("New Item ");
         newitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newitemActionPerformed(evt);
@@ -268,6 +268,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
             // database.
 
             JOptionPane.showMessageDialog(null, "Order Saved.");
+            new OrdersFromSuppliers().setVisible(true);
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");

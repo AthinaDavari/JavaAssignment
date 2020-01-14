@@ -7,16 +7,14 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.UserDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.User;
-import static gr.aueb.dmst.pijavaparty.proderp.services.ValidVariables.isStringOnlyAlphabetAndNumbers;
+import static gr.aueb.dmst.pijavaparty.proderp.services.ValidVariables.*;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 /**
- * @author anna
- * This class allows the administrator to add a new user
- * by entering user's full name, username, password and role.
+ * @author anna This class allows the administrator to add a new user by
+ * entering user's full name, username, password and role.
  */
 public class AddUser extends javax.swing.JFrame {
 
@@ -31,12 +29,13 @@ public class AddUser extends javax.swing.JFrame {
     }
 
     /**
-     * Method that sets the icon that is shown on the frame when the program is running.
+     * Method that sets the icon that is shown on the frame when the program is
+     * running.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
-    
+
     /**
      * Set AddUser window
      */
@@ -53,7 +52,9 @@ public class AddUser extends javax.swing.JFrame {
         passwd = new javax.swing.JTextField();
         add = new javax.swing.JButton();
         role = new javax.swing.JComboBox<>();
-        valueUsername = new javax.swing.JLabel();
+        validUsername = new javax.swing.JLabel();
+        validFullName = new javax.swing.JLabel();
+        validPassword = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -76,9 +77,21 @@ public class AddUser extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Role:");
 
+        fullname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fullnameKeyReleased(evt);
+            }
+        });
+
         username.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 usernameKeyReleased(evt);
+            }
+        });
+
+        passwd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passwdKeyReleased(evt);
             }
         });
 
@@ -97,12 +110,16 @@ public class AddUser extends javax.swing.JFrame {
             }
         });
 
-        valueUsername.setForeground(new java.awt.Color(255, 51, 51));
-        valueUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+        validUsername.setForeground(new java.awt.Color(255, 51, 51));
+        validUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                valueUsernameKeyTyped(evt);
+                validUsernameKeyTyped(evt);
             }
         });
+
+        validFullName.setForeground(new java.awt.Color(255, 51, 51));
+
+        validPassword.setForeground(new java.awt.Color(255, 51, 51));
 
         jMenu1.setText("Cancel");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,14 +152,17 @@ public class AddUser extends javax.swing.JFrame {
                             .addComponent(passwd)
                             .addComponent(role, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(valueUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(validUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                            .addComponent(validFullName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(validPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(271, 271, 271)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(276, 276, 276)
                         .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,17 +172,19 @@ public class AddUser extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(validFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(valueUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(validUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(passwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(validPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -182,78 +204,108 @@ public class AddUser extends javax.swing.JFrame {
         AdminMenu obj = new AdminMenu();
         obj.setVisible(true);
         dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
-     * Takes content from textfields and combobox and 
-     * creates a new user in User List.
-    */
+     * Takes content from textfields and combobox and creates a new user in User
+     * List.
+     */
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-       try {
-           if(!isStringOnlyAlphabetAndNumbers(username.getText())){
-           JOptionPane.showMessageDialog(null, "Incorrect validation! Please try again!");
-           return;
-       }
+        try {
+            //Check if all jtextfields in window have valid values
+            if (!checkAllConstraints()) {
+                JOptionPane.showMessageDialog(null, "Incorrect validation! Please try again!");
+                return;
+            }
             String f = fullname.getText();
             String u = username.getText();
             String p = passwd.getText();
-            String r=role.getSelectedItem().toString();
+            String r = role.getSelectedItem().toString();
             UserDao userdao = new UserDao();
             List<User> users;
-            users=userdao.getAll();
+            users = userdao.getAll();
             User ur = null;
-            int num=users.size();
-            for(int i=0; i<num; i++){
-                if (users.get(i).getRole().equals(r)) {  
-                    ur=users.get(i);
+            int num = users.size();
+            for (int i = 0; i < num; i++) {
+                if (users.get(i).getRole().equals(r)) {
+                    ur = users.get(i);
                     break;
                 }
             }
             UserDao us1 = new UserDao();
             User us2 = new User(f, u, p, r);
             us1.insert(us2);
-            JOptionPane.showMessageDialog(rootPane,"User Added" );
+            JOptionPane.showMessageDialog(rootPane, "User Added");
             AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
             dispose();
-       } catch (Exception e){
-           JOptionPane.showMessageDialog(rootPane,"Fields are empty");
-       }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fields are empty");
+        }
     }//GEN-LAST:event_addActionPerformed
 
     private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_roleActionPerformed
 
-    private void valueUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valueUsernameKeyTyped
+    private void validUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_validUsernameKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_valueUsernameKeyTyped
+    }//GEN-LAST:event_validUsernameKeyTyped
 
     private void usernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyReleased
-        if (!isStringOnlyAlphabetAndNumbers(username.getText())){
-            valueUsername.setText("Username is invalid!");
+        if (!isStringOnlyAlphabetAndNumbers(username.getText())) {
+            validUsername.setText("Username is invalid!");
         } else {
-            valueUsername.setText(null);
+            validUsername.setText(null);
         }
     }//GEN-LAST:event_usernameKeyReleased
+
+    private void fullnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullnameKeyReleased
+        if (!isValidFullName(fullname.getText())) {
+            validFullName.setText("Full Name is invalid!");
+        } else {
+            validFullName.setText(null);
+        }
+    }//GEN-LAST:event_fullnameKeyReleased
+
+    private void passwdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwdKeyReleased
+        if (!isValidPassword(passwd.getText())) {
+            validPassword.setText("Password is invalid!");
+        } else {
+            validPassword.setText(null);
+        }
+    }//GEN-LAST:event_passwdKeyReleased
 
     /**
      * Brings the lists of user roles from UserDao and fills the combobox.
      */
-    private void fillcombobox(){
-        UserDao userdao = new UserDao();
-        List<User> users;
-        users = userdao.getAll();
-        int size=userdao.getAll().size();
-        try{
+    private void fillcombobox() {
+        try {
             role.addItem("admin");
             role.addItem("simpleuser");
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
+    
+    /**
+     * Check if all jtextfields in window have valid values
+     * @return true-if all jtextfields have valid values,
+     * false-if at least a jtextfield has invalid value
+     */
+    private boolean checkAllConstraints(){
+        if(!isValidFullName(fullname.getText())){
+            return false;
+        }
+        if(!isStringOnlyAlphabetAndNumbers(username.getText())){
+            return false;
+        }
+        if(!isValidPassword(passwd.getText())){
+            return false;
+        }
+        return true;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -303,6 +355,8 @@ public class AddUser extends javax.swing.JFrame {
     private javax.swing.JTextField passwd;
     private javax.swing.JComboBox<String> role;
     private javax.swing.JTextField username;
-    private javax.swing.JLabel valueUsername;
+    private javax.swing.JLabel validFullName;
+    private javax.swing.JLabel validPassword;
+    private javax.swing.JLabel validUsername;
     // End of variables declaration//GEN-END:variables
 }

@@ -163,6 +163,8 @@ public class COrderDao extends Dao implements PlainEntityI<COrder> {
             }
         } catch (SQLException ex) {
             Logger.getLogger(COrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, st);
         }
         return 0;
     }

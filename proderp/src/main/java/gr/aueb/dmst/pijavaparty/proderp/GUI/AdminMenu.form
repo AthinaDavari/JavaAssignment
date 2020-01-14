@@ -22,12 +22,12 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="LogOut">
+        <Menu class="javax.swing.JMenu" name="logOut">
           <Properties>
             <Property name="text" type="java.lang.String" value="Log Out"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LogOutMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logOutMouseClicked"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu4">
@@ -72,23 +72,23 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="Customers" min="-2" pref="142" max="-2" attributes="0"/>
+              <Component id="customers" min="-2" pref="142" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="Suppliers" min="-2" pref="130" max="-2" attributes="0"/>
+              <Component id="suppliers" min="-2" pref="130" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Products" min="-2" pref="135" max="-2" attributes="0"/>
+              <Component id="products" min="-2" pref="135" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="RawMaterials" min="-2" pref="134" max="-2" attributes="0"/>
+              <Component id="rawMaterials" min="-2" pref="134" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Storage" min="-2" pref="129" max="-2" attributes="0"/>
+              <Component id="storage" min="-2" pref="129" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="Orders" min="-2" pref="133" max="-2" attributes="0"/>
+              <Component id="orders" min="-2" pref="133" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <Component id="AddUser" min="-2" pref="134" max="-2" attributes="0"/>
+              <Component id="addUser" min="-2" pref="134" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="DeleteUser" min="-2" pref="130" max="-2" attributes="0"/>
+              <Component id="deleteUser" min="-2" pref="130" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
@@ -102,37 +102,40 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="Orders" pref="47" max="32767" attributes="0"/>
-                  <Component id="Storage" max="32767" attributes="0"/>
-                  <Component id="Products" max="32767" attributes="0"/>
-                  <Component id="Suppliers" max="32767" attributes="0"/>
-                  <Component id="Customers" max="32767" attributes="0"/>
-                  <Component id="RawMaterials" alignment="0" max="32767" attributes="0"/>
+                  <Component id="orders" pref="47" max="32767" attributes="0"/>
+                  <Component id="storage" max="32767" attributes="0"/>
+                  <Component id="products" max="32767" attributes="0"/>
+                  <Component id="suppliers" max="32767" attributes="0"/>
+                  <Component id="customers" max="32767" attributes="0"/>
+                  <Component id="rawMaterials" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="109" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="AddUser" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
-                  <Component id="DeleteUser" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="addUser" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="deleteUser" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="Customers">
+    <Component class="javax.swing.JButton" name="customers">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Customers"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CustomersActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customersActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Suppliers">
+    <Component class="javax.swing.JButton" name="suppliers">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -140,10 +143,10 @@
         <Property name="text" type="java.lang.String" value="Suppliers"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SuppliersActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suppliersActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Products">
+    <Component class="javax.swing.JButton" name="products">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -151,10 +154,10 @@
         <Property name="text" type="java.lang.String" value="Products"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProductsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="productsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="RawMaterials">
+    <Component class="javax.swing.JButton" name="rawMaterials">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -162,10 +165,10 @@
         <Property name="text" type="java.lang.String" value="Raw Materials"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RawMaterialsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rawMaterialsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Storage">
+    <Component class="javax.swing.JButton" name="storage">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -173,10 +176,10 @@
         <Property name="text" type="java.lang.String" value="Storage"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StorageActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storageActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Orders">
+    <Component class="javax.swing.JButton" name="orders">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -184,23 +187,23 @@
         <Property name="text" type="java.lang.String" value="Orders"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OrdersActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ordersActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="AddUser">
+    <Component class="javax.swing.JButton" name="addUser">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add User"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddUserActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addUserActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="DeleteUser">
+    <Component class="javax.swing.JButton" name="deleteUser">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete User"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteUserActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteUserActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

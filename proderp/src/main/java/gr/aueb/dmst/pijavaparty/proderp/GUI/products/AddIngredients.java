@@ -17,26 +17,25 @@ import javax.swing.JOptionPane;
  *
  * @author aggel
  */
-
 public class AddIngredients extends javax.swing.JFrame {
-    
-    private List<ProductRawMaterial> prodraw=new ArrayList();
+
+    private List<ProductRawMaterial> prodraw = new ArrayList();
     private int id;
-    private Product prod=new Product();
+    private Product prod = new Product();
     private int selected;
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Method that sets the icon that is shown on the frame when the program is
+     * running.
      */
     public void seticon() {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
     //multiple constructors 
-
     /**
      * Construcor if product doesnt exist
-     * 
+     *
      * @param name
      * @param price
      */
@@ -52,7 +51,7 @@ public class AddIngredients extends javax.swing.JFrame {
 
     /**
      * Product exist
-     * 
+     *
      * @param id
      */
     public AddIngredients(int id) {
@@ -66,13 +65,13 @@ public class AddIngredients extends javax.swing.JFrame {
 
     /**
      * Product doesnt exist but ingridients already have been chosen
-     * 
+     *
      * @param prodraw
      * @param obj5
      */
     public AddIngredients(List<ProductRawMaterial> prodraw, Product obj5) {
         this.prodraw = prodraw;
-        
+
         this.prod = obj5;
         initComponents();
         fillcombo();
@@ -92,8 +91,8 @@ public class AddIngredients extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Save = new javax.swing.JButton();
-        AddMoreIngredients = new javax.swing.JButton();
+        save = new javax.swing.JButton();
+        addMoreIngredients = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -101,22 +100,22 @@ public class AddIngredients extends javax.swing.JFrame {
         drop_down = new javax.swing.JComboBox<>();
         valid_Quantity = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Cancel = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        Save.setText("Save");
-        Save.addActionListener(new java.awt.event.ActionListener() {
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveActionPerformed(evt);
+                saveActionPerformed(evt);
             }
         });
 
-        AddMoreIngredients.setText("Add More Ingredients");
-        AddMoreIngredients.addActionListener(new java.awt.event.ActionListener() {
+        addMoreIngredients.setText("Add More Ingredients");
+        addMoreIngredients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddMoreIngredientsActionPerformed(evt);
+                addMoreIngredientsActionPerformed(evt);
             }
         });
 
@@ -136,14 +135,14 @@ public class AddIngredients extends javax.swing.JFrame {
         valid_Quantity.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Quantity.setForeground(new java.awt.Color(255, 0, 0));
 
-        Cancel.setForeground(new java.awt.Color(51, 51, 255));
-        Cancel.setText("Cancel");
-        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setForeground(new java.awt.Color(51, 51, 255));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CancelMouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(Cancel);
+        jMenuBar1.add(cancel);
 
         setJMenuBar(jMenuBar1);
 
@@ -161,13 +160,13 @@ public class AddIngredients extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(AddMoreIngredients, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addMoreIngredients, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(51, 51, 51))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addGap(170, 170, 170)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(value_quantity)
                                 .addComponent(drop_down, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel3))
@@ -191,8 +190,8 @@ public class AddIngredients extends javax.swing.JFrame {
                     .addComponent(valid_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddMoreIngredients, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addMoreIngredients, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(98, 98, 98))
         );
 
@@ -204,63 +203,65 @@ public class AddIngredients extends javax.swing.JFrame {
      *
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the add more ingredients button.
-     */ 
-    private void AddMoreIngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddMoreIngredientsActionPerformed
+     */
+    private void addMoreIngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMoreIngredientsActionPerformed
         try {
-            if(isValidInteger(value_quantity.getText())){
-            String value_name = drop_down.getSelectedItem().toString();
-            String stringnamearray[];
-            stringnamearray = value_name.split("[^0-9]");
-            String stringname="";
-            for (String stringnamearray1 : stringnamearray) {
-                stringname = stringname + stringnamearray1;
-            }
-            selected=Integer.parseInt(stringname);
-            int quant = Integer.parseInt(value_quantity.getText());
-            RawMaterialDao rawdao = new RawMaterialDao();
-            List<RawMaterial> rawmaterial;
-            rawmaterial = rawdao.getAll();
-            RawMaterial rawmat = null;
-            int num = rawmaterial.size();
-            int a;
-            for (int i = 0; i < num; i++) {
-                a = rawmaterial.get(i).getId();
-                if (a==selected) {
-                    rawmat = rawmaterial.get(i);
-                    break;
+            if (isValidInteger(value_quantity.getText())) {
+                String value_name = drop_down.getSelectedItem().toString();
+                String stringnamearray[];
+                stringnamearray = value_name.split("[^0-9]");
+                String stringname = "";
+                StringBuilder sb = new StringBuilder();
+                for (String stringnamearray1 : stringnamearray) {
+                    sb.append(stringnamearray1);
                 }
-            }
-            String value4_quantity = value_quantity.getText();
-            ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
-            prodraw.add(prodrawmat);
-            new AddIngredients(prodraw, prod).setVisible(true);
-            dispose();
+                stringname = sb.toString();
+                selected = Integer.parseInt(stringname);
+                int quant = Integer.parseInt(value_quantity.getText());
+                RawMaterialDao rawdao = new RawMaterialDao();
+                List<RawMaterial> rawmaterial;
+                rawmaterial = rawdao.getAll();
+                RawMaterial rawmat = null;
+                int num = rawmaterial.size();
+                int a;
+                for (int i = 0; i < num; i++) {
+                    a = rawmaterial.get(i).getId();
+                    if (a == selected) {
+                        rawmat = rawmaterial.get(i);
+                        break;
+                    }
+                }
+                ProductRawMaterial prodrawmat = new ProductRawMaterial(prod, rawmat, quant);
+                prodraw.add(prodrawmat);
+                new AddIngredients(prodraw, prod).setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Enter Details.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_AddMoreIngredientsActionPerformed
+    }//GEN-LAST:event_addMoreIngredientsActionPerformed
 
     /**
-     * Method for adding one more ingredient and then save this one and all of 
+     * Method for adding one more ingredient and then save this one and all of
      * the previous ones in the data base.
      *
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the add more ingredients button.
-     */     
-    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        try {
-            if (isValidInteger(value_quantity.getText())){
+     */
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        if (isValidInteger(value_quantity.getText())) {
             String value_name = drop_down.getSelectedItem().toString();
             String stringnamearray[];
             stringnamearray = value_name.split("[^0-9]");
-            String stringname="";
+            String stringname = "";
+            StringBuilder sb = new StringBuilder();
             for (String stringnamearray1 : stringnamearray) {
-                stringname = stringname + stringnamearray1;
+                sb.append(stringnamearray1);
             }
-            selected=Integer.parseInt(stringname);
+            stringname = sb.toString();
+            selected = Integer.parseInt(stringname);
             int quant = Integer.parseInt(value_quantity.getText());
             RawMaterialDao rawdao = new RawMaterialDao();
             List<RawMaterial> rawmaterial;
@@ -270,7 +271,7 @@ public class AddIngredients extends javax.swing.JFrame {
             int a;
             for (int i = 0; i < num; i++) {
                 a = rawmaterial.get(i).getId();
-                if (a==selected) {
+                if (a == selected) {
                     rawmat = rawmaterial.get(i);
                     break;
                 }
@@ -280,10 +281,9 @@ public class AddIngredients extends javax.swing.JFrame {
             prodraw.add(prodrawmat);
             ProductDao obj4 = new ProductDao();
             if (prod.getId() == -1) {
-                ProductDao proddao = new ProductDao();
                 obj4.insertProductAndProductsRecipe(prod, prodraw);
-            }else {
-                for(int i=0;i<prodraw.size();i++) {
+            } else {
+                for (int i = 0; i < prodraw.size(); i++) {
                     prodrawdao.insert(prodraw.get(i));
                 }
             }
@@ -292,37 +292,36 @@ public class AddIngredients extends javax.swing.JFrame {
             ProductGui stor = new ProductGui();
             stor.setVisible(true);
             dispose();
-            } else {
-                JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE); 
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Enter Details.","Error",  JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Enter Details.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_SaveActionPerformed
 
-    /**
-     * Returning to the ingredients window.
-     *
-     * @param evt is a reference to a MouseEvent object that is sent to the
-     * method by clicking the cancel button.
-     */     
-    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
+    
+    }//GEN-LAST:event_saveActionPerformed
+
+/**
+ * Returning to the ingredients window.
+ *
+ * @param evt is a reference to a MouseEvent object that is sent to the method
+ * by clicking the cancel button.
+ */
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         ProductGui rawmenu = new ProductGui();
         rawmenu.setVisible(true);
-        dispose();        
-    }//GEN-LAST:event_CancelMouseClicked
+        dispose();
+    }//GEN-LAST:event_cancelMouseClicked
 
     /**
-     * Check if the quantity input is valid and if it is invalid show a
-     * warning message.
+     * Check if the quantity input is valid and if it is invalid show a warning
+     * message.
      *
-     * @param evt is a reference to a KeyEvent object that is sent to
-     * the method by typing a key in the keyboard.
-     */     
+     * @param evt is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
+     */
     private void value_quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_quantityKeyReleased
-        if(!isValidInteger(value_quantity.getText())){
+        if (!isValidInteger(value_quantity.getText())) {
             valid_Quantity.setText("Quantity is invalid!");
-        }else {
+        } else {
             valid_Quantity.setText(null);
         }
     }//GEN-LAST:event_value_quantityKeyReleased
@@ -342,10 +341,10 @@ public class AddIngredients extends javax.swing.JFrame {
             disablebuttonAdd();
         }
     }
-    
+
     //Disable AddMoreIngredients button
     private void disablebuttonAdd() {
-        AddMoreIngredients.setEnabled(false);
+        addMoreIngredients.setEnabled(false);
     }
 
     /**
@@ -363,16 +362,28 @@ public class AddIngredients extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddIngredients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddIngredients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddIngredients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddIngredients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddIngredients.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AddIngredients.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AddIngredients.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AddIngredients.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -383,14 +394,14 @@ public class AddIngredients extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddMoreIngredients;
-    private javax.swing.JMenu Cancel;
-    private javax.swing.JButton Save;
+    private javax.swing.JButton addMoreIngredients;
+    private javax.swing.JMenu cancel;
     private javax.swing.JComboBox<String> drop_down;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton save;
     private javax.swing.JLabel valid_Quantity;
     private javax.swing.JTextField value_quantity;
     // End of variables declaration//GEN-END:variables

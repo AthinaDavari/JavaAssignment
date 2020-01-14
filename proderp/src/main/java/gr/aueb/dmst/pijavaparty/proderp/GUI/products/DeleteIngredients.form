@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="Cancel">
+        <Menu class="javax.swing.JMenu" name="cancel">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="33" red="33" type="rgb"/>
@@ -12,7 +12,7 @@
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CancelMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelMouseClicked"/>
           </Events>
         </Menu>
       </SubComponents>
@@ -57,7 +57,7 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="Delete" min="-2" pref="80" max="-2" attributes="0"/>
+              <Component id="delete" min="-2" pref="80" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="371" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -70,19 +70,19 @@
               <EmptySpace pref="150" max="32767" attributes="0"/>
               <Component id="drop_down" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-              <Component id="Delete" min="-2" max="-2" attributes="0"/>
+              <Component id="delete" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="Delete">
+    <Component class="javax.swing.JButton" name="delete">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="drop_down">

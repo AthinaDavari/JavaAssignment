@@ -93,13 +93,7 @@ public class COrderDaoTest {
         System.out.println("updateStatus");
         COrderDao instance = new COrderDao();
         int orderId = 2;
-        String status = "deliverd";
-        try {
-            instance.updateStatus(orderId, status);
-        } catch (Exception e) {
-            System.out.println("Could not update staus to " + status);
-        }
-        status = "delivered";
+        String status = "delivered";
         instance.updateStatus(orderId, status);
         assertEquals(status, instance.getById(2).getStatus());
     }

@@ -20,13 +20,6 @@ import java.util.function.Function;
 public class StorageServices {
 
     /**
-     *
-     */
-    public void StorageServices() {
-
-    }
-
-    /**
      * Update the quantity of all the ingredients in product's recipe
      *
      * @param id-the product's id we want to made
@@ -136,7 +129,8 @@ public class StorageServices {
 
     /**
      *
-     * @param q-the quantity of product we want to make(with +) or destroy(with -)
+     * @param q-the quantity of product we want to make(with +) or destroy(with
+     * -)
      * @return
      */
     public Function<Integer, Integer> updateQuantityOfRawMaterialBy(int q) {
@@ -212,15 +206,14 @@ public class StorageServices {
         }
 
     }
-     
+
     /**
-     * Check if the quantities of order's products are available for
-     * customers
+     * Check if the quantities of order's products are available for customers
      *
      * @param corderid - An integer that defines the id of an order from
      * customers.
      */
-    public boolean permissionToDecreaseProduct(int corderid){
+    public boolean permissionToDecreaseProduct(int corderid) {
         COrderItemDao coid = new COrderItemDao();
         List<COrderItem> corderitems = coid.getItemsPerCOrder(corderid);
         // corderitems - an arraylist that contains all the items in a specific 
@@ -238,5 +231,5 @@ public class StorageServices {
         }
         return true;
     }
-        
+
 }

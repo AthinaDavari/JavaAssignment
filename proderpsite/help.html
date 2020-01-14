@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ProdErp | Help</title>
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+        <a class="navbar-brand" href="#"><img src="./images/logo.jpg" style="width:50px;margin-right:10px">ProdErp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="team.html">Our Team</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="help.html">Help</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">FAQs</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <article style="margin: 30px; margin-right: 10%; margin-left: 5%">
+        <h2 style="text-align: center">MANUAL</h2>
+        <div>
+            <label class="my-1 mr-2" for="menuSel">Select Paragraph:</label>
+            <select class="custom-select my-1 mr-sm-2" id="menuSel">
+                <option selected value="#">Choose...</option>
+                <option value="#login">Log In</option>
+                <optgroup label="Admin">
+                    <option value="#acust">Customers</option>
+                    <option value="#asup">Suppliers</option>
+                    <option value="#apr">Products</option>
+                    <option value="#arawmat">Raw Materials</option>
+                    <option value="#astor">Storage</option>
+                    <option value="#aord">Orders</option>
+                    <option value="#adduser">Add User</option>
+                    <option value="#deluser">Delete User</option>
+                </optgroup>
+                <optgroup label="User">
+                    <option value="#ucust">Customers</option>
+                    <option value="#usup">Suppliers</option>
+                    <option value="#uprod">Products</option>
+                    <option value="#uraw">Raw Materials</option>
+                    <option value="#ustor">Storage</option>
+                    <option value="#uord">Orders</option>
+                </optgroup>
+                <option value="#site">Visit Our Website</option>
+                <option value="#logout">Log Out</option>
+            </select>
+        </div>
+        <div id="login">
+            <h4>Log In</h4>
+
+            <p>To start ProdErp program type your username and password according with your role and press login. <br />
+                If you are admin the Administrator’s Menu window will open or else the Simple User Menu window.</p>
+                <img class="custom-image" src="images/LogIn.png" alt="LogIn"/>
+            </div>
+        <div>
+            <h4>Administrator’s Menu</h4>
+            <ul>
+                <li id="acust">
+                    <h5>Customers</h5>
+                    Press Customers to open the Customer’s Menu. Now you can update, delete or add a customer by
+                    pressing
+                    the
+                    according button below or press the refresh icon to refresh the customer’s list.<br />
+
+                    <img class="custom-image" src="images/Customers.png" alt="Customers"/><br/>
+
+                    To update customer data choose a customer from the list on the right and change the information.
+                    Then
+                    press update.<br />
+
+                    *NOTE: You cannot change the customer’s id.<br />
+
+                    To delete a customer choose a customer from the list on the right and press delete.<br />
+
+                    Press cancel to exit Customer’s Edit Window.<br />
+
+                    To add a new customer type the customer’s data and then press save, or cancel to exit the
+                    window.<br />
+
+                    Press back to return to Administrator’s Menu.
+                </li>
+                <li id="asup">
+                    <h5>Suppliers</h5>
+
+                    Press Suppliers to open the Supplier’s Menu. Now you can update, delete or add a supplier by
+                    pressing
+                    the
+                    according button below or press the refresh icon to refresh the supplier’s list.<br />
+                    <img class="custom-image" src="images/Suppliers.png" alt="Suppliers"/><br/>
+
+                    To update supplier data choose a supplier from the list on the right and change the information.
+                    Then press update.<br />
+
+                    *NOTE: You cannot change the supplier’s id.<br />
+
+                    To delete a supplier choose a supplier from the list on the right and press delete.<br />
+
+                    Press cancel to exit Supplier’s Edit window.<br />
+
+                    To add a new supplier type the supplier’s data and then press save, or cancel to exit the
+                    window.<br />
+
+                    Press back to return to Administrator’s Menu.<br />
+                </li>
+                <li id="apr">
+                    <h5>Products</h5>
+
+
+                    Press Products to open the Product’s Menu. Now you can update, delete or add a product by pressing
+                    the
+                    according button below or press the refresh icon to refresh the product’s list. You can also see the
+                    ingredients of each product and add or delete an ingredient.<br />
+                    <img class="custom-image" src="images/Products.png" alt="Products"/><br/>
+
+
+                    To update product data choose a product from the list on the right and change the information. Then
+                    press
+                    update.<br />
+
+                    *NOTE: You cannot change the product’s id.<br />
+
+                    To delete a product choose a product from the list on the right and press delete.<br />
+
+                    Press cancel to exit Edit Product window.<br />
+
+                    To add a new product type the product’s data and then press save, or cancel to exit the
+                    window.<br />
+
+                    To see and edit the ingredients of a product choose a product from the list above and press show
+                    ingredients
+                    of product.<br />
+
+                    To add a new ingredient press add, choose a name id and type the desired quantity. Before pressing
+                    save
+                    if
+                    you want to add more ingredients press add more ingredients. When you finish press save or cancel to
+                    exit
+                    the window.
+                    <br />
+                    To delete an ingredient press the delete button, select the id of the ingredient you want to delete
+                    and
+                    then
+                    press delete or cancel to exit the window.<br />
+
+                    Press back to return to Administrator’s Menu.
+                </li>
+                <li id="arawmat">
+                    <h5>Raw Materials</h5>
+
+                    Press RawMaterials to open the RawMaterial’s Menu. Now you can update, delete or add a raw material
+                    by
+                    pressing the according button below or press the refresh icon to refresh the raw material’s
+                    list.<br />
+                    <img class="custom-image" src="images/RawMaterials.png" alt="RawMaterials"/><br/>
+
+                    To update raw material data choose a raw material from the list on the right and change the
+                    information.
+                    Then press update, or cancel to exit the window.<br />
+
+                    *NOTE: You cannot change the raw material’s id.<br />
+
+                    To delete a raw material type the id of the raw material you want to delete and press delete, or
+                    cancel
+                    to exit the window.<br />
+
+                    To add a new raw material type the raw material’s data, choose a supplier id and then press save, or
+                    cancel
+                    to exit the window.<br />
+
+                    Press back to return to Administrator’s Menu.
+                </li>
+                <li id="astor">
+                    <h5>Storage</h5>
+
+                    Press Storage to open the Storage Menu.<br />
+
+                    <img class="custom-image" src="images/Storage.png" alt="Storage"/><br/>
+
+
+                    Now you can update the quantity of the products or the raw materials by choosing the product or raw
+                    material
+                    you want to edit from the list above and then pressing update quantity. Now type the quantity and
+                    press
+                    update, or cancel to exit the window.<br />
+
+                    Press the refresh icon to refresh the supplier’s list.<br />
+
+                    Press back to return to Administrator’s Menu.<br />
+                </li>
+                <li id="aord">
+                    <h5>Orders</h5>
+					Press orders to open Orders Menu.<br />
+
+					To make an order to suppliers press Orders to Suppliers to open Supplier’s Menu.<br />
+
+					Now you can update, delete and add an order or you can see the raw materials of each order
+					by pressing the according button below,
+					To update or delete an order press Update/Delete to open the Edit Supplier Order window.
+					Choose an order from the list and then press update to change the order to delivered,
+					delete to remove it from the list and cancel to return to Orders To Suppliers Menu.<br />
+					To add a new order press, Add New Order. Choose a supplier’s ID from the combo box and then
+					press Add New Item Order. Now choose a raw material from the combo box
+					and type the quantity you need for the order. If you want to add more raw materials
+					to the order press New Item and repeat the process.
+					When you finish press Save Order.
+					To confirm your order press Ok. Now your order is saved.<br />
+					To see the raw materials of an order choose the order from the list above and then press Show Raw Materials. <br />
+					Press cancel to return to the Orders To Suppliers Menu.<br />
+					Press the refresh icon to refresh the order’s list.<br />
+					Press back to return to Orders Menu.<br />
+					Press back to return to User’s Menu.<br /> <br />
+					To take an order from a customer press Orders From Customers to open Orders From Customer’s Menu.<br />
+
+					Now you can update, delete and add an order or you can see the products of each order
+					by pressing the according button below.<br />
+					To update or delete an order press Update/Delete to open the Edit Customer Order window.
+					Choose an order from the list and then press update to update the order’s status,
+					delete to remove it from the list and cancel to return to Orders From Customers Menu.<br />
+					To add a new order press, Add New Order. Choose a customer’s ID from the combo box
+					and then press Add New Product to Order.
+					Now choose a product from the combo box and type the quantity the customer needs for the order.
+					If the customer needs more products for the order press New Item and repeat the process.
+					When you finish press Save Order. To confirm your order press Ok. Now your order is saved.<br />
+					To see the products of an order choose the order from the list above and then press Show Products.<br />
+					Press cancel to return to the Orders From Customers Menu.<br />
+					Press the refresh icon to refresh the order’s list.<br />
+					Press back to return to Orders Menu.<br />
+					Press back to return to User’s Menu.<br />
+
+                </li>
+                <li id="adduser">
+                    <h5>Add User</h5>
+
+                    Press Add User to open Add User’s window.<br />
+                    <img class="custom-image" src="images/AddNewUser.png" alt="Add New User"/><br/>
+
+                    To create a new user (admin or simple) type the new user’s information and choose a role from the
+                    combo
+                    box.
+                    Press add to save the new user, or cancel to return to Administrator’s Menu.
+                </li>
+                <li id="deluser">
+                    <h5>Delete User</h5>
+                    Press Delete User to open Delete User’s window.<br />
+                    <img class="custom-image" src="images/DeleteUser.png" alt="Delete User"/><br/>
+                    Choose a username from the combo box and the press delete, or cancel to return to Administrator’s
+                    Menu.<br />
+                </li>
+            </ul>
+        </div>
+        <h4>User’s Menu</h4>
+        <ul>
+            <li id="ucust">
+                <h5>Customers</h5>
+                Press Customers to open the Customer’s Menu. Now you can update, delete or add a customer by pressing
+                the
+                according button below or press the refresh icon to refresh the customer’s list.<br />
+                <img class="custom-image" src="images/Customers.png" alt="Customers"/><br/>
+                To update customer data choose a customer from the list on the right and change the information. Then
+                press update.<br />
+
+                *NOTE: You cannot change the customer’s id.<br />
+
+                To delete a customer choose a customer from the list on the right and press delete.<br />
+
+                Press cancel to exit Customer’s Edit Window.<br />
+
+                To add a new customer type the customer’s data and then press save, or cancel to exit the window.<br />
+
+                Press back to return to User’s Menu.<br />
+            </li>
+            <li id="usup">
+                <h5>Suppliers</h5>
+                Press Suppliers to open the Supplier’s Menu. Now you can update, delete or add a supplier by pressing
+                the according button below or press the refresh icon to refresh the supplier’s list.<br />
+                <img class="custom-image" src="images/Suppliers.png" alt="Suppliers"/><br/>
+                To update supplier data choose a supplier from the list on the right and change the information. Then
+                press
+                update.<br />
+
+                *NOTE: You cannot change the supplier’s id.<br />
+
+                To delete a supplier choose a supplier from the list on the right and press delete.<br />
+
+                Press cancel to exit Supplier’s Edit window.<br />
+
+                To add a new supplier type the supplier’s data and then press save, or cancel to exit the window.<br />
+
+                Press back to return to User’s Menu.<br />
+            </li>
+            <li id="uprod">
+                <h5>Products</h5>
+                Press Products to open the Product’s Menu. Now you can update, delete or add a product by pressing the
+                according button below or press the refresh icon to refresh the product’s list. You can also see the
+                ingredients of each product and add or delete an ingredient.<br />
+                <img class="custom-image" src="images/Products.png" alt="Products"/><br/>
+
+                To update product data choose a product from the list on the right and change the information. Then
+                press
+                update.<br />
+
+                *NOTE: You cannot change the product’s id.<br />
+
+                To delete a product choose a product from the list on the right and press delete.<br />
+
+                Press cancel to exit Edit Product window.<br />
+
+                To add a new product type the product’s data and then press save, or cancel to exit the window.<br />
+
+                To see and edit the ingredients of a product choose a product from the list above and press show
+                ingredients
+                of product.<br />
+
+                To add a new ingredient press add, choose a name id and type the desired quantity. Before pressing save
+                if
+                you want to add more ingredients press add more ingredients. When you finish press save or cancel to
+                exit
+                the window.<br />
+
+                To delete an ingredient press the delete button, select the id of the ingredient you want to delete and
+                then
+                press delete or cancel to exit the window.<br />
+
+                Press back to return to User’s Menu.<br />
+            </li>
+            <li id="uraw">
+                <h5>Raw Materials</h5>
+                Press RawMaterials to open the RawMaterial’s Menu. Now you can update, delete or add a raw material by
+                pressing the according button below or press the refresh icon to refresh the raw material’s list.<br />
+                <img class="custom-image" src="images/RawMaterials.png" alt="raw materials"/><br/>
+
+                To update raw material data choose a raw material from the list on the right and change the information.
+                Then press update, or cancel to exit the window.<br />
+
+                *NOTE: You cannot change the raw material’s id.<br />
+
+                To delete a raw material type the id of the raw material you want to delete and press delete, or cancel
+                to
+                exit the window.<br />
+
+                To add a new raw material type the raw material’s data, choose a supplier id and then press save, or
+                cancel
+                to exit the window.<br />
+
+                Press back to return to User’s Menu.<br />
+            </li>
+            <li id="ustor">
+                <h5>Storage</h5>
+                Press Storage to open the Storage Menu.<br />
+                <img class="custom-image" src="images/Storage.png" alt="Storage"/><br/>
+
+                Now you can update the quantity of the products or the raw materials by choosing the product or raw
+                material
+                you want to edit from the list above and then pressing update quantity. Now type the quantity and press
+                update, or cancel to exit the window.<br />
+
+                Press the refresh icon to refresh the supplier’s list.<br />
+
+                Press back to return to User’s Menu.<br />
+            </li>
+            <li id="uord">
+                <h5>Orders</h5>
+				Press orders to open Orders Menu.<br />
+
+				To make an order to suppliers press Orders to Suppliers to open Supplier’s Menu.<br />
+
+				Now you can update, delete and add an order or you can see the raw materials of each order
+				by pressing the according button below,
+				To update or delete an order press Update/Delete to open the Edit Supplier Order window.
+				Choose an order from the list and then press update to change the order to delivered,
+				delete to remove it from the list and cancel to return to Orders To Suppliers Menu.<br />
+				To add a new order press, Add New Order. Choose a supplier’s ID from the combo box
+				and then press Add New Item Order. Now choose a raw material from the combo box
+				and type the quantity you need for the order.
+				If you want to add more raw materials to the order press New Item and repeat the process.
+				When you finish press Save Order.
+				To confirm your order press Ok. Now your order is saved.<br />
+				To see the raw materials of an order choose the order from the list above and then press Show Raw Materials. <br />
+				Press cancel to return to the Orders To Suppliers Menu.<br />
+				Press the refresh icon to refresh the order’s list.<br />
+				Press back to return to Orders Menu.<br />
+				Press back to return to User’s Menu.<br /> <br />
+				To take an order from a customer press Orders From Customers to open Orders From Customer’s Menu.<br />
+
+				Now you can update, delete and add an order or you can see the products of each order
+				by pressing the according button below.<br />
+				To update or delete an order press Update/Delete to open the Edit Customer Order window.
+				Choose an order from the list and then press update to update the order’s status,
+				delete to remove it from the list and cancel to return to Orders From Customers Menu.<br />
+				To add a new order press, Add New Order. Choose a customer’s ID from the combo box
+				and then press Add New Product to Order.
+				Now choose a product from the combo box and type the quantity the customer needs for the order.
+				If the customer needs more products for the order press New Item and repeat the process.
+				When you finish press Save Order. To confirm your order press Ok. Now your order is saved.<br />
+				To see the products of an order choose the order from the list above and then press Show Products.<br />
+				Press cancel to return to the Orders From Customers Menu.<br />
+				Press the refresh icon to refresh the order’s list.<br />
+				Press back to return to Orders Menu.<br />
+				Press back to return to User’s Menu.<br />
+
+            </li>
+        </ul>
+        <p id="site">
+            <u>Visit Our Website</u><br />
+            Press the button Visit Our Website to open the web and get redirected ProdErp website.<br />
+            <img class="custom-image" src="images/VisitOurWebsite.png" alt="website"/><br/>
+        </p>
+        <p id="logout">
+            <u>Log Out</u><br />
+            Press Log Out to disconnect from the system and return to the LogIn window. To exit the program press X.
+        </p>
+    </article>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Contact</h4>
+                    <ul class="list-unstyled">
+                        <li style="color: white;"><i class="fa fa-envelope"
+                                style="margin-right: 9px;"></i>t8180040@aueb.gr</li>
+                        <li><a href="https://www.dept.aueb.gr/el/dmst" style="color: white;"><i
+                                    class="fa fa-university"></i>
+                                Department of Management Science and Technology, Athens University of Economics and
+                                Business
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

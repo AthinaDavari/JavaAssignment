@@ -31,7 +31,7 @@ public class EditSOrders extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Set the icon that is shown on the frame.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(
@@ -39,7 +39,7 @@ public class EditSOrders extends javax.swing.JFrame {
     }
 
     /**
-     * Set EditSOrder window
+     * Initialize the form of the window.
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -169,15 +169,13 @@ public class EditSOrders extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * Edit the status of an order from suppliers and update this order in the 
-    * database.
+    * Update the status of an order in the database and increase the quantity 
+    * of raw materials by the quantity of a delivered SOrder.
     * 
-    * @param evt - an ActionEvent object generated automatically and sent 
-    * to the method by clicking on Update to Delivered button.
+    * @param evt - a reference to an ActionEvent object that is sent 
+    * to the method by clicking on Update To Delivered button.
     */    
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try {
-            
             String orderIDString = jTextField1.getText();
             int orderIDint = Integer.parseInt(orderIDString);
 
@@ -192,22 +190,15 @@ public class EditSOrders extends javax.swing.JFrame {
             
             new EditSOrders().setVisible(true);
             dispose();
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
     }//GEN-LAST:event_updateActionPerformed
 
     /**
       * Select a row of the table by clicking on it, and insert the order's ID 
       * in the Order's ID field.
       * 
-      * @param evt - a MouseEvent object generated automatically and sent to 
+      * @param evt - a reference to a MouseEvent object that is sent to 
       * the method by putting the mouse's cursor over a selected row of the table. 
       */
-    
     private void SOrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SOrdersTableMouseClicked
 
         int selectedRow = SOrdersTable.getSelectedRow();
@@ -220,10 +211,9 @@ public class EditSOrders extends javax.swing.JFrame {
     /**
      * Delete permanently an order to supplier from the database.
      * 
-     * @param evt - an ActionEvent object generated automatically and sent 
+     * @param evt - a reference to an ActionEvent object that is sent 
      * to the method by clicking on Delete button.
-     */
-    
+     */  
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         
         String orderIDString = jTextField1.getText();
@@ -246,10 +236,9 @@ public class EditSOrders extends javax.swing.JFrame {
      * Close the Edit Orders to Suppliers window by clicking on cancel 
      * button on the menu bar.
      * 
-     * @param evt - an ActionEvent object generated automatically and sent 
+     * @param evt - a reference to a MouseEvent object that is sent 
      * to the method by clicking on cancel button on the menu bar.
-     */
-    
+     */    
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         new OrdersFromSuppliers().setVisible(true);
         dispose();
@@ -261,7 +250,6 @@ public class EditSOrders extends javax.swing.JFrame {
      * from database and show them in showSOrdersTable table.
      * 
      */
-    
     public void showSOrdersTable() {
         try {
             
@@ -333,7 +321,7 @@ public class EditSOrders extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JTextField jTextField1;
+    protected static javax.swing.JTextField jTextField1;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

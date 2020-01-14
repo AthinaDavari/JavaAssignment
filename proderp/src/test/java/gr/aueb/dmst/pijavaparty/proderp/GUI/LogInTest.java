@@ -81,7 +81,6 @@ public class LogInTest {
     public void blogInKeyPressed() throws AWTException {
         System.out.println("logInKeyPressed");
         LogIn li = new LogIn();
-        li.setVisible(true);
         Robot bot = new Robot();
         //close caps lock
         Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
@@ -92,12 +91,15 @@ public class LogInTest {
         if (context.getLocale().getLanguage().equals("en")){
                 break;
         }
+        String os = System.getProperty("os.name");
+        if(os.startsWith("Windows")){
         //press ALT + SHIFT
         bot.keyPress(KeyEvent.VK_SHIFT);
         bot.keyPress(KeyEvent.VK_ALT);
         bot.keyRelease(KeyEvent.VK_ALT);
         bot.keyRelease(KeyEvent.VK_SHIFT);
-        bot.keyPress(KeyEvent.VK_ENTER);
+        }
+        li.setVisible(true);
                 }
         try {
             Thread.sleep(500);

@@ -3,6 +3,7 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI.rawmaterials;
 
 import gr.aueb.dmst.pijavaparty.proderp.dao.RawMaterialDao;
 import gr.aueb.dmst.pijavaparty.proderp.services.Checks;
+import gr.aueb.dmst.pijavaparty.proderp.services.ValidVariables;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
@@ -38,6 +39,7 @@ public class RawMaterialDelete extends javax.swing.JFrame {
         delete = new javax.swing.JButton();
         value_id = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        validId = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         cancel = new javax.swing.JMenu();
 
@@ -55,8 +57,16 @@ public class RawMaterialDelete extends javax.swing.JFrame {
             }
         });
 
+        value_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_idKeyReleased(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Type the Id you want to delete:");
+
+        validId.setForeground(new java.awt.Color(255, 0, 0));
 
         cancel.setForeground(new java.awt.Color(51, 51, 255));
         cancel.setText("Cancel");
@@ -75,24 +85,30 @@ public class RawMaterialDelete extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 385, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(453, 453, 453))
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(474, 474, 474))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(364, 364, 364))))
+                        .addGap(364, 364, 364))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(validId, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(281, 281, 281))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
-                .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
+                .addGap(91, 91, 91)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(validId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(83, 83, 83)
                 .addComponent(delete)
                 .addContainerGap(106, Short.MAX_VALUE))
         );
@@ -119,9 +135,11 @@ public class RawMaterialDelete extends javax.swing.JFrame {
      */    
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
-            if (value_id.getText().equals("")) {
-                throw new Exception();
+            if (!ValidVariables.isValidInteger(value_id.getText())) {
+                JOptionPane.showMessageDialog(null, "Incorrect id! Please try again!");
+                return;
             }
+            
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
             
@@ -153,6 +171,19 @@ public class RawMaterialDelete extends javax.swing.JFrame {
             delete.doClick();
         }
     }//GEN-LAST:event_deleteKeyPressed
+
+    /**
+     * Checks if id is valid
+     * @param evt is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
+     */
+    private void value_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_idKeyReleased
+        if (!ValidVariables.isValidInteger(value_id.getText())) {
+            validId.setText("Integer is invalid!");
+        } else {
+            validId.setText(null);
+        }
+    }//GEN-LAST:event_value_idKeyReleased
     
     /**
      * @param args the command line arguments
@@ -194,6 +225,7 @@ public class RawMaterialDelete extends javax.swing.JFrame {
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel validId;
     private javax.swing.JTextField value_id;
     // End of variables declaration//GEN-END:variables
 }

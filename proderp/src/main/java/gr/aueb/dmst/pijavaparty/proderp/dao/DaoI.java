@@ -3,9 +3,10 @@ package gr.aueb.dmst.pijavaparty.proderp.dao;
 import java.util.List;
 
 /**
- *
+ * The most basic methods for handling database data
+ * 
  * @author Natalia
- * @param <T>
+ * @param <T> Entity class 
  */
 public interface DaoI<T>{
 

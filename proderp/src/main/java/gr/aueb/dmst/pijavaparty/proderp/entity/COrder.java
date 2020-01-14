@@ -26,7 +26,7 @@ public class COrder {
     /**
      * A constructor with arguments.
      *
-     * @param customer
+     * @param customer A customer object
      * @param user A variable of type User.
      */
     public COrder(Customer customer, User user) {

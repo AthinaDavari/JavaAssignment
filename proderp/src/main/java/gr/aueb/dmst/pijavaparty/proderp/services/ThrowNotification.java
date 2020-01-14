@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 
 /**
- * Checking lack of products & raw materials.  
+ * Checking lack of products and raw materials.  
  * 
  * @author Natalia
  */

@@ -107,7 +107,7 @@ public class UserDao extends Dao {
      * terminated. Otherwise, the user is inserted in the List.
      *
      * @param user A variable of type User.
-     * @return
+     * @return A variable of type boolean.
      */
     public boolean insert(User user) {
         PreparedStatement pst = null;

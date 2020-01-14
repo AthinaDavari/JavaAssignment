@@ -172,6 +172,8 @@ public class SimpleMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Opens the window and opens CustomerMenu window.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the customer button.
      */
     private void customersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersActionPerformed
         CustomerMenu obj = new CustomerMenu();
@@ -180,6 +182,8 @@ public class SimpleMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_customersActionPerformed
     /**
      * Exits from the window and returns to LogIn window.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the logout button.
      */
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn.setUser(null);
@@ -189,6 +193,8 @@ public class SimpleMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutMouseClicked
     /**
      * Opens the window, opens web and transfers user to Proderp website.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the visitOurWebsite button.
      */
     private void visitOurWebsiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visitOurWebsiteMouseClicked
         try {
@@ -200,6 +206,8 @@ public class SimpleMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_visitOurWebsiteMouseClicked
     /**
      * Opens the window and opens SuppliersMenu window.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the suppliers button.
      */
     private void suppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppliersActionPerformed
         SuppliersMenu obj = new SuppliersMenu();
@@ -208,6 +216,8 @@ public class SimpleMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_suppliersActionPerformed
      /**
      * Opens the window and opens ProductsGui window.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the products button.
      */
     private void productsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsActionPerformed
         ProductGui obj = new ProductGui();
@@ -216,6 +226,8 @@ public class SimpleMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_productsActionPerformed
      /**
      * Opens the window and opens RawMaterialMenu window.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the raw materials button. 
      */
     private void rawMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rawMaterialsActionPerformed
         RawMaterialMenu obj = new RawMaterialMenu();
@@ -224,6 +236,8 @@ public class SimpleMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_rawMaterialsActionPerformed
     /**
      * Opens the window and opens StorageMain window.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the storage button.
      */
     private void storageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storageActionPerformed
         StorageMain obj = new StorageMain();
@@ -232,6 +246,8 @@ public class SimpleMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_storageActionPerformed
     /**
      * Opens the window and opens OrdersFrame window.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the orders button.
      */
     private void ordersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersActionPerformed
         OrdersFrame obj = new OrdersFrame();

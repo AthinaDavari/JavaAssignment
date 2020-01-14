@@ -6,8 +6,11 @@ import gr.aueb.dmst.pijavaparty.proderp.dao.UserDao;
 import gr.aueb.dmst.pijavaparty.proderp.entity.User;
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
+import java.awt.im.InputContext;
+import java.util.Locale;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
@@ -42,9 +45,7 @@ public class LogInTest {
      */
     @After
     public void tearDown() {
-//        JPanel myPanel = new JPanel();
-//        System.out.println("Remove");
-//        myPanel.removeAll();
+
         Window w[] = Window.getWindows();
 
         for (Window window : w){
@@ -61,8 +62,7 @@ public class LogInTest {
     @Test
     public void atestMain() throws AWTException {
             System.out.println("main");
-            String[] args = null;
-            LogIn.main(args);
+            new LogIn().setVisible(true);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -83,6 +83,22 @@ public class LogInTest {
         LogIn li = new LogIn();
         li.setVisible(true);
         Robot bot = new Robot();
+        //close caps lock
+        Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
+        //make sure keyboard language is english
+        for (;;){
+        InputContext context = InputContext.getInstance();  
+            System.err.println(context.getLocale().getLanguage());
+        if (context.getLocale().getLanguage().equals("en")){
+                break;
+        }
+        //press ALT + SHIFT
+        bot.keyPress(KeyEvent.VK_SHIFT);
+        bot.keyPress(KeyEvent.VK_ALT);
+        bot.keyRelease(KeyEvent.VK_ALT);
+        bot.keyRelease(KeyEvent.VK_SHIFT);
+        bot.keyPress(KeyEvent.VK_ENTER);
+                }
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {

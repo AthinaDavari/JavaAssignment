@@ -56,6 +56,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         RawMaterial_table2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,7 +164,7 @@ public class RawMaterialEdit extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(value_name, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(valid_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                                .addComponent(valid_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(value_id, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))

@@ -187,7 +187,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
     /**
      * Add another raw material with its quantity in the order to a specific supplier
      * 
-     * @param evt - an ActionEvent object generated automatically and sent to
+     * @param evt - a reference to an ActionEvent object that is sent to
      * the method by clicking on New Item Order To Supplier button.
      */
     private void newitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newitemActionPerformed
@@ -230,8 +230,8 @@ public class AddItemSOrder extends javax.swing.JFrame {
      * materials and their quantities that are stored in SOrderItemsList, in the
      * database.
      * 
-     * @param evt - an ActionEvent object generated automatically and sent to
-     * the method by clicking on Add Order To Supplier button.
+     * @param evt - a reference to an ActionEvent object that is sent to
+     * the method by clicking on Save Order button.
      */
     private void addOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrderActionPerformed
 
@@ -294,7 +294,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
      * Close the Add Item SOrder window by clicking on cancel button on
      * the menu bar.
      *
-     * @param evt - an ActionEvent object generated automatically and sent 
+     * @param evt - a reference to a MouseEvent object that is sent 
      * to the method by clicking on cancel button on the menu bar. 
      */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked

@@ -119,9 +119,9 @@ public class AddNewSOrder extends javax.swing.JFrame {
 
     /**
      * Select the supplier's id and name to whom the order is added, and then
-     * shows the graphical user interface (gui) of AddItemSOrder class.
+     * show the graphical user interface (gui) of AddItemSOrder class.
      *
-     * @param evt - an ActionEvent object generated automatically and sent to
+     * @param evt - a reference to an ActionEvent object that is sent to
      * the method by clicking on Add New Item Order button.
      */
     private void addNewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewItemActionPerformed
@@ -201,8 +201,8 @@ public class AddNewSOrder extends javax.swing.JFrame {
      * Close the Add New SOrder window by clicking on cancel button on
      * the menu bar.
      *
-     * @param evt - a MouseEvent object generated automatically and sent to 
-     * the method by putting the mouse's cursor over a selected row of the table. 
+     * @param evt - a reference to a MouseEvent object that is sent to 
+     * the method by clicking on the cancel button on the menu bar.
      */
     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked

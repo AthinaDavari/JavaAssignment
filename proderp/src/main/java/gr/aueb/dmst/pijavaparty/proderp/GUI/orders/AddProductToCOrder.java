@@ -52,12 +52,9 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }
 
     /**
-<<<<<<< HEAD
      *Method that sets the icon that is shown on the frame when the program is running.
-=======
-     *Set the icon that is shown on the frame.
->>>>>>> aaaef4079c91d74aae03279e2d8e0a1b9693a783
      */
+    
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -107,9 +104,8 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         });
 
         addOrder.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        addOrder.setText("Add Product Order From Customer");
+        addOrder.setText("Save Order");
         addOrder.addActionListener(new java.awt.event.ActionListener() {
-
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addOrderActionPerformed(evt);
             }
@@ -120,7 +116,8 @@ public class AddProductToCOrder extends javax.swing.JFrame {
         valid_Quantity.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Quantity.setForeground(new java.awt.Color(255, 0, 0));
 
-        cancel.setText("cancel");
+        cancel.setForeground(new java.awt.Color(0, 51, 204));
+        cancel.setText("Cancel");
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancelMouseClicked(evt);
@@ -193,8 +190,8 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * Add another product with its quantity in the order from a specific customer
      * Store all the products that the user wants to be ordered from the same customer.
      *
-     * @param evt - an ActionEvent object generated automatically and sent to
-     * the method by clicking on New Product Order From Customer button.
+     * @param evt - a reference to an ActionEvent object that is sent to
+     * the method by clicking on New Item button.
      */
     private void newProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductActionPerformed
             if (isValidInteger(quantity.getText())) {
@@ -234,8 +231,8 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * products and their quantities that are stored in COrderItemsList, in the
      * database.
      *
-     * @param evt - an ActionEvent object generated automatically and sent to
-     * the method by clicking on Add Product Order From Customer button.
+     * @param evt - a reference to an ActionEvent object that is sent to
+     * the method by clicking on Save Order button.
      */
     private void addOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrderActionPerformed
         if (isValidInteger(quantity.getText())) {
@@ -299,8 +296,8 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * Close the Add Product To COrder window by clicking on cancel button on
      * the menu bar.
      *
-     * @param evt - a MouseEvent object generated automatically and sent to
-     * the method by putting the mouse's cursor over a selected row of the table.
+     * @param evt - a reference to a MouseEvent object that is sent to
+     * the method by clicking on cancel button on the menu bar.
      */
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
@@ -376,9 +373,8 @@ public class AddProductToCOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addOrder;
     private javax.swing.JLabel addNewProductOrderFromCustomer;
-    private javax.swing.JButton addorder;
+    private javax.swing.JButton addOrder;
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel enterProducts;
     private javax.swing.JLabel enterQuantity;

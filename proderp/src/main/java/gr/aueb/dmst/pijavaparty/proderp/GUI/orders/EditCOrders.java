@@ -183,7 +183,7 @@ public class EditCOrders extends javax.swing.JFrame {
      * and update the quantities of the available raw materials and
      * products in the database.
      *
-     * @param evt - an ActionEvent object generated automatically and sent to
+     * @param evt - a reference to an ActionEvent object that is sent to
      * the method by clicking on Update Status button.
      */
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
@@ -226,7 +226,7 @@ public class EditCOrders extends javax.swing.JFrame {
      * Select a row of the table by clicking on it, and insert the order's ID in
      * the Order's ID field and the order's status in the status field.
      *
-     * @param evt - a MouseEvent object generated automatically and sent to the
+     * @param evt - a reference to a MouseEvent object that is sent to the
      * method by putting the mouse's cursor over a selected row of the table.
      */
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
@@ -241,7 +241,7 @@ public class EditCOrders extends javax.swing.JFrame {
     /**
      * Delete permanently an order from customer from the database.
      *
-     * @param evt - an ActionEvent object generated automatically and sent to
+     * @param evt - a reference to an ActionEvent object that is sent to
      * the method by clicking on Delete button.
      */
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
@@ -266,7 +266,7 @@ public class EditCOrders extends javax.swing.JFrame {
      * Close the Edit Orders to Suppliers window by clicking on cancel button on
      * the menu bar.
      *
-     * @param evt - an ActionEvent object generated automatically and sent to
+     * @param evt - a reference to a MouseEvent object that is sent to
      * the method by clicking on cancel button on the menu bar.
      */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked

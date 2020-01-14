@@ -30,13 +30,15 @@ public class RawMaterialInsert extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Set the icon that is shown on the frame. 
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Set RawMaterialInsert window
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -221,7 +223,11 @@ public class RawMaterialInsert extends javax.swing.JFrame {
      */    
     private void addRawMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRawMaterialActionPerformed
         try {
-            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) && isValidInteger(value_quantity.getText())) {
+            if (!checkAllConstraints()) {
+                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+                return;
+            }
+            
                 String value2_name = value_name.getText();
                 String value_supplier_name = drop_down.getSelectedItem().toString();
                 SupplierDao supdao = new SupplierDao();
@@ -245,9 +251,7 @@ public class RawMaterialInsert extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Added");
                 new RawMaterialMenu().setVisible(true);
                 dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
-            }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Insert all the details.", "Error", JOptionPane.ERROR_MESSAGE);
             StorageUpdateQuantity stor = new StorageUpdateQuantity();
@@ -306,6 +310,7 @@ public class RawMaterialInsert extends javax.swing.JFrame {
             valid_Quantity.setText(null);
         }
     }//GEN-LAST:event_value_quantityKeyReleased
+    
     /**
      * Fill the drop down with all the suppliers that the company works with.
      */
@@ -325,7 +330,27 @@ public class RawMaterialInsert extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
+    
+    
+    /**
+     * Check if all jtextfields in window have valid values
+     * 
+     * @return true-if all jtextfields have valid values,
+     * false-if at least a jtextfield has invalid value
+     */
+    private boolean checkAllConstraints(){
+        if(!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_name.getText())){
+            return false;
+        }
+        if(!isValidDouble(value_price.getText())){
+            return false;
+        }
+        if(!isValidInteger(value_quantity.getText())){
+            return false;
+        }
+        return true;
+    }
+        
     /**
      * @param args the command line arguments
      */

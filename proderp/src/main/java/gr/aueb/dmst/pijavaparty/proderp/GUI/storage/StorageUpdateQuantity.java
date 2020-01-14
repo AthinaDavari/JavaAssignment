@@ -160,15 +160,13 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
                 if (prodorraw.equals("Product")) { // update quantity of a product
                     ProductDao productDao=new ProductDao();
                     Product prod = productDao.getById(id);
-                    //ProductIngredientsUpdate prodingup = new ProductIngredientsUpdate(id, quant - prod.getQuantity());
-                    //prodingup.setVisible(true);
                     
                     int dialogButton = JOptionPane.YES_NO_OPTION;
                     int dialogResult = JOptionPane.showConfirmDialog (null, "Update Ingredients Quantity Acordingly?","Warning",dialogButton);
                     if( dialogResult == JOptionPane.YES_OPTION){
-                        answerYesActionPerformed(quant);
+                        updateProdQuantAndCorrespRawMat(quant);
                     } else if(dialogResult == JOptionPane.NO_OPTION) {
-                        answerNoActionPerformed(quant);
+                        updateProdQuant(quant);
                     }
                     
                 } else { // update quantity of a raw material
@@ -233,7 +231,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
      /**
      * Update the quantity of the selected product and corresponding raw material
      */
-    private void answerYesActionPerformed(int quant) {                                          
+    private void updateProdQuantAndCorrespRawMat(int quant) {                                          
         StorageServices storser= new StorageServices();
         //Check if the storage have enough raw materials to make a product in quantity we want
         ProductDao productDao = new ProductDao();
@@ -253,7 +251,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
      /**
      * Update the quantity of the selected product 
      */
-    private void answerNoActionPerformed(int quant) {                                         
+    private void updateProdQuant(int quant) {                                         
         ProductDao productDao=new ProductDao();
         productDao.updateQuantity(id,quant);
         new StorageMain().setVisible(true);

@@ -172,7 +172,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     * Show the graphical user interface of AddNewCustOrder class, by
     * clicking on the Add New Order button. 
     * 
-    * @param evt - an ActionEvent object generated automatically and sent 
+    * @param evt - a reference to an ActionEvent object that is sent 
     * to the method by clicking on the Add New Order button.
     */   
     private void addCustOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustOrderActionPerformed
@@ -186,7 +186,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     * Show the graphical user interface of EditCOrders class, by
     * clicking on the "Update / Delete Order" button. 
     * 
-    * @param evt - an ActionEvent object generated automatically and sent 
+    * @param evt - a reference to an  ActionEvent object that is sent 
     * to the method by clicking on the Update / Delete Order button.
     */  
     private void editCustOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustOrderActionPerformed
@@ -200,7 +200,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
       * Select a row of the table by clicking on it, and insert the order's ID
       * in the selectedOrder field.
       * 
-      * @param evt - a MouseEvent object generated automatically and sent to 
+      * @param evt - a reference to a MouseEvent object that is sent to 
       * the method by putting the mouse's cursor over a selected row of the table. 
       */
     private void COrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COrdersTableMouseClicked
@@ -216,7 +216,7 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     * clicking on the Show Products button - Shows all the products included
     * in the order with the id written in the selectedOrder field.
     * 
-    * @param evt - an ActionEvent object generated automatically and sent 
+    * @param evt - a reference to an  ActionEvent object that is sent 
     * to the method by clicking on the Show Products button.
     */
     private void showProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProductsActionPerformed
@@ -231,8 +231,8 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
      * and return back to the orders' menu window - gui of OrdersFrame class,
      * by clicking on back button on the menu bar.
      * 
-     * @param evt - an ActionEvent object generated automatically and sent 
-     * to the method by clicking on back button on the menu bar.
+     * @param evt - a reference to a MouseEvent object that is sent 
+     * to the method by clicking the back button on the menu bar.
      */
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         
@@ -245,8 +245,8 @@ public class OrdersFromCustomers extends javax.swing.JFrame {
     /** 
      * Refresh the Orders From Customers window - gui of OrdersFromCustomers class.
      * 
-     * @param evt - an ActionEvent object generated automatically and sent 
-     * to the method by clicking on refresh button on the menu bar.
+     * @param evt - a reference to an ActionEvent object that is sent 
+     * to the method by clicking on refresh button.
      */
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
        setVisible(false);

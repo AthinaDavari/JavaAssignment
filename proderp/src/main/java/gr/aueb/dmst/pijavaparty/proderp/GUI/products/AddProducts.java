@@ -21,7 +21,7 @@ public class AddProducts extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Set the icon that is shown on the frame. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -153,7 +153,7 @@ public class AddProducts extends javax.swing.JFrame {
      */     
     private void addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductActionPerformed
        try {
-           if (isValidDouble(value_price.getText()) && isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())){
+           if (checkAllConstraints()){
            new AddIngredients(value_name.getText(),Double.parseDouble(value_price.getText())).setVisible(true);
            dispose(); 
            } else {
@@ -207,6 +207,22 @@ public class AddProducts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_nameKeyReleased
 
+    
+     /**
+     * Check if all jtextfields in window have valid values
+     * 
+     * @return true-if all jtextfields have valid values,
+     * false-if at least a jtextfield has invalid value
+     */
+    private boolean checkAllConstraints(){
+        if(!isValidDouble(value_price.getText())){
+            return false;
+        }
+        if(!isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())){
+            return false;
+        }
+        return true;
+    }
     /**
      * @param args the command line arguments
      */

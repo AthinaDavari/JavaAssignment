@@ -20,7 +20,7 @@ public class DaoTest {
     static Connection conn;
     static final String url = "jdbc:mysql://localhost:3306/erp_progIITest?serverTimezone=Etc/GMT-2";
     static final String GETUSERBYUSERNAME = "SELECT full_name, user_name, role FROM users "
-            + "WHERE user_name = 'nat' and is_deleted=false ";
+            + "WHERE user_name = 'nat' ";
     
     public DaoTest() {
     }

@@ -4,8 +4,10 @@ import gr.aueb.dmst.pijavaparty.proderp.dao.RawMaterialDao;
 import static gr.aueb.dmst.pijavaparty.proderp.dao.TestUtilities.runTestScript;
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.Window;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -29,7 +31,15 @@ public class RawMaterialDeleteTest {
     public static void setUpClass() {
         runTestScript();
     }
-  
+    
+    @AfterClass
+    public static void tearDownClass(){
+        Window w[] = Window.getWindows();
+
+        for (Window window : w){
+            window.dispose();
+        }
+    }
     /**
      *
      * @throws AWTException

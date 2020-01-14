@@ -39,7 +39,7 @@ public class Dao {
             try {
                 String url = "jdbc:mysql://localhost:3306/" + dbname + "?serverTimezone=Etc/GMT-2";
 
-                conn = DriverManager.getConnection(url, "root", "12345");
+                conn = DriverManager.getConnection(url, "root", "CUjpQbA^64");
 
 
 

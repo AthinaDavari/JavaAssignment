@@ -276,8 +276,7 @@ public class InsertCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_value_EmailKeyReleased
 
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
-
-        dispose();
+       dispose();
     }//GEN-LAST:event_BackMouseClicked
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked

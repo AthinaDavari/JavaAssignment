@@ -36,9 +36,6 @@ public class Ingredients extends javax.swing.JFrame {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     } 
 
-    /**
-     *
-     */
     public Ingredients() {
         initComponents();
         fillIngredientsTable();

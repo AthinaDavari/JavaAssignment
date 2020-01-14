@@ -142,9 +142,6 @@
             </Property>
             <Property name="updateSelectionOnSort" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="RawMaterial_table2MouseClicked"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

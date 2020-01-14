@@ -19,10 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * SimpleMenu.java - A graphical user interface (gui) class responsible for 
- * showing the simple user's menu options. - Select among the Customers, Suppliers, Raw Materials, 
- * Products, Orders and Storage options.
- * @author aggel
+ *
+ * @author aggel, anna
  */
 public class SimpleMenu extends javax.swing.JFrame {
 

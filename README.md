@@ -24,10 +24,13 @@ This application is a potential module of an ERP system of an industrial company
 Run both [erp_progII.sql](https://github.com/AthinaDavari/JavaAssignment/blob/master/erp_progII.sql) and [erp_progIITest.sql](https://github.com/AthinaDavari/JavaAssignment/blob/master/erp_progIITest.sql) at a MySQL server
 #### Application
 Enter your own credentials in order to connect to database. Open both <b>proderp\src\main\java\gr\aueb\dmst\pijavaparty\proderp\dao\Dao.java</b> and <b>proderp\src\test\java\gr\aueb\dmst\pijavaparty\proderp\dao\DaoTest.java</b> type them at username and password.
+#### Not supported
+* Raw Materials can only be provided by one supplier.
+* Database auto-installation
 #### Installation
 To install the .jar file from command line use 
 ```bash
-mvn clean compile assembly:single
+mvn clean install
 ```
 and then enter the project folder and run 
 ```bash

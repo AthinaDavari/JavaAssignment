@@ -209,7 +209,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
     /**
      * Exits from the window and returns to LogIn window.
-     * @param evt
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the LogOut button.
      */
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn.setUser(null);
@@ -220,7 +221,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
     /**
      * Closes the window and opens CustomerMenu window.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the Customers button.
      */
     private void customersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersActionPerformed
         CustomerMenu obj = new CustomerMenu();
@@ -230,7 +232,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
     /**
      * Closes the window and opens SuppliersMenu window
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the Suppliers button.
      */
     private void suppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppliersActionPerformed
         SuppliersMenu obj = new SuppliersMenu();
@@ -240,7 +243,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
      /**
      * Closes the window and opens ProductsGui window.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the Products button.
      */
     private void productsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsActionPerformed
         ProductGui obj = new ProductGui();
@@ -250,7 +254,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
      /**
      * Closes the window and opens RawMaterialMenu window.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the RawMaterials button.
      */
     private void rawMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rawMaterialsActionPerformed
         RawMaterialMenu obj = new RawMaterialMenu();
@@ -260,7 +265,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
     /**
      * Closes the window and opens StorageMain window.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the Storage button.
      */
     private void storageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storageActionPerformed
         StorageMain obj = new StorageMain();
@@ -270,7 +276,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
     /**
      * Closes the window and opens OrdersFrame window.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the Orders button.
      */
     private void ordersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersActionPerformed
         OrdersFrame obj = new OrdersFrame();
@@ -280,7 +287,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
     /**
      * Closes the window and opens DeleteUser window.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the DeleteUser button.
      */
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
         new DeleteUser().setVisible(true);
@@ -289,7 +297,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
     /**
      * Closes the window and opens AddUser window.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the AddUser button.
      */
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
         new AddUser().setVisible(true);
@@ -298,7 +307,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
     /**
      * Closes the window, opens web and transfers user to Proderp website.
-     * @param evt
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the VisitOurWebsite button.
      */
     private void visitOurWebsiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visitOurWebsiteMouseClicked
         try {

@@ -52,7 +52,7 @@ public class AddUser extends javax.swing.JFrame {
         validFullName = new javax.swing.JLabel();
         validPassword = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,13 +106,13 @@ public class AddUser extends javax.swing.JFrame {
 
         validPassword.setForeground(new java.awt.Color(255, 51, 51));
 
-        jMenu1.setText("Cancel");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(cancel);
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -184,18 +184,20 @@ public class AddUser extends javax.swing.JFrame {
 
     /**
      * Closes window and returns to AdminMenu.
-     * @param evt
+     * @param evt is a reference to a MouseEvent object that is sent to
+     * the method by clicking the cancel button.
      */
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         AdminMenu obj = new AdminMenu();
         obj.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
 
     /**
      * Takes content from textfields and combobox and creates a new user in User
      * List.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the add button.
      */
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         try {
@@ -232,7 +234,8 @@ public class AddUser extends javax.swing.JFrame {
     }//GEN-LAST:event_addActionPerformed
     /**
      * Checks if username is valid
-     * @param evt 
+     * @param evt  is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
      */
     private void usernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyReleased
         if (!isStringOnlyAlphabetAndNumbers(username.getText())) {
@@ -243,7 +246,8 @@ public class AddUser extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameKeyReleased
     /**
      * Checks if fullname is valid
-     * @param evt 
+     * @param evt  is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
      */
     private void fullnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullnameKeyReleased
         if (!isValidFullName(fullname.getText())) {
@@ -255,7 +259,8 @@ public class AddUser extends javax.swing.JFrame {
     
     /**
      * Chcks if password is valid
-     * @param evt 
+     * @param evt  is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
      */
     private void passwdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwdKeyReleased
         if (!isValidPassword(passwd.getText())) {
@@ -332,13 +337,13 @@ public class AddUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
+    private javax.swing.JMenu cancel;
     private javax.swing.JTextField fullname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField passwd;

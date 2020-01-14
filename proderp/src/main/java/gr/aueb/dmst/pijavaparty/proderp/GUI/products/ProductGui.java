@@ -57,11 +57,6 @@ public class ProductGui extends javax.swing.JFrame {
         back = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowDeactivated(java.awt.event.WindowEvent evt) {
-                formWindowDeactivated(evt);
-            }
-        });
 
         Show_Ingredients.setBackground(java.awt.SystemColor.activeCaption);
         Show_Ingredients.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -332,10 +327,6 @@ public class ProductGui extends javax.swing.JFrame {
         }
         dispose();
     }//GEN-LAST:event_backMouseClicked
-
-    private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowDeactivated
 
     /**
      * @param args the command line arguments

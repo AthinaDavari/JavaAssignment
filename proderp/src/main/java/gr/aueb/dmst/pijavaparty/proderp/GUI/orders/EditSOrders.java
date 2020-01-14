@@ -17,12 +17,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EditSOrders extends javax.swing.JFrame {
 
-    private javax.swing.JScrollPane jScrollPane1;
-
     /**
      * Creates new form EditOrders
-     */
-    
+     */   
     public EditSOrders() {
         initComponents();
         showSOrdersTable();

@@ -26,7 +26,7 @@ public class SupplierEdit extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * Set the icon that is shown on the frame.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -239,7 +239,8 @@ public class SupplierEdit extends javax.swing.JFrame {
     /**
      *  Check if the name input is valid and if it is invalid show a warning message.
      * 
-     * @param evt is a reference to a KeyEvent object that is sent to the method by typing a key in the keyboard.
+     * @param evt is a reference to a KeyEvent object that is sent to the method 
+     * by typing a key in the keyboard.
      */
     private void value_full_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_full_nameKeyReleased
         if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText())) {
@@ -251,7 +252,8 @@ public class SupplierEdit extends javax.swing.JFrame {
     /**
      * Check if the phonenumber input is valid and if it is invalid show a warning message.
      * 
-     * @param evt @param evt is a reference to a KeyEvent object that is sent to the method by typing a key in the keyboard.
+     * @param evt @param evt is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
      */
     private void value_phonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_phonenumberKeyReleased
         if (!ValidVariables.isValidPhonenumber(value_phonenumber.getText())) {
@@ -263,7 +265,8 @@ public class SupplierEdit extends javax.swing.JFrame {
     /**
      * Check if the email input is valid and if it is invalid show a warning message.
      * 
-     * @param evt is a reference to a KeyEvent object that is sent to the method by typing a key in the keyboard.
+     * @param evt is a reference to a KeyEvent object that is sent to the method 
+     * by typing a key in the keyboard.
      */
     private void value_emailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_emailKeyReleased
         if (!ValidVariables.isValidEmailAddress(value_email.getText())) {
@@ -275,7 +278,8 @@ public class SupplierEdit extends javax.swing.JFrame {
     /**
     * Add valid and edited data of a supplier in the database.
     * 
-    * @param evt is a reference to an ActionEvent object that is sent to the method by clicking the update button. 
+    * @param evt is a reference to an ActionEvent object that is sent to the method 
+    * by clicking the update button. 
     */
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
             if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText())) {
@@ -299,7 +303,8 @@ public class SupplierEdit extends javax.swing.JFrame {
     /**
      * Delete the data of supplier in the database.
      * 
-     * @param evt is a reference to an ActionEvent object that is sent to the method by clicking the delete button. 
+     * @param evt is a reference to an ActionEvent object that is sent to the method
+     * by clicking the delete button. 
      */
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
             String value1_id = value_id.getText();
@@ -314,7 +319,8 @@ public class SupplierEdit extends javax.swing.JFrame {
       * 
       * Select a row of the table and put the supplier's data in the fields.
       * 
-      * @param evt is a reference to a MouseEvent object that is sent to the method by putting the mouse cursor in a selected row of the table. 
+      * @param evt is a reference to a MouseEvent object that is sent to the method 
+      * by putting the mouse cursor in a selected row of the table. 
       */
     private void Suppliers_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Suppliers_tableMouseClicked
         int selectedRow = Suppliers_table.getSelectedRow();
@@ -357,7 +363,7 @@ public class SupplierEdit extends javax.swing.JFrame {
 
     /**
      *
-     * @param args
+     * @param args command line arguements
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

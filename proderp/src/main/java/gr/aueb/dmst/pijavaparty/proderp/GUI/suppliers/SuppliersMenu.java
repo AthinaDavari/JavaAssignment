@@ -238,7 +238,7 @@ public class SuppliersMenu extends javax.swing.JFrame {
 
     /**
      *
-     * @param args
+     * @param args command line arguements
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

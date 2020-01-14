@@ -79,21 +79,11 @@ public class RawMaterialInsert extends javax.swing.JFrame {
         jLabel3.setText("Supplier Id");
 
         drop_down.setMaximumRowCount(25);
-        drop_down.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                drop_downActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Quantity:");
 
         jLabel5.setText("Price:");
 
-        value_price.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                value_priceActionPerformed(evt);
-            }
-        });
         value_price.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 value_priceKeyReleased(evt);
@@ -260,12 +250,6 @@ public class RawMaterialInsert extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_addRawMaterialActionPerformed
-
-    private void drop_downActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drop_downActionPerformed
-    }//GEN-LAST:event_drop_downActionPerformed
-
-    private void value_priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_priceActionPerformed
-    }//GEN-LAST:event_value_priceActionPerformed
     
     /**
      * Check if the name input is valid and if it is invalid show a

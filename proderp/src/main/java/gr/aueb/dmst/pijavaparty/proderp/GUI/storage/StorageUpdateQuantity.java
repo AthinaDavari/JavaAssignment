@@ -189,6 +189,12 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_update_buttonActionPerformed
 
+    /**
+     * Check if the value of the value_quantity is valid.
+     * 
+     * @param evt is a reference to a KeyEvent object that is sent to the
+     * method by typing a key from in the keyboard.
+     */
     private void value_quantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_quantityKeyReleased
          if(!isValidInteger(value_quantity.getText())){
             valid_Quantity.setText("Quantity is invalid!");
@@ -232,6 +238,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
     
      /**
      * Update the quantity of the selected product and corresponding raw material
+     * @param quant
      */
     private void updateProdQuantAndCorrespRawMat(int quant) {                                          
         StorageServices storser= new StorageServices();
@@ -252,6 +259,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
     
      /**
      * Update the quantity of the selected product 
+     * @param quant
      */
     private void updateProdQuant(int quant) {                                         
         ProductDao productDao=new ProductDao();

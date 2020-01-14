@@ -298,7 +298,6 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * @param evt - a reference to a MouseEvent object that is sent to
      * the method by clicking on cancel button on the menu bar.
      */
-
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         new AddNewCustOrder().setVisible(true);
         dispose();

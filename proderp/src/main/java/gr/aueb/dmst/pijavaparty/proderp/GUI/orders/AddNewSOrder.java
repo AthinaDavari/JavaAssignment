@@ -22,7 +22,7 @@ public class AddNewSOrder extends javax.swing.JFrame {
     static int supplierId;
 
     /**
-     *
+     * Creates a new form AddNewSOrder
      */
     public AddNewSOrder() {
         initComponents();

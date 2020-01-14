@@ -25,10 +25,14 @@ import org.junit.runners.MethodSorters;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StorageServicesTest {
-
+    /**
+     * An empty conrtuctor
+     */
     public StorageServicesTest() {
     }
-
+    /**
+     * Test - Set up
+     */
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();

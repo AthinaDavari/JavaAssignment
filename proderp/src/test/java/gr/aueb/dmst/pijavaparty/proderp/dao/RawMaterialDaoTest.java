@@ -18,13 +18,13 @@ import org.junit.runners.MethodSorters;
 public class RawMaterialDaoTest {
 
     /**
-     *
+     * An empty conrtuctor
      */
     public RawMaterialDaoTest() {
     }
 
     /**
-     *
+     * Test - Set up
      */
     @BeforeClass
     public static void setUpClass() {

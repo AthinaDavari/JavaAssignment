@@ -20,10 +20,14 @@ import static org.junit.Assert.*;
  * @author Natalia
  */
 public class FillcomboTest {
-
+    /**
+     * An empty conrtuctor
+     */
     public FillcomboTest() {
     }
-
+    /**
+     * Test - Set up
+     */
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();

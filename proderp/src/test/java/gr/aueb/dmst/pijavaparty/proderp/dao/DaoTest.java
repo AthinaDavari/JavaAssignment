@@ -21,16 +21,24 @@ public class DaoTest {
     static final String url = "jdbc:mysql://localhost:3306/erp_progIITest?serverTimezone=Etc/GMT-2";
     static final String GETUSERBYUSERNAME = "SELECT full_name, user_name, role FROM users "
             + "WHERE user_name = 'nat' ";
-    
+    /**
+     *An empty constructor
+     */    
     public DaoTest() {
     }
-    
+    /**
+     *Test - Set up
+     * @throws java.sql.SQLException
+     */
     @BeforeClass
     public static void setUpClass() throws SQLException {
         conn = DriverManager.getConnection(url, "root", "12345");
         TestUtilities.runTestScript();
     }
-    
+     /**
+     * Close connection
+     * @throws java.sql.SQLException
+     */
     @AfterClass
     public static void tearDownClass() throws SQLException {
         conn.close();
@@ -39,6 +47,7 @@ public class DaoTest {
 
     /**
      * Test of getConnection method, of class Dao.
+     * @throws java.sql.SQLException
      */
     @Test
     public void testGetConnection() throws SQLException {
@@ -52,6 +61,7 @@ public class DaoTest {
 
     /**
      * Test of closeStatementAndResultSet method, of class Dao.
+     * @throws java.sql.SQLException
      */
     @Test
     public void testCloseStatementAndResultSet_ResultSet_Statement() throws SQLException {
@@ -66,6 +76,7 @@ public class DaoTest {
 
     /**
      * Test of closeStatementAndResultSet method, of class Dao.
+     * @throws java.sql.SQLException
      */
     @Test
     public void testCloseStatementAndResultSet_PreparedStatement() throws SQLException {

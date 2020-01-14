@@ -21,10 +21,14 @@ import static org.junit.Assert.*;
  * @author Natalia
  */
 public class SOrderServicesTest {
-    
+    /**
+     * An empty conrtuctor
+     */    
     public SOrderServicesTest() {
     }
-    
+    /**
+     * Test - Set up
+     */    
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();

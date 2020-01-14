@@ -19,7 +19,7 @@ import org.junit.Test;
 public class RawMaterialDeleteTest {
 
     /**
-     *
+     *An empty constructor
      */
     public RawMaterialDeleteTest() {
     }

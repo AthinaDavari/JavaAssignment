@@ -17,13 +17,13 @@ import org.junit.runners.MethodSorters;
 public class CustomerDaoTest {
     
     /**
-     *
+     *An empty constructor
      */
     public CustomerDaoTest() {
     }
     
     /**
-     *
+     *Test - Set up
      */
     @BeforeClass
     public static void setUpClass() {

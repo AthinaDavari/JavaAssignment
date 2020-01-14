@@ -13,7 +13,9 @@ import static org.junit.Assert.*;
  * @author Natalia
  */
 public class ValidVariablesTest {
-    
+    /**
+     * An empty conrtuctor
+     */
     public ValidVariablesTest() {
     }
 

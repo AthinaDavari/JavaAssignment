@@ -22,13 +22,15 @@ public class RawMaterialDelete extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Set the icon that is shown on the frame. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Set RawMaterialdelete window
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -126,6 +128,7 @@ public class RawMaterialDelete extends javax.swing.JFrame {
             }
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
+            
             Checks check = new Checks();
             if (check.checkIfRawMaterialIsUsed(newvalue1_id)) {
                 JOptionPane.showMessageDialog(null,"Cannot be deleted. Raw Material used in a product's recipe.","Error",  JOptionPane.ERROR_MESSAGE);

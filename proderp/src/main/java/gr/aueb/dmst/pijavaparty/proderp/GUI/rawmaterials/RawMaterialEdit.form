@@ -20,6 +20,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -64,7 +65,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="value_name" min="-2" pref="143" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="valid_Name" pref="31" max="32767" attributes="0"/>
+                              <Component id="valid_Name" pref="132" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="value_id" min="-2" pref="143" max="-2" attributes="0"/>

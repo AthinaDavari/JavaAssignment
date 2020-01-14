@@ -25,8 +25,7 @@ public class AddIngredients extends javax.swing.JFrame {
     private int selected;
 
     /**
-     * Method that sets the icon that is shown on the frame when the program is
-     * running.
+     * Set the icon that is shown on the frame.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -87,7 +86,9 @@ public class AddIngredients extends javax.swing.JFrame {
         seticon();
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Set AddIngredients window
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -206,7 +207,10 @@ public class AddIngredients extends javax.swing.JFrame {
      */
     private void addMoreIngredientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMoreIngredientsActionPerformed
         try {
-            if (isValidInteger(value_quantity.getText())) {
+            if (!isValidInteger(value_quantity.getText())) {
+             JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+             return;
+            }
                 String value_name = drop_down.getSelectedItem().toString();
                 String stringnamearray[];
                 stringnamearray = value_name.split("[^0-9]");
@@ -235,23 +239,25 @@ public class AddIngredients extends javax.swing.JFrame {
                 prodraw.add(prodrawmat);
                 new AddIngredients(prodraw, prod).setVisible(true);
                 dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
-            }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Enter Details.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_addMoreIngredientsActionPerformed
 
     /**
-     * Method for adding one more ingredient and then save this one and all of
+     * Add one more ingredient and then save this one and all of
      * the previous ones in the data base.
      *
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the add more ingredients button.
      */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        if (isValidInteger(value_quantity.getText())) {
+        if (!isValidInteger(value_quantity.getText())) {
+            JOptionPane.showMessageDialog(null, "Enter Details.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
             String value_name = drop_down.getSelectedItem().toString();
             String stringnamearray[];
             stringnamearray = value_name.split("[^0-9]");
@@ -292,11 +298,7 @@ public class AddIngredients extends javax.swing.JFrame {
             ProductGui stor = new ProductGui();
             stor.setVisible(true);
             dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Enter Details.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    
+         
     }//GEN-LAST:event_saveActionPerformed
 
 /**

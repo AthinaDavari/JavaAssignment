@@ -25,13 +25,15 @@ public class EditProduct extends javax.swing.JFrame {
     }
 
     /**
-     *Method that sets the icon that is shown on the frame when the program is running. 
+     * Set the icon that is shown on the frame. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Set EditProduct window
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -246,7 +248,10 @@ public class EditProduct extends javax.swing.JFrame {
      */    
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
        try{
-           if(isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) ){
+           if(checkAllConstraints()){
+              JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+              return;
+           }
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
             String value2_name=value_name.getText();
@@ -261,9 +266,7 @@ public class EditProduct extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Updated");
             new EditProduct().setVisible(true);
             dispose();
-           } else {
-               JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
-           }
+
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,"Insert Details.","Error",  JOptionPane.ERROR_MESSAGE);
             EditProduct stor = new EditProduct();
@@ -314,6 +317,22 @@ public class EditProduct extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_priceKeyReleased
 
+    /**
+     * Check if all jtextfields in window have valid values
+     * 
+     * @return true-if all jtextfields have valid values,
+     * false-if at least a jtextfield has invalid value
+     */
+    private boolean checkAllConstraints(){
+       if(!isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())){
+           return false;
+       } 
+       if(!isValidDouble(value_price.getText())){
+           return false;
+       }
+       return true;
+    }
+    
     /**
      * @param args the command line arguments
      */

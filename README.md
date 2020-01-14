@@ -4,7 +4,7 @@ Department of Management Science and Technology <br />
 Athens University of Economics and Business
 
 ## Description
-This application is a potential module of an ERP system of an industrial company. Employees can monitor and manage raw materials and ready products' stock, record and update their customers and suppliers' data as well as orders from and to them. They can also get notified about lack of products or ingredients. Application supports 2 roles-simple user and administrator. More information about the program's functions can be found at user's manual. 
+This application is a potential module of an ERP system of an industrial company. Employees can monitor and manage raw materials and ready products' stock, record and update their customers and suppliers' data as well as orders from and to them. They can also get notified about low stock of products or ingredients. Application supports 2 roles-simple user and administrator. More information about the program's functions can be found at [user's manual](http://prometheus.dmst.aueb.gr/~nkatsiapi/proderp/help.html). 
 
 ## Tools
 * [Maven](https://maven.apache.org/) - Dependency Management and Project Building
@@ -43,7 +43,7 @@ mvn test
 | Full Name | Github Account | Mail |
 | --- | --- | --- |
 | Davari Athina (Team Coordinator) | [AthinaDavari](https://github.com/AthinaDavari) | t8180020@aueb.gr |
-| Katsiapi Natalia | [nataliaKat](https://github.com/AthinaDavari) | t8180040@aueb.gr |
+| Katsiapi Natalia | [nataliaKat](https://github.com/nataliaKat) | t8180040@aueb.gr |
 | Kokkorou Maria | [mariakokkorou](https://github.com/mariakokkorou) | t8180043@aueb.gr |
 | Koutsoumpa Styliani Aikaterini | [Stella-Koutsoumpa](https://github.com/Stella-Koutsoumpa) | t8180053@aueb.gr |
 | Pantazopoulou Athina | [AthinaPantazopoulou](https://github.com/AthinaPantazopoulou) | t8180089@aueb.gr |

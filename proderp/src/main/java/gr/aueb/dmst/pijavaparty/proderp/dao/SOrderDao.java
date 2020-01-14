@@ -115,16 +115,14 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
     public void insert(SOrder so) {
         PreparedStatement pst = null;
         try {
-            //SupplierDao s = new SupplierDao();
             pst = getConnection().prepareStatement(INSERT);
             pst.setInt(1, so.getSupplier().getId());
             pst.setString(2, so.getStatus());
             pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-
         } finally {
-            //closeConnections(pst);
+            closeStatementAndResultSet(pst);
         }
     }
 
@@ -144,6 +142,8 @@ public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
             }
         } catch (SQLException ex) {
             Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, st);
         }
         return 0;
     }

@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class ProductDao extends Dao implements PlainEntityI<Product> {
 
     private static final String GETALL = "SELECT * FROM Products WHERE is_deleted = false";
-    private static final String GETBYID = "SELECT * FROM Products WHERE id = ? AND is_deleted = false";
+    private static final String GETBYID = "SELECT * FROM Products WHERE id = ?";
     private static final String INSERT = "INSERT INTO Products(name, quantity, price) VALUES(?, ?, ?)";
     private static final String DELETE = "UPDATE Products SET is_deleted = true WHERE id = ?";
     private static final String UPDATEN = "UPDATE Products SET name = ? WHERE id = ? AND is_deleted = false";
@@ -173,6 +173,8 @@ public class ProductDao extends Dao implements PlainEntityI<Product> {
             }
         } catch (SQLException ex) {
             Logger.getLogger(SOrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeStatementAndResultSet(rs, st);
         }
         return 0;
     }

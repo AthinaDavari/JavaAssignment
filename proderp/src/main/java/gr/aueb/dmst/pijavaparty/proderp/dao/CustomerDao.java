@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class CustomerDao extends Dao implements PlainEntityI<Customer> {
 
     private static final String GETALL = "SELECT * FROM Customers WHERE is_deleted = false";
-    private static final String GETBYID = "SELECT * FROM Customers WHERE id = ? AND is_deleted = false";
+    private static final String GETBYID = "SELECT * FROM Customers WHERE id = ?";
     private static final String INSERT = "INSERT INTO Customers(full_name, address, phonenumber, email) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE Customers SET full_name = ?, address = ?, phonenumber = ?, email = ? WHERE id = ? AND is_deleted = false";
     private static final String DELETE = "UPDATE Customers SET is_deleted = true WHERE id = ?";

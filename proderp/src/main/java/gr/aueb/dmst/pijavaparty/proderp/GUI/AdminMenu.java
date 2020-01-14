@@ -30,7 +30,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * Method that sets the icon that is shown on the frame when the program is running.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -48,17 +48,17 @@ public class AdminMenu extends javax.swing.JFrame {
 
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        Customers = new javax.swing.JButton();
-        Suppliers = new javax.swing.JButton();
-        Products = new javax.swing.JButton();
-        RawMaterials = new javax.swing.JButton();
-        Storage = new javax.swing.JButton();
-        Orders = new javax.swing.JButton();
-        AddUser = new javax.swing.JButton();
-        DeleteUser = new javax.swing.JButton();
+        customers = new javax.swing.JButton();
+        suppliers = new javax.swing.JButton();
+        products = new javax.swing.JButton();
+        rawMaterials = new javax.swing.JButton();
+        storage = new javax.swing.JButton();
+        orders = new javax.swing.JButton();
+        addUser = new javax.swing.JButton();
+        deleteUser = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        LogOut = new javax.swing.JMenu();
+        logOut = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         visitOurWebsite = new javax.swing.JMenu();
 
@@ -71,77 +71,77 @@ public class AdminMenu extends javax.swing.JFrame {
         setName("AdminMenu"); // NOI18N
         setResizable(false);
 
-        Customers.setBackground(new java.awt.Color(255, 255, 255));
-        Customers.setText("Customers");
-        Customers.addActionListener(new java.awt.event.ActionListener() {
+        customers.setBackground(new java.awt.Color(255, 255, 255));
+        customers.setText("Customers");
+        customers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CustomersActionPerformed(evt);
+                customersActionPerformed(evt);
             }
         });
 
-        Suppliers.setBackground(new java.awt.Color(255, 255, 255));
-        Suppliers.setText("Suppliers");
-        Suppliers.addActionListener(new java.awt.event.ActionListener() {
+        suppliers.setBackground(new java.awt.Color(255, 255, 255));
+        suppliers.setText("Suppliers");
+        suppliers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SuppliersActionPerformed(evt);
+                suppliersActionPerformed(evt);
             }
         });
 
-        Products.setBackground(new java.awt.Color(255, 255, 255));
-        Products.setText("Products");
-        Products.addActionListener(new java.awt.event.ActionListener() {
+        products.setBackground(new java.awt.Color(255, 255, 255));
+        products.setText("Products");
+        products.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProductsActionPerformed(evt);
+                productsActionPerformed(evt);
             }
         });
 
-        RawMaterials.setBackground(new java.awt.Color(255, 255, 255));
-        RawMaterials.setText("Raw Materials");
-        RawMaterials.addActionListener(new java.awt.event.ActionListener() {
+        rawMaterials.setBackground(new java.awt.Color(255, 255, 255));
+        rawMaterials.setText("Raw Materials");
+        rawMaterials.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RawMaterialsActionPerformed(evt);
+                rawMaterialsActionPerformed(evt);
             }
         });
 
-        Storage.setBackground(new java.awt.Color(255, 255, 255));
-        Storage.setText("Storage");
-        Storage.addActionListener(new java.awt.event.ActionListener() {
+        storage.setBackground(new java.awt.Color(255, 255, 255));
+        storage.setText("Storage");
+        storage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StorageActionPerformed(evt);
+                storageActionPerformed(evt);
             }
         });
 
-        Orders.setBackground(new java.awt.Color(255, 255, 255));
-        Orders.setText("Orders");
-        Orders.addActionListener(new java.awt.event.ActionListener() {
+        orders.setBackground(new java.awt.Color(255, 255, 255));
+        orders.setText("Orders");
+        orders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OrdersActionPerformed(evt);
+                ordersActionPerformed(evt);
             }
         });
 
-        AddUser.setText("Add User");
-        AddUser.addActionListener(new java.awt.event.ActionListener() {
+        addUser.setText("Add User");
+        addUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddUserActionPerformed(evt);
+                addUserActionPerformed(evt);
             }
         });
 
-        DeleteUser.setText("Delete User");
-        DeleteUser.addActionListener(new java.awt.event.ActionListener() {
+        deleteUser.setText("Delete User");
+        deleteUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteUserActionPerformed(evt);
+                deleteUserActionPerformed(evt);
             }
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/untitled (4).png"))); // NOI18N
 
-        LogOut.setText("Log Out");
-        LogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+        logOut.setText("Log Out");
+        logOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LogOutMouseClicked(evt);
+                logOutMouseClicked(evt);
             }
         });
-        jMenuBar1.add(LogOut);
+        jMenuBar1.add(logOut);
         jMenuBar1.add(jMenu4);
 
         visitOurWebsite.setText("Visit Our Website");
@@ -159,106 +159,136 @@ public class AdminMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Customers, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(customers, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(Suppliers, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(suppliers, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Products, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(products, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RawMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rawMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Storage, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(storage, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(orders, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(AddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(225, 225, 225))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Orders, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                    .addComponent(Storage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RawMaterials, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Products, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Suppliers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Customers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                    .addComponent(orders, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(storage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(products, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(suppliers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rawMaterials, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(115, 115, 115)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        customers.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
+    /**
+     * Exits from the window and returns to LogIn window.
+     */
+    private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn.setUser(null);
         LogIn obj = new LogIn();
         obj.setVisible(true);
         dispose();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LogOutMouseClicked
+    }//GEN-LAST:event_logOutMouseClicked
 
-    private void CustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomersActionPerformed
+    /**
+     * Closes the window and opens CustomerMenu window.
+     */
+    private void customersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersActionPerformed
         CustomerMenu obj = new CustomerMenu();
         obj.setVisible(true);
         dispose(); // TODO add your handling code here:
-    }//GEN-LAST:event_CustomersActionPerformed
+    }//GEN-LAST:event_customersActionPerformed
 
-    private void SuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuppliersActionPerformed
+    /**
+     * Closes the window and opens SuppliersMenu window.
+     */
+    private void suppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppliersActionPerformed
         SuppliersMenu obj = new SuppliersMenu();
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_SuppliersActionPerformed
+    }//GEN-LAST:event_suppliersActionPerformed
 
-    private void ProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductsActionPerformed
+     /**
+     * Closes the window and opens ProductsGui window.
+     */
+    private void productsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsActionPerformed
         ProductGui obj = new ProductGui();
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_ProductsActionPerformed
+    }//GEN-LAST:event_productsActionPerformed
 
-    private void RawMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RawMaterialsActionPerformed
+     /**
+     * Closes the window and opens RawMaterialMenu window.
+     */
+    private void rawMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rawMaterialsActionPerformed
         RawMaterialMenu obj = new RawMaterialMenu();
         obj.setVisible(true);
         dispose();         // TODO add your handling code here:
-    }//GEN-LAST:event_RawMaterialsActionPerformed
+    }//GEN-LAST:event_rawMaterialsActionPerformed
 
-    private void StorageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StorageActionPerformed
+    /**
+     * Closes the window and opens StorageMain window.
+     */
+    private void storageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storageActionPerformed
         StorageMain obj = new StorageMain();
         obj.setVisible(true);
         dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_StorageActionPerformed
+    }//GEN-LAST:event_storageActionPerformed
 
-    private void OrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdersActionPerformed
+    /**
+     * Closes the window and opens OrdersFrame window.
+     */
+    private void ordersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersActionPerformed
         OrdersFrame obj = new OrdersFrame();
         obj.setVisible(true);
         dispose();    // TODO add your handling code here:
-    }//GEN-LAST:event_OrdersActionPerformed
+    }//GEN-LAST:event_ordersActionPerformed
 
-    private void DeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserActionPerformed
+    /**
+     * Closes the window and opens DeleteUser window.
+     */
+    private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
         new DeleteUser().setVisible(true);
         dispose();
         // TODO add your handling code here:
-    }//GEN-LAST:event_DeleteUserActionPerformed
+    }//GEN-LAST:event_deleteUserActionPerformed
 
-    private void AddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserActionPerformed
+    /**
+     * Closes the window and opens AddUser window.
+     */
+    private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
         new AddUser().setVisible(true);
         dispose();
         // TODO add your handling code here:
-    }//GEN-LAST:event_AddUserActionPerformed
+    }//GEN-LAST:event_addUserActionPerformed
 
+    /**
+     * Closes the window, opens web and transfers user to Proderp website.
+     */
     private void visitOurWebsiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visitOurWebsiteMouseClicked
         try {
             URI uri = new URI("http://prometheus.dmst.aueb.gr/~nkatsiapi/proderp/index.html");
@@ -306,20 +336,20 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddUser;
-    private javax.swing.JButton Customers;
-    private javax.swing.JButton DeleteUser;
-    private javax.swing.JMenu LogOut;
-    private javax.swing.JButton Orders;
-    private javax.swing.JButton Products;
-    private javax.swing.JButton RawMaterials;
-    private javax.swing.JButton Storage;
-    private javax.swing.JButton Suppliers;
+    private javax.swing.JButton addUser;
+    private javax.swing.JButton customers;
+    private javax.swing.JButton deleteUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu logOut;
+    private javax.swing.JButton orders;
+    private javax.swing.JButton products;
+    private javax.swing.JButton rawMaterials;
+    private javax.swing.JButton storage;
+    private javax.swing.JButton suppliers;
     private javax.swing.JMenu visitOurWebsite;
     // End of variables declaration//GEN-END:variables
 }

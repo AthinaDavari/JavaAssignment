@@ -51,7 +51,7 @@
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Component id="showProducts" min="-2" pref="203" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="showprod" min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="selectedOrder" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -82,7 +82,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="editCustOrder" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
                       <Component id="addCustOrder" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
-                      <Component id="showprod" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="selectedOrder" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -189,7 +189,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showProductsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="showprod">
+    <Component class="javax.swing.JTextField" name="selectedOrder">
     </Component>
     <Component class="javax.swing.JButton" name="refresh">
       <Properties>

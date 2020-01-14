@@ -42,11 +42,11 @@ public class ProductRawMaterialDaoTest {
         System.out.println("getAll");
         ProductRawMaterialDao instance = new ProductRawMaterialDao();
         List<ProductRawMaterial> expResult = new ArrayList<>();
-        expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(3), 180));
-        expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(4), 20));
-        expResult.add(new ProductRawMaterial(pdao.getById(2), rmdao.getById(1), 78));
-        expResult.add(new ProductRawMaterial(pdao.getById(3), rmdao.getById(4), 50));
-        expResult.add(new ProductRawMaterial(pdao.getById(4), rmdao.getById(2), 39));
+        expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(3), 3));
+        expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(4), 2));
+        expResult.add(new ProductRawMaterial(pdao.getById(2), rmdao.getById(1), 6));
+        expResult.add(new ProductRawMaterial(pdao.getById(3), rmdao.getById(4), 4));
+        expResult.add(new ProductRawMaterial(pdao.getById(4), rmdao.getById(2), 5));
         List<ProductRawMaterial> result = instance.getAll();
         assertEquals(expResult, result);
     }
@@ -60,8 +60,8 @@ public class ProductRawMaterialDaoTest {
         int pid = 1;
         ProductRawMaterialDao instance = new ProductRawMaterialDao();
         List<ProductRawMaterial> expResult = new ArrayList<>();
-        expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(3), 180));
-        expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(4), 20));
+        expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(3), 3));
+        expResult.add(new ProductRawMaterial(pdao.getById(1), rmdao.getById(4), 2));
         List<ProductRawMaterial> result = instance.getMaterialsPerProduct(pid);
         assertEquals(expResult, result);
     }
@@ -100,7 +100,7 @@ public class ProductRawMaterialDaoTest {
         int pid = 2;
         int rmid = 1;
         ProductRawMaterialDao instance = new ProductRawMaterialDao();
-        ProductRawMaterial expResult = new ProductRawMaterial(pdao.getById(2), rmdao.getById(1), 78);
+        ProductRawMaterial expResult = new ProductRawMaterial(pdao.getById(2), rmdao.getById(1), 6);
         ProductRawMaterial result = instance.getByIds(pid, rmid);
         assertEquals(expResult, result);
     }

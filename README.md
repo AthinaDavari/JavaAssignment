@@ -25,7 +25,7 @@ Run both [erp_progII.sql](https://github.com/AthinaDavari/JavaAssignment/blob/ma
 #### Application
 Enter your own credentials in order to connect to database. Open both <b>proderp\src\main\java\gr\aueb\dmst\pijavaparty\proderp\dao\Dao.java</b> and <b>proderp\src\test\java\gr\aueb\dmst\pijavaparty\proderp\dao\DaoTest.java</b> type them at username and password.
 #### Installation
-To install the project from command line use 
+To install the .jar file from command line use 
 ```bash
 mvn clean compile assembly:single
 ```
@@ -40,14 +40,14 @@ To run tests use
 mvn test
 ```
 ## Authors
-| Full Name | Github Account |
-| --- | --- |
-| Davari Athina (Team Coordinator) | [AthinaDavari](https://github.com/AthinaDavari) |
-| Katsiapi Natalia | [nataliaKat](https://github.com/AthinaDavari) |
-| Kokkorou Maria | [mariakokkorou](https://github.com/mariakokkorou) |
-| Koutsoumpa Styliani Aikaterini | [Stella-Koutsoumpa](https://github.com/Stella-Koutsoumpa) |
-| Pantazopoulou Athina | [AthinaPantazopoulou](https://github.com/AthinaPantazopoulou) |
-| Papakonstantinou Aggeliki | [AggelikiPapa](https://github.com/AggelikiPapa) |
-| Shambel Anna | [AnnaShambel3](https://github.com/AnnaShambel3) ||
+| Full Name | Github Account | Mail |
+| --- | --- | --- |
+| Davari Athina (Team Coordinator) | [AthinaDavari](https://github.com/AthinaDavari) | t8180020@aueb.gr |
+| Katsiapi Natalia | [nataliaKat](https://github.com/AthinaDavari) | t8180040@aueb.gr |
+| Kokkorou Maria | [mariakokkorou](https://github.com/mariakokkorou) | t8180043@aueb.gr |
+| Koutsoumpa Styliani Aikaterini | [Stella-Koutsoumpa](https://github.com/Stella-Koutsoumpa) | t8180053@aueb.gr |
+| Pantazopoulou Athina | [AthinaPantazopoulou](https://github.com/AthinaPantazopoulou) | t8180089@aueb.gr |
+| Papakonstantinou Aggeliki | [AggelikiPapa](https://github.com/AggelikiPapa) | t8180097@aueb.gr |
+| Shambel Anna | [AnnaShambel3](https://github.com/AnnaShambel3) | t8180112@aueb.gr ||
 
 ![Proderp logo](https://github.com/AthinaDavari/JavaAssignment/blob/master/proderp/src/main/resources/ProdErp_Logo.png)

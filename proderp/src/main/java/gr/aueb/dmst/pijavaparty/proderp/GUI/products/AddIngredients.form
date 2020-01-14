@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="Cancel">
+        <Menu class="javax.swing.JMenu" name="cancel">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="33" red="33" type="rgb"/>
@@ -12,7 +12,7 @@
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CancelMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelMouseClicked"/>
           </Events>
         </Menu>
       </SubComponents>
@@ -53,7 +53,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="AddMoreIngredients" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <Component id="addMoreIngredients" min="-2" pref="157" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -62,7 +62,7 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Save" max="32767" attributes="0"/>
+                              <Component id="save" max="32767" attributes="0"/>
                               <Component id="value_quantity" alignment="0" max="32767" attributes="0"/>
                               <Component id="drop_down" min="-2" pref="157" max="-2" attributes="0"/>
                           </Group>
@@ -94,8 +94,8 @@
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="AddMoreIngredients" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="Save" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="addMoreIngredients" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="save" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
           </Group>
@@ -103,20 +103,20 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="Save">
+    <Component class="javax.swing.JButton" name="save">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SaveActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="AddMoreIngredients">
+    <Component class="javax.swing.JButton" name="addMoreIngredients">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add More Ingredients"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddMoreIngredientsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMoreIngredientsActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

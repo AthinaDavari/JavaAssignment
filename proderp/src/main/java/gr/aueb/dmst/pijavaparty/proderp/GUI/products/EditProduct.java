@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author anna
+ * @author anna, aggel
  */
 public class EditProduct extends javax.swing.JFrame {
 
@@ -25,7 +25,7 @@ public class EditProduct extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -41,15 +41,15 @@ public class EditProduct extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         value_name = new javax.swing.JTextField();
         value_price = new javax.swing.JTextField();
-        Update = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         products_table = new javax.swing.JTable();
         value_id = new javax.swing.JTextField();
-        Delete = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
         valid_Name = new javax.swing.JLabel();
         valid_Price = new javax.swing.JLabel();
         jMenuBar4 = new javax.swing.JMenuBar();
-        Cancel = new javax.swing.JMenu();
+        cancel = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -77,12 +77,12 @@ public class EditProduct extends javax.swing.JFrame {
             }
         });
 
-        Update.setBackground(java.awt.SystemColor.activeCaption);
-        Update.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Update.setText("Update");
-        Update.addActionListener(new java.awt.event.ActionListener() {
+        update.setBackground(java.awt.SystemColor.activeCaption);
+        update.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
 
@@ -110,14 +110,13 @@ public class EditProduct extends javax.swing.JFrame {
         jScrollPane1.setViewportView(products_table);
 
         value_id.setEditable(false);
-        value_id.setBackground(new java.awt.Color(204, 204, 204));
 
-        Delete.setBackground(java.awt.SystemColor.activeCaption);
-        Delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Delete.setText("Delete");
-        Delete.addActionListener(new java.awt.event.ActionListener() {
+        delete.setBackground(java.awt.SystemColor.activeCaption);
+        delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
 
@@ -127,14 +126,14 @@ public class EditProduct extends javax.swing.JFrame {
         valid_Price.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Price.setForeground(new java.awt.Color(255, 0, 0));
 
-        Cancel.setForeground(new java.awt.Color(51, 51, 255));
-        Cancel.setText("Cancel");
-        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setForeground(new java.awt.Color(51, 51, 255));
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CancelMouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        jMenuBar4.add(Cancel);
+        jMenuBar4.add(cancel);
 
         setJMenuBar(jMenuBar4);
 
@@ -157,9 +156,9 @@ public class EditProduct extends javax.swing.JFrame {
                             .addComponent(value_name, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(value_id, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -190,8 +189,8 @@ public class EditProduct extends javax.swing.JFrame {
                     .addComponent(valid_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(206, 206, 206))
             .addComponent(jScrollPane1)
         );
@@ -199,6 +198,13 @@ public class EditProduct extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     *
+     * Select a row of the table and put the raw product's data in the fields.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by putting the mouse cursor in a selected row of the table.
+     */    
     private void products_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_products_tableMouseClicked
         
         int selectedRow=products_table.getSelectedRow();
@@ -209,7 +215,13 @@ public class EditProduct extends javax.swing.JFrame {
         value_price.setText((model2.getValueAt(selectedRow, 2).toString()));
     }//GEN-LAST:event_products_tableMouseClicked
 
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+    /**
+     * Method that deletes a product.
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the delete button.
+     */        
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
             String value1_id=value_id.getText();
             int newvalue1_id=Integer.parseInt(value1_id);
@@ -224,9 +236,15 @@ public class EditProduct extends javax.swing.JFrame {
             stor.setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_DeleteActionPerformed
+    }//GEN-LAST:event_deleteActionPerformed
 
-    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+    /**
+     * Update the details of a product.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the update button.
+     */    
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
        try{
            if(isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText()) && isValidDouble(value_price.getText()) ){
             String value1_id=value_id.getText();
@@ -252,14 +270,27 @@ public class EditProduct extends javax.swing.JFrame {
             stor.setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_UpdateActionPerformed
+    }//GEN-LAST:event_updateActionPerformed
 
-    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
+    /**
+     * Returning to the product main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */       
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         ProductGui productGui = new ProductGui();
         productGui.setVisible(true);
         dispose();
-    }//GEN-LAST:event_CancelMouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
 
+    /**
+     * Check if the name input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt  is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */      
     private void value_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_nameKeyReleased
         if (!isStringOnlyAlphabetAndNumbersAndWhiteSpaces(value_name.getText())) {
             valid_Name.setText("Name is invalid!");
@@ -268,6 +299,13 @@ public class EditProduct extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_nameKeyReleased
 
+    /**
+     * Check if the price input is valid and if it is invalid show a
+     * warning message.
+     *
+     * @param evt  is a reference to a KeyEvent object that is sent to
+     * the method by typing a key in the keyboard.
+     */      
     private void value_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_priceKeyReleased
         if (!isValidDouble(value_price.getText())){
             valid_Price.setText("Price is invalid!");
@@ -311,10 +349,10 @@ public class EditProduct extends javax.swing.JFrame {
         });
     }
 
-    //methos showing colums of products from data base 
 
     /**
-     *
+     *Method that shows every product that the copmany has along with 
+     *some information for each one. 
      */
     public void showProductsTable(){
         ProductDao proddao=new ProductDao();
@@ -330,9 +368,8 @@ public class EditProduct extends javax.swing.JFrame {
     }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Cancel;
-    private javax.swing.JButton Delete;
-    private javax.swing.JButton Update;
+    private javax.swing.JMenu cancel;
+    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -340,6 +377,7 @@ public class EditProduct extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable products_table;
+    private javax.swing.JButton update;
     private javax.swing.JLabel valid_Name;
     private javax.swing.JLabel valid_Price;
     private javax.swing.JTextField value_id;

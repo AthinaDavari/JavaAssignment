@@ -25,13 +25,14 @@ public class CustomerEdit extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * Method that sets the icon that is shown on the frame when the program is
+     * running.
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
-     /**
+    /**
      * Set CustomerEdit window.
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -254,30 +255,25 @@ public class CustomerEdit extends javax.swing.JFrame {
      * method by clicking the update button.
      */
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        try {
-            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText())) {
-                String value1_id = value_id.getText();
-                int newvalue1_id = Integer.parseInt(value1_id);
-                String value2_full_name = value_full_name.getText();
-                String value3_address = value_address.getText();
-                String value4_phonenumber = value_phonenumber.getText();
-                long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
-                String value5_email = value_email.getText();
+        if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_full_name.getText()) && ValidVariables.isValidPhonenumber(value_phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_email.getText())) {
+            String value1_id = value_id.getText();
+            int newvalue1_id = Integer.parseInt(value1_id);
+            String value2_full_name = value_full_name.getText();
+            String value3_address = value_address.getText();
+            String value4_phonenumber = value_phonenumber.getText();
+            long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
+            String value5_email = value_email.getText();
 
-                Customer objc = new Customer(newvalue1_id, value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
-                CustomerDao obj = new CustomerDao();
-                obj.update(objc);
+            Customer objc = new Customer(newvalue1_id, value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
+            CustomerDao obj = new CustomerDao();
+            obj.update(objc);
 
-                JOptionPane.showMessageDialog(null, "Updated");
-                
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Updated");
+
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
         }
-
     }//GEN-LAST:event_updateActionPerformed
     /**
      *
@@ -304,7 +300,6 @@ public class CustomerEdit extends javax.swing.JFrame {
      * method by clicking the delete button.
      */
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        try {
             String value1_id = value_id.getText();
             int newvalue1_id = Integer.parseInt(value1_id);
             CustomerDao customerDao = new CustomerDao();
@@ -312,12 +307,6 @@ public class CustomerEdit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Deleted");
             new CustomerEdit().setVisible(true);
             dispose();
-        } catch (Exception b) {
-            JOptionPane.showMessageDialog(null, b);
-
-        }
-
-
     }//GEN-LAST:event_deleteActionPerformed
 
     /**
@@ -364,7 +353,7 @@ public class CustomerEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_value_emailKeyReleased
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-          dispose();
+        dispose();
     }//GEN-LAST:event_cancelMouseClicked
 
     /**
@@ -384,7 +373,6 @@ public class CustomerEdit extends javax.swing.JFrame {
             row[4] = obj.getAll().get(i).getEmail();
             model.addRow(row);
         }
-
     }
 
     /**

@@ -25,7 +25,7 @@ public class SupplierInsert extends javax.swing.JFrame {
     public SupplierInsert() {
         initComponents();
         seticon();
-        setTitle("Insert Supplier");
+        setTitle("Add Supplier");
     }
 
     /**
@@ -51,14 +51,15 @@ public class SupplierInsert extends javax.swing.JFrame {
         value_Address = new javax.swing.JTextField();
         value_Phonenumber = new javax.swing.JTextField();
         value_Email = new javax.swing.JTextField();
-        Save = new javax.swing.JButton();
+        save = new javax.swing.JButton();
         valid_Fullname = new javax.swing.JLabel();
         valid_Phonenumber = new javax.swing.JLabel();
         valid_Email = new javax.swing.JLabel();
+        validAddress = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         cancel = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insert New Supplier");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -82,6 +83,12 @@ public class SupplierInsert extends javax.swing.JFrame {
             }
         });
 
+        value_Address.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                value_AddressKeyReleased(evt);
+            }
+        });
+
         value_Phonenumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 value_PhonenumberKeyReleased(evt);
@@ -94,11 +101,11 @@ public class SupplierInsert extends javax.swing.JFrame {
             }
         });
 
-        Save.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Save.setText("Save");
-        Save.addActionListener(new java.awt.event.ActionListener() {
+        save.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveActionPerformed(evt);
+                saveActionPerformed(evt);
             }
         });
 
@@ -110,6 +117,8 @@ public class SupplierInsert extends javax.swing.JFrame {
 
         valid_Email.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         valid_Email.setForeground(new java.awt.Color(255, 0, 0));
+
+        validAddress.setForeground(new java.awt.Color(255, 0, 0));
 
         cancel.setText("Cancel");
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,14 +154,15 @@ public class SupplierInsert extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(valid_Fullname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(valid_Email, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(valid_Phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(valid_Phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(validAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jLabel5)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(180, 180, 180)
-                .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -167,9 +177,11 @@ public class SupplierInsert extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(value_Fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(value_Address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(validAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(value_Address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -182,7 +194,7 @@ public class SupplierInsert extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(value_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
@@ -194,25 +206,24 @@ public class SupplierInsert extends javax.swing.JFrame {
      * @param evt is a reference to an ActionEvent object that is sent to the
      * method by clicking the save button.
      */
-    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        try {
-            if (ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_Fullname.getText()) && ValidVariables.isValidPhonenumber(value_Phonenumber.getText()) && ValidVariables.isValidEmailAddress(value_Email.getText())) {
-                String value2_full_name = value_Fullname.getText();
-                String value3_address = value_Address.getText();
-                String value4_phonenumber = value_Phonenumber.getText();
-                long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
-                String value5_email = value_Email.getText();
-                Supplier supplier = new Supplier(value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
-                SupplierDao supplierdao = new SupplierDao();
-                supplierdao.insert(supplier);
-                JOptionPane.showMessageDialog(null, "Saved");
-            } else {
-                JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
-            }
-        } catch (Exception a) {
-            JOptionPane.showMessageDialog(null, a);
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        //Check if all jtextfields in window have valid values
+        if (!checkAllConstraints()) {
+            JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
+            return;
         }
-    }//GEN-LAST:event_SaveActionPerformed
+
+        String value2_full_name = value_Fullname.getText();
+        String value3_address = value_Address.getText();
+        String value4_phonenumber = value_Phonenumber.getText();
+        long newvalue4_phonenumber = Long.parseLong(value4_phonenumber);
+        String value5_email = value_Email.getText();
+        Supplier supplier = new Supplier(value2_full_name, value3_address, newvalue4_phonenumber, value5_email);
+        SupplierDao supplierdao = new SupplierDao();
+        supplierdao.insert(supplier);
+        JOptionPane.showMessageDialog(null, "Saved");
+
+    }//GEN-LAST:event_saveActionPerformed
     /**
      * Check if the name input is valid and if it is invalid show a warning
      * message.
@@ -227,6 +238,7 @@ public class SupplierInsert extends javax.swing.JFrame {
             valid_Fullname.setText(null);
         }
     }//GEN-LAST:event_value_FullnameKeyReleased
+    
     /**
      * Check if the phonenumber input is valid and if it is invalid show a
      * warning message.
@@ -241,6 +253,7 @@ public class SupplierInsert extends javax.swing.JFrame {
             valid_Phonenumber.setText(null);
         }
     }//GEN-LAST:event_value_PhonenumberKeyReleased
+    
     /**
      * Check if the email input is valid and if it is invalid show a warning
      * message.
@@ -257,9 +270,46 @@ public class SupplierInsert extends javax.swing.JFrame {
     }//GEN-LAST:event_value_EmailKeyReleased
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        
+
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
+
+    /**
+     * Check if the address input is valid and if it is invalid show a warning
+     * message.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to the method
+     * by typing a key in the keyboard.
+     */
+    private void value_AddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_value_AddressKeyReleased
+        if (!ValidVariables.isValidAddress(value_Address.getText())) {
+            validAddress.setText("Address is invalid!");
+        } else {
+            validAddress.setText(null);
+        }
+    }//GEN-LAST:event_value_AddressKeyReleased
+
+    /**
+     * Check if all jtextfields in window have valid values
+     *
+     * @return true-if all jtextfields have valid values, false-if at least a
+     * jtextfield has invalid value
+     */
+    private boolean checkAllConstraints() {
+        if (!ValidVariables.isStringOnlyAlphabetAndWhiteSpaces(value_Fullname.getText())) {
+            return false;
+        }
+        if (!ValidVariables.isValidPhonenumber(value_Phonenumber.getText())) {
+            return false;
+        }
+        if (!ValidVariables.isValidEmailAddress(value_Email.getText())) {
+            return false;
+        }
+        if (!ValidVariables.isValidAddress(value_Address.getText())) {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * @param args the command line arguments
@@ -299,7 +349,6 @@ public class SupplierInsert extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Save;
     private javax.swing.JMenu cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -307,6 +356,8 @@ public class SupplierInsert extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton save;
+    private javax.swing.JLabel validAddress;
     private javax.swing.JLabel valid_Email;
     private javax.swing.JLabel valid_Fullname;
     private javax.swing.JLabel valid_Phonenumber;

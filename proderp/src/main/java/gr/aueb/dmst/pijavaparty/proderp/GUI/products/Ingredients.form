@@ -4,15 +4,15 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="Back">
+        <Menu class="javax.swing.JMenu" name="cancel">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Back"/>
+            <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BackMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelMouseClicked"/>
           </Events>
         </Menu>
       </SubComponents>
@@ -50,9 +50,9 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
-                      <Component id="AddIngredient" min="-2" pref="116" max="-2" attributes="0"/>
+                      <Component id="addIngredient" min="-2" pref="116" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                      <Component id="DeleteIngredient" min="-2" pref="116" max="-2" attributes="0"/>
+                      <Component id="deleteIngredient" min="-2" pref="116" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="253" max="32767" attributes="0"/>
@@ -68,8 +68,8 @@
               <Component id="jScrollPane1" min="-2" pref="347" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="AddIngredient" alignment="3" min="-2" pref="64" max="-2" attributes="0"/>
-                  <Component id="DeleteIngredient" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
+                  <Component id="addIngredient" alignment="3" min="-2" pref="64" max="-2" attributes="0"/>
+                  <Component id="deleteIngredient" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
@@ -127,20 +127,20 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="DeleteIngredient">
+    <Component class="javax.swing.JButton" name="deleteIngredient">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteIngredientActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteIngredientActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="AddIngredient">
+    <Component class="javax.swing.JButton" name="addIngredient">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddIngredientActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addIngredientActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

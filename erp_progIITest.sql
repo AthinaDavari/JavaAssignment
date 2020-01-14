@@ -6,8 +6,7 @@ CREATE TABLE `Users`(
 `full_name` varchar(255),
 `user_name` varchar(255) PRIMARY KEY,
 `password` varbinary(255),
-`role` ENUM ('admin', 'simpleuser'),
-`is_deleted` boolean default false
+`role` ENUM ('admin', 'simpleuser')
 );
 
 CREATE TABLE `Suppliers` (
@@ -59,9 +58,9 @@ CREATE TABLE `C_Orders` (
   `customer_id` int NOT NULL,
   `status` ENUM ('preparing', 'ready', 'delivered'),
   `created_at` datetime DEFAULT now(),
-  `user_name` varchar(255) NOT NULL,
+  `user_name` varchar(255),
   CONSTRAINT c_order_cust FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`) on delete cascade,
-  CONSTRAINT c_order_u FOREIGN KEY (`user_name`) REFERENCES `Users` (`user_name`) on delete cascade 
+  CONSTRAINT c_order_u FOREIGN KEY (`user_name`) REFERENCES `Users` (`user_name`) on delete set null 
 );
 
 CREATE TABLE `C_order_items` (

@@ -3,9 +3,12 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI.rawmaterials;
 
 import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
-import gr.aueb.dmst.pijavaparty.proderp.GUI.Menu;
+import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
+import gr.aueb.dmst.pijavaparty.proderp.GUI.customers.CustomerMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.RawMaterialDao;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,24 +26,30 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         seticon();
         setTitle("Raw Material's Menu");
     }
+    
+    /**
+     *Method that sets the icon that is shown on the frame when the program is running. 
+     */
     private void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Set EawMaterialMenu window
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         RawMaterial_table2 = new javax.swing.JTable();
-        editCustomer = new javax.swing.JButton();
-        AddRawMaterial = new javax.swing.JButton();
-        Delete = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        editRawMaterial = new javax.swing.JButton();
+        addRawMaterial = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        LogOut = new javax.swing.JMenu();
-        Back = new javax.swing.JMenu();
+        logOut = new javax.swing.JMenu();
+        back = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,54 +77,54 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(RawMaterial_table2);
 
-        editCustomer.setText("Update");
-        editCustomer.addActionListener(new java.awt.event.ActionListener() {
+        editRawMaterial.setText("Update");
+        editRawMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCustomerActionPerformed(evt);
+                editRawMaterialActionPerformed(evt);
             }
         });
 
-        AddRawMaterial.setText("Add");
-        AddRawMaterial.addActionListener(new java.awt.event.ActionListener() {
+        addRawMaterial.setText("Add");
+        addRawMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddRawMaterialActionPerformed(evt);
+                addRawMaterialActionPerformed(evt);
             }
         });
 
-        Delete.setText("Delete");
-        Delete.addActionListener(new java.awt.event.ActionListener() {
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
+        refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                refreshActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("Raw Materials");
 
-        LogOut.setForeground(new java.awt.Color(51, 51, 255));
-        LogOut.setText("Log Out");
-        LogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+        logOut.setForeground(new java.awt.Color(51, 51, 255));
+        logOut.setText("Log Out");
+        logOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LogOutMouseClicked(evt);
+                logOutMouseClicked(evt);
             }
         });
-        jMenuBar1.add(LogOut);
+        jMenuBar1.add(logOut);
 
-        Back.setForeground(new java.awt.Color(51, 51, 255));
-        Back.setText("Back");
-        Back.addMouseListener(new java.awt.event.MouseAdapter() {
+        back.setForeground(new java.awt.Color(51, 51, 255));
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BackMouseClicked(evt);
+                backMouseClicked(evt);
             }
         });
-        jMenuBar1.add(Back);
+        jMenuBar1.add(back);
 
         setJMenuBar(jMenuBar1);
 
@@ -129,14 +138,14 @@ public class RawMaterialMenu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(298, 298, 298)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)
-                        .addComponent(editCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editRawMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73)
-                        .addComponent(AddRawMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addRawMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(127, 127, 127))))
             .addComponent(jScrollPane3)
         );
@@ -146,63 +155,122 @@ public class RawMaterialMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(refresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(editCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(AddRawMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(editRawMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                    .addComponent(addRawMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
+    /**
+     *
+     * Loging out of the user that you are currently loged in in.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the log out button.
+     */
+    private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn login = new LogIn();
         LogIn.setUser(null);
         login.setVisible(true);
         dispose();    
-    }//GEN-LAST:event_LogOutMouseClicked
-
-    private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
+    }//GEN-LAST:event_logOutMouseClicked
+    
+    /**
+     *
+     * Returning to the main menu window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the back button.
+     */
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         if((LogIn.getUser().getRole()).equals("admin")){
             AdminMenu menu = new AdminMenu();
             menu.setVisible(true);
         } else {
-            Menu menu = new Menu();
+            SimpleMenu menu = new SimpleMenu();
             menu.setVisible(true);
         }
         dispose();
-    }//GEN-LAST:event_BackMouseClicked
+    }//GEN-LAST:event_backMouseClicked
 
-    private void editCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerActionPerformed
+    /**
+     *
+     * Responsible for the continuing of the execution in the edit raw material
+     * window.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the update button.
+     */    
+    private void editRawMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRawMaterialActionPerformed
         new RawMaterialEdit().setVisible(true);
         dispose();
-    }//GEN-LAST:event_editCustomerActionPerformed
+    }//GEN-LAST:event_editRawMaterialActionPerformed
 
     private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked
 
     }//GEN-LAST:event_RawMaterial_table2MouseClicked
-
-    private void AddRawMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRawMaterialActionPerformed
-        new RawMaterialInsert().setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_AddRawMaterialActionPerformed
-
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        new RawMaterialDelete().setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_DeleteActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RawMaterialMenu rawmenu = new RawMaterialMenu();
-        rawmenu.setVisible(true);
-        dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     /**
      *
+     * Responsible for the continuing of the execution in the insert raw material
+     * window.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the add button.
+     */
+    private void addRawMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRawMaterialActionPerformed
+        new RawMaterialInsert().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_addRawMaterialActionPerformed
+    
+    /**
+     *
+     * Responsible for the continuing of the execution in the delete raw material
+     * window.
+     *
+     * @param evt is a reference to a ActionEvent object that is sent to the
+     * method by clicking the delete button.
+     */    
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        new RawMaterialDelete().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_deleteActionPerformed
+
+    /**
+    * Refresh button so that when something is changed, you can see if its also 
+    * successfully changed in the data base.
+    *
+    * @param evt is a reference to an ActionEvent object that is sent to the
+    * method by clicking the refresh quantity button.
+    */  
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        setVisible(false);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CustomerMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setVisible(true);
+        DefaultTableModel model = (DefaultTableModel)RawMaterial_table2.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+           model.removeRow(i); 
+        }
+        showRawMaterialTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
+    /**
+     *Method that shows every raw material that the copmany has along with 
+     *some information for each raw material. 
      */
     public void showRawMaterialTable(){
         RawMaterialDao rawdao=new RawMaterialDao();
@@ -252,15 +320,15 @@ public class RawMaterialMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddRawMaterial;
-    private javax.swing.JMenu Back;
-    private javax.swing.JButton Delete;
-    private javax.swing.JMenu LogOut;
     private javax.swing.JTable RawMaterial_table2;
-    private javax.swing.JButton editCustomer;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton addRawMaterial;
+    private javax.swing.JMenu back;
+    private javax.swing.JButton delete;
+    private javax.swing.JButton editRawMaterial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JMenu logOut;
+    private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 }

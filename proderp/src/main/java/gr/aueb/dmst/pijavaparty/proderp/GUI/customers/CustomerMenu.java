@@ -2,9 +2,14 @@ package gr.aueb.dmst.pijavaparty.proderp.GUI.customers;
 
 import gr.aueb.dmst.pijavaparty.proderp.GUI.AdminMenu;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
-import gr.aueb.dmst.pijavaparty.proderp.GUI.Menu;
+import gr.aueb.dmst.pijavaparty.proderp.GUI.SimpleMenu;
 import gr.aueb.dmst.pijavaparty.proderp.dao.CustomerDao;
+import gr.aueb.dmst.pijavaparty.proderp.entity.Customer;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,9 +31,9 @@ public class CustomerMenu extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
-    public void seticon() {
+    private void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
 
     }
@@ -36,7 +41,6 @@ public class CustomerMenu extends javax.swing.JFrame {
     /**
      * Set CustomerMenu window.
      */
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -56,7 +60,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         setFocusCycleRoot(false);
         setResizable(false);
 
-        editCustomer.setText("Update");
+        editCustomer.setText("Update/Delete");
         editCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editCustomerActionPerformed(evt);
@@ -127,11 +131,8 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addComponent(editCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
                 .addComponent(insertCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addContainerGap(199, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +147,7 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(insertCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,16 +183,27 @@ public class CustomerMenu extends javax.swing.JFrame {
             AdminMenu menu = new AdminMenu();
             menu.setVisible(true);
         } else {
-            Menu menu = new Menu();
+            SimpleMenu menu = new SimpleMenu();
             menu.setVisible(true);
         }
         dispose();
     }//GEN-LAST:event_backMouseClicked
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-        CustomerMenu customermenu = new CustomerMenu();
-        customermenu.setVisible(true);
-        dispose();
+        setVisible(false);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CustomerMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setVisible(true);
+        DefaultTableModel model = (DefaultTableModel)Customers_table.getModel(); 
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+           model.removeRow(i); 
+        }
+        showCustomersTable();
     }//GEN-LAST:event_refreshActionPerformed
 
     /**
@@ -233,17 +245,18 @@ public class CustomerMenu extends javax.swing.JFrame {
      * Show customer's data in a table.
      *
      */
-    public void showCustomersTable() {
+    private void showCustomersTable() {
         CustomerDao obj = new CustomerDao();
         DefaultTableModel model = (DefaultTableModel) Customers_table.getModel();
+        List<Customer> allcust = obj.getAll();
         int number = obj.getAll().size();
         Object[] row = new Object[5];
         for (int i = 0; i < number; i++) {
-            row[0] = obj.getAll().get(i).getId();
-            row[1] = obj.getAll().get(i).getFullName();
-            row[2] = obj.getAll().get(i).getAddress();
-            row[3] = obj.getAll().get(i).getPhonenumber();
-            row[4] = obj.getAll().get(i).getEmail();
+            row[0] = allcust.get(i).getId();
+            row[1] = allcust.get(i).getFullName();
+            row[2] = allcust.get(i).getAddress();
+            row[3] = allcust.get(i).getPhonenumber();
+            row[4] = allcust.get(i).getEmail();
             model.addRow(row);
         }
     }

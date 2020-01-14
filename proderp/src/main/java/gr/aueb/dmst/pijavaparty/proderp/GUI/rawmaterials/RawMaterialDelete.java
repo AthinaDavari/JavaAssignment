@@ -22,7 +22,7 @@ public class RawMaterialDelete extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *Method that sets the icon that is shown on the frame when the program is running. 
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -98,14 +98,27 @@ public class RawMaterialDelete extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Returning to the raw material main window.
+     *
+     * @param evt is a reference to a MouseEvent object that is sent to the
+     * method by clicking the cancel button.
+     */     
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        dispose();  
+        new RawMaterialMenu().setVisible(true);
+        dispose();
     }//GEN-LAST:event_cancelMouseClicked
 
     private void value_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_value_idActionPerformed
 
     }//GEN-LAST:event_value_idActionPerformed
 
+    /**
+     * Method that deletes a raw material
+     *
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the delete button.
+     */    
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try {
             if (value_id.getText().equals("")) {
@@ -120,7 +133,8 @@ public class RawMaterialDelete extends javax.swing.JFrame {
                 RawMaterialDao rawdao=new RawMaterialDao();
                 rawdao.delete(newvalue1_id);
                 JOptionPane.showMessageDialog(null,"Deleted");
-                dispose();
+                    new RawMaterialMenu().setVisible(true);
+                    dispose();
             }
         }  catch (Exception e){
             JOptionPane.showMessageDialog(null,"Insert id or raw material doesn't exist.","Error",  JOptionPane.ERROR_MESSAGE);

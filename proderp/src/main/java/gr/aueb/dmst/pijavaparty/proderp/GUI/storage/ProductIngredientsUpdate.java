@@ -1,5 +1,6 @@
 package gr.aueb.dmst.pijavaparty.proderp.GUI.storage;
 
+import gr.aueb.dmst.pijavaparty.proderp.dao.ProductDao;
 import gr.aueb.dmst.pijavaparty.proderp.services.StorageServices;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -11,26 +12,23 @@ import javax.swing.JOptionPane;
 public class ProductIngredientsUpdate extends javax.swing.JFrame {
 
     /**
-     *
+     * Id of the product.
      */
     public int id;
 
     /**
-     *
+     * Quantity of the product.
      */
     public int quant;
 
-    /**
-     *
-     */
+
     public ProductIngredientsUpdate() {
         initComponents();
-        setTitle("Update Product's Ingredients");
+        
     }
-    //constracor to get id and quantity from previous window
 
     /**
-     *
+     * Constracor to get id and quantity from previous window
      * @param id
      * @param quant
      */
@@ -39,10 +37,11 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
         this.quant=quant;
         initComponents();
         seticon();
+        setTitle("Update Product's Ingredients");
     }
 
     /**
-     *
+     *Set the icon that is shown on the frame
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -104,18 +103,38 @@ public class ProductIngredientsUpdate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //update ingredients quantty method
+    /**
+     * Execution of the quantity update of the materials used in the making of a 
+     * product.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the yes button.
+     */
     private void answerYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerYesActionPerformed
         StorageServices storser= new StorageServices();
-        if (storser.updateIngredients(id, quant)) {
+        //Check if the storage have enough raw materials to make a product in quantity we want
+        if (storser.permissionToUpdateIngredients(id, quant)) {
+            //Update the quantity of all the ingredients in product's recipe
+            storser.updateIngredients(id, quant);
+            ProductDao productDao=new ProductDao();
+            productDao.updateQuantity(id,quant);//update the quantity of product
             JOptionPane.showMessageDialog(null,"Updated");
         } else {
             JOptionPane.showMessageDialog(null,"Cannot update, not enough raw materials.","Error",  JOptionPane.ERROR_MESSAGE);
         }
+        new StorageMain().setVisible(true);
         dispose();
     }//GEN-LAST:event_answerYesActionPerformed
-
+    
+    /**
+     * The choice of not updating the materials used in the making of a 
+     * product. 
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the no button.
+     */
     private void answerNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerNoActionPerformed
+        ProductDao productDao=new ProductDao();
+        productDao.updateQuantity(id,quant);
+        new StorageMain().setVisible(true);
         dispose();
     }//GEN-LAST:event_answerNoActionPerformed
 

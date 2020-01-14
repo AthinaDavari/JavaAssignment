@@ -25,7 +25,6 @@ public class AddIngredients extends javax.swing.JFrame {
     private int id;
     private Product prod = new Product();
     private int selected;
-
     /**
      * Set the icon that is shown on the frame.
      */
@@ -215,14 +214,14 @@ public class AddIngredients extends javax.swing.JFrame {
             }
                 String value_name = drop_down.getSelectedItem().toString();
                 String stringnamearray[];
-                stringnamearray = value_name.split("[^0-9]");
-                String stringname = "";
-                StringBuilder sb = new StringBuilder();
-                for (String stringnamearray1 : stringnamearray) {
-                    sb.append(stringnamearray1);
-                }
-                stringname = sb.toString();
-                selected = Integer.parseInt(stringname);
+                stringnamearray = value_name.split(" - ");
+//                String stringname = "";
+//                StringBuilder sb = new StringBuilder();
+//                for (String stringnamearray1 : stringnamearray) {
+//                    sb.append(stringnamearray1);
+//                }
+//                stringname = sb.toString();
+                selected = Integer.parseInt(stringnamearray[1]);//Integer.parseInt(stringname);
                 int quant = Integer.parseInt(value_quantity.getText());
                 RawMaterialDao rawdao = new RawMaterialDao();
                 List<RawMaterial> rawmaterial;

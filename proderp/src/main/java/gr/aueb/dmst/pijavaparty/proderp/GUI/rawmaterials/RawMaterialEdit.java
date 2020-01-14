@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class RawMaterialEdit extends javax.swing.JFrame {
 
     /**
-     *
+     * Creates new form RawMaterialEdit
      */
     public RawMaterialEdit() {
         initComponents();
@@ -34,7 +34,9 @@ public class RawMaterialEdit extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Set RawMaterialEdit window
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

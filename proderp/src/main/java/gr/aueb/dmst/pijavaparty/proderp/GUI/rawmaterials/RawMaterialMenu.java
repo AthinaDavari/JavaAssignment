@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class RawMaterialMenu extends javax.swing.JFrame {
 
     /**
-     *
+     * Creates new form RawMaterialMenu
      */
     public RawMaterialMenu() {
         initComponents();
@@ -71,11 +71,6 @@ public class RawMaterialMenu extends javax.swing.JFrame {
             }
         });
         RawMaterial_table2.setUpdateSelectionOnSort(false);
-        RawMaterial_table2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RawMaterial_table2MouseClicked(evt);
-            }
-        });
         jScrollPane3.setViewportView(RawMaterial_table2);
 
         editRawMaterial.setText("Update");
@@ -214,10 +209,6 @@ public class RawMaterialMenu extends javax.swing.JFrame {
         new RawMaterialEdit().setVisible(true);
         dispose();
     }//GEN-LAST:event_editRawMaterialActionPerformed
-
-    private void RawMaterial_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RawMaterial_table2MouseClicked
-
-    }//GEN-LAST:event_RawMaterial_table2MouseClicked
     
     /**
      *

@@ -203,8 +203,7 @@ public class AddNewSOrder extends javax.swing.JFrame {
      *
      * @param evt - a reference to a MouseEvent object that is sent to 
      * the method by clicking on the cancel button on the menu bar.
-     */
-    
+     */  
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         new OrdersFromSuppliers().setVisible(true);
         dispose(); 
@@ -237,7 +236,6 @@ public class AddNewSOrder extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

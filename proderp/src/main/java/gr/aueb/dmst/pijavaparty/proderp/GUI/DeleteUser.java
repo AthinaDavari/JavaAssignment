@@ -113,16 +113,17 @@ public class DeleteUser extends javax.swing.JFrame {
 
     /**
      * Closes window and returns to AdminMenu window.
+     * @param evt
      */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         AdminMenu obj = new AdminMenu();
         obj.setVisible(true);
         dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_cancelMouseClicked
 
     /**
      * Checks if user is not admin and deletes him.
+     * @param evt
      */
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
             String u = username.getSelectedItem().toString();

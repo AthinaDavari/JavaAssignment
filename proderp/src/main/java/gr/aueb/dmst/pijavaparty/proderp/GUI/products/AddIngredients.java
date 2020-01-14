@@ -78,9 +78,6 @@ public class AddIngredients extends javax.swing.JFrame {
         seticon();
     }
 
-    /**
-     *
-     */
     public AddIngredients() {
         initComponents();
         fillcombo();

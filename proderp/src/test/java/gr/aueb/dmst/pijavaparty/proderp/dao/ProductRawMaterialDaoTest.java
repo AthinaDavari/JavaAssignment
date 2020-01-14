@@ -21,13 +21,13 @@ public class ProductRawMaterialDaoTest {
     private RawMaterialDao rmdao = new RawMaterialDao();
 
     /**
-     *
+     *An empty constructor
      */
     public ProductRawMaterialDaoTest() {
     }
 
     /**
-     *
+     *Test - Set up
      */
     @BeforeClass
     public static void setUpClass() {

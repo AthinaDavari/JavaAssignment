@@ -24,10 +24,14 @@ import org.junit.runners.MethodSorters;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SOrderItemDaoTest {
-
+    /**
+     * An empty conrtuctor
+     */
     public SOrderItemDaoTest() {
     }
-
+    /**
+     * Test - Set up
+     */
     @BeforeClass
     public static void setUpClass() {
         TestUtilities.runTestScript();

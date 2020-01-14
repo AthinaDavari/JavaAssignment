@@ -15,10 +15,14 @@ import org.junit.Test;
  * @author athina, Natalia
  */
 public class ChecksTest {
-
+    /**
+     * An empty conrtuctor
+     */
     public ChecksTest() {
     }
-
+    /**
+     * Test - Set up
+     */
     @BeforeClass
     public static void setUpClass() {
         runTestScript();

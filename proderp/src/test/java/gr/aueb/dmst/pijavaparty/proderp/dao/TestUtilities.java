@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class TestUtilities {
 
     /**
-     *
+     * Method for unning the test script
      */
     public static void runTestScript() {
         String queries = "";

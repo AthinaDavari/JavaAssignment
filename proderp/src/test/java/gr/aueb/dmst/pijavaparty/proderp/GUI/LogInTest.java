@@ -25,7 +25,7 @@ import org.junit.runners.MethodSorters;
 public class LogInTest {
 
     /**
-     *
+     * An empty constructor.
      */
     public LogInTest() {
     }

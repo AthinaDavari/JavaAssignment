@@ -23,13 +23,13 @@ import org.junit.runners.MethodSorters;
 public class SOrderDaoTest {
 
     /**
-     *
+     * An empty conrtuctor
      */
     public SOrderDaoTest() {
     }
 
     /**
-     *
+     * Test - Set up
      */
     @BeforeClass
     public static void setUpClass() {

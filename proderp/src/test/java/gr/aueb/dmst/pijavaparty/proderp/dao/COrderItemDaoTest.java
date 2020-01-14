@@ -22,13 +22,13 @@ import org.junit.runners.MethodSorters;
 public class COrderItemDaoTest {
 
     /**
-     *
+     *An empty constructor
      */
     public COrderItemDaoTest() {
     }
 
     /**
-     *
+     *Test -Set up
      */
     @BeforeClass
     public static void setUpClass() {

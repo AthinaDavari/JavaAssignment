@@ -38,7 +38,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
     }
 
     /**
-     * 
+     * @param u user 
      */
     public static void setUser(User u) {
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
@@ -186,6 +186,8 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
     /**
      * Takes content from textfields and checks whether it is admin, a simple user or null.
      * Based on the result it opens the corresponding window menu or shows error message.
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the log in button.
      */
     private void logInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInActionPerformed
         String un = jTextField1.getText();

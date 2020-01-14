@@ -100,18 +100,7 @@ public class AddUser extends javax.swing.JFrame {
             }
         });
 
-        role.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roleActionPerformed(evt);
-            }
-        });
-
         validUsername.setForeground(new java.awt.Color(255, 51, 51));
-        validUsername.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validUsernameKeyTyped(evt);
-            }
-        });
 
         validFullName.setForeground(new java.awt.Color(255, 51, 51));
 
@@ -195,6 +184,7 @@ public class AddUser extends javax.swing.JFrame {
 
     /**
      * Closes window and returns to AdminMenu.
+     * @param evt
      */
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         AdminMenu obj = new AdminMenu();
@@ -205,6 +195,7 @@ public class AddUser extends javax.swing.JFrame {
     /**
      * Takes content from textfields and combobox and creates a new user in User
      * List.
+     * @param evt
      */
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         try {
@@ -239,15 +230,10 @@ public class AddUser extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Fields are empty");
         }
     }//GEN-LAST:event_addActionPerformed
-
-    private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roleActionPerformed
-
-    private void validUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_validUsernameKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_validUsernameKeyTyped
-
+    /**
+     * Checks if username is valid
+     * @param evt 
+     */
     private void usernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyReleased
         if (!isStringOnlyAlphabetAndNumbers(username.getText())) {
             validUsername.setText("Username is invalid!");
@@ -255,7 +241,10 @@ public class AddUser extends javax.swing.JFrame {
             validUsername.setText(null);
         }
     }//GEN-LAST:event_usernameKeyReleased
-
+    /**
+     * Checks if fullname is valid
+     * @param evt 
+     */
     private void fullnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullnameKeyReleased
         if (!isValidFullName(fullname.getText())) {
             validFullName.setText("Full Name is invalid!");
@@ -263,7 +252,11 @@ public class AddUser extends javax.swing.JFrame {
             validFullName.setText(null);
         }
     }//GEN-LAST:event_fullnameKeyReleased
-
+    
+    /**
+     * Chcks if password is valid
+     * @param evt 
+     */
     private void passwdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwdKeyReleased
         if (!isValidPassword(passwd.getText())) {
             validPassword.setText("Password is invalid!");

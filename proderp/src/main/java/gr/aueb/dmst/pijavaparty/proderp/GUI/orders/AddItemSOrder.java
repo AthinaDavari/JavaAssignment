@@ -298,7 +298,7 @@ public class AddItemSOrder extends javax.swing.JFrame {
      * to the method by clicking on cancel button on the menu bar. 
      */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        new AddNewSOrder().setVisible(true);
+        new OrdersFromSuppliers().setVisible(true);
         dispose();
 
     }//GEN-LAST:event_cancelMouseClicked

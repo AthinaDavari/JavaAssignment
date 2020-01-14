@@ -12,14 +12,14 @@ public interface PlainEntityI<T> extends DaoI<T>{
     /**
      * Delete with given id.
      * 
-     * @param id
+     * @param id A variable of type int.
      */
     void delete(int id);
     
     /**
      * Retrieve a specific item with given id.
      * 
-     * @param id
+     * @param id A variable of type int.
      * @return An object of type T.
      */
     T getById(int id);

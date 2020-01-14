@@ -56,7 +56,7 @@ public class ProductRawMaterialDao extends Dao implements CompositeEntityI<Produ
     /**
      * Get recipe of a specific product.
      *
-     * @param pid Product's id.
+     * @param pid A variable of type int.
      * @return A List of RawMaterials with their quantity.
      */
     public ArrayList<ProductRawMaterial> getMaterialsPerProduct(int pid) {

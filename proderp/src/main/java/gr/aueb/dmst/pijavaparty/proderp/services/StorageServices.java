@@ -212,6 +212,7 @@ public class StorageServices {
      *
      * @param corderid - An integer that defines the id of an order from
      * customers.
+     * @return a = true if quantities are available or false if they are not
      */
     public boolean permissionToDecreaseProduct(int corderid) {
         COrderItemDao coid = new COrderItemDao();
@@ -219,6 +220,7 @@ public class StorageServices {
         // corderitems - an arraylist that contains all the items in a specific 
         // order from customers.
         ProductDao pd = new ProductDao();
+        boolean a = true;
         for (COrderItem cOrderItem : corderitems) {
 
             Product productFromOrder = cOrderItem.getProduct();
@@ -226,10 +228,10 @@ public class StorageServices {
                 // Check if the quantity of a specific product in an order from customers 
                 // is more to the available quantity of this product in the storage.
                 // if yes stop, return false(there are not enough products in the storage.)
-                return false;
+                return !(a);
             }
         }
-        return true;
+        return a;
     }
 
 }

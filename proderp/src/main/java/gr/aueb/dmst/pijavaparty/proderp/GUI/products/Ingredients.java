@@ -37,7 +37,7 @@ public class Ingredients extends javax.swing.JFrame {
     } 
     
     /**
-     * Create form Ingredients
+     * Create new form Ingredients
      */
     public Ingredients() {
         initComponents();

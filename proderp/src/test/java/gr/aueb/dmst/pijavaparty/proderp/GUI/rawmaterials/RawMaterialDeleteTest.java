@@ -17,41 +17,49 @@ import org.junit.Test;
  * @author athina
  */
 public class RawMaterialDeleteTest {
-    
+
     /**
      *
      */
     public RawMaterialDeleteTest() {
     }
-    
+
     /**
-     *
+     * Set up test class
      */
     @BeforeClass
     public static void setUpClass() {
         runTestScript();
     }
-    
+
     @AfterClass
-    public static void tearDownClass(){
+    public static void tearDownClass() {
         Window w[] = Window.getWindows();
 
-        for (Window window : w){
+        for (Window window : w) {
             window.dispose();
         }
     }
+
     /**
+     * Test of deleteKeyPressed method, of class RawMaterialDelete.
      *
      * @throws AWTException
      */
     @Test
-    public void deleteActionPerformed() throws AWTException{
+    public void deleteActionPerformed() throws AWTException {
         new RawMaterialDelete().setVisible(true);
         Robot bot = new Robot();
-        bot.keyPress(KeyEvent.VK_6); 
-        try{Thread.sleep(500);}catch(InterruptedException e){}
-        bot.mouseMove(478,400);
-        try{Thread.sleep(500);}catch(InterruptedException e){}
+        bot.keyPress(KeyEvent.VK_6);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+        }
+        bot.mouseMove(478, 400);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+        }
         bot.keyPress(KeyEvent.VK_TAB);
         try {
             Thread.sleep(500);
@@ -63,13 +71,10 @@ public class RawMaterialDeleteTest {
             Thread.sleep(500);
         } catch (InterruptedException e) {
         }
-//        // first click
-//        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-//        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-//        // second click
-//        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-//        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        try{Thread.sleep(500);}catch(InterruptedException e){}
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+        }
         RawMaterialDao instance = new RawMaterialDao();
         assertEquals(false, instance.getAll().contains(instance.getById(6)));
     }

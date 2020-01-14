@@ -1,4 +1,3 @@
-
 package gr.aueb.dmst.pijavaparty.proderp.GUI;
 
 import static gr.aueb.dmst.pijavaparty.proderp.dao.TestUtilities.runTestScript;
@@ -22,59 +21,60 @@ import org.junit.runners.MethodSorters;
  *
  * @author athina
  */
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LogInTest {
-    
+
     /**
      *
      */
     public LogInTest() {
     }
-    
+
     /**
-     *
+     * Set up test class
      */
     @BeforeClass
     public static void setUpClass() {
         runTestScript();
     }
-    
+
     /**
-     *
+     * Tear down after each method
      */
     @After
     public void tearDown() {
 
         Window w[] = Window.getWindows();
 
-        for (Window window : w){
+        for (Window window : w) {
             window.dispose();
 //            window.setVisible(false);
         }
-        
+
     }
 
     /**
      * Test of main method, of class LogIn.
+     *
      * @throws java.awt.AWTException
      */
     @Test
     public void atestMain() throws AWTException {
-            System.out.println("main");
-            new LogIn().setVisible(true);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-            }
-            Window w[] = Window.getWindows();
-            assertEquals(1, w.length);
-            assertEquals("class gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn", w[0].getClass().toString());
-            assertEquals(true, w[0].isVisible());
+        System.out.println("main");
+        new LogIn().setVisible(true);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+        }
+        Window w[] = Window.getWindows();
+        assertEquals(1, w.length);
+        assertEquals("class gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn", w[0].getClass().toString());
+        assertEquals(true, w[0].isVisible());
     }
 
     /**
      * Test of logInKeyPressed method, of class LogIn.
+     *
      * @throws java.awt.AWTException
      */
     @Test
@@ -85,26 +85,28 @@ public class LogInTest {
         //close caps lock
         Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
         //make sure keyboard language is english
-        for (;;){
-        InputContext context = InputContext.getInstance();  
+        for (;;) {
+            InputContext context = InputContext.getInstance();
             System.err.println(context.getLocale().getLanguage());
-        if (context.getLocale().getLanguage().equals("en")){
+            if (context.getLocale().getLanguage().equals("en")) {
                 break;
-        }
-        String os = System.getProperty("os.name");
-        if(os.startsWith("Windows")){
-        //press ALT + SHIFT
-        bot.keyPress(KeyEvent.VK_SHIFT);
-        bot.keyPress(KeyEvent.VK_ALT);
-        bot.keyRelease(KeyEvent.VK_ALT);
-        bot.keyRelease(KeyEvent.VK_SHIFT);
-                }
+            }
+            String os = System.getProperty("os.name");
+            //change keyboard language on windows
+            if (os.startsWith("Windows")) {
+                //press ALT + SHIFT
+                bot.keyPress(KeyEvent.VK_SHIFT);
+                bot.keyPress(KeyEvent.VK_ALT);
+                bot.keyRelease(KeyEvent.VK_ALT);
+                bot.keyRelease(KeyEvent.VK_SHIFT);
+            }
         }
         li.setVisible(true);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
         }
+        //write ath in username jtextfield
         bot.keyPress(KeyEvent.VK_A);
         bot.keyPress(KeyEvent.VK_T);
         bot.keyPress(KeyEvent.VK_H);
@@ -112,11 +114,13 @@ public class LogInTest {
             Thread.sleep(500);
         } catch (InterruptedException e) {
         }
+        //go to password jtextfield
         bot.keyPress(KeyEvent.VK_TAB);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
         }
+        //write asdfg in password jtextfield
         bot.keyPress(KeyEvent.VK_A);
         bot.keyPress(KeyEvent.VK_S);
         bot.keyPress(KeyEvent.VK_D);
@@ -125,23 +129,22 @@ public class LogInTest {
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
-        } 
+        }
+        //go to logIn jbutton
         bot.keyPress(KeyEvent.VK_TAB);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
         }
+        //press logIn jbutton
         bot.keyPress(KeyEvent.VK_ENTER);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
         }
         Window w[] = Window.getWindows();
-        System.out.println("window");
-        for (Window window : w) {
-
-            System.out.println(window);
-        }
+        
+        //check windows in memory
         assertEquals(3, w.length);
         assertEquals("class gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn", w[0].getClass().toString());
         assertEquals(false, w[0].isVisible());

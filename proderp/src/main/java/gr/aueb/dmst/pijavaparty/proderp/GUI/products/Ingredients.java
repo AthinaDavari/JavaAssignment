@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Ingredients.java - A graphical user interface (gui) class responsible for 
+ * showing the ingredients of a product being manufactured by a company.
  * @author anna, aggel
  */
 public class Ingredients extends javax.swing.JFrame {
@@ -35,9 +36,6 @@ public class Ingredients extends javax.swing.JFrame {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     } 
 
-    /**
-     *
-     */
     public Ingredients() {
         initComponents();
         fillIngredientsTable();

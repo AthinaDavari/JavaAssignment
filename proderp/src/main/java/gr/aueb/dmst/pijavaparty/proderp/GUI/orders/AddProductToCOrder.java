@@ -53,8 +53,7 @@ public class AddProductToCOrder extends javax.swing.JFrame {
 
     /**
      *Method that sets the icon that is shown on the frame when the program is running.
-     */
-    
+     */   
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
@@ -310,7 +309,6 @@ public class AddProductToCOrder extends javax.swing.JFrame {
      * Fill product combobox with all products, which aren't
      * included in Customers' Order.
      */
-
     private void comboBox() {
         List<String> products = COrderServices.rawMaterialsNotIncludedInSuppliersOrder(COrderItemsList);
         // Get all products, which aren't included in order.

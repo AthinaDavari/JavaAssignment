@@ -170,14 +170,28 @@ public class CustomerMenu extends javax.swing.JFrame {
     private void insertCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertCustomerActionPerformed
         new InsertCustomer().setVisible(true);
     }//GEN-LAST:event_insertCustomerActionPerformed
-    
+    /**
+     * Close the CustomerMenu window - gui of CustomerMenu class, 
+     * and return back to the log in window - gui of LogIn class,
+     * by clicking on Log Out button on the menu bar.
+     * 
+     * @param evt - a reference to a MouseEvent object that is sent to
+     * the method by clicking the log out button.
+     */
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn login = new LogIn();
         LogIn.setUser(null);
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_logOutMouseClicked
-
+    /**
+     * Close the CustomerMenu window - gui of CustomerMenu class, 
+     * and return back to the main menu window - gui of Menu class,
+     * by clicking on back button on the menu bar.
+     * 
+     * @param evt - a reference to a MouseEvent object that is sent to the
+     * method by clicking the back button.
+     */
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         if ((LogIn.getUser().getRole()).equals("admin")) {
             AdminMenu menu = new AdminMenu();
@@ -188,7 +202,12 @@ public class CustomerMenu extends javax.swing.JFrame {
         }
         dispose();
     }//GEN-LAST:event_backMouseClicked
-
+    /** 
+     * Refresh the CustomerMenu window - gui of CustomerMenu class.
+     * 
+     * @param evt - a reference to an ActionEvent object that is sent 
+     * to the method by clicking on refresh button.
+     */
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         setVisible(false);
         try {

@@ -325,7 +325,13 @@ public class SupplierEdit extends javax.swing.JFrame {
         value_phonenumber.setText((model2.getValueAt(selectedRow, 3).toString()));
         value_email.setText((model2.getValueAt(selectedRow, 4).toString()));
     }//GEN-LAST:event_Suppliers_tableMouseClicked
-
+    /**
+     * Close the SupplierEdit to SuppliersMenu window by clicking on cancel button on
+     * the menu bar.
+     *
+     * @param evt - a reference to a MouseEvent object that is sent to
+     * the method by clicking on cancel button on the menu bar.
+     */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         dispose();
     }//GEN-LAST:event_cancelMouseClicked

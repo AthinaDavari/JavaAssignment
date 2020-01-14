@@ -52,12 +52,23 @@ public class RawMaterialDeleteTest {
         try{Thread.sleep(500);}catch(InterruptedException e){}
         bot.mouseMove(478,400);
         try{Thread.sleep(500);}catch(InterruptedException e){}
-        // first click
-        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        // second click
-        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        bot.keyPress(KeyEvent.VK_TAB);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+        }
+        bot.keyPress(KeyEvent.VK_ENTER);
+        bot.keyRelease(KeyEvent.VK_ENTER);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+        }
+//        // first click
+//        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+//        // second click
+//        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         try{Thread.sleep(500);}catch(InterruptedException e){}
         RawMaterialDao instance = new RawMaterialDao();
         assertEquals(false, instance.getAll().contains(instance.getById(6)));

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author aggel
+ * @author aggel, anna
  */
 public class SimpleMenu extends javax.swing.JFrame {
 

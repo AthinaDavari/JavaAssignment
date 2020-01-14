@@ -14,13 +14,14 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * RawMaterialInsert.java - A graphical user interface (gui) class responsible for 
+ * inserting a new raw material.
  * @author aggel
  */
 public class RawMaterialInsert extends javax.swing.JFrame {
 
     /**
-     *
+     * Creates new form RawMaterialInsert 
      */
     public RawMaterialInsert() {
         initComponents();
@@ -323,15 +324,12 @@ public class RawMaterialInsert extends javax.swing.JFrame {
             for (int i = 0; i < num; i++) {
 
                 drop_down.addItem(suppliers.get(i).getFullName());
-
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    
+       
     /**
      * Check if all jtextfields in window have valid values
      * 

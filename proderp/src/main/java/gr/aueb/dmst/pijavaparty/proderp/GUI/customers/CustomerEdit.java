@@ -351,7 +351,13 @@ public class CustomerEdit extends javax.swing.JFrame {
             valid_Email.setText(null);
         }
     }//GEN-LAST:event_value_emailKeyReleased
-
+    /**
+     * Close the CustomerEdit to CustomerMenu window by clicking on cancel button on
+     * the menu bar.
+     *
+     * @param evt - a reference to a MouseEvent object that is sent to
+     * the method by clicking on cancel button on the menu bar.
+     */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         dispose();
     }//GEN-LAST:event_cancelMouseClicked

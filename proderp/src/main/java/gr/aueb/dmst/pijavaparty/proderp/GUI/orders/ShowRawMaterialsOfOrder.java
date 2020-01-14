@@ -32,7 +32,7 @@ public class ShowRawMaterialsOfOrder extends javax.swing.JFrame {
      * ShowRawMaterialsOfOrder - a special construstor of this class with the selected 
      * order's id as a parametre.
      * 
-     * @param selectedOrder
+     * @param selectedOrder the number of the selected order
      */
     public ShowRawMaterialsOfOrder(int selectedOrder) {
         this.selectedOrder=selectedOrder;

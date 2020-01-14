@@ -18,8 +18,8 @@ public class User {
     /**
      * A Constructor with arguments.
      *
-     * @param fullName
-     * @param username
+     * @param fullName The fullname of the user
+     * @param username The username of the user
      * @param password A variable of type String.
      * @param role A variable of type Role.
      */
@@ -33,8 +33,8 @@ public class User {
     /**
      * A Constructor with arguments.
      *
-     * @param fullName
-     * @param username
+     * @param fullName The fullname of the user
+     * @param username The username of the user
      * @param password A variable of type String.
      * @param role A variable of type String.
      */
@@ -54,8 +54,8 @@ public class User {
     /**
      * A Constructor with arguments.
      *
-     * @param fullName
-     * @param username
+     * @param fullName The fullname of the user
+     * @param username The username of the user
      * @param role A variable of type Role.
      */
     public User(String fullName, String username, Role role) {
@@ -67,7 +67,7 @@ public class User {
     /**
      * A Constructor with arguments.
      *
-     * @param username
+     * @param username The username of the user
      * @param fullName A variable of type String.
      * @param role A variable of type String.
      */

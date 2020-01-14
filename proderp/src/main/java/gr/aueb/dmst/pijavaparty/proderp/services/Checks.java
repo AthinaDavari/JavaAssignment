@@ -35,7 +35,7 @@ public class Checks {
     }
     
     /**
-     * Get a List with insufficient RawMaterials (quantity < 20)
+     * Get a List with insufficient RawMaterials (quantity less than 20)
      * 
      * @return a List with RawMaterials
      */
@@ -49,7 +49,7 @@ public class Checks {
     } 
     
     /**
-     * Get a List with insufficient Products (quantity < 10)
+     * Get a List with insufficient Products (quantity less than 10)
      * 
      * @return a List with Products
      */

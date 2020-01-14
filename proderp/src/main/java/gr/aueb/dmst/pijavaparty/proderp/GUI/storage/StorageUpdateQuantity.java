@@ -30,8 +30,8 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
 
     /**
      *
-     * @param id
-     * @param prodorraw
+     * @param id The id of the product or the raw material
+     * @param prodorraw String to distinguish if its product or raw material
      */
     public StorageUpdateQuantity(int id, String prodorraw) {
         this.id=id;

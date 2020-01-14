@@ -5,7 +5,6 @@ import java.util.List;
 /**
  *
  * @author Natalia
- * @param <T>
  */
 public interface DaoI<T>{
 

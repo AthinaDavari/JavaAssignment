@@ -51,7 +51,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
 
     /**
      * 
-     * @return
+     * @return a user object or null
      */
     public static User getUser() {
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();

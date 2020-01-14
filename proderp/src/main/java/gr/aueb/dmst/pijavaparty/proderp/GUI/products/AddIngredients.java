@@ -36,8 +36,8 @@ public class AddIngredients extends javax.swing.JFrame {
     /**
      * Construcor if product doesnt exist
      *
-     * @param name
-     * @param price
+     * @param name The name of the new product
+     * @param price The price of the new product
      */
     public AddIngredients(String name, double price) {
         prod.setName(name);
@@ -52,7 +52,7 @@ public class AddIngredients extends javax.swing.JFrame {
     /**
      * Product exist
      *
-     * @param id
+     * @param id the id of the product
      */
     public AddIngredients(int id) {
         ProductDao proddao2 = new ProductDao();
@@ -66,8 +66,8 @@ public class AddIngredients extends javax.swing.JFrame {
     /**
      * Product doesnt exist but ingridients already have been chosen
      *
-     * @param prodraw
-     * @param obj5
+     * @param prodraw A list with all the products ant their materials
+     * @param obj5 A product object
      */
     public AddIngredients(List<ProductRawMaterial> prodraw, Product obj5) {
         this.prodraw = prodraw;

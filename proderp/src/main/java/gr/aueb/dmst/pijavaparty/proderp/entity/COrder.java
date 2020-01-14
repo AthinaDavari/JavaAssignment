@@ -37,10 +37,10 @@ public class COrder {
 
     /**
      * A constructor with arguments.
-     * @param status
-     * @param id
-     * @param customer
-     * @param created_at
+     * @param status the status of the order
+     * @param id the id of the order
+     * @param customer A customer object
+     * @param created_at The time that the order was created
      * @param user A variable of type User.
      */
     public COrder(int id, Customer customer, String status, Timestamp created_at, User user) {

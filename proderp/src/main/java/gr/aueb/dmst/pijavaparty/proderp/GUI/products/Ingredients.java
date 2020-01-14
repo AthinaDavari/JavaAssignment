@@ -19,7 +19,7 @@ public class Ingredients extends javax.swing.JFrame {
 
     /**
      *
-     * @param id
+     * @param id The id of the product that it's ingredients are going to appear on the ingredient table
      */
     public Ingredients(int id) {
         this.id=id;

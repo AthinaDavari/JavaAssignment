@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  * supplier.
  *
  * @author Natalia
- * @see Supplier, RawMaterialDao
  */
 public class SupplierDao extends Dao implements PlainEntityI<Supplier> {
 

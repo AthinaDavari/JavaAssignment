@@ -26,7 +26,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
 
     /**
      *
-     * @param id
+     * @param id The id of the ingredient that the user wants to delete
      */
     public DeleteIngredients(int id) {
         this.id=id;

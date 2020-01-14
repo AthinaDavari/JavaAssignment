@@ -18,7 +18,6 @@ import java.util.logging.Logger;
  * supplier's order.
  *
  * @author athina
- * @see SOrder, SOrderItem
  */
 public class SOrderDao extends Dao implements PlainEntityI<SOrder> {
 

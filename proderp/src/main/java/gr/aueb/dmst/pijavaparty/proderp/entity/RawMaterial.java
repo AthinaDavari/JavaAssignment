@@ -25,10 +25,10 @@ public class RawMaterial {
     /**
      * A constructor with arguments.
      *
-     * @param name
-     * @param quantity
-     * @param price
-     * @param supplier
+     * @param name The name of the raw material
+     * @param quantity The available amount of the raw material
+     * @param price The price of the raw material
+     * @param supplier The supplier that sells with the raw material
      */
     public RawMaterial(String name, int quantity, double price, Supplier supplier) {
         this.name = name;
@@ -40,10 +40,10 @@ public class RawMaterial {
     /**
      * A constructor with arguments.
      *
-     * @param id
-     * @param name
-     * @param price
-     * @param supplier
+     * @param id The id of the raw material
+     * @param name The name of the raw material
+     * @param price The price of the raw material
+     * @param supplier The supplier that sells with the raw material
      */
     public RawMaterial(int id, String name, double price, Supplier supplier) {
         this.id = id;
@@ -55,11 +55,11 @@ public class RawMaterial {
     /**
      * A constructor with arguments.
      *
-     * @param id
-     * @param name
-     * @param quantity
-     * @param price
-     * @param supplier
+     * @param id The id of the raw material
+     * @param name The name of the raw material
+     * @param quantity The available amount of the raw material
+     * @param price The price of the raw material
+     * @param supplier The supplier that sells with the raw material
      */
     public RawMaterial(int id, String name, int quantity, double price, Supplier supplier) {
         this.id = id;

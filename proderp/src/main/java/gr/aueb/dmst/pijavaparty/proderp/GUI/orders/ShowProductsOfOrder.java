@@ -33,7 +33,7 @@ public class ShowProductsOfOrder extends javax.swing.JFrame {
      * ShowProductsOfOrder - a special construstor of this class with the selected 
      * order's id as a parametre.
      * 
-     * @param selectedOrder
+     * @param selectedOrder the number of the selected order
      */
     public ShowProductsOfOrder(int selectedOrder) {
         this.selectedOrder=selectedOrder;

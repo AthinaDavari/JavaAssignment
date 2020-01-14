@@ -10,16 +10,17 @@ public class ValidVariables {
 
     /**
      *
-     * @param str
-     * @return
+     * @param str A string to check its spelling
+     * @return a taht is true or false
      */
     public static boolean isStringOnlyAlphabetAndWhiteSpaces(String str) {
         String pattern = "^[a-zA-Z]+((\\s[a-zA-Z]+))*$";
         String regex = "^[A-Za-z\\s]{4,}$";
+        boolean a = true;
         if (Pattern.matches(pattern, str) && Pattern.matches(regex, str)) {
-            return true;
+            return a;
         } else {
-            return false;
+            return !(a);
         }
     }
 
@@ -43,8 +44,8 @@ public class ValidVariables {
 
     /**
      *
-     * @param input 
-     * @return
+     * @param input Astring to check its spelling
+     * @return true or false
      */
     public static boolean isStringOnlyAlphabetAndNumbers(String input) {
         String pattern = "^[a-zA-Z][a-zA-Z0-9]{2,}$";
@@ -159,8 +160,8 @@ public class ValidVariables {
 
     /**
      *
-     * @param input
-     * @return
+     * @param input A string to check its spelling
+     * @return true or false 
      */
     public static boolean isStringOnlyAlphabetAndNumbersAndWhiteSpaces(String input) {
         String pattern = "^[a-zA-Z]+((\\s[a-zA-Z0-9]+))*$";

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class RawMaterialDelete extends javax.swing.JFrame {
 
     /**
-     *
+     * Create new form RawMaterialDelete
      */
     public RawMaterialDelete() {
         initComponents();

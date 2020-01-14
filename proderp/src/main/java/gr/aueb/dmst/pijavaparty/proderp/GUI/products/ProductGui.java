@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ProductGui extends javax.swing.JFrame {
 
     /**
-     *
+     * Create new form ProductGui
      */
     public ProductGui() {
         initComponents();

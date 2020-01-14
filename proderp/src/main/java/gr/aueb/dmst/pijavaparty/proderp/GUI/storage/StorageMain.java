@@ -21,7 +21,7 @@ public class StorageMain extends javax.swing.JFrame {
     private String prodorraw;
 
     /**
-     *
+     * Create new form StorageMain
      */
     public StorageMain() {
         initComponents();
@@ -73,11 +73,6 @@ public class StorageMain extends javax.swing.JFrame {
         jScrollPane3.setViewportView(Storage_Table);
 
         product_id.setEditable(false);
-        product_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                product_idActionPerformed(evt);
-            }
-        });
 
         updateQuantity.setText("Update Quantity");
         updateQuantity.addActionListener(new java.awt.event.ActionListener() {
@@ -278,10 +273,6 @@ public class StorageMain extends javax.swing.JFrame {
         }
         dispose();       
     }//GEN-LAST:event_backMouseClicked
-
-    private void product_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_product_idActionPerformed
-
-    }//GEN-LAST:event_product_idActionPerformed
 
     /**
      * @param args the command line arguments

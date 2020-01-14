@@ -15,7 +15,7 @@ public class DeleteIngredients extends javax.swing.JFrame {
     private int id;
 
     /**
-     *
+     * Create new form DeleteIngredients
      */
     public DeleteIngredients() {
         initComponents();

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class AddProducts extends javax.swing.JFrame {
 
     /**
-     *
+     * Create new form AddProducts
      */
     public AddProducts() {
         initComponents();

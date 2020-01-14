@@ -18,7 +18,7 @@ public class StorageUpdateQuantity extends javax.swing.JFrame {
     private String prodorraw;
 
     /**
-     *
+     * Create new form StorageUpdateQuantity
      */
     public StorageUpdateQuantity() {
         initComponents();

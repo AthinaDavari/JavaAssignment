@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class RawMaterialInsert extends javax.swing.JFrame {
 
     /**
-     *
+     * Creates new form RawMaterialInsert 
      */
     public RawMaterialInsert() {
         initComponents();
@@ -323,15 +323,12 @@ public class RawMaterialInsert extends javax.swing.JFrame {
             for (int i = 0; i < num; i++) {
 
                 drop_down.addItem(suppliers.get(i).getFullName());
-
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    
+       
     /**
      * Check if all jtextfields in window have valid values
      * 

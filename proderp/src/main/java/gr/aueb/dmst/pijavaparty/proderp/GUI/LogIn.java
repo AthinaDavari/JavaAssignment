@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class LogIn extends javax.swing.JFrame implements Runnable {
 
     /**
-     *
+     * Create a User object 
      */
     private static User user;
 
@@ -38,6 +38,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
     }
 
     /**
+     * 
      * @param u user 
      */
     public static void setUser(User u) {
@@ -50,7 +51,7 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
 
     /**
      * 
-     * @return 
+     * @return
      */
     public static User getUser() {
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
@@ -92,18 +93,6 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password:");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
 
         logIn.setText("Log In");
         logIn.addActionListener(new java.awt.event.ActionListener() {
@@ -175,14 +164,6 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
-
     /**
      * Takes content from textfields and checks whether it is admin, a simple user or null.
      * Based on the result it opens the corresponding window menu or shows error message.
@@ -214,7 +195,11 @@ public class LogIn extends javax.swing.JFrame implements Runnable {
             JOptionPane.showMessageDialog(rootPane, "Username or Password is Incorrect!");
         }
     }//GEN-LAST:event_logInActionPerformed
-
+    /**
+     * 
+     * @param evt is a reference to an KeyEvent object that is sent to the
+     * method by clicking the save button.
+     */
     private void logInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logInKeyPressed
         if (evt.getKeyCode() == evt.VK_ENTER) {
             logIn.doClick();

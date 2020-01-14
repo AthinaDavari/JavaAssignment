@@ -113,7 +113,8 @@ public class DeleteUser extends javax.swing.JFrame {
 
     /**
      * Closes window and returns to AdminMenu window.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the Cancel button.
      */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         AdminMenu obj = new AdminMenu();
@@ -123,7 +124,8 @@ public class DeleteUser extends javax.swing.JFrame {
 
     /**
      * Checks if user is not admin and deletes him.
-     * @param evt
+     * @param evt is a reference to an ActionEvent object that is sent to the
+     * method by clicking the Delete button.
      */
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
             String u = username.getSelectedItem().toString();

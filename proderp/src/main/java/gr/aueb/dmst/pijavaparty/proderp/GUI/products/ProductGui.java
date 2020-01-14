@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * ProductGui.java - A graphical user interface (gui) class responsible for 
+ * showing all the product being made by the company and also their information.
  * @author anna, aggel
  */
 public class ProductGui extends javax.swing.JFrame {

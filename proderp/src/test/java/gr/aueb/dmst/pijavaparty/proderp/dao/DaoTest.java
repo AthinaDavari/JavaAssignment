@@ -27,7 +27,7 @@ public class DaoTest {
     
     @BeforeClass
     public static void setUpClass() throws SQLException {
-        conn = DriverManager.getConnection(url, "root", "12345");
+        conn = DriverManager.getConnection(url, "root", "CUjpQbA^64");
         TestUtilities.runTestScript();
     }
     
@@ -44,7 +44,7 @@ public class DaoTest {
     public void testGetConnection() throws SQLException {
         System.out.println("getConnection");
         Dao instance = new Dao();
-        Connection expResult = DriverManager.getConnection(url, "root", "12345");
+        Connection expResult = DriverManager.getConnection(url, "root", "CUjpQbA^64");
         Connection result = instance.getConnection();
         assertEquals(expResult.getSchema(), result.getSchema());
         assertEquals(expResult.getClientInfo(), result.getClientInfo());

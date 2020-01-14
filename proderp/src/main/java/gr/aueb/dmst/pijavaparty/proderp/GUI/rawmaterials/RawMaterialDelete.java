@@ -7,7 +7,8 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * RawMaterialDelete.java - A graphical user interface (gui) class responsible for 
+ * deleting already existing raw materials.
  * @author aggel
  */
 public class RawMaterialDelete extends javax.swing.JFrame {
@@ -146,7 +147,17 @@ public class RawMaterialDelete extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_deleteActionPerformed
-
+    /**
+     * Method that enables the the butto login to be pressed when the enter key is pressed.
+     *
+     * @param evt is a reference to a KeyEvent object that is sent to the
+     * method by pressing the enter button.
+     */   
+    private void logInKeyPressed(java.awt.event.KeyEvent evt) {                                 
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            delete.doClick();
+        }
+    }    
     /**
      * @param args the command line arguments
      */

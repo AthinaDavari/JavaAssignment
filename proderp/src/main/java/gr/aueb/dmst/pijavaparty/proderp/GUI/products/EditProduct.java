@@ -9,7 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * EditProduct.java - A graphical user interface (gui) class responsible for 
+ * editing the information of an already existing product.
  * @author anna, aggel
  */
 public class EditProduct extends javax.swing.JFrame {

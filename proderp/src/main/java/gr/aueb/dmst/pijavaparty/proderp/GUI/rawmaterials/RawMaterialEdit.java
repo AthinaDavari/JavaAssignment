@@ -12,7 +12,8 @@ import javax.swing.table.DefaultTableModel;
 
 
 /**
- *
+ * RawMaterialEdit.java - A graphical user interface (gui) class responsible for 
+ * editing already existing raw materials.
  * @author aggel
  */
 public class RawMaterialEdit extends javax.swing.JFrame {

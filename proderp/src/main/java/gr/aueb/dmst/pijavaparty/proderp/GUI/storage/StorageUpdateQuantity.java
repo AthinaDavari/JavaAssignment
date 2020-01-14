@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * StorageUpdateQuantity.java - A graphical user interface (gui) class responsible for 
+ * updating the quantity of a product or a raw material in the srorage. - Type the amount you want to update and then 
+ * press update.
  * @author aggel
  */
 public class StorageUpdateQuantity extends javax.swing.JFrame {

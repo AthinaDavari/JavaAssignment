@@ -97,7 +97,7 @@ public class LogInTest {
         bot.keyPress(KeyEvent.VK_ALT);
         bot.keyRelease(KeyEvent.VK_ALT);
         bot.keyRelease(KeyEvent.VK_SHIFT);
-        bot.keyPress(KeyEvent.VK_ENTER);
+//        bot.keyPress(KeyEvent.VK_ENTER);
                 }
         try {
             Thread.sleep(500);

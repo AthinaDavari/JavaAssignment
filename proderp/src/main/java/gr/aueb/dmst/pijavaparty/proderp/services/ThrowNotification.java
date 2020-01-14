@@ -48,7 +48,7 @@ public class ThrowNotification implements Runnable {
             showOptionPane();
             }
             try {
-                Thread.sleep(100000);
+                Thread.sleep(240000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
             }

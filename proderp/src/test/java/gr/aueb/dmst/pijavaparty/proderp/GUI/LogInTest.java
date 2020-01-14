@@ -98,10 +98,9 @@ public class LogInTest {
         bot.keyPress(KeyEvent.VK_ALT);
         bot.keyRelease(KeyEvent.VK_ALT);
         bot.keyRelease(KeyEvent.VK_SHIFT);
-        li.setVisible(true);
-
                 }
         }
+        li.setVisible(true);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {

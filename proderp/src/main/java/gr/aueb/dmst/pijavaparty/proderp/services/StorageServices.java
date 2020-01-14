@@ -131,7 +131,7 @@ public class StorageServices {
      *
      * @param q-the quantity of product we want to make(with +) or destroy(with
      * -)
-     * @return
+     * @return q returns an integer function
      */
     public Function<Integer, Integer> updateQuantityOfRawMaterialBy(int q) {
         return x -> -q * x;

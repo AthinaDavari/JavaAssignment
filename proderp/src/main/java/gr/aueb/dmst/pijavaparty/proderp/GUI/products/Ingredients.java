@@ -19,7 +19,7 @@ public class Ingredients extends javax.swing.JFrame {
 
     /**
      *
-     * @param id
+     * @param id 
      */
     public Ingredients(int id) {
         this.id=id;
@@ -35,7 +35,10 @@ public class Ingredients extends javax.swing.JFrame {
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     } 
-
+    
+    /**
+     * Create form Ingredients
+     */
     public Ingredients() {
         initComponents();
         fillIngredientsTable();

@@ -77,7 +77,9 @@ public class AddIngredients extends javax.swing.JFrame {
         fillcombo();
         seticon();
     }
-
+    /**
+     * Create a new form AddIngredients
+     */
     public AddIngredients() {
         initComponents();
         fillcombo();

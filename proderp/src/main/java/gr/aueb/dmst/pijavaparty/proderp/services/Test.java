@@ -17,9 +17,10 @@ public class Test {
 
     static void printHello() {
         System.out.println("Hello World!");
-//        printHelloFromTheOtherSide();
     }
-
+    /**
+     * Print "hello from the other side"
+     */   
     public static void printHelloFromTheOtherSide() {
         System.out.println("Hello From The Other Side!");
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();

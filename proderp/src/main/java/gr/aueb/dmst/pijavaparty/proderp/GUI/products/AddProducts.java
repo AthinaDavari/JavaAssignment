@@ -6,7 +6,8 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * AddProducts.java - A graphical user interface (gui) class responsible for 
+ * adding a new product along with its information. - Type name and price and press add.
  * @author anna, aggel
  */
 public class AddProducts extends javax.swing.JFrame {

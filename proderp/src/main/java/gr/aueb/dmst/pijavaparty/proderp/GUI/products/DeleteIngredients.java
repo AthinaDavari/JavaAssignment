@@ -8,7 +8,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * DeleteIngredients.java - A graphical user interface (gui) class responsible for 
+ * deleting already existing ingrediant in a single's product recipe.
  * @author aggel
  */
 public class DeleteIngredients extends javax.swing.JFrame {

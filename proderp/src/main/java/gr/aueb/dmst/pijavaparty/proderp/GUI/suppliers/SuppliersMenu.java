@@ -28,7 +28,7 @@ public class SuppliersMenu extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * Import an image from the sources
      */
     private void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));

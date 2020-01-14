@@ -29,7 +29,7 @@ public class SupplierInsert extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * Import an image from the sources
      */
     public void seticon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
@@ -270,7 +270,6 @@ public class SupplierInsert extends javax.swing.JFrame {
     }//GEN-LAST:event_value_EmailKeyReleased
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
 

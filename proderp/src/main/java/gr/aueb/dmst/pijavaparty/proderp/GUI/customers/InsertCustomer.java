@@ -211,7 +211,7 @@ public class InsertCustomer extends javax.swing.JFrame {
      * method by clicking the save button.
      */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        
+
         //Check if all jtextfields in window have valid values
         if (!checkAllConstraints()) {
                 JOptionPane.showMessageDialog(null, "Incorrect validations! Please try again!");
@@ -229,7 +229,7 @@ public class InsertCustomer extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "Saved");
                 dispose();
-             
+
     }//GEN-LAST:event_saveActionPerformed
     /**
      * Check if the name input is valid and if it is invalid show a warning
@@ -275,11 +275,14 @@ public class InsertCustomer extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_value_EmailKeyReleased
 
-    private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
 
-        dispose();
-    }//GEN-LAST:event_BackMouseClicked
-
+    /**
+     * Close the InsertCustomer to CustomerMenu window by clicking on cancel button on
+     * the menu bar.
+     *
+     * @param evt - a reference to a MouseEvent object that is sent to
+     * the method by clicking on cancel button on the menu bar.
+     */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         dispose();
     }//GEN-LAST:event_cancelMouseClicked
@@ -301,7 +304,7 @@ public class InsertCustomer extends javax.swing.JFrame {
 
     /**
      * Check if all jtextfields in window have valid values
-     * 
+     *
      * @return true-if all jtextfields have valid values,
      * false-if at least a jtextfield has invalid value
      */
@@ -321,7 +324,7 @@ public class InsertCustomer extends javax.swing.JFrame {
         return true;
     }
 
-    
+
     /**
      * @param args the command line arguments
      */
@@ -329,7 +332,7 @@ public class InsertCustomer extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

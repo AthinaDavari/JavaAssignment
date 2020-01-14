@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * RawMaterialInsert.java - A graphical user interface (gui) class responsible for 
+ * inserting a new raw material.
  * @author aggel
  */
 public class RawMaterialInsert extends javax.swing.JFrame {

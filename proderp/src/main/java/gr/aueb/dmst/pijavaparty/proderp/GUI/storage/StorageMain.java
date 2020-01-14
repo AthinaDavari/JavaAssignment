@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * StorageMain.java - A graphical user interface (gui) class responsible for 
+ * showing the quantities of the products and the raw materials.
  * @author aggel
  */
 public class StorageMain extends javax.swing.JFrame {

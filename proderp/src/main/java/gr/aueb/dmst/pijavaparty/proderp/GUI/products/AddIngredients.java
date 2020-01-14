@@ -14,7 +14,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * AddIngredients.java - A graphical user interface (gui) class responsible for 
+ * adding ingredients in a recipe of an already existing product. - Choose a raw material and then press 
+ * add more if you want more added or save to finish adding new raw materials in the recipe.
  * @author aggel
  */
 public class AddIngredients extends javax.swing.JFrame {

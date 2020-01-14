@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * RawMaterialMenu.java - A graphical user interface (gui) class responsible for 
+ * showing all information of the raw materials.
  * @author aggel
  */
 public class RawMaterialMenu extends javax.swing.JFrame {

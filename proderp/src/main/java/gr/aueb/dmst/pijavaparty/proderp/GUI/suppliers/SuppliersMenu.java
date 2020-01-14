@@ -162,14 +162,28 @@ public class SuppliersMenu extends javax.swing.JFrame {
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
         new SupplierInsert().setVisible(true);
     }//GEN-LAST:event_insertActionPerformed
-
+    /**
+     * Close the  SuppliersMenu window - gui of SuppliersMenu class, 
+     * and return back to the log in window - gui of LogIn class,
+     * by clicking on Log Out button on the menu bar.
+     * 
+     * @param evt - a reference to a MouseEvent object that is sent to
+     * the method by clicking the log out button.
+     */
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         LogIn login = new LogIn();
         LogIn.setUser(null);
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_logOutMouseClicked
-
+    /**
+     * Close the SuppliersMenu window - gui of SuppliersMenu class, 
+     * and return back to the main menu window - gui of Menu class,
+     * by clicking on back button on the menu bar.
+     * 
+     * @param evt - a reference to a MouseEvent object that is sent to the
+     * method by clicking the back button.
+     */
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         if ((LogIn.getUser().getRole()).equals("admin")) {
             AdminMenu menu = new AdminMenu();
@@ -180,7 +194,12 @@ public class SuppliersMenu extends javax.swing.JFrame {
         }
         dispose();
     }//GEN-LAST:event_backMouseClicked
-
+    /** 
+     * Refresh the SuppliersMenu window - gui of SuppliersMenu class.
+     * 
+     * @param evt - a reference to an ActionEvent object that is sent 
+     * to the method by clicking on refresh button.
+     */
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         setVisible(false);
         try {

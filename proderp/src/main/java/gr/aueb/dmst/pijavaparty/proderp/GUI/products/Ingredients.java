@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Ingredients.java - A graphical user interface (gui) class responsible for 
+ * Ingredients.java - A graphical user interface (gui) class responsible for
  * showing the ingredients of a product being manufactured by a company.
  * @author anna, aggel
  */
@@ -30,14 +30,14 @@ public class Ingredients extends javax.swing.JFrame {
     }
 
     /**
-     * Set the icon that is shown on the frame. 
+     * Set the icon that is shown on the frame.
      */
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
-    } 
+    }
+
     /**
-     *
-     * Empty Constructor if needed
+     * Create new form Ingredients
      */
     public Ingredients() {
         initComponents();
@@ -147,7 +147,7 @@ public class Ingredients extends javax.swing.JFrame {
      *
      * @param evt is a reference to a ActionEvent object that is sent to the
      * method by clicking the delete button.
-     */      
+     */
     private void deleteIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteIngredientActionPerformed
         new DeleteIngredients(id).setVisible(true);
         dispose();
@@ -159,7 +159,7 @@ public class Ingredients extends javax.swing.JFrame {
      *
      * @param evt is a reference to a ActionEvent object that is sent to the
      * method by clicking the add button.
-     */    
+     */
     private void addIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addIngredientActionPerformed
         new AddIngredients(id).setVisible(true);
         dispose();
@@ -170,7 +170,7 @@ public class Ingredients extends javax.swing.JFrame {
      *
      * @param evt is a reference to a MouseEvent object that is sent to the
      * method by clicking the cancel button.
-     */     
+     */
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         ProductGui menu = new ProductGui();
         menu.setVisible(true);
@@ -184,12 +184,12 @@ public class Ingredients extends javax.swing.JFrame {
         ProductRawMaterialDao prodrawdao=new ProductRawMaterialDao();
         RawMaterialDao rawdao=new RawMaterialDao();
         DefaultTableModel model=(DefaultTableModel) Ingredients_Table.getModel();
-        
+
         //Take all product's ingredients from database
         ArrayList<ProductRawMaterial> rawmatperproduct = prodrawdao.getMaterialsPerProduct(id);
         int number=rawmatperproduct.size();//number of product's ingredients in database
         int numofraw = rawdao.getAll().size();//number of raw materials in database
-        
+
         Object[] row=new Object[3];
         int i = 0;//for's counter
         //fill table
@@ -199,28 +199,28 @@ public class Ingredients extends javax.swing.JFrame {
                 row[2]=rawmatperproduct.get(i).getQuantityOfRawMaterial();
                 model.addRow(row);
         }//end for
-        
+
         /*
-        *Disable AddIngredient button 
+        *Disable AddIngredient button
         *if product has as many ingredients as the number of raw materials in database
         */
         if (i == numofraw) {
             disablebuttonAdd();
         }//end if
-        
+
         //Disable DeleteIngredient button if product has no ingredients
         if (i == 0) {
             disablebuttonDelete();
         }//end if
     }
-    
+
       /**
       * Disable AddIngredient button
       */
         private void disablebuttonAdd() {
         addIngredient.setEnabled(false);
     }
-        
+
       /**
       * Disable DeleteIngredient button
       */
@@ -234,7 +234,7 @@ public class Ingredients extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

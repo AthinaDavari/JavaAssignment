@@ -32,7 +32,7 @@ public class AddIngredients extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     }
 
-
+    //multiple constructors 
     /**
      * Construcor if product doesnt exist
      *
@@ -78,7 +78,7 @@ public class AddIngredients extends javax.swing.JFrame {
         seticon();
     }
     /**
-     * Empty constructor if needed.
+     * Create a new form AddIngredients
      */
     public AddIngredients() {
         initComponents();
@@ -214,7 +214,13 @@ public class AddIngredients extends javax.swing.JFrame {
                 String value_name = drop_down.getSelectedItem().toString();
                 String stringnamearray[];
                 stringnamearray = value_name.split(" - ");
-                selected = Integer.parseInt(stringnamearray[1]);
+//                String stringname = "";
+//                StringBuilder sb = new StringBuilder();
+//                for (String stringnamearray1 : stringnamearray) {
+//                    sb.append(stringnamearray1);
+//                }
+//                stringname = sb.toString();
+                selected = Integer.parseInt(stringnamearray[1]);//Integer.parseInt(stringname);
                 int quant = Integer.parseInt(value_quantity.getText());
                 RawMaterialDao rawdao = new RawMaterialDao();
                 List<RawMaterial> rawmaterial;

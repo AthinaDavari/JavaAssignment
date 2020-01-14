@@ -9,18 +9,19 @@ import java.util.regex.Pattern;
 public class ValidVariables {
 
     /**
-     *
+     * Check if a string contains only letters and white spaces.
+     * 
      * @param str A string to check its spelling
-     * @return a taht is true or false
+     * @return true-string contains only letters and white spaces, 
+     * false-tring doesn't contain only letters and white spaces
      */
     public static boolean isStringOnlyAlphabetAndWhiteSpaces(String str) {
         String pattern = "^[a-zA-Z]+((\\s[a-zA-Z]+))*$";
         String regex = "^[A-Za-z\\s]{4,}$";
-        boolean a = true;
         if (Pattern.matches(pattern, str) && Pattern.matches(regex, str)) {
-            return a;
+            return true;
         } else {
-            return !(a);
+            return false;
         }
     }
 
@@ -43,9 +44,11 @@ public class ValidVariables {
     }
 
     /**
-     *
-     * @param input Astring to check its spelling
-     * @return true or false
+     * Check if a string contains only letters and numbers.
+     * 
+     * @param str A string to check its spelling
+     * @return true-string contains only letters and numbers, 
+     * false-tring doesn't contain only letters and numbers.
      */
     public static boolean isStringOnlyAlphabetAndNumbers(String input) {
         String pattern = "^[a-zA-Z][a-zA-Z0-9]{2,}$";
@@ -159,9 +162,11 @@ public class ValidVariables {
     }
 
     /**
-     *
-     * @param input A string to check its spelling
-     * @return true or false 
+     * Check if a string contains only letters and numbers and white spaces.
+     * 
+     * @param str A string to check its spelling
+     * @return true-string contains only letters and numbers and white spaces, 
+     * false-tring doesn't contain only letters and numbers and white spaces
      */
     public static boolean isStringOnlyAlphabetAndNumbersAndWhiteSpaces(String input) {
         String pattern = "^[a-zA-Z]+((\\s[a-zA-Z0-9]+))*$";

@@ -9,8 +9,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
- * @author anna This class allows the administrator to add a new user by
+ * This class allows the administrator to add a new user by
  * entering user's full name, username, password and role.
+ * @author anna
  */
 public class AddUser extends javax.swing.JFrame {
 

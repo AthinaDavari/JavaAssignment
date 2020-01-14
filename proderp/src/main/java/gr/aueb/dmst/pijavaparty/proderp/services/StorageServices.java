@@ -128,7 +128,8 @@ public class StorageServices {
     }
 
     /**
-     *
+     * Create a function and when you apply a rawmaterials' quantity in the function
+     * it returns how much the quantity of the rawmaterial must change in storage.
      * @param q-the quantity of product we want to make(with +) or destroy(with
      * -)
      * @return q returns an integer function

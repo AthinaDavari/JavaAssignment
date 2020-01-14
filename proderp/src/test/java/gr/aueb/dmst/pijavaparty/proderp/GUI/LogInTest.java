@@ -8,8 +8,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
-import java.awt.im.InputContext;
-import java.util.Locale;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
@@ -85,23 +83,6 @@ public class LogInTest {
         Robot bot = new Robot();
         //close caps lock
         Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
-        //make sure keyboard language is english
-        for (;;) {
-            InputContext context = InputContext.getInstance();
-            System.err.println(context.getLocale().getLanguage());
-            if (context.getLocale().getLanguage().equals("en")) {
-                break;
-            }
-            String os = System.getProperty("os.name");
-            //change keyboard language on windows
-            if (os.startsWith("Windows")) {
-                //press ALT + SHIFT
-                bot.keyPress(KeyEvent.VK_SHIFT);
-                bot.keyPress(KeyEvent.VK_ALT);
-                bot.keyRelease(KeyEvent.VK_ALT);
-                bot.keyRelease(KeyEvent.VK_SHIFT);
-            }
-        }
         li.setVisible(true);
         try {
             Thread.sleep(500);

@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * Test class for RawMaterialDelete class
  * @author athina
  */
 public class RawMaterialDeleteTest {
@@ -32,6 +32,9 @@ public class RawMaterialDeleteTest {
         runTestScript();
     }
 
+    /**
+     * Tear down after test class
+     */
     @AfterClass
     public static void tearDownClass() {
         Window w[] = Window.getWindows();
@@ -47,7 +50,7 @@ public class RawMaterialDeleteTest {
      * @throws AWTException
      */
     @Test
-    public void deleteActionPerformed() throws AWTException {
+    public void testDeleteKeyPressed() throws AWTException {
         new RawMaterialDelete().setVisible(true);
         Robot bot = new Robot();
         bot.keyPress(KeyEvent.VK_6);

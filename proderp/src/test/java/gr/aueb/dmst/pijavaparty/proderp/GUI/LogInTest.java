@@ -66,6 +66,7 @@ public class LogInTest {
             Thread.sleep(500);
         } catch (InterruptedException e) {
         }
+        //check windows in memory
         Window w[] = Window.getWindows();
         assertEquals(1, w.length);
         assertEquals("class gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn", w[0].getClass().toString());

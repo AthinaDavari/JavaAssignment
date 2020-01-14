@@ -35,7 +35,10 @@ public class Ingredients extends javax.swing.JFrame {
     public void seticon() {
 	setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logo.jpg")));
     } 
-
+    /**
+     *
+     * Empty Constructor if needed
+     */
     public Ingredients() {
         initComponents();
         fillIngredientsTable();

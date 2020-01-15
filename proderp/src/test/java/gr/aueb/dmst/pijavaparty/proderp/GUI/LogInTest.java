@@ -120,6 +120,7 @@ public class LogInTest {
         }
         //press logIn jbutton
         bot.keyPress(KeyEvent.VK_ENTER);
+        bot.keyRelease(KeyEvent.VK_ENTER);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {

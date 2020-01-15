@@ -42,6 +42,8 @@ To run tests use
 ```bash
 mvn test
 ```
+Warning!! Before run the test make sure that keyboard's language is english. Don't use the keyboard and mouse when the tests are running.
+
 ## Authors
 | Full Name | Github Account | Mail |
 | --- | --- | --- |

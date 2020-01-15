@@ -6,8 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ProdErp | Help</title>
+    <style>
+        article {
+            margin-top: 50px;
+            margin-bottom: 140px;
+        }
 
-    <link rel="stylesheet" href="style.css" />
+        .custom-image {
+            height: 60%;
+            width: 60%;
+            padding: 2%;
+            border: 2px solid #ee6969;
+            border-radius: 25px;
+            margin: 10px;
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -20,8 +35,8 @@
 
             <p>To start ProdErp program type your username and password according with your role and press login. <br />
                 If you are admin the Administrator's Menu window will open or else the Simple User Menu window.</p>
-                <img class="custom-image" src="images/LogIn.png" alt="LogIn"/>
-            </div>
+            <img class="custom-image" src="proderpsite/images/LogIn.png" alt="LogIn" />
+        </div>
         <div>
             <h4>Administrator's Menu</h4>
             <ul>
@@ -32,7 +47,7 @@
                     the
                     according button below or press the refresh icon to refresh the customer's list.<br />
 
-                    <img class="custom-image" src="images/Customers.png" alt="Customers"/><br/>
+                    <img class="custom-image" src="proderpsite/images/Customers.png" alt="Customers" /><br />
 
                     To update customer data choose a customer from the list on the right and change the information.
                     Then
@@ -56,7 +71,7 @@
                     pressing
                     the
                     according button below or press the refresh icon to refresh the supplier's list.<br />
-                    <img class="custom-image" src="images/Suppliers.png" alt="Suppliers"/><br/>
+                    <img class="custom-image" src="proderpsite/images/Suppliers.png" alt="Suppliers" /><br />
 
                     To update supplier data choose a supplier from the list on the right and change the information.
                     Then press update.<br />
@@ -80,7 +95,7 @@
                     the
                     according button below or press the refresh icon to refresh the product's list. You can also see the
                     ingredients of each product and add or delete an ingredient.<br />
-                    <img class="custom-image" src="images/Products.png" alt="Products"/><br/>
+                    <img class="custom-image" src="proderpsite/images/Products.png" alt="Products" /><br />
 
 
                     To update product data choose a product from the list on the right and change the information. Then
@@ -121,7 +136,7 @@
                     by
                     pressing the according button below or press the refresh icon to refresh the raw material's
                     list.<br />
-                    <img class="custom-image" src="images/RawMaterials.png" alt="RawMaterials"/><br/>
+                    <img class="custom-image" src="proderpsite/images/RawMaterials.png" alt="RawMaterials" /><br />
 
                     To update raw material data choose a raw material from the list on the right and change the
                     information.
@@ -144,7 +159,7 @@
 
                     Press Storage to open the Storage Menu.<br />
 
-                    <img class="custom-image" src="images/Storage.png" alt="Storage"/><br/>
+                    <img class="custom-image" src="proderpsite/images/Storage.png" alt="Storage" /><br />
 
 
                     Now you can update the quantity of the products or the raw materials by choosing the product or raw
@@ -159,52 +174,58 @@
                 </li>
                 <li id="aord">
                     <h5>Orders</h5>
-					Press orders to open Orders Menu.<br />
-                    <img style="height: 300px;width: 300px;" src="images/Order's Menu.png" class="custom-image" alt="Order Menu"/><br/>
-					To make an order to suppliers press Orders to Suppliers to open Supplier's Menu.<br />
-                    <img src="images/Orders To Suppliers.png" class="custom-image" alt="Supplier Menu"/><br/>
+                    Press orders to open Orders Menu.<br />
+                    <img style="height: 300px;width: 300px;" src="proderpsite/images/Order's Menu.png"
+                        class="custom-image" alt="Order Menu" /><br />
+                    To make an order to suppliers press Orders to Suppliers to open Supplier's Menu.<br />
+                    <img src="proderpsite/images/Orders To Suppliers.png" class="custom-image"
+                        alt="Supplier Menu" /><br />
 
-					Now you can update, delete and add an order or you can see the raw materials of each order
-					by pressing the according button below,
-					To update or delete an order press Update/Delete to open the Edit Supplier Order window.
-					Choose an order from the list and then press update to change the order to delivered,
-					delete to remove it from the list and cancel to return to Orders To Suppliers Menu.<br />
-					To add a new order press, Add New Order. Choose a supplier's ID from the combo box and then
-					press Add New Item Order. Now choose a raw material from the combo box
-					and type the quantity you need for the order. If you want to add more raw materials
-					to the order press New Item and repeat the process.
-					When you finish press Save Order.
-					To confirm your order press Ok. Now your order is saved.<br />
-					To see the raw materials of an order choose the order from the list above and then press Show Raw Materials. <br />
-					Press cancel to return to the Orders To Suppliers Menu.<br />
-					Press the refresh icon to refresh the order's list.<br />
-					Press back to return to Orders Menu.<br />
-					Press back to return to User's Menu.<br /> <br />
-					To take an order from a customer press Orders From Customers to open Orders From Customer's Menu.<br />
-                    <img src="images/Orders From Customers.png" class="custom-image" alt="Customer Menu"/><br/>
+                    Now you can update, delete and add an order or you can see the raw materials of each order
+                    by pressing the according button below,
+                    To update or delete an order press Update/Delete to open the Edit Supplier Order window.
+                    Choose an order from the list and then press update to change the order to delivered,
+                    delete to remove it from the list and cancel to return to Orders To Suppliers Menu.<br />
+                    To add a new order press, Add New Order. Choose a supplier's ID from the combo box and then
+                    press Add New Item Order. Now choose a raw material from the combo box
+                    and type the quantity you need for the order. If you want to add more raw materials
+                    to the order press New Item and repeat the process.
+                    When you finish press Save Order.
+                    To confirm your order press Ok. Now your order is saved.<br />
+                    To see the raw materials of an order choose the order from the list above and then press Show Raw
+                    Materials. <br />
+                    Press cancel to return to the Orders To Suppliers Menu.<br />
+                    Press the refresh icon to refresh the order's list.<br />
+                    Press back to return to Orders Menu.<br />
+                    Press back to return to User's Menu.<br /> <br />
+                    To take an order from a customer press Orders From Customers to open Orders From Customer's
+                    Menu.<br />
+                    <img src="proderpsite/images/Orders From Customers.png" class="custom-image"
+                        alt="Customer Menu" /><br />
 
-					Now you can update, delete and add an order or you can see the products of each order
-					by pressing the according button below.<br />
-					To update or delete an order press Update/Delete to open the Edit Customer Order window.
-					Choose an order from the list and then press update to update the order's status,
-					delete to remove it from the list and cancel to return to Orders From Customers Menu.<br />
-					To add a new order press, Add New Order. Choose a customer's ID from the combo box
-					and then press Add New Product to Order.
-					Now choose a product from the combo box and type the quantity the customer needs for the order.
-					If the customer needs more products for the order press New Item and repeat the process.
-					When you finish press Save Order. To confirm your order press Ok. Now your order is saved.<br />
-					To see the products of an order choose the order from the list above and then press Show Products.<br />
-					Press cancel to return to the Orders From Customers Menu.<br />
-					Press the refresh icon to refresh the order's list.<br />
-					Press back to return to Orders Menu.<br />
-					Press back to return to User's Menu.<br />
+                    Now you can update, delete and add an order or you can see the products of each order
+                    by pressing the according button below.<br />
+                    To update or delete an order press Update/Delete to open the Edit Customer Order window.
+                    Choose an order from the list and then press update to update the order's status,
+                    delete to remove it from the list and cancel to return to Orders From Customers Menu.<br />
+                    To add a new order press, Add New Order. Choose a customer's ID from the combo box
+                    and then press Add New Product to Order.
+                    Now choose a product from the combo box and type the quantity the customer needs for the order.
+                    If the customer needs more products for the order press New Item and repeat the process.
+                    When you finish press Save Order. To confirm your order press Ok. Now your order is saved.<br />
+                    To see the products of an order choose the order from the list above and then press Show
+                    Products.<br />
+                    Press cancel to return to the Orders From Customers Menu.<br />
+                    Press the refresh icon to refresh the order's list.<br />
+                    Press back to return to Orders Menu.<br />
+                    Press back to return to User's Menu.<br />
 
                 </li>
                 <li id="adduser">
                     <h5>Add User</h5>
 
                     Press Add User to open Add User's window.<br />
-                    <img class="custom-image" src="images/AddNewUser.png" alt="Add New User"/><br/>
+                    <img class="custom-image" src="proderpsite/images/AddNewUser.png" alt="Add New User" /><br />
 
                     To create a new user (admin or simple) type the new user's information and choose a role from the
                     combo
@@ -214,7 +235,7 @@
                 <li id="deluser">
                     <h5>Delete User</h5>
                     Press Delete User to open Delete User's window.<br />
-                    <img class="custom-image" src="images/DeleteUser.png" alt="Delete User"/><br/>
+                    <img class="custom-image" src="proderpsite/images/DeleteUser.png" alt="Delete User" /><br />
                     Choose a username from the combo box and the press delete, or cancel to return to Administrator's
                     Menu.<br />
                 </li>
@@ -227,7 +248,7 @@
                 Press Customers to open the Customer's Menu. Now you can update, delete or add a customer by pressing
                 the
                 according button below or press the refresh icon to refresh the customer's list.<br />
-                <img class="custom-image" src="images/Customers.png" alt="Customers"/><br/>
+                <img class="custom-image" src="proderpsite/images/Customers.png" alt="Customers" /><br />
                 To update customer data choose a customer from the list on the right and change the information. Then
                 press update.<br />
 
@@ -245,7 +266,7 @@
                 <h5>Suppliers</h5>
                 Press Suppliers to open the Supplier's Menu. Now you can update, delete or add a supplier by pressing
                 the according button below or press the refresh icon to refresh the supplier's list.<br />
-                <img class="custom-image" src="images/Suppliers.png" alt="Suppliers"/><br/>
+                <img class="custom-image" src="proderpsite/images/Suppliers.png" alt="Suppliers" /><br />
                 To update supplier data choose a supplier from the list on the right and change the information. Then
                 press
                 update.<br />
@@ -265,7 +286,8 @@
                 Press Products to open the Product's Menu. Now you can update, delete or add a product by pressing the
                 according button below or press the refresh icon to refresh the product's list. You can also see the
                 ingredients of each product and add or delete an ingredient.<br />
-                <img style="height: 300px;width: 300px;" class="custom-image" src="images/Products.png" alt="Products"/><br/>
+                <img style="height: 300px;width: 300px;" class="custom-image" src="proderpsite/images/Products.png"
+                    alt="Products" /><br />
 
                 To update product data choose a product from the list on the right and change the information. Then
                 press
@@ -299,7 +321,7 @@
                 <h5>Raw Materials</h5>
                 Press RawMaterials to open the RawMaterial's Menu. Now you can update, delete or add a raw material by
                 pressing the according button below or press the refresh icon to refresh the raw material's list.<br />
-                <img class="custom-image" src="images/RawMaterials.png" alt="raw materials"/><br/>
+                <img class="custom-image" src="proderpsite/images/RawMaterials.png" alt="raw materials" /><br />
 
                 To update raw material data choose a raw material from the list on the right and change the information.
                 Then press update, or cancel to exit the window.<br />
@@ -319,7 +341,7 @@
             <li id="ustor">
                 <h5>Storage</h5>
                 Press Storage to open the Storage Menu.<br />
-                <img class="custom-image" src="images/Storage.png" alt="Storage"/><br/>
+                <img class="custom-image" src="proderpsite/images/Storage.png" alt="Storage" /><br />
 
                 Now you can update the quantity of the products or the raw materials by choosing the product or raw
                 material
@@ -332,61 +354,63 @@
             </li>
             <li id="uord">
                 <h5>Orders</h5>
-				Press orders to open Orders Menu.<br />
-                    <img src="images/Order's Menu.png" class="custom-image" alt="Order Menu"/><br/>
-					To make an order to suppliers press Orders to Suppliers to open Supplier's Menu.<br />
-                    <img src="images/Orders To Suppliers.png" class="custom-image" alt="Supplier Menu"/><br/>
+                Press orders to open Orders Menu.<br />
+                <img style="height: 300px;width: 300px;" src="proderpsite/images/Order's Menu.png" class="custom-image" alt="Order Menu" /><br />
+                To make an order to suppliers press Orders to Suppliers to open Supplier's Menu.<br />
+                <img src="proderpsite/images/Orders To Suppliers.png" class="custom-image" alt="Supplier Menu" /><br />
 
-					Now you can update, delete and add an order or you can see the raw materials of each order
-					by pressing the according button below,
-					To update or delete an order press Update/Delete to open the Edit Supplier Order window.
-					Choose an order from the list and then press update to change the order to delivered,
-					delete to remove it from the list and cancel to return to Orders To Suppliers Menu.<br />
-					To add a new order press, Add New Order. Choose a supplier's ID from the combo box and then
-					press Add New Item Order. Now choose a raw material from the combo box
-					and type the quantity you need for the order. If you want to add more raw materials
-					to the order press New Item and repeat the process.
-					When you finish press Save Order.
-					To confirm your order press Ok. Now your order is saved.<br />
-					To see the raw materials of an order choose the order from the list above and then press Show Raw Materials. <br />
-					Press cancel to return to the Orders To Suppliers Menu.<br />
-					Press the refresh icon to refresh the order's list.<br />
-					Press back to return to Orders Menu.<br />
-					Press back to return to User's Menu.<br /> <br />
-					To take an order from a customer press Orders From Customers to open Orders From Customer's Menu.<br />
-                    <img src="images/Orders From Customers.png" class="custom-image" alt="Customer Menu"/><br/>
+                Now you can update, delete and add an order or you can see the raw materials of each order
+                by pressing the according button below,
+                To update or delete an order press Update/Delete to open the Edit Supplier Order window.
+                Choose an order from the list and then press update to change the order to delivered,
+                delete to remove it from the list and cancel to return to Orders To Suppliers Menu.<br />
+                To add a new order press, Add New Order. Choose a supplier's ID from the combo box and then
+                press Add New Item Order. Now choose a raw material from the combo box
+                and type the quantity you need for the order. If you want to add more raw materials
+                to the order press New Item and repeat the process.
+                When you finish press Save Order.
+                To confirm your order press Ok. Now your order is saved.<br />
+                To see the raw materials of an order choose the order from the list above and then press Show Raw
+                Materials. <br />
+                Press cancel to return to the Orders To Suppliers Menu.<br />
+                Press the refresh icon to refresh the order's list.<br />
+                Press back to return to Orders Menu.<br />
+                Press back to return to User's Menu.<br /> <br />
+                To take an order from a customer press Orders From Customers to open Orders From Customer's Menu.<br />
+                <img src="proderpsite/images/Orders From Customers.png" class="custom-image"
+                    alt="Customer Menu" /><br />
 
-					Now you can update, delete and add an order or you can see the products of each order
-					by pressing the according button below.<br />
-					To update or delete an order press Update/Delete to open the Edit Customer Order window.
-					Choose an order from the list and then press update to update the order's status,
-					delete to remove it from the list and cancel to return to Orders From Customers Menu.<br />
-					To add a new order press, Add New Order. Choose a customer's ID from the combo box
-					and then press Add New Product to Order.
-					Now choose a product from the combo box and type the quantity the customer needs for the order.
-					If the customer needs more products for the order press New Item and repeat the process.
-					When you finish press Save Order. To confirm your order press Ok. Now your order is saved.<br />
-					To see the products of an order choose the order from the list above and then press Show Products.<br />
-					Press cancel to return to the Orders From Customers Menu.<br />
-					Press the refresh icon to refresh the order's list.<br />
-					Press back to return to Orders Menu.<br />
-					Press back to return to User's Menu.<br />
+                Now you can update, delete and add an order or you can see the products of each order
+                by pressing the according button below.<br />
+                To update or delete an order press Update/Delete to open the Edit Customer Order window.
+                Choose an order from the list and then press update to update the order's status,
+                delete to remove it from the list and cancel to return to Orders From Customers Menu.<br />
+                To add a new order press, Add New Order. Choose a customer's ID from the combo box
+                and then press Add New Product to Order.
+                Now choose a product from the combo box and type the quantity the customer needs for the order.
+                If the customer needs more products for the order press New Item and repeat the process.
+                When you finish press Save Order. To confirm your order press Ok. Now your order is saved.<br />
+                To see the products of an order choose the order from the list above and then press Show Products.<br />
+                Press cancel to return to the Orders From Customers Menu.<br />
+                Press the refresh icon to refresh the order's list.<br />
+                Press back to return to Orders Menu.<br />
+                Press back to return to User's Menu.<br />
             </li>
         </ul>
         <p id="site">
             <u>Visit Our Website</u><br />
             Press the button Visit Our Website to open the web and get redirected ProdErp website.<br />
-            <img class="custom-image" src="images/VisitOurWebsite.png" alt="website"/><br/>
+            <img class="custom-image" src="proderpsite/images/VisitOurWebsite.png" alt="website" /><br />
         </p>
         <p id="logout">
             <u>Log Out</u><br />
             Press Log Out to disconnect from the system and return to the LogIn window. To exit the program press X.
         </p>
         <p id="checks">
-        	<u>Check the available quantities of raw materials and products</u><br />
-        	Checks automatically every four (4) minutes for the available raw materials and products.
-        	If the quantity of a raw material is less than 20, shows a message that there is not enough raw material.
-        	If the quantity of a product is less than 10, shows a message that there is not enough product.<br />
+            <u>Check the available quantities of raw materials and products</u><br />
+            Checks automatically every four (4) minutes for the available raw materials and products.
+            If the quantity of a raw material is less than 20, shows a message that there is not enough raw material.
+            If the quantity of a product is less than 10, shows a message that there is not enough product.<br />
         </p>
 
     </article>

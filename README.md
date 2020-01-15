@@ -39,6 +39,11 @@ and then enter the project folder and run
 ```bash
 java -jar target\proderp-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
+If you wnat to install without tests use 
+```bash
+mvn install -DskipTests
+```
+instead.
 After the .jar file is created you can just enter target folder and double click it. 
 #### Dummy Users
 Enter one of these usernames and passwords to log in the application. To enter as admin type username:maria and password:12341234. To enter as simpleuser type username:nat and password:1234567.

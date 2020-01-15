@@ -79,11 +79,11 @@ public class LogInTest {
     @Test
     public void blogInKeyPressed() throws AWTException {
         System.out.println("logInKeyPressed");
-        LogIn li = new LogIn();
+        new LogIn().setVisible(true);
         Robot bot = new Robot();
         //close caps lock
         Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
-        li.setVisible(true);
+        //li.setVisible(true);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {

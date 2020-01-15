@@ -115,7 +115,7 @@ public class LogInTest {
         //go to logIn jbutton
         bot.keyPress(KeyEvent.VK_TAB);
         try {
-            Thread.sleep(500);
+            Thread.sleep(250);
         } catch (InterruptedException e) {
         }
         //press logIn jbutton

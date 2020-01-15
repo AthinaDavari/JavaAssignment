@@ -13,6 +13,7 @@ This application is a potential module of an ERP system of an industrial company
 * [Java Swing](https://docs.oracle.com/javase/tutorial/uiswing/index.html) - GUI Toolkit
 * [JUnit 4](https://junit.org/junit4/) - Testing Framework
 * [Javadoc](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html) - Documentation Generator
+* [FindBugs] (http://findbugs.sourceforge.net/downloads.html) - Find Bugs in Java Programs
 
 ## Prerequisites
 * Java 8 or newer

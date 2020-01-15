@@ -13,7 +13,7 @@ This application is a potential module of an ERP system of an industrial company
 * [Java Swing](https://docs.oracle.com/javase/tutorial/uiswing/index.html) - GUI Toolkit
 * [JUnit 4](https://junit.org/junit4/) - Testing Framework
 * [Javadoc](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html) - Documentation Generator
-* [FindBugs] (http://findbugs.sourceforge.net/downloads.html) - Find Bugs in Java Programs
+* [FindBugs](http://findbugs.sourceforge.net/) - Find Bugs in Java Programs
 
 ## Prerequisites
 * Java 8 or newer
@@ -39,13 +39,20 @@ and then enter the project folder and run
 ```bash
 java -jar target\proderp-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
-After the .jar file is created you can just enter target folder and double click it.
+After the .jar file is created you can just enter target folder and double click it. 
+#### Dummy Users
+Enter one of these usernames and passwords to log in the application. To enter as admin type username:maria and password:12341234. To enter as simpleuser type username:nat and password:1234567.
+It is highly recommended the default user be deleted. 
+
 #### Testing
 To run tests use
 ```bash
 mvn test
 ```
 Warning!! Before run the test make sure that keyboard's language is english. Don't use the keyboard and mouse when the tests are running.
+
+#### Documentation 
+http://prometheus.dmst.aueb.gr/~nkatsiapi/proderp/apidocs/
 
 ## Authors
 | Full Name | Github Account | Mail |

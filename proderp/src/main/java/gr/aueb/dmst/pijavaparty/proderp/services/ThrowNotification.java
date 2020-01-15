@@ -3,7 +3,6 @@ package gr.aueb.dmst.pijavaparty.proderp.services;
 import gr.aueb.dmst.pijavaparty.proderp.GUI.LogIn;
 import gr.aueb.dmst.pijavaparty.proderp.entity.Product;
 import gr.aueb.dmst.pijavaparty.proderp.entity.RawMaterial;
-import gr.aueb.dmst.pijavaparty.proderp.services.Checks;
 import java.awt.Window;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,7 +33,6 @@ public class ThrowNotification implements Runnable {
                 Logger.getLogger(ThrowNotification.class.getName()).log(Level.SEVERE, null, ex);
             }
             for (Window w : windows) {
-                System.out.println(w.isVisible());
                 if (w.isVisible()|| count == 0) {
                     ++count;
                     foundActive = true;

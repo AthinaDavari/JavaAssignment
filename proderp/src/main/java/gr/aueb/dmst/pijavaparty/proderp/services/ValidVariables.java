@@ -46,7 +46,7 @@ public class ValidVariables {
     /**
      * Check if a string contains only letters and numbers.
      * 
-     * @param str A string to check its spelling
+     * @param input A string to check its spelling
      * @return true-string contains only letters and numbers, 
      * false-tring doesn't contain only letters and numbers.
      */
@@ -164,7 +164,7 @@ public class ValidVariables {
     /**
      * Check if a string contains only letters and numbers and white spaces.
      * 
-     * @param str A string to check its spelling
+     * @param input  A string to check its spelling
      * @return true-string contains only letters and numbers and white spaces, 
      * false-tring doesn't contain only letters and numbers and white spaces
      */

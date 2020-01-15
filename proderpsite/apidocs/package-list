@@ -1,0 +1,10 @@
+gr.aueb.dmst.pijavaparty.proderp.GUI
+gr.aueb.dmst.pijavaparty.proderp.GUI.customers
+gr.aueb.dmst.pijavaparty.proderp.GUI.orders
+gr.aueb.dmst.pijavaparty.proderp.GUI.products
+gr.aueb.dmst.pijavaparty.proderp.GUI.rawmaterials
+gr.aueb.dmst.pijavaparty.proderp.GUI.storage
+gr.aueb.dmst.pijavaparty.proderp.GUI.suppliers
+gr.aueb.dmst.pijavaparty.proderp.dao
+gr.aueb.dmst.pijavaparty.proderp.entity
+gr.aueb.dmst.pijavaparty.proderp.services
